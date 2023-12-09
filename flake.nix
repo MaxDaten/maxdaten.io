@@ -48,7 +48,7 @@
                   ] ++ lib.attrValues treefmtEval.config.build.programs;
 
                   enterShell = ''
-                    ${pkgs.figlet}/bin/figlet "maxdaten.io" | ${pkgs.lolcat}/bin/lolcat
+                    ${pkgs.figlet}/bin/figlet -f slant "maxdaten.io" | ${pkgs.lolcat}/bin/lolcat
                   '';
                 }
               ];
