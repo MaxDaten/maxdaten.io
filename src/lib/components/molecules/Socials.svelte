@@ -8,24 +8,16 @@
 </script>
 
 <div class="socials">
-	<a
-		href="#"
-		target="_blank"
-		rel="noopener noreferrer"
-		title="Say Hi on Telegram"
-	>
+	<!-- 
+	<a href="#" target="_blank" rel="noopener noreferrer" title="Say Hi on Telegram">
 		<TelegramIcon />
 	</a>
-	<a
-		href="#"
-		target="_blank"
-		rel="me noreferrer"
-		title="Say Hi on Mastodon"
-	>
+	<a href="#" target="_blank" rel="me noreferrer" title="Say Hi on Mastodon">
 		<MastodonIcon />
 	</a>
+	-->
 	<a
-		href="#"
+		href="https://github.com/MaxDaten"
 		target="_blank"
 		rel="noopener noreferrer"
 		title="See my GitHub profile"
@@ -33,7 +25,7 @@
 		<GitHubIcon />
 	</a>
 	<a
-		href="#"
+		href="https://www.linkedin.com/in/maxdaten"
 		target="_blank"
 		rel="noopener noreferrer"
 		title="Connect on LinkedIn"
@@ -41,7 +33,7 @@
 		<LinkedInIcon />
 	</a>
 	<a
-		href="#"
+		href="mailto:jan-philip@entwicklerteam.hamburg"
 		target="_blank"
 		rel="noopener noreferrer"
 		title="Send an email"
