@@ -14,24 +14,16 @@
 	</p>
 	<div class="ctas">
 		<Sparkles>
-			<Button href="https://github.com/matfantinel/sveltekit-static-blog-template">
+			<Button href="https://github.com/MaxDaten">
 				<GitHubIcon slot="icon" />
 				Projects
 			</Button>
 		</Sparkles>
-		<Button
-			size="medium"
-			color="secondary"
-			href="https://histoire-sveltekit-static-blog-template.vercel.app/"
-		>
+		<Button size="medium" color="secondary" href="/blog">
 			<BlogIcon slot="icon" />
 			Blog
 		</Button>
-		<Button
-			size="medium"
-			color="secondary"
-			href="https://histoire-sveltekit-static-blog-template.vercel.app/"
-		>
+		<Button size="medium" color="secondary" href="#">
 			<ExperienceIcon slot="icon" />
 			Resume
 		</Button>
