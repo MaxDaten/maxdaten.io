@@ -74,7 +74,7 @@
 
 	.note {
 		font-size: 0.8rem;
-		color: rgba(var(--color--text-rgb), 0.8);
+		color: rgba(var(--color--secondary-rgb), 0.8);
 	}
 
 	.text {
