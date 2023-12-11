@@ -11,14 +11,10 @@
 		fill="none"
 		xmlns="http://www.w3.org/2000/svg"
 	>
-		<text
-			xml:space="preserve"
-			id="text"
-			transform="translate(-278.77228,-206.83728)"
+		<text xml:space="preserve" id="text" transform="translate(-278.77228,-206.83728)"
 			><tspan x="275.57227" y="292.17088" id="tspan1319"
-				><tspan
-					style="font-size:106.667px;font-family:YoungSerif;"
-					id="tspan1317">Site Logo</tspan
+				><tspan style="font-size:106.667px;font-family:YoungSerif;" id="tspan1317"
+					>maxdaten.io</tspan
 				></tspan
 			></text
 		>
@@ -47,7 +43,7 @@
 
 			#text {
 				transition: all 0.2s ease-in-out;
-				fill: var(--color--text);
+				fill: var(--color--primary);
 			}
 		}
 
@@ -69,7 +65,7 @@
 
 				#darker {
 					> path {
-						--text-color: var(--color--text);
+						--text-color: var(--color--primary);
 						stroke-width: 2;
 						animation: svg-text-stroke 3s;
 					}
@@ -79,7 +75,7 @@
 			#text {
 				animation: svg-text-stroke 3s;
 				stroke-width: 2;
-				--text-color: var(--color--text);
+				--text-color: var(--color--primary);
 			}
 		}
 	}
