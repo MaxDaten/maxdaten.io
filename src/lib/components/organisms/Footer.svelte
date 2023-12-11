@@ -11,7 +11,7 @@
 	</div>
 	<div class="content">
 		<div class="copyright">
-			This template was built by <a
+			Based on a template built by <a
 				href="https://fantinel.dev?utm_source=site-template"
 				target="_blank"
 				rel="noopener noreferrer">Matheus Fantinel</a
