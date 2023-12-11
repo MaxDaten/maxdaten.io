@@ -6,13 +6,10 @@
 
 <section id="about">
 	<div class="info">
-		<h2>
-			This is a catchy headline that
-			<SparklingHighlight color="secondary">sparkles!</SparklingHighlight>
-		</h2>
+		<h2>Hi there! I'm Jan-Philip</h2>
 		<p>
-			Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum velit voluptatibus commodi
-			autem provident quam labore, libero beatae praesentium voluptate?
+			a software engineer from Hamburg, Germany. I'm passionate about automatization, functional
+			programming and open source. I'm currently working as a freelancer.
 		</p>
 		<div class="socials">
 			<span>Socials:</span>
@@ -20,10 +17,7 @@
 		</div>
 	</div>
 	<div class="image">
-		<Image
-			src="/images/sample-image.png"
-			alt="Sample for the static template"
-		/>
+		<Image src="/images/sample-image.png" alt="Sample for the static template" />
 	</div>
 </section>
 
