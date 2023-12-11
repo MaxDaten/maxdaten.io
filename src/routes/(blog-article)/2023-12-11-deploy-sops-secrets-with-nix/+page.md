@@ -6,12 +6,23 @@ excerpt: How to manage secrets like private ssh keys or database access in a clo
 date: 2023-12-11T14:34:43.678Z
 hidden: false
 tags:
-    - nix
-    - sops
-    - secrets
-    - google cloud
-    - devops
-keywords: []
+  - nix
+  - sops
+  - secrets
+  - google cloud
+  - devops
+keywords:
+  - NixOS
+  - SOPS
+  - Cloud
+  - Nix
+  - KMS
+  - SSH Key
+  - Encryption
+  - Secure DevOps Practices
+  - Secrets
+  - terraform
+  - flux
 ---
 
 <script>
