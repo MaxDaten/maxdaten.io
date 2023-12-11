@@ -45,18 +45,20 @@
 }
 
 @mixin dark-theme {
-	@include define-color('primary', #9f67ff);
-	@include define-color('primary-shade', #4612a1);
-	@include define-color('primary-tint', #231934);
+	// @include define-color('primary', #9f67ff);
 
-	@include define-color('secondary', #ff723f);
-	@include define-color('secondary-shade', #ab3307);
-	@include define-color('secondary-tint', #1b1918);
+	@include define-color('primary', #FF8000);
+	@include define-color('primary-shade',#7E4611);
+	@include define-color('primary-tint', #2D1D10);
+
+	@include define-color('secondary', #0CD7F1);
+	@include define-color('secondary-shade', #147B8C);
+	@include define-color('secondary-tint', #0D2A30);
 
 	@include define-color('yellow', #ffd400);
 
-	@include define-color('text', #ffffff);
-	@include define-color('text-shade', #9eb4b5);
+	@include define-color('text', #fffcfc);
+	@include define-color('text-shade', #D9F9FD);
 	@include define-color('text-inverse', #1c1e26);
 	@include define-color('text-inverse-shade', #5d5f65);
 
@@ -76,6 +78,9 @@
 	@include define-color('callout-accent--success', #00c48f);
 
 	@include define-color('code-inline-background', #2b3131);
+
+	--color--waves-start: rgba(var(--color--secondary-rgb), 0.3);
+	--color--waves-end: rgba(var(--color--secondary-rgb), 0.1);
 }
 
 :root {
