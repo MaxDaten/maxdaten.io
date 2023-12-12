@@ -44,6 +44,7 @@
 
                   # https://devenv.sh/reference/options/
                   packages = [
+                    pkgs.npm-check-updates
                     treefmtEval.config.build.wrapper
                   ] ++ lib.attrValues treefmtEval.config.build.programs;
 
