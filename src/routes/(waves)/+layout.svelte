@@ -25,6 +25,8 @@
 	<meta name="twitter:card" content="summary_large_image" />
 </svelte:head>
 
+<Bokeh />
+
 <Header showBackground={true} />
 
 <main>
@@ -32,5 +34,3 @@
 </main>
 
 <Footer />
-
-<Bokeh />
