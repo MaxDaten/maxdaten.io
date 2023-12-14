@@ -11,15 +11,20 @@
 		parallaxX = xScale * 10;
 		parallaxY = yScale * 10;
 	};
+
+	let bokehCount = 25;
 </script>
 
 <svelte:window on:mousemove={domousemove} />
-<!-- x: {parallaxX} y: {parallaxY} -->
 <div class="bokeh-container">
 	<svg class="bokeh" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
 		<g class="parallax">
-			{#each Array.from({ length: 25 }) as _, i}
-				<circle cx="{50 + parallaxX * (i / 25)}%" cy="{50 + parallaxY * (i / 25)}%" r="45%" />
+			{#each Array.from({ length: bokehCount }) as _, i}
+				<circle
+					cx="{50 + parallaxX * (i / bokehCount)}%"
+					cy="{50 + parallaxY * (i / bokehCount)}%"
+					r="45%"
+				/>
 			{/each}
 		</g>
 	</svg>
@@ -32,14 +37,14 @@
 	$bokehBaseOpacity: 0.1;
 	$bokehBaseBrightness: 100;
 	$bokehBaseAnimationDuration: 50s;
-	$colorSet: (#124, #469, #614, #c63, #266);
+	$colorSet: (rgb(56, 133, 249), rgb(255, 16, 16), rgb(255, 85, 0), rgb(19, 227, 227));
 
 	.bokeh-container {
 		position: absolute;
 		width: 100vw;
 		height: 100vh;
 		overflow: hidden;
-		opacity: 0.1;
+		opacity: 0.05;
 	}
 
 	.bokeh {
@@ -74,7 +79,7 @@
 			fill: $baseColor;
 			stroke: lighten($baseColor, 50%);
 			opacity: $bokehBaseOpacity + random(4) * 0.15;
-			filter: brightness($bokehBaseBrightness + random() * 150%) blur(5px * random() + 3px);
+			filter: brightness($bokehBaseBrightness + random() * 150%) blur(4px * random() + 2px);
 			transform-origin: (random() * 100% - 50%) (random() * 100% - 50%);
 			animation-duration: $bokehBaseAnimationDuration + random(30) * 1s;
 		}
