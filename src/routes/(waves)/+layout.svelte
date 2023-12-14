@@ -27,7 +27,7 @@
 
 <Bokeh />
 
-<Header />
+<Header showBackground={true} />
 
 <main>
 	<slot />
