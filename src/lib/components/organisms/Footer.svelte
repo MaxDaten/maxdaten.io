@@ -6,22 +6,23 @@
 </script>
 
 <footer>
-	<div class="wave">
+	<!-- <div class="wave">
 		<FooterWave />
-	</div>
+	</div> -->
 	<div class="content">
+		
+		<div class="credits">
+			Powered by <a href="https://kit.svelte.dev/" target="_blank" rel="noopener noreferrer"
+				>SvelteKit</a
+			>. Icons by
+			<a href="https://iconoir.com/" target="_blank" rel="noopener noreferrer">Iconoir</a>.
+		</div>
 		<div class="copyright">
 			Based on a template built by <a
 				href="https://fantinel.dev?utm_source=site-template"
 				target="_blank"
 				rel="noopener noreferrer">Matheus Fantinel</a
 			>.
-		</div>
-		<div class="credits">
-			Powered by <a href="https://kit.svelte.dev/" target="_blank" rel="noopener noreferrer"
-				>SvelteKit</a
-			>. Icons by
-			<a href="https://iconoir.com/" target="_blank" rel="noopener noreferrer">Iconoir</a>.
 		</div>
 		<div class="socials">
 			<Socials />
@@ -47,6 +48,11 @@
 			gap: 15px;
 			font-weight: 600;
 			text-align: center;
+
+			.copyright {
+				font-size: 80%;
+				color: var(--color--text-shade);
+			}
 
 			.credits {
 				font-weight: 400;
