@@ -32,7 +32,6 @@
 		<div class="socials">
 			<Socials />
 			<RssLink />
-			<ThemeToggle />
 		</div>
 	</div>
 </footer>
