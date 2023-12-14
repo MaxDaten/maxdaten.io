@@ -17,8 +17,14 @@
 			<a href="https://iconoir.com/" target="_blank" rel="noopener noreferrer">Iconoir</a>.
 		</div>
 		<div class="copyright">
-			Based on a template built by <a
-				href="https://fantinel.dev?utm_source=site-template"
+			Based on a <a
+				href="https://github.com/matfantinel/sveltekit-static-blog-template"
+				target="_blank"
+				rel="noopener noreferrer">template</a
+			>
+			built by
+			<a
+				href="https://fantinel.dev?utm_source=maxdaten.io&utm_medium=footer&utm_campaign=blog"
 				target="_blank"
 				rel="noopener noreferrer">Matheus Fantinel</a
 			>.
@@ -33,7 +39,6 @@
 
 <style lang="scss">
 	footer {
-		// height: 240px;
 		width: 100%;
 		background: linear-gradient(60deg, var(--color--waves-start) 0%, var(--color--waves-end) 100%);
 		border-top: 1px solid var(--color--waves-start);
