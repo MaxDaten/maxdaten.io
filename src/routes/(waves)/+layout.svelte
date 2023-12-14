@@ -25,12 +25,28 @@
 	<meta name="twitter:card" content="summary_large_image" />
 </svelte:head>
 
-<Bokeh />
+<div class="stage">
+	<Bokeh />
 
-<Header showBackground={true} />
+	<Header showBackground={true} />
 
-<main>
-	<slot />
-</main>
+	<main class="fill-height">
+		<slot />
+	</main>
 
-<Footer />
+	<Footer />
+</div>
+
+<style lang="scss">
+	.stage {
+		height: 100%;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.fill-height {
+		flex-grow: 1;
+	}
+</style>
