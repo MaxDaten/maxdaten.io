@@ -10,7 +10,6 @@
 		<FooterWave />
 	</div> -->
 	<div class="content">
-		
 		<div class="credits">
 			Powered by <a href="https://kit.svelte.dev/" target="_blank" rel="noopener noreferrer"
 				>SvelteKit</a
@@ -34,9 +33,11 @@
 
 <style lang="scss">
 	footer {
-		height: 340px;
+		// height: 240px;
 		width: 100%;
 		background: linear-gradient(60deg, var(--color--waves-start) 0%, var(--color--waves-end) 100%);
+		border-top: 1px solid var(--color--waves-start);
+
 		display: grid;
 		grid-template-rows: 120px 1fr;
 
