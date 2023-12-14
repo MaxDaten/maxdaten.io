@@ -45,8 +45,6 @@
 }
 
 @mixin dark-theme {
-	// @include define-color('primary', #9f67ff);
-
 	@include define-color('primary', #FF8000);
 	@include define-color('primary-shade',#7E4611);
 	@include define-color('primary-tint', #2D1D10);
@@ -86,13 +84,7 @@
 :root {
 	@include base-theme;
 
-	&[data-theme='dark'] {
+	& {
 		@include dark-theme;
-	}
-
-	&[data-theme='auto'] {
-		@media (prefers-color-scheme: dark) {
-			@include dark-theme;
-		}
 	}
 }
