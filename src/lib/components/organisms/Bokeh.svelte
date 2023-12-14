@@ -45,6 +45,7 @@
 		height: 100vh;
 		overflow: hidden;
 		opacity: 0.05;
+		z-index: var(--background-layer);
 	}
 
 	.bokeh {
