@@ -4,11 +4,21 @@
 
 export const siteBaseUrl = 'https://maxdaten-io.vercel.app/';
 
-export const keywords = ['Svelte', 'SvelteKit', 'Template', 'Blog', 'Starter', 'Static Site'];
+export const keywords = [
+	'Svelte',
+	'SvelteKit',
+	'Template',
+	'Blog',
+	'Jan-Philip Loos',
+	'maxdaten.io',
+	'DevOps',
+	'Web Development',
+	'Software Development'
+];
 
 export const description =
-	'A light, neat, and easy-to-use SvelteKit template for your next website.';
+	'Software Craftsmanship: Insights, Innovations and Niche Topics in the World of Tech.';
 
-export const title = 'SvelteKit Static Blog Template';
+export const title = 'Jan-Philip Loos | maxdaten.io';
 
 export const image = `${siteBaseUrl}/images/site-preview.png`;
