@@ -30,6 +30,8 @@
 			padding: 20px 0;
 		}
 
+		border-bottom: 1px solid var(--color--waves-start);
+
 		&.has-background {
 			background: linear-gradient(
 				60deg,
