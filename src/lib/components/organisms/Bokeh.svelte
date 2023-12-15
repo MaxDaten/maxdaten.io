@@ -16,7 +16,7 @@
 </script>
 
 <svelte:window on:mousemove={domousemove} />
-<div class="bokeh-container">
+<div class="bokeh-container" style="display: none;">
 	<svg class="bokeh" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
 		<g class="parallax">
 			{#each Array.from({ length: bokehCount }) as _, i}
@@ -40,6 +40,8 @@
 	$colorSet: (rgb(56, 133, 249), rgb(255, 16, 16), rgb(255, 85, 0), rgb(19, 227, 227));
 
 	.bokeh-container {
+		// display: none in inline style fixed popping in svg before css is parsed
+		display: block !important;
 		position: absolute;
 		width: 100vw;
 		height: 100vh;
