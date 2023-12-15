@@ -23,10 +23,12 @@
 			<BlogIcon slot="icon" />
 			Blog
 		</Button>
-		<Button size="medium" color="secondary" href="#">
-			<ExperienceIcon slot="icon" />
-			Resume
-		</Button>
+		<!-- 
+			<Button size="medium" color="secondary" href="#">
+				<ExperienceIcon slot="icon" />
+				Resume
+			</Button>
+		-->
 	</div>
 </section>
 
