@@ -8,10 +8,11 @@
 
 <section id="hero">
 	<h1 class="hello">Welcome to my blog!</h1>
-	<p class="intro">
+	<div class="intro">
 		<span class="left">functional & automated</span>
-		<span class="right">DevOps, Full-Stack, Cloud Engineer</span>
-	</p>
+		<hr />
+		<span class="right">DevOps, Fullstack, Cloud Engineer</span>
+	</div>
 	<div class="ctas">
 		<Button color="secondary" href="https://github.com/MaxDaten">
 			<GitHubIcon slot="icon" />
@@ -53,9 +54,11 @@
 		.intro {
 			font-weight: 500;
 			font-size: 1.4rem;
+			line-height: 2.5rem;
 			width: min(100%, 440px);
 			display: flex;
 			flex-direction: column;
+			color: rgba(var(--color--text-shade-rgb), 0.7);
 
 			.left {
 				text-align: left;
@@ -66,6 +69,13 @@
 
 			@include for-phone-only {
 				display: none;
+			}
+
+			hr {
+				border: 0;
+				margin: 0 auto;
+				border-top: 1px solid rgba(var(--color--text-shade-rgb), 0.1);
+				width: 80%;
 			}
 		}
 
