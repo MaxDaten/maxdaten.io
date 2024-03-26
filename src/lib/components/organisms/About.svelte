@@ -17,7 +17,10 @@
 		</div>
 	</div>
 	<div class="image">
-		<Image src="/images/sample-image.png" alt="Sample for the static template" />
+		<Image
+			src="/images/me.png"
+			alt="A manga comic drawing of Jan-Philip Loos sitting in front of a window showing a cyberpunk city"
+		/>
 	</div>
 </section>
 
@@ -76,6 +79,10 @@
 		.image {
 			width: 220px;
 			height: 220px;
+		}
+
+		:global(.image img) {
+			border-radius: 10%;
 		}
 	}
 </style>
