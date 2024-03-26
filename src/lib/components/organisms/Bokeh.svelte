@@ -40,8 +40,10 @@
 	$colorSet: (rgb(56, 133, 249), rgb(255, 16, 16), rgb(255, 85, 0), rgb(19, 227, 227));
 
 	.bokeh-container {
-		// display: none in inline style fixed popping in svg before css is parsed
-		display: block !important;
+		@include for-desktop-up {
+			// display: none in inline style fixed popping in svg before css is parsed
+			display: block !important;
+		}
 		position: absolute;
 		width: 100vw;
 		height: 100vh;
