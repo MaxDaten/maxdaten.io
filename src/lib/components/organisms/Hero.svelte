@@ -13,22 +13,20 @@
 		<span class="right">DevOps, Full-Stack, Cloud Engineer</span>
 	</p>
 	<div class="ctas">
-		<Sparkles>
-			<Button href="https://github.com/MaxDaten">
-				<GitHubIcon slot="icon" />
-				Projects
-			</Button>
-		</Sparkles>
+		<Button color="secondary" href="https://github.com/MaxDaten">
+			<GitHubIcon slot="icon" />
+			Projects
+		</Button>
 		<Button size="medium" color="secondary" href="/blog">
 			<BlogIcon slot="icon" />
 			Blog
 		</Button>
-		<!-- 
-			<Button size="medium" color="secondary" href="#">
+		<Sparkles>
+			<Button size="medium" href="https://cv.maxdaten.io">
 				<ExperienceIcon slot="icon" />
 				Resume
 			</Button>
-		-->
+		</Sparkles>
 	</div>
 </section>
 
