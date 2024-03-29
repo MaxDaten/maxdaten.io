@@ -17,12 +17,15 @@
 		"postbuild": "npm run optimize-images && svelte-sitemap --domain https://maxdaten.io",
 		"vercel-sitemap": "svelte-sitemap --out-dir .vercel/output/static --domain https://maxdaten.io",
 		"vercel-optimize-images": "image-transmutation --run --sourceFolder '.vercel/output/static/images' --targetFolder '.vercel/output/static/images' --inputFormats 'jpg' --inputFormats 'jpeg' --inputFormats 'png' --outputFormats 'png' --outputFormats 'webp' --outputFormats 'avif'",
-		"vercel-build": "npm run build && npm run vercel-sitemap && npm run vercel-optimize-images"
+		"vercel-build": "npm run build && npm run vercel-sitemap && npm run vercel-optimize-images",
+		"update-site-preview-image": "node scripts/update-site-preview-image.js"
 	},
 	"devDependencies": {
 		"@histoire/plugin-svelte": "^0.17.6",
+		"@playwright/test": "^1.42.1",
 		"@sveltejs/adapter-static": "^2.0.3",
 		"@sveltejs/kit": "^1.30.3",
+		"@types/node": "^20.11.30",
 		"dateformat": "^5.0.3",
 		"eslint": "^8.55.0",
 		"eslint-config-prettier": "^9.1.0",

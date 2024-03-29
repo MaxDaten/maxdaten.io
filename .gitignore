@@ -12,3 +12,7 @@ vite.config.ts.timestamp-*
 .jampack
 .direnv
 .devenv
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
