@@ -48,12 +48,15 @@
 			h2 {
 				@include for-phone-only {
 					text-align: center;
+					text-wrap: balance;
 				}
 			}
 
 			p {
 				@include for-phone-only {
 					text-align: justify;
+					max-inline-size: 50ch;
+					text-wrap: balance;
 				}
 			}
 
