@@ -7,7 +7,7 @@ export async function load() {
 	};
 }
 
-function rotateArray(arr: [], count: number) {
+function rotateArray<T>(arr: T[], count: number) {
 	const clippedCount = count % arr.length;
 	return arr.slice(clippedCount).concat(arr.slice(0, clippedCount));
 }
