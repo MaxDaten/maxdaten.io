@@ -36,3 +36,11 @@ export type BlogPost = {
 	relatedPosts: BlogPost[];
 	coverImage: string | undefined;
 };
+
+export type GemEntry = {
+	title: string;
+	description: string;
+	tags: string[];
+	link: string;
+	coverImage: string;
+};

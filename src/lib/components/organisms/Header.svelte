@@ -1,6 +1,5 @@
 <script lang="ts">
 	import Logo from '$lib/components/atoms/Logo.svelte';
-	import ThemeToggle from '$lib/components/molecules/ThemeToggle.svelte';
 	import RssLink from '$lib/components/atoms/RssLink.svelte';
 
 	export let showBackground = false;
@@ -13,6 +12,7 @@
 		</a>
 		<div class="links">
 			<a href="/blog">Blog</a>
+			<a href="/gems">Gems</a>
 			<RssLink />
 		</div>
 	</nav>
