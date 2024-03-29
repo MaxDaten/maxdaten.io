@@ -48,7 +48,7 @@
 		width: 100vw;
 		height: 100vh;
 		overflow: hidden;
-		opacity: 0.05;
+		opacity: 0.5;
 		z-index: var(--background-layer);
 	}
 
@@ -71,6 +71,7 @@
 
 	@for $i from 1 through $bokehCount {
 		.parallax > circle:nth-child(#{$i}) {
+			mix-blend-mode: overlay;
 			--random-translate-x: #{random() * 100% - 25%};
 			--random-translate-y: #{random() * 100% - 25%};
 			--random-scale: #{0.1 + random() * 0.3};
@@ -83,8 +84,8 @@
 			$depthAdjustedColor: adjust-color($baseColor, $saturation: ($i * -1%));
 			fill: $baseColor;
 			stroke: lighten($baseColor, 50%);
-			opacity: $bokehBaseOpacity + random(4) * 0.15;
-			filter: brightness($bokehBaseBrightness + random() * 150%) blur(4px * random() + 2px);
+			opacity: $bokehBaseOpacity + random(1) * 0.01;
+			filter: brightness($bokehBaseBrightness + random() * 150%) blur(6px * random() + 2px);
 			transform-origin: (random() * 100% - 50%) (random() * 100% - 50%);
 			animation-duration: $bokehBaseAnimationDuration + random(30) * 1s;
 		}
