@@ -12,7 +12,7 @@
 </script>
 
 <div class="container">
-	<ContentSection title="Gems of precious friends">
+	<ContentSection title="Gems of Precious Friends">
 		<div class="grid">
 			{#each gems as gem}
 				<GemCard
