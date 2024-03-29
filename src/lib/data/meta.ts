@@ -2,18 +2,16 @@
 // So they can be added as suffixes on different pages
 // Via <svelte:head>
 
-export const siteBaseUrl = 'https://maxdaten-io.vercel.app/';
+export const siteBaseUrl = 'https://maxdaten.io/';
 
 export const keywords = [
-	'Svelte',
-	'SvelteKit',
-	'Template',
 	'Blog',
 	'Jan-Philip Loos',
 	'maxdaten.io',
 	'DevOps',
 	'Web Development',
-	'Software Development'
+	'Software Development',
+	'IT Consulting'
 ];
 
 export const description =
