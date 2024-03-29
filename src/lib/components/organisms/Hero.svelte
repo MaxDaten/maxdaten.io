@@ -1,5 +1,6 @@
 <script>
 	import BlogIcon from '$lib/icons/blog.svelte';
+	import HeartIcon from '$lib/icons/heart.svelte';
 	import ExperienceIcon from '$lib/icons/experience.svelte';
 	import GitHubIcon from '$lib/icons/socials/github.svelte';
 	import Button from '$lib/components/atoms/Button.svelte';
@@ -21,6 +22,10 @@
 		<Button size="medium" color="secondary" href="/blog">
 			<BlogIcon slot="icon" />
 			Blog
+		</Button>
+		<Button size="medium" color="secondary" href="/gems">
+			<HeartIcon slot="icon" />
+			Gems
 		</Button>
 		<Sparkles>
 			<Button size="medium" href="https://cv.maxdaten.io">
