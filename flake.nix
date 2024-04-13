@@ -45,6 +45,7 @@
                   # https://devenv.sh/reference/options/
                   packages = [
                     pkgs.npm-check-updates
+                    pkgs.nodePackages.vercel
                     treefmtEval.config.build.wrapper
                   ] ++ lib.attrValues treefmtEval.config.build.programs;
 
