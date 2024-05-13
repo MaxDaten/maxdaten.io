@@ -1,6 +1,5 @@
-// import adapter from '@sveltejs/adapter-static';
 import adapter from '@sveltejs/adapter-static';
-import { vitePreprocess } from '@sveltejs/kit/vite';
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import { mdsvex } from 'mdsvex';
 import rehypeExternalLinks from 'rehype-external-links';
 import rehypeSlug from 'rehype-slug';
@@ -14,7 +13,14 @@ const config = {
 		adapter: adapter(),
 		prerender: {
 			handleHttpError: 'warn'
-		}
+		},
+		alias: {
+			$components: './src/lib/components',
+			$lib: './src/lib',
+			$stores: './src/lib/stores',
+			$styles: './src/lib/scss',
+			$utils: './src/lib/utils'
+		},
 	},
 	vitePlugin: {
 		inspector: true,

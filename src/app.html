@@ -46,13 +46,6 @@
 			const theme = localStorage.getItem('theme-preference') || 'auto';
 			document.firstElementChild?.setAttribute('data-theme', theme);
 		</script>
-		<script
-			defer
-			src="/scitylana/js/script.js"
-			data-api="/scitylana/api/event"
-			data-domain="maxdaten.io"
-		></script>
-
 		%sveltekit.head%
 	</head>
 	<body data-sveltekit-preload-data="hover">
