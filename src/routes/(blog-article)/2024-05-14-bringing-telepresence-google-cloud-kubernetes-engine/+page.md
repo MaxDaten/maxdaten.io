@@ -1,6 +1,6 @@
 ---
 title: Bringing Telepresence to Google Cloud Kubernetes Engine
-slug: 2024-05-14-bringing-telepresence-to-google-cloud-gke
+slug: 2024-05-14-bringing-telepresence-google-cloud-kubernetes-engine
 coverImage: /images/posts/portal-telepresence.png
 excerpt: A short guide for using Telepresence.io with Google Kubernetes Engine (GKE) and Network Endpoint Groups (NEGs). This guide discusses overcoming health check challenges with NEGs, focusing on HTTP protocol limitations, and providing strategic methods like using sidecar containers and dedicated health check ports for seamless development and debugging.
 date: 2024-05-13T23:39:16.936Z
