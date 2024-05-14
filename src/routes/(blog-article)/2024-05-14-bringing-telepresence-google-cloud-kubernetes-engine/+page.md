@@ -6,7 +6,10 @@ excerpt: A short guide for using Telepresence.io with Google Kubernetes Engine (
 date: 2024-05-13T23:39:16.936Z
 updated: 2024-05-13T23:39:16.936Z
 hidden: true
-tags: []
+tags:
+    - google cloud
+    - kubernetes
+    - telepresence
 keywords:
     - GKE
     - google cloud
