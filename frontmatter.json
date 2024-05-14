@@ -65,6 +65,5 @@
       "title": "posts",
       "path": "[[workspace]]/src/routes/(blog-article)"
     }
-  ],
-  "frontMatter.git.enabled": true
+  ]
 }
