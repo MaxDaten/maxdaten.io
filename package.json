@@ -21,6 +21,9 @@
 		"update-site-preview-image": "node scripts/update-site-preview-image.js"
 	},
 	"devDependencies": {
+		"@fontsource/inter": "^5.0.18",
+		"@fontsource/merriweather": "^5.0.13",
+		"@fontsource/ubuntu-mono": "^5.0.20",
 		"@histoire/plugin-svelte": "^0.17.6",
 		"@playwright/test": "^1.42.1",
 		"@sveltejs/adapter-static": "^3.0.1",
@@ -47,10 +50,5 @@
 		"typescript": "^5.3.3",
 		"vite": "^5.2.11"
 	},
-	"type": "module",
-	"dependencies": {
-		"@fontsource/inter": "^5.0.16",
-		"@fontsource/merriweather": "^5.0.8",
-		"@fontsource/ubuntu-mono": "^5.0.18"
-	}
+	"type": "module"
 }
