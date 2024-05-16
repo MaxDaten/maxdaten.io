@@ -1,6 +1,6 @@
 # maxdaten.io
 
-This is the source code for my personal website, [maxdaten.io](https://maxdaten.io). Driven by the f*** awesome [sveltekit-static-blog-template](https://github.com/matfantinel/sveltekit-static-blog-template).
+This is the source code for my personal website, [maxdaten.io](https://maxdaten.io). Driven by the f\*\*\* awesome [sveltekit-static-blog-template](https://github.com/matfantinel/sveltekit-static-blog-template).
 It's built with [SvelteKit](https://kit.svelte.dev), and uses [MDsveX](https://mdsvex.pngwn.io/) to allow using Svelte components inside Markdown files.
 
 ## Building & Running Locally

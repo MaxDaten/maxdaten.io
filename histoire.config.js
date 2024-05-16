@@ -3,15 +3,8 @@ import { HstSvelte } from '@histoire/plugin-svelte';
 
 export default defineConfig({
 	plugins: [HstSvelte()],
-	storyMatch: [
-		'src/**/*.story.svelte',
-	],
-	storyIgnored: [
-		'**/node_modules/**',
-		'**/dist/**',
-		'.direnv/**',
-		'.devenv/**',
-	],
+	storyMatch: ['src/**/*.story.svelte'],
+	storyIgnored: ['**/node_modules/**', '**/dist/**', '.direnv/**', '.devenv/**'],
 	theme: {
 		title: 'Histoire',
 		logo: {

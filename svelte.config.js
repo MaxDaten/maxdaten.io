@@ -20,10 +20,10 @@ const config = {
 			$stores: './src/lib/stores',
 			$styles: './src/lib/scss',
 			$utils: './src/lib/utils'
-		},
+		}
 	},
 	vitePlugin: {
-		inspector: true,
+		inspector: true
 	},
 	preprocess: [
 		vitePreprocess(),
