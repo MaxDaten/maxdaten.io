@@ -1,5 +1,4 @@
 {
-	"cssVariables.lookupFiles": ["**/*.css", "**/*.scss", "**/*.sass", "**/*.less"],
 	"editor.formatOnSave": true,
 	"prettier.singleQuote": true,
 	"frontMatter.preview.host": "http://localhost:5173/",
@@ -28,7 +27,7 @@
 		"titleBar.inactiveForeground": "#e7e7e799"
 	},
 	"peacock.color": "#1857a4",
-	"cSpell.words": ["maxdaten", "prismjs", "striptags"],
+	"cSpell.words": ["maxdaten", "prismjs", "Qwiz'n'Buzz", "striptags", "telepresence"],
 	"[markdown]": {
 		"editor.fontSize": 14,
 		"editor.lineHeight": 26,
