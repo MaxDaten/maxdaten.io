@@ -6,7 +6,6 @@ excerpt:
   How to use Telepresence with GKE & NEGs, focusing on health check challenges and providing two
   methods enabling fast local development & debugging cycles.
 date: 2024-05-15T23:05:18.710Z
-updated: 2024-05-15T23:05:20.094Z
 hidden: false
 tags:
   - google cloud
