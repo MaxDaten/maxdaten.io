@@ -1,5 +1,11 @@
 <script>
-	export let animated = true;
+	/**
+	 * @typedef {Object} Props
+	 * @property {boolean} [animated]
+	 */
+
+	/** @type {Props} */
+	let { animated = true } = $props();
 </script>
 
 <div class="logo" class:animated>

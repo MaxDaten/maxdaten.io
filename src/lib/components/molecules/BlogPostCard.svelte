@@ -3,14 +3,26 @@
 	import Tag from '$lib/components/atoms/Tag.svelte';
 	import Image from '../atoms/Image.svelte';
 
-	export let title: string;
-	export let coverImage: string | undefined = undefined;
-	export let excerpt: string;
-	export let slug: string;
-	export let tags: string[] | undefined;
-	export let readingTime: string | undefined = undefined;
 
-	export let showImage = true;
+	interface Props {
+		title: string;
+		coverImage?: string | undefined;
+		excerpt: string;
+		slug: string;
+		tags: string[] | undefined;
+		readingTime?: string | undefined;
+		showImage?: boolean;
+	}
+
+	let {
+		title,
+		coverImage = undefined,
+		excerpt,
+		slug,
+		tags,
+		readingTime = undefined,
+		showImage = true
+	}: Props = $props();
 </script>
 
 <Card
@@ -18,33 +30,39 @@
 	target="_self"
 	additionalClass="blog-post-card {!showImage || !coverImage ? 'no-image' : ''}"
 >
-	<div class="image" slot="image">
-		{#if coverImage}
-			<Image src={coverImage} alt="Cover image of this blog post" />
-		{/if}
-	</div>
-	<div class="content" slot="content">
-		<p class="title">
-			{title}
-		</p>
-		{#if readingTime}
-			<div class="note">{readingTime}</div>
-		{/if}
-		{#if excerpt}
-			<p class="text">
-				{excerpt}
+	{#snippet image()}
+		<div class="image" >
+			{#if coverImage}
+				<Image src={coverImage} alt="Cover image of this blog post" />
+			{/if}
+		</div>
+	{/snippet}
+	{#snippet content()}
+		<div class="content" >
+			<p class="title">
+				{title}
 			</p>
-		{/if}
-	</div>
-	<div class="footer" slot="footer">
-		{#if tags?.length}
-			<div class="tags">
-				{#each tags.slice(0, 2) as tag}
-					<Tag>{tag}</Tag>
-				{/each}
-			</div>
-		{/if}
-	</div>
+			{#if readingTime}
+				<div class="note">{readingTime}</div>
+			{/if}
+			{#if excerpt}
+				<p class="text">
+					{excerpt}
+				</p>
+			{/if}
+		</div>
+	{/snippet}
+	{#snippet footer()}
+		<div class="footer" >
+			{#if tags?.length}
+				<div class="tags">
+					{#each tags.slice(0, 2) as tag}
+						<Tag>{tag}</Tag>
+					{/each}
+				</div>
+			{/if}
+		</div>
+	{/snippet}
 </Card>
 
 <style lang="scss">

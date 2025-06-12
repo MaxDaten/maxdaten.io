@@ -33,9 +33,10 @@
           default = devenv.lib.mkShell {
             inherit inputs pkgs;
             modules = [{
-              languages.javascript.enable = true;
-              languages.javascript.npm.install.enable = true;
               languages.nix.enable = true;
+              languages.javascript.enable = true;
+              languages.javascript.npm.enable = true;
+              languages.javascript.npm.install.enable = true;
               languages.typescript.enable = true;
 
               # https://devenv.sh/reference/options/

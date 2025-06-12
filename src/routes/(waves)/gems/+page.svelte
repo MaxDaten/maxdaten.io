@@ -4,9 +4,13 @@
 	import ContentSection from '$lib/components/organisms/ContentSection.svelte';
 	import type { BlogPost, GemEntry } from '$lib/utils/types';
 
-	export let data: {
+	interface Props {
+		data: {
 		gems: GemEntry[];
 	};
+	}
+
+	let { data }: Props = $props();
 
 	let { gems } = data;
 </script>

@@ -3,7 +3,12 @@
 	import Check from '$lib/icons/check.svelte';
 	import Info from '$lib/icons/info.svelte';
 
-	export let type: string | undefined = undefined;
+	interface Props {
+		type?: string | undefined;
+		children?: import('svelte').Snippet;
+	}
+
+	let { type = undefined, children }: Props = $props();
 </script>
 
 <div class="callout-block {type ?? ''}">
@@ -18,7 +23,7 @@
 			{/if}
 		</div>
 	{/if}
-	<slot />
+	{@render children?.()}
 </div>
 
 <style lang="scss">

@@ -1,7 +1,11 @@
 <script lang="ts">
-	export let color: string;
-	export let size: string;
-	export let style: any;
+	interface Props {
+		color: string;
+		size: string;
+		style: any;
+	}
+
+	let { color, size, style }: Props = $props();
 </script>
 
 <div class="wrapper" style="top: {style.top}; left: {style.left};">

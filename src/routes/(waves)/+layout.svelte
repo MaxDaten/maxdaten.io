@@ -4,6 +4,13 @@
 	import Footer from '$lib/components/organisms/Footer.svelte';
 
 	import { description, image, keywords, title, siteBaseUrl } from '$lib/data/meta';
+	/**
+	 * @typedef {Object} Props
+	 * @property {import('svelte').Snippet} [children]
+	 */
+
+	/** @type {Props} */
+	let { children } = $props();
 </script>
 
 <svelte:head>
@@ -30,7 +37,7 @@
 	<Header showBackground={true} />
 
 	<main class="fill-height">
-		<slot />
+		{@render children?.()}
 	</main>
 
 	<Footer />

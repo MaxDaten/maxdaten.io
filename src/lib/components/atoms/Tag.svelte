@@ -1,9 +1,14 @@
 <script lang="ts">
-	export let color: 'primary' | 'secondary' = 'primary';
+	interface Props {
+		color?: 'primary' | 'secondary';
+		children?: import('svelte').Snippet;
+	}
+
+	let { color = 'primary', children }: Props = $props();
 </script>
 
 <div class="tag {color}">
-	<slot />
+	{@render children?.()}
 </div>
 
 <style lang="scss">

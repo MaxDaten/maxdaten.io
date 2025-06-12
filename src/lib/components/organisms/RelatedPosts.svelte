@@ -3,7 +3,11 @@
 	import BlogPostCard from '$lib/components/molecules/BlogPostCard.svelte';
 	import ContentSection from '$lib/components/organisms/ContentSection.svelte';
 
-	export let posts: BlogPost[];
+	interface Props {
+		posts: BlogPost[];
+	}
+
+	let { posts }: Props = $props();
 </script>
 
 <ContentSection

@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import Header from '$lib/components/organisms/Header.svelte';
 	import Footer from '$lib/components/organisms/Footer.svelte';
 	import Tag from '$lib/components/atoms/Tag.svelte';
@@ -9,19 +11,24 @@
 	import RelatedPosts from '$lib/components/organisms/RelatedPosts.svelte';
 	import Image from '$lib/components/atoms/Image.svelte';
 
-	export let data: { post: BlogPost };
-	$: ({ post } = data);
+	interface Props {
+		data: { post: BlogPost };
+		children?: import('svelte').Snippet;
+	}
 
-	let metaKeywords = keywords;
+	let { data, children }: Props = $props();
+	let { post } = $derived(data);
 
-	$: {
+	let metaKeywords = $state(keywords);
+
+	run(() => {
 		if (post?.tags?.length) {
 			metaKeywords = post.tags.concat(metaKeywords);
 		}
 		if (post?.keywords?.length) {
 			metaKeywords = post.keywords.concat(metaKeywords);
 		}
-	}
+	});
 </script>
 
 <svelte:head>
@@ -79,7 +86,7 @@
 				</div>
 			{/if}
 			<div class="content">
-				<slot />
+				{@render children?.()}
 			</div>
 		</article>
 

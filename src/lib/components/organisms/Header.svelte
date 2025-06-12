@@ -2,7 +2,11 @@
 	import Logo from '$lib/components/atoms/Logo.svelte';
 	import RssLink from '$lib/components/atoms/RssLink.svelte';
 
-	export let showBackground = false;
+	interface Props {
+		showBackground?: boolean;
+	}
+
+	let { showBackground = false }: Props = $props();
 </script>
 
 <header class:has-background={showBackground}>

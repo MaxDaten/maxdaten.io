@@ -2,15 +2,14 @@
 	import Hero from '$lib/components/organisms/Hero.svelte';
 	import About from '$lib/components/organisms/About.svelte';
 	import RecentPosts from '$lib/components/organisms/RecentPosts.svelte';
-	import Features from '$lib/components/organisms/Features.svelte';
 	import type { Feature, BlogPost } from '$lib/utils/types';
 
-	export let data: {
+	interface Props {
 		features: Feature[];
 		posts: BlogPost[];
-	};
+	}
 
-	let { features, posts } = data;
+	let { features, posts }: Props = $props();
 </script>
 
 <div class="container">

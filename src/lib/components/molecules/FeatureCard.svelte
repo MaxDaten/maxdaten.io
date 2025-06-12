@@ -4,31 +4,46 @@
 	import type { TagType } from '$lib/utils/types';
 	import Image from '../atoms/Image.svelte';
 
-	export let name: string;
-	export let description: string;
-	export let image: string;
-	export let tags: TagType[] | undefined;
+	interface Props {
+		name: string;
+		description: string;
+		image: string;
+		tags: TagType[] | undefined;
+	}
+
+	let {
+		name,
+		description,
+		image,
+		tags
+	}: Props = $props();
 </script>
 
 <Card additionalClass="feature-card">
-	<div class="image" slot="image">
-		<Image src={image} alt="Picture describing the {name} feature" />
-	</div>
-	<div class="content" slot="content">
-		<div class="title">
-			<span>{name}</span>
+	{#snippet image()}
+		<div class="image" >
+			<Image src={image} alt="Picture describing the {name} feature" />
 		</div>
-		<p>{description}</p>
-	</div>
-	<div class="footer" slot="footer">
-		{#if tags && tags.length > 0}
-			<div class="tags">
-				{#each tags as tag}
-					<Tag color={tag.color}>{tag.label}</Tag>
-				{/each}
+	{/snippet}
+	{#snippet content()}
+		<div class="content" >
+			<div class="title">
+				<span>{name}</span>
 			</div>
-		{/if}
-	</div>
+			<p>{description}</p>
+		</div>
+	{/snippet}
+	{#snippet footer()}
+		<div class="footer" >
+			{#if tags && tags.length > 0}
+				<div class="tags">
+					{#each tags as tag}
+						<Tag color={tag.color}>{tag.label}</Tag>
+					{/each}
+				</div>
+			{/if}
+		</div>
+	{/snippet}
 </Card>
 
 <style lang="scss">

@@ -25,7 +25,7 @@
 	class="theme-toggle"
 	title="Toggle between light and dark theme"
 	data-theme={$theme}
-	on:click={toggleTheme}
+	onclick={toggleTheme}
 >
 	<svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24">
 		<mask id="moon">

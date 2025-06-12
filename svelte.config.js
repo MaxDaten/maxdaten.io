@@ -1,4 +1,3 @@
-import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import { mdsvex } from 'mdsvex';
 import rehypeExternalLinks from 'rehype-external-links';
@@ -10,7 +9,6 @@ const extensions = ['.svelte', '.md'];
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	kit: {
-		adapter: adapter(),
 		prerender: {
 			handleHttpError: 'warn'
 		},
@@ -26,7 +24,7 @@ const config = {
 		inspector: true
 	},
 	preprocess: [
-		vitePreprocess(),
+		vitePreprocess({ script: true }),
 		mdsvex({
 			extensions: extensions,
 			rehypePlugins: [

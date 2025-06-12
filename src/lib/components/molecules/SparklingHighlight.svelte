@@ -1,11 +1,16 @@
 <script lang="ts">
 	import Sparkles from '$lib/components/atoms/Sparkles.svelte';
 
-	export let color: 'default' | 'primary' | 'secondary' = 'default';
-	export let sparkleColor: 'default' | 'primary' | 'secondary' = 'default';
+	interface Props {
+		color?: 'default' | 'primary' | 'secondary';
+		sparkleColor?: 'default' | 'primary' | 'secondary';
+		children?: import('svelte').Snippet;
+	}
+
+	let { color = 'default', sparkleColor = 'default', children }: Props = $props();
 </script>
 
-<Sparkles color={sparkleColor}><strong class={color}><slot /></strong></Sparkles>
+<Sparkles color={sparkleColor}><strong class={color}>{@render children?.()}</strong></Sparkles>
 
 <style lang="scss">
 	strong {

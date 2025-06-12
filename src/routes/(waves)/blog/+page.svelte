@@ -3,9 +3,13 @@
 	import ContentSection from '$lib/components/organisms/ContentSection.svelte';
 	import type { BlogPost } from '$lib/utils/types';
 
-	export let data: {
+	interface Props {
+		data: {
 		posts: BlogPost[];
 	};
+	}
+
+	let { data }: Props = $props();
 
 	let { posts } = data;
 </script>

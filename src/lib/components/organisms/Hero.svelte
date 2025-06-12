@@ -16,20 +16,28 @@
 	</div>
 	<div class="ctas">
 		<Button color="secondary" href="https://github.com/MaxDaten">
-			<GitHubIcon slot="icon" />
+			{#snippet icon()}
+						<GitHubIcon  />
+					{/snippet}
 			Projects
 		</Button>
 		<Button size="medium" color="secondary" href="/blog">
-			<BlogIcon slot="icon" />
+			{#snippet icon()}
+						<BlogIcon  />
+					{/snippet}
 			Blog
 		</Button>
 		<Button size="medium" color="secondary" href="/gems">
-			<HeartIcon slot="icon" />
+			{#snippet icon()}
+						<HeartIcon  />
+					{/snippet}
 			Gems
 		</Button>
 		<Sparkles>
 			<Button size="medium" href="https://cv.maxdaten.io">
-				<ExperienceIcon slot="icon" />
+				{#snippet icon()}
+								<ExperienceIcon  />
+							{/snippet}
 				Resume
 			</Button>
 		</Sparkles>

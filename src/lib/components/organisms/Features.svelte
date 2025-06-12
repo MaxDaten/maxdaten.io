@@ -3,7 +3,11 @@
 	import FeatureCard from '$lib/components/molecules/FeatureCard.svelte';
 	import ContentSection from '$lib/components/organisms/ContentSection.svelte';
 
-	export let features: Feature[];
+	interface Props {
+		features: Feature[];
+	}
+
+	let { features }: Props = $props();
 </script>
 
 <ContentSection

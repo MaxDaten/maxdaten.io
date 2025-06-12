@@ -1,8 +1,8 @@
 <script lang="ts">
 	let xScale = 0;
 	let yScale = 0;
-	let parallaxX = 0;
-	let parallaxY = 0;
+	let parallaxX = $state(0);
+	let parallaxY = $state(0);
 
 	const domousemove = (e: any) => {
 		xScale = e.clientX / window.innerWidth - 0.5;
@@ -15,7 +15,7 @@
 	let bokehCount = 25;
 </script>
 
-<svelte:window on:mousemove={domousemove} />
+<svelte:window onmousemove={domousemove} />
 <div class="bokeh-container" style="display: none;">
 	<svg class="bokeh" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
 		<g class="parallax">

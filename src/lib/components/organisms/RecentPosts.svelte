@@ -4,7 +4,11 @@
 	import type { BlogPost } from '$lib/utils/types';
 	import Button from '$lib/components/atoms/Button.svelte';
 
-	export let posts: BlogPost[];
+	interface Props {
+		posts: BlogPost[];
+	}
+
+	let { posts }: Props = $props();
 </script>
 
 <ContentSection
@@ -13,9 +17,11 @@
 	description="This section shows the 4 most recent blog posts. Check them out for tips on how to get started!"
 	align="left"
 >
-	<div slot="button">
-		<Button href="/blog">View More</Button>
-	</div>
+	{#snippet button()}
+		<div >
+			<Button href="/blog">View More</Button>
+		</div>
+	{/snippet}
 	<div class="grid">
 		{#each posts as post}
 			<BlogPostCard

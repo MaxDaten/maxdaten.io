@@ -1,19 +1,36 @@
 <script lang="ts">
 	import { HttpRegex } from '$lib/utils/regex';
 
-	export let additionalClass: string | undefined = undefined;
 
-	export let href: string | undefined = undefined;
 	const isExternalLink = !!href && HttpRegex.test(href);
-	export let target: '_self' | '_blank' = isExternalLink ? '_blank' : '_self';
-	export let rel = isExternalLink ? 'noopener noreferrer' : undefined;
+	interface Props {
+		additionalClass?: string | undefined;
+		href?: string | undefined;
+		target?: '_self' | '_blank';
+		rel?: any;
+		image?: import('svelte').Snippet;
+		content?: import('svelte').Snippet;
+		footer?: import('svelte').Snippet;
+		[key: string]: any
+	}
 
-	$: tag = href ? 'a' : 'article';
-	$: linkProps = {
+	let {
+		additionalClass = undefined,
+		href = undefined,
+		target = isExternalLink ? '_blank' : '_self',
+		rel = isExternalLink ? 'noopener noreferrer' : undefined,
+		image,
+		content,
+		footer,
+		...rest
+	}: Props = $props();
+
+	let tag = $derived(href ? 'a' : 'article');
+	let linkProps = $derived({
 		href,
 		target,
 		rel
-	};
+	});
 </script>
 
 <svelte:element
@@ -21,20 +38,20 @@
 	class="card {additionalClass}"
 	{...linkProps}
 	data-sveltekit-preload-data
-	{...$$restProps}
+	{...rest}
 >
-	{#if $$slots.image}
+	{#if image}
 		<div class="image">
-			<slot name="image" />
+			{@render image?.()}
 		</div>
 	{/if}
 	<div class="body">
 		<div class="content">
-			<slot name="content" />
+			{@render content?.()}
 		</div>
-		{#if $$slots.footer}
+		{#if footer}
 			<div class="footer">
-				<slot name="footer" />
+				{@render footer?.()}
 			</div>
 		{/if}
 	</div>
