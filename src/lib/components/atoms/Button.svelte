@@ -23,19 +23,17 @@
 		size = 'medium',
 		href = undefined,
 		additionalClass = undefined,
-		target = isExternalLink ? '_blank' : '_self',
-		rel = isExternalLink ? 'noopener noreferrer' : undefined,
 		icon,
 		children,
 		...rest
 	}: Props = $props();
 
-	const isExternalLink = !!href && HttpRegex.test(href);
+	const isExternalLink = $derived(!!href && HttpRegex.test(href));
 	let tag = $derived(href ? 'a' : 'button');
 	let linkProps = $derived({
 		href,
-		target,
-		rel
+		target: isExternalLink ? '_blank' : '_self',
+		rel: isExternalLink ? 'noopener noreferrer' : undefined
 	});
 </script>
 
