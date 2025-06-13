@@ -1,12 +1,11 @@
 import { description, siteBaseUrl, title } from '$lib/data/meta';
 import type { BlogPost } from '$lib/utils/types';
-import dateformat from 'dateformat';
 import { filterPosts, importPosts } from '$lib/data/blog-posts/utils';
 
 export const prerender = true;
 
 export async function GET() {
-	const allPosts = importPosts(true);
+	const allPosts = importPosts();
 	const filteredPosts = filterPosts(allPosts);
 
 	const body = xml(filteredPosts);
@@ -25,8 +24,6 @@ const xml = (posts: BlogPost[]) => `
 	xmlns:atom="http://www.w3.org/2005/Atom"
 	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
 	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
-	xmlns:georss="http://www.georss.org/georss"
-	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
 >
   <channel>
     <atom:link href="${siteBaseUrl}/rss.xml" rel="self" type="application/rss+xml" />
@@ -48,7 +45,7 @@ const xml = (posts: BlogPost[]) => `
           <title>${post.title}</title>
           <description>${post.excerpt}</description>
           <link>${siteBaseUrl}/${post.slug}</link>
-          <pubDate>${dateformat(post.date, 'ddd, dd mmm yyyy HH:MM:ss o')}</pubDate>
+          <pubDate>${new Date(post.date).toLocaleDateString()}</pubDate>
           ${post.tags ? post.tags.map((tag) => `<category>${tag}</category>`).join('') : ''}
           <content:encoded><![CDATA[
             <div style="margin: 50px 0; font-style: italic;">
