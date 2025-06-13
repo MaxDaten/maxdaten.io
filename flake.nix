@@ -22,27 +22,34 @@
 
       formatter = forEachSystem (system:
         inputs.treefmt-nix.lib.evalModule nixpkgs.legacyPackages.${system}
-        ./treefmt.nix);
+          ./treefmt.nix);
 
       devShells = forEachSystem (system:
         let
           inherit (pkgs) lib;
-          pkgs = nixpkgs.legacyPackages.${system};
+          pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
           treefmtEval = inputs.treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
-        in {
+        in
+        {
           default = devenv.lib.mkShell {
             inherit inputs pkgs;
             modules = [{
               languages.nix.enable = true;
-              languages.javascript.enable = true;
-              languages.javascript.npm.enable = true;
-              languages.javascript.npm.install.enable = true;
+              languages.javascript = {
+                enable = true;
+                npm = {
+                  enable = true;
+                  package = pkgs.nodejs_24;
+                  install.enable = true;
+                };
+              };
               languages.typescript.enable = true;
 
               # https://devenv.sh/reference/options/
               packages = [
                 pkgs.npm-check-updates
                 pkgs.nodePackages.vercel
+                pkgs.claude-code
                 treefmtEval.config.build.wrapper
               ] ++ lib.attrValues treefmtEval.config.build.programs;
 
