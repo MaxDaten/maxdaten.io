@@ -1,8 +1,6 @@
 <script lang="ts">
 	import { HttpRegex } from '$lib/utils/regex';
 
-
-	const isExternalLink = !!href && HttpRegex.test(href);
 	interface Props {
 		additionalClass?: string | undefined;
 		href?: string | undefined;
@@ -17,19 +15,18 @@
 	let {
 		additionalClass = undefined,
 		href = undefined,
-		target = isExternalLink ? '_blank' : '_self',
-		rel = isExternalLink ? 'noopener noreferrer' : undefined,
 		image,
 		content,
 		footer,
 		...rest
 	}: Props = $props();
+	const isExternalLink = $derived(!!href && HttpRegex.test(href));
 
 	let tag = $derived(href ? 'a' : 'article');
 	let linkProps = $derived({
 		href,
-		target,
-		rel
+		target: isExternalLink ? '_blank' : '_self',
+		rel: isExternalLink ? 'noopener noreferrer' : undefined
 	});
 </script>
 
