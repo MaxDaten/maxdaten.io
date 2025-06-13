@@ -2,21 +2,18 @@
 	import Hero from '$lib/components/organisms/Hero.svelte';
 	import About from '$lib/components/organisms/About.svelte';
 	import RecentPosts from '$lib/components/organisms/RecentPosts.svelte';
-	import type { Feature, BlogPost } from '$lib/utils/types';
+	import type { BlogPost } from '$lib/utils/types';
+	import type { PageProps } from './$types';
 
-	interface Props {
-		features: Feature[];
-		posts: BlogPost[];
-	}
-
-	let { features, posts }: Props = $props();
+	let { data }: PageProps = $props();
 </script>
 
 <div class="container">
 	<Hero />
 	<About />
-	{#if posts && posts.length > 0}
-		<RecentPosts {posts} />
+	{@debug data}
+	{#if data.posts && data.posts.length > 0}
+
+		<RecentPosts posts={data.posts} />
 	{/if}
-	<!-- <Features {features} /> -->
 </div>
