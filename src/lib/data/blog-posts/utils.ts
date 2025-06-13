@@ -1,18 +1,9 @@
-// Disabling eslint because importing Prism is needed
-// even if not directly used in this file
-// eslint-disable-next-line no-unused-vars
-import Prism from 'prismjs';
-// Here we assign it to a variable so the import above
-// is not removed automatically on build
-const ifYouRemoveMeTheBuildFails = Prism;
-import 'prism-svelte';
-import readingTime from 'reading-time/lib/reading-time';
 import striptags from 'striptags';
 import type { BlogPost } from '$lib/utils/types';
 
 export const importPosts = (render = false) => {
-	const blogImports = import.meta.glob('$routes/*/*/*.md', { eager: true });
-	const innerImports = import.meta.glob('$routes/*/*/*/*.md', { eager: true });
+	const blogImports = import.meta.glob('/$routes/*/*/*.md', { eager: true });
+	const innerImports = import.meta.glob('/$routes/*/*/*/*.md', { eager: true });
 
 	const imports = { ...blogImports, ...innerImports };
 
@@ -52,6 +43,15 @@ export const filterPosts = (posts: BlogPost[]) => {
 		});
 };
 
+export const readingTime = (text: string) => {
+	const words = text.split(/\s+/);
+	const minutes = Math.ceil(words.length / 200);
+	return {
+		minutes,
+		text: `${minutes} min read`
+	};
+}
+
 // #region Unexported Functions
 
 const getRelatedPosts = (posts: BlogPost[], post: BlogPost) => {
@@ -69,5 +69,6 @@ const getRelatedPosts = (posts: BlogPost[], post: BlogPost) => {
 		readingTime: p.html ? readingTime(striptags(p.html) || '').text : ''
 	}));
 };
+
 
 // #endregion
