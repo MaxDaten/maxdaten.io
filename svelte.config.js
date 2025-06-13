@@ -1,32 +1,28 @@
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
+import adapter from '@sveltejs/adapter-auto';
 import { mdsvex } from 'mdsvex';
 import rehypeExternalLinks from 'rehype-external-links';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
-const extensions = ['.svelte', '.md'];
-
-/** @type {import('@sveltejs/kit').Config} */
 const config = {
 	kit: {
-		prerender: {
-			handleHttpError: 'warn'
-		},
+		adapter: adapter(),
+		prerender: { handleHttpError: 'warn' },
 		alias: {
 			$components: './src/lib/components',
 			$lib: './src/lib',
 			$stores: './src/lib/stores',
 			$styles: './src/lib/scss',
-			$utils: './src/lib/utils'
+			$utils: './src/lib/utils',
+			$routes: './src/routes',
 		}
 	},
-	vitePlugin: {
-		inspector: true
-	},
+	vitePlugin: { inspector: true },
 	preprocess: [
 		vitePreprocess({ script: true }),
 		mdsvex({
-			extensions: extensions,
+			extensions: ['.svx', '.md'],
 			rehypePlugins: [
 				rehypeExternalLinks, // Adds 'target' and 'rel' to external links
 				rehypeSlug, // Adds 'id' attributes to Headings (h1,h2,etc)
@@ -47,7 +43,7 @@ const config = {
 			]
 		})
 	],
-	extensions: extensions
+	extensions: ['.svelte', '.svx', '.md']
 };
 
 export default config;
