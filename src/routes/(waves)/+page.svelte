@@ -11,9 +11,7 @@
 <div class="container">
 	<Hero />
 	<About />
-	{@debug data}
 	{#if data.posts && data.posts.length > 0}
-
 		<RecentPosts posts={data.posts} />
 	{/if}
 </div>
