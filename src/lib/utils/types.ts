@@ -13,15 +13,6 @@ export type TagType = {
 	color?: 'primary' | 'secondary';
 };
 
-export type SocialLink = {};
-
-export type Feature = {
-	name: string;
-	description: string;
-	image: string;
-	tags: TagType[];
-};
-
 export type BlogPost = {
 	tags: string[];
 	keywords: string[];
