@@ -33,7 +33,7 @@
 				{post.title}
 			</p>
 			{#if post.readingTimeMinutes}
-				<div class="note">{post.readingTimeMinutes} minutes</div>
+				<div class="note">{post.readingTimeMinutes} min read</div>
 			{/if}
 			{#if post.excerpt}
 				<p class="text">
