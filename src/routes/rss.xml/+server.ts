@@ -16,6 +16,15 @@ export async function GET() {
 	return new Response(body, { headers });
 }
 
+const escapeXml = (unsafe: string) => {
+	return unsafe
+		.replace(/&/g, '&amp;')
+		.replace(/</g, '&lt;')
+		.replace(/>/g, '&gt;')
+		.replace(/"/g, '&quot;')
+		.replace(/'/g, '&#39;');
+};
+
 const xml = (posts: BlogPost[]) => `
 <rss version="2.0"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
@@ -27,12 +36,12 @@ const xml = (posts: BlogPost[]) => `
 >
   <channel>
     <atom:link href="${siteBaseUrl}/rss.xml" rel="self" type="application/rss+xml" />
-    <title>${title}</title>
+    <title>${escapeXml(title)}</title>
     <link>${siteBaseUrl}</link>
-    <description>${description}</description>
+    <description>${escapeXml(description)}</description>
     <image>
       <url>${siteBaseUrl}/favicons/favicon-32x32.png</url>
-      <title>${title}</title>
+      <title>${escapeXml(title)}</title>
       <link>${siteBaseUrl}</link>
       <width>32</width>
       <height>32</height>
@@ -42,11 +51,11 @@ const xml = (posts: BlogPost[]) => `
 				(post) => `
         <item>
           <guid>${siteBaseUrl}/${post.slug}</guid>
-          <title>${post.title}</title>
-          <description>${post.excerpt}</description>
+          <title>${escapeXml(post.title)}</title>
+          <description>${escapeXml(post.excerpt)}</description>
           <link>${siteBaseUrl}/${post.slug}</link>
-          <pubDate>${new Date(post.date).toLocaleDateString()}</pubDate>
-          ${post.tags ? post.tags.map((tag) => `<category>${tag}</category>`).join('') : ''}
+					<pubDate>${new Date(post.date).toUTCString()}</pubDate>
+          ${post.tags ? post.tags.map((tag) => `<category>${escapeXml(tag)}</category>`).join('') : ''}
           <content:encoded><![CDATA[
             <div style="margin: 50px 0; font-style: italic;">
               If anything looks wrong, 
