@@ -18,7 +18,7 @@
 <Card
 	href="/{post.slug}"
 	target="_self"
-	additionalClass="blog-post-card {!showImage || !post.coverImage ? 'no-image' : ''}"
+	class="blog-post-card {!showImage || !post.coverImage ? 'no-image' : ''}"
 >
 	{#snippet image()}
 		{#if post.coverImage}
