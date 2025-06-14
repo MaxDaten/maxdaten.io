@@ -1,5 +1,6 @@
 import striptags from 'striptags';
 import type { BlogPost } from '$lib/utils/types';
+import { render } from 'svelte/server';
 
 export const importPosts = () => {
 	const imports = import.meta.glob('/src/routes/**/+page.md', { eager: true });
@@ -10,6 +11,7 @@ export const importPosts = () => {
 		if (post) {
 			posts.push({
 				...post.metadata,
+				html: render(post.default, { props: {}}).body
 			});
 		}
 	}
@@ -58,10 +60,12 @@ const getRelatedPosts = (posts: BlogPost[], post: BlogPost) => {
 			return aTags?.length > bTags?.length ? -1 : aTags?.length < bTags?.length ? 1 : 0;
 		});
 
-	return relatedPosts.slice(0, 3).map((p) => ({
-		...p,
-		readingTime: p.html ? readingTime(striptags(p.html) || '').text : ''
-	}));
+	return relatedPosts.slice(0, 3).map((p) => {
+		return ({
+			...p,
+			readingTime: readingTime(striptags(striptags(p.html || ''))).text
+		});
+	});
 };
 
 
