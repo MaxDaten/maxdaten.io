@@ -2,7 +2,7 @@
 // So they can be added as suffixes on different pages
 // Via <svelte:head>
 
-export const siteBaseUrl = 'https://maxdaten.io/';
+export const siteBaseUrl = 'https://maxdaten.io';
 
 export const keywords = [
 	'Blog',

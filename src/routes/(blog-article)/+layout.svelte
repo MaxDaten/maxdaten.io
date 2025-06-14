@@ -45,8 +45,8 @@
 		<meta name="twitter:title" content="{post.title} - {title}" />
 
 		{#if post.coverImage}
-			<meta property="og:image" content="{siteBaseUrl}{post.coverImage}" />
-			<meta name="twitter:image" content="{siteBaseUrl}{post.coverImage}" />
+			<meta property="og:image" content="{siteBaseUrl}/{post.coverImage}" />
+			<meta name="twitter:image" content="{siteBaseUrl}/{post.coverImage}" />
 			<meta name="twitter:card" content="summary_large_image" />
 		{/if}
 	{/if}
