@@ -23,7 +23,7 @@ export type BlogPost = {
 	updated: string;
 	excerpt: string;
 	html: string | undefined;
-	readingTime: string;
+	readingTimeMinutes: number | undefined;
 	relatedPosts: BlogPost[];
 	coverImage: string | undefined;
 };

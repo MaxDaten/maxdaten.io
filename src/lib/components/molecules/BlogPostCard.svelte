@@ -2,61 +2,51 @@
 	import Card from '$lib/components/atoms/Card.svelte';
 	import Tag from '$lib/components/atoms/Tag.svelte';
 	import Image from '../atoms/Image.svelte';
+	import type { BlogPost } from '$utils/types';
 
-
-	interface Props {
-		title: string;
-		coverImage?: string | undefined;
-		excerpt: string;
-		slug: string;
-		tags: string[] | undefined;
-		readingTime?: string | undefined;
-		showImage?: boolean;
+	type Props = {
+		post: BlogPost,
+		showImage?: boolean
 	}
 
 	let {
-		title,
-		coverImage = undefined,
-		excerpt,
-		slug,
-		tags,
-		readingTime = undefined,
+		post,
 		showImage = true
-	}: Props = $props();
+	}: Props = $props()
 </script>
 
 <Card
-	href="/{slug}"
+	href="/{post.slug}"
 	target="_self"
-	additionalClass="blog-post-card {!showImage || !coverImage ? 'no-image' : ''}"
+	additionalClass="blog-post-card {!showImage || !post.coverImage ? 'no-image' : ''}"
 >
 	{#snippet image()}
-		<div class="image" >
-			{#if coverImage}
-				<Image src={coverImage} alt="Cover image of this blog post" />
+		<div class="image">
+			{#if post.coverImage}
+				<Image src={post.coverImage} alt="Cover image of this blog post" />
 			{/if}
 		</div>
 	{/snippet}
 	{#snippet content()}
-		<div class="content" >
+		<div class="content">
 			<p class="title">
-				{title}
+				{post.title}
 			</p>
-			{#if readingTime}
-				<div class="note">{readingTime}</div>
+			{#if post.readingTimeMinutes}
+				<div class="note">{post.readingTimeMinutes} minutes</div>
 			{/if}
-			{#if excerpt}
+			{#if post.excerpt}
 				<p class="text">
-					{excerpt}
+					{post.excerpt}
 				</p>
 			{/if}
 		</div>
 	{/snippet}
 	{#snippet footer()}
-		<div class="footer" >
-			{#if tags?.length}
+		<div class="footer">
+			{#if post.tags?.length}
 				<div class="tags">
-					{#each tags.slice(0, 2) as tag}
+					{#each post.tags.slice(0, 2) as tag}
 						<Tag>{tag}</Tag>
 					{/each}
 				</div>
@@ -66,50 +56,50 @@
 </Card>
 
 <style lang="scss">
-	.content {
-		display: flex;
-		flex-direction: column;
-		gap: 0px;
-		align-items: flex-start;
-	}
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    align-items: flex-start;
+  }
 
-	.title {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		width: 100%;
-		font-size: 1.2rem;
-		font-family: var(--font--title);
-		font-weight: 700;
-	}
+  .title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 1.2rem;
+    font-family: var(--font--title),serif;
+    font-weight: 700;
+  }
 
-	.tags {
-		display: flex;
-		align-items: center;
-		gap: 5px;
-		flex-wrap: wrap;
-	}
+  .tags {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-wrap: wrap;
+  }
 
-	.note {
-		font-size: 0.8rem;
-		color: rgba(var(--color--secondary-rgb), 0.8);
-	}
+  .note {
+    font-size: 0.8rem;
+    color: rgba(var(--color--secondary-rgb), 0.8);
+  }
 
-	.text {
-		margin-top: 5px;
-		font-size: 0.9rem;
-		text-align: justify;
-	}
+  .text {
+    margin-top: 5px;
+    font-size: 0.9rem;
+    text-align: justify;
+  }
 
-	.footer {
-		margin-top: 20px;
-	}
+  .footer {
+    margin-top: 20px;
+  }
 
-	:global(.blog-post-card .image img) {
-		object-fit: cover;
-	}
+  :global(.blog-post-card .image img) {
+    object-fit: cover;
+  }
 
-	:global(.blog-post-card.no-image > .image) {
-		display: none;
-	}
+  :global(.blog-post-card.no-image > .image) {
+    display: none;
+  }
 </style>

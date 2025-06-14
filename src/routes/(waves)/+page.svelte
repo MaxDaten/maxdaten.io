@@ -2,7 +2,6 @@
 	import Hero from '$lib/components/organisms/Hero.svelte';
 	import About from '$lib/components/organisms/About.svelte';
 	import RecentPosts from '$lib/components/organisms/RecentPosts.svelte';
-	import type { BlogPost } from '$lib/utils/types';
 	import type { PageProps } from './$types';
 
 	let { data }: PageProps = $props();

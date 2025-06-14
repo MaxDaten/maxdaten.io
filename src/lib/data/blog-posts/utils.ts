@@ -9,10 +9,12 @@ export const importPosts = () => {
 	for (const path in imports) {
 		const post = imports[path] as any;
 		if (post) {
+			let html = render(post.default, { props: {}}).body;
 			posts.push({
 				...post.metadata,
-				html: render(post.default, { props: {}}).body
-			});
+				html,
+				readingTimeMinutes: readingTime(striptags(striptags(html || ''))).minutes
+			} as BlogPost);
 		}
 	}
 	return posts;
@@ -33,7 +35,6 @@ export const filterPosts = (posts: BlogPost[]) => {
 
 			return {
 				...post,
-				readingTime: '',
 				relatedPosts: relatedPosts
 			} as BlogPost;
 		});
@@ -60,12 +61,7 @@ const getRelatedPosts = (posts: BlogPost[], post: BlogPost) => {
 			return aTags?.length > bTags?.length ? -1 : aTags?.length < bTags?.length ? 1 : 0;
 		});
 
-	return relatedPosts.slice(0, 3).map((p) => {
-		return ({
-			...p,
-			readingTime: readingTime(striptags(striptags(p.html || ''))).text
-		});
-	});
+	return relatedPosts.slice(0, 3);
 };
 
 

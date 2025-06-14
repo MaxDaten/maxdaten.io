@@ -17,11 +17,7 @@
 	<div class="simple-grid">
 		{#each posts as post}
 			<BlogPostCard
-				slug={post.slug}
-				title={post.title}
-				excerpt={post.excerpt}
-				tags={post.tags}
-				readingTime={post.readingTime}
+				{post}
 				showImage={false}
 			/>
 		{/each}

@@ -18,14 +18,7 @@
 	<ContentSection title="All Blog Posts">
 		<div class="grid">
 			{#each posts as post}
-				<BlogPostCard
-					title={post.title}
-					coverImage={post.coverImage}
-					excerpt={post.excerpt}
-					readingTime={post.readingTime}
-					slug={post.slug}
-					tags={post.tags}
-				/>
+				<BlogPostCard {post} />
 			{/each}
 		</div>
 	</ContentSection>

@@ -24,13 +24,7 @@
 	{/snippet}
 	<div class="grid">
 		{#each posts as post}
-			<BlogPostCard
-				slug={post.slug}
-				title={post.title}
-				excerpt={post.excerpt}
-				tags={post.tags}
-				readingTime={post.readingTime}
-				showImage={false}
+			<BlogPostCard {post} showImage={false}
 			/>
 		{/each}
 	</div>
