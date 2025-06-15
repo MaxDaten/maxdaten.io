@@ -39,7 +39,6 @@
                 enable = true;
                 npm = {
                   enable = true;
-                  package = pkgs.nodejs_24;
                   install.enable = true;
                 };
               };
