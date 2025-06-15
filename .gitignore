@@ -16,5 +16,7 @@ vite.config.ts.timestamp-*
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+# Generated
 /.vercel
-/static/.sitemap.xml
+/static/sitemap.xml
