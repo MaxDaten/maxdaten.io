@@ -1,9 +1,18 @@
 import { svelteTesting } from '@testing-library/svelte/vite';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
+import { NodePackageImporter } from 'sass';
 
 export default defineConfig({
 	plugins: [sveltekit()],
+	css: {
+		preprocessorOptions: {
+			scss: {
+				api: 'modern-compiler',
+				importers: [new NodePackageImporter()]
+			}
+		}
+	},
 	test: {
 		projects: [
 			{

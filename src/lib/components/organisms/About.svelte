@@ -24,7 +24,7 @@
 </section>
 
 <style lang="scss">
-	@import '$lib/scss/breakpoints.scss';
+	@use '$lib/scss/breakpoints.scss';
 
 	#about {
 		position: relative;
@@ -34,7 +34,7 @@
 		justify-content: space-between;
 		padding-bottom: 50px;
 
-		@include for-phone-only {
+		@media for-phone-only {
 			grid-template-columns: 1fr;
 			justify-items: center;
 			gap: 20px;
@@ -45,21 +45,21 @@
 			flex-direction: column;
 			gap: 10px;
 			h2 {
-				@include for-phone-only {
+				@media for-phone-only {
 					text-align: center;
 					text-wrap: balance;
 				}
 			}
 
 			p {
-				@include for-phone-only {
+				@media for-phone-only {
 					text-align: justify;
 					max-inline-size: 50ch;
 					text-wrap: balance;
 				}
 			}
 
-			@include for-phone-only {
+			@media for-phone-only {
 				gap: 20px;
 			}
 		}
@@ -69,7 +69,7 @@
 			align-items: center;
 			gap: 15px;
 
-			@include for-phone-only {
+			@media for-phone-only {
 				justify-content: center;
 				margin-bottom: 10px;
 				span {

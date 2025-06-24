@@ -23,13 +23,13 @@
 </header>
 
 <style lang="scss">
-	@import '$lib/scss/breakpoints.scss';
+	@use '$lib/scss/breakpoints.scss';
 
 	header {
 		position: relative;
 		padding: 30px 0;
 
-		@include for-phone-only {
+		@media for-phone-only {
 			padding: 20px 0;
 		}
 
@@ -48,7 +48,7 @@
 			align-items: center;
 			gap: 30px;
 
-			@include for-phone-only {
+			@media for-phone-only {
 				.links {
 					a {
 						display: none;

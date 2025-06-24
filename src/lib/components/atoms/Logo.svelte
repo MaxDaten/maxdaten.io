@@ -28,7 +28,7 @@
 </div>
 
 <style lang="scss">
-	@import '$lib/scss/breakpoints.scss';
+	@use '$lib/scss/breakpoints.scss';
 
 	.logo {
 		width: auto;
@@ -38,7 +38,7 @@
 		gap: 16px;
 		align-items: center;
 
-		@include for-phone-only {
+		@media for-phone-only {
 			gap: 8px;
 		}
 

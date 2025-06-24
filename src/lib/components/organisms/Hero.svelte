@@ -45,7 +45,7 @@
 </section>
 
 <style lang="scss">
-	@import '$lib/scss/breakpoints.scss';
+	@use '$lib/scss/breakpoints.scss';
 
 	#hero {
 		display: flex;
@@ -56,7 +56,7 @@
 		position: relative;
 		padding: 80px 0;
 
-		@include for-phone-only {
+		@media for-phone-only {
 			padding: 40px 0 50px;
 		}
 
@@ -80,7 +80,7 @@
 				text-align: right;
 			}
 
-			@include for-phone-only {
+			@media for-phone-only {
 				display: none;
 			}
 

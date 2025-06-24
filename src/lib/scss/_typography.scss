@@ -1,3 +1,5 @@
+@use "breakpoints";
+
 a {
 	color: var(--color--text);
 	text-decoration-color: var(--color--primary);
@@ -30,7 +32,7 @@ h1 {
 	font-size: 2.5rem;
 	font-weight: 700;
 
-	@include for-phone-only {
+	@include breakpoints.for-phone-only {
 		font-size: 2rem;
 	}
 }

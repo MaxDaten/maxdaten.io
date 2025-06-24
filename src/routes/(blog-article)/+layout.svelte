@@ -101,7 +101,7 @@
 </div>
 
 <style lang="scss">
-	@import '$lib/scss/_mixins.scss';
+	@use '$lib/scss/_mixins.scss';
 
 	.article-layout {
 		--body-background-color: var(--color--post-page-background);
@@ -116,17 +116,17 @@
 		padding-right: 15px;
 		padding-left: 15px;
 
-		@include for-iphone-se {
+		@media for-iphone-se {
 			padding-left: 0;
 			padding-right: 0;
 		}
 
-		@include for-tablet-portrait-up {
+		@media for-tablet-portrait-up {
 			padding-right: 20px;
 			padding-left: 20px;
 		}
 
-		@include for-tablet-landscape-up {
+		@media for-tablet-landscape-up {
 			padding-right: 30px;
 			padding-left: 30px;
 		}

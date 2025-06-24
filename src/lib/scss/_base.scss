@@ -1,7 +1,9 @@
+@use "mixins";
+
 // Styles that are used everywhere
 
 .container {
-	@include padded-container;
+	@include mixins.padded-container;
 }
 
 ul,

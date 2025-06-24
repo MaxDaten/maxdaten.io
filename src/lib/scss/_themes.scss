@@ -1,40 +1,40 @@
-@import '$lib/scss/_mixins.scss';
+@use '_mixins.scss';
 
 @mixin base-theme {
-	@include define-color('primary', #6e29e7);
-	@include define-color('primary-shade', #b28cf2);
-	@include define-color('primary-tint', #f9f6fe);
+	@include mixins.define-color('primary', #6e29e7);
+	@include mixins.define-color('primary-shade', #b28cf2);
+	@include mixins.define-color('primary-tint', #f9f6fe);
 
-	@include define-color('secondary', #ff571a);
-	@include define-color('secondary-shade', #ffa280);
-	@include define-color('secondary-tint', #fff8f5);
+	@include mixins.define-color('secondary', #ff571a);
+	@include mixins.define-color('secondary-shade', #ffa280);
+	@include mixins.define-color('secondary-tint', #fff8f5);
 
-	@include define-color('yellow', #ffd400);
+	@include mixins.define-color('yellow', #ffd400);
 
-	@include define-color('text', #1c1e26);
-	@include define-color('text-shade', #5d5f65);
-	@include define-color('text-inverse', #ffffff);
-	@include define-color('text-inverse-shade', #9eb4b5);
+	@include mixins.define-color('text', #1c1e26);
+	@include mixins.define-color('text-shade', #5d5f65);
+	@include mixins.define-color('text-inverse', #ffffff);
+	@include mixins.define-color('text-inverse-shade', #9eb4b5);
 
-	@include define-color('page-background', #f4f8fb);
-	@include define-color('post-page-background', #f3fbfc);
-	@include define-color('card-background', #ffffff);
+	@include mixins.define-color('page-background', #f4f8fb);
+	@include mixins.define-color('post-page-background', #f3fbfc);
+	@include mixins.define-color('card-background', #ffffff);
 
 	// Used for Callout component
-	@include define-color('callout-background', #f4f8fb);
-	@include define-color('callout-background--info', #dfeffd);
-	@include define-color('callout-accent--info', #2883f4);
-	@include define-color('callout-background--warning', #fff6b6);
-	@include define-color('callout-accent--warning', #c87820);
-	@include define-color('callout-background--error', #ffe8e8);
-	@include define-color('callout-accent--error', #f95256);
-	@include define-color('callout-background--success', #dcf7ec);
-	@include define-color('callout-accent--success', #009f70);
+	@include mixins.define-color('callout-background', #f4f8fb);
+	@include mixins.define-color('callout-background--info', #dfeffd);
+	@include mixins.define-color('callout-accent--info', #2883f4);
+	@include mixins.define-color('callout-background--warning', #fff6b6);
+	@include mixins.define-color('callout-accent--warning', #c87820);
+	@include mixins.define-color('callout-background--error', #ffe8e8);
+	@include mixins.define-color('callout-accent--error', #f95256);
+	@include mixins.define-color('callout-background--success', #dcf7ec);
+	@include mixins.define-color('callout-accent--success', #009f70);
 
 	// Used for Code Block component
-	@include define-color('code-background', #1c1e26);
-	@include define-color('code-text', #ffffff);
-	@include define-color('code-inline-background', #e3e3e3);
+	@include mixins.define-color('code-background', #1c1e26);
+	@include mixins.define-color('code-text', #ffffff);
+	@include mixins.define-color('code-inline-background', #e3e3e3);
 
 	--color--waves-start: rgba(var(--color--primary-rgb), 0.3);
 	--color--waves-end: rgba(var(--color--primary-rgb), 0.1);
@@ -45,37 +45,37 @@
 }
 
 @mixin dark-theme {
-	@include define-color('primary', #ff8000);
-	@include define-color('primary-shade', #7e4611);
-	@include define-color('primary-tint', #2d1d10);
+	@include mixins.define-color('primary', #ff8000);
+	@include mixins.define-color('primary-shade', #7e4611);
+	@include mixins.define-color('primary-tint', #2d1d10);
 
-	@include define-color('secondary', #0cd7f1);
-	@include define-color('secondary-shade', #147b8c);
-	@include define-color('secondary-tint', #0d2a30);
+	@include mixins.define-color('secondary', #0cd7f1);
+	@include mixins.define-color('secondary-shade', #147b8c);
+	@include mixins.define-color('secondary-tint', #0d2a30);
 
-	@include define-color('yellow', #ffd400);
+	@include mixins.define-color('yellow', #ffd400);
 
-	@include define-color('text', #fffcfc);
-	@include define-color('text-shade', #d9f9fd);
-	@include define-color('text-inverse', #1c1e26);
-	@include define-color('text-inverse-shade', #5d5f65);
+	@include mixins.define-color('text', #fffcfc);
+	@include mixins.define-color('text-shade', #d9f9fd);
+	@include mixins.define-color('text-inverse', #1c1e26);
+	@include mixins.define-color('text-inverse-shade', #5d5f65);
 
-	@include define-color('page-background', #1c1e26);
-	@include define-color('post-page-background', #141519);
-	@include define-color('card-background', #32343e);
+	@include mixins.define-color('page-background', #1c1e26);
+	@include mixins.define-color('post-page-background', #141519);
+	@include mixins.define-color('card-background', #32343e);
 
 	// Used for Callout component
-	@include define-color('callout-background', #1c1e26);
-	@include define-color('callout-background--info', #1d3874);
-	@include define-color('callout-accent--info', #6ca9f7);
-	@include define-color('callout-background--warning', #724413);
-	@include define-color('callout-accent--warning', #ffca39);
-	@include define-color('callout-background--error', #7c1d20);
-	@include define-color('callout-accent--error', #ff8082);
-	@include define-color('callout-background--success', #004737);
-	@include define-color('callout-accent--success', #00c48f);
+	@include mixins.define-color('callout-background', #1c1e26);
+	@include mixins.define-color('callout-background--info', #1d3874);
+	@include mixins.define-color('callout-accent--info', #6ca9f7);
+	@include mixins.define-color('callout-background--warning', #724413);
+	@include mixins.define-color('callout-accent--warning', #ffca39);
+	@include mixins.define-color('callout-background--error', #7c1d20);
+	@include mixins.define-color('callout-accent--error', #ff8082);
+	@include mixins.define-color('callout-background--success', #004737);
+	@include mixins.define-color('callout-accent--success', #00c48f);
 
-	@include define-color('code-inline-background', #2b3131);
+	@include mixins.define-color('code-inline-background', #2b3131);
 
 	--color--waves-start: rgba(var(--color--secondary-shade-rgb), 0.3);
 	--color--waves-end: rgba(var(--color--secondary-shade-rgb), 0.1);

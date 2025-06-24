@@ -1,21 +1,52 @@
-@import '$lib/scss/_reset.scss';
-@import '$lib/scss/_variables.scss';
-@import '$lib/scss/_themes.scss';
-@import '$lib/scss/_breakpoints.scss';
-@import '$lib/scss/_functions.scss';
-@import '$lib/scss/_mixins.scss';
-@import '$lib/scss/_base.scss';
-@import '$lib/scss/_typography.scss';
-@import '$lib/scss/_markdown.scss';
-@import '$lib/scss/_code-highlights.scss';
-@import '$lib/scss/animations.scss';
+@use '_reset.scss';
+@use '_variables.scss';
+@use '_themes.scss';
+@use '_breakpoints.scss';
+@use '_functions.scss';
+@use '_mixins.scss';
+@use '_base.scss';
+@use '_typography.scss';
+@use '_markdown.scss';
+@use '_code-highlights.scss';
+@use 'animations.scss';
 
-@import '@fontsource/inter';
-@import '@fontsource/inter/600.css';
-@import '@fontsource/inter/700.css';
-@import '@fontsource/merriweather';
-@import '@fontsource/merriweather/900.css';
-@import '@fontsource/ubuntu-mono';
+@use "pkg:@fontsource-utils/scss" as fontsource;
+@use 'pkg:@fontsource-variable/inter/scss' as Inter;
+@use 'pkg:@fontsource-variable/merriweather/scss' as Merriweather;
+@use 'pkg:@fontsource/ubuntu-mono/scss' as Ubuntu-Mono;
+
+@include fontsource.faces(
+	$metadata: Inter.$metadata,
+	$family: 'Inter',
+	$subsets: latin,
+	$weights: (
+		500,
+		600,
+		700,
+	),
+	$styles: all
+);
+
+@include fontsource.faces(
+	$metadata: Merriweather.$metadata,
+	$family: 'Merriweather',
+	$subsets: latin,
+	$weights: (
+		400,
+		900,
+	),
+	$styles: all
+);
+
+@include fontsource.faces(
+	$metadata: Ubuntu-Mono.$metadata,
+	$family: 'Ubuntu Mono',
+	$subsets: latin,
+	$weights: (
+		400,
+	),
+	$styles: all
+);
 
 body {
 	--body-background-color: var(--color--page-background);
