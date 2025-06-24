@@ -42,7 +42,7 @@
 <svelte:element
 	this={tag}
 	{...linkProps}
-	class={[tag, `style--${style}`, `size--${size}`, `color--${color}`, propsClass].join(' ')}
+	class={['button', `style--${style}`, `size--${size}`, `color--${color}`, propsClass].join(' ')}
 	data-sveltekit-preload-data
 	onclick={bubble('click')}
 	{...rest}
