@@ -20,3 +20,5 @@ vite.config.ts.timestamp-*
 # Generated
 /.vercel
 /static/sitemap.xml
+*storybook.log
+storybook-static
