@@ -32,6 +32,7 @@ This is a SvelteKit-based static blog site with MDX integration for content auth
 - SCSS for styling with atomic design methodology
 - Vitest for testing with separate client/server configurations
 - Image optimization pipeline using image-transmutation
+- UI components are developed via Storybook in isolation
 
 **Component Architecture:**
 - **Atoms:** Basic UI elements (Button, Card, Image, etc.)
@@ -69,5 +70,19 @@ This is a SvelteKit-based static blog site with MDX integration for content auth
 
 **Development Environment:**
 - Nix flake for reproducible development environment
-- Node.js 24 with npm
+- Node.js 22 with npm
 - Includes claude-code, vercel CLI, and formatting tools
+
+## Development Guidelines
+
+**Test-Driven Development (TDD):**
+- When modifying or adding new functionality, follow TDD practices
+- Write tests first, then implement the feature to make tests pass
+- Use `npm run test` to run all tests and `npm run test:unit` for unit tests in watch mode
+- Ensure all tests pass before considering a feature complete
+- Add stories side by side to the component
+
+## Code Style Guidelines
+
+- Prefer functional style before imperative style
+- Follow clean code style guides moderately
