@@ -3,17 +3,19 @@
 
 	const bubble = createBubbler();
 	import { HttpRegex } from '$lib/utils/regex';
+	import type { Snippet } from 'svelte';
+	import type { ClassValue } from 'svelte/elements';
 
 	interface Props {
 		color?: 'primary' | 'secondary';
 		style?: 'solid' | 'understated' | 'clear';
 		size?: 'small' | 'medium' | 'large';
 		href?: string | undefined;
-		additionalClass?: string | undefined;
+		class?: ClassValue;
 		target?: '_self' | '_blank';
 		rel?: any;
-		icon?: import('svelte').Snippet;
-		children?: import('svelte').Snippet;
+		icon?: Snippet;
+		children?: Snippet;
 		[key: string]: any
 	}
 
@@ -22,9 +24,9 @@
 		style = 'solid',
 		size = 'medium',
 		href = undefined,
-		additionalClass = undefined,
-		icon,
-		children,
+		icon = undefined,
+		children = undefined,
+		class: propsClass = '',
 		...rest
 	}: Props = $props();
 
@@ -40,9 +42,7 @@
 <svelte:element
 	this={tag}
 	{...linkProps}
-	class={['button', `style--${style}`, `size--${size}`, `color--${color}`, additionalClass].join(
-		' '
-	)}
+	class={[tag, `style--${style}`, `size--${size}`, `color--${color}`, propsClass].join(' ')}
 	data-sveltekit-preload-data
 	onclick={bubble('click')}
 	{...rest}
@@ -100,7 +100,7 @@
 				color: var(--contrast-color);
 
 				&:hover {
-					box-shadow: 0px 0px 1px 7px rgba(var(--main-color), 0.3);
+					box-shadow: 0 0 1px 7px rgba(var(--main-color), 0.3);
 				}
 			}
 			&--understated {
@@ -108,7 +108,7 @@
 				color: rgb(var(--main-color));
 
 				&:hover {
-					box-shadow: 0px 0px 1px 7px rgba(var(--main-color), 0.3);
+					box-shadow: 0 0 1px 7px rgba(var(--main-color), 0.3);
 				}
 			}
 			&--clear {
