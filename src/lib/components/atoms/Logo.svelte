@@ -14,7 +14,6 @@
 		width="723.84009"
 		height="116.720268"
 		viewBox="0 0 723.84009 116.720269"
-		fill="none"
 		xmlns="http://www.w3.org/2000/svg"
 	>
 		<text xml:space="preserve" id="text" transform="translate(-278.77228,-206.83728)"
