@@ -1,5 +1,4 @@
 <script>
-	import Bokeh from '$lib/components/organisms/Bokeh.svelte';
 	import Header from '$lib/components/organisms/Header.svelte';
 	import Footer from '$lib/components/organisms/Footer.svelte';
 
@@ -32,8 +31,6 @@
 </svelte:head>
 
 <div class="stage">
-	<Bokeh />
-
 	<Header showBackground={true} />
 
 	<main class="fill-height">
