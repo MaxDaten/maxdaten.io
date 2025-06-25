@@ -1,8 +1,7 @@
 <script lang="ts">
-	import BlogPostCard from '$lib/components/molecules/BlogPostCard.svelte';
 	import GemCard from '$lib/components/molecules/GemCard.svelte';
 	import ContentSection from '$lib/components/organisms/ContentSection.svelte';
-	import type { BlogPost, GemEntry } from '$lib/utils/types';
+	import type { GemEntry } from '$lib/utils/types';
 
 	interface Props {
 		data: {
