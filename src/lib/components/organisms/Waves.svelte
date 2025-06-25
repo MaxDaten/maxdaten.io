@@ -45,7 +45,7 @@
 		width: 100%;
 		height: min(65vh, 500px);
 
-		@media for-phone-only {
+		@include breakpoints.for-phone-only {
 			height: min(75vh, 400px);
 		}
 	}

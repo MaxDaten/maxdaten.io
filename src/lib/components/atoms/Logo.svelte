@@ -38,7 +38,7 @@
 		gap: 16px;
 		align-items: center;
 
-		@media for-phone-only {
+		@include breakpoints.for-phone-only {
 			gap: 8px;
 		}
 

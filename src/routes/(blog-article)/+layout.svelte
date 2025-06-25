@@ -102,6 +102,7 @@
 
 <style lang="scss">
 	@use '$lib/scss/_mixins.scss';
+	@use '$lib/scss/_breakpoints.scss';
 
 	.article-layout {
 		--body-background-color: var(--color--post-page-background);
@@ -116,17 +117,17 @@
 		padding-right: 15px;
 		padding-left: 15px;
 
-		@media for-iphone-se {
+		@include breakpoints.for-iphone-se {
 			padding-left: 0;
 			padding-right: 0;
 		}
 
-		@media for-tablet-portrait-up {
+		@include breakpoints.for-tablet-portrait-up {
 			padding-right: 20px;
 			padding-left: 20px;
 		}
 
-		@media for-tablet-landscape-up {
+		@include breakpoints.for-tablet-landscape-up {
 			padding-right: 30px;
 			padding-left: 30px;
 		}

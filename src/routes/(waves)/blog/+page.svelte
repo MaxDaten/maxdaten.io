@@ -26,6 +26,7 @@
 
 <style lang="scss">
 	@use '$lib/scss/_mixins.scss';
+	@use '$lib/scss/_breakpoints.scss';
 
 	.grid {
 		width: 100%;
@@ -33,11 +34,11 @@
 		grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 		grid-gap: 20px;
 
-		@media for-tablet-portrait-down {
+		@include breakpoints.for-tablet-portrait-down {
 			grid-template-columns: 1fr;
 		}
 
-		@media for-tablet-landscape-up {
+		@include breakpoints.for-tablet-landscape-up {
 			// Select every 6 elements, starting from position 1
 			// And make it take up 6 columns
 			> :global(:nth-child(6n + 1)) {

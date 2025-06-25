@@ -37,7 +37,7 @@
 			grid-template-columns: 1fr 1fr;
 		}
 
-		@media for-tablet-portrait-down {
+		@include breakpoints.for-tablet-portrait-down {
 			grid-template-columns: 1fr;
 		}
 	}

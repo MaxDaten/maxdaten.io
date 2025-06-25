@@ -56,7 +56,7 @@
 		position: relative;
 		padding: 80px 0;
 
-		@media for-phone-only {
+		@include breakpoints.for-phone-only {
 			padding: 40px 0 50px;
 		}
 
@@ -80,7 +80,7 @@
 				text-align: right;
 			}
 
-			@media for-phone-only {
+			@include breakpoints.for-phone-only {
 				display: none;
 			}
 

@@ -39,7 +39,7 @@
 		grid-template-columns: 1fr 1fr;
 		grid-gap: 20px;
 
-		@media for-phone-only {
+		@include breakpoints.for-phone-only {
 			grid-template-columns: 1fr;
 		}
 	}

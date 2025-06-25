@@ -47,7 +47,7 @@
 </section>
 
 <style lang="scss">
-	@use '../../scss/breakpoints.scss';
+	@use '$lib/scss/breakpoints.scss';
 
 	.content-section {
 		display: flex;
@@ -81,7 +81,7 @@
 			place-items: center;
 		}
 
-		@media for-tablet-landscape-up {
+		@include breakpoints.for-tablet-landscape-up {
 			&.left {
 				.title-area {
 					order: 1;
@@ -110,7 +110,7 @@
 				}
 			}
 		}
-		@media for-tablet-portrait-down {
+		@include breakpoints.for-tablet-portrait-down {
 			flex-direction: column;
 		}
 	}

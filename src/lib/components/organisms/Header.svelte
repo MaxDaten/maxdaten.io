@@ -29,7 +29,7 @@
 		position: relative;
 		padding: 30px 0;
 
-		@media for-phone-only {
+		@include breakpoints.for-phone-only {
 			padding: 20px 0;
 		}
 
@@ -48,7 +48,7 @@
 			align-items: center;
 			gap: 30px;
 
-			@media for-phone-only {
+			@include breakpoints.for-phone-only {
 				.links {
 					a {
 						display: none;

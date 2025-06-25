@@ -34,7 +34,7 @@
 		justify-content: space-between;
 		padding-bottom: 50px;
 
-		@media for-phone-only {
+		@include breakpoints.for-phone-only {
 			grid-template-columns: 1fr;
 			justify-items: center;
 			gap: 20px;
@@ -45,21 +45,21 @@
 			flex-direction: column;
 			gap: 10px;
 			h2 {
-				@media for-phone-only {
+				@include breakpoints.for-phone-only {
 					text-align: center;
 					text-wrap: balance;
 				}
 			}
 
 			p {
-				@media for-phone-only {
+				@include breakpoints.for-phone-only {
 					text-align: justify;
 					max-inline-size: 50ch;
 					text-wrap: balance;
 				}
 			}
 
-			@media for-phone-only {
+			@include breakpoints.for-phone-only {
 				gap: 20px;
 			}
 		}
@@ -69,7 +69,7 @@
 			align-items: center;
 			gap: 15px;
 
-			@media for-phone-only {
+			@include breakpoints.for-phone-only {
 				justify-content: center;
 				margin-bottom: 10px;
 				span {
