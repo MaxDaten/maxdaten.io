@@ -3,6 +3,9 @@
 	"version": "1.0.0",
 	"sass": "src/lib/scss/global.scss",
 	"private": true,
+	"engines": {
+		"node": ">=20.0.0"
+	},
 	"scripts": {
 		"dev": "vite dev --host",
 		"build": "vite build",
