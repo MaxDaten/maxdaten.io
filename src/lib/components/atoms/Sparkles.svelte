@@ -56,7 +56,7 @@
 
 <div class="sparkle-wrapper">
 	{#each sparkles as sparkle (sparkle.id)}
-		<Sparkle color={sparkle.color} size={sparkle.size} style={sparkle.style} />
+		<Sparkle color={sparkle.color} size="{sparkle.size}px" style={sparkle.style} />
 	{/each}
 	<span class="slot-wrapper">
 		{@render children?.()}
