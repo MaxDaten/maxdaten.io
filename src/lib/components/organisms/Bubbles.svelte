@@ -55,19 +55,19 @@
 </div>
 
 <style lang="scss">
+  @use "sass:math";
+  @use "sass:list";
+  @use "sass:color";
   @use '$lib/scss/_breakpoints.scss';
 
   $bubble-count: 50;
   $sway-type: "sway-left-to-right", "sway-right-to-left";
 
-  @function random_range($min, $max) {
-    $rand: random();
-    $random_range: $min + floor($rand * (($max - $min) + 1));
-    @return $random_range;
-  }
-
-  @function sample($list) {
-    @return nth($list, random(length($list)));
+  @function random_range($seed, $min, $max) {
+    $rand: math.sin($seed * 12.9898) * 43758.5453;
+    $rand: $rand - math.floor($rand);
+    $range: $max - $min;
+    @return $min + $rand * $range;
   }
 
   .bubbles {
@@ -94,7 +94,7 @@
     border-radius: 50%;
     mix-blend-mode: screen;
     @media screen and (prefers-reduced-motion: no-preference) {
-			animation: float-up var(--bubble-float-duration) var(--bubble-float-delay) ease-in-out alternate infinite,
+			animation: float-up var(--bubble-float-duration) 0s ease-in-out alternate infinite,
 			filt 15s linear infinite;
     }
 
@@ -110,7 +110,7 @@
       inset: 10px;
       border: 5px solid hsla(var(--bubble-hue), 100%, 90%, var(--bubble-opacity));
 
-      filter: blur(calc(var(--bubble-radius) / 1.5));
+      filter: blur(calc(var(--bubble-radius) / 3));
 			z-index: 1;
 
 			@media screen and (prefers-reduced-motion: no-preference) {
@@ -118,18 +118,17 @@
       }
     }
 
-    @for $i from 0 through $bubble-count {
+    @for $i from 1 through $bubble-count + 1 {
       &:nth-child(#{$i}) {
-        --bubble-opacity: #{random_range(0.1, 0.2)};
-        --bubble-hue: #{random_range(0, 360)};
-        --bubble-left-offset: #{random_range(0vw, 100vw)};
-        --bubble-top-offset: #{random_range(0vh, 100vh)};
-        --bubble-radius: #{random_range(30px, 250px)};
-        --bubble-float-duration: #{random_range(40s, 60s)};
-        --bubble-sway-duration: #{random_range(4s, 6s)};
-        --bubble-float-delay: #{random_range(0s, 0s)};
-        --bubble-sway-delay: #{random_range(0s, 4s)};
-        --bubble-sway-type: #{sample($sway-type)};
+        --bubble-opacity: #{random_range($i + 1, 0.1, 0.2)};
+        --bubble-hue: #{random_range($i + 2, 0, 360)};
+        --bubble-left-offset: #{random_range($i + 3, 0vw, 100vw)};
+        --bubble-top-offset: #{random_range($i + 4, 0vh, 100vh)};
+        --bubble-radius: #{random_range($i + 5, 30px, 250px)};
+        --bubble-float-duration: #{random_range($i + 6, 40s, 60s)};
+        --bubble-sway-duration: #{random_range($i + 7, 4s, 6s)};
+        --bubble-sway-delay: #{random_range($i + 9, 0s, 4s)};
+        --bubble-sway-type: #{list.nth($sway-type, $i % list.length($sway-type) + 1)};
       }
     }
   }
