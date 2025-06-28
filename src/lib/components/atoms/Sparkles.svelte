@@ -31,7 +31,7 @@
 	};
 
 	let sparkles: SparkleType[] = $state([]);
-	let sparklesInterval: NodeJS.Timer;
+	let sparklesInterval: NodeJS.Timeout;
 
 	onMount(() => {
 		sparklesInterval = setInterval(() => {
