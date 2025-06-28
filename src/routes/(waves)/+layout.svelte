@@ -3,7 +3,7 @@
 	import Footer from '$lib/components/organisms/Footer.svelte';
 
 	import { description, image, keywords, title, siteBaseUrl } from '$lib/data/meta';
-	import Bubbles from '$components/organisms/Bubbles.svelte';
+	import Bubbles from '$lib/components/organisms/Bubbles.svelte';
 	/**
 	 * @typedef {Object} Props
 	 * @property {import('svelte').Snippet} [children]
