@@ -3,6 +3,7 @@
 	import Footer from '$lib/components/organisms/Footer.svelte';
 
 	import { description, image, keywords, title, siteBaseUrl } from '$lib/data/meta';
+	import Bubbles from '$components/organisms/Bubbles.svelte';
 	/**
 	 * @typedef {Object} Props
 	 * @property {import('svelte').Snippet} [children]
@@ -34,6 +35,7 @@
 	<Header showBackground={true} />
 
 	<main class="fill-height">
+		<Bubbles></Bubbles>
 		{@render children?.()}
 	</main>
 
@@ -41,15 +43,16 @@
 </div>
 
 <style lang="scss">
-	.stage {
-		height: 100%;
-		margin: 0;
-		padding: 0;
-		display: flex;
-		flex-direction: column;
-	}
+  .stage {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
 
-	.fill-height {
-		flex-grow: 1;
-	}
+  .fill-height {
+		position: relative;
+    flex-grow: 1;
+  }
 </style>
