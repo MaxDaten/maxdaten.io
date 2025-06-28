@@ -1,7 +1,7 @@
 <script>
 </script>
 
-<div class="bubbles">
+<div class="bubbles" style="display: none;">
 	<div class="bubble"></div>
 	<div class="bubble"></div>
 	<div class="bubble"></div>
@@ -55,6 +55,8 @@
 </div>
 
 <style lang="scss">
+  @use '$lib/scss/_breakpoints.scss';
+
   $bubble-count: 50;
   $sway-type: "sway-left-to-right", "sway-right-to-left";
 
@@ -74,6 +76,11 @@
     height: 100%;
     overflow: hidden;
     z-index: var(--background-layer);
+
+    @include breakpoints.for-desktop-up {
+      // display: none in inline style fixed popping in svg before css is parsed
+      display: block !important;
+    }
   }
 
   .bubble {
@@ -86,8 +93,10 @@
     height: var(--bubble-radius);
     border-radius: 50%;
     mix-blend-mode: screen;
-    animation: float-up var(--bubble-float-duration) var(--bubble-float-delay) ease-in-out alternate infinite,
-    filt 15s linear infinite;
+    @media screen and (prefers-reduced-motion: no-preference) {
+			animation: float-up var(--bubble-float-duration) var(--bubble-float-delay) ease-in-out alternate infinite,
+			filt 15s linear infinite;
+    }
 
     &::before {
       position: absolute;
@@ -98,12 +107,15 @@
       height: 100%;
       background: hsla(var(--bubble-hue), 94%, 76%, var(--bubble-opacity));
       border-radius: inherit;
-      animation: var(--bubble-sway-type) var(--bubble-sway-duration) var(--bubble-sway-delay) ease-in-out alternate infinite;
       inset: 10px;
       border: 5px solid hsla(var(--bubble-hue), 100%, 90%, var(--bubble-opacity));
 
       filter: blur(calc(var(--bubble-radius) / 1.5));
 			z-index: 1;
+
+			@media screen and (prefers-reduced-motion: no-preference) {
+				animation: var(--bubble-sway-type) var(--bubble-sway-duration) var(--bubble-sway-delay) ease-in-out alternate infinite;
+      }
     }
 
     @for $i from 0 through $bubble-count {
