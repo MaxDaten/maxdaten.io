@@ -10,7 +10,7 @@
 <div class="container">
 	<Hero />
 	<About />
-	{#if data.posts && data.posts.length > 0}
+	{#if data?.posts && data?.posts.length > 0}
 		<RecentPosts posts={data.posts} />
 	{/if}
 </div>
