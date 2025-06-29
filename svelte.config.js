@@ -15,7 +15,7 @@ const config = {
 			$stores: './src/lib/stores',
 			$styles: './src/lib/scss',
 			$utils: './src/lib/utils',
-			$routes: './src/routes',
+			$routes: './src/routes'
 		}
 	},
 	vitePlugin: { inspector: true },
@@ -31,7 +31,11 @@ const config = {
 					{
 						// Adds hyperlinks to the headings, requires rehypeSlug
 						behavior: 'prepend',
-						properties: { className: ['heading-link'], title: 'Permalink', ariaHidden: 'true' },
+						properties: {
+							className: ['heading-link'],
+							title: 'Permalink',
+							ariaHidden: 'true'
+						},
 						content: {
 							type: 'element',
 							tagName: 'span',
