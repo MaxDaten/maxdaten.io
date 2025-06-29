@@ -10,5 +10,5 @@
 	let { children } = $props();
 </script>
 
-<Analytics/>
+<Analytics />
 {@render children?.()}

@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { dev } from '$app/environment';
 
-
 	interface Props {
 		src: string;
 		alt: string;
@@ -47,7 +46,14 @@
 	}
 </script>
 
-<img srcset={buildSrcset()} {src} {alt} loading="lazy" decoding="async" class:full-bleed={fullBleed} />
+<img
+	srcset={buildSrcset()}
+	{src}
+	{alt}
+	loading="lazy"
+	decoding="async"
+	class:full-bleed={fullBleed}
+/>
 
 <style lang="scss">
 	img {

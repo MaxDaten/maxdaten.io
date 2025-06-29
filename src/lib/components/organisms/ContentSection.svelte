@@ -1,5 +1,4 @@
 <script lang="ts">
-
 	interface Props {
 		id?: string | undefined;
 		title?: string | undefined;

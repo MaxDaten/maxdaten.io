@@ -6,12 +6,7 @@
 		children?: import('svelte').Snippet;
 	}
 
-	let {
-		filename,
-		lang,
-		fullBleed = undefined,
-		children
-	}: Props = $props();
+	let { filename, lang, fullBleed = undefined, children }: Props = $props();
 </script>
 
 <div class="code-block" class:full-bleed={fullBleed}>

@@ -7,8 +7,9 @@
 	<div class="info">
 		<h2>Hi there! I'm Jan-Philip</h2>
 		<p>
-			a software engineer from Hamburg, Germany. I'm passionate about automatization, functional
-			programming and open source. I'm currently working as a freelancer.
+			a software engineer from Hamburg, Germany. I'm passionate about
+			automatization, functional programming and open source. I'm currently
+			working as a freelancer.
 		</p>
 		<div class="socials">
 			<span>Socials:</span>

@@ -19,7 +19,8 @@ export const gems: GemEntry[] = [
 	},
 	{
 		title: 'YouTube Channel: Catangle',
-		description: 'A YouTube channel of a friend mainly focused on dogfights in Star Citizen.',
+		description:
+			'A YouTube channel of a friend mainly focused on dogfights in Star Citizen.',
 		tags: ['youtube', 'gaming'],
 		link: 'https://www.youtube.com/@cataangle',
 		coverImage: '/images/gems/catangle.png'

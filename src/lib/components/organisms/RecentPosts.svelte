@@ -18,14 +18,13 @@
 	align="left"
 >
 	{#snippet button()}
-		<div >
+		<div>
 			<Button href="/blog">View More</Button>
 		</div>
 	{/snippet}
 	<div class="grid">
 		{#each posts as post}
-			<BlogPostCard {post} showImage={false}
-			/>
+			<BlogPostCard {post} showImage={false} />
 		{/each}
 	</div>
 </ContentSection>

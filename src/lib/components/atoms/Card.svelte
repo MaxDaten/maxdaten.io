@@ -21,7 +21,7 @@
 		content,
 		footer,
 		...rest
-	} : Props = $props();
+	}: Props = $props();
 
 	const isExternalLink = $derived(!!href && HttpRegex.test(href));
 	let tag = $derived(href ? 'a' : 'article');
@@ -33,8 +33,8 @@
 </script>
 
 <svelte:element
-	data-sveltekit-preload-data
 	this={tag}
+	data-sveltekit-preload-data
 	class="card {propsClass}"
 	{...linkProps}
 	{...rest}

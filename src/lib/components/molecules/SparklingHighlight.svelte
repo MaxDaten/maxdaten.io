@@ -7,10 +7,16 @@
 		children?: import('svelte').Snippet;
 	}
 
-	let { color = 'default', sparkleColor = 'default', children }: Props = $props();
+	let {
+		color = 'default',
+		sparkleColor = 'default',
+		children
+	}: Props = $props();
 </script>
 
-<Sparkles color={sparkleColor}><strong class={color}>{@render children?.()}</strong></Sparkles>
+<Sparkles color={sparkleColor}
+	><strong class={color}>{@render children?.()}</strong></Sparkles
+>
 
 <style lang="scss">
 	strong {

@@ -5,8 +5,8 @@
 
 	interface Props {
 		data: {
-		gems: GemEntry[];
-	};
+			gems: GemEntry[];
+		};
 	}
 
 	let { data }: Props = $props();

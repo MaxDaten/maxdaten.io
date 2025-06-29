@@ -3,7 +3,6 @@
 	import Tag from '$lib/components/atoms/Tag.svelte';
 	import Image from '../atoms/Image.svelte';
 
-
 	interface Props {
 		title: string;
 		coverImage?: string | undefined;
@@ -31,14 +30,14 @@
 	additionalClass="blog-post-card {!showImage || !coverImage ? 'no-image' : ''}"
 >
 	{#snippet image()}
-		<div class="image" >
+		<div class="image">
 			{#if coverImage}
 				<Image src={coverImage} alt="Cover image of this blog post" />
 			{/if}
 		</div>
 	{/snippet}
 	{#snippet content()}
-		<div class="content" >
+		<div class="content">
 			<p class="title">
 				{title}
 			</p>
@@ -53,7 +52,7 @@
 		</div>
 	{/snippet}
 	{#snippet footer()}
-		<div class="footer" >
+		<div class="footer">
 			{#if tags?.length}
 				<div class="tags">
 					{#each tags.slice(0, 2) as tag, index}

@@ -2,7 +2,8 @@
 	import Sparkle from '$lib/components/atoms/SingleSparkle.svelte';
 	import type { SparkleType } from '$lib/utils/types';
 	import { onDestroy, onMount } from 'svelte';
-	const random = (min: number, max: number) => Math.floor(Math.random() * (max - min)) + min;
+	const random = (min: number, max: number) =>
+		Math.floor(Math.random() * (max - min)) + min;
 
 	interface Props {
 		color?: 'default' | 'primary' | 'secondary';
@@ -19,8 +20,8 @@
 				color === 'primary'
 					? 'var(--color--primary)'
 					: color === 'secondary'
-					? 'var(--color--secondary)'
-					: 'var(--color--yellow',
+						? 'var(--color--secondary)'
+						: 'var(--color--yellow',
 			size: random(10, 20),
 			style: {
 				// Pick a random spot in the available space
@@ -56,7 +57,11 @@
 
 <div class="sparkle-wrapper">
 	{#each sparkles as sparkle (sparkle.id)}
-		<Sparkle color={sparkle.color} size="{sparkle.size}px" style={sparkle.style} />
+		<Sparkle
+			color={sparkle.color}
+			size="{sparkle.size}px"
+			style={sparkle.style}
+		/>
 	{/each}
 	<span class="slot-wrapper">
 		{@render children?.()}

@@ -27,7 +27,13 @@
 		"titleBar.inactiveForeground": "#e7e7e799"
 	},
 	"peacock.color": "#1857a4",
-	"cSpell.words": ["maxdaten", "prismjs", "Qwiz'n'Buzz", "striptags", "telepresence"],
+	"cSpell.words": [
+		"maxdaten",
+		"prismjs",
+		"Qwiz'n'Buzz",
+		"striptags",
+		"telepresence"
+	],
 	"[markdown]": {
 		"editor.fontSize": 14,
 		"editor.lineHeight": 26,

@@ -19,7 +19,11 @@
 		padding-inline: 0.1em;
 
 		background-color: transparent;
-		background-image: linear-gradient(to bottom, transparent 60%, var(--mark-color) 60%);
+		background-image: linear-gradient(
+			to bottom,
+			transparent 60%,
+			var(--mark-color) 60%
+		);
 
 		color: inherit;
 	}

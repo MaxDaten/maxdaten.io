@@ -5,8 +5,8 @@
 
 	interface Props {
 		data: {
-		posts: BlogPost[];
-	};
+			posts: BlogPost[];
+		};
 	}
 
 	let { data }: Props = $props();

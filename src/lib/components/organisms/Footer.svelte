@@ -11,10 +11,14 @@
 	</div> -->
 	<div class="content">
 		<div class="credits">
-			Powered by <a href="https://kit.svelte.dev/" target="_blank" rel="noopener noreferrer"
-				>SvelteKit</a
+			Powered by <a
+				href="https://kit.svelte.dev/"
+				target="_blank"
+				rel="noopener noreferrer">SvelteKit</a
 			>. Icons by
-			<a href="https://iconoir.com/" target="_blank" rel="noopener noreferrer">Iconoir</a>.
+			<a href="https://iconoir.com/" target="_blank" rel="noopener noreferrer"
+				>Iconoir</a
+			>.
 		</div>
 		<div class="copyright">
 			Based on a <a
@@ -39,7 +43,11 @@
 <style lang="scss">
 	footer {
 		width: 100%;
-		background: linear-gradient(60deg, var(--color--waves-start) 0%, var(--color--waves-end) 100%);
+		background: linear-gradient(
+			60deg,
+			var(--color--waves-start) 0%,
+			var(--color--waves-end) 100%
+		);
 		border-top: 1px solid var(--color--waves-start);
 
 		display: grid;

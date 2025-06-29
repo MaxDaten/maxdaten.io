@@ -16,7 +16,7 @@
 		rel?: any;
 		icon?: Snippet;
 		children?: Snippet;
-		[key: string]: any
+		[key: string]: any;
 	}
 
 	let {
@@ -42,7 +42,13 @@
 <svelte:element
 	this={tag}
 	{...linkProps}
-	class={['button', `style--${style}`, `size--${size}`, `color--${color}`, propsClass].join(' ')}
+	class={[
+		'button',
+		`style--${style}`,
+		`size--${size}`,
+		`color--${color}`,
+		propsClass
+	].join(' ')}
 	data-sveltekit-preload-data
 	onclick={bubble('click')}
 	{...rest}

@@ -2,7 +2,13 @@
 	import Header from '$lib/components/organisms/Header.svelte';
 	import Footer from '$lib/components/organisms/Footer.svelte';
 
-	import { description, image, keywords, title, siteBaseUrl } from '$lib/data/meta';
+	import {
+		description,
+		image,
+		keywords,
+		title,
+		siteBaseUrl
+	} from '$lib/data/meta';
 	import Bubbles from '$lib/components/organisms/Bubbles.svelte';
 	/**
 	 * @typedef {Object} Props
@@ -43,16 +49,16 @@
 </div>
 
 <style lang="scss">
-  .stage {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-  }
+	.stage {
+		height: 100%;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+	}
 
-  .fill-height {
+	.fill-height {
 		position: relative;
-    flex-grow: 1;
-  }
+		flex-grow: 1;
+	}
 </style>

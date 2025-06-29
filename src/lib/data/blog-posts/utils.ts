@@ -9,11 +9,12 @@ export const importPosts = () => {
 	for (const path in imports) {
 		const post = imports[path] as any;
 		if (post) {
-			let html = render(post.default, { props: {}}).body;
+			let html = render(post.default, { props: {} }).body;
 			posts.push({
 				...post.metadata,
 				html,
-				readingTimeMinutes: readingTime(striptags(striptags(html || ''))).minutes
+				readingTimeMinutes: readingTime(striptags(striptags(html || '')))
+					.minutes
 			} as BlogPost);
 		}
 	}
@@ -27,8 +28,8 @@ export const filterPosts = (posts: BlogPost[]) => {
 			new Date(a.date).getTime() > new Date(b.date).getTime()
 				? -1
 				: new Date(a.date).getTime() < new Date(b.date).getTime()
-				? 1
-				: 0
+					? 1
+					: 0
 		)
 		.map((post) => {
 			const relatedPosts = getRelatedPosts(posts, post);
@@ -47,7 +48,7 @@ export const readingTime = (text: string) => {
 		minutes,
 		text: `${minutes} min read`
 	};
-}
+};
 
 // #region Unexported Functions
 
@@ -58,11 +59,14 @@ const getRelatedPosts = (posts: BlogPost[], post: BlogPost) => {
 		.sort((a, b) => {
 			const aTags = a.tags?.filter((t) => post.tags?.includes(t));
 			const bTags = b.tags?.filter((t) => post.tags?.includes(t));
-			return aTags?.length > bTags?.length ? -1 : aTags?.length < bTags?.length ? 1 : 0;
+			return aTags?.length > bTags?.length
+				? -1
+				: aTags?.length < bTags?.length
+					? 1
+					: 0;
 		});
 
 	return relatedPosts.slice(0, 3);
 };
-
 
 // #endregion

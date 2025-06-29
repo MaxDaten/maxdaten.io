@@ -10,16 +10,10 @@
 	let { posts }: Props = $props();
 </script>
 
-<ContentSection
-	id="related-posts"
-	title="Related Posts"
->
+<ContentSection id="related-posts" title="Related Posts">
 	<div class="simple-grid">
 		{#each posts as post}
-			<BlogPostCard
-				{post}
-				showImage={false}
-			/>
+			<BlogPostCard {post} showImage={false} />
 		{/each}
 	</div>
 </ContentSection>
