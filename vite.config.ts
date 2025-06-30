@@ -1,4 +1,3 @@
-import { svelteTesting } from '@testing-library/svelte/vite';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 import { NodePackageImporter } from 'sass';
@@ -17,14 +16,20 @@ export default defineConfig({
 		projects: [
 			{
 				extends: './vite.config.ts',
-				plugins: [svelteTesting()],
 				test: {
-					name: 'client',
-					environment: 'jsdom',
-					clearMocks: true,
+					name: 'browser',
+					browser: {
+						enabled: true,
+						instances: [
+							{
+								browser: 'chromium'
+							}
+						],
+						provider: 'playwright',
+						headless: true
+					},
 					include: ['src/**/*.svelte.{test,spec}.{js,ts}'],
-					exclude: ['src/lib/server/**'],
-					setupFiles: ['./vitest-setup-client.ts']
+					exclude: ['src/lib/server/**']
 				}
 			},
 			{
