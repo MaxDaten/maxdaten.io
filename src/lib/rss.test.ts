@@ -31,7 +31,7 @@ describe('RSS XML route', () => {
 
 		// Check atom:link for self-reference (note the double slash in URL)
 		expect(xml).toContain(
-			'atom:link href="https://maxdaten.io//rss.xml" rel="self"'
+			'atom:link href="https://maxdaten.io/rss.xml" rel="self"'
 		);
 	});
 
@@ -76,7 +76,7 @@ describe('RSS XML route', () => {
 		expect(xml).toContain('<image>');
 		// Note the double slash in the URL from siteBaseUrl
 		expect(xml).toContain(
-			'<url>https://maxdaten.io//favicons/favicon-32x32.png</url>'
+			'<url>https://maxdaten.io/favicons/favicon-32x32.png</url>'
 		);
 		expect(xml).toContain('<width>32</width>');
 		expect(xml).toContain('<height>32</height>');
