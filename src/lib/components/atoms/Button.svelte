@@ -13,10 +13,9 @@
 		href?: string | undefined;
 		class?: ClassValue;
 		target?: '_self' | '_blank';
-		rel?: any;
+		rel?: string;
 		icon?: Snippet;
 		children?: Snippet;
-		[key: string]: any;
 	}
 
 	let {
