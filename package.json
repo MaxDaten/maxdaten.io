@@ -22,6 +22,10 @@
 		"update-site-preview-image": "node scripts/update-site-preview-image.js",
 		"test:unit": "vitest",
 		"test": "vitest --run",
+		"test:e2e": "playwright test",
+		"test:e2e:ui": "playwright test --ui",
+		"test:e2e:headed": "playwright test --headed",
+		"test:e2e:debug": "playwright test --debug",
 		"storybook": "storybook dev -p 6006",
 		"build-storybook": "storybook build"
 	},

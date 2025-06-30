@@ -21,6 +21,10 @@ repository.
 
 - `npm run test` - Run all tests once
 - `npm run test:unit` - Run unit tests in watch mode
+- `npm run test:e2e` - Run end-to-end tests with Playwright
+- `npm run test:e2e:ui` - Run E2E tests with interactive UI
+- `npm run test:e2e:headed` - Run E2E tests in headed browser mode
+- `npm run test:e2e:debug` - Run E2E tests in debug mode
 
 **Content Management:**
 
@@ -36,7 +40,8 @@ This is a SvelteKit-based static blog site with MDX integration for content auth
 - SvelteKit 2.0 with Svelte 5
 - MDsveX for Markdown with Svelte components
 - SCSS for styling with atomic design methodology
-- Vitest for testing with separate client/server configurations
+- Vitest for unit testing with separate client/server configurations
+- Playwright for end-to-end testing across browsers
 - Image optimization pipeline using image-transmutation
 - UI components are developed via Storybook in isolation
 
@@ -93,9 +98,16 @@ This is a SvelteKit-based static blog site with MDX integration for content auth
 - When modifying or adding new functionality, follow TDD practices
 - Write tests first, then implement the feature to make tests pass
 - Use `npm run test` to run all tests and `npm run test:unit` for unit tests in watch mode
+- Use `npm run test:e2e` for end-to-end testing with Playwright
 - Ensure all tests pass before considering a feature complete
 - in vitest use describe/it spec pattern
 - Add stories side by side to the component
+
+**Testing Strategy:**
+
+- **Unit Tests (Vitest):** Test individual components and utilities
+- **E2E Tests (Playwright):** Test user workflows across browsers
+- Tests are located in `tests/` for E2E and alongside components for unit tests
 
 ## Code Style Guidelines
 
