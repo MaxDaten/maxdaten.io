@@ -7,9 +7,12 @@ export const importPosts = () => {
 
 	const posts: BlogPost[] = [];
 	for (const path in imports) {
-		const post = imports[path] as any;
+		const post = imports[path] as {
+			default: import('svelte').Component;
+			metadata: BlogPost;
+		};
 		if (post) {
-			let html = render(post.default, { props: {} }).body;
+			const html = render(post.default, { props: {} }).body;
 			posts.push({
 				...post.metadata,
 				html,
