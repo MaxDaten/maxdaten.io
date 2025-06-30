@@ -7,7 +7,7 @@
 		class: ClassValue;
 		href?: string;
 		target?: '_self' | '_blank';
-		rel?: any;
+		rel?: string;
 		image?: Snippet;
 		content?: Snippet;
 		footer?: Snippet;

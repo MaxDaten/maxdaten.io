@@ -26,7 +26,7 @@
 		icon = undefined,
 		children = undefined,
 		class: propsClass = '',
-		...rest
+		rel
 	}: Props = $props();
 
 	const isExternalLink = $derived(!!href && HttpRegex.test(href));
