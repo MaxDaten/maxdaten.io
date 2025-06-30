@@ -94,6 +94,7 @@ This is a SvelteKit-based static blog site with MDX integration for content auth
 - Write tests first, then implement the feature to make tests pass
 - Use `npm run test` to run all tests and `npm run test:unit` for unit tests in watch mode
 - Ensure all tests pass before considering a feature complete
+- in vitest use describe/it spec pattern
 - Add stories side by side to the component
 
 ## Code Style Guidelines
