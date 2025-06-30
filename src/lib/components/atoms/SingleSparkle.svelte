@@ -2,7 +2,10 @@
 	interface Props {
 		color: string;
 		size: string;
-		style: any;
+		style: {
+			top: string;
+			left: string;
+		};
 	}
 
 	let { color, size, style }: Props = $props();

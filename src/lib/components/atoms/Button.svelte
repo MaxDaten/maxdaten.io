@@ -25,8 +25,7 @@
 		href = undefined,
 		icon = undefined,
 		children = undefined,
-		class: propsClass = '',
-		rel
+		class: propsClass = ''
 	}: Props = $props();
 
 	const isExternalLink = $derived(!!href && HttpRegex.test(href));
@@ -50,7 +49,6 @@
 	].join(' ')}
 	data-sveltekit-preload-data
 	onclick={bubble('click')}
-	{...rest}
 >
 	{#if icon}
 		<div class="icon">

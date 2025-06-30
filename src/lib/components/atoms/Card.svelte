@@ -13,15 +13,7 @@
 		footer?: Snippet;
 	}
 
-	let {
-		class: propsClass,
-		href,
-		rel,
-		image,
-		content,
-		footer,
-		...rest
-	}: Props = $props();
+	let { class: propsClass, href, image, content, footer }: Props = $props();
 
 	const isExternalLink = $derived(!!href && HttpRegex.test(href));
 	let tag = $derived(href ? 'a' : 'article');
@@ -37,7 +29,6 @@
 	data-sveltekit-preload-data
 	class="card {propsClass}"
 	{...linkProps}
-	{...rest}
 >
 	{#if image}
 		<div class="image">
