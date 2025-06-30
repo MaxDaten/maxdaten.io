@@ -7,7 +7,10 @@ export type SparkleType = {
 	createdAt: number;
 	color: string;
 	size: number;
-	style: any;
+	style: {
+		top: string;
+		left: string;
+	};
 };
 
 export type TagType = {
