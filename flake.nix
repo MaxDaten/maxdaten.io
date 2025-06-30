@@ -44,6 +44,36 @@
               };
               languages.typescript.enable = true;
 
+              # Git hooks for running tests before commits
+              git-hooks.hooks = {
+                # Run unit tests
+                unit-tests = {
+                  enable = true;
+                  name = "unit-tests";
+                  entry = "npm run test";
+                  language = "system";
+                  pass_filenames = false;
+                };
+                
+                # Run E2E tests
+                e2e-tests = {
+                  enable = true;
+                  name = "e2e-tests";
+                  entry = "npm run test:e2e";
+                  language = "system";
+                  pass_filenames = false;
+                };
+                
+                # Run linting and formatting
+                lint-check = {
+                  enable = true;
+                  name = "lint-check";
+                  entry = "npm run lint";
+                  language = "system";
+                  pass_filenames = false;
+                };
+              };
+
               # https://devenv.sh/reference/options/
               packages = [
                 pkgs.npm-check-updates
