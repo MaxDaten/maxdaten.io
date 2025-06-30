@@ -29,7 +29,7 @@ test('page loads and is interactive', async ({ page }) => {
 
 	// Check that the page body is visible
 	await expect(page.locator('body')).toBeVisible();
-	
+
 	// Check that the page has content
 	await expect(page.locator('main, #main, .main')).toBeVisible();
 });
