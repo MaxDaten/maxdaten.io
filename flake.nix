@@ -54,7 +54,7 @@
                   language = "system";
                   pass_filenames = false;
                 };
-                
+
                 # Run E2E tests
                 e2e-tests = {
                   enable = true;
@@ -63,7 +63,7 @@
                   language = "system";
                   pass_filenames = false;
                 };
-                
+
                 # Run linting and formatting
                 lint-check = {
                   enable = true;

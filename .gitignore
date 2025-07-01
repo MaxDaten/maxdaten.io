@@ -23,3 +23,4 @@ vite.config.ts.timestamp-*
 *storybook.log
 storybook-static
 .pre-commit-config.yaml
+/.claude/settings.local.json

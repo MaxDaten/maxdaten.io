@@ -1,0 +1,16 @@
+{
+	"mcpServers": {
+		"sveltekit": {
+			"command": "npx",
+			"args": ["mcp-remote", "https://gitmcp.io/sveltejs/kit"]
+		},
+		"sveltejs": {
+			"command": "npx",
+			"args": ["mcp-remote", "https://gitmcp.io/sveltejs/svelte"]
+		},
+		"generic-github-repo": {
+			"command": "npx",
+			"args": ["mcp-remote", "https://gitmcp.io/docs"]
+		}
+	}
+}
