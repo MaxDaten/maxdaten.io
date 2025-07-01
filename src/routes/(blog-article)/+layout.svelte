@@ -68,8 +68,8 @@
 							Updated on {dateformat(post.updated, 'UTC:dd mmmm yyyy')}
 						</div>
 					{/if}
-					{#if post.readingTime}
-						<div class="note">{post.readingTime}</div>
+					{#if post.readingTimeMinutes}
+						<div class="note">{post.readingTimeMinutes} minutes to read</div>
 					{/if}
 					{#if post.tags?.length}
 						<div class="tags">
@@ -147,7 +147,7 @@
 
 			.note {
 				font-size: 90%;
-				color: rgba(var(--color--text-rgb), 0.8);
+				color: rgba(var(--color--secondary-rgb), 0.8);
 			}
 		}
 
