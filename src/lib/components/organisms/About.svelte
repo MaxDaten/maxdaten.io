@@ -7,12 +7,24 @@
 	<div class="info">
 		<h2>Hi there! I'm Jan-Philip</h2>
 		<p>
-			a software engineer from Hamburg, Germany. I'm passionate about
-			automatization, functional programming and open source. I'm currently
-			working as a freelancer.
+			a software engineer and DevOps consultant from Hamburg, Germany. With a
+			Master's in Computer Science, I help businesses build robust, scalable
+			infrastructure and streamline their development workflows.
+		</p>
+		<p>
+			My expertise spans cloud-native architectures, Infrastructure as Code, and
+			modern DevOps practices. I'm passionate about functional programming,
+			automation, and creating solutions that make complex systems simple and
+			reliable. Currently working as a freelance consultant, I partner with
+			teams to transform their technical infrastructure and accelerate their
+			delivery capabilities.
+		</p>
+		<p class="specialties">
+			<strong>Specializing in:</strong> Kubernetes • Google Cloud Platform • Infrastructure
+			as Code • CI/CD Automation • Secret Management • Cloud Security
 		</p>
 		<div class="socials">
-			<span>Socials:</span>
+			<span>Let's connect:</span>
 			<Socials />
 		</div>
 	</div>
@@ -44,7 +56,7 @@
 		.info {
 			display: flex;
 			flex-direction: column;
-			gap: 10px;
+			gap: 15px;
 			h2 {
 				@include breakpoints.for-phone-only {
 					text-align: center;
@@ -53,11 +65,22 @@
 			}
 
 			p {
+				line-height: 1.6;
+
 				@include breakpoints.for-phone-only {
 					text-align: justify;
 					max-inline-size: 50ch;
 					text-wrap: balance;
 				}
+			}
+
+			.specialties {
+				font-size: 0.95rem;
+				color: rgba(var(--color--text-shade-rgb), 0.8);
+				padding: 12px 16px;
+				background: rgba(var(--color--primary-rgb), 0.05);
+				border-radius: 8px;
+				border-left: 3px solid rgba(var(--color--primary-rgb), 0.4);
 			}
 
 			@include breakpoints.for-phone-only {
