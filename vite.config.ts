@@ -14,6 +14,7 @@ export default defineConfig({
 	},
 	test: {
 		projects: [
+			// component tests in browser environment
 			{
 				extends: './vite.config.ts',
 				test: {
@@ -32,13 +33,20 @@ export default defineConfig({
 					exclude: ['src/lib/server/**']
 				}
 			},
+			// server and logic tests in node environment
 			{
 				extends: './vite.config.ts',
 				test: {
 					name: 'server',
 					environment: 'node',
-					include: ['src/**/*.{test,spec}.{js,ts}'],
-					exclude: ['src/**/*.svelte.{test,spec}.{js,ts}']
+					include: [
+						'src/**/*.{test,spec}.{js,ts}',
+						'tests/**/*.{test,spec}.{js,ts}'
+					],
+					exclude: [
+						'src/**/*.svelte.{test,spec}.{js,ts}',
+						'tests/e2e/**/*.{test,spec}.{js,ts}'
+					]
 				}
 			}
 		]

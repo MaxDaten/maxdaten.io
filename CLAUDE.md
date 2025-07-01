@@ -19,8 +19,10 @@ repository.
 
 **Testing:**
 
-- `npm run test` - Run all tests once
+- `npm run test` - Run fast unit tests only (suitable for commit hooks, skips slow tests)
+- `npm run test:all` - Run all tests including slow ones (unit tests + link checker)
 - `npm run test:unit` - Run unit tests in watch mode
+- `npm run test:links` - Check all blog articles for dead links (slow, ~30s)
 - `npm run test:e2e` - Run end-to-end tests with Playwright
 - `npm run test:e2e:ui` - Run E2E tests with interactive UI
 - `npm run test:e2e:headed` - Run E2E tests in headed browser mode
@@ -113,3 +115,4 @@ This is a SvelteKit-based static blog site with MDX integration for content auth
 
 - Prefer functional style before imperative style
 - Follow clean code style guides moderately
+- Execute `npm run format` after each completed change
