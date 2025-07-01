@@ -30,7 +30,7 @@
 		<LinkedInIcon />
 	</a>
 	<a
-		href="mailto:jan-philip@entwicklerteam.hamburg"
+		href="mailto:jloos@maxdaten.com"
 		target="_blank"
 		rel="noopener noreferrer"
 		title="Send an email"
