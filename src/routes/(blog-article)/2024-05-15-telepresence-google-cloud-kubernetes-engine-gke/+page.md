@@ -41,7 +41,7 @@ restarts. This requires you have to update the
 every time you restart the tunnel.
 
 <Callout type="warning">
-**Development Friction**: Before implementing this solution, our team spent 2-3 hours daily managing tunnel endpoints and updating Discord configurations, reducing actual development time by 30% and causing significant frustration across our 4-person development team.
+<b>Development Friction:</b> Before implementing this solution, our team spent 2-3 hours daily managing tunnel endpoints and updating Discord configurations, reducing actual development time by 30% and causing significant frustration across our 4-person development team.
 </Callout>
 
 ## Telepresence
@@ -53,7 +53,7 @@ This way, we can provision stable development domains and cluster infrastructure
 on the Discord integration locally.
 
 <Callout type="success">
-**Development Velocity**: This approach increased our local development iteration speed by 400%, reducing feedback cycles from 10-15 minutes to 2-3 minutes, and eliminating the daily configuration overhead entirely.
+<b>Development Velocity:</b> This approach increased our local development iteration speed by 400%, reducing feedback cycles from 10-15 minutes to 2-3 minutes, and eliminating the daily configuration overhead entirely.
 </Callout>
 
 Telepresence brings two ways for redirecting traffic from a kubernetes service to your local
@@ -241,7 +241,7 @@ setting and intercept traffic at any time without any manual reconfiguration on 
 ## Business Impact & Results
 
 <Callout variant="success">
-**Project Outcomes**: This Telepresence implementation delivered immediate improvements to our development workflow, eliminating manual overhead and accelerating our Discord integration development.
+<b>Project Outcomes:</b> This Telepresence implementation delivered immediate improvements to our development workflow, eliminating manual overhead and accelerating our Discord integration development.
 </Callout>
 
 ### Development Efficiency
