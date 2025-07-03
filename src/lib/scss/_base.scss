@@ -3,22 +3,22 @@
 // Styles that are used everywhere
 
 .container {
-	@include mixins.padded-container;
+    @include mixins.padded-container;
 }
 
 ul,
 ol {
-	margin: 10px 0 10px 40px;
-	padding: 0;
+    margin: 10px 0 10px 40px;
+    padding: 0;
 
-	li {
-		margin: 6px 0;
+    li {
+        margin: 6px 0;
 
-		&::marker {
-			color: var(--color--primary);
-		}
-	}
+        &::marker {
+            color: var(--color--primary);
+        }
+    }
 }
 ul {
-	list-style: outside;
+    list-style: outside;
 }

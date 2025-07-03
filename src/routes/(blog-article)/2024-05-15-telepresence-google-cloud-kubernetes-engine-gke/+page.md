@@ -3,20 +3,20 @@ title: Telepresence with Google Cloud Kubernetes Engine (GKE)
 slug: 2024-05-15-telepresence-google-cloud-kubernetes-engine-gke
 coverImage: /images/posts/portal-telepresence.png
 excerpt:
-  How to use Telepresence with GKE & NEGs, focusing on health check challenges and providing two
-  methods enabling fast local development & debugging cycles.
+    How to use Telepresence with GKE & NEGs, focusing on health check challenges and providing two
+    methods enabling fast local development & debugging cycles.
 date: 2024-05-15T23:05:18.710Z
 hidden: false
 tags:
-  - google cloud
-  - kubernetes
-  - telepresence
+    - google cloud
+    - kubernetes
+    - telepresence
 keywords:
-  - GKE
-  - google cloud
-  - kubernetes
-  - telepresence
-  - NEG
+    - GKE
+    - google cloud
+    - kubernetes
+    - telepresence
+    - NEG
 type: default
 ---
 
@@ -100,25 +100,25 @@ serves a simple HTTP server that responds to the health check on the port of the
 ```yaml
 kind: Deployment
 metadata:
-  name: my-app
+    name: my-app
 spec:
-  template:
-    metadata:
-      labels:
-        app: my-app
-    spec:
-      containers:
-        - name: my-app
-          image: my-app:latest
-          ports:
-            - containerPort: 80
-              name: http
-        - name: healthz
-          image: nginx:latest
-          # Assuming nginx listens on port 8080
-          ports:
-            - containerPort: 8080
-              name: healthz
+    template:
+        metadata:
+            labels:
+                app: my-app
+        spec:
+            containers:
+                - name: my-app
+                  image: my-app:latest
+                  ports:
+                      - containerPort: 80
+                        name: http
+                - name: healthz
+                  image: nginx:latest
+                  # Assuming nginx listens on port 8080
+                  ports:
+                      - containerPort: 8080
+                        name: healthz
 ```
 
 </CodeBlock>
@@ -133,30 +133,30 @@ spec:
 apiVersion: cloud.google.com/v1
 kind: BackendConfig
 metadata:
-  name: my-backend-config
+    name: my-backend-config
 spec:
-  healthCheck:
-    type: HTTP
-    port: 8080
-    requestPath: /
+    healthCheck:
+        type: HTTP
+        port: 8080
+        requestPath: /
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-app
-  annotations:
-    cloud.google.com/neg: '{"ingress": true}'
-    cloud.google.com/app-protocols: '{"backend":"HTTP"}'
-    cloud.google.com/backend-config: '{"default":"my-backend-config"}' # Reference to the BackendConfig
+    name: my-app
+    annotations:
+        cloud.google.com/neg: '{"ingress": true}'
+        cloud.google.com/app-protocols: '{"backend":"HTTP"}'
+        cloud.google.com/backend-config: '{"default":"my-backend-config"}' # Reference to the BackendConfig
 spec:
-  type: ClusterIP
-  selector:
-    app: my-app
-  ports:
-    - protocol: TCP
-      name: http
-      port: 80
-      targetPort: http
+    type: ClusterIP
+    selector:
+        app: my-app
+    ports:
+        - protocol: TCP
+          name: http
+          port: 80
+          targetPort: http
 ```
 
 </CodeBlock>
@@ -178,18 +178,18 @@ intercept. This method involves changes in the application code and can be set u
 ```yaml
 kind: Deployment
 metadata:
-  name: my-app
+    name: my-app
 spec:
-  template:
-    spec:
-    containers:
-      - name: my-app
-        image: my-app:latest
-        ports:
-          - containerPort: 8080
-            name: http
-          - containerPort: 8081
-            name: healthz
+    template:
+        spec:
+        containers:
+            - name: my-app
+              image: my-app:latest
+              ports:
+                  - containerPort: 8080
+                    name: http
+                  - containerPort: 8081
+                    name: healthz
 ```
 
 </CodeBlock>
@@ -203,12 +203,12 @@ spec:
 apiVersion: cloud.google.com/v1
 kind: BackendConfig
 metadata:
-  name: my-backend-config
+    name: my-backend-config
 spec:
-  healthCheck:
-    type: HTTP
-    port: 8081
-    requestPath: /
+    healthCheck:
+        type: HTTP
+        port: 8081
+        requestPath: /
 ---
 # Service configuration as before
 ```

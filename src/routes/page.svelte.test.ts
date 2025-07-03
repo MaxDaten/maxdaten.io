@@ -4,9 +4,9 @@ import { page } from '@vitest/browser/context';
 import Page from './(waves)/+page.svelte';
 
 describe('/+page.svelte', () => {
-	test('should render h1', async () => {
-		render(Page);
-		const heading = page.getByRole('heading', { level: 1 });
-		await expect.element(heading).toBeInTheDocument();
-	});
+    test('should render h1', async () => {
+        render(Page);
+        const heading = page.getByRole('heading', { level: 1 });
+        await expect.element(heading).toBeInTheDocument();
+    });
 });

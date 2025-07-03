@@ -2,31 +2,31 @@
 title: Uses - Tools & Technologies
 slug: 00-uses
 excerpt:
-  A comprehensive overview of the tools, technologies, and gear I rely on for software development,
-  DevOps consulting, and daily productivity.
+    A comprehensive overview of the tools, technologies, and gear I rely on for software
+    development, DevOps consulting, and daily productivity.
 date: 2025-06-01T05:00:00.000Z
 hidden: false
 tags:
-  - tools
-  - development
-  - devops
-  - productivity
-  - setup
+    - tools
+    - development
+    - devops
+    - productivity
+    - setup
 keywords:
-  - Development Tools
-  - DevOps Tools
-  - Programming Languages
-  - Cloud Platforms
-  - Infrastructure as Code
-  - Kubernetes
-  - Google Cloud Platform
-  - Development Environment
-  - Productivity Setup
-  - Software Development
-  - NixOS
-  - Terraform
-  - Docker
-  - CI/CD Tools
+    - Development Tools
+    - DevOps Tools
+    - Programming Languages
+    - Cloud Platforms
+    - Infrastructure as Code
+    - Kubernetes
+    - Google Cloud Platform
+    - Development Environment
+    - Productivity Setup
+    - Software Development
+    - NixOS
+    - Terraform
+    - Docker
+    - CI/CD Tools
 type: page
 ---
 

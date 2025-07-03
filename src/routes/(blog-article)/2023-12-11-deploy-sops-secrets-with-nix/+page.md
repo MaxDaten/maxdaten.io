@@ -3,28 +3,28 @@ title: Deploy SOPS Secrets with Nix
 slug: '2023-12-11-deploy-sops-secrets-with-nix'
 coverImage: /images/posts/cover-sops.png
 excerpt:
-  How to manage secrets like private ssh keys or database access in a cloud environment via nix and
-  sops.
+    How to manage secrets like private ssh keys or database access in a cloud environment via nix
+    and sops.
 date: 2023-12-11T14:34:43.678Z
 hidden: false
 tags:
-  - nix
-  - sops
-  - secrets
-  - google cloud
-  - devops
+    - nix
+    - sops
+    - secrets
+    - google cloud
+    - devops
 keywords:
-  - NixOS
-  - SOPS
-  - Cloud
-  - Nix
-  - KMS
-  - SSH Key
-  - Encryption
-  - Secure DevOps Practices
-  - Secrets
-  - terraform
-  - flux
+    - NixOS
+    - SOPS
+    - Cloud
+    - Nix
+    - KMS
+    - SSH Key
+    - Encryption
+    - Secure DevOps Practices
+    - Secrets
+    - terraform
+    - flux
 ---
 
 <script>
@@ -164,9 +164,9 @@ Define creation rules in `.sops.yaml`
 
 ```yaml
 creation_rules:
-  - path_regex: ^(.*\.yaml)$
-    encrypted_regex: ^(private_key)$
-    gcp_kms: 'projects/<projectid>/locations/europe/keyRings/infrastructure/cryptoKeys/example-crypto-key'
+    - path_regex: ^(.*\.yaml)$
+      encrypted_regex: ^(private_key)$
+      gcp_kms: 'projects/<projectid>/locations/europe/keyRings/infrastructure/cryptoKeys/example-crypto-key'
 ```
 
 </CodeBlock>
@@ -198,16 +198,16 @@ $ sops example-keypair.enc.yaml
 
 ```yaml
 ssh_keys:
-  private_key: |
-    -----BEGIN OPENSSH PRIVATE KEY-----
-    b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZWQyNTUx
-    OQAAACAmZvH7A4/vJzYZn+M6iHuMw0SKV6lvsHyisxLsOhYvowAAAIiUPTj8lD04/AAAAAtzc2gt
-    ZWQyNTUxOQAAACAmZvH7A4/vJzYZn+M6iHuMw0SKV6lvsHyisxLsOhYvowAAAEDxeLqwYkmIHjtg
-    NJhPn+7bt5UBQgC6LQRZ0PrPJHHw5SZm8fsDj+8nNhmf4zqIe4zDRIpXqW+wfKKzEuw6Fi+jAAAA
-    AAECAwQF
-    -----END OPENSSH PRIVATE KEY-----
-  public_key: |
-    ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICZm8fsDj+8nNhmf4zqIe4zDRIpXqW+wfKKzEuw6Fi+j
+    private_key: |
+        -----BEGIN OPENSSH PRIVATE KEY-----
+        b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZWQyNTUx
+        OQAAACAmZvH7A4/vJzYZn+M6iHuMw0SKV6lvsHyisxLsOhYvowAAAIiUPTj8lD04/AAAAAtzc2gt
+        ZWQyNTUxOQAAACAmZvH7A4/vJzYZn+M6iHuMw0SKV6lvsHyisxLsOhYvowAAAEDxeLqwYkmIHjtg
+        NJhPn+7bt5UBQgC6LQRZ0PrPJHHw5SZm8fsDj+8nNhmf4zqIe4zDRIpXqW+wfKKzEuw6Fi+jAAAA
+        AAECAwQF
+        -----END OPENSSH PRIVATE KEY-----
+    public_key: |
+        ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICZm8fsDj+8nNhmf4zqIe4zDRIpXqW+wfKKzEuw6Fi+j
 ```
 
 </CodeBlock>

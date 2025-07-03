@@ -1,106 +1,106 @@
 <script lang="ts">
-	import { HttpRegex } from '$lib/utils/regex';
-	import type { ClassValue } from 'svelte/elements';
-	import type { Snippet } from 'svelte';
+    import { HttpRegex } from '$lib/utils/regex';
+    import type { ClassValue } from 'svelte/elements';
+    import type { Snippet } from 'svelte';
 
-	interface Props {
-		class: ClassValue;
-		href?: string;
-		target?: '_self' | '_blank';
-		rel?: string;
-		image?: Snippet;
-		content?: Snippet;
-		footer?: Snippet;
-	}
+    interface Props {
+        class: ClassValue;
+        href?: string;
+        target?: '_self' | '_blank';
+        rel?: string;
+        image?: Snippet;
+        content?: Snippet;
+        footer?: Snippet;
+    }
 
-	let { class: propsClass, href, image, content, footer }: Props = $props();
+    let { class: propsClass, href, image, content, footer }: Props = $props();
 
-	const isExternalLink = $derived(!!href && HttpRegex.test(href));
-	let tag = $derived(href ? 'a' : 'article');
-	let linkProps = $derived({
-		href,
-		target: isExternalLink ? '_blank' : '_self',
-		rel: isExternalLink ? 'noopener noreferrer' : undefined
-	});
+    const isExternalLink = $derived(!!href && HttpRegex.test(href));
+    let tag = $derived(href ? 'a' : 'article');
+    let linkProps = $derived({
+        href,
+        target: isExternalLink ? '_blank' : '_self',
+        rel: isExternalLink ? 'noopener noreferrer' : undefined,
+    });
 </script>
 
 <svelte:element
-	this={tag}
-	data-sveltekit-preload-data
-	class="card {propsClass}"
-	{...linkProps}
+    this={tag}
+    data-sveltekit-preload-data
+    class="card {propsClass}"
+    {...linkProps}
 >
-	{#if image}
-		<div class="image">
-			{@render image?.()}
-		</div>
-	{/if}
-	<div class="body">
-		<div class="content">
-			{@render content?.()}
-		</div>
-		{#if footer}
-			<div class="footer">
-				{@render footer?.()}
-			</div>
-		{/if}
-	</div>
+    {#if image}
+        <div class="image">
+            {@render image?.()}
+        </div>
+    {/if}
+    <div class="body">
+        <div class="content">
+            {@render content?.()}
+        </div>
+        {#if footer}
+            <div class="footer">
+                {@render footer?.()}
+            </div>
+        {/if}
+    </div>
 </svelte:element>
 
 <style lang="scss">
-	.card {
-		background: var(--color--card-background);
-		box-shadow: var(--card-shadow);
-		color: var(--color--text);
-		border-radius: 10px;
-		transition: all 0.4s ease;
-		position: relative;
-		overflow: hidden;
-		width: 100%;
+    .card {
+        background: var(--color--card-background);
+        box-shadow: var(--card-shadow);
+        color: var(--color--text);
+        border-radius: 10px;
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+        width: 100%;
 
-		display: flex;
-		flex-direction: row;
-		flex-wrap: wrap;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
 
-		text-decoration: none;
+        text-decoration: none;
 
-		&[href],
-		&[onclick] {
-			cursor: pointer;
-			&:hover {
-				box-shadow: var(--card-shadow-hover);
-				transform: scale(1.01);
-			}
-		}
-	}
+        &[href],
+        &[onclick] {
+            cursor: pointer;
+            &:hover {
+                box-shadow: var(--card-shadow-hover);
+                transform: scale(1.01);
+            }
+        }
+    }
 
-	.body {
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		gap: 10px;
-		padding: 20px 20px;
-		flex: 1 0 50%;
+    .body {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 20px 20px;
+        flex: 1 0 50%;
 
-		.content {
-			display: flex;
-			flex-direction: column;
-			flex: 1;
-		}
-	}
+        .content {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+    }
 
-	.image {
-		position: relative;
-		flex: 1 0 max(50%, 330px);
-		// height: min(100%, 300px);
-		min-height: 280px;
-		max-height: 350px;
-	}
+    .image {
+        position: relative;
+        flex: 1 0 max(50%, 330px);
+        // height: min(100%, 300px);
+        min-height: 280px;
+        max-height: 350px;
+    }
 
-	:global(.card [slot='image']) {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		position: absolute;
-	}
+    :global(.card [slot='image']) {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+    }
 </style>

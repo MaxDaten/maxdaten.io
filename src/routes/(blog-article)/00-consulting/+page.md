@@ -2,32 +2,32 @@
 title: Consulting Services
 slug: 00-consulting
 excerpt:
-  DevOps consulting and infrastructure services. I help businesses build robust, scalable
-  infrastructure and streamline their development workflows with proven expertise in cloud-native
-  architectures.
+    DevOps consulting and infrastructure services. I help businesses build robust, scalable
+    infrastructure and streamline their development workflows with proven expertise in cloud-native
+    architectures.
 date: 2024-12-30T00:00:00.000Z
 hidden: true
 tags:
-  - consulting
-  - devops
-  - cloud infrastructure
-  - kubernetes
-  - services
+    - consulting
+    - devops
+    - cloud infrastructure
+    - kubernetes
+    - services
 keywords:
-  - DevOps Consulting
-  - Cloud Infrastructure Consulting
-  - Kubernetes Consulting
-  - Google Cloud Platform Expert
-  - Infrastructure as Code
-  - CI/CD Consulting
-  - System Architecture
-  - Cloud Migration
-  - DevOps Transformation
-  - Freelance DevOps
-  - Container Orchestration
-  - Microservices Architecture
-  - Security Consulting
-  - Hamburg Consultant
+    - DevOps Consulting
+    - Cloud Infrastructure Consulting
+    - Kubernetes Consulting
+    - Google Cloud Platform Expert
+    - Infrastructure as Code
+    - CI/CD Consulting
+    - System Architecture
+    - Cloud Migration
+    - DevOps Transformation
+    - Freelance DevOps
+    - Container Orchestration
+    - Microservices Architecture
+    - Security Consulting
+    - Hamburg Consultant
 type: page
 ---
 

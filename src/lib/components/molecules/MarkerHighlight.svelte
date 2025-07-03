@@ -1,46 +1,50 @@
 <script lang="ts">
-	interface Props {
-		color?: 'primary' | 'secondary';
-		children?: import('svelte').Snippet;
-	}
+    interface Props {
+        color?: 'primary' | 'secondary';
+        children?: import('svelte').Snippet;
+    }
 
-	let { color = 'primary', children }: Props = $props();
+    let { color = 'primary', children }: Props = $props();
 </script>
 
 <mark class={color}>
-	{@render children?.()}
+    {@render children?.()}
 </mark>
 
 <style lang="scss">
-	mark {
-		--mark-color: transparent;
+    mark {
+        --mark-color: transparent;
 
-		margin-inline: calc(0.3em * -1);
-		padding-inline: 0.3em;
+        margin-inline: calc(0.3em * -1);
+        padding-inline: 0.3em;
 
-		background-color: transparent;
-		background-image:
-			linear-gradient(to bottom right, transparent 50%, var(--mark-color) 50%),
-			linear-gradient(var(--mark-color), var(--mark-color)),
-			linear-gradient(to top left, transparent 50%, var(--mark-color) 50%);
-		background-size:
-			0.25em 1em,
-			calc(100% - 0.25em * 2 + 1px) 1em,
-			0.25em 1em;
-		background-position:
-			left center,
-			center,
-			right center;
-		background-repeat: no-repeat;
-		color: inherit;
-		-webkit-box-decoration-break: clone;
-		box-decoration-break: clone;
+        background-color: transparent;
+        background-image:
+            linear-gradient(
+                to bottom right,
+                transparent 50%,
+                var(--mark-color) 50%
+            ),
+            linear-gradient(var(--mark-color), var(--mark-color)),
+            linear-gradient(to top left, transparent 50%, var(--mark-color) 50%);
+        background-size:
+            0.25em 1em,
+            calc(100% - 0.25em * 2 + 1px) 1em,
+            0.25em 1em;
+        background-position:
+            left center,
+            center,
+            right center;
+        background-repeat: no-repeat;
+        color: inherit;
+        -webkit-box-decoration-break: clone;
+        box-decoration-break: clone;
 
-		&.primary {
-			--mark-color: var(--color--primary-shade);
-		}
-		&.secondary {
-			--mark-color: var(--color--secondary-shade);
-		}
-	}
+        &.primary {
+            --mark-color: var(--color--primary-shade);
+        }
+        &.secondary {
+            --mark-color: var(--color--secondary-shade);
+        }
+    }
 </style>
