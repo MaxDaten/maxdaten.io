@@ -116,3 +116,9 @@ This is a SvelteKit-based static blog site with MDX integration for content auth
 - Prefer functional style before imperative style
 - Follow clean code style guides moderately
 - Execute `npm run format` after each completed change
+
+## Approach
+
+Core principle is to maintain focused contexts for both yourself (the orchestrator/main agent) and
+each sub-agent. Therefore, please use the Task tool to delegate suitable tasks to sub-agents to
+improve task efficiency and optimize token usage.
