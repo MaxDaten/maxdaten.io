@@ -31,8 +31,7 @@
 	let tag = $derived(href ? 'a' : 'button');
 	let linkProps = $derived({
 		href,
-		target: isExternalLink ? '_blank' : '_self',
-		rel: isExternalLink ? 'noopener noreferrer' : undefined
+		target: isExternalLink ? '_blank' : undefined
 	});
 </script>
 
@@ -89,6 +88,7 @@
 				--light-color: var(--color--primary-tint-rgb);
 				--contrast-color: var(--color--primary-contrast);
 			}
+
 			&--secondary {
 				--main-color: var(--color--secondary-rgb);
 				--light-color: var(--color--secondary-tint-rgb);
@@ -105,6 +105,7 @@
 					box-shadow: 0 0 1px 7px rgba(var(--main-color), 0.3);
 				}
 			}
+
 			&--understated {
 				background-color: rgb(var(--light-color));
 				color: rgb(var(--main-color));
@@ -113,6 +114,7 @@
 					box-shadow: 0 0 1px 7px rgba(var(--main-color), 0.3);
 				}
 			}
+
 			&--clear {
 				background-color: transparent;
 				color: rgb(var(--main-color));
@@ -133,10 +135,12 @@
 					height: 20px;
 				}
 			}
+
 			&--medium {
 				padding: 10px 20px;
 				font-size: 1rem;
 			}
+
 			&--large {
 				padding: 15px 30px;
 				font-size: 1.15rem;
