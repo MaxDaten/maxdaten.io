@@ -1,7 +1,4 @@
 <script lang="ts">
-	import { createBubbler } from 'svelte/legacy';
-
-	const bubble = createBubbler();
 	import { HttpRegex } from '$lib/utils/regex';
 	import type { Snippet } from 'svelte';
 	import type { ClassValue } from 'svelte/elements';
@@ -16,6 +13,7 @@
 		rel?: string;
 		icon?: Snippet;
 		children?: Snippet;
+		onclick?: (event: Event) => void;
 	}
 
 	let {
@@ -25,7 +23,8 @@
 		href = undefined,
 		icon = undefined,
 		children = undefined,
-		class: propsClass = ''
+		class: propsClass = '',
+		onclick = undefined
 	}: Props = $props();
 
 	const isExternalLink = $derived(!!href && HttpRegex.test(href));
@@ -48,7 +47,7 @@
 		propsClass
 	].join(' ')}
 	data-sveltekit-preload-data
-	onclick={bubble('click')}
+	{onclick}
 >
 	{#if icon}
 		<div class="icon">
