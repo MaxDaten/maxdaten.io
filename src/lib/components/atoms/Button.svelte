@@ -45,7 +45,7 @@
         `color--${color}`,
         propsClass,
     ].join(' ')}
-    data-sveltekit-preload-data
+    data-sveltekit-preload-data=""
     {onclick}
 >
     {#if icon}
