@@ -1,6 +1,7 @@
 <script lang="ts">
     import GemCard from '$lib/components/molecules/GemCard.svelte';
     import ContentSection from '$lib/components/organisms/ContentSection.svelte';
+    import { PageTransition } from 'ssgoi';
     import type { GemEntry } from '$lib/utils/types';
 
     interface Props {
@@ -14,21 +15,23 @@
     let { gems } = data;
 </script>
 
-<div class="container">
-    <ContentSection title="Gems of Precious Friends">
-        <div class="grid">
-            {#each gems as gem}
-                <GemCard
-                    title={gem.title}
-                    coverImage={gem.coverImage}
-                    excerpt={gem.description}
-                    href={gem.link}
-                    tags={gem.tags}
-                />
-            {/each}
-        </div>
-    </ContentSection>
-</div>
+<PageTransition>
+    <div class="container">
+        <ContentSection title="Gems of Precious Friends">
+            <div class="grid">
+                {#each gems as gem}
+                    <GemCard
+                        title={gem.title}
+                        coverImage={gem.coverImage}
+                        excerpt={gem.description}
+                        href={gem.link}
+                        tags={gem.tags}
+                    />
+                {/each}
+            </div>
+        </ContentSection>
+    </div>
+</PageTransition>
 
 <style lang="scss">
     @use '$lib/scss/_mixins.scss';

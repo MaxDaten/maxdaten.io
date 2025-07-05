@@ -2,6 +2,7 @@
     import BlogPostCard from '$lib/components/molecules/BlogPostCard.svelte';
     import ContentSection from '$lib/components/organisms/ContentSection.svelte';
     import type { BlogPost } from '$lib/utils/types';
+    import { PageTransition } from 'ssgoi';
 
     interface Props {
         data: {
@@ -14,15 +15,17 @@
     let { posts } = data;
 </script>
 
-<div class="container">
-    <ContentSection title="All Blog Posts">
-        <div class="grid">
-            {#each posts as post}
-                <BlogPostCard {post} />
-            {/each}
-        </div>
-    </ContentSection>
-</div>
+<PageTransition>
+    <div class="container">
+        <ContentSection title="All Blog Posts">
+            <div class="grid">
+                {#each posts as post}
+                    <BlogPostCard {post} />
+                {/each}
+            </div>
+        </ContentSection>
+    </div>
+</PageTransition>
 
 <style lang="scss">
     @use '$lib/scss/_mixins.scss';

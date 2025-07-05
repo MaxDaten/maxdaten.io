@@ -1,22 +1,25 @@
 <script>
     import Button from '$lib/components/atoms/Button.svelte';
     import Error from '$lib/icons/error.svelte';
+    import { PageTransition } from 'ssgoi';
 </script>
 
-<div class="error-page">
-    <div class="container">
-        <h1>Oh no! 404!</h1>
-        <div class="svg-wrapper">
-            <Error />
+<PageTransition>
+    <div class="error-page">
+        <div class="container">
+            <h1>Oh no! 404!</h1>
+            <div class="svg-wrapper">
+                <Error />
+            </div>
+            <p>
+                It seems like coffee was spilled all over this page, and now it
+                can't be displayed.
+            </p>
+            <br />
+            <Button href="/">Start over</Button>
         </div>
-        <p>
-            It seems like coffee was spilled all over this page, and now it
-            can't be displayed.
-        </p>
-        <br />
-        <Button href="/">Start over</Button>
     </div>
-</div>
+</PageTransition>
 
 <style lang="scss">
     .error-page {

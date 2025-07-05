@@ -1,15 +1,14 @@
 <script lang="ts">
-    import { run } from 'svelte/legacy';
-
     import Header from '$lib/components/organisms/Header.svelte';
     import Footer from '$lib/components/organisms/Footer.svelte';
     import Tag from '$lib/components/atoms/Tag.svelte';
     import dateformat from 'dateformat';
 
-    import { keywords, siteBaseUrl, title } from '$lib/data/meta';
+    import { siteBaseUrl, title } from '$lib/data/meta';
     import type { BlogPost } from '$lib/utils/types';
     import RelatedPosts from '$lib/components/organisms/RelatedPosts.svelte';
     import Image from '$lib/components/atoms/Image.svelte';
+    import { PageTransition } from 'ssgoi';
 
     interface Props {
         data: { post: BlogPost };
@@ -19,16 +18,7 @@
     let { data, children }: Props = $props();
     let { post } = $derived(data);
 
-    let metaKeywords = $state(keywords);
-
-    run(() => {
-        if (post?.tags?.length) {
-            metaKeywords = post.tags.concat(metaKeywords);
-        }
-        if (post?.keywords?.length) {
-            metaKeywords = post.keywords.concat(metaKeywords);
-        }
-    });
+    let metaKeywords = $derived([...post.tags, ...post.keywords]);
 </script>
 
 <svelte:head>
@@ -58,58 +48,63 @@
     {/if}
 </svelte:head>
 
-<div class="article-layout">
-    <Header showBackground />
+<PageTransition>
+    <div class="article-layout">
+        <Header showBackground />
 
-    <main>
-        <article id="article-content">
-            <div class="header">
-                {#if post}
-                    <h1>{post.title}</h1>
-                    <div class="note">
-                        Published on {dateformat(post.date, 'UTC:dd mmmm yyyy')}
-                    </div>
-                    {#if post.updated}
+        <main>
+            <article id="article-content">
+                <div class="header">
+                    {#if post}
+                        <h1>{post.title}</h1>
                         <div class="note">
-                            Updated on {dateformat(
-                                post.updated,
+                            Published on {dateformat(
+                                post.date,
                                 'UTC:dd mmmm yyyy',
                             )}
                         </div>
+                        {#if post.updated}
+                            <div class="note">
+                                Updated on {dateformat(
+                                    post.updated,
+                                    'UTC:dd mmmm yyyy',
+                                )}
+                            </div>
+                        {/if}
+                        {#if post.readingTimeMinutes}
+                            <div class="note">
+                                {post.readingTimeMinutes} minutes to read
+                            </div>
+                        {/if}
+                        {#if post.tags?.length}
+                            <div class="tags">
+                                {#each post.tags as tag}
+                                    <Tag>{tag}</Tag>
+                                {/each}
+                            </div>
+                        {/if}
                     {/if}
-                    {#if post.readingTimeMinutes}
-                        <div class="note">
-                            {post.readingTimeMinutes} minutes to read
-                        </div>
-                    {/if}
-                    {#if post.tags?.length}
-                        <div class="tags">
-                            {#each post.tags as tag}
-                                <Tag>{tag}</Tag>
-                            {/each}
-                        </div>
-                    {/if}
+                </div>
+                {#if post && post.coverImage}
+                    <div class="cover-image">
+                        <Image src={post.coverImage} alt={post.title} />
+                    </div>
                 {/if}
-            </div>
-            {#if post && post.coverImage}
-                <div class="cover-image">
-                    <Image src={post.coverImage} alt={post.title} />
+                <div class="content">
+                    {@render children?.()}
+                </div>
+            </article>
+
+            {#if post.relatedPosts && post.relatedPosts.length > 0}
+                <div class="container">
+                    <RelatedPosts posts={post.relatedPosts} />
                 </div>
             {/if}
-            <div class="content">
-                {@render children?.()}
-            </div>
-        </article>
+        </main>
 
-        {#if post.relatedPosts && post.relatedPosts.length > 0}
-            <div class="container">
-                <RelatedPosts posts={post.relatedPosts} />
-            </div>
-        {/if}
-    </main>
-
-    <Footer />
-</div>
+        <Footer />
+    </div>
+</PageTransition>
 
 <style lang="scss">
     @use '$lib/scss/_mixins.scss';

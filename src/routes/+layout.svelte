@@ -1,6 +1,9 @@
 <script>
     import '$lib/scss/global.scss';
     import Analytics from '$components/atoms/Analytics.svelte';
+    import { Ssgoi } from 'ssgoi';
+    import { transitionConfig } from '$lib/config/transitions';
+    import { onNavigate } from '$app/navigation';
     /**
      * @typedef {Object} Props
      * @property {import('svelte').Snippet} [children]
@@ -11,4 +14,6 @@
 </script>
 
 <Analytics />
-{@render children?.()}
+<Ssgoi {onNavigate} config={transitionConfig}>
+    {@render children?.()}
+</Ssgoi>
