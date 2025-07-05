@@ -1,7 +1,6 @@
 {
     "tabWidth": 4,
     "singleQuote": true,
-    "editorconfig": true,
     "proseWrap": "always",
     "plugins": ["prettier-plugin-svelte"],
     "overrides": [
