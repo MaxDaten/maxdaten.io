@@ -71,7 +71,7 @@
     .content {
         display: flex;
         flex-direction: column;
-        gap: 0px;
+        gap: 0;
         align-items: flex-start;
     }
 
