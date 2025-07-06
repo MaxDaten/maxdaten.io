@@ -33,6 +33,10 @@
         <Image
             src="/images/me.png"
             alt="A manga comic drawing of Jan-Philip Loos sitting in front of a window showing a cyberpunk city"
+            style="
+                border-radius: 10%;
+                border: 8px solid rgba(var(--color--primary-rgb), 0.05);
+            "
         />
     </div>
 </section>
@@ -43,7 +47,7 @@
     #about {
         position: relative;
         display: grid;
-        grid-template-columns: 500px 250px;
+        grid-template-columns: 500px 0.8fr;
         align-items: center;
         justify-content: space-between;
         padding-bottom: 50px;
@@ -79,7 +83,7 @@
                 font-size: 0.95rem;
                 color: rgba(var(--color--text-shade-rgb), 0.8);
                 padding: 12px 16px;
-                background: rgba(var(--color--primary-rgb), 0.05);
+                background: rgba(var(--color--primary-rgb), 0.1);
                 border-radius: 8px;
                 border-left: 3px solid rgba(var(--color--primary-rgb), 0.4);
             }
@@ -104,12 +108,7 @@
         }
 
         .image {
-            width: 220px;
-            height: 220px;
-        }
-
-        :global(.image img) {
-            border-radius: 10%;
+            width: 100%;
         }
     }
 </style>
