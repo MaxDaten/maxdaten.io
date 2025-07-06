@@ -26,6 +26,25 @@ test('blog page loads correctly', async ({ page }) => {
     expect(count).toBeGreaterThan(0);
 });
 
+test('gems page loads correctly', async ({ page }) => {
+    await page.goto('/gems');
+
+    // Check that the gems page has loaded with correct title
+    await expect(page.locator('h1, h2')).toContainText(
+        /Gems of Precious Friends/i,
+    );
+
+    // Check that gem cards are displayed (should have 3 gems)
+    const gemCards = page.locator('[data-testid="gem-card"]');
+    const count = await gemCards.count();
+    expect(count).toBeGreaterThan(0);
+
+    // Check that each gem card has required elements
+    const firstCard = gemCards.first();
+    await expect(firstCard).toBeVisible();
+    await expect(firstCard.locator('img')).toBeVisible(); // Cover image
+});
+
 test('page loads and is interactive', async ({ page }) => {
     await page.goto('/');
 

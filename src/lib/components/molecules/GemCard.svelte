@@ -27,9 +27,8 @@
 <Card
     {href}
     target="_self"
-    additionalClass="blog-post-card {!showImage || !coverImage
-        ? 'no-image'
-        : ''}"
+    class="blog-post-card {!showImage || !coverImage ? 'no-image' : ''}"
+    data-testid="gem-card"
 >
     {#snippet image()}
         <div class="image">
