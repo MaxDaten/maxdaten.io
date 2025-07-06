@@ -12,14 +12,15 @@
     let { post, showImage = true }: Props = $props();
 </script>
 
-<Card
-    href="/{post.slug}"
-    target="_self"
-    class="blog-post-card {!showImage || !post.coverImage ? 'no-image' : ''}"
->
+<Card href="/{post.slug}" target="_self" class="blog-post-card">
     {#snippet image()}
-        {#if post.coverImage}
-            <Image src={post.coverImage} alt="Cover image of this blog post" />
+        {#if post.coverImage && showImage}
+            <div class="cover-image">
+                <Image
+                    src={post.coverImage}
+                    alt="Cover image of this blog post"
+                />
+            </div>
         {/if}
     {/snippet}
     {#snippet content()}
@@ -73,13 +74,5 @@
         margin-top: 5px;
         font-size: 0.9rem;
         text-align: justify;
-    }
-
-    :global(.blog-post-card .image img) {
-        object-fit: cover;
-    }
-
-    :global(.blog-post-card.no-image > .image) {
-        display: none;
     }
 </style>

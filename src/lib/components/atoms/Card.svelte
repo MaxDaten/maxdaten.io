@@ -38,9 +38,7 @@
     {...rest}
 >
     {#if image}
-        <div class="image">
-            {@render image?.()}
-        </div>
+        {@render image?.()}
     {/if}
     <div class="body">
         <div class="content">
@@ -51,8 +49,8 @@
                 {@render footer?.()}
             </div>
         {/if}
-    </div></svelte:element
->
+    </div>
+</svelte:element>
 
 <style lang="scss">
     .card {
@@ -100,15 +98,7 @@
     .image {
         position: relative;
         flex: 1 0 max(50%, 330px);
-        // height: min(100%, 300px);
-        min-height: 280px;
-        max-height: 350px;
-    }
-
-    :global(.card [slot='image']) {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        position: absolute;
+        //min-height: 280px;
+        max-height: 200px;
     }
 </style>

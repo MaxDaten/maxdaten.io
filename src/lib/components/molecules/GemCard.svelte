@@ -1,7 +1,7 @@
 <script lang="ts">
     import Card from '$lib/components/atoms/Card.svelte';
-    import Tag from '$lib/components/atoms/Tag.svelte';
-    import Image from '../atoms/Image.svelte';
+    import Image from '$components/atoms/Image.svelte';
+    import Tag from '$components/atoms/Tag.svelte';
 
     interface Props {
         title: string;
@@ -9,7 +9,6 @@
         excerpt: string;
         href: string;
         tags: string[] | undefined;
-        readingTime?: string | undefined;
         showImage?: boolean;
     }
 
@@ -19,32 +18,22 @@
         excerpt,
         href,
         tags,
-        readingTime = undefined,
-        showImage = true,
     }: Props = $props();
 </script>
 
-<Card
-    {href}
-    target="_self"
-    class="blog-post-card {!showImage || !coverImage ? 'no-image' : ''}"
-    data-testid="gem-card"
->
+<Card {href} target="_self" class="gem-card" data-testid="gem-card">
     {#snippet image()}
-        <div class="image">
-            {#if coverImage}
-                <Image src={coverImage} alt="Cover image of this blog post" />
-            {/if}
-        </div>
+        {#if coverImage}
+            <div class="cover-image">
+                <Image src={coverImage} alt="Cover image of this gem" />
+            </div>
+        {/if}
     {/snippet}
     {#snippet content()}
         <div class="content">
             <p class="title">
                 {title}
             </p>
-            {#if readingTime}
-                <div class="note">{readingTime}</div>
-            {/if}
             {#if excerpt}
                 <p class="text">
                     {excerpt}
@@ -107,11 +96,7 @@
         margin-top: 20px;
     }
 
-    :global(.blog-post-card .image img) {
-        object-fit: cover;
-    }
-
-    :global(.blog-post-card.no-image > .image) {
-        display: none;
+    .cover-image {
+        width: 100%;
     }
 </style>

@@ -1,20 +1,21 @@
 <script lang="ts">
     import { dev } from '$app/environment';
+    import type { HTMLImgAttributes } from 'svelte/elements';
 
-    interface Props {
+    interface Props extends HTMLImgAttributes {
         src: string;
-        alt: string;
         fullBleed?: boolean | undefined;
         formats?: string[];
         widths?: string[] | undefined;
+        [key: string]: unknown;
     }
 
     let {
         src,
-        alt,
         fullBleed = undefined,
         formats = ['avif', 'webp', 'png'],
         widths = undefined,
+        ...rest
     }: Props = $props();
 
     let fileName = $derived(src.split('.')[0]);
@@ -49,16 +50,16 @@
 <img
     srcset={buildSrcset()}
     {src}
-    {alt}
     loading="lazy"
     decoding="async"
     class:full-bleed={fullBleed}
+    {...rest}
 />
 
 <style lang="scss">
     img {
         width: 100%;
         height: 100%;
-        object-fit: contain;
+        object-fit: cover;
     }
 </style>
