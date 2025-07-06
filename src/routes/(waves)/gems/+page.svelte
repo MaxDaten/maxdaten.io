@@ -19,7 +19,7 @@
     <div class="container">
         <ContentSection title="Gems of Precious Friends">
             <div class="grid">
-                {#each gems as gem}
+                {#each gems as gem, index (index)}
                     <GemCard
                         title={gem.title}
                         coverImage={gem.coverImage}

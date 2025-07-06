@@ -38,7 +38,7 @@
     {#snippet footer()}
         {#if post.tags?.length}
             <div class="tags">
-                {#each post.tags.slice(0, 2) as tag}
+                {#each post.tags.slice(0, 2) as tag, index (index)}
                     <Tag>{tag}</Tag>
                 {/each}
             </div>

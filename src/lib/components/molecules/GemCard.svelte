@@ -56,8 +56,8 @@
         <div class="footer">
             {#if tags?.length}
                 <div class="tags">
-                    {#each tags.slice(0, 2) as tag, index}
-                        <Tag color={index == 0 ? 'primary' : 'secondary'}
+                    {#each tags.slice(0, 2) as tag, index (index)}
+                        <Tag color={index === 0 ? 'primary' : 'secondary'}
                             >{tag}</Tag
                         >
                     {/each}

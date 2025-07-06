@@ -12,7 +12,7 @@
 
 <ContentSection id="related-posts" title="Related Posts">
     <div class="simple-grid">
-        {#each posts as post}
+        {#each posts as post (post.slug)}
             <BlogPostCard {post} showImage={false} />
         {/each}
     </div>

@@ -19,7 +19,7 @@
     <div class="container">
         <ContentSection title="All Blog Posts">
             <div class="grid">
-                {#each posts as post}
+                {#each posts as post (post.slug)}
                     <BlogPostCard {post} />
                 {/each}
             </div>

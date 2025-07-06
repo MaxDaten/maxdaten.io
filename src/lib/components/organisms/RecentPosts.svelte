@@ -23,7 +23,7 @@
         </div>
     {/snippet}
     <div class="grid">
-        {#each posts as post}
+        {#each posts as post (post.slug)}
             <BlogPostCard {post} showImage={false} />
         {/each}
     </div>
