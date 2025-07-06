@@ -75,7 +75,7 @@
                 @include breakpoints.for-phone-only {
                     text-align: justify;
                     max-inline-size: 50ch;
-                    text-wrap: balance;
+                    text-wrap: pretty;
                 }
             }
 
