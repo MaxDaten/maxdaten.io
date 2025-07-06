@@ -1,19 +1,25 @@
 <script lang="ts">
     import { HttpRegex } from '$lib/utils/regex';
-    import type { ClassValue } from 'svelte/elements';
+    import type { ClassValue, HTMLAnchorAttributes } from 'svelte/elements';
     import type { Snippet } from 'svelte';
 
-    interface Props {
+    interface Props extends HTMLAnchorAttributes {
         class: ClassValue;
         href?: string;
-        target?: '_self' | '_blank';
-        rel?: string;
         image?: Snippet;
         content?: Snippet;
         footer?: Snippet;
+        [key: string]: unknown;
     }
 
-    let { class: propsClass, href, image, content, footer }: Props = $props();
+    let {
+        class: propsClass,
+        href,
+        image,
+        content,
+        footer,
+        ...rest
+    }: Props = $props();
 
     const isExternalLink = $derived(!!href && HttpRegex.test(href));
     let tag = $derived(href ? 'a' : 'article');
@@ -29,6 +35,7 @@
     data-sveltekit-preload-data
     class="card {propsClass}"
     {...linkProps}
+    {...rest}
 >
     {#if image}
         <div class="image">
@@ -44,8 +51,8 @@
                 {@render footer?.()}
             </div>
         {/if}
-    </div>
-</svelte:element>
+    </div></svelte:element
+>
 
 <style lang="scss">
     .card {
@@ -67,6 +74,7 @@
         &[href],
         &[onclick] {
             cursor: pointer;
+
             &:hover {
                 box-shadow: var(--card-shadow-hover);
                 transform: scale(1.01);
