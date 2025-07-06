@@ -4,7 +4,7 @@
     import Info from '$lib/icons/info.svelte';
 
     interface Props {
-        type?: string | undefined;
+        type?: 'info' | 'warning' | 'error' | 'success' | undefined;
         children?: import('svelte').Snippet;
     }
 
@@ -14,11 +14,11 @@
 <div class="callout-block {type ?? ''}">
     {#if type}
         <div class="icon-wrapper">
-            {#if type == 'info'}
+            {#if type === 'info'}
                 <Info />
-            {:else if type == 'warning' || type == 'error'}
+            {:else if type === 'warning' || type === 'error'}
                 <Alert />
-            {:else if type == 'success'}
+            {:else if type === 'success'}
                 <Check />
             {/if}
         </div>
