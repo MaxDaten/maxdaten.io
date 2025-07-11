@@ -88,12 +88,18 @@
                 };
 
                 # https://devenv.sh/reference/options/
-                packages = [
-                  pkgs.npm-check-updates
-                  pkgs.nodePackages.vercel
-                  pkgs.claude-code
-                  treefmtEval.${system}.config.build.wrapper
-                ] ++ lib.attrValues treefmtEval.${system}.config.build.programs;
+                packages =
+                  with pkgs;
+                  [
+                    npm-check-updates
+                    nodePackages.vercel
+                    claude-code
+                    treefmtEval.${system}.config.build.wrapper
+
+                    # required by zen mcp
+                    uv
+                  ]
+                  ++ lib.attrValues treefmtEval.${system}.config.build.programs;
 
                 enterShell = ''
                   ${pkgs.figlet}/bin/figlet -f slant "maxdaten.io" | ${pkgs.lolcat}/bin/lolcat
