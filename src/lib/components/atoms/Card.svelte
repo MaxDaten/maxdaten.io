@@ -32,7 +32,7 @@
 
 <svelte:element
     this={tag}
-    data-sveltekit-preload-data
+    data-sveltekit-preload-data=""
     class="card {propsClass}"
     {...linkProps}
     {...rest}
