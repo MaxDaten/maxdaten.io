@@ -12,12 +12,11 @@
   };
 
   outputs =
-    {
-      self,
-      nixpkgs,
-      devenv,
-      systems,
-      ...
+    { self
+    , nixpkgs
+    , devenv
+    , systems
+    , ...
     }@inputs:
     let
       forEachSystem = nixpkgs.lib.genAttrs (import systems);
