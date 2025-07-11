@@ -11,5 +11,18 @@
       "WebFetch(domain:cv.maxdaten.io)"
     ],
     "deny": []
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "treefmt"
+          }
+        ]
+      }
+    ]
   }
 }
