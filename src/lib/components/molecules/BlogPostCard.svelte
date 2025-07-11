@@ -12,7 +12,7 @@
     let { post, showImage = true }: Props = $props();
 </script>
 
-<Card href="/{post.slug}" target="_self" class="blog-post-card">
+<Card href="/{post.slug}" class="blog-post-card">
     {#snippet image()}
         {#if post.coverImage && showImage}
             <div class="cover-image">

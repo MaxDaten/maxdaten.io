@@ -25,7 +25,7 @@
     let tag = $derived(href ? 'a' : 'article');
     let linkProps = $derived({
         href,
-        target: isExternalLink ? '_blank' : '_self',
+        target: isExternalLink ? '_blank' : undefined,
         rel: isExternalLink ? 'noopener noreferrer' : undefined,
     });
 </script>
