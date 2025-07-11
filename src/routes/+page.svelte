@@ -4,11 +4,13 @@
     import RecentPosts from '$components/organisms/RecentPosts.svelte';
     import { PageTransition } from 'ssgoi';
     import type { PageProps } from './$types';
+    import Bubbles from '$components/organisms/Bubbles.svelte';
 
     let { data }: PageProps = $props();
 </script>
 
 <PageTransition>
+    <Bubbles/>
     <div class="container">
         <Hero />
         <About />
