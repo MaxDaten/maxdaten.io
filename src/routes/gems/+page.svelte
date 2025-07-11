@@ -1,8 +1,8 @@
 <script lang="ts">
-    import GemCard from '$lib/components/molecules/GemCard.svelte';
-    import ContentSection from '$lib/components/organisms/ContentSection.svelte';
+    import GemCard from '$components/molecules/GemCard.svelte';
+    import ContentSection from '$components/organisms/ContentSection.svelte';
     import { PageTransition } from 'ssgoi';
-    import type { GemEntry } from '$lib/utils/types';
+    import type { GemEntry } from '$utils/types';
 
     interface Props {
         data: {
@@ -34,8 +34,8 @@
 </PageTransition>
 
 <style lang="scss">
-    @use '$lib/scss/_mixins.scss';
-    @use '$lib/scss/_breakpoints.scss';
+    @use '$styles/mixins';
+    @use '$styles/breakpoints';
 
     .grid {
         width: 100%;

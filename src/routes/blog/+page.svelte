@@ -1,7 +1,7 @@
 <script lang="ts">
-    import BlogPostCard from '$lib/components/molecules/BlogPostCard.svelte';
-    import ContentSection from '$lib/components/organisms/ContentSection.svelte';
-    import type { BlogPost } from '$lib/utils/types';
+    import BlogPostCard from '$components/molecules/BlogPostCard.svelte';
+    import ContentSection from '$components/organisms/ContentSection.svelte';
+    import type { BlogPost } from '$utils/types';
     import { PageTransition } from 'ssgoi';
 
     interface Props {
@@ -28,8 +28,8 @@
 </PageTransition>
 
 <style lang="scss">
-    @use '$lib/scss/_mixins.scss';
-    @use '$lib/scss/_breakpoints.scss';
+    @use '$styles/mixins';
+    @use '$styles/breakpoints';
 
     .grid {
         width: 100%;

@@ -1,9 +1,9 @@
 <script lang="ts">
-    import Tag from '$lib/components/atoms/Tag.svelte';
+    import Tag from '$components/atoms/Tag.svelte';
     import dateformat from 'dateformat';
     import { siteBaseUrl, title } from '$lib/data/meta';
-    import RelatedPosts from '$lib/components/organisms/RelatedPosts.svelte';
-    import Image from '$lib/components/atoms/Image.svelte';
+    import RelatedPosts from '$components/organisms/RelatedPosts.svelte';
+    import Image from '$components/atoms/Image.svelte';
     import { PageTransition } from 'ssgoi';
     import type { PageProps } from './$types';
 
@@ -12,33 +12,24 @@
     let metaKeywords = $derived(
         post ? [...(post.tags || []), ...(post.keywords || [])] : [],
     );
-
 </script>
 
 <svelte:head>
-    {#if post}
-        <meta name="keywords" content={metaKeywords.join(', ')} />
+    <meta name="keywords" content={metaKeywords.join(', ')} />
 
-        <meta name="description" content={post.excerpt} />
-        <meta property="og:description" content={post.excerpt} />
-        <meta name="twitter:description" content={post.excerpt} />
-        <link rel="canonical" href="{siteBaseUrl}/{post.slug}" />
+    <meta name="description" content={post.excerpt} />
+    <meta property="og:description" content={post.excerpt} />
+    <meta name="twitter:description" content={post.excerpt} />
+    <link rel="canonical" href="{siteBaseUrl}/{post.slug}" />
 
-        <title>{post.title} - {title}</title>
-        <meta property="og:title" content="{post.title} - {title}" />
-        <meta name="twitter:title" content="{post.title} - {title}" />
+    <title>{post.title} - {title}</title>
+    <meta property="og:title" content="{post.title} - {title}" />
+    <meta name="twitter:title" content="{post.title} - {title}" />
 
-        {#if post.coverImage}
-            <meta
-                property="og:image"
-                content="{siteBaseUrl}/{post.coverImage}"
-            />
-            <meta
-                name="twitter:image"
-                content="{siteBaseUrl}/{post.coverImage}"
-            />
-            <meta name="twitter:card" content="summary_large_image" />
-        {/if}
+    {#if post.coverImage}
+        <meta property="og:image" content="{siteBaseUrl}/{post.coverImage}" />
+        <meta name="twitter:image" content="{siteBaseUrl}/{post.coverImage}" />
+        <meta name="twitter:card" content="summary_large_image" />
     {/if}
 </svelte:head>
 
@@ -86,8 +77,8 @@
 </PageTransition>
 
 <style lang="scss">
-    @use '$lib/scss/_mixins.scss';
-    @use '$lib/scss/_breakpoints.scss';
+    @use '$styles/mixins';
+    @use '$styles/breakpoints';
 
     #article-content {
         --main-column-width: 65ch;
