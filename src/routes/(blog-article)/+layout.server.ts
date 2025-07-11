@@ -1,11 +1,7 @@
-import { filteredPosts } from '$lib/data/blog-posts';
-
-export async function load({ url }: { url: { pathname: string } }) {
-    const { pathname } = url;
-    const slug = pathname.replace('/', '');
-    const post = filteredPosts.find((post) => post.slug === slug);
-
+// This layout server is no longer needed as we're using [slug] route
+// The post loading is now handled by [slug]/+layout.server.ts
+export async function load() {
     return {
-        post,
+        post: null,
     };
 }

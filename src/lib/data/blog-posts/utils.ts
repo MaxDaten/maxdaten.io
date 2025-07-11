@@ -2,24 +2,28 @@ import striptags from 'striptags';
 import type { BlogPost } from '$lib/utils/types';
 import { render } from 'svelte/server';
 
+interface PostComponent {
+    default: import('svelte').Component;
+    metadata: BlogPost;
+}
+
 export const importPosts = () => {
-    const imports = import.meta.glob('/src/routes/**/+page.md', {
+    const imports = import.meta.glob('/src/content/blog/*.md', {
         eager: true,
     });
 
     const posts: BlogPost[] = [];
     for (const path in imports) {
-        const post = imports[path] as {
-            default: import('svelte').Component;
-            metadata: BlogPost;
-        };
+        const post = imports[path] as PostComponent;
         if (post) {
-            const html = render(post.default, { props: {} }).body;
+            const renderedPost = render(post.default, { props: {} });
+            const htmlContent = renderedPost.body;
             posts.push({
                 ...post.metadata,
-                html,
+                html: htmlContent,
+                head: renderedPost.head,
                 readingTimeMinutes: readingTime(
-                    striptags(striptags(html || '')),
+                    striptags(striptags(htmlContent || '')),
                 ).minutes,
             } as BlogPost);
         }
