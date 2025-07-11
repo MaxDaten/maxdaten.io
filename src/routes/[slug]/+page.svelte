@@ -83,10 +83,7 @@
     #article-content {
         --main-column-width: 65ch;
         position: relative;
-        padding-top: 40px;
-        padding-bottom: 80px;
-        padding-right: 15px;
-        padding-left: 15px;
+        padding: 40px 15px 80px;
         display: flex;
         flex-direction: column;
         gap: 30px;
