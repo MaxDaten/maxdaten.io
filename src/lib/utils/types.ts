@@ -1,6 +1,4 @@
-export type NoUndefinedField<T> = {
-    [P in keyof T]-?: NoUndefinedField<NonNullable<T[P]>>;
-};
+import type { Component } from 'svelte';
 
 export type SparkleType = {
     id: string;
@@ -27,10 +25,10 @@ export type BlogPost = {
     date: string;
     updated: string;
     excerpt: string;
-    html: string | undefined;
     readingTimeMinutes: number | undefined;
     relatedPosts: BlogPost[];
     coverImage: string | undefined;
+    content: Component;
 };
 
 export type GemEntry = {
