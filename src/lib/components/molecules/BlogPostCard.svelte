@@ -15,7 +15,7 @@
 <Card href="/{post.slug}" class="blog-post-card">
     {#snippet image()}
         {#if post.coverImage && showImage}
-            <div class="cover-image">
+            <div class="cover-image" data-hero-key={post.coverImage}>
                 <Image
                     src={post.coverImage}
                     alt="Cover image of this blog post"

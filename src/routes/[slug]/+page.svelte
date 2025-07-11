@@ -60,7 +60,7 @@
             {/if}
         </div>
         {#if post.coverImage}
-            <div class="cover-image">
+            <div class="cover-image" data-hero-key={post.coverImage}>
                 <Image src={post.coverImage} alt={post.title} />
             </div>
         {/if}
