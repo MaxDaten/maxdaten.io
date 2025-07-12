@@ -1,5 +1,7 @@
 # maxdaten.io
 
+![Vercel Deploy](https://deploy-badge.vercel.app/vercel/maxdaten-io)
+
 This is the source code for my personal website, [maxdaten.io](https://maxdaten.io). Driven by the
 f\*\*\* awesome
 [sveltekit-static-blog-template](https://github.com/matfantinel/sveltekit-static-blog-template).
