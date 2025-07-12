@@ -25,7 +25,7 @@
         position: relative;
         background-color: var(--color--code-background);
         color: var(--color--code-text);
-        font-family: var(--font--mono);
+        font-family: var(--font--mono),serif;
         font-size: 1rem;
         line-height: 1.33em;
         border-radius: 8px;
@@ -69,7 +69,7 @@
             margin-bottom: -2px;
             padding: 5px 10px;
             position: absolute;
-            left: 0px;
+            left: 0;
             top: -15px;
             z-index: 1;
         }
