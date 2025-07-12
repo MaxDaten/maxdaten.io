@@ -3,7 +3,11 @@ import type { PageLoad } from './$types';
 import type { BlogPost } from '$utils/types';
 
 export const load: PageLoad = async ({ params }) => {
-    const post = await import(`../../content/blog/${params.slug}.md`);
+    const post = await import(`../../content/blog/${params.slug}.md`).catch(
+        () => {
+            throw error(404, 'Post not found');
+        },
+    );
 
     if (!post || post.metadata.hidden) {
         throw error(404, 'Post not found');
