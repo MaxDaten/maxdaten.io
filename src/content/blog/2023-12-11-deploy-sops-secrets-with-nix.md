@@ -27,12 +27,6 @@ keywords:
     - flux
 ---
 
-<script>
-  import Callout from "$lib/components/molecules/Callout.svelte";
-  import CodeBlock from "$lib/components/molecules/CodeBlock.svelte";
-  import Image from "$lib/components/atoms/Image.svelte";
-</script>
-
 > How to manage secrets like private ssh keys or database access in a cloud environment via nix and
 > sops.
 
@@ -42,10 +36,9 @@ time from days to sub day, eliminating "works on my machine" issues across our 8
 team. Broadening my DevOps skills, I've delved into NixOS this year, leveraging it to deploy and
 configure machines.
 
-<Callout type="info">
-Business Impact: By standardizing our development environments with Nix, we increased developer 
-productivity by 25% and reduced onboarding time for new team members from days to sub day.
-</Callout>
+<Components.Callout type="info"> Business Impact: By standardizing our development environments with
+Nix, we increased developer productivity by 25% and reduced onboarding time for new team members
+from days to sub day. </Components.Callout>
 
 My use-case: Deploy and manage our own [Hydra](https://github.com/NixOS/hydra) cluster in Google
 Cloud (GC) for our internal CI/CD.
@@ -83,9 +76,8 @@ granular access control, key rotation & auditing.
 
 ## Encode & Deploy secrets with [sops-nix](https://github.com/Mic92/sops-nix) & [GC KMS](https://cloud.google.com/kms)
 
-<Callout type="info">
-☝ Prerequisite: A GCE instance with NixOS and SSH access
-</Callout>
+<Components.Callout type="info"> ☝ Prerequisite: A GCE instance with NixOS and SSH access
+</Components.Callout>
 
 Our goal: Use sops in combination with GC KMS to provision secrets to a NixOS instance. This secret
 should be accessible by a service running on the instance.å
@@ -103,8 +95,6 @@ We will follow these steps:
 ### Step 1: Google Cloud KMS Setup
 
 Using terraform to create a key ring and a crypto key
-
-<CodeBlock lang="hcl">
 
 ```hcl
 resource "google_kms_key_ring" "infrastructure" {
@@ -132,35 +122,27 @@ resource "google_kms_crypto_key_iam_member" "my_instance_example_crypto_key" {
 }
 
 output "example_crypto_key_id" {
-    value = google_kms_crypto_key.example_crypto_key.id
+  value = google_kms_crypto_key.example_crypto_key.id
 }
 ```
 
-</CodeBlock>
-
 This assumes that the instance is configured with a service account named `my-instance`, for example
 in an instance templates:
-
-<CodeBlock lang="hcl">
 
 ```hcl
 resource "google_compute_instance_template" "my_instance" {
   ...
 
-  service_account {
-    email  = google_service_account.my_instance_sa.email
-    scopes = ["cloud-platform"]
-  }
+service_account {
+  email = google_service_account.my_instance_sa.email
+  scopes = ["cloud-platform"]
+}
 }
 ```
-
-</CodeBlock>
 
 ### Step 2: sops configuration
 
 Define creation rules in `.sops.yaml`
-
-<CodeBlock lang="yaml">
 
 ```yaml
 creation_rules:
@@ -168,8 +150,6 @@ creation_rules:
       encrypted_regex: ^(private_key)$
       gcp_kms: 'projects/<projectid>/locations/europe/keyRings/infrastructure/cryptoKeys/example-crypto-key'
 ```
-
-</CodeBlock>
 
 `path_regex`: to match files to be managed encoded/decoded by sops.
 
@@ -181,20 +161,14 @@ creation_rules:
 
 Encrypt a secret using sops
 
-<Callout type="info">
-☝ Assumption: You are allowed to access the GCE crypto key via [Application Default Credentials](https://developers.google.com/identity/protocols/application-default-credentials)
-</Callout>
-
-<CodeBlock lang="bash">
+<Components.Callout type="info"> ☝ Assumption: You are allowed to access the GCE crypto key via
+[Application Default Credentials](https://developers.google.com/identity/protocols/application-default-credentials)
+</Components.Callout>
 
 ```bash
 $ sops example-keypair.enc.yaml
 # will open $EDITOR
 ```
-
-</CodeBlock>
-
-<CodeBlock lang="yaml">
 
 ```yaml
 ssh_keys:
@@ -210,47 +184,41 @@ ssh_keys:
         ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICZm8fsDj+8nNhmf4zqIe4zDRIpXqW+wfKKzEuw6Fi+j
 ```
 
-</CodeBlock>
-
 with `encrypted_regex` provided in `.sops.yaml` this will ensure only the secret value of key
 `private_key` in the yaml file will be encrypted. This file is now safe to commit.
 
 ### Step 4: Consume secret in NixOS configuration.nix
 
-<CodeBlock lang="yaml">
-
 ```yaml
 { config, ... }: {
   # Setting up test user for service
-  users.users.secret-test.isSystemUser = true;
-  users.users.secret-test.group = "secret-test";
-  users.groups.secret-test = { };
+                   users.users.secret-test.isSystemUser = true;
+                   users.users.secret-test.group = "secret-test";
+                   users.groups.secret-test = { };
 
   # Declare secret
-  sops.secrets."ssh_keys/private_key" = { # 1
-    restartUnits = [ "secret-test.service" ]; # 2
-    # Reference test user
-    owner = config.users.users.secret-test.name;
-    sopsFile = ./example-keypair.enc.yaml; # 3
-  };
+                   sops.secrets."ssh_keys/private_key" = { # 1
+  restartUnits = [ "secret-test.service" ]; # 2
+  # Reference test user
+  owner = config.users.users.secret-test.name;
+  sopsFile = ./example-keypair.enc.yaml; # 3
+};
 
-  systemd.services.secret-test = {
-    wantedBy = [ "multi-user.target" ];
-    after = [ "sops-nix.service" ]; # 4
+                   systemd.services.secret-test = {
+  wantedBy = [ "multi-user.target" ];
+  after = [ "sops-nix.service" ]; # 4
 
-    serviceConfig.Type = "oneshot";
-    # Reference test user
-    serviceConfig.User = config.users.users.secret-test.name;
+  serviceConfig.Type = "oneshot";
+  # Reference test user
+  serviceConfig.User = config.users.users.secret-test.name;
 
-    script = ''
-      # Reference secret by path convention
-      stat /run/secrets/ssh_keys/private_key
-    '';
-  };
+  script = ''
+  # Reference secret by path convention
+  stat /run/secrets/ssh_keys/private_key
+  '';
+};
 }
 ```
-
-</CodeBlock>
 
 1. sops-nix will place nested yaml keys in nested directories in `/run/secrets/` . This way you are
    able to organize your secrets by service. But you are also free to define multiple secret files.
@@ -265,19 +233,13 @@ Finally we deploy our new NixOS configuration to the machine in question, if loc
 `nixos-rebuild` otherwise you can use any nix deployment framework like
 [deploy-rs](https://github.com/serokell/deploy-rs) or NixOps. In this case I will use NixOps:
 
-<CodeBlock lang="bash">
-
 ```
 $ nixops deploy --deployment <machine-name>
 ```
 
-</CodeBlock>
-
 This will build and activates the new NixOS configuration on the instance. During the
 activation/boot phase secrets will be decrypted by the systemd `nix-sops.service` to the
 `/run/secrets` folder.
-
-<CodeBlock lang="bash">
 
 ```bash
 $ journalctl -u secret-test.service
@@ -293,8 +255,6 @@ secret-test-start[184449]:  Birth: -
 systemd[1]: secret-test.service: Deactivated successfully.
 systemd[1]: Finished secret-test.service.
 ```
-
-</CodeBlock>
 
 ## Discussion
 
@@ -320,9 +280,9 @@ if secrets are configuration or state, storing secrets this way brings us severa
 
 ## Business Impact & Results
 
-<Callout type="success">
-Key Outcomes: Implementation of this secret management system delivered measurable business value across security, operational efficiency, and team productivity.
-</Callout>
+<Components.Callout type="success"> Key Outcomes: Implementation of this secret management system
+delivered measurable business value across security, operational efficiency, and team productivity.
+</Components.Callout>
 
 ### Security & Compliance
 

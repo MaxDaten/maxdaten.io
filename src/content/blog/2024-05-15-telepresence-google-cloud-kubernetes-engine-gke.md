@@ -20,12 +20,6 @@ keywords:
 type: default
 ---
 
-<script>
-  import Callout from "$lib/components/molecules/Callout.svelte";
-  import CodeBlock from "$lib/components/molecules/CodeBlock.svelte";
-  import Image from "$lib/components/atoms/Image.svelte";
-</script>
-
 In my current project [Qwiz'n'Buzz](https://qwiz.buzz) we are actively working on a discord
 integration as an [Discord Activity](https://discord.com/developers/docs/activities/overview). In
 sake of user protection, Discord uses a proxy as a middleman for requests to our services.
@@ -40,9 +34,10 @@ restarts. This requires you have to update the
 [Discord Activity URL Mapping settings](https://discord.com/developers/docs/activities/building-an-activity#set-up-your-activity-url-mapping)
 every time you restart the tunnel.
 
-<Callout type="warning">
-<b>Development Friction:</b> Before implementing this solution, our team spent 2-3 hours daily managing tunnel endpoints and updating Discord configurations, reducing actual development time by 30% and causing significant frustration across our 4-person development team.
-</Callout>
+<Components.Callout type="warning"> <b>Development Friction:</b> Before implementing this solution,
+our team spent 2-3 hours daily managing tunnel endpoints and updating Discord configurations,
+reducing actual development time by 30% and causing significant frustration across our 4-person
+development team. </Components.Callout>
 
 ## Telepresence
 
@@ -52,9 +47,9 @@ debug services within the context of the full system without deploying the servi
 This way, we can provision stable development domains and cluster infrastructure to iterate quickly
 on the Discord integration locally.
 
-<Callout type="success">
-<b>Development Velocity:</b> This approach increased our local development iteration speed by 400%, reducing feedback cycles from 10-15 minutes to 2-3 minutes, and eliminating the daily configuration overhead entirely.
-</Callout>
+<Components.Callout type="success"> <b>Development Velocity:</b> This approach increased our local
+development iteration speed by 400%, reducing feedback cycles from 10-15 minutes to 2-3 minutes, and
+eliminating the daily configuration overhead entirely. </Components.Callout>
 
 Telepresence brings two ways for redirecting traffic from a kubernetes service to your local
 machine. The first way
@@ -95,8 +90,6 @@ serves a simple HTTP server that responds to the health check on the port of the
    application container within the same pod. This sidecar serves a simple HTTP server that responds
    to the health check requests from the NEG.
 
-<CodeBlock lang="yaml">
-
 ```yaml
 kind: Deployment
 metadata:
@@ -121,13 +114,9 @@ spec:
                         name: healthz
 ```
 
-</CodeBlock>
-
 2. **Configure Health Checks**: Point the NEG’s health check configuration to the port exposed by
    the sidecar. This ensures that the health check passes as long as the sidecar is running,
    regardless of whether Telepresence is currently intercepting the main service’s traffic.
-
-<CodeBlock lang="yaml">
 
 ```yaml
 apiVersion: cloud.google.com/v1
@@ -159,8 +148,6 @@ spec:
           targetPort: http
 ```
 
-</CodeBlock>
-
 With the sidecar handling health checks, you can use Telepresence to intercept the main service’s
 traffic without affecting the pod's health status in the eyes of the NEG.
 
@@ -172,8 +159,6 @@ intercept. This method involves changes in the application code and can be set u
 1. **Expose an Additional Port**: Modify your service’s deployment to include an additional port
    that serves HTTP health checks. This port should be separate from the main service port. Minor
    code changes may be required to support the new health check port.
-
-<CodeBlock lang="yaml">
 
 ```yaml
 kind: Deployment
@@ -192,12 +177,8 @@ spec:
                     name: healthz
 ```
 
-</CodeBlock>
-
 2. **Update Service and NEG Configuration**: Adjust the service and NEG configuration to recognize
    the new port specifically for health checks.
-
-<CodeBlock lang="yaml">
 
 ```yaml
 apiVersion: cloud.google.com/v1
@@ -212,8 +193,6 @@ spec:
 ---
 # Service configuration as before
 ```
-
-</CodeBlock>
 
 As long as you're not using the replacement mode, Telepresence will not interfere with the health
 check port, and the NEG will continue to route traffic to the pod as long as the health check
@@ -240,9 +219,9 @@ setting and intercept traffic at any time without any manual reconfiguration on 
 
 ## Business Impact & Results
 
-<Callout variant="success">
-<b>Project Outcomes:</b> This Telepresence implementation delivered immediate improvements to our development workflow, eliminating manual overhead and accelerating our Discord integration development.
-</Callout>
+<Components.Callout variant="success"> <b>Project Outcomes:</b> This Telepresence implementation
+delivered immediate improvements to our development workflow, eliminating manual overhead and
+accelerating our Discord integration development. </Components.Callout>
 
 ### Development Efficiency
 
