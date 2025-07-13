@@ -72,7 +72,6 @@
     }
 
     .code-block {
-
         figure {
             margin: 1.5em 0;
             position: relative;
@@ -104,9 +103,8 @@
             }
         }
 
-
         pre.shiki {
-            font-family: var(--font--mono),monospace;
+            font-family: var(--font--mono), monospace;
             font-size: 14px;
             border-radius: 8px;
 
@@ -134,7 +132,7 @@
             }
         }
 
-        pre.shiki.show-line-numbers  {
+        pre.shiki.show-line-numbers {
             padding-left: 4.5em;
             counter-reset: line;
 
@@ -154,6 +152,4 @@
             }
         }
     }
-
-
 }
