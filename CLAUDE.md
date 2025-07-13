@@ -116,6 +116,19 @@ This is a SvelteKit-based static blog site with MDX integration for content auth
 
 ## Development Guidelines
 
+**TDD & Tidy First Principles:**
+
+- **TDD Cycle:** Always follow Red → Green → Refactor
+    - Write the simplest failing test first (Red)
+    - Implement minimum code to make test pass (Green)
+    - Refactor only after tests are passing (Refactor)
+- **Tidy First Approach:** Separate structural from behavioral changes
+    - STRUCTURAL CHANGES: Rearranging code without changing behavior
+    - BEHAVIORAL CHANGES: Adding or modifying actual functionality
+    - Never mix structural and behavioral changes in the same commit
+    - Always make structural changes first when both are needed
+    - Validate structural changes don't alter behavior by running tests
+
 **Test-Driven Development (TDD):**
 
 - When modifying or adding new functionality, follow TDD practices
@@ -125,6 +138,8 @@ This is a SvelteKit-based static blog site with MDX integration for content auth
 - Ensure all tests pass before considering a feature complete
 - in vitest use describe/it spec pattern
 - Add stories side by side to the component
+- Use meaningful test names that describe behavior
+- Make test failures clear and informative
 
 **Testing Strategy:**
 
@@ -132,11 +147,16 @@ This is a SvelteKit-based static blog site with MDX integration for content auth
 - **E2E Tests (Playwright):** Test user workflows across browsers
 - Tests are located in `tests/` for E2E and alongside components for unit tests
 
-## Code Style Guidelines
+## CODE QUALITY STANDARDS
 
+- Eliminate duplication ruthlessly
+- Express intent clearly through naming and structure
+- Make dependencies explicit
+- Keep methods small and focused on a single responsibility
+- Minimize state and side effects
+- Use the simplest solution that could possibly work
 - Prefer functional style before imperative style
 - Follow clean code style guides moderately
-- Execute `npm run format` after each completed change
 
 ## Shiki Code Block Usage
 
@@ -173,3 +193,22 @@ console.log('Hello world');
 Core principle is to maintain focused contexts for both yourself (the orchestrator/main agent) and
 each sub-agent. Therefore, please use the Task tool to delegate suitable tasks to sub-agents to
 improve task efficiency and optimize token usage.
+
+## Example Workflow
+
+When approaching a new feature:
+
+1. Write a simple failing test for a small part of the feature
+2. Implement the bare minimum to make it pass
+3. Run tests to confirm they pass (Green)
+4. Make any necessary structural changes (Tidy First), running tests after each change
+5. Commit structural changes separately
+6. Add another test for the next small increment of functionality
+7. Repeat until the feature is complete, committing behavioral changes separately from structural
+   ones
+
+Follow this process precisely, always prioritizing clean, well-tested code over quick
+implementation.
+
+Always write one test at a time, make it run, then improve structure. Always run all the tests (
+except long-running tests) each time.
