@@ -96,7 +96,7 @@ We will follow these steps:
 
 Using terraform to create a key ring and a crypto key
 
-```hcl
+```terraform
 resource "google_kms_key_ring" "infrastructure" {
   name     = "infrastructure"
   location = "europe"
@@ -129,7 +129,7 @@ output "example_crypto_key_id" {
 This assumes that the instance is configured with a service account named `my-instance`, for example
 in an instance templates:
 
-```hcl
+```terraform
 resource "google_compute_instance_template" "my_instance" {
   ...
 
