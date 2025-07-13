@@ -72,9 +72,11 @@ This is a SvelteKit-based static blog site with MDX integration for content auth
 
 **Routing Structure:**
 
-- `(waves)` route group for main site pages
-- `(blog-article)` route group for blog posts
-- Static routes for `/blog`, `/gems`, RSS feed
+- Dynamic blog routing via `[slug]` for individual posts (e.g., `/my-post-slug`)
+- Static routes: `/blog` (listing), `/gems` (curated links), `/404` (error page), `/` (home)
+- API routes: `/rss.xml` for RSS feed generation
+- Content stored in `/src/content/blog/` as `.md` files (not in routes directory)
+- Sitemap auto-generated via `svelte-sitemap` package during build
 
 **Styling System:**
 
