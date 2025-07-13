@@ -96,7 +96,7 @@ We will follow these steps:
 
 Using terraform to create a key ring and a crypto key
 
-```terraform filename=kms.tf
+```terraform filename=kms.tf showLineNumbers
 resource "google_kms_key_ring" "infrastructure" {
   name     = "infrastructure"
   location = "europe"
@@ -188,7 +188,7 @@ with `encrypted_regex` provided in `.sops.yaml` this will ensure only the secret
 
 ### Step 4: Consume secret in NixOS configuration.nix
 
-```nix filename=configuration.nix
+```nix filename=configuration.nix showLineNumbers
 { config, ... }:
 {
   # Setting up test user for service
@@ -219,7 +219,6 @@ with `encrypted_regex` provided in `.sops.yaml` this will ensure only the secret
     '';
   };
 }
-
 ```
 
 1. sops-nix will place nested yaml keys in nested directories in `/run/secrets/` . This way you are
