@@ -35,7 +35,7 @@
 
 <PageTransition>
     {@const Post = post.content}
-    <article id="article-content">
+    <article>
         <div class="header">
             <h1>{post.title}</h1>
             <div class="note">
@@ -80,7 +80,7 @@
     @use '$styles/mixins';
     @use '$styles/breakpoints';
 
-    #article-content {
+    article {
         --main-column-width: 65ch;
         position: relative;
         padding: 40px 15px 80px;
