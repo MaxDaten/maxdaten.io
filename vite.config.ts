@@ -21,13 +21,20 @@ export default defineConfig({
                     name: 'browser',
                     browser: {
                         enabled: true,
+                        headless: true,
                         instances: [
                             {
                                 browser: 'chromium',
+                                context: {
+                                    // https://playwright.dev/docs/api/class-browsercontext#browser-context-grant-permissions
+                                    permissions: [
+                                        'clipboard-write',
+                                        'clipboard-read',
+                                    ],
+                                },
                             },
                         ],
                         provider: 'playwright',
-                        headless: true,
                     },
                     include: ['src/**/*.svelte.{test,spec}.{js,ts}'],
                     exclude: ['src/lib/server/**'],
