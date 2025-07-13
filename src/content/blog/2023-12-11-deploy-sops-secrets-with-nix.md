@@ -161,8 +161,8 @@ creation_rules:
 Encrypt a secret using sops
 
 <Components.Callout type="info"> ☝ Assumption: You are allowed to access the GCE crypto key via
-[Application Default Credentials](https://developers.google.com/identity/protocols/application-default-credentials)
-</Components.Callout>
+<a href="https://developers.google.com/identity/protocols/application-default-credentials">
+Application Default Credentials</a> </Components.Callout>
 
 ```bash
 $ sops example-keypair.enc.yaml
