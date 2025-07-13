@@ -38,6 +38,7 @@
         "@fontsource-variable/merriweather": "^5",
         "@fontsource/ubuntu-mono": "^5",
         "@playwright/test": "^1.53.1",
+        "@shikijs/transformers": "^3.7.0",
         "@storybook/addon-docs": "^9.0.12",
         "@storybook/addon-svelte-csf": "^5.0.3",
         "@storybook/sveltekit": "^9.0.12",

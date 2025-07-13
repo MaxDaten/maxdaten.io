@@ -5,14 +5,40 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import { escapeSvelte } from 'mdsvex';
+import { transformerCodeBlock } from './src/lib/shiki/transformerCodeBlock.js';
+import {
+    transformerMetaHighlight,
+    transformerMetaWordHighlight,
+} from '@shikijs/transformers';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const theme = 'ayu-dark';
+const theme = 'aurora-x';
 const highlighter = await createHighlighter({
     themes: [theme],
-    langs: ['html', 'css', 'js', 'ts', 'hcl', 'nix', 'yaml', 'bash', 'text'],
+    langs: [
+        'bash',
+        'css',
+        'haskell',
+        'hcl',
+        'hcl',
+        'html',
+        'http',
+        'js',
+        'kotlin',
+        'nix',
+        'svelte',
+        'terraform',
+        'text',
+        'ts',
+        'yaml',
+        'docker',
+        'scss',
+        'python',
+        'nginx',
+        'java',
+    ],
 });
 
 /** @type import("mdsvex").MdsvexOptions */
@@ -23,11 +49,20 @@ const config = {
     ),
     extensions: ['.svx', '.md'],
     highlight: {
-        highlighter: async (code, lang = 'text') => {
+        highlighter: async (code, lang = 'text', meta) => {
             const html = escapeSvelte(
-                highlighter.codeToHtml(code, { lang, theme }),
+                highlighter.codeToHtml(code, {
+                    lang,
+                    theme: theme,
+                    meta: { __raw: meta },
+                    transformers: [
+                        transformerMetaWordHighlight(),
+                        transformerMetaHighlight(),
+                        transformerCodeBlock(),
+                    ],
+                }),
             );
-            return `<Components.CodeBlock lang="${lang}">{@html \`${html}\`}</Components.CodeBlock>`;
+            return `<Components.CodeBlock ${meta} lang="${lang}">{@html \`${html}\`}</Components.CodeBlock>`;
         },
     },
     rehypePlugins: [
