@@ -132,11 +132,10 @@ in an instance templates:
 ```terraform
 resource "google_compute_instance_template" "my_instance" {
   ...
-
+}
 service_account {
   email = google_service_account.my_instance_sa.email
   scopes = ["cloud-platform"]
-}
 }
 ```
 
@@ -189,35 +188,38 @@ with `encrypted_regex` provided in `.sops.yaml` this will ensure only the secret
 
 ### Step 4: Consume secret in NixOS configuration.nix
 
-```yaml
-{ config, ... }: {
+```nix
+{ config, ... }:
+{
   # Setting up test user for service
-                   users.users.secret-test.isSystemUser = true;
-                   users.users.secret-test.group = "secret-test";
-                   users.groups.secret-test = { };
+  users.users.secret-test.isSystemUser = true;
+  users.users.secret-test.group = "secret-test";
+  users.groups.secret-test = { };
 
   # Declare secret
-                   sops.secrets."ssh_keys/private_key" = { # 1
-  restartUnits = [ "secret-test.service" ]; # 2
-  # Reference test user
-  owner = config.users.users.secret-test.name;
-  sopsFile = ./example-keypair.enc.yaml; # 3
-};
+  sops.secrets."ssh_keys/private_key" = {
+    # 1
+    restartUnits = [ "secret-test.service" ]; # 2
+    # Reference test user
+    owner = config.users.users.secret-test.name;
+    sopsFile = ./example-keypair.enc.yaml; # 3
+  };
 
-                   systemd.services.secret-test = {
-  wantedBy = [ "multi-user.target" ];
-  after = [ "sops-nix.service" ]; # 4
+  systemd.services.secret-test = {
+    wantedBy = [ "multi-user.target" ];
+    after = [ "sops-nix.service" ]; # 4
 
-  serviceConfig.Type = "oneshot";
-  # Reference test user
-  serviceConfig.User = config.users.users.secret-test.name;
+    serviceConfig.Type = "oneshot";
+    # Reference test user
+    serviceConfig.User = config.users.users.secret-test.name;
 
-  script = ''
-  # Reference secret by path convention
-  stat /run/secrets/ssh_keys/private_key
-  '';
-};
+    script = ''
+      # Reference secret by path convention
+      stat /run/secrets/ssh_keys/private_key
+    '';
+  };
 }
+
 ```
 
 1. sops-nix will place nested yaml keys in nested directories in `/run/secrets/` . This way you are
