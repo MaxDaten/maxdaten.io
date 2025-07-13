@@ -122,32 +122,21 @@ This is a SvelteKit-based static blog site with MDX integration for content auth
     - Write the simplest failing test first (Red)
     - Implement minimum code to make test pass (Green)
     - Refactor only after tests are passing (Refactor)
-- **Tidy First Approach:** Separate structural from behavioral changes
+- **Tidy First:** Separate structural from behavioral changes
     - STRUCTURAL CHANGES: Rearranging code without changing behavior
     - BEHAVIORAL CHANGES: Adding or modifying actual functionality
     - Never mix structural and behavioral changes in the same commit
     - Always make structural changes first when both are needed
     - Validate structural changes don't alter behavior by running tests
 
-**Test-Driven Development (TDD):**
-
-- When modifying or adding new functionality, follow TDD practices
-- Write tests first, then implement the feature to make tests pass
-- Use `npm run test` to run all tests and `npm run test:unit` for unit tests in watch mode
-- Use `npm run test:e2e` for end-to-end testing with Playwright
-- Ensure all tests pass before considering a feature complete
-- in vitest use describe/it spec pattern
-- Add stories side by side to the component
-- Use meaningful test names that describe behavior
-- Make test failures clear and informative
-
 **Testing Strategy:**
 
-- **Unit Tests (Vitest):** Test individual components and utilities
+- **Unit Tests (Vitest):** Use describe/it spec pattern, add stories alongside components
 - **E2E Tests (Playwright):** Test user workflows across browsers
-- Tests are located in `tests/` for E2E and alongside components for unit tests
+- Use meaningful test names that describe behavior
+- Tests located in `tests/` for E2E and alongside components for unit tests
 
-## CODE QUALITY STANDARDS
+**Code Quality Standards:**
 
 - Eliminate duplication ruthlessly
 - Express intent clearly through naming and structure
@@ -194,21 +183,12 @@ Core principle is to maintain focused contexts for both yourself (the orchestrat
 each sub-agent. Therefore, please use the Task tool to delegate suitable tasks to sub-agents to
 improve task efficiency and optimize token usage.
 
-## Example Workflow
+**Development Workflow:**
 
-When approaching a new feature:
+1. Write failing test for small feature increment
+2. Implement minimum code to pass
+3. Refactor if needed (run tests after each change)
+4. Commit structural and behavioral changes separately
+5. Repeat for next increment
 
-1. Write a simple failing test for a small part of the feature
-2. Implement the bare minimum to make it pass
-3. Run tests to confirm they pass (Green)
-4. Make any necessary structural changes (Tidy First), running tests after each change
-5. Commit structural changes separately
-6. Add another test for the next small increment of functionality
-7. Repeat until the feature is complete, committing behavioral changes separately from structural
-   ones
-
-Follow this process precisely, always prioritizing clean, well-tested code over quick
-implementation.
-
-Always write one test at a time, make it run, then improve structure. Always run all the tests (
-except long-running tests) each time.
+Always run tests between changes. Prioritize clean, well-tested code over speed.
