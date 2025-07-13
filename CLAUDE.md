@@ -181,7 +181,8 @@ console.log('Hello world');
 
 Core principle is to maintain focused contexts for both yourself (the orchestrator/main agent) and
 each sub-agent. Therefore, please use the Task tool to delegate suitable tasks to sub-agents to
-improve task efficiency and optimize token usage.
+improve task efficiency and optimize token usage. Use Gemini for planning and architectural
+evaluation and changes.
 
 **Development Workflow:**
 
