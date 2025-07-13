@@ -90,7 +90,7 @@ serves a simple HTTP server that responds to the health check on the port of the
    application container within the same pod. This sidecar serves a simple HTTP server that responds
    to the health check requests from the NEG.
 
-```yaml
+```yaml filename=app-deployment.yaml showLineNumbers
 kind: Deployment
 metadata:
     name: my-app
@@ -118,7 +118,7 @@ spec:
    the sidecar. This ensures that the health check passes as long as the sidecar is running,
    regardless of whether Telepresence is currently intercepting the main service’s traffic.
 
-```yaml
+```yaml filename=backend-config.yaml showLineNumbers
 apiVersion: cloud.google.com/v1
 kind: BackendConfig
 metadata:
@@ -160,7 +160,7 @@ intercept. This method involves changes in the application code and can be set u
    that serves HTTP health checks. This port should be separate from the main service port. Minor
    code changes may be required to support the new health check port.
 
-```yaml
+```yaml filename=app-deployment.yaml showLineNumbers
 kind: Deployment
 metadata:
     name: my-app
@@ -180,7 +180,7 @@ spec:
 2. **Update Service and NEG Configuration**: Adjust the service and NEG configuration to recognize
    the new port specifically for health checks.
 
-```yaml
+```yaml filename=backend-config.yaml showLineNumbers
 apiVersion: cloud.google.com/v1
 kind: BackendConfig
 metadata:
