@@ -46,6 +46,7 @@ This is a SvelteKit-based static blog site with MDX integration for content auth
 - Playwright for end-to-end testing across browsers
 - Image optimization pipeline using image-transmutation
 - UI components are developed via Storybook in isolation
+- Shiki for advanced syntax highlighting with custom transformers
 
 **Component Architecture:**
 
@@ -87,6 +88,15 @@ This is a SvelteKit-based static blog site with MDX integration for content auth
 - Static site generation with prerendering
 - Automatic sitemap generation post-build
 
+**Syntax Highlighting System:**
+
+- Shiki 3.7 with `aurora-x` theme for code blocks
+- Custom transformers for enhanced features (filename display, line numbers, copy buttons)
+- Supported languages: bash, css, haskell, hcl, html, http, js, kotlin, nix, svelte, terraform,
+  text, ts, yaml, docker, scss, python, nginx, java
+- Integration through MDsveX with custom CodeBlock component
+- Configuration in `mdsvex.config.js` and `src/lib/shiki/transformerCodeBlock.js`
+
 **Development Environment:**
 
 - Nix flake for reproducible development environment
@@ -116,6 +126,36 @@ This is a SvelteKit-based static blog site with MDX integration for content auth
 - Prefer functional style before imperative style
 - Follow clean code style guides moderately
 - Execute `npm run format` after each completed change
+
+## Shiki Code Block Usage
+
+**Basic Syntax:**
+
+````markdown
+```js
+console.log('Hello world');
+```
+````
+
+**With Filename:**
+
+````markdown
+```js filename="example.js"
+console.log('Hello world');
+```
+````
+
+**With Line Numbers:**
+
+````markdown
+```js showLineNumbers
+console.log('Hello world');
+```
+
+```js showLineNumbers=10
+console.log('Hello world');
+```
+````
 
 ## Approach
 
