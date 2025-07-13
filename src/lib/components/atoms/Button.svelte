@@ -14,6 +14,8 @@
         icon?: Snippet;
         children?: Snippet;
         onclick?: (event: Event) => void;
+
+        [key: string]: unknown;
     }
 
     let {
@@ -25,6 +27,7 @@
         children = undefined,
         class: propsClass = '',
         onclick = undefined,
+        ...rest
     }: Props = $props();
 
     const isExternalLink = $derived(!!href && HttpRegex.test(href));
@@ -47,6 +50,7 @@
     ].join(' ')}
     data-sveltekit-preload-data=""
     {onclick}
+    {...rest}
 >
     {#if icon}
         <div class="icon">
@@ -80,6 +84,14 @@
         .icon {
             width: 24px;
             height: 24px;
+        }
+
+        &:disabled {
+            cursor: not-allowed;
+
+            &:hover {
+                box-shadow: none !important;
+            }
         }
 
         &.color {
