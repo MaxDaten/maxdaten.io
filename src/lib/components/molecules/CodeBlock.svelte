@@ -1,77 +1,86 @@
 <script lang="ts">
     interface Props {
         filename: string;
+        showLineNumbers: boolean;
         lang: string;
         fullBleed?: boolean | undefined;
         children?: import('svelte').Snippet;
     }
 
-    let { filename, lang, fullBleed = undefined, children }: Props = $props();
+    let { filename, showLineNumbers = true, lang, fullBleed = undefined, children }: Props = $props();
 </script>
 
-<div class="code-block" class:full-bleed={fullBleed}>
-    {#if filename}
-        <div class="filename">{filename}</div>
-    {/if}
-    {#if lang}
-        <div class="lang">{lang}</div>
-    {/if}
-    {@render children?.()}
+<div class="code-block" class:full-bleed={fullBleed} class:show-line-numbers={showLineNumbers}>
+    <figure>
+        {#if filename}
+            <figcaption class="filename-container">
+                <div class="filename">{filename}</div>
+                <div class="lang">{lang}</div>
+            </figcaption>
+        {/if}
+        {@render children?.()}
+    </figure>
 </div>
 
 <style lang="scss">
-    .code-block {
-        display: block;
+    @use '../../scss/variables' as *;
+
+    figure {
+        margin: 1.5em 0;
         position: relative;
-        background-color: var(--color--code-background);
-        color: var(--color--code-text);
-        font-family: var(--font--mono),serif;
-        font-size: 1rem;
-        line-height: 1.33em;
-        border-radius: 8px;
-        box-shadow: var(--card-shadow);
 
-        padding: 30px 15px;
-        margin: 30px 0;
+        figcaption + :global(pre.shiki) {
+            border-top-left-radius: 0;
+        }
+    }
 
-        :global(pre) {
-            overflow-x: auto;
-            scrollbar-color: var(--color--primary) var(--color--primary-tint);
-            scrollbar-width: thin;
-            padding-bottom: 5px;
+    .code-block figcaption.filename-container {
+        background: var(--color--primary-tint);
+        border: 0.5px solid rgba(var(--color--primary-rgb), 0.5);
+        border-bottom: 0;
+        border-radius: 8px 8px 0 0;
+        display: inline-block;
+        padding: 0.5em 1em;
+        position: relative;
+        top: 0.5px; /* To sit on top of the pre border */
+        z-index: 1;
+        margin-bottom: -0.5px;
 
-            &::-webkit-scrollbar {
-                height: 8px;
-            }
-            &::-webkit-scrollbar-thumb {
-                background: var(--color--primary);
-                &:hover {
-                    background: var(--color--primary-shade);
-                }
-            }
+        .filename {
+            font-family: var(--font--mono), monospace;
+            font-size: 14px;
         }
 
         .lang {
-            position: absolute;
-            right: 0;
-            top: -15px;
-            background: inherit;
-            border-radius: 8px;
-            padding: 5px 10px;
-            z-index: 2;
-            font-size: 0.85em;
-        }
-
-        .filename {
-            background: inherit;
-            border-top-left-radius: 8px;
-            border-top-right-radius: 8px;
-            margin-bottom: -2px;
-            padding: 5px 10px;
-            position: absolute;
-            left: 0;
-            top: -15px;
-            z-index: 1;
+            display: none;
         }
     }
+
+    :global(pre.shiki) {
+        font-family: var(--font--mono),monospace;
+        font-size: 14px;
+        border-radius: 8px;
+        // scrollbar
+        overflow-x: auto;
+        scrollbar-color: var(--color--primary) var(--color--primary-tint);
+        scrollbar-width: thin;
+        padding: 1em 1em 20px;
+
+        margin: 0;
+        line-height: 1.6;
+        border: 0.5px solid rgba(var(--color--primary-rgb), 0.5);
+
+        code {
+            width: fit-content;
+            min-width: 100%;
+            display: block;
+        }
+
+        .line {
+            display: inline-block;
+            padding-left: 0.75em;
+            min-height: 1.5em;
+        }
+    }
+
 </style>
