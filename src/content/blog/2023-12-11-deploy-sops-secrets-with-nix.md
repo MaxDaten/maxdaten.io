@@ -126,8 +126,8 @@ output "example_crypto_key_id" {
 }
 ```
 
-This assumes that the instance is configured with a service account named `my-instance`, for example,
-in an instance templates:
+This assumes that the instance is configured with a service account named `my-instance`, for
+example, in an instance templates:
 
 ```terraform filename=instances.tf
 resource "google_compute_instance_template" "my_instance" {
