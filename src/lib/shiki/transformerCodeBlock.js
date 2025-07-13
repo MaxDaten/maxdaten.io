@@ -17,7 +17,7 @@
  * ````
  *
  * ````
- * ```js noCopy showLineNumbers
+ * ```js showLineNumbers
  * console.log('Hello world')
  * ```
  * ````
