@@ -82,6 +82,7 @@ This is a SvelteKit-based static blog site with MDX integration for content auth
 
 - Global SCSS files in `src/lib/scss/`
 - Component-scoped styles using Svelte's CSS scoping
+- Shiki/CodeBlock styling in `src/lib/scss/_markdown.scss:74` `.code-block` class
 
 **Path Aliases:**
 
