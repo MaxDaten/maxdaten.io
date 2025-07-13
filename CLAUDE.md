@@ -56,10 +56,19 @@ This is a SvelteKit-based static blog site with MDX integration for content auth
 
 **Content System:**
 
-- Blog posts are `.md` files in `src/routes/(blog-article)/`
-- Posts use frontmatter metadata and are processed by MDsveX
-- Blog data is centralized in `src/lib/data/blog-posts/`
-- Site metadata is configured in `src/lib/data/meta.ts`
+- Blog posts are `.md` files in `src/content/blog/` directory
+- Dynamic routing via `src/routes/[slug]/` imports posts using `import.meta.glob()` pattern
+- Posts use rich frontmatter (title, slug, coverImage, excerpt, date, tags, keywords, hidden)
+- Blog data management in `src/lib/data/blog-posts/` with advanced features:
+    - Automatic reading time calculation (200 wpm)
+    - Related posts algorithm based on tag similarity
+    - HTML rendering with Svelte component support
+    - Hidden post filtering capability
+- Gems (curated recommendations) system in `src/lib/data/gems/`
+- MDsveX integration with custom layout (`MdsvexWrapper.svelte`) enables Svelte components in
+  markdown
+- Site metadata configured in `src/lib/data/meta.ts` with comprehensive SEO fields
+- Content processing pipeline includes image optimization and sitemap generation
 
 **Routing Structure:**
 
