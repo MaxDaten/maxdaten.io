@@ -79,7 +79,6 @@ This is a SvelteKit-based static blog site with MDX integration for content auth
 **Styling System:**
 
 - Global SCSS files in `src/lib/scss/`
-- Theme system with light/dark mode support
 - Component-scoped styles using Svelte's CSS scoping
 
 **Path Aliases:**
