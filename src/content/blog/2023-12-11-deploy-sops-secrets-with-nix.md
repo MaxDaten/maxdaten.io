@@ -96,7 +96,7 @@ We will follow these steps:
 
 Using terraform to create a key ring and a crypto key
 
-```terraform
+```terraform filename=kms.tf
 resource "google_kms_key_ring" "infrastructure" {
   name     = "infrastructure"
   location = "europe"
@@ -126,10 +126,10 @@ output "example_crypto_key_id" {
 }
 ```
 
-This assumes that the instance is configured with a service account named `my-instance`, for example
+This assumes that the instance is configured with a service account named `my-instance`, for example,
 in an instance templates:
 
-```terraform
+```terraform filename=instances.tf
 resource "google_compute_instance_template" "my_instance" {
   ...
 }
@@ -143,7 +143,7 @@ service_account {
 
 Define creation rules in `.sops.yaml`
 
-```yaml
+```yaml filename=".sops.yaml" showLineNumbers
 creation_rules:
     - path_regex: ^(.*\.yaml)$
       encrypted_regex: ^(private_key)$
@@ -169,7 +169,7 @@ $ sops example-keypair.enc.yaml
 # will open $EDITOR
 ```
 
-```yaml
+```yaml filename=example-keypair.enc.yaml
 ssh_keys:
     private_key: |
         -----BEGIN OPENSSH PRIVATE KEY-----
@@ -188,7 +188,7 @@ with `encrypted_regex` provided in `.sops.yaml` this will ensure only the secret
 
 ### Step 4: Consume secret in NixOS configuration.nix
 
-```nix
+```nix filename=configuration.nix
 { config, ... }:
 {
   # Setting up test user for service
