@@ -79,6 +79,10 @@
             figcaption + pre.shiki {
                 border-top-left-radius: 0;
             }
+
+            &:hover .copy-button {
+                opacity: 0.4;
+            }
         }
 
         figcaption.filename-container {
@@ -100,6 +104,20 @@
 
             .lang {
                 display: none;
+            }
+        }
+
+        .copy-button {
+            position: absolute;
+            top: 42px;
+            right: 8px;
+            z-index: 2;
+            opacity: 0;
+            transition: opacity 0.2s ease-in-out;
+            min-width: 20ch;
+
+            &:hover {
+                opacity: 0.7 !important;
             }
         }
 

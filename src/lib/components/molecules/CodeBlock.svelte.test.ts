@@ -1,0 +1,50 @@
+import { expect, test, describe } from 'vitest';
+import { render } from 'vitest-browser-svelte';
+import CodeBlock from './CodeBlock.svelte';
+
+describe('CodeBlock Component', () => {
+    test('renders code block with filename', async () => {
+        const screen = render(CodeBlock, {
+            filename: 'example.js',
+            lang: 'javascript',
+            showLineNumbers: true,
+        });
+
+        await expect
+            .element(screen.getByTestId('code-filename'))
+            .toHaveTextContent('example.js');
+        await expect
+            .element(screen.getByTestId('code-lang'))
+            .toHaveTextContent('javascript');
+    });
+
+    test('renders copy button', async () => {
+        const screen = render(CodeBlock, {
+            filename: 'example.js',
+            lang: 'javascript',
+            showLineNumbers: true,
+        });
+
+        await expect
+            .element(screen.getByRole('button', { name: /copy/i }))
+            .toBeInTheDocument();
+    });
+
+    test('copy button shows success state when clicked', async () => {
+        const screen = render(CodeBlock, {
+            filename: 'example.js',
+            lang: 'javascript',
+            showLineNumbers: true,
+        });
+
+        const copyButton = screen.getByRole('button', { name: /copy/i });
+
+        // Initially shows "Copy"
+        await expect.element(copyButton).toHaveTextContent('Copy');
+
+        await copyButton.click();
+
+        // After clicking, button should show success state briefly
+        await expect.element(screen.getByText(/copied/i)).toBeInTheDocument();
+    });
+});
