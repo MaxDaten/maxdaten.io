@@ -18,6 +18,10 @@
                 href="https://iconoir.com/"
                 target="_blank"
                 rel="noopener noreferrer">Iconoir</a
+            >
+            &
+            <a href="https://github.com/catppuccin/vscode-icons"
+                >Catppuccin Icons</a
             >.
         </div>
         <div class="copyright">
