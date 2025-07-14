@@ -100,7 +100,7 @@
                 border-top-left-radius: 0;
             }
 
-            &:hover .copy-button {
+            &:hover :global(.copy-button) {
                 opacity: 0.4;
             }
 
