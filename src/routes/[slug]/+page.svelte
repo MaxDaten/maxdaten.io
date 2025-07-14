@@ -124,7 +124,8 @@
             margin: 0 auto;
             max-height: 400px;
             box-shadow: var(--image-shadow);
-            border-radius: 6px;
+            border-radius: 12px;
+            overflow: hidden;
 
             img {
                 width: 100%;
