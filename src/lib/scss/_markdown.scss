@@ -109,7 +109,7 @@
 
         .copy-button {
             position: absolute;
-            top: 42px;
+            top: 8px;
             right: 8px;
             z-index: 2;
             opacity: 0;
@@ -119,6 +119,10 @@
             &:hover {
                 opacity: 0.7 !important;
             }
+        }
+
+        figure:has(figcaption.filename-container) .copy-button {
+            top: 42px;
         }
 
         pre.shiki {
