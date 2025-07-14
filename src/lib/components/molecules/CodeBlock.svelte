@@ -98,6 +98,7 @@
 
             figcaption + :global(pre.shiki) {
                 border-top-left-radius: 0;
+                border-top-right-radius: 0;
             }
 
             &:hover :global(.copy-button) {
@@ -124,9 +125,10 @@
         }
 
         figcaption.filename-container {
+            width: 100%;
             background: var(--color--primary-tint);
             border: 0.5px solid rgba(var(--color--primary-rgb), 0.5);
-            border-bottom: 0;
+            border-bottom: 0.5px solid rgba(var(--color--primary-rgb), 0.25);
             border-radius: 8px 8px 0 0;
             display: inline-block;
             padding: 0.5em 1em;
