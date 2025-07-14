@@ -4,6 +4,7 @@
     import CopyIcon from '$lib/icons/copy.svelte';
     import CheckIcon from '$lib/icons/check.svelte';
     import XIcon from '$lib/icons/x.svelte';
+    import DiagonalStrip from '$components/atoms/DiagonalStrip.svelte';
 
     interface Props {
         filename: string | null;
@@ -53,6 +54,9 @@
     <figure>
         {#if filename}
             <figcaption class="filename-container">
+                <div class="caption-background">
+                    <DiagonalStrip />
+                </div>
                 <div class="filename-content">
                     <FileIcon {lang} size={16} class="file-icon" />
                     <div data-testid="code-filename" class="filename">
@@ -136,6 +140,17 @@
             top: 0.5px; /* To sit on top of the pre border */
             z-index: 1;
             margin-bottom: -0.5px;
+
+            .caption-background {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                border-radius: 8px 8px 0 0;
+                z-index: -1;
+                opacity: 0.1;
+            }
 
             .filename-content {
                 display: flex;
