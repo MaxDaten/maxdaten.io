@@ -85,3 +85,70 @@
         </Button>
     </figure>
 </div>
+
+<style lang="scss">
+    .code-block {
+        figure {
+            margin: 1.5em 0;
+            position: relative;
+
+            figcaption + :global(pre.shiki) {
+                border-top-left-radius: 0;
+            }
+
+            &:hover .copy-button {
+                opacity: 0.4;
+            }
+
+            :global(.copy-button) {
+                position: absolute;
+                top: 8px;
+                right: 8px;
+                z-index: 2;
+                opacity: 0;
+                transition: opacity 0.2s ease-in-out;
+                width: 20ch;
+
+                &:hover {
+                    opacity: 0.7 !important;
+                }
+            }
+
+            &:has(figcaption.filename-container) :global(.copy-button) {
+                top: 42px;
+            }
+        }
+
+        figcaption.filename-container {
+            background: var(--color--primary-tint);
+            border: 0.5px solid rgba(var(--color--primary-rgb), 0.5);
+            border-bottom: 0;
+            border-radius: 8px 8px 0 0;
+            display: inline-block;
+            padding: 0.5em 1em;
+            position: relative;
+            top: 0.5px; /* To sit on top of the pre border */
+            z-index: 1;
+            margin-bottom: -0.5px;
+
+            .filename-content {
+                display: flex;
+                align-items: center;
+                gap: 0.5em;
+            }
+
+            .filename {
+                font-family: var(--font--mono), monospace;
+                font-size: 14px;
+            }
+
+            .file-icon {
+                flex-shrink: 0;
+            }
+
+            .lang {
+                display: none;
+            }
+        }
+    }
+</style>
