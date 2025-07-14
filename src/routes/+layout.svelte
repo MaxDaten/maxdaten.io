@@ -6,7 +6,13 @@
     import { onNavigate } from '$app/navigation';
     import Header from '$components/organisms/Header.svelte';
     import Footer from '$components/organisms/Footer.svelte';
-    import { description, image, keywords, siteBaseUrl, title } from '$lib/data/meta.js';
+    import {
+        description,
+        image,
+        keywords,
+        siteBaseUrl,
+        title,
+    } from '$lib/data/meta.js';
     /**
      * @typedef {Object} Props
      * @property {import('svelte').Snippet} [children]
@@ -50,10 +56,12 @@
 <style lang="scss">
     .stage {
         height: 100%;
+        min-height: 100vh;
         margin: 0;
         padding: 0;
         display: flex;
         flex-direction: column;
+        flex-grow: 1;
     }
 
     .fill-height {
