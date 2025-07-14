@@ -8,6 +8,7 @@
 
 ## Bugs
 
+- [x] Copy Button not correctly aligned when no file name provided
 - [ ] Footer should be at bottom, even if main content is not full height (see 404 page)
 - [ ] Largest Contentful Paint of pages, optimize layout shifts, for example /blog and articles
 - [ ] Bubbles are starting moving all up: Init movement vector randomly or based on pixel position
