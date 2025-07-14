@@ -4,9 +4,6 @@
 </script>
 
 <footer>
-    <!-- <div class="wave">
-		<FooterWave />
-	</div> -->
     <div class="content">
         <div class="credits">
             Powered by <a
