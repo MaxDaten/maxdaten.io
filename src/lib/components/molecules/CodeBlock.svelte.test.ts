@@ -16,6 +16,10 @@ describe('CodeBlock Component', () => {
         await expect
             .element(screen.getByTestId('code-lang'))
             .toHaveTextContent('javascript');
+
+        // Check that file icon is rendered when filename is provided
+        const fileIcon = screen.container.querySelector('.file-icon');
+        expect(fileIcon).toBeTruthy();
     });
 
     test('renders copy button', async () => {

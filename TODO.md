@@ -1,7 +1,7 @@
 # TODO
 
 - [x] Add copy to clipboard button to CodeBlock
-- [ ] Add file icons to CodeBlock based on lang
+- [x] Add file icons to CodeBlock based on lang
 - [ ] Evaluate `@sveltejs/enhanced-img` and compare with `image-transmutation`, can later be
       replaced with `@sveltejs/enhanced-img`?
 - [ ] Dynamic social media previews for blog posts

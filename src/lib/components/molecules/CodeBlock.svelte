@@ -1,5 +1,6 @@
 <script lang="ts">
     import Button from '$components/atoms/Button.svelte';
+    import FileIcon from '$components/atoms/FileIcon.svelte';
     import CopyIcon from '$lib/icons/copy.svelte';
     import CheckIcon from '$lib/icons/check.svelte';
     import XIcon from '$lib/icons/x.svelte';
@@ -52,8 +53,11 @@
     <figure>
         {#if filename}
             <figcaption class="filename-container">
-                <div data-testid="code-filename" class="filename">
-                    {filename}
+                <div class="filename-content">
+                    <FileIcon {lang} size={16} class="file-icon" />
+                    <div data-testid="code-filename" class="filename">
+                        {filename}
+                    </div>
                 </div>
                 <div data-testid="code-lang" class="lang">{lang}</div>
             </figcaption>
