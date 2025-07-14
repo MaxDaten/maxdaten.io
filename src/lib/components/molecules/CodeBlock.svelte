@@ -146,7 +146,7 @@
                 font-size: 14px;
             }
 
-            .file-icon {
+            :global(.file-icon) {
                 flex-shrink: 0;
             }
 
