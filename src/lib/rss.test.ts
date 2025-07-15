@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { GET } from '../routes/rss.xml/+server';
+import { GET } from '$routes/rss.xml/+server';
 
 describe('RSS XML route', () => {
     it('should return valid RSS XML response', async () => {
