@@ -10,6 +10,6 @@ declare namespace App {
 
 // Squelch warnings of image imports from your assets dir
 declare module '$assets/*' {
-    var meta;
+    const meta;
     export default meta;
 }
