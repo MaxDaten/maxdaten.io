@@ -67,6 +67,7 @@
             }
         }
         .content-area {
+            width: 100%;
             flex: 5;
 
             display: grid;
