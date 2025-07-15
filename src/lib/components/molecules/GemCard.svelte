@@ -1,7 +1,7 @@
 <script lang="ts">
     import Card from '$lib/components/atoms/Card.svelte';
     import Tag from '$components/atoms/Tag.svelte';
-    import Img from '@zerodevx/svelte-img';
+    import { FxReveal as Img } from '@zerodevx/svelte-img';
 
     interface Props {
         title: string;
