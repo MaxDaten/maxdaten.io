@@ -14,6 +14,7 @@ const config = {
             $styles: './src/lib/scss',
             $utils: './src/lib/utils',
             $routes: './src/routes',
+            $assets: './src/lib/assets',
         },
     },
     vitePlugin: { inspector: true },
