@@ -11,7 +11,6 @@
     };
 
     let { post, showImage = true }: Props = $props();
-
 </script>
 
 <Card href="/{post.slug}" class="blog-post-card">
@@ -19,11 +18,11 @@
         {@const optimizedImage = getOptimizedCoverImage(post.coverImage)}
         {#if post.coverImage && showImage && optimizedImage}
             <Img
-              src={getOptimizedCoverImage(post.coverImage)}
-              class="cover-image"
-              data-hero-key={post.coverImage}
-              alt="Cover of this blog post"
-              sizes="(max-width: 1024px) 500px, 1000px"
+                src={getOptimizedCoverImage(post.coverImage)}
+                class="cover-image"
+                data-hero-key={post.coverImage}
+                alt="Cover of this blog post"
+                sizes="(max-width: 1024px) 500px, 1000px"
             />
         {/if}
     {/snippet}

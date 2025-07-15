@@ -10,7 +10,7 @@
 </script>
 
 <PageTransition>
-    <Bubbles/>
+    <Bubbles />
     <div class="container">
         <Hero />
         <About />

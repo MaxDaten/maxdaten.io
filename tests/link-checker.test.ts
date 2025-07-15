@@ -13,7 +13,7 @@ describe.skipIf(process.env.VITEST_SKIP_SLOW === 'true')(
             });
 
             console.log(
-                `Checking links in ${blogFiles.length} blog articles...`,
+                `Checking links in ${blogFiles.length} blog articles...`
             );
 
             const deadLinks: { file: string; url: string; error: string }[] =
@@ -46,7 +46,7 @@ describe.skipIf(process.env.VITEST_SKIP_SLOW === 'true')(
             for (const file of blogFiles) {
                 const content = readFileSync(
                     join(process.cwd(), file),
-                    'utf-8',
+                    'utf-8'
                 );
 
                 // Extract URLs from markdown links [text](url) and direct URLs
@@ -94,7 +94,7 @@ describe.skipIf(process.env.VITEST_SKIP_SLOW === 'true')(
                         const controller = new AbortController();
                         const timeoutId = setTimeout(
                             () => controller.abort(),
-                            10000,
+                            10000
                         ); // 10 second timeout
 
                         const response = await fetch(url, {
@@ -146,7 +146,7 @@ describe.skipIf(process.env.VITEST_SKIP_SLOW === 'true')(
 
                         // Rate limiting: wait 100ms between requests
                         await new Promise((resolve) =>
-                            setTimeout(resolve, 100),
+                            setTimeout(resolve, 100)
                         );
                     } catch (error) {
                         const errorMessage =
@@ -157,7 +157,7 @@ describe.skipIf(process.env.VITEST_SKIP_SLOW === 'true')(
                         // If it's a known project site, just warn but don't fail the test
                         if (isKnownProject(url)) {
                             console.warn(
-                                `Warning: Known project site ${url} is unreachable - ${errorMessage}`,
+                                `Warning: Known project site ${url} is unreachable - ${errorMessage}`
                             );
                             checkedUrls.set(url, true); // Mark as "okay" since it's a known project
                         } else {
@@ -167,7 +167,7 @@ describe.skipIf(process.env.VITEST_SKIP_SLOW === 'true')(
 
                         // Rate limiting for failed requests too
                         await new Promise((resolve) =>
-                            setTimeout(resolve, 200),
+                            setTimeout(resolve, 200)
                         );
                     }
                 }
@@ -187,7 +187,7 @@ describe.skipIf(process.env.VITEST_SKIP_SLOW === 'true')(
                         acc[file].push({ url, error });
                         return acc;
                     },
-                    {} as Record<string, { url: string; error: string }[]>,
+                    {} as Record<string, { url: string; error: string }[]>
                 );
 
                 let errorMessage = '\nDead links found in blog articles:\n\n';
@@ -204,5 +204,5 @@ describe.skipIf(process.env.VITEST_SKIP_SLOW === 'true')(
 
             console.log('✅ All links are working correctly!');
         }, 120000); // 2 minute timeout for the entire test
-    },
+    }
 );

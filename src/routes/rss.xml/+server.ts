@@ -79,7 +79,7 @@ const xml = (posts: BlogPost[]) => `
                   : ''
           }          
         </item>
-      `,
+      `
         )
         .join('')}
   </channel>

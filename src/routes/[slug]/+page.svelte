@@ -11,9 +11,8 @@
     let { data: post }: PageProps = $props();
 
     let metaKeywords = $derived(
-        post ? [...(post.tags || []), ...(post.keywords || [])] : [],
+        post ? [...(post.tags || []), ...(post.keywords || [])] : []
     );
-
 </script>
 
 <svelte:head>

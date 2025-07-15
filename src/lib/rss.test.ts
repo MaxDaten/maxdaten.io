@@ -8,7 +8,7 @@ describe('RSS XML route', () => {
         expect(response.status).toBe(200);
         expect(response.headers.get('Content-Type')).toBe('application/xml');
         expect(response.headers.get('Cache-Control')).toBe(
-            'max-age=0, s-maxage=3600',
+            'max-age=0, s-maxage=3600'
         );
     });
 
@@ -31,7 +31,7 @@ describe('RSS XML route', () => {
 
         // Check atom:link for self-reference (note the double slash in URL)
         expect(xml).toContain(
-            'atom:link href="https://maxdaten.io/rss.xml" rel="self"',
+            'atom:link href="https://maxdaten.io/rss.xml" rel="self"'
         );
     });
 
@@ -60,7 +60,7 @@ describe('RSS XML route', () => {
 
         // Check for proper XML namespaces
         expect(xml).toContain(
-            'xmlns:content="http://purl.org/rss/1.0/modules/content/"',
+            'xmlns:content="http://purl.org/rss/1.0/modules/content/"'
         );
         expect(xml).toContain('xmlns:atom="http://www.w3.org/2005/Atom"');
 
@@ -76,7 +76,7 @@ describe('RSS XML route', () => {
         expect(xml).toContain('<image>');
         // Note the double slash in the URL from siteBaseUrl
         expect(xml).toContain(
-            '<url>https://maxdaten.io/favicons/favicon-32x32.png</url>',
+            '<url>https://maxdaten.io/favicons/favicon-32x32.png</url>'
         );
         expect(xml).toContain('<width>32</width>');
         expect(xml).toContain('<height>32</height>');
@@ -92,7 +92,7 @@ describe('RSS XML route', () => {
 
         // Should not contain unescaped ampersands outside CDATA
         const unescapedAmpersands = xmlWithoutCdata.match(
-            /&(?!amp;|lt;|gt;|quot;|#39;)/g,
+            /&(?!amp;|lt;|gt;|quot;|#39;)/g
         );
         expect(unescapedAmpersands).toBeNull();
 

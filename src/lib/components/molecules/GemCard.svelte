@@ -12,24 +12,20 @@
         showImage?: boolean;
     }
 
-    let {
-        title,
-        coverImage,
-        excerpt,
-        href,
-        tags,
-    }: Props = $props();
+    let { title, coverImage, excerpt, href, tags }: Props = $props();
 
     const coverImages = Object.entries(
         import.meta.glob('$assets/images/gems/*.{jpg,jpeg,png,gif,webp}', {
             eager: true,
             query: { as: 'run', fit: 'cover', height: 300 },
-        }),
+        })
     ).reduce((map: Map<string, unknown>, [key, value]) => {
         return map.set(key.split('/').pop() as string, value);
     }, new Map<string, unknown>());
 
-    const coverImageSrc = coverImages.get(coverImage.split('/').pop() as string);
+    const coverImageSrc = coverImages.get(
+        coverImage.split('/').pop() as string
+    );
 </script>
 
 <Card {href} target="_self" class="gem-card" data-testid="gem-card">
@@ -83,7 +79,7 @@
         justify-content: space-between;
         width: 100%;
         font-size: 1.2rem;
-        font-family: var(--font--title),serif;
+        font-family: var(--font--title), serif;
         font-weight: 700;
     }
 

@@ -12,7 +12,7 @@ const postCoverImages = import.meta.glob(
         import: 'default',
         eager: true,
         query: { as: 'run', fit: 'cover' },
-    },
+    }
 );
 
 // Create a lookup map: filename -> optimized image object
@@ -32,7 +32,7 @@ for (const path in postCoverImages) {
  * @returns Optimized image object for use with svelte-img component, or null if not found
  */
 export function getOptimizedCoverImage(
-    coverImagePath: string | undefined,
+    coverImagePath: string | undefined
 ): unknown | null {
     if (!coverImagePath) return null;
 
@@ -49,7 +49,7 @@ export function getOptimizedCoverImage(
  * @returns true if optimized image exists, false otherwise
  */
 export function hasOptimizedCoverImage(
-    coverImagePath: string | undefined,
+    coverImagePath: string | undefined
 ): boolean {
     if (!coverImagePath) return false;
 

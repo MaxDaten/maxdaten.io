@@ -45,7 +45,7 @@ const highlighter = await createHighlighter({
 const config = {
     layout: join(
         __dirname,
-        'src/lib/components/organisms/MdsvexWrapper.svelte',
+        'src/lib/components/organisms/MdsvexWrapper.svelte'
     ),
     extensions: ['.svx', '.md'],
     highlight: {
@@ -60,7 +60,7 @@ const config = {
                         transformerMetaHighlight(),
                         transformerCodeBlock(),
                     ],
-                }),
+                })
             );
             return `<Components.CodeBlock ${meta} lang="${lang}">{@html \`${html}\`}</Components.CodeBlock>`;
         },

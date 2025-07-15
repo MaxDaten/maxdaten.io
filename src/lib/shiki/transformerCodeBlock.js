@@ -62,7 +62,7 @@ export function transformerCodeBlock() {
             }
             this.addClassToHast(hast, 'show-line-numbers');
             const startingNumberMatch = this.options.meta?.__raw?.match(
-                /showLineNumbers=(\d+)/,
+                /showLineNumbers=(\d+)/
             );
             const startingNumber =
                 startingNumberMatch && parseInt(startingNumberMatch[1], 10);

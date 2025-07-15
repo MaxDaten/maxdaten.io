@@ -20,7 +20,7 @@ test('blog page loads correctly', async ({ page }) => {
 
     // Check that blog posts are displayed (at least one should exist)
     const blogPosts = page.locator(
-        '.blog-post-card, [data-testid="blog-post"]',
+        '.blog-post-card, [data-testid="blog-post"]'
     );
     const count = await blogPosts.count();
     expect(count).toBeGreaterThan(0);
@@ -31,7 +31,7 @@ test('gems page loads correctly', async ({ page }) => {
 
     // Check that the gems page has loaded with correct title
     await expect(page.locator('h1, h2')).toContainText(
-        /Gems of Precious Friends/i,
+        /Gems of Precious Friends/i
     );
 
     // Check that gem cards are displayed (should have 3 gems)

@@ -8,7 +8,7 @@ describe('importPosts', () => {
         console.log('Found posts:', posts.length);
         console.log(
             'Post titles:',
-            posts.map((p) => p.title),
+            posts.map((p) => p.title)
         );
 
         expect(posts).toBeInstanceOf(Array);

@@ -23,7 +23,7 @@ export const importPosts = () => {
                 html: htmlContent,
                 head: renderedPost.head,
                 readingTimeMinutes: readingTime(
-                    striptags(striptags(htmlContent || '')),
+                    striptags(striptags(htmlContent || ''))
                 ).minutes,
             } as BlogPost);
         }
@@ -39,7 +39,7 @@ export const filterPosts = (posts: BlogPost[]) => {
                 ? -1
                 : new Date(a.date).getTime() < new Date(b.date).getTime()
                   ? 1
-                  : 0,
+                  : 0
         )
         .map((post) => {
             const relatedPosts = getRelatedPosts(posts, post);
