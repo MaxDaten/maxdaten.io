@@ -81,8 +81,7 @@
     }
 
     :global(.cover-image) {
-        min-height: 200px;
-        max-height: 600px;
+        max-height: 350px;
         object-fit: cover;
     }
 </style>
