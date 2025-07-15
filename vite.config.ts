@@ -1,9 +1,10 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 import { NodePackageImporter } from 'sass';
+import { imagetools } from '@zerodevx/svelte-img/vite';
 
 export default defineConfig({
-    plugins: [sveltekit()],
+    plugins: [sveltekit(), imagetools()],
     css: {
         preprocessorOptions: {
             scss: {
