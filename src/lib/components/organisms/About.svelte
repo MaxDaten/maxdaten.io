@@ -1,6 +1,7 @@
 <script>
     import Socials from '$lib/components/molecules/Socials.svelte';
-    import Image from '../atoms/Image.svelte';
+    import Img from '@zerodevx/svelte-img';
+    import MeSrc from '$assets/images/me.png?as=run&fit=cover';
 </script>
 
 <section id="about">
@@ -30,13 +31,11 @@
         </div>
     </div>
     <div class="image">
-        <Image
-            src="/images/me.png"
+        <Img
+            src={MeSrc}
+            class="me-image"
             alt="A manga comic drawing of Jan-Philip Loos sitting in front of a window showing a cyberpunk city"
-            style="
-                border-radius: 10%;
-                border: 8px solid rgba(var(--color--primary-rgb), 0.05);
-            "
+            sizes="(max-width: 1024px) 400px, 800px"
         />
     </div>
 </section>
@@ -62,6 +61,7 @@
             display: flex;
             flex-direction: column;
             gap: 15px;
+
             h2 {
                 @include breakpoints.for-phone-only {
                     text-align: center;
@@ -108,7 +108,15 @@
         }
 
         .image {
-            width: 100%;
+            border-radius: 10%;
+            border: 8px solid rgba(var(--color--primary-rgb), 0.05);
+            overflow: hidden;
+
+            :global(.me-image) {
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+            }
         }
     }
 </style>

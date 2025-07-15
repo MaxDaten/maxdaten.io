@@ -1,7 +1,8 @@
 <script lang="ts">
     import Card from '$lib/components/atoms/Card.svelte';
     import Tag from '$lib/components/atoms/Tag.svelte';
-    import Image from '../atoms/Image.svelte';
+    import Img from '@zerodevx/svelte-img';
+    import { getOptimizedCoverImage } from '$lib/utils/image-loader';
     import type { BlogPost } from '$utils/types';
 
     type Props = {
@@ -10,17 +11,20 @@
     };
 
     let { post, showImage = true }: Props = $props();
+
 </script>
 
 <Card href="/{post.slug}" class="blog-post-card">
     {#snippet image()}
-        {#if post.coverImage && showImage}
-            <div class="cover-image" data-hero-key={post.coverImage}>
-                <Image
-                    src={post.coverImage}
-                    alt="Cover image of this blog post"
-                />
-            </div>
+        {@const optimizedImage = getOptimizedCoverImage(post.coverImage)}
+        {#if post.coverImage && showImage && optimizedImage}
+            <Img
+              src={getOptimizedCoverImage(post.coverImage)}
+              class="cover-image"
+              data-hero-key={post.coverImage}
+              alt="Cover of this blog post"
+              sizes="(max-width: 1024px) 500px, 1000px"
+            />
         {/if}
     {/snippet}
     {#snippet content()}
@@ -74,5 +78,11 @@
         margin-top: 5px;
         font-size: 0.9rem;
         text-align: justify;
+    }
+
+    :global(.cover-image) {
+        min-height: 200px;
+        max-height: 600px;
+        object-fit: cover;
     }
 </style>

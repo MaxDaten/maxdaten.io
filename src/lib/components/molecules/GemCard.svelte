@@ -1,11 +1,11 @@
 <script lang="ts">
     import Card from '$lib/components/atoms/Card.svelte';
-    import Image from '$components/atoms/Image.svelte';
     import Tag from '$components/atoms/Tag.svelte';
+    import Img from '@zerodevx/svelte-img';
 
     interface Props {
         title: string;
-        coverImage?: string | undefined;
+        coverImage: string;
         excerpt: string;
         href: string;
         tags: string[] | undefined;
@@ -14,19 +14,32 @@
 
     let {
         title,
-        coverImage = undefined,
+        coverImage,
         excerpt,
         href,
         tags,
     }: Props = $props();
+
+    const coverImages = Object.entries(
+        import.meta.glob('$assets/images/gems/*.{jpg,jpeg,png,gif,webp}', {
+            eager: true,
+            query: { as: 'run', fit: 'cover', height: 300 },
+        }),
+    ).reduce((map: Map<string, unknown>, [key, value]) => {
+        return map.set(key.split('/').pop() as string, value);
+    }, new Map<string, unknown>());
+
+    const coverImageSrc = coverImages.get(coverImage.split('/').pop() as string);
 </script>
 
 <Card {href} target="_self" class="gem-card" data-testid="gem-card">
     {#snippet image()}
         {#if coverImage}
-            <div class="cover-image">
-                <Image src={coverImage} alt="Cover image of this gem" />
-            </div>
+            <Img
+                class="cover-image"
+                src={coverImageSrc}
+                alt="Cover preview of this gem"
+            />
         {/if}
     {/snippet}
     {#snippet content()}
@@ -96,7 +109,9 @@
         margin-top: 20px;
     }
 
-    .cover-image {
-        width: 100%;
+    :global(.cover-image) {
+        max-height: 300px;
+        object-fit: cover;
+        object-position: bottom;
     }
 </style>

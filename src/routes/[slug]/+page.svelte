@@ -3,15 +3,17 @@
     import dateformat from 'dateformat';
     import { siteBaseUrl, title } from '$lib/data/meta';
     import RelatedPosts from '$components/organisms/RelatedPosts.svelte';
-    import Image from '$components/atoms/Image.svelte';
     import { PageTransition } from 'ssgoi';
     import type { PageProps } from './$types';
+    import Img from '@zerodevx/svelte-img';
+    import { getOptimizedCoverImage } from '$utils/image-loader';
 
     let { data: post }: PageProps = $props();
 
     let metaKeywords = $derived(
         post ? [...(post.tags || []), ...(post.keywords || [])] : [],
     );
+
 </script>
 
 <svelte:head>
@@ -60,9 +62,12 @@
             {/if}
         </div>
         {#if post.coverImage}
-            <div class="cover-image" data-hero-key={post.coverImage}>
-                <Image src={post.coverImage} alt={post.title} />
-            </div>
+            <Img
+                class="cover-image"
+                src={getOptimizedCoverImage(post.coverImage)}
+                data-hero-key={post.coverImage}
+                alt={post.title}
+            />
         {/if}
         <div class="content">
             <Post />
@@ -119,25 +124,14 @@
             }
         }
 
-        .cover-image {
+        :global(.cover-image) {
+            max-height: 400px;
+            object-fit: cover;
             width: min(var(--main-column-width), 100%);
             margin: 0 auto;
-            max-height: 400px;
             box-shadow: var(--image-shadow);
             border-radius: 12px;
             overflow: hidden;
-
-            img {
-                width: 100%;
-                height: 100%;
-                max-height: 400px;
-                object-fit: cover;
-            }
-        }
-
-        :global(.cover-image img) {
-            max-height: 400px;
-            object-fit: cover;
         }
 
         .content {
@@ -149,14 +143,6 @@
 
             :global(> *) {
                 grid-column: 2;
-            }
-
-            :global(> .full-bleed) {
-                grid-column: 1 / 4;
-                width: 100%;
-                max-width: 1600px;
-                margin-left: auto;
-                margin-right: auto;
             }
         }
 
