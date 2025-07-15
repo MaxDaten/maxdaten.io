@@ -29,13 +29,13 @@
         &.primary {
             background-color: var(--color--primary-tint);
             color: var(--color--primary);
-            border-color: rgba(var(--color--primary-rgb), 0.5);
+            border-color: rgba(var(--color--primary-rgb), 0.3);
         }
 
         &.secondary {
             background-color: var(--color--secondary-tint);
             color: var(--color--secondary);
-            border-color: rgba(var(--color--secondary-rgb), 0.5);
+            border-color: rgba(var(--color--secondary-rgb), 0.3);
         }
     }
 </style>
