@@ -15,7 +15,7 @@ import relativeImages from 'mdsvex-relative-images';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const theme = 'aurora-x';
+const theme = 'ayu-dark';
 const highlighter = await createHighlighter({
     themes: [theme],
     langs: [
