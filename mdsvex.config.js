@@ -10,6 +10,7 @@ import {
     transformerMetaHighlight,
     transformerMetaWordHighlight,
 } from '@shikijs/transformers';
+import relativeImages from 'mdsvex-relative-images';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -65,6 +66,7 @@ const config = {
             return `<Components.CodeBlock ${meta} lang="${lang}">{@html \`${html}\`}</Components.CodeBlock>`;
         },
     },
+    remarkPlugins: [relativeImages],
     rehypePlugins: [
         rehypeExternalLinks, // Adds 'target' and 'rel' to external links
         rehypeSlug, // Adds 'id' attributes to Headings (h1,h2,etc)
