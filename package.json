@@ -56,7 +56,6 @@
         "eslint-plugin-svelte": "^3.10.1",
         "glob": "^11.0.3",
         "globals": "^16.2.0",
-        "image-transmutation": "^1.0.1",
         "mdsvex": "^0.12.3",
         "prettier": "^3.5.3",
         "prettier-plugin-svelte": "^3.2.6",
@@ -77,5 +76,8 @@
         "vitest": "^3.2.3",
         "vitest-browser-svelte": "^1.0.0"
     },
-    "type": "module"
+    "type": "module",
+    "overrides": {
+        "vite-imagetools": "7.1.0"
+    }
 }
