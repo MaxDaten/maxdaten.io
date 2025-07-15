@@ -3,6 +3,7 @@ import { mdsvex } from 'mdsvex';
 import adapter from '@sveltejs/adapter-vercel';
 import mdsvexConfig from './mdsvex.config.js';
 
+/** @type {import('@sveltejs/kit/types').Config} */
 const config = {
     kit: {
         adapter: adapter(),
