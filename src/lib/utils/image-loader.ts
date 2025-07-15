@@ -9,6 +9,7 @@
 const postCoverImages = import.meta.glob(
     '$assets/images/posts/*.{png,jpg,jpeg,webp}',
     {
+        import: 'default',
         eager: true,
         query: { as: 'run', fit: 'cover' },
     },

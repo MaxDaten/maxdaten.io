@@ -1,7 +1,7 @@
 <script lang="ts">
     import Card from '$lib/components/atoms/Card.svelte';
     import Tag from '$lib/components/atoms/Tag.svelte';
-    import Img from '@zerodevx/svelte-img';
+    import { FxReveal as Img } from '@zerodevx/svelte-img';
     import { getOptimizedCoverImage } from '$lib/utils/image-loader';
     import type { BlogPost } from '$utils/types';
 
