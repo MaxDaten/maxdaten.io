@@ -101,4 +101,14 @@ describe('RSS XML route', () => {
             expect(xmlWithoutCdata).not.toMatch(/&(?!amp;|lt;|gt;|quot;|#39;)/);
         }
     });
+
+    it('should include specific blog post title in h1 tag', async () => {
+        const response = await GET();
+        const xml = await response.text();
+
+        expect(xml).toContain('2023-12-11-deploy-sops-secrets-with-nix');
+        expect(xml).toContain(
+            '<blockquote><p>How to manage secrets like private ssh keys'
+        );
+    });
 });

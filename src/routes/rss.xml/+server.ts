@@ -1,6 +1,10 @@
 import { description, siteBaseUrl, title } from '$lib/data/meta';
 import type { BlogPost } from '$lib/utils/types';
-import { filterPosts, importPosts } from '$lib/data/blog-posts/utils';
+import {
+    filterPosts,
+    getPostHtml,
+    importPosts,
+} from '$lib/data/blog-posts/utils';
 
 export const prerender = true;
 
@@ -66,7 +70,7 @@ const xml = (posts: BlogPost[]) => `
               </strong>
             </div>
 
-            ${post.html}
+            ${getPostHtml(post)}
           ]]></content:encoded>
           ${
               post.coverImage

@@ -7,28 +7,38 @@ interface PostComponent {
     metadata: BlogPost;
 }
 
-export const importPosts = () => {
-    const imports = import.meta.glob('/src/content/blog/*.md', {
-        eager: true,
-    });
+const loadedPosts = import.meta.glob<PostComponent>('/src/content/blog/*.md', {
+    eager: true,
+}) as Record<string, PostComponent>;
 
+const postsBySlug = new Map<string, PostComponent>(
+    Object.entries(loadedPosts).map(([_path, post]) => [
+        post.metadata.slug,
+        post,
+    ])
+);
+
+export const importPosts = () => {
     const posts: BlogPost[] = [];
-    for (const path in imports) {
-        const post = imports[path] as PostComponent;
+    for (const path in loadedPosts) {
+        const post = loadedPosts[path];
+        const renderedPost = render(post.default, { props: {} });
         if (post) {
-            const renderedPost = render(post.default, { props: {} });
-            const htmlContent = renderedPost.body;
             posts.push({
                 ...post.metadata,
-                html: htmlContent,
-                head: renderedPost.head,
                 readingTimeMinutes: readingTime(
-                    striptags(striptags(htmlContent || ''))
+                    striptags(striptags(renderedPost.body || ''))
                 ).minutes,
             } as BlogPost);
         }
     }
     return posts;
+};
+
+export const getPostHtml = (post: BlogPost) => {
+    const loadedPost = postsBySlug.get(post.slug);
+    const renderedPost = render(loadedPost.default, { props: {} });
+    return renderedPost.body;
 };
 
 export const filterPosts = (posts: BlogPost[]) => {
