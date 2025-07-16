@@ -1,6 +1,7 @@
 import striptags from 'striptags';
 import type { BlogPost } from '$lib/utils/types';
 import { render } from 'svelte/server';
+import { error } from '@sveltejs/kit';
 
 interface PostComponent {
     default: import('svelte').Component;
@@ -36,7 +37,8 @@ export const importPosts = () => {
 };
 
 export const getPostHtml = (post: BlogPost) => {
-    const loadedPost = postsBySlug.get(post.slug);
+    const loadedPost =
+        postsBySlug.get(post.slug) ?? error(404, 'Post not found');
     const renderedPost = render(loadedPost.default, { props: {} });
     return renderedPost.body;
 };
