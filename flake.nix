@@ -86,6 +86,16 @@
                     language = "system";
                     pass_filenames = false;
                   };
+
+                  # NPM audit high
+                  npm-audit = {
+                    enable = true;
+                    name = "03-npm-audit";
+                    entry = "npm audit --audit-level=high";
+                    language = "system";
+                    pass_filenames = false;
+                  };
+
                 };
 
                 # https://devenv.sh/reference/options/
