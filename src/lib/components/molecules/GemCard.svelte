@@ -90,11 +90,6 @@
         flex-wrap: wrap;
     }
 
-    .note {
-        font-size: 0.8rem;
-        color: rgba(var(--color--secondary-rgb), 0.8);
-    }
-
     .text {
         margin-top: 5px;
         font-size: 0.9rem;
