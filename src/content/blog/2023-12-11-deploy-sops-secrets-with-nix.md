@@ -55,7 +55,7 @@ which provides great insights into possible solutions using secrets in a nix env
 is unmentioned in Xe’s article: using [sops](https://github.com/getsops/sops) with
 [sops-nix](https://github.com/Mic92/sops-nix). I want to spread the word and describe my approach.
 
-![Cute snow truck plowing a lot of padlocks](/images/posts/snow-plug-locks.png)
+![Cute snow truck plowing a lot of padlocks]($assets/images/posts/snow-plug-locks.png)
 
 ## **Secrets OPerationS (sops) and sops-nix**
 
