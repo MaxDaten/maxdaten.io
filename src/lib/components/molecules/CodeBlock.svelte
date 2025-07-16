@@ -100,6 +100,8 @@
             margin: 1.5em 0;
             position: relative;
 
+            box-shadow: var(--code-box-shaow);
+
             figcaption + :global(pre.shiki) {
                 border-top-left-radius: 0;
                 border-top-right-radius: 0;
