@@ -2,7 +2,7 @@
     import Card from '$lib/components/atoms/Card.svelte';
     import Tag from '$lib/components/atoms/Tag.svelte';
     import { FxReveal as Img } from '@zerodevx/svelte-img';
-    import { getOptimizedCoverImage } from '$lib/utils/image-loader';
+    import { getCoverBySlug } from '$lib/utils/image-loader';
     import type { BlogPost } from '$utils/types';
 
     type Props = {
@@ -15,10 +15,10 @@
 
 <Card href="/{post.slug}" class="blog-post-card">
     {#snippet image()}
-        {@const optimizedImage = getOptimizedCoverImage(post.coverImage)}
+        {@const optimizedImage = getCoverBySlug(post.slug)}
         {#if post.coverImage && showImage && optimizedImage}
             <Img
-                src={getOptimizedCoverImage(post.coverImage)}
+                src={optimizedImage}
                 class="cover-image"
                 data-hero-key={post.coverImage}
                 alt="Cover of this blog post"

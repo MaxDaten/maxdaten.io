@@ -6,7 +6,7 @@
     import { PageTransition } from 'ssgoi';
     import type { PageProps } from './$types';
     import Img from '@zerodevx/svelte-img';
-    import { getOptimizedCoverImage } from '$utils/image-loader';
+    import { getCoverBySlug } from '$utils/image-loader';
 
     let { data: post }: PageProps = $props();
 
@@ -63,7 +63,7 @@
         {#if post.coverImage}
             <Img
                 class="cover-image"
-                src={getOptimizedCoverImage(post.coverImage)}
+                src={getCoverBySlug(post.slug)}
                 data-hero-key={post.coverImage}
                 alt={post.title}
             />
