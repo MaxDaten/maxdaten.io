@@ -24,22 +24,21 @@
         margin: 2rem 0 0.3rem;
     }
 
-    picture {
-        display: inline;
-    }
+    // The reveal image
+    .wrap.reveal {
+        margin: 2rem auto;
 
-    img {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 2rem;
-        margin-bottom: 2rem;
-
-        max-width: 100%;
-        height: auto;
-        width: auto;
+        img {
+            display: block;
+            object-fit: cover;
+            width: 100%;
+            height: auto;
+        }
 
         box-shadow: var(--image-shadow);
+
+        border-radius: 8px;
+        overflow: hidden;
     }
 
     figcaption {
@@ -65,10 +64,6 @@
         color: var(--color--primary);
         text-decoration: none;
         margin-right: 10px;
-    }
-
-    img {
-        border-radius: 6px;
     }
 
     // Shiki
