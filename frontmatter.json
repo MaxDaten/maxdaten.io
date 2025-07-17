@@ -3,6 +3,34 @@
     "frontMatter.taxonomy.seoDescriptionField": "excerpt",
     "frontMatter.framework.startCommand": "npm run dev",
     "frontMatter.preview.host": "http://localhost:5173/",
+    "frontMatter.content.publicFolder": "src/lib/assets",
+    "frontMatter.content.placeholders": [
+        {
+            "id": "uuid",
+            "script": ".frontmatter/scripts/generate-uuid.js"
+        }
+    ],
+    "frontMatter.content.snippets": {
+        "imageWithPostFolder": {
+            "title": "Insert image in post folder",
+            "description": "Inserts an image into the post's dedicated image folder.",
+            "body": "![{{caption}}]({{mediaUrl}})",
+            "isMediaSnippet": true,
+            "fields": [
+                {
+                    "name": "mediaUrl",
+                    "title": "Media URL",
+                    "type": "string",
+                    "default": "/images/posts/{{slug}}/{{uuid}}.{{extension}}"
+                },
+                {
+                    "name": "caption",
+                    "title": "Caption",
+                    "type": "string"
+                }
+            ]
+        }
+    },
     "frontMatter.taxonomy.contentTypes": [
         {
             "name": "default",
@@ -62,7 +90,6 @@
         }
     ],
     "frontMatter.framework.id": "other",
-    "frontMatter.content.publicFolder": "[[workspace]]/src/lib/assets/images",
     "frontMatter.content.pageFolders": [
         {
             "title": "posts",

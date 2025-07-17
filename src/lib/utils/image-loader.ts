@@ -6,8 +6,9 @@
  */
 
 // Import all post cover images with svelte-img optimization
+// Now supports nested directory structure: /posts/{slug}/cover.{ext}
 const postCoverImages = import.meta.glob(
-    '$assets/images/posts/*.{png,jpg,jpeg,webp}',
+    '$assets/images/posts/*/cover.{png,jpg,jpeg,webp}',
     {
         import: 'default',
         eager: true,
@@ -19,16 +20,22 @@ const postCoverImages = import.meta.glob(
 const imageMap = new Map<string, unknown>();
 
 for (const path in postCoverImages) {
-    // Extract filename from path: /static/images/posts/cover-sops.png -> cover-sops.png
-    const filename = path.split('/').pop();
-    if (filename) {
+    // Extract slug and filename from nested path: $assets/images/posts/my-post/cover.png
+    const matches = path.match(/posts\/([^/]+)\/(cover\.[^.]+)$/);
+    if (matches) {
+        const [, slug, filename] = matches;
+        // Store with slug/filename key for lookup
+        imageMap.set(`${slug}/${filename}`, postCoverImages[path]);
+        // Also store with just filename for backwards compatibility during migration
         imageMap.set(filename, postCoverImages[path]);
     }
 }
 
 /**
  * Get optimized image object for a blog post cover
- * @param coverImagePath - Path from blog post frontmatter (e.g., "/images/posts/cover-sops.png")
+ * @param coverImagePath - Path from blog post frontmatter
+ *   Supports both old format: "src/lib/assets/images/posts/cover-sops.png"
+ *   And new format: "src/lib/assets/images/posts/my-post/cover.png"
  * @returns Optimized image object for use with svelte-img component, or null if not found
  */
 export function getOptimizedCoverImage(
@@ -36,7 +43,13 @@ export function getOptimizedCoverImage(
 ): unknown | null {
     if (!coverImagePath) return null;
 
-    // Extract filename from path: /images/posts/cover-sops.png -> cover-sops.png
+    // Try to extract slug/filename from new nested structure
+    const nestedMatches = coverImagePath.match(/posts\/([^/]+\/cover\.[^.]+)$/);
+    if (nestedMatches) {
+        return imageMap.get(nestedMatches[1]) || null;
+    }
+
+    // Fallback to old flat structure for backwards compatibility
     const filename = coverImagePath.split('/').pop();
     if (!filename) return null;
 
@@ -53,6 +66,13 @@ export function hasOptimizedCoverImage(
 ): boolean {
     if (!coverImagePath) return false;
 
+    // Try nested structure first
+    const nestedMatches = coverImagePath.match(/posts\/([^/]+\/cover\.[^.]+)$/);
+    if (nestedMatches) {
+        return imageMap.has(nestedMatches[1]);
+    }
+
+    // Fallback to flat structure
     const filename = coverImagePath.split('/').pop();
     return filename ? imageMap.has(filename) : false;
 }

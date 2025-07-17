@@ -1,7 +1,7 @@
 ---
 title: Deploy SOPS Secrets with Nix
 slug: 2023-12-11-deploy-sops-secrets-with-nix
-coverImage: src/lib/assets/images/posts/cover-sops.png
+coverImage: src/lib/assets/images/posts/2023-12-11-deploy-sops-secrets-with-nix/cover.png
 excerpt:
     How to manage secrets like private ssh keys or database access in a cloud environment via nix
     and sops.
@@ -55,7 +55,7 @@ which provides great insights into possible solutions using secrets in a nix env
 is unmentioned in Xe’s article: using [sops](https://github.com/getsops/sops) with
 [sops-nix](https://github.com/Mic92/sops-nix). I want to spread the word and describe my approach.
 
-![Cute snow truck plowing a lot of padlocks](/src/lib/assets/images/posts/snow-plug-locks.png)
+![Cute snow truck plowing a lot of padlocks](/src/lib/assets/images/posts/2023-12-11-deploy-sops-secrets-with-nix/ae0171e6-cb0c-465c-8f7a-ac45a5c39c1f.png)
 
 ## **Secrets OPerationS (sops) and sops-nix**
 
@@ -259,7 +259,7 @@ systemd[1]: Finished secret-test.service.
 
 ## Discussion
 
-![A humorous scene depicting computer scientists engaged in a controversial discussion.](/src/lib/assets/images/posts/computer-scientists-discussion.png)
+![A humorous scene depicting computer scientists engaged in a controversial discussion.](/src/lib/assets/images/posts/2023-12-11-deploy-sops-secrets-with-nix/a7b446f1-5279-4cd0-8bcf-c58b20d9ae0d.png)
 
 Using sops-nix with NixOS allows us to directly encode and store our secrets where the rest of our
 configuration is stored. While it is
