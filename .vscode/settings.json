@@ -1,11 +1,6 @@
 {
     "editor.formatOnSave": true,
     "prettier.singleQuote": true,
-    "frontMatter.preview.host": "http://localhost:5173/",
-    "frontMatter.framework.startCommand": "npm run dev",
-    "frontMatter.content.autoUpdateDate": false,
-    "frontMatter.content.fmHighlight": true,
-    "frontMatter.content.publicFolder": "static",
     "files.autoSave": "afterDelay",
     "workbench.colorCustomizations": {
         "activityBar.activeBackground": "#1f6fd0",
@@ -34,17 +29,5 @@
         "striptags",
         "telepresence"
     ],
-    "[markdown]": {
-        "editor.fontSize": 14,
-        "editor.lineHeight": 26,
-        "editor.wordWrap": "wordWrapColumn",
-        "editor.wordWrapColumn": 64,
-        "editor.lineNumbers": "off",
-        "editor.quickSuggestions": {
-            "comments": "off",
-            "strings": "off",
-            "other": "off"
-        },
-        "editor.minimap.enabled": false
-    }
+    "[markdown]": {}
 }
