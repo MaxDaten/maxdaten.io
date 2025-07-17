@@ -1,10 +1,10 @@
 ---
-title: Uses - Tools & Technologies
+title: 'My 2025 Developer Tech Stack: Tools for DevOps & Productivity'
 slug: 00-uses
 coverImage: src/lib/assets/images/posts/00-uses/cover.png
 excerpt:
-    A comprehensive overview of the tools, technologies, and gear I rely on for software
-    development, DevOps consulting, and daily productivity.
+    Explore the complete 2025 tech stack I use for DevOps consulting and software development. A
+    deep dive into my favorite tools, from Nix and Kubernetes to Zed and SvelteKit.
 date: 2025-06-01T05:00:00.000Z
 hidden: false
 tags:
@@ -14,10 +14,13 @@ tags:
     - productivity
     - setup
 keywords:
-    - CI/CD Tools
     - Cloud Platforms
+    - developer tech stack
     - Development Environment
     - Development Tools
+    - devenv
+    - DevOps
+    - DevOps toolkit
     - Docker
     - Google Cloud Platform
     - Infrastructure as Code
@@ -26,17 +29,17 @@ keywords:
     - Productivity Setup
     - Programming Languages
     - Software Development
-    - Terraform
-    - DevOps
 type: page
 ---
 
-# Uses
+# My 2025 Tech Stack: A Guide to My Development, DevOps, and Productivity Tools
 
-Here's a comprehensive overview of the tools, technologies, and gear I rely on for software
-development, DevOps consulting, and daily productivity.
+In this post, I provide a comprehensive overview of the software development tools and technologies
+that form my core DevOps toolkit. This is the tech stack for a software consultant that I rely on
+daily, refined over years of building complex systems. You'll find everything from my development
+environment and infrastructure choices to the hardware and productivity apps that keep me efficient.
 
-## Development Environment
+## Core Software Development Environment
 
 ### Editor & Terminal
 
@@ -68,7 +71,7 @@ development, DevOps consulting, and daily productivity.
   and distributed systems
 - **[Java](https://www.oracle.com/java/)** - Enterprise applications and Spring-based microservices
 
-## Infrastructure & DevOps
+## My Go-To Infrastructure & DevOps Toolkit
 
 ### Cloud Platforms
 
@@ -127,7 +130,7 @@ development, DevOps consulting, and daily productivity.
 - **[HTTPie](https://httpie.io/)** - User-friendly HTTP client
 - **[OpenAPI](https://www.openapis.org/)** - API specification and documentation
 
-## Hardware & Setup
+## My Hardware Setup for Development and Local AI
 
 ### Computing
 
@@ -139,7 +142,7 @@ development, DevOps consulting, and daily productivity.
 
 - **AirPods Pro Gen 2** - Focus during deep work sessions and online calls
 
-## Productivity & Communication
+## Productivity Setup & Communication
 
 ### Organization
 
@@ -174,6 +177,6 @@ development, DevOps consulting, and daily productivity.
 
 ---
 
-This toolkit represents years of refinement and adaptation to different client needs and project
-requirements. I'm always evaluating new tools and technologies to improve efficiency and solve
-client challenges more effectively.
+This entire developer tech stack is constantly evolving, but it currently provides the power and
+flexibility needed to tackle modern software and infrastructure challenges. I hope this look into my
+DevOps toolkit gives you some new ideas for your own workflow.
