@@ -62,11 +62,13 @@
         }
     ],
     "frontMatter.framework.id": "other",
-    "frontMatter.content.publicFolder": "static/images",
+    "frontMatter.content.publicFolder": "[[workspace]]/src/lib/assets/images",
     "frontMatter.content.pageFolders": [
         {
             "title": "posts",
-            "path": "[[workspace]]/src/routes/(blog-article)"
+            "path": "[[workspace]]/src/content/blog"
         }
-    ]
+    ],
+    "frontMatter.content.autoUpdateDate": false,
+    "frontMatter.content.fmHighlight": true
 }
