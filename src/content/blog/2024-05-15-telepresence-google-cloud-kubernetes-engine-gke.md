@@ -1,7 +1,7 @@
 ---
 title: Telepresence with Google Cloud Kubernetes Engine (GKE)
 slug: 2024-05-15-telepresence-google-cloud-kubernetes-engine-gke
-coverImage: $assets/images/posts/portal-telepresence.png
+coverImage: src/lib/assets/images/posts/portal-telepresence.png
 excerpt:
     How to use Telepresence with GKE & NEGs, focusing on health check challenges and providing two
     methods enabling fast local development & debugging cycles.

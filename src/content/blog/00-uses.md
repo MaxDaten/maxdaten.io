@@ -1,7 +1,7 @@
 ---
 title: Uses - Tools & Technologies
 slug: 00-uses
-coverImage: $assets/images/posts/maxdaten-io-term.png
+coverImage: src/lib/assets/images/posts/maxdaten-io-term.png
 excerpt:
     A comprehensive overview of the tools, technologies, and gear I rely on for software
     development, DevOps consulting, and daily productivity.
