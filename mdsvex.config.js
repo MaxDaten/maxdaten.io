@@ -44,6 +44,8 @@ const highlighter = await createHighlighter({
 
 /** @type import("mdsvex").MdsvexOptions */
 const config = {
+    // Wrapper providing blog relevant data fields like metadata (see: `BlogPost`)
+    // and components to be used in the blog post.
     layout: join(
         __dirname,
         'src/lib/components/organisms/MdsvexWrapper.svelte'
