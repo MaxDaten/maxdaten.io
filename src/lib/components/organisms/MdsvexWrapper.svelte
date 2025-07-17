@@ -3,7 +3,8 @@
     // components available for a blog article, can be used in rehype
     export { default as Callout } from '$components/molecules/Callout.svelte';
     export { default as CodeBlock } from '$components/molecules/CodeBlock.svelte';
-    export { FxReveal as Img } from '@zerodevx/svelte-img';
+    // Export MarkdownImage as the img element replacement for markdown images
+    export { default as img } from '$components/atoms/MarkdownImage.svelte';
 </script>
 
 <script lang="ts">
