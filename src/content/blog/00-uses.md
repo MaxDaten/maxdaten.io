@@ -14,20 +14,20 @@ tags:
     - productivity
     - setup
 keywords:
-    - Development Tools
-    - DevOps Tools
-    - Programming Languages
+    - CI/CD Tools
     - Cloud Platforms
+    - Development Environment
+    - Development Tools
+    - Docker
+    - Google Cloud Platform
     - Infrastructure as Code
     - Kubernetes
-    - Google Cloud Platform
-    - Development Environment
-    - Productivity Setup
-    - Software Development
     - NixOS
+    - Productivity Setup
+    - Programming Languages
+    - Software Development
     - Terraform
-    - Docker
-    - CI/CD Tools
+    - DevOps
 type: page
 ---
 
