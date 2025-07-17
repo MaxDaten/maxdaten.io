@@ -133,7 +133,8 @@ example, in an instance templates:
 resource "google_compute_instance_template" "my_instance" {
   # ...
 }
-service_account {
+
+resource "google_service_account" "instance-sa" {
   email = google_service_account.my_instance_sa.email
   scopes = ["cloud-platform"]
 }
