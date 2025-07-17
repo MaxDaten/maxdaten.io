@@ -101,11 +101,11 @@ This is a SvelteKit-based static blog site with MDX integration for content auth
 
 **Syntax Highlighting System:**
 
-- Shiki 3.7 with `aurora-x` theme for code blocks
+- Shiki 3.7 for code blocks
 - Custom transformers for enhanced features (filename display, line numbers, copy buttons)
 - Supported languages: bash, css, haskell, hcl, html, http, js, kotlin, nix, svelte, terraform,
   text, ts, yaml, docker, scss, python, nginx, java
-- Integration through MDsveX with custom CodeBlock component
+- Integration through MDsveX with custom `CodeBlock` component
 - Configuration in `mdsvex.config.js` and `src/lib/shiki/transformerCodeBlock.js`
 
 **Development Environment:**
@@ -147,41 +147,11 @@ This is a SvelteKit-based static blog site with MDX integration for content auth
 - Prefer functional style before imperative style
 - Follow clean code style guides moderately
 
-## Shiki Code Block Usage
-
-**Basic Syntax:**
-
-````markdown
-```js
-console.log('Hello world');
-```
-````
-
-**With Filename:**
-
-````markdown
-```js filename="example.js"
-console.log('Hello world');
-```
-````
-
-**With Line Numbers:**
-
-````markdown
-```js showLineNumbers
-console.log('Hello world');
-```
-
-```js showLineNumbers=10
-console.log('Hello world');
-```
-````
-
 ## Approach
 
 Core principle is to maintain focused contexts for both yourself (the orchestrator/main agent) and
-each sub-agent. Therefore, please use the Task tool to delegate suitable tasks to sub-agents to
-improve task efficiency and optimize token usage. Use Gemini for planning and architectural
+each sub-agent. Therefore, use the Task tool to delegate suitable tasks to sub-agents to improve
+task efficiency and optimize token usage. Use `/zen:planner` for planning and architectural
 evaluation and changes.
 
 **Development Workflow:**
