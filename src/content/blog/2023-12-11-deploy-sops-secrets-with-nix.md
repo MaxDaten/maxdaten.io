@@ -131,7 +131,7 @@ example, in an instance templates:
 
 ```terraform filename=instances.tf
 resource "google_compute_instance_template" "my_instance" {
-  ...
+  # ...
 }
 service_account {
   email = google_service_account.my_instance_sa.email
