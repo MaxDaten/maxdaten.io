@@ -73,6 +73,8 @@ environment and infrastructure choices to the hardware and productivity apps tha
 
 ## My Go-To Infrastructure & DevOps Toolkit
 
+![A cinematic, birdeye view of a developer in a dark, cluttered apartment reminiscent of The Matrix. The room is filled with multiple CRT monitors, wires, and old computer parts. One monitor displays the green Matrix code. The lighting is dim, primarily from the screens, with harsh shadows and a violet neon glow from a window. The style is gritty, late-90s cyberpunk with a rough, Animatrix sketch-like quality, conveying a sense of unease and digital confinement.](/src/lib/assets/images/posts/00-uses/67c3e2f3-8732-44e4-a8b5-b876b6c3c59.png)
+
 ### Cloud Platforms
 
 - **[Google Cloud Platform](https://cloud.google.com/)** - Primary cloud provider for most client
