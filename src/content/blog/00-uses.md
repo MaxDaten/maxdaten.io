@@ -40,7 +40,7 @@ development, DevOps consulting, and daily productivity.
 
 ### Editor & Terminal
 
-- **[Zed](https://zed.dev/)** - Primary code editor for its speed and collaborative features
+- **[Zed](https://zed.dev/)** - Code editor for its speed, ai assistance and collaborative features
 - **[JetBrains IDEs](https://www.jetbrains.com/)** - IntelliJ IDEA, WebStorm, and other
   language-specific IDEs for complex projects
 - **[Ghostty](https://mitchellh.com/ghostty)** - Fast, feature-rich terminal emulator
@@ -51,7 +51,7 @@ development, DevOps consulting, and daily productivity.
 
 - **[Nix](https://nixos.org/)** - Reproducible package management and system configuration
 - **[devenv](https://devenv.sh/)** - Developer environments with Nix for per-project reproducible
-  setups
+  setups, topic for an upcomming post about how I setup project workspaces with devenv
 - **[direnv](https://direnv.net/)** - Automatically loads and unloads environment variables based on
   directory
 
@@ -60,12 +60,13 @@ development, DevOps consulting, and daily productivity.
 - **[Haskell](https://www.haskell.org/)** - Primary functional programming language, especially for
   complex business logic
 - **[Kotlin](https://kotlinlang.org/)** - Modern JVM language for Android development and backend
-  services
+  services, strong eDSL capabilities, providing quiz-buzz backend
+- **[Svelte & SvelteKit](https://svelte.dev)** - Fueling this blog and quiz-buzz web frontend
+- **[TypeScript](https://www.typescriptlang.org/)** - For full-stack web development and tooling
+- **[Python](https://www.python.org/)** - Automation, data processing, and rapid prototyping
 - **[Scala](https://www.scala-lang.org/)** - Functional programming on the JVM for data processing
   and distributed systems
 - **[Java](https://www.oracle.com/java/)** - Enterprise applications and Spring-based microservices
-- **[TypeScript](https://www.typescriptlang.org/)** - For full-stack web development and tooling
-- **[Python](https://www.python.org/)** - Automation, data processing, and rapid prototyping
 
 ## Infrastructure & DevOps
 
@@ -92,7 +93,8 @@ development, DevOps consulting, and daily productivity.
 
 ### Monitoring & Observability
 
-- **[Prometheus](https://prometheus.io/)** - Metrics collection and alerting
+- **[Prometheus](https://prometheus.io/)** - Metrics collection and alerting, Google Cloud Managed
+  Service for Prometheus for my own cluster
 - **[Grafana](https://grafana.com/)** - Visualization and dashboards
 - **[OpenTracing](https://opentracing.io/)** - Vendor-neutral distributed tracing standard and
   instrumentation
@@ -106,8 +108,7 @@ development, DevOps consulting, and daily productivity.
 
 ### Version Control & Collaboration
 
-- **[Git](https://git-scm.com/)** with
-  [Git Flow](https://nvie.com/posts/a-successful-git-branching-model/) branching model
+- **[Git](https://git-scm.com/)** - Preferable with trunk-based development supported by a strong CI
 - **[GitHub](https://github.com/)** - Primary code hosting and collaboration platform
 - **[Conventional Commits](https://www.conventionalcommits.org/)** - Standardized commit message
   format
@@ -132,26 +133,29 @@ development, DevOps consulting, and daily productivity.
 
 - **MacBook Pro 16" (Apple M4 Max, 128 GB)** - Primary development machine
 - **2 External 4K Monitor** - Extended workspace for productivity
+- **GeForce RTX 5090, Ryzen 7 9800X3D, 64GB RAM** - Dual Boot Machine for local AI Development
 
 ### Accessories
 
-- **AirPods Pro Gen 2** - Focus during deep work sessions
+- **AirPods Pro Gen 2** - Focus during deep work sessions and online calls
 
 ## Productivity & Communication
 
 ### Organization
 
-- **[Notion](https://www.notion.so/)** - All-in-one workspace for notes, documentation, and project
-  management
-- **[Calendly](https://calendly.com/)** - Client meeting scheduling
+- **[Notion](https://www.notion.so/)** - Collecting project ideas, organizing my reading list
+- **[Calendly](https://calendly.com/)** - Client consultation meeting scheduling
 - **[SideNotes](https://www.apptorium.com/sidenotes)** - Quick note-taking and task management in
   the sidebar
+- **[Raycast](https://www.raycast.com)** - Quick querying local ollama models, looking up nix
+  packages, hyperkey shortcuts for quick launching tools, etc.
 
 ### Communication
 
 - **[Slack](https://slack.com/)** - Team communication and client coordination
 - **[Zoom](https://zoom.us/)** - Video conferencing for client meetings
-- **[Discord](https://discord.com/)** - Community engagement and informal collaboration
+- **[Discord](https://discord.com/)** - Private and professional communication, channel management
+  and engagement
 
 ## Learning & Resources
 
@@ -160,6 +164,7 @@ development, DevOps consulting, and daily productivity.
 - **[Kubernetes Documentation](https://kubernetes.io/docs/)** - Official K8s reference
 - **[Google Cloud Documentation](https://cloud.google.com/docs)** - GCP service references
 - **[NixOS Manual](https://nixos.org/manual/nixos/stable/)** - System configuration guidance
+- **[Noogle](https://noogle.dev)** - Finding functions and implementations in nix
 
 ### Continuous Learning
 
