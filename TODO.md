@@ -1,5 +1,7 @@
 # TODO
 
+## Features And Refactorings
+
 - [x] Add copy to clipboard button to CodeBlock
 - [x] Add file icons to CodeBlock based on lang
 - [x] Replace `image-transmutation` with https://github.com/zerodevx/svelte-img
@@ -13,5 +15,6 @@
 - [x] Copy Button not correctly aligned when no file name provided
 - [x] Footer should be at bottom, even if main content is not full height (see 404 page)
 - [x] Largest Contentful Paint of pages, optimize layout shifts, for example /blog and articles
-- [ ] Fix alias $assets not working for article images
+- [x] Fix alias $assets not working for article images
+- [x] Fix content in rss.xml
 - [ ] Bubbles are starting moving all up: Init movement vector randomly or based on pixel position
