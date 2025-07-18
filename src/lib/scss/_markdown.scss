@@ -60,10 +60,24 @@
         background: var(--color--callout-background);
     }
 
-    .heading-link {
+    a.heading-link {
         color: var(--color--primary);
         text-decoration: none;
         margin-right: 10px;
+        position: absolute;
+        translate: -120% 0;
+        opacity: 0;
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        &:hover .heading-link {
+            opacity: 1;
+        }
     }
 
     // Shiki
