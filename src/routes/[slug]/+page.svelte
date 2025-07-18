@@ -5,7 +5,7 @@
     import RelatedPosts from '$components/organisms/RelatedPosts.svelte';
     import { PageTransition } from 'ssgoi';
     import type { PageProps } from './$types';
-    import Img from '@zerodevx/svelte-img';
+    import { FxParallax as Img } from '@zerodevx/svelte-img';
     import { getCoverBySlug } from '$utils/image-loader';
 
     let { data: post }: PageProps = $props();
@@ -137,9 +137,7 @@
         :global(.cover-image) {
             max-height: 400px;
             object-fit: cover;
-            width: min(var(--main-column-width), 100%);
             margin: 0 auto;
-            //box-shadow: var(--image-shadow);
             border-radius: 12px;
             overflow: hidden;
         }
