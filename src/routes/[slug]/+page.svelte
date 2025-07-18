@@ -136,7 +136,8 @@
 
         :global(.cover-image) {
             max-height: 400px;
-            width: min(var(--main-column-width) + 140px, 100%);
+            width: 100%;
+            max-width: breakpoints.$breakpoint-desktop-min;
             object-fit: cover;
             margin: 0 auto;
             border-radius: 12px;
