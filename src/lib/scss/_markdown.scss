@@ -8,6 +8,7 @@
     p {
         margin: 0.75rem 0;
         line-height: 1.55em;
+        text-wrap: balance;
     }
 
     h2 {
@@ -75,6 +76,8 @@
     h4,
     h5,
     h6 {
+        text-wrap: balance;
+
         &:hover .heading-link {
             opacity: 1;
         }
