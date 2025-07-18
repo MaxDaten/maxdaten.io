@@ -66,43 +66,44 @@
 </Card>
 
 <style lang="scss">
-    .content {
-        display: flex;
-        flex-direction: column;
-        gap: 0;
-        align-items: flex-start;
-    }
+    .gem-card {
+        .content {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            align-items: flex-start;
+        }
 
-    .title {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 100%;
-        font-size: 1.2rem;
-        font-family: var(--font--title), serif;
-        font-weight: 700;
-    }
+        .title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            font-size: 1.2rem;
+            font-family: var(--font--title), serif;
+            font-weight: 700;
+        }
 
-    .tags {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        flex-wrap: wrap;
-    }
+        .tags {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
 
-    .text {
-        margin-top: 5px;
-        font-size: 0.9rem;
-        text-align: justify;
-    }
+        .text {
+            margin-top: 5px;
+            font-size: 0.9rem;
+            text-align: justify;
+        }
 
-    .footer {
-        margin-top: 20px;
-    }
+        .footer {
+            margin-top: 20px;
+        }
 
-    :global(.cover-image) {
-        max-height: 300px;
-        object-fit: cover;
-        object-position: bottom;
+        :global(.cover-image) {
+            max-height: 300px;
+            object-fit: cover;
+        }
     }
 </style>
