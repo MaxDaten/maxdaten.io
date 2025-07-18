@@ -40,13 +40,22 @@
         <div class="header">
             <h1>{post.title}</h1>
             <div class="note">
-                Published on {dateformat(post.date, 'UTC:dd mmmm yyyy')}
+                <time datetime={post.date}
+                    >{dateformat(post.date, 'UTC:mmm dd, yyyy')}</time
+                >
+                {#if post.updated}
+                    <span>•</span>
+                    <span>
+                        Updated: <time datetime={post.updated}
+                            >{dateformat(
+                                post.updated,
+                                'UTC:mmm dd, yyyy'
+                            )}</time
+                        >
+                    </span>
+                {/if}
             </div>
-            {#if post.updated}
-                <div class="note">
-                    Updated on {dateformat(post.updated, 'UTC:dd mmmm yyyy')}
-                </div>
-            {/if}
+
             {#if post.readingTimeMinutes}
                 <div class="note">
                     {post.readingTimeMinutes} minutes to read
@@ -120,6 +129,8 @@
             .note {
                 font-size: 90%;
                 color: rgba(var(--color--secondary-rgb), 0.8);
+                display: inline-flex;
+                gap: 8px;
             }
         }
 
@@ -128,7 +139,7 @@
             object-fit: cover;
             width: min(var(--main-column-width), 100%);
             margin: 0 auto;
-            box-shadow: var(--image-shadow);
+            //box-shadow: var(--image-shadow);
             border-radius: 12px;
             overflow: hidden;
         }
