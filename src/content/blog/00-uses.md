@@ -32,8 +32,6 @@ type: page
 updated: 2025-07-18T01:11:18.668Z
 ---
 
-# My 2025 Tech Stack: A Guide to My Development, DevOps, and Productivity Tools
-
 In this post, I provide a comprehensive overview of the software development tools and technologies
 that form my core DevOps toolkit. This is the tech stack for a software consultant that I rely on
 daily, refined over years of building complex systems. You'll find everything from my development
