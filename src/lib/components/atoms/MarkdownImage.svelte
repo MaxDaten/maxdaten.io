@@ -1,34 +1,16 @@
 <script lang="ts">
     import { FxReveal as Img } from '@zerodevx/svelte-img';
     import { getPostImageByPath } from '$utils/image-loader';
+    import type { HTMLImgAttributes } from 'svelte/elements';
 
-    interface Props {
+    interface Props extends HTMLImgAttributes {
         src: string;
-        alt?: string;
-        title?: string;
-        class?: string;
-        loading?: 'lazy' | 'eager';
+        [key: string]: unknown;
     }
 
-    let {
-        src: originalSrc,
-        alt = '',
-        title = undefined,
-        class: className = '',
-        loading = 'lazy',
-    }: Props = $props();
+    let { src: originalSrc, ...rest }: Props = $props();
 
     const src = getPostImageByPath(originalSrc);
 </script>
 
-<Img {src} {alt} {title} {loading} class="markdown-image {className}" />
-
-<style>
-    .markdown-image {
-        max-width: 100%;
-        height: auto;
-        display: block;
-        margin: 1rem auto;
-        border-radius: var(--radius-3);
-    }
-</style>
+<Img {src} {...rest} />

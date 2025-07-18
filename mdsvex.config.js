@@ -2,6 +2,7 @@ import rehypeExternalLinks from 'rehype-external-links';
 import rehypeSlug from 'rehype-slug';
 import { createHighlighter } from 'shiki';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import rehypeUnwrapImages from 'rehype-unwrap-images';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import { escapeSvelte } from 'mdsvex';
@@ -70,6 +71,7 @@ const config = {
     },
     remarkPlugins: [relativeImages],
     rehypePlugins: [
+        rehypeUnwrapImages, // Unwrapping images, so we can use MarkdownImage
         rehypeExternalLinks, // Adds 'target' and 'rel' to external links
         rehypeSlug, // Adds 'id' attributes to Headings (h1,h2,etc)
         [
