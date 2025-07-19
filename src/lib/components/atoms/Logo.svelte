@@ -15,8 +15,7 @@
             y="10%"
             id="text"
             text-anchor="middle"
-            dominant-baseline="hanging"
-            paint-order="stroke">maxdaten.io</text
+            dominant-baseline="hanging">maxdaten.io</text
         >
     </svg>
 </div>
