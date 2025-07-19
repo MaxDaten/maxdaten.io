@@ -60,7 +60,6 @@
 <style lang="scss">
     .card-wrapper {
         container-type: inline-size;
-        height: 100%;
         width: 100%;
     }
 
@@ -107,19 +106,6 @@
         .image {
             position: relative;
             flex: 0 1 auto;
-        }
-
-        @container (min-width: 550px) {
-            flex-direction: row;
-
-            .image {
-                flex: 1 1 50%;
-                aspect-ratio: auto;
-            }
-
-            .body {
-                flex: 1 1 50%;
-            }
         }
     }
 </style>

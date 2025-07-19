@@ -51,22 +51,20 @@
         </div>
     {/snippet}
     {#snippet footer()}
-        <div class="footer">
-            {#if tags?.length}
-                <div class="tags">
-                    {#each tags.slice(0, 2) as tag, index (index)}
-                        <Tag color={index === 0 ? 'primary' : 'secondary'}
-                            >{tag}</Tag
-                        >
-                    {/each}
-                </div>
-            {/if}
-        </div>
+        {#if tags?.length}
+            <div class="tags">
+                {#each tags.slice(0, 2) as tag, index (index)}
+                    <Tag color={index === 0 ? 'primary' : 'secondary'}
+                        >{tag}</Tag
+                    >
+                {/each}
+            </div>
+        {/if}
     {/snippet}
 </Card>
 
 <style lang="scss">
-    .gem-card {
+    :global(.gem-card) {
         .content {
             display: flex;
             flex-direction: column;
@@ -97,13 +95,9 @@
             text-align: justify;
         }
 
-        .footer {
-            margin-top: 20px;
-        }
-
         :global(.cover-image) {
-            max-height: 300px;
             object-fit: cover;
+            max-height: 350px;
         }
     }
 </style>
