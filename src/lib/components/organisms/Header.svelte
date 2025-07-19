@@ -27,12 +27,8 @@
 
     header {
         position: relative;
-        padding: 30px 0;
+        padding: 20px 0;
         border-bottom: 1px solid var(--color--waves-start);
-
-        @include breakpoints.for-phone-only {
-            padding: 20px 0;
-        }
 
         &.has-background {
             background: linear-gradient(
@@ -46,19 +42,10 @@
             display: flex;
             align-items: center;
             gap: 30px;
-
-            @include breakpoints.for-phone-only {
-                .links {
-                    a {
-                        display: none;
-                    }
-                }
-            }
         }
 
         .logo {
-            height: 44px;
-            flex: 1;
+            flex: 1 1 auto;
         }
 
         a {
@@ -78,6 +65,14 @@
                     color: var(--color--primary);
                     filter: drop-shadow(0px 0px 3px var(--color--primary));
                 }
+            }
+        }
+
+        @include breakpoints.for-phone-only {
+            padding: 15px 0;
+
+            .links {
+                gap: 15px;
             }
         }
     }
