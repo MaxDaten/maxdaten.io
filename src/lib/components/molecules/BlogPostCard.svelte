@@ -11,21 +11,24 @@
     };
 
     let { post, showImage = true }: Props = $props();
+    const optimizedImage = getCoverBySlug(post.slug);
 </script>
 
-<Card href="/{post.slug}" class="blog-post-card">
-    {#snippet image()}
-        {@const optimizedImage = getCoverBySlug(post.slug)}
-        {#if post.coverImage && showImage && optimizedImage}
-            <Img
-                src={optimizedImage}
-                class="cover-image"
-                data-hero-key={post.coverImage}
-                alt="Cover of this blog post"
-                sizes="(max-width: 1024px) 500px, 1000px"
-            />
-        {/if}
-    {/snippet}
+{#snippet image()}
+    <Img
+        src={optimizedImage}
+        class="cover-image"
+        data-hero-key={post.coverImage}
+        alt="Cover of this blog post"
+        sizes="(max-width: 1024px) 500px, 1000px"
+    />
+{/snippet}
+
+<Card
+    href="/{post.slug}"
+    class="blog-post-card"
+    image={showImage && optimizedImage ? image : undefined}
+>
     {#snippet content()}
         <p class="title">
             {post.title}

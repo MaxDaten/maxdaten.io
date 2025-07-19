@@ -61,51 +61,53 @@
     .card-wrapper {
         container-type: inline-size;
         width: 100%;
-    }
 
-    .card {
-        background: var(--color--card-background);
-        box-shadow: var(--card-shadow);
-        color: var(--color--text);
-        border-radius: 10px;
-        transition: all 0.4s ease;
-        position: relative;
-        overflow: hidden;
-        height: 100%;
-        width: 100%;
+        .card {
+            background: var(--color--card-background);
+            box-shadow: var(--card-shadow);
+            color: var(--color--text);
+            border-radius: 10px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            width: 100%;
 
-        display: flex;
-        flex-direction: column;
-
-        text-decoration: none;
-
-        &[href],
-        &[onclick] {
-            cursor: pointer;
-
-            &:hover {
-                box-shadow: var(--card-shadow-hover);
-                transform: scale(1.01);
-            }
-        }
-
-        .body {
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            padding: 20px 20px;
-            flex-grow: 1;
 
-            .content {
+            text-decoration: none;
+
+            &[href],
+            &[onclick] {
+                cursor: pointer;
+
+                &:hover {
+                    box-shadow: var(--card-shadow-hover);
+                    transform: scale(1.01);
+                }
+            }
+
+            .body {
                 display: flex;
                 flex-direction: column;
+                gap: 10px;
+                padding: 20px 20px;
                 flex-grow: 1;
-            }
-        }
 
-        .image {
-            position: relative;
-            flex: 0 1 auto;
+                .content {
+                    display: flex;
+                    flex-direction: column;
+                    flex-grow: 1;
+                }
+            }
+
+            .image {
+                z-index: 1;
+                position: relative;
+                flex: 0 1 auto;
+                height: 350px;
+            }
         }
     }
 </style>

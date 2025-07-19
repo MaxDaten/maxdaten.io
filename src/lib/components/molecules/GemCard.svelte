@@ -16,8 +16,9 @@
 
     const coverImages = Object.entries(
         import.meta.glob('$assets/images/gems/*.{jpg,jpeg,png,gif,webp}', {
+            import: 'default',
             eager: true,
-            query: { as: 'run', fit: 'cover', height: 300 },
+            query: { as: 'run:4', fit: 'cover' },
         })
     ).reduce((map: Map<string, unknown>, [key, value]) => {
         return map.set(key.split('/').pop() as string, value);
@@ -31,11 +32,13 @@
 <Card {href} target="_self" class="gem-card" data-testid="gem-card">
     {#snippet image()}
         {#if coverImage}
-            <Img
-                class="cover-image"
-                src={coverImageSrc}
-                alt="Cover preview of this gem"
-            />
+            <div class="cover-image-container">
+                <Img
+                    class="cover-image"
+                    src={coverImageSrc}
+                    alt="Cover preview of this gem"
+                />
+            </div>
         {/if}
     {/snippet}
     {#snippet content()}
@@ -95,8 +98,17 @@
             text-align: justify;
         }
 
+        .cover-image-container {
+            max-height: 350px;
+            //background-color: black;
+            object-fit: cover;
+            overflow: hidden;
+        }
+
         :global(.cover-image) {
             object-fit: cover;
+            //height: 100%;
+            width: 100%;
             max-height: 350px;
         }
     }

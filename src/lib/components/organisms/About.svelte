@@ -1,7 +1,7 @@
 <script>
     import Socials from '$lib/components/molecules/Socials.svelte';
     import { FxReveal as Img } from '@zerodevx/svelte-img';
-    import MeSrc from '$assets/images/me.png?as=run:4&fit=cover';
+    import MeSrc from '$assets/images/me.png?as=run&fit=cover';
 </script>
 
 <section id="about">
