@@ -4,6 +4,7 @@
         title?: string | undefined;
         description?: string | undefined;
         align?: 'left' | 'top' | 'right';
+        button?: import('svelte').Snippet;
         children?: import('svelte').Snippet;
     }
 
@@ -12,6 +13,7 @@
         title = undefined,
         description = undefined,
         align = 'top',
+        button,
         children,
     }: Props = $props();
 </script>
@@ -30,6 +32,11 @@
                         {description}
                     </p>
                 {/if}
+            </div>
+        {/if}
+        {#if button}
+            <div class="button">
+                {@render button?.()}
             </div>
         {/if}
     </div>
