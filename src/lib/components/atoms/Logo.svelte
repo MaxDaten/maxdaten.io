@@ -25,19 +25,6 @@
     @use '$lib/scss/breakpoints.scss';
 
     .logo {
-        width: auto;
-        max-width: 50%;
-        min-width: 100px;
-        height: 100%;
-
-        display: flex;
-        gap: 16px;
-        align-items: center;
-
-        @include breakpoints.for-phone-only {
-            gap: 8px;
-        }
-
         #logo-text {
             #text {
                 transition: all 0.2s ease-in-out;
