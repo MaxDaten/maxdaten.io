@@ -45,20 +45,20 @@
         }
 
         .logo {
-            flex: 1 1 auto;
-        }
-
-        a {
-            color: var(--color--text);
+            flex: 1 1 50%;
+            min-width: 100px;
+            max-width: 300px;
         }
 
         .links {
+            flex: 1 1 50%;
             display: flex;
             align-items: center;
             justify-content: flex-end;
             gap: 30px;
 
             a {
+                color: var(--color--text);
                 text-decoration: none;
 
                 &:hover {
