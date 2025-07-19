@@ -38,7 +38,7 @@
                 {#snippet icon()}
                     <ExperienceIcon />
                 {/snippet}
-                Resume
+                Résumé
             </Button>
         </Sparkles>
     </div>
