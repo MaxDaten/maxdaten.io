@@ -9,23 +9,14 @@
 </script>
 
 <div class="logo" class:animated>
-    <svg
-        id="logo-text"
-        width="723.84009"
-        height="116.720268"
-        viewBox="0 0 723.84009 116.720269"
-        xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg viewBox="0 0 223 45" id="logo-text" xml:space="preserve">
         <text
-            xml:space="preserve"
+            x="50%"
+            y="10%"
             id="text"
-            transform="translate(-278.77228,-206.83728)"
-            ><tspan x="275.57227" y="292.17088" id="tspan1319"
-                ><tspan
-                    style="font-size:106.667px;font-family:YoungSerif;"
-                    id="tspan1317">maxdaten.io</tspan
-                ></tspan
-            ></text
+            text-anchor="middle"
+            dominant-baseline="hanging"
+            paint-order="stroke">maxdaten.io</text
         >
     </svg>
 </div>
@@ -35,6 +26,8 @@
 
     .logo {
         width: auto;
+        max-width: 50%;
+        min-width: 100px;
         height: 100%;
 
         display: flex;
@@ -46,13 +39,13 @@
         }
 
         #logo-text {
-            width: auto;
-            height: 100%;
-            max-height: 28px;
-
             #text {
                 transition: all 0.2s ease-in-out;
-                fill: var(--color--primary);
+                fill: var(--text-color);
+                stroke: none;
+                stroke-width: 0;
+                font-size: 2.1em;
+                font-family: 'Merriweather', serif;
             }
         }
 
@@ -65,25 +58,8 @@
 
     @media screen and (prefers-reduced-motion: no-preference) {
         .animated {
-            #icon {
-                > path {
-                    --text-color: var(--color--text-shade);
-                    stroke-width: 2;
-                    animation: svg-text-stroke 3s;
-                }
-
-                #darker {
-                    > path {
-                        --text-color: var(--color--primary);
-                        stroke-width: 2;
-                        animation: svg-text-stroke 3s;
-                    }
-                }
-            }
-
             #text {
-                animation: svg-text-stroke 3s;
-                stroke-width: 2;
+                animation: svg-text-stroke 3s ease-in-out;
                 --text-color: var(--color--primary);
             }
         }

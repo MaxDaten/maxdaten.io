@@ -4,7 +4,7 @@
         stroke: var(--text-color);
         stroke-dashoffset: 25%;
         stroke-dasharray: 0 50%;
-        stroke-width: 2;
+        stroke-width: 1;
     }
     70% {
         fill: transparent;
@@ -13,7 +13,7 @@
     80% {
         fill: transparent;
         stroke: var(--text-color);
-        stroke-width: 3;
+        stroke-width: 1;
     }
     100% {
         fill: var(--text-color);
