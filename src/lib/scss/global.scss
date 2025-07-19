@@ -14,6 +14,7 @@
 @use 'pkg:@fontsource-variable/inter/scss' as Inter;
 @use 'pkg:@fontsource-variable/merriweather/scss' as Merriweather;
 @use 'pkg:@fontsource/ubuntu-mono/scss' as Ubuntu-Mono;
+@use 'pkg:@fontsource-variable/baloo-2/scss' as Baloo-2;
 
 @include fontsource.faces(
     $metadata: Inter.$metadata,
@@ -41,6 +42,16 @@
 @include fontsource.faces(
     $metadata: Ubuntu-Mono.$metadata,
     $family: 'Ubuntu Mono',
+    $subsets: latin,
+    $weights: (
+        400,
+    ),
+    $styles: all
+);
+
+@include fontsource.faces(
+    $metadata: Baloo-2.$metadata,
+    $family: 'Baloo-2',
     $subsets: latin,
     $weights: (
         400,

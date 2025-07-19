@@ -31,8 +31,9 @@
                 fill: var(--text-color);
                 stroke: none;
                 stroke-width: 0;
+                stroke-linecap: round;
                 font-size: 2.1em;
-                font-family: 'Merriweather', serif;
+                font-family: 'Baloo-2', serif;
             }
         }
 
@@ -46,7 +47,7 @@
     @media screen and (prefers-reduced-motion: no-preference) {
         .animated {
             #text {
-                animation: svg-text-stroke 3s ease-in-out;
+                animation: svg-text-stroke 2s ease-in-out;
                 --text-color: var(--color--primary);
             }
         }
