@@ -41,3 +41,31 @@ export function getCoverBySlug(postSlug: string): unknown | null {
 export function getPostImageByPath(path: string): unknown | null {
     return blogPostImages.get(path);
 }
+
+// Import all author avatars with svelte-img optimization
+const authorAvatars = new Map<string, unknown>(
+    Object.entries(
+        import.meta.glob('$assets/images/authors/*.{png,jpg,jpeg,webp}', {
+            import: 'default',
+            eager: true,
+            query: { as: 'run', w: '100px', fit: 'cover' },
+        })
+    ).map(([path, image]) => {
+        // Extract author ID from filename (e.g., "jan-philip-loos.jpg" -> "jan-philip-loos")
+        const authorId =
+            path
+                .split('/')
+                .pop()
+                ?.replace(/\.(png|jpg|jpeg|webp)$/, '') || '';
+        return [authorId, image];
+    })
+);
+
+/**
+ * Get optimized image object for an author avatar
+ * @param authorId - The author's ID
+ * @returns Optimized image object for use with svelte-img component, or null if not found
+ */
+export function getAuthorAvatar(authorId: string): unknown | null {
+    return authorAvatars.get(authorId);
+}

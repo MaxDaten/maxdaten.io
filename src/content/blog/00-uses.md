@@ -7,6 +7,7 @@ excerpt:
     deep dive into my favorite tools, from Nix and Kubernetes to Zed and SvelteKit.
 date: 2025-07-01T05:00:00.000Z
 hidden: false
+authorId: jloos
 tags:
     - development
     - devops

@@ -16,6 +16,11 @@ export type TagType = {
     color?: 'primary' | 'secondary';
 };
 
+export type Author = {
+    id: string;
+    name: string;
+};
+
 export type BlogPost = {
     tags: string[];
     keywords: string[];
@@ -29,6 +34,7 @@ export type BlogPost = {
     relatedPosts: BlogPost[];
     coverImage: string | undefined;
     content: Component;
+    authorId?: string;
 };
 
 export type GemEntry = {

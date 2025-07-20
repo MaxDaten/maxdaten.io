@@ -1,5 +1,6 @@
 <script lang="ts">
     import Tag from '$components/atoms/Tag.svelte';
+    import Author from '$components/molecules/Author.svelte';
     import dateformat from 'dateformat';
     import { siteBaseUrl, title } from '$lib/data/meta';
     import RelatedPosts from '$components/organisms/RelatedPosts.svelte';
@@ -60,6 +61,9 @@
                 <div class="note">
                     {post.readingTimeMinutes} minutes to read
                 </div>
+            {/if}
+            {#if post.author}
+                <Author author={post.author} />
             {/if}
             {#if post.tags?.length}
                 <div class="tags">
