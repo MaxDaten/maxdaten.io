@@ -1,0 +1,23 @@
+import { error } from '@sveltejs/kit';
+import type { PageServerLoad } from './$types';
+import type { BlogPost } from '$utils/types';
+import { getPostBySlug, readingTime } from '$lib/data/blog-posts/utils';
+import { render } from 'svelte/server';
+import striptags from 'striptags';
+
+export const load: PageServerLoad = async ({ params }) => {
+    const post = getPostBySlug(params.slug) ?? error(404, 'Post not found!');
+
+    if (post.metadata.hidden) {
+        error(404, 'Post not found');
+    }
+
+    const readingTimeMinutes = readingTime(
+        striptags(render(post.default, { props: {} }).body)
+    ).minutes;
+
+    return {
+        ...post.metadata,
+        readingTimeMinutes,
+    } as BlogPost;
+};
