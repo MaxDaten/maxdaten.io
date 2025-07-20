@@ -90,5 +90,8 @@ const getRelatedPosts = (posts: BlogPost[], post: BlogPost) => {
 
     return relatedPosts.slice(0, 3);
 };
-
 // #endregion
+
+export const getPostBySlug = (slug: string): PostComponent | undefined => {
+    return postsBySlug.get(slug);
+};
