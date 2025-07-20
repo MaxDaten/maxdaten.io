@@ -5,14 +5,6 @@
 </script>
 
 <div class="socials">
-    <!-- 
-	<a href="#" target="_blank" rel="noopener noreferrer" title="Say Hi on Telegram">
-		<TelegramIcon />
-	</a>
-	<a href="#" target="_blank" rel="me noreferrer" title="Say Hi on Mastodon">
-		<MastodonIcon />
-	</a>
-	-->
     <a
         href="https://github.com/MaxDaten"
         target="_blank"
