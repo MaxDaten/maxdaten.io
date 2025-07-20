@@ -43,31 +43,36 @@
     <article>
         <div class="header">
             <h1>{post.title}</h1>
-            <div class="note">
-                <time datetime={post.date}
-                    >{dateformat(post.date, 'UTC:mmm dd, yyyy')}</time
-                >
-                {#if post.updated}
-                    <span>•</span>
-                    <span>
-                        Updated: <time datetime={post.updated}
-                            >{dateformat(
-                                post.updated,
-                                'UTC:mmm dd, yyyy'
-                            )}</time
-                        >
-                    </span>
+
+            <div class="metadata">
+                {#if author}
+                    <Author {author} />
                 {/if}
+                <div class="post-details">
+                    <div class="note">
+                        <time datetime={post.date}
+                            >{dateformat(post.date, 'UTC:mmm dd, yyyy')}</time
+                        >
+                        {#if post.updated}
+                            <span>•</span>
+                            <span>
+                                Updated: <time datetime={post.updated}
+                                    >{dateformat(
+                                        post.updated,
+                                        'UTC:mmm dd, yyyy'
+                                    )}</time
+                                >
+                            </span>
+                        {/if}
+                    </div>
+                    {#if post.readingTimeMinutes}
+                        <div class="note">
+                            {post.readingTimeMinutes} minutes to read
+                        </div>
+                    {/if}
+                </div>
             </div>
 
-            {#if post.readingTimeMinutes}
-                <div class="note">
-                    {post.readingTimeMinutes} minutes to read
-                </div>
-            {/if}
-            {#if author}
-                <Author {author} />
-            {/if}
             {#if post.tags?.length}
                 <div class="tags">
                     {#each post.tags as tag (tag)}
@@ -108,6 +113,10 @@
         flex-direction: column;
         gap: 30px;
 
+        h1 {
+            margin-bottom: 0.8em;
+        }
+
         @include breakpoints.for-iphone-se {
             padding-left: 0;
             padding-right: 0;
@@ -124,6 +133,7 @@
         }
 
         .header {
+            font-size: 80%;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -131,13 +141,37 @@
             text-align: center;
             gap: 10px;
             width: min(var(--main-column-width), 100%);
-            margin: 0 auto;
+            margin: 0 auto 0.8em;
 
             .note {
-                font-size: 90%;
                 color: rgba(var(--color--secondary-rgb), 0.8);
                 display: inline-flex;
                 gap: 8px;
+
+                @include breakpoints.for-phone-only {
+                    gap: 4px;
+                }
+            }
+
+            .metadata {
+                display: inline-flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                gap: 32px;
+                width: min(var(--main-column-width), 100%);
+                margin-bottom: 1em;
+
+                .post-details {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 8px;
+                }
+
+                @include breakpoints.for-phone-only {
+                    gap: 12px;
+                }
             }
         }
 
@@ -173,7 +207,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 5px;
+            gap: 12px;
             flex-wrap: wrap;
         }
     }

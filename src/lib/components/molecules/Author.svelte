@@ -28,39 +28,31 @@
 </div>
 
 <style lang="scss">
+    @use '$styles/mixins';
+    @use '$styles/breakpoints';
+
     .author {
         display: flex;
         align-items: center;
-        gap: 14px;
+        gap: 12px;
         font-size: 0.9rem;
         color: rgba(var(--color--secondary-rgb), 0.8);
-        padding: 8px 10px;
-        background: rgba(var(--color--primary-rgb), 0.05);
-        border-radius: 12px;
-        border: 1px solid rgba(var(--color--primary-rgb), 0.3);
         transition: all 0.3s ease;
 
-        &:hover {
-            background: rgba(var(--color--primary-rgb), 0.08);
-            border-color: rgba(var(--color--primary-rgb), 0.2);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        @include breakpoints.for-phone-only {
+            gap: 8px;
         }
     }
 
     :global(.avatar) {
         width: 44px;
         height: 44px;
-        border-radius: 14%;
+        border-radius: 20%;
         overflow: hidden;
         object-fit: cover;
         border: 1px solid rgba(var(--color--primary-rgb), 0.3);
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
         transition: transform 0.3s ease;
-
-        .author:hover & {
-            transform: scale(1.05);
-        }
     }
 
     .avatar-placeholder {
@@ -87,16 +79,5 @@
         color: var(--color--primary);
         letter-spacing: 0.2px;
         position: relative;
-
-        &::before {
-            content: 'Written by';
-            display: block;
-            font-size: 0.75rem;
-            font-weight: 400;
-            color: rgba(var(--color--secondary-rgb), 0.7);
-            letter-spacing: 0.3px;
-            text-transform: uppercase;
-            margin-bottom: 2px;
-        }
     }
 </style>
