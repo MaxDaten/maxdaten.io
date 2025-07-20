@@ -8,12 +8,15 @@
     import type { PageProps } from './$types';
     import { FxParallax as Img } from '@zerodevx/svelte-img';
     import { getCoverBySlug } from '$utils/image-loader';
+    import { getAuthor } from '$lib/data/authors.js';
 
     let { data: post }: PageProps = $props();
 
     let metaKeywords = $derived(
         post ? [...(post.tags || []), ...(post.keywords || [])] : []
     );
+
+    const author = getAuthor(post.authorId);
 </script>
 
 <svelte:head>
@@ -62,8 +65,8 @@
                     {post.readingTimeMinutes} minutes to read
                 </div>
             {/if}
-            {#if post.author}
-                <Author author={post.author} />
+            {#if author}
+                <Author {author} />
             {/if}
             {#if post.tags?.length}
                 <div class="tags">
