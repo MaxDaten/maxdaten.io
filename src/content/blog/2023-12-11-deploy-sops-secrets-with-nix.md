@@ -6,6 +6,7 @@ excerpt:
     How to manage secrets like private ssh keys or database access in a cloud environment via nix
     and sops.
 date: 2023-12-11T14:34:43.678Z
+authorId: jloos
 hidden: false
 tags:
     - nix
