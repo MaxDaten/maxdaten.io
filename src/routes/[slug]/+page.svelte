@@ -16,7 +16,7 @@
         post ? [...(post.tags || []), ...(post.keywords || [])] : []
     );
 
-    const author = getAuthor(post.authorId);
+    const author = post.authorId ? getAuthor(post.authorId) : undefined;
 </script>
 
 <svelte:head>
@@ -155,10 +155,10 @@
 
             .metadata {
                 display: inline-flex;
-                flex-direction: row;
+                flex-direction: column;
                 align-items: center;
                 justify-content: center;
-                gap: 32px;
+                gap: 16px;
                 width: min(var(--main-column-width), 100%);
                 margin-bottom: 1em;
 
@@ -167,6 +167,11 @@
                     flex-direction: column;
                     align-items: center;
                     gap: 8px;
+                }
+
+                @include breakpoints.for-tablet-landscape-up {
+                    flex-direction: row;
+                    gap: 32px;
                 }
 
                 @include breakpoints.for-phone-only {

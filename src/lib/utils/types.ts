@@ -19,6 +19,11 @@ export type TagType = {
 export type Author = {
     id: string;
     name: string;
+    socials?: {
+        github?: string;
+        linkedin?: string;
+        email?: string;
+    };
 };
 
 export type BlogPost = {

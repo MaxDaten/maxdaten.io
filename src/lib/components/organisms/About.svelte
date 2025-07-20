@@ -2,6 +2,9 @@
     import Socials from '$lib/components/molecules/Socials.svelte';
     import { FxReveal as Img } from '@zerodevx/svelte-img';
     import MeSrc from '$assets/images/authors/jloos.png?as=run&fit=cover';
+    import { authors } from '$lib/data/authors';
+
+    const jloos = authors.jloos;
 </script>
 
 <section id="about">
@@ -27,7 +30,7 @@
         </p>
         <div class="socials">
             <span>Let's connect:</span>
-            <Socials />
+            <Socials {...jloos.socials} />
         </div>
     </div>
     <div class="image">

@@ -1,6 +1,10 @@
 <script>
     import Socials from '$lib/components/molecules/Socials.svelte';
     import RssLink from '$lib/components/atoms/RssLink.svelte';
+    import { authors } from '$lib/data/authors';
+
+    // Get the main site author's socials
+    const mainAuthor = authors.jloos;
 </script>
 
 <footer>
@@ -35,7 +39,7 @@
             >.
         </div>
         <div class="socials">
-            <Socials />
+            <Socials {...mainAuthor.socials} />
             <RssLink />
         </div>
     </div>

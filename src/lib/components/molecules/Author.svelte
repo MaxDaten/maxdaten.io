@@ -2,6 +2,7 @@
     import type { Author } from '$lib/utils/types';
     import Img from '@zerodevx/svelte-img';
     import { getAuthorAvatar } from '$lib/utils/image-loader';
+    import Socials from '$components/molecules/Socials.svelte';
 
     type Props = {
         author: Author;
@@ -12,19 +13,26 @@
 </script>
 
 <div class="author">
-    {#if avatar}
-        <Img
-            class="avatar"
-            src={avatar}
-            alt="{author.name}'s avatar"
-            sizes="44px"
-        />
-    {:else}
-        <div class="avatar-placeholder" aria-label="{author.name}'s avatar">
-            {author.name.charAt(0).toUpperCase()}
+    <div class="author-info">
+        {#if avatar}
+            <Img
+                class="avatar"
+                src={avatar}
+                alt="{author.name}'s avatar"
+                sizes="44px"
+            />
+        {:else}
+            <div class="avatar-placeholder" aria-label="{author.name}'s avatar">
+                {author.name.charAt(0).toUpperCase()}
+            </div>
+        {/if}
+        <div class="author-details" aria-label="{author.name}'s details">
+            <span class="name">{author.name}</span>
+            {#if author.socials}
+                <Socials {...author.socials} size="small" />
+            {/if}
         </div>
-    {/if}
-    <span class="name">{author.name}</span>
+    </div>
 </div>
 
 <style lang="scss">
@@ -34,10 +42,33 @@
     .author {
         display: flex;
         align-items: center;
-        gap: 12px;
+        justify-content: space-between;
+        gap: 16px;
         font-size: 0.9rem;
         color: rgba(var(--color--secondary-rgb), 0.8);
         transition: all 0.3s ease;
+
+        @include breakpoints.for-phone-only {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
+        }
+    }
+
+    .author-info {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        .author-details {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+
+            :global(.socials) {
+                padding: 0 16px;
+            }
+        }
 
         @include breakpoints.for-phone-only {
             gap: 8px;
