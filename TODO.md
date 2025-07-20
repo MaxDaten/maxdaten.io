@@ -17,4 +17,5 @@
 - [x] Largest Contentful Paint of pages, optimize layout shifts, for example /blog and articles
 - [x] Fix alias $assets not working for article images
 - [x] Fix content in rss.xml
+- [x] Reading Time not on blog post view
 - [ ] Bubbles are starting moving all up: Init movement vector randomly or based on pixel position
