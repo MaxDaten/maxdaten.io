@@ -5,6 +5,7 @@ import {
     getPostHtml,
     importPosts,
 } from '$lib/data/blog-posts/utils';
+import { getCoverBySlug } from '$utils/image-loader';
 
 export const prerender = true;
 
@@ -71,12 +72,12 @@ const xml = (posts: BlogPost[]) => `
           ]]></content:encoded>
           ${
               post.coverImage
-                  ? `<media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="${siteBaseUrl}/${post.coverImage}"/>`
+                  ? `<media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="${siteBaseUrl}${getCoverBySlug(post.slug)}"/>`
                   : ''
           }
           ${
               post.coverImage
-                  ? `<media:content xmlns:media="http://search.yahoo.com/mrss/" medium="image" url="${siteBaseUrl}/${post.coverImage}"/>`
+                  ? `<media:content xmlns:media="http://search.yahoo.com/mrss/" medium="image" url="${siteBaseUrl}${getCoverBySlug(post.slug)}"/>`
                   : ''
           }          
         </item>
