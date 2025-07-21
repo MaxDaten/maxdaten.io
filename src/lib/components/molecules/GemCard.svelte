@@ -34,7 +34,7 @@
         {#if coverImage}
             <div class="cover-image-container">
                 <Img
-                    class="cover-image"
+                    {...{ class: 'cover-image' }}
                     src={coverImageSrc}
                     alt="Cover preview of this gem"
                     --reveal-transition="opacity 400ms ease-in, transform 0.8s ease-out;"

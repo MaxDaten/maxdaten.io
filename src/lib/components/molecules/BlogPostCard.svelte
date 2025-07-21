@@ -17,8 +17,7 @@
 {#snippet image()}
     <Img
         src={optimizedImage}
-        class="cover-image"
-        data-hero-key={post.coverImage}
+        {...{ class: 'cover-image', 'data-hero-key': post.coverImage }}
         alt="Cover of this blog post"
         sizes="(max-width: 1024px) 500px, 1000px"
         --reveal-transition="opacity 400ms ease-in, transform 0.8s ease-out;"

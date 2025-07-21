@@ -36,7 +36,7 @@
     <div class="image">
         <Img
             src={MeSrc}
-            class="me-image"
+            {...{ class: 'me-image' }}
             alt="A manga comic drawing of Jan-Philip Loos sitting in front of a window showing a cyberpunk city"
             sizes="(max-width: 1024px) 400px, 800px"
             --reveal-transition="opacity 400ms ease-in, transform 0.8s ease-out;"
