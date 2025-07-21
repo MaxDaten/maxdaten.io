@@ -15,7 +15,7 @@
         "lint": "treefmt --fail-on-change && eslint .",
         "format": "treefmt",
         "postbuild": "svelte-sitemap --out-dir .vercel/output/static --domain https://maxdaten.io; cp .vercel/output/static/sitemap.xml static/sitemap.xml",
-        "vercel-build": "npm run update-site-preview-image && npm run build",
+        "vercel-build": "npx playwright install && npm run update-site-preview-image && npm run build",
         "update-site-preview-image": "node scripts/update-site-preview-image.js",
         "test:unit": "vitest",
         "test": "VITEST_SKIP_SLOW=true vitest --run",
