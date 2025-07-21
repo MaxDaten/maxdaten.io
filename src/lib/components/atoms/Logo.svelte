@@ -26,6 +26,7 @@
     .logo {
         #logo-text {
             #text {
+                --text-color: var(--color--primary);
                 transition: all 0.2s ease-in-out;
                 fill: var(--text-color);
                 stroke: none;
