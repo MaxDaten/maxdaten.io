@@ -72,12 +72,12 @@ const xml = (posts: BlogPost[]) => `
           ]]></content:encoded>
           ${
               post.coverImage
-                  ? `<media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="${siteBaseUrl}${getCoverBySlug(post.slug)}"/>`
+                  ? `<media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="${getCoverBySlug(post.slug)?.img.src}"/>`
                   : ''
           }
           ${
               post.coverImage
-                  ? `<media:content xmlns:media="http://search.yahoo.com/mrss/" medium="image" url="${siteBaseUrl}${getCoverBySlug(post.slug)}"/>`
+                  ? `<media:content xmlns:media="http://search.yahoo.com/mrss/" medium="image" url="${getCoverBySlug(post.slug)?.img.src}"/>`
                   : ''
           }          
         </item>
