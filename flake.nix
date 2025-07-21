@@ -63,7 +63,7 @@
                   # Run linting and formatting
                   lint-check = {
                     enable = true;
-                    name = "00-lint-check";
+                    name = "lint-check";
                     entry = "npm run lint";
                     language = "system";
                     pass_filenames = false;
@@ -72,7 +72,7 @@
                   # Run unit tests
                   unit-tests = {
                     enable = true;
-                    name = "01-unit-tests";
+                    name = "unit-tests";
                     entry = "npm run test";
                     language = "system";
                     pass_filenames = false;
@@ -81,7 +81,7 @@
                   # Run E2E tests
                   e2e-tests = {
                     enable = true;
-                    name = "02-e2e-tests";
+                    name = "e2e-tests";
                     entry = "npm run test:e2e";
                     language = "system";
                     pass_filenames = false;
@@ -90,7 +90,7 @@
                   # NPM audit high
                   npm-audit = {
                     enable = true;
-                    name = "03-npm-audit";
+                    name = "npm-audit";
                     entry = "npm audit --audit-level=high";
                     language = "system";
                     pass_filenames = false;
