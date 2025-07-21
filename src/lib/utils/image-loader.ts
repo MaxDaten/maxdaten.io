@@ -5,24 +5,26 @@
  * by pre-importing all post cover images and creating a lookup function.
  */
 
-const blogPostImages = new Map<string, unknown>(
+import type { Picture } from 'imagetools-core';
+
+const blogPostImages = new Map<string, Picture>(
     Object.entries(
         import.meta.glob('$assets/images/posts/**/*.{png,jpg,jpeg,webp}', {
             import: 'default',
             eager: true,
             query: { as: 'run', fit: 'cover' },
-        })
+        }) satisfies Record<string,  Picture>
     ).filter(([path]) => !path.includes('/cover.'))
 );
 
 // Import all post cover images with svelte-img optimization
-const postCoverImagesBySlug = new Map<string, unknown>(
+const postCoverImagesBySlug = new Map<string, Picture>(
     Object.entries(
         import.meta.glob('$assets/images/posts/**/cover.{png,jpg,jpeg,webp}', {
             import: 'default',
             eager: true,
             query: { as: 'run', fit: 'cover' },
-        })
+        })  satisfies Record<string,  Picture>
     ).map(([path, image]) => {
         return [path.match(/posts\/([^/]+)\//)?.[1] || '', image];
     })
@@ -34,22 +36,22 @@ const postCoverImagesBySlug = new Map<string, unknown>(
  *   Format: "src/lib/assets/images/posts/{slug}/cover.png"
  * @returns Optimized image object for use with svelte-img component, or null if not found
  */
-export function getCoverBySlug(postSlug: string): unknown | null {
-    return postCoverImagesBySlug.get(postSlug);
+export function getCoverBySlug(postSlug: string): Picture | null {
+    return postCoverImagesBySlug.get(postSlug) || null;
 }
 
-export function getPostImageByPath(path: string): unknown | null {
-    return blogPostImages.get(path);
+export function getPostImageByPath(path: string): Picture | null {
+    return blogPostImages.get(path) || null;
 }
 
 // Import all author avatars with svelte-img optimization
-const authorAvatars = new Map<string, unknown>(
+const authorAvatars = new Map<string, Picture>(
     Object.entries(
         import.meta.glob('$assets/images/authors/*.{png,jpg,jpeg,webp}', {
             import: 'default',
             eager: true,
             query: { as: 'run', w: '100px', fit: 'cover' },
-        })
+        }) as Record<string,  Picture>
     ).map(([path, image]) => {
         // Extract author ID from filename (e.g., "jan-philip-loos.jpg" -> "jan-philip-loos")
         const authorId =
@@ -66,6 +68,6 @@ const authorAvatars = new Map<string, unknown>(
  * @param authorId - The author's ID
  * @returns Optimized image object for use with svelte-img component, or null if not found
  */
-export function getAuthorAvatar(authorId: string): unknown | null {
-    return authorAvatars.get(authorId);
+export function getAuthorAvatar(authorId: string): Picture | null {
+    return authorAvatars.get(authorId) || null;
 }
