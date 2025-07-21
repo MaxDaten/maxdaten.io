@@ -82,7 +82,7 @@
                   e2e-tests = {
                     enable = true;
                     name = "e2e-tests";
-                    entry = "npm run test:e2e";
+                    entry = "npm run test:e2e -- --project chromium";
                     language = "system";
                     pass_filenames = false;
                   };
