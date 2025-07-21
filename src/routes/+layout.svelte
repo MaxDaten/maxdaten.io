@@ -6,39 +6,24 @@
     import { onNavigate } from '$app/navigation';
     import Header from '$components/organisms/Header.svelte';
     import Footer from '$components/organisms/Footer.svelte';
-    import {
-        description,
-        image,
-        keywords,
-        siteBaseUrl,
-        title,
-    } from '$lib/data/meta.js';
+    import { page } from '$app/state';
+    import { MetaTags, deepMerge } from 'svelte-meta-tags';
+
     /**
      * @typedef {Object} Props
      * @property {import('svelte').Snippet} [children]
+     * @property {any} data
      */
 
     /** @type {Props} */
-    let { children } = $props();
+    let { children, data } = $props();
+
+    let metaTags = $derived(
+        deepMerge(data.baseMetaTags, page.data.pageMetaTags || {})
+    );
 </script>
 
-<svelte:head>
-    <link rel="“canonical”" href={siteBaseUrl} />
-    <meta name="keywords" content={keywords.join(', ')} />
-
-    <meta name="description" content={description} />
-    <meta property="og:description" content={description} />
-    <meta name="twitter:description" content={description} />
-
-    <title>{title}</title>
-    <meta property="og:title" content={title} />
-    <meta name="twitter:title" content={title} />
-
-    <meta property="og:image" content={image} />
-    <meta name="twitter:image" content={image} />
-
-    <meta name="twitter:card" content="summary_large_image" />
-</svelte:head>
+<MetaTags {...metaTags} />
 
 <Analytics />
 <Ssgoi {onNavigate} config={transitionConfig}>

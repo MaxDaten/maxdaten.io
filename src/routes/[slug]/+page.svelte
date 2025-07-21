@@ -2,7 +2,6 @@
     import Tag from '$components/atoms/Tag.svelte';
     import Author from '$components/molecules/Author.svelte';
     import dateformat from 'dateformat';
-    import { siteBaseUrl, title } from '$lib/data/meta';
     import RelatedPosts from '$components/organisms/RelatedPosts.svelte';
     import { PageTransition } from 'ssgoi';
     import type { PageProps } from './$types';
@@ -12,31 +11,8 @@
 
     let { data: post }: PageProps = $props();
 
-    let metaKeywords = $derived(
-        post ? [...(post.tags || []), ...(post.keywords || [])] : []
-    );
-
     const author = post.authorId ? getAuthor(post.authorId) : undefined;
 </script>
-
-<svelte:head>
-    <meta name="keywords" content={metaKeywords.join(', ')} />
-
-    <meta name="description" content={post.excerpt} />
-    <meta property="og:description" content={post.excerpt} />
-    <meta name="twitter:description" content={post.excerpt} />
-    <link rel="canonical" href="{siteBaseUrl}/{post.slug}" />
-
-    <title>{post.title} - {title}</title>
-    <meta property="og:title" content="{post.title} - {title}" />
-    <meta name="twitter:title" content="{post.title} - {title}" />
-
-    {#if post.coverImage}
-        <meta property="og:image" content="{siteBaseUrl}/{post.coverImage}" />
-        <meta name="twitter:image" content="{siteBaseUrl}/{post.coverImage}" />
-        <meta name="twitter:card" content="summary_large_image" />
-    {/if}
-</svelte:head>
 
 <PageTransition>
     {@const Post = post.content}

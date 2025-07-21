@@ -13,7 +13,7 @@ const blogPostImages = new Map<string, Picture>(
             import: 'default',
             eager: true,
             query: { as: 'run', fit: 'cover' },
-        }) satisfies Record<string,  Picture>
+        }) satisfies Record<string, Picture>
     ).filter(([path]) => !path.includes('/cover.'))
 );
 
@@ -24,7 +24,7 @@ const postCoverImagesBySlug = new Map<string, Picture>(
             import: 'default',
             eager: true,
             query: { as: 'run', fit: 'cover' },
-        })  satisfies Record<string,  Picture>
+        }) satisfies Record<string, Picture>
     ).map(([path, image]) => {
         return [path.match(/posts\/([^/]+)\//)?.[1] || '', image];
     })
@@ -51,7 +51,7 @@ const authorAvatars = new Map<string, Picture>(
             import: 'default',
             eager: true,
             query: { as: 'run', w: '100px', fit: 'cover' },
-        }) as Record<string,  Picture>
+        }) as Record<string, Picture>
     ).map(([path, image]) => {
         // Extract author ID from filename (e.g., "jan-philip-loos.jpg" -> "jan-philip-loos")
         const authorId =
