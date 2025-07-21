@@ -36,11 +36,11 @@ export const load = ({ url }) => {
             siteName: 'maxdaten.io',
             images: [
                 {
-                    url: `${url.origin}${pagePreviewSrc.img.src}`,
+                    url: pagePreviewSrc.img.src,
                     alt: 'maxdaten.io site preview',
                     width: 1200,
                     height: 800,
-                    secureUrl: `${url.origin}${pagePreviewSrc.img.src}`,
+                    secureUrl: pagePreviewSrc.img.src,
                     type: 'image/jpg',
                 },
             ],
@@ -49,7 +49,7 @@ export const load = ({ url }) => {
             cardType: 'summary_large_image',
             title,
             description,
-            image: `${url.origin}${pagePreviewSrc.img.src}`,
+            image: pagePreviewSrc.img.src,
             imageAlt: 'maxdaten.io site preview',
         } as Twitter,
     }) satisfies MetaTagsProps;

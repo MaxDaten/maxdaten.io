@@ -26,11 +26,11 @@ export const load: PageLoad = async ({ params, data, url }) => {
             ...(coverImage && {
                 images: [
                     {
-                        url: `${url.origin}${coverImage.img.src}`,
+                        url: coverImage.img.src,
                         alt: post.metadata.title,
                         width: coverImage.img.w,
                         height: coverImage.img.h,
-                        secureUrl: `${url.origin}${coverImage.img.src}`,
+                        secureUrl: coverImage.img.src,
                         type: 'image/jpg',
                     },
                 ],
@@ -41,7 +41,7 @@ export const load: PageLoad = async ({ params, data, url }) => {
             description: post.metadata.excerpt,
             cardType: 'summary_large_image',
             ...(coverImage && {
-                image: `${url.origin}${coverImage.img.src}`,
+                image: coverImage.img.src,
                 imageAlt: post.metadata.title,
             }),
         } as Twitter,
