@@ -2,8 +2,8 @@ import { describe, it, expect } from 'vitest';
 import { importPosts } from './utils';
 
 describe('importPosts', () => {
-    it('should import blog posts from the filesystem', () => {
-        const posts = importPosts();
+    it('should import blog posts from the filesystem', async () => {
+        const posts = await importPosts();
 
         console.log('Found posts:', posts.length);
         console.log(
@@ -15,8 +15,8 @@ describe('importPosts', () => {
         expect(posts.length).toBeGreaterThan(0);
     });
 
-    it('should have required metadata fields', () => {
-        const posts = importPosts();
+    it('should have required metadata fields', async () => {
+        const posts = await importPosts();
 
         if (posts.length > 0) {
             const firstPost = posts[0];

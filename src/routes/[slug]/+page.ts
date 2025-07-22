@@ -5,7 +5,8 @@ import type { MetaTagsProps, Twitter } from 'svelte-meta-tags';
 import { getPostBySlug } from '$lib/data/blog-posts/utils';
 
 export const load: PageLoad = async ({ params, data, url }) => {
-    const post = getPostBySlug(params.slug) ?? error(404, 'Post not found');
+    const post =
+        (await getPostBySlug(params.slug)) ?? error(404, 'Post not found');
 
     if (post.metadata.hidden) {
         error(404, 'Post not found');

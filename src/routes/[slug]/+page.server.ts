@@ -6,7 +6,8 @@ import { render } from 'svelte/server';
 import striptags from 'striptags';
 
 export const load: PageServerLoad = async ({ params }) => {
-    const post = getPostBySlug(params.slug) ?? error(404, 'Post not found!');
+    const post =
+        (await getPostBySlug(params.slug)) ?? error(404, 'Post not found!');
 
     if (post.metadata.hidden) {
         error(404, 'Post not found');

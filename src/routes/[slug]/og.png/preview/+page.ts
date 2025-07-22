@@ -10,7 +10,8 @@ export const load: PageLoad = async ({ params, url }) => {
     try {
         // Get the blog post data
         const post =
-            getPostBySlug(slug)?.metadata ?? error(404, 'Post not found');
+            (await getPostBySlug(slug))?.metadata ??
+            error(404, 'Post not found');
         const coverImageUrl = await _loadCoverImage(slug, url);
 
         return {

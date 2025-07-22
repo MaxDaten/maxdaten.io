@@ -6,7 +6,7 @@ export const prerender = true;
 export const load: PageServerLoad = async () => {
     try {
         // Get all blog posts
-        const allPosts = importPosts();
+        const allPosts = await importPosts();
         const filteredPosts = filterPosts(allPosts);
 
         return {

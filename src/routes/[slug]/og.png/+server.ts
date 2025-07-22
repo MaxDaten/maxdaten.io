@@ -67,7 +67,8 @@ export const GET: RequestHandler = async ({ params, url }) => {
     try {
         // Get the blog post data
         const post =
-            getPostBySlug(slug)?.metadata ?? error(404, 'Post not found');
+            (await getPostBySlug(slug))?.metadata ??
+            error(404, 'Post not found');
         const coverImageSrc = await loadCoverImage(slug, url);
 
         const element = renderCardToHtml({ post, coverImageSrc });

@@ -8,21 +8,21 @@ interface PostComponent {
     metadata: BlogPost;
 }
 
-const loadedPosts = import.meta.glob<PostComponent>('/src/content/blog/*.md', {
-    eager: true,
-}) as Record<string, PostComponent>;
+const slugRegex = /src\/content\/blog\/(?<slug>[^/]+)\.md$/;
 
-const postsBySlug = new Map<string, PostComponent>(
-    Object.entries(loadedPosts).map(([_path, post]) => [
-        post.metadata.slug,
-        post,
+const postLoaders = import.meta.glob<PostComponent>('/src/content/blog/*.md');
+
+const postsBySlug = new Map<string, () => Promise<PostComponent>>(
+    Object.entries(postLoaders).map(([path, loadPost]) => [
+        path.match(slugRegex)?.groups?.slug ?? '',
+        loadPost,
     ])
 );
 
-export const importPosts = () => {
+export const importPosts = async () => {
     const posts: BlogPost[] = [];
-    for (const path in loadedPosts) {
-        const post = loadedPosts[path];
+    for (const path in postLoaders) {
+        const post = await postLoaders[path]();
         const renderedPost = render(post.default, { props: {} });
         if (post) {
             posts.push({
@@ -36,9 +36,10 @@ export const importPosts = () => {
     return posts;
 };
 
-export const getPostHtml = (post: BlogPost) => {
-    const loadedPost =
-        postsBySlug.get(post.slug) ?? error(404, 'Post not found');
+export const getPostHtml = async (post: BlogPost) => {
+    const loadedPost = await (
+        postsBySlug.get(post.slug) ?? error(404, 'Post not found')
+    )();
     const renderedPost = render(loadedPost.default, { props: {} });
     return renderedPost.body;
 };
@@ -92,6 +93,9 @@ const getRelatedPosts = (posts: BlogPost[], post: BlogPost) => {
 };
 // #endregion
 
-export const getPostBySlug = (slug: string): PostComponent | undefined => {
-    return postsBySlug.get(slug);
+export const getPostBySlug = async (
+    slug: string
+): Promise<PostComponent | undefined> => {
+    const loader = postsBySlug.get(slug);
+    return loader ? await loader() : undefined;
 };

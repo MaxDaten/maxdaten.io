@@ -6,14 +6,15 @@ import {
     importPosts,
 } from '$lib/data/blog-posts/utils';
 import { getCoverBySlug } from '$utils/image-loader';
+import { encode } from 'html-entities';
 
 export const prerender = true;
 
 export async function GET() {
-    const allPosts = importPosts();
+    const allPosts = await importPosts();
     const filteredPosts = filterPosts(allPosts);
 
-    const body = xml(filteredPosts);
+    const body = await xml(filteredPosts);
     const headers = {
         'Cache-Control': 'max-age=0, s-maxage=3600',
         'Content-Type': 'application/xml',
@@ -22,15 +23,14 @@ export async function GET() {
 }
 
 const escapeXml = (unsafe: string) => {
-    return unsafe
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#39;');
+    return encode(unsafe);
 };
 
-const xml = (posts: BlogPost[]) => `
+async function xml(posts: BlogPost[]) {
+    const renderedPosts = await Promise.all(
+        posts.map(async (post) => await renderPost(post))
+    );
+    return `
 <rss version="2.0"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -38,7 +38,7 @@ const xml = (posts: BlogPost[]) => `
 >
   <channel>
     <atom:link href="${siteBaseUrl}/rss.xml" rel="self" type="application/rss+xml" />
-    <title>${escapeXml(title)}</title>
+    <title>${title}</title>
     <link>${siteBaseUrl}</link>
     <description>${escapeXml(description)}</description>
     <image>
@@ -48,9 +48,15 @@ const xml = (posts: BlogPost[]) => `
       <width>32</width>
       <height>32</height>
     </image>
-    ${posts
-        .map(
-            (post) => `
+    ${renderedPosts.join('')}
+  </channel>
+</rss>`;
+}
+
+async function renderPost(post: BlogPost) {
+    const postHtml = await getPostHtml(post);
+    const coverImageSrc = getCoverBySlug(post.slug)?.img.src;
+    return `
         <item>
           <guid>${siteBaseUrl}/${post.slug}</guid>
           <title>${escapeXml(post.title)}</title>
@@ -67,22 +73,18 @@ const xml = (posts: BlogPost[]) => `
                 </a>
               </strong>
             </div>
-
-            ${getPostHtml(post)}
+            ${postHtml}
           ]]></content:encoded>
           ${
               post.coverImage
-                  ? `<media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="${getCoverBySlug(post.slug)?.img.src}"/>`
+                  ? `<media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="${coverImageSrc}"/>`
                   : ''
           }
           ${
               post.coverImage
-                  ? `<media:content xmlns:media="http://search.yahoo.com/mrss/" medium="image" url="${getCoverBySlug(post.slug)?.img.src}"/>`
+                  ? `<media:content xmlns:media="http://search.yahoo.com/mrss/" medium="image" url="${coverImageSrc}"/>`
                   : ''
           }          
         </item>
-      `
-        )
-        .join('')}
-  </channel>
-</rss>`;
+      `;
+}
