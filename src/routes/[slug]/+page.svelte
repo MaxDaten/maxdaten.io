@@ -59,9 +59,8 @@
         </div>
         {#if post.coverImage}
             <Img
-                class="cover-image"
+                {...{ class: 'cover-image', 'data-hero-key': post.coverImage }}
                 src={getCoverBySlug(post.slug)}
-                data-hero-key={post.coverImage}
                 alt={post.title}
             />
         {/if}
