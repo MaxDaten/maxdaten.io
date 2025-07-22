@@ -81,6 +81,7 @@ export const GET: RequestHandler = async ({ params, url }) => {
         return new Response(pngBuffer, {
             headers: {
                 'content-type': 'image/png',
+                'content-length': Buffer.byteLength(pngBuffer).toString(),
                 // cache for 10 minutes, shared cache (proxies, cdn) 7 days
                 'cache-control': 'public, max-age=600, s-maxage=604800',
             },
