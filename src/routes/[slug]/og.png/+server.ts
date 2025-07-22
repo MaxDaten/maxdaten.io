@@ -10,6 +10,8 @@ import { read } from '$app/server';
 import { decode } from 'html-entities';
 import type { BlogPost } from '$utils/types';
 
+export const prerender = false;
+
 const baloo2Font = await read(
     (
         await import(
