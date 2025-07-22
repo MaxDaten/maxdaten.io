@@ -12,7 +12,6 @@ export const load: PageLoad = async ({ params, data, url }) => {
     }
 
     const ogImageUrl = new URL(`${url.pathname}/og.png`, url.origin).href;
-    console.log(ogImageUrl);
 
     const pageMetaTags = Object.freeze({
         title: post.metadata.title,
