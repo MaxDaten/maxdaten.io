@@ -101,7 +101,6 @@ async function loadCoverImage(slug: string, url: URL) {
 function renderCardToHtml(props: { post: BlogPost; coverImageSrc: string }) {
     const result = render(OgCard, { props });
 
-    console.log(result.head);
     return toReactNode(
         // unescape special characters: https://github.com/natemoo-re/satori-html/issues/20
         `<head>${result.head}</head>${decode(result.body)}`
