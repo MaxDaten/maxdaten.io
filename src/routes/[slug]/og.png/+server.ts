@@ -15,7 +15,7 @@ export const prerender = false;
 const baloo2Font = await read(
     (
         await import(
-            '@fontsource/baloo-2/files/baloo-2-latin-600-normal.woff?inline'
+            '@fontsource/baloo-2/files/baloo-2-latin-800-normal.woff?inline'
         )
     ).default
 ).arrayBuffer();
@@ -56,7 +56,7 @@ const options: SatoriOptions = {
             name: 'Baloo-2',
             data: baloo2Font,
             style: 'normal',
-            weight: 600,
+            weight: 800,
         },
     ],
 };

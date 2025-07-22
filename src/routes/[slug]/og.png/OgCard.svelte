@@ -152,8 +152,8 @@
 
     .site-name {
         font-family: $font-logo;
-        font-size: 2.3rem;
-        font-weight: 600;
+        font-size: 3.5rem;
+        font-weight: 800;
         color: $color-primary;
     }
 
