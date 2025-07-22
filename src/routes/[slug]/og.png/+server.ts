@@ -13,19 +13,19 @@ import type { BlogPost } from '$utils/types';
 const baloo2Font = await read(
     (
         await import(
-            '@fontsource/baloo-2/files/baloo-2-latin-600-normal.woff?url'
+            '@fontsource/baloo-2/files/baloo-2-latin-600-normal.woff?inline'
         )
     ).default
 ).arrayBuffer();
 const merriweatherFont = await read(
     (
         await import(
-            '@fontsource/merriweather/files/merriweather-latin-700-normal.woff?url'
+            '@fontsource/merriweather/files/merriweather-latin-700-normal.woff?inline'
         )
     ).default
 ).arrayBuffer();
 const interFont = await read(
-    (await import('@fontsource/inter/files/inter-latin-400-normal.woff?url'))
+    (await import('@fontsource/inter/files/inter-latin-400-normal.woff?inline'))
         .default
 ).arrayBuffer();
 
