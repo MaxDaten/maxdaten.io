@@ -30,7 +30,7 @@ export const load: PageLoad = async ({ params, data, url }) => {
                     height: 630,
                     secureUrl: ogImageUrl,
                     alt: post.metadata.title,
-                    type: 'image/jpg',
+                    type: 'image/png',
                 },
             ],
         },
