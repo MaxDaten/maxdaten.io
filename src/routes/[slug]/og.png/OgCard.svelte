@@ -74,7 +74,7 @@
         height: 100%;
         background-color: $color-page-background;
 
-        border: 4px solid $color-page-background;
+        border: 8px solid $color-page-background;
 
         font-family: $font-default;
     }
