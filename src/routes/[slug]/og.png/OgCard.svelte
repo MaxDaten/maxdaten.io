@@ -139,9 +139,9 @@
         padding: 8px 16px;
         background-color: rgba($color-text-secondary, 0.2);
         border-radius: 10px;
-        font-size: 18px;
+        font-size: 1.8rem;
+        letter-spacing: 0.08em;
         color: $color-text;
-        //border: 3px solid rgba($color-text-secondary, 0.3);
     }
 
     .branding {
