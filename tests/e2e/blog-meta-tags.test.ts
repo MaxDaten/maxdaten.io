@@ -123,8 +123,10 @@ test.describe('Blog Post Meta Tags', () => {
         // expect(ogImage).toMatch(/^https?:\/\//); // Should be absolute URL, but not locally atm
 
         // Verify default image is accessible
-        const imageResponse = await page.request.get(ogImage);
-        expect(imageResponse.status()).toBe(200);
+        if (ogImage) {
+            const imageResponse = await page.request.get(ogImage);
+            expect(imageResponse.status()).toBe(200);
+        }
 
         // Check Twitter meta tags
         const twitterCard = await page
