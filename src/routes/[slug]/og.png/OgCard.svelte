@@ -109,7 +109,7 @@
     }
 
     .excerpt {
-        font-size: 1.4rem;
+        font-size: 1.6rem;
         line-height: 1.5;
         color: $color-text-secondary;
         flex: 1;
