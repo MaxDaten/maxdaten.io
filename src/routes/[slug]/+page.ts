@@ -3,7 +3,6 @@ import type { PageLoad } from './$types';
 import type { BlogPost } from '$utils/types';
 import type { MetaTagsProps, Twitter } from 'svelte-meta-tags';
 import { getPostBySlug } from '$lib/data/blog-posts/utils';
-import { getCoverBySlug } from '$utils/image-loader';
 
 export const load: PageLoad = async ({ params, data, url }) => {
     const post = getPostBySlug(params.slug) ?? error(404, 'Post not found');
@@ -12,7 +11,8 @@ export const load: PageLoad = async ({ params, data, url }) => {
         error(404, 'Post not found');
     }
 
-    const coverImage = getCoverBySlug(post.metadata.slug);
+    const ogImageUrl = new URL(`${url.pathname}/og.png`, url.origin).href;
+    console.log(ogImageUrl);
 
     const pageMetaTags = Object.freeze({
         title: post.metadata.title,
@@ -23,27 +23,23 @@ export const load: PageLoad = async ({ params, data, url }) => {
             description: post.metadata.excerpt,
             url: new URL(url.pathname, url.origin).href,
             type: 'article',
-            ...(coverImage && {
-                images: [
-                    {
-                        url: coverImage.img.src,
-                        alt: post.metadata.title,
-                        width: coverImage.img.w,
-                        height: coverImage.img.h,
-                        secureUrl: coverImage.img.src,
-                        type: 'image/jpg',
-                    },
-                ],
-            }),
+            images: [
+                {
+                    url: ogImageUrl,
+                    width: 1200,
+                    height: 630,
+                    secureUrl: ogImageUrl,
+                    alt: post.metadata.title,
+                    type: 'image/jpg',
+                },
+            ],
         },
         twitter: {
             title: post.metadata.title,
             description: post.metadata.excerpt,
             cardType: 'summary_large_image',
-            ...(coverImage && {
-                image: coverImage.img.src,
-                imageAlt: post.metadata.title,
-            }),
+            image: ogImageUrl,
+            imageAlt: post.metadata.title,
         } as Twitter,
     }) satisfies MetaTagsProps;
 
