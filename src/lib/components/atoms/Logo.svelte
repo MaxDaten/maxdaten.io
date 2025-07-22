@@ -33,7 +33,7 @@
                 stroke-width: 0;
                 stroke-linecap: round;
                 font-size: 2.1em;
-                font-family: 'Baloo-2', serif;
+                font-family: var(--font-logo), sans-serif;
             }
         }
 
