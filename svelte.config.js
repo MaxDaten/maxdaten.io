@@ -9,7 +9,9 @@ const config = {
         adapter: adapter(),
         prerender: {
             handleHttpError: 'warn',
-            origin: process.env.VERCEL_PROJECT_PRODUCTION_URL || undefined,
+            origin: process.env.VERCEL_PROJECT_PRODUCTION_URL
+                ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+                : undefined,
         },
         alias: {
             $components: './src/lib/components',
