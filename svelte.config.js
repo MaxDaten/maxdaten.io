@@ -7,7 +7,10 @@ import mdsvexConfig from './mdsvex.config.js';
 const config = {
     kit: {
         adapter: adapter(),
-        prerender: { handleHttpError: 'warn' },
+        prerender: {
+            handleHttpError: 'warn',
+            origin: process.env.VERCEL_PROJECT_PRODUCTION_URL || undefined,
+        },
         alias: {
             $components: './src/lib/components',
             $lib: './src/lib',
