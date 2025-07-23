@@ -48,20 +48,7 @@
 <style lang="scss">
     /* Note: Only Satori-compatible CSS (mainly flexbox) */
     /* No CSS variable support */
-
-    $color-primary: #ff8000;
-    $color-primary-shade: #7e4611;
-    $color-primary-tint: #2d1d10;
-
-    $color-secondary: #0cd7f1;
-    $color-secondary-shade: #147b8c;
-    $color-secondary-tint: #0d2a30;
-
-    $color-text: #1a1a1a;
-    $color-text-inverse: #ffffff;
-    $color-text-secondary: #666666;
-    $color-text-secondary-inverse: #ffffff;
-    $color-page-background: #ffffff;
+    @use '$lib/scss/_themes.scss' as *;
 
     $font-default: 'Inter', sans-serif;
     $font-title: 'Merriweather', serif;
@@ -134,7 +121,7 @@
     .role {
         font-size: 20px;
         font-weight: 600;
-        color: $color-text-secondary;
+        color: $color-text-shade;
         margin: 0;
     }
 
