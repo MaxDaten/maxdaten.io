@@ -19,6 +19,10 @@ export type TagType = {
 export type Author = {
     id: string;
     name: string;
+    tagline?: string;
+    role?: string;
+    bio?: string;
+    specialties?: string[];
     socials?: {
         github?: string;
         linkedin?: string;

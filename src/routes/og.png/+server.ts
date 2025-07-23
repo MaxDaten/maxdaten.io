@@ -19,16 +19,6 @@ export const GET: RequestHandler = async ({ url }) => {
         const pngBuffer = await generateOgImage(ProfileOgCard, {
             author,
             profileImageSrc,
-            title: 'Jan-Philip Loos',
-            tagline: 'functional & automated',
-            role: 'DevOps, Fullstack, Cloud Engineer',
-            bio: 'Software engineer and DevOps consultant from Hamburg, Germany. Helping businesses build robust, scalable infrastructure.',
-            specialties: [
-                'Kubernetes',
-                'Google Cloud Platform',
-                'Infrastructure as Code',
-                'CI/CD Automation',
-            ],
         });
 
         return createOgImageResponse(pngBuffer);

@@ -6,27 +6,9 @@
     type Props = {
         author: Author;
         profileImageSrc?: string;
-        title?: string;
-        tagline?: string;
-        role?: string;
-        bio?: string;
-        specialties?: string[];
     };
 
-    let {
-        author: _author,
-        profileImageSrc,
-        title = 'Jan-Philip Loos',
-        tagline = 'functional & automated',
-        role = 'DevOps, Fullstack, Cloud Engineer',
-        bio = 'Software engineer and DevOps consultant from Hamburg, Germany. Helping businesses build robust, scalable infrastructure.',
-        specialties = [
-            'Kubernetes',
-            'Google Cloud Platform',
-            'Infrastructure as Code',
-            'CI/CD Automation',
-        ],
-    }: Props = $props();
+    let { author, profileImageSrc }: Props = $props();
 </script>
 
 <div class="og-card">
@@ -38,19 +20,19 @@
 
     <div class="content">
         <div class="header">
-            <h1 class="name">{title}</h1>
-            <p class="tagline">{tagline}</p>
-            <p class="role">{role}</p>
+            <h1 class="name">{author.name}</h1>
+            <p class="tagline">{author.tagline}</p>
+            <p class="role">{author.role}</p>
         </div>
 
-        {#if bio}
-            <p class="bio">{bio}</p>
+        {#if author.bio}
+            <p class="bio">{author.bio}</p>
         {/if}
 
         <div class="footer">
             <div class="specialties">
-                {#if specialties?.length}
-                    {#each specialties.slice(0, 3) as specialty, i (i)}
+                {#if author.specialties?.length}
+                    {#each author.specialties.slice(0, 3) as specialty, i (i)}
                         <span class="specialty">{specialty}</span>
                     {/each}
                 {/if}
