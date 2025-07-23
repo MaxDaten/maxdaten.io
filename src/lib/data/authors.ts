@@ -5,12 +5,11 @@ export const authors: Record<string, Author> = {
         id: 'jloos',
         name: 'Jan-Philip Loos',
         tagline: 'functional & automated',
-        role: 'DevOps, Fullstack, Cloud Engineer',
-        bio: 'Software engineer and DevOps consultant from Hamburg, Germany. Helping businesses build robust, scalable infrastructure.',
+        role: 'DevOps • Fullstack • Cloud Engineer',
+        bio: 'Software engineer and DevOps consultant from Hamburg, Germany. Helping businesses build robust, scalable products and their infrastructure.',
         specialties: [
             'Kubernetes',
-            'Google Cloud Platform',
-            'Infrastructure as Code',
+            'DevOps Transformation',
             'CI/CD Automation',
         ],
         socials: {

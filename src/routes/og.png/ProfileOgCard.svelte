@@ -60,7 +60,7 @@
         width: 100%;
         height: 100%;
         background-color: $color-page-background;
-        border: 8px solid $color-page-background;
+        border: 8px solid $color-secondary-tint;
         font-family: $font-default;
     }
 
@@ -90,9 +90,10 @@
         display: flex;
         flex-direction: column;
         flex: 1;
-        padding: 24px 32px;
+        padding: 24px 48px;
         background-color: $color-page-background;
         justify-content: space-between;
+        gap: 24px;
     }
 
     .header {
@@ -102,7 +103,7 @@
     }
 
     .name {
-        font-size: 48px;
+        font-size: 4.5rem;
         font-weight: 700;
         line-height: 1.1;
         color: $color-text;
@@ -111,7 +112,7 @@
     }
 
     .tagline {
-        font-size: 24px;
+        font-size: 2.1rem;
         font-weight: 500;
         color: $color-primary;
         font-style: italic;
@@ -119,17 +120,16 @@
     }
 
     .role {
-        font-size: 20px;
+        font-size: 2rem;
         font-weight: 600;
         color: $color-text-shade;
         margin: 0;
     }
 
     .bio {
-        font-size: 18px;
+        font-size: 1.8rem;
         line-height: 1.4;
         color: $color-text;
-        margin: 16px 0;
         flex: 1;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -137,25 +137,25 @@
 
     .footer {
         display: flex;
-        justify-content: space-between;
-        align-items: flex-end;
-        margin-top: auto;
+        flex-direction: column;
     }
 
     .specialties {
         display: flex;
-        gap: 8px;
+        position: absolute;
+        bottom: 20px;
+        gap: 12px;
         flex-wrap: wrap;
-        margin: auto 0;
     }
 
     .specialty {
         display: flex;
         align-items: center;
-        padding: 6px 12px;
+        padding: 8px 16px;
         background-color: rgba($color-primary, 0.15);
-        border-radius: 8px;
-        font-size: 14px;
+        border: 2px solid rgba($color-primary, 0.2);
+        border-radius: 10px;
+        font-size: 1.8rem;
         font-weight: 500;
         letter-spacing: 0.05em;
         color: $color-text;
@@ -169,7 +169,7 @@
 
     .site-name {
         font-family: $font-logo;
-        font-size: 32px;
+        font-size: 3.5rem;
         font-weight: 800;
         color: $color-primary;
     }
