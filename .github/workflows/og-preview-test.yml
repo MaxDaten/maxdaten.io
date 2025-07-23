@@ -1,0 +1,68 @@
+# This workflow also populates og images to cdn cache
+name: OG Preview Images Test
+
+on:
+    deployment_status:
+    workflow_dispatch:
+
+jobs:
+    test-og-preview:
+        # Only run if deployment was successful and it's a production deployment
+        if:
+            github.event_name == 'workflow_dispatch' || github.event_name ==
+            'push' || (github.event.deployment_status.state == 'success' &&
+            github.event.deployment_status.environment == 'production')
+
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: '22'
+                  cache: 'npm'
+
+            - name: Install dependencies
+              run: npm ci
+
+            - name: Install Playwright browsers
+              run: npx playwright install --with-deps
+
+            - name: Run OG Preview Images Test
+              run:
+                  npx playwright test tests/e2e/og-preview-images.spec.ts
+                  --project=chromium
+              env:
+                  # Override base URL to test production
+                  PLAYWRIGHT_BASE_URL: https://maxdaten.io
+
+            - name: Upload Playwright Report
+              uses: actions/upload-artifact@v4
+              if: always()
+              with:
+                  name: playwright-report-og-preview
+                  path: playwright-report/
+                  retention-days: 10
+
+            - name: Upload Test Results
+              uses: actions/upload-artifact@v4
+              if: always()
+              with:
+                  name: test-results-og-preview
+                  path: test-results/
+                  retention-days: 10
+
+    notify-on-failure:
+        needs: test-og-preview
+        runs-on: ubuntu-latest
+        if: failure()
+
+        steps:
+            - name: Notify on test failure
+              run: |
+                  echo "OG Preview images test failed!"
+                  echo "Check the test results and Playwright report artifacts for details."
+                  # You can add additional notification steps here (Slack, email, etc.)
