@@ -15,6 +15,13 @@
     {#if coverImageSrc}
         <div class="cover-image-container">
             <img src={coverImageSrc} alt="" class="cover-image" />
+            {#if post.readingTimeMinutes}
+                <div class="reading-time-overlay">
+                    <span class="reading-time-text"
+                        >{post.readingTimeMinutes} min read</span
+                    >
+                </div>
+            {/if}
         </div>
     {/if}
 
@@ -32,11 +39,6 @@
                     {/each}
                 {/if}
             </div>
-            {#if post.readingTimeMinutes}
-                <span class="reading-time"
-                    >{post.readingTimeMinutes} min read</span
-                >
-            {/if}
 
             <div class="branding">
                 <span class="site-name">maxdaten.io</span>
@@ -81,6 +83,7 @@
 
     .cover-image-container {
         display: flex;
+        position: relative;
         width: 100%;
         height: 40%;
         overflow: hidden;
@@ -90,6 +93,22 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
+    }
+
+    .reading-time-overlay {
+        display: flex;
+        position: absolute;
+        bottom: 16px;
+        right: 16px;
+        background-color: $color-page-background;
+        border-radius: 8px;
+        padding: 8px 12px;
+        border: 1px solid $color-primary;
+    }
+
+    .reading-time-text {
+        font-size: 2.1rem;
+        font-weight: 900;
     }
 
     .content {
@@ -155,10 +174,5 @@
         font-size: 3.5rem;
         font-weight: 800;
         color: $color-primary;
-    }
-
-    .reading-time {
-        font-size: 18px;
-        color: $color-secondary-tint;
     }
 </style>

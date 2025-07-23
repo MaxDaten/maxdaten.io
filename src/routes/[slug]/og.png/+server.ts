@@ -8,7 +8,7 @@ import { Resvg } from '@resvg/resvg-js';
 import { read } from '$app/server';
 import { decode } from 'html-entities';
 import type { BlogPost } from '$utils/types';
-import { importPostBySlug } from '$lib/data/posts';
+import { importPostBySlug } from '$lib/server/posts';
 
 export const prerender = false;
 
@@ -66,7 +66,7 @@ export const GET: RequestHandler = async ({ params, url }) => {
 
     try {
         // Get the blog post data
-        const post = (await importPostBySlug(slug)).metadata;
+        const post = await importPostBySlug(slug);
         const coverImageSrc = await loadCoverImage(slug, url);
 
         const element = renderCardToHtml({ post, coverImageSrc });
