@@ -34,6 +34,7 @@
                 stroke-linecap: round;
                 font-size: 2.1em;
                 font-family: var(--font-logo), sans-serif;
+                font-weight: 600;
             }
         }
 
