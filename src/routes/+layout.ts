@@ -1,10 +1,11 @@
 import type { MetaTagsProps, Twitter } from 'svelte-meta-tags';
 import { description, title } from '$lib/data/meta';
-import pagePreviewSrc from '$assets/images/site/home-preview.png?as=run';
 
 export const prerender = true;
 
 export const load = ({ url }) => {
+    const ogImageUrl = new URL('/og.png', url.origin).href;
+
     const baseMetaTags = Object.freeze({
         title: 'Jan-Philip Loos',
         titleTemplate: '%s | maxdaten.io',
@@ -36,12 +37,12 @@ export const load = ({ url }) => {
             siteName: 'maxdaten.io',
             images: [
                 {
-                    url: pagePreviewSrc.img.src,
-                    alt: 'maxdaten.io site preview',
+                    url: ogImageUrl,
+                    alt: 'Jan-Philip Loos | maxdaten.io profile card',
                     width: 1200,
-                    height: 800,
-                    secureUrl: pagePreviewSrc.img.src,
-                    type: 'image/jpg',
+                    height: 630,
+                    secureUrl: ogImageUrl,
+                    type: 'image/png',
                 },
             ],
         },
@@ -49,8 +50,8 @@ export const load = ({ url }) => {
             cardType: 'summary_large_image',
             title,
             description,
-            image: pagePreviewSrc.img.src,
-            imageAlt: 'maxdaten.io site preview',
+            image: ogImageUrl,
+            imageAlt: 'Jan-Philip Loos | maxdaten.io profile card',
         } as Twitter,
     }) satisfies MetaTagsProps;
 
