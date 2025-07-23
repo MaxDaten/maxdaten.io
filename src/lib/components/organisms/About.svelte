@@ -115,6 +115,7 @@
             border-radius: 10%;
             border: 8px solid rgba(var(--color--primary-rgb), 0.05);
             overflow: hidden;
+            mix-blend-mode: color-burn;
 
             :global(.me-image) {
                 height: 100%;
