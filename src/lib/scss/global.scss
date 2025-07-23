@@ -59,6 +59,10 @@
     $styles: all
 );
 
+:root {
+    @include themes.base-theme;
+}
+
 body {
     --body-background-color: var(--color--page-background);
     background-color: var(--body-background-color);
