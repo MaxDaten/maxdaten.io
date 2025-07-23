@@ -50,20 +50,7 @@
 <style lang="scss">
     /* Note: Only Satori-compatible CSS (mainly flexbox) */
     /* No CSS variable support */
-
-    $color-primary: #ff8000;
-    $color-primary-shade: #7e4611;
-    $color-primary-tint: #2d1d10;
-
-    $color-secondary: #0cd7f1;
-    $color-secondary-shade: #147b8c;
-    $color-secondary-tint: #0d2a30;
-
-    $color-text: #1a1a1a;
-    $color-text-inverse: #ffffff;
-    $color-text-secondary: #666666;
-    $color-text-secondary-inverse: #ffffff;
-    $color-page-background: #ffffff;
+    @use '$lib/scss/_themes.scss' as *;
 
     $font-default: 'Inter', sans-serif;
     $font-title: 'Merriweather', serif;
@@ -76,7 +63,7 @@
         height: 100%;
         background-color: $color-page-background;
 
-        border: 8px solid $color-page-background;
+        border: 8px solid $color-secondary-tint;
 
         font-family: $font-default;
     }
@@ -100,7 +87,7 @@
         position: absolute;
         bottom: 16px;
         right: 16px;
-        background-color: $color-page-background;
+        background-color: rgba($color-page-background, 0.85);
         border-radius: 8px;
         padding: 8px 12px;
         border: 1px solid $color-primary;
@@ -109,6 +96,7 @@
     .reading-time-text {
         font-size: 2.1rem;
         font-weight: 900;
+        color: $color-primary;
     }
 
     .content {
@@ -130,7 +118,7 @@
     .excerpt {
         font-size: 1.6rem;
         line-height: 1.5;
-        color: $color-text-secondary;
+        color: $color-text-shade;
         flex: 1;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -156,7 +144,7 @@
         display: flex;
         align-items: center;
         padding: 8px 16px;
-        background-color: rgba($color-text-secondary, 0.2);
+        background-color: rgba($color-text-inverse-shade, 0.5);
         border-radius: 10px;
         font-size: 1.8rem;
         letter-spacing: 0.08em;

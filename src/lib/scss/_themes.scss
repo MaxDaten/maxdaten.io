@@ -1,37 +1,37 @@
 @use '_mixins.scss';
 
+$color-primary: #ff8000;
+$color-primary-shade: #7e4611;
+$color-primary-tint: #2d1d10;
+
+$color-secondary: #0cd7f1;
+$color-secondary-shade: #147b8c;
+$color-secondary-tint: #0d2a30;
+
+$color-yellow: #ffd400;
+
+$color-text: #fffcfc;
+$color-text-shade: #d9f9fd;
+$color-text-inverse: #1c1e26;
+$color-text-inverse-shade: #5d5f65;
+
+$color-page-background: #1c1e26;
+$color-post-page-background: #141519;
+$color-card-background: #32343e;
+
+$color-callout-background: #1c1e26;
+$color-callout-background-info: #1d3874;
+$color-callout-accent-info: #6ca9f7;
+$color-callout-background-warning: #724413;
+$color-callout-accent-warning: #ffca39;
+$color-callout-background-error: #7c1d20;
+$color-callout-accent-error: #ff8082;
+$color-callout-background-success: #004737;
+$color-callout-accent-success: #00c48f;
+
+$color-code-inline-background: #2b3131;
+
 @mixin base-theme {
-    $color-primary: #ff8000;
-    $color-primary-shade: #7e4611;
-    $color-primary-tint: #2d1d10;
-
-    $color-secondary: #0cd7f1;
-    $color-secondary-shade: #147b8c;
-    $color-secondary-tint: #0d2a30;
-
-    $color-yellow: #ffd400;
-
-    $color-text: #fffcfc;
-    $color-text-shade: #d9f9fd;
-    $color-text-inverse: #1c1e26;
-    $color-text-inverse-shade: #5d5f65;
-
-    $color-page-background: #1c1e26;
-    $color-post-page-background: #141519;
-    $color-card-background: #32343e;
-
-    $color-callout-background: #1c1e26;
-    $color-callout-background-info: #1d3874;
-    $color-callout-accent-info: #6ca9f7;
-    $color-callout-background-warning: #724413;
-    $color-callout-accent-warning: #ffca39;
-    $color-callout-background-error: #7c1d20;
-    $color-callout-accent-error: #ff8082;
-    $color-callout-background-success: #004737;
-    $color-callout-accent-success: #00c48f;
-
-    $color-code-inline-background: #2b3131;
-
     @include mixins.define-color('primary', $color-primary);
     @include mixins.define-color('primary-shade', $color-primary-shade);
     @include mixins.define-color('primary-tint', $color-primary-tint);
@@ -101,8 +101,4 @@
     );
     --color--waves-start: rgba(var(--color--secondary-shade-rgb), 0.3);
     --color--waves-end: rgba(var(--color--secondary-shade-rgb), 0.1);
-}
-
-:root {
-    @include base-theme;
 }
