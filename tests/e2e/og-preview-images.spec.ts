@@ -20,6 +20,7 @@ test.describe('OG Preview Images', () => {
         console.log(`Found ${imageLocators.length} OG images to test`);
 
         const imageLoadTasks = imageLocators.map(async (image) => {
+            await image.scrollIntoViewIfNeeded();
             await expect(image).toBeVisible({ timeout: 15000 });
             const imageSrc = await image.getAttribute('src');
             expect(imageSrc, 'Image should have a src attribute.').toBeTruthy();
