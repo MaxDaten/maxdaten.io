@@ -13,16 +13,6 @@ export const load: PageLoad = async ({ url }) => {
         return {
             author,
             profileImageSrc,
-            title: 'Jan-Philip Loos',
-            tagline: 'functional & automated',
-            role: 'DevOps, Fullstack, Cloud Engineer',
-            bio: 'Software engineer and DevOps consultant from Hamburg, Germany. Helping businesses build robust, scalable infrastructure.',
-            specialties: [
-                'Kubernetes',
-                'Google Cloud Platform',
-                'Infrastructure as Code',
-                'CI/CD Automation',
-            ],
         };
     } catch (err) {
         console.error('Failed to load data for profile OG preview', err);

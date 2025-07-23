@@ -6,7 +6,7 @@
 </script>
 
 <svelte:head>
-    <title>Profile OG Card Preview - {data.title}</title>
+    <title>Profile OG Card Preview - {data.author.name}</title>
     <meta name="robots" content="noindex, nofollow" />
 </svelte:head>
 
@@ -15,7 +15,7 @@
         <h1>Profile OG Card Preview</h1>
         <p>
             Preview of the Open Graph card for the landing page profile: <strong
-                >{data.title}</strong
+                >{data.author.name}</strong
             >
         </p>
         <p class="og-url">
@@ -27,11 +27,6 @@
         <ProfileOgCard
             author={data.author}
             profileImageSrc={data.profileImageSrc}
-            title={data.title}
-            tagline={data.tagline}
-            role={data.role}
-            bio={data.bio}
-            specialties={data.specialties}
         />
     </div>
 
@@ -39,19 +34,19 @@
         <h2>Profile Information</h2>
         <dl>
             <dt>Name:</dt>
-            <dd>{data.title}</dd>
+            <dd>{data.author.name}</dd>
 
             <dt>Tagline:</dt>
-            <dd>{data.tagline}</dd>
+            <dd>{data.author.tagline}</dd>
 
             <dt>Role:</dt>
-            <dd>{data.role}</dd>
+            <dd>{data.author.role}</dd>
 
             <dt>Bio:</dt>
-            <dd>{data.bio}</dd>
+            <dd>{data.author.bio}</dd>
 
             <dt>Specialties:</dt>
-            <dd>{data.specialties.join(', ')}</dd>
+            <dd>{data.author.specialties?.join(', ')}</dd>
 
             <dt>Has Profile Image:</dt>
             <dd>
