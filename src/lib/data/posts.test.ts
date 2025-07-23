@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { readingTime } from './utils';
+import { readingTime } from '$lib/data/posts';
 
 describe('readingTime', () => {
     it('should calculate reading time for short text', () => {

@@ -1,5 +1,4 @@
 import OgCard from '$routes/[slug]/og.png/OgCard.svelte';
-import { getPostBySlug } from '$lib/data/blog-posts/utils';
 import { error } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 import { render } from 'svelte/server';
@@ -9,6 +8,7 @@ import { Resvg } from '@resvg/resvg-js';
 import { read } from '$app/server';
 import { decode } from 'html-entities';
 import type { BlogPost } from '$utils/types';
+import { importPostBySlug } from '$lib/data/posts';
 
 export const prerender = false;
 
@@ -66,9 +66,7 @@ export const GET: RequestHandler = async ({ params, url }) => {
 
     try {
         // Get the blog post data
-        const post =
-            (await getPostBySlug(slug))?.metadata ??
-            error(404, 'Post not found');
+        const post = (await importPostBySlug(slug)).metadata;
         const coverImageSrc = await loadCoverImage(slug, url);
 
         const element = renderCardToHtml({ post, coverImageSrc });

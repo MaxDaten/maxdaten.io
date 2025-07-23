@@ -102,11 +102,6 @@
     .og-preview-card {
         width: 1200px;
         height: 630px;
-        /*margin: 2rem auto;*/
-        /*border: 2px solid #e0e0e0;*/
-        /*border-radius: 8px;*/
-        /*overflow: hidden;*/
-        /*box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);*/
     }
 
     .og-preview-info {

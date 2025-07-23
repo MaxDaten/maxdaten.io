@@ -1,5 +1,5 @@
-import { filteredPosts } from '$lib/data/blog-posts';
 import type { MetaTagsProps } from 'svelte-meta-tags';
+import { filteredPosts } from '$lib/server/posts';
 
 export async function load() {
     const pageMetaTags = Object.freeze({

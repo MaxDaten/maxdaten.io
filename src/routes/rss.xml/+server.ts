@@ -1,12 +1,9 @@
 import { description, siteBaseUrl, title } from '$lib/data/meta';
 import type { BlogPost } from '$lib/utils/types';
-import {
-    filterPosts,
-    getPostHtml,
-    importPosts,
-} from '$lib/data/blog-posts/utils';
 import { getCoverBySlug } from '$utils/image-loader';
 import { encode } from 'html-entities';
+import { getPostHtml, importPosts } from '$lib/server/posts';
+import { filterPosts } from '$lib/data/posts';
 
 export const prerender = true;
 

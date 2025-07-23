@@ -1,6 +1,6 @@
-import { getPostBySlug } from '$lib/data/blog-posts/utils';
 import { error } from '@sveltejs/kit';
 import type { PageLoad } from './$types';
+import { importPostBySlug } from '$lib/data/posts';
 
 export const prerender = 'auto';
 
@@ -9,9 +9,7 @@ export const load: PageLoad = async ({ params, url }) => {
 
     try {
         // Get the blog post data
-        const post =
-            (await getPostBySlug(slug))?.metadata ??
-            error(404, 'Post not found');
+        const post = (await importPostBySlug(slug))?.metadata;
         const coverImageUrl = await _loadCoverImage(slug, url);
 
         return {

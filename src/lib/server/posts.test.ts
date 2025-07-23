@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { importPosts } from './utils';
+import { importPosts } from '$lib/server/posts';
 
 describe('importPosts', () => {
     it('should import blog posts from the filesystem', async () => {

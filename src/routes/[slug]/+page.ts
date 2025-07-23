@@ -2,11 +2,12 @@ import { error } from '@sveltejs/kit';
 import type { PageLoad } from './$types';
 import type { BlogPost } from '$utils/types';
 import type { MetaTagsProps, Twitter } from 'svelte-meta-tags';
-import { getPostBySlug } from '$lib/data/blog-posts/utils';
+import { loaderBySlug } from '$lib/data/posts';
 
 export const load: PageLoad = async ({ params, data, url }) => {
-    const post =
-        (await getPostBySlug(params.slug)) ?? error(404, 'Post not found');
+    const loadPost =
+        loaderBySlug.get(params.slug) ?? error(404, 'Post not found');
+    const post = await loadPost();
 
     if (post.metadata.hidden) {
         error(404, 'Post not found');
