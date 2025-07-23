@@ -90,7 +90,7 @@
         display: flex;
         flex-direction: column;
         flex: 1;
-        padding: 24px 48px;
+        padding: 24px 24px;
         background-color: $color-page-background;
         justify-content: space-between;
         gap: 24px;
