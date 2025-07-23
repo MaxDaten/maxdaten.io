@@ -12,77 +12,110 @@
 <div class="og-preview-container">
     <div class="og-preview-header">
         <h1>OG Images Preview</h1>
-        <p>
-            Preview of all Open Graph images for blog posts ({data.posts.length}
-            posts)
-        </p>
+        <p>Preview of all Open Graph images</p>
     </div>
 
-    <div class="og-grid">
-        {#each data.posts as post (post.slug)}
-            <div class="og-card">
-                <div class="og-image-container">
+    <!-- Profile OG Image Section -->
+    <div class="profile-section">
+        <h2>Profile Card</h2>
+        <div class="profile-og-card">
+            <div class="og-image-container">
+                <a href="/og.png" target="_blank" rel="noopener noreferrer">
+                    <img src="/og.png" alt="Profile OG image" loading="lazy" />
+                </a>
+            </div>
+            <div class="og-card-info">
+                <h3>Main Profile Card</h3>
+                <p class="og-card-meta">
+                    <span class="description"
+                        >Used as the default Open Graph image for the site</span
+                    >
+                </p>
+                <div class="og-card-links">
                     <a
-                        href="/{post.slug}"
+                        href="/og.png"
                         target="_blank"
                         rel="noopener noreferrer"
+                        class="og-link"
                     >
-                        <img
-                            src="/{post.slug}/og.png"
-                            alt="OG image for {post.title}"
-                            loading="lazy"
-                        />
+                        View OG Image
                     </a>
                 </div>
-                <div class="og-card-info">
-                    <h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Blog Posts Section -->
+    <div class="posts-section">
+        <h2>Blog Posts ({data.posts.length})</h2>
+        <div class="og-grid">
+            {#each data.posts as post (post.slug)}
+                <div class="og-card">
+                    <div class="og-image-container">
                         <a
                             href="/{post.slug}"
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            {post.title}
-                        </a>
-                    </h3>
-                    <p class="og-card-meta">
-                        <span class="date"
-                            >{new Date(post.date).toLocaleDateString()}</span
-                        >
-                        {#if post.tags?.length}
-                            <span class="tags">
-                                {post.tags.slice(0, 3).join(', ')}
-                                {#if post.tags.length > 3}...{/if}
-                            </span>
-                        {/if}
-                    </p>
-                    <div class="og-card-links">
-                        <a
-                            href="/{post.slug}/og.png"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="og-link"
-                        >
-                            View OG Image
-                        </a>
-                        <a
-                            href="/{post.slug}/og.png/preview"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="preview-link"
-                        >
-                            Individual Preview
+                            <img
+                                src="/{post.slug}/og.png"
+                                alt="OG image for {post.title}"
+                                loading="lazy"
+                            />
                         </a>
                     </div>
+                    <div class="og-card-info">
+                        <h3>
+                            <a
+                                href="/{post.slug}"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                {post.title}
+                            </a>
+                        </h3>
+                        <p class="og-card-meta">
+                            <span class="date"
+                                >{new Date(
+                                    post.date
+                                ).toLocaleDateString()}</span
+                            >
+                            {#if post.tags?.length}
+                                <span class="tags">
+                                    {post.tags.slice(0, 3).join(', ')}
+                                    {#if post.tags.length > 3}...{/if}
+                                </span>
+                            {/if}
+                        </p>
+                        <div class="og-card-links">
+                            <a
+                                href="/{post.slug}/og.png"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="og-link"
+                            >
+                                View OG Image
+                            </a>
+                            <a
+                                href="/{post.slug}/og.png/preview"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="preview-link"
+                            >
+                                Individual Preview
+                            </a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        {/each}
-    </div>
-
-    {#if data.posts.length === 0}
-        <div class="no-posts">
-            <p>No blog posts found.</p>
+            {/each}
         </div>
-    {/if}
+
+        {#if data.posts.length === 0}
+            <div class="no-posts">
+                <p>No blog posts found.</p>
+            </div>
+        {/if}
+    </div>
 </div>
 
 <style>
@@ -209,6 +242,44 @@
         color: var(--color--text-shade);
         font-size: 1.1rem;
     }
+
+    /* Section styles */
+    .profile-section,
+    .posts-section {
+        margin-bottom: 3rem;
+    }
+
+    .profile-section h2,
+    .posts-section h2 {
+        color: var(--color--text);
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid var(--color--primary);
+    }
+
+    /* Profile OG card specific styles */
+    .profile-og-card {
+        max-width: 600px;
+        background: var(--color--card-background);
+        border-radius: 12px;
+        box-shadow: var(--card-shadow);
+        overflow: hidden;
+        transition:
+            transform 0.2s var(--ease-3),
+            box-shadow 0.2s var(--ease-3);
+    }
+
+    .profile-og-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--card-shadow-hover);
+    }
+
+    .description {
+        font-size: 0.95rem;
+        line-height: 1.4;
+    }
+
     @media (max-width: 768px) {
         .og-preview-container {
             padding: 1rem;
