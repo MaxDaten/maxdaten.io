@@ -48,7 +48,7 @@
     @media screen and (prefers-reduced-motion: no-preference) {
         .animated {
             #text {
-                animation: svg-text-stroke 2s ease-in-out;
+                animation: svg-text-stroke 4s ease-in-out;
                 --text-color: var(--color--primary);
             }
         }
