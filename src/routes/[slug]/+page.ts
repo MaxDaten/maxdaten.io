@@ -13,7 +13,7 @@ export const load: PageLoad = async ({ params, data, url }) => {
         error(404, 'Post not found');
     }
 
-    const ogImageUrl = new URL(`${url.pathname}/og.png`, url.origin).href;
+    const ogImageUrl = new URL(`${url.pathname}/og.jpg`, url.origin).href;
 
     const pageMetaTags = Object.freeze({
         title: post.metadata.title,
@@ -31,7 +31,7 @@ export const load: PageLoad = async ({ params, data, url }) => {
                     height: 630,
                     secureUrl: ogImageUrl,
                     alt: post.metadata.title,
-                    type: 'image/png',
+                    type: 'image/jpeg',
                 },
             ],
         },

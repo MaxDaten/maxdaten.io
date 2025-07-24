@@ -4,7 +4,7 @@ import { description, title } from '$lib/data/meta';
 export const prerender = true;
 
 export const load = ({ url }) => {
-    const ogImageUrl = new URL('/og.png', url.origin).href;
+    const ogImageUrl = new URL('/og.jpg', url.origin).href;
 
     const baseMetaTags = Object.freeze({
         title: 'Jan-Philip Loos',
@@ -42,7 +42,7 @@ export const load = ({ url }) => {
                     width: 1200,
                     height: 630,
                     secureUrl: ogImageUrl,
-                    type: 'image/png',
+                    type: 'image/jpeg',
                 },
             ],
         },

@@ -5,6 +5,7 @@ import { Resvg } from '@resvg/resvg-js';
 import { read } from '$app/server';
 import { decode } from 'html-entities';
 import type { Component } from 'svelte';
+import sharp from 'sharp';
 
 // Load fonts once at module level
 const baloo2Font = await read(
@@ -71,6 +72,21 @@ export function svgToPng(svg: string): Uint8Array {
 }
 
 /**
+ * Convert SVG to JPEG buffer
+ */
+export async function svgToJpg(
+    svg: string,
+    quality: number = 90
+): Promise<Uint8Array> {
+    const jpegBuffer = await sharp(Buffer.from(svg))
+        .resize(OG_SIZE.width, OG_SIZE.height)
+        .jpeg({ quality })
+        .toBuffer();
+
+    return new Uint8Array(jpegBuffer);
+}
+
+/**
  * Render Svelte component to HTML for Satori
  */
 export function renderCardToHtml<T extends Record<string, unknown>>(
@@ -90,24 +106,29 @@ export function renderCardToHtml<T extends Record<string, unknown>>(
  */
 export async function generateOgImage<T extends Record<string, unknown>>(
     component: Component<T>,
-    props: T
-): Promise<Uint8Array> {
+    props: T,
+    format: 'png' | 'jpg' = 'png'
+): Promise<Response> {
     const element = renderCardToHtml(component, props);
 
     // Generate the OG image using the rendered Svelte component
     // @ts-expect-error for VNode to match ReactNode
     const svg = await satori(element, SATORI_OPTIONS);
 
-    return svgToPng(svg);
+    const imageBuffer = format === 'png' ? svgToPng(svg) : await svgToJpg(svg);
+    return createOgImageResponse(imageBuffer, format);
 }
 
 /**
  * Create standard OG image response
  */
-export function createOgImageResponse(pngBuffer: Uint8Array): Response {
+function createOgImageResponse(
+    pngBuffer: Uint8Array,
+    format: 'png' | 'jpg'
+): Response {
     return new Response(pngBuffer, {
         headers: {
-            'content-type': 'image/png',
+            'content-type': format === 'png' ? 'image/png' : 'image/jpeg',
             'content-length': Buffer.byteLength(pngBuffer).toString(),
             // cache for 10 minutes, shared cache (proxies, cdn) 7 days
             'cache-control': 'public, max-age=600, s-maxage=604800',
