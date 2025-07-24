@@ -61,13 +61,13 @@ test.describe('OG Preview Images', () => {
 
         const ogLink = firstCard.locator('.og-link');
         await expect(ogLink).toBeVisible();
-        await expect(ogLink).toHaveAttribute('href', /.*\/og\.png$/);
+        await expect(ogLink).toHaveAttribute('href', /.*\/og\.jpg$/);
 
         const previewLink = firstCard.locator('.preview-link');
         await expect(previewLink).toBeVisible();
         await expect(previewLink).toHaveAttribute(
             'href',
-            /.*\/og\.png\/preview$/
+            /.*\/og\.jpg\/preview$/
         );
     });
 });

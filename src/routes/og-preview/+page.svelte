@@ -20,9 +20,9 @@
         <h2>Profile Card</h2>
         <div class="profile-og-card">
             <div class="og-image-container">
-                <a href="/og.png" target="_blank" rel="noopener noreferrer">
+                <a href="/og.jpg" target="_blank" rel="noopener noreferrer">
                     <img
-                        src="/og.png"
+                        src="/og.jpg"
                         alt="Profile Card of Jan-Philip Loos"
                         loading="lazy"
                     />
@@ -37,7 +37,7 @@
                 </p>
                 <div class="og-card-links">
                     <a
-                        href="/og.png"
+                        href="/og.jpg"
                         target="_blank"
                         rel="noopener noreferrer"
                         class="og-link"
@@ -62,7 +62,7 @@
                             rel="noopener noreferrer"
                         >
                             <img
-                                src="/{post.slug}/og.png"
+                                src="/{post.slug}/og.jpg"
                                 alt="OG image for {post.title}"
                                 loading="lazy"
                             />
@@ -93,7 +93,7 @@
                         </p>
                         <div class="og-card-links">
                             <a
-                                href="/{post.slug}/og.png"
+                                href="/{post.slug}/og.jpg"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 class="og-link"
@@ -101,7 +101,7 @@
                                 View OG Image
                             </a>
                             <a
-                                href="/{post.slug}/og.png/preview"
+                                href="/{post.slug}/og.jpg/preview"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 class="preview-link"

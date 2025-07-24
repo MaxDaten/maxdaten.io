@@ -1,7 +1,6 @@
 import { render } from 'svelte/server';
 import { html as toReactNode } from 'satori-html';
 import satori, { type SatoriOptions } from 'satori';
-import { Resvg } from '@resvg/resvg-js';
 import { read } from '$app/server';
 import { decode } from 'html-entities';
 import type { Component } from 'svelte';
@@ -62,16 +61,6 @@ export const SATORI_OPTIONS: SatoriOptions = {
 };
 
 /**
- * Convert SVG to PNG buffer
- */
-export function svgToPng(svg: string): Uint8Array {
-    const resvg = new Resvg(svg, {
-        fitTo: { mode: 'width', value: OG_SIZE.width },
-    });
-    return resvg.render().asPng();
-}
-
-/**
  * Convert SVG to JPEG buffer
  */
 export async function svgToJpg(
@@ -106,8 +95,7 @@ export function renderCardToHtml<T extends Record<string, unknown>>(
  */
 export async function generateOgImage<T extends Record<string, unknown>>(
     component: Component<T>,
-    props: T,
-    format: 'png' | 'jpg' = 'png'
+    props: T
 ): Promise<Response> {
     const element = renderCardToHtml(component, props);
 
@@ -115,21 +103,18 @@ export async function generateOgImage<T extends Record<string, unknown>>(
     // @ts-expect-error for VNode to match ReactNode
     const svg = await satori(element, SATORI_OPTIONS);
 
-    const imageBuffer = format === 'png' ? svgToPng(svg) : await svgToJpg(svg);
-    return createOgImageResponse(imageBuffer, format);
+    const imageBuffer = await svgToJpg(svg);
+    return createOgImageResponse(imageBuffer);
 }
 
 /**
  * Create standard OG image response
  */
-function createOgImageResponse(
-    pngBuffer: Uint8Array,
-    format: 'png' | 'jpg'
-): Response {
-    return new Response(pngBuffer, {
+function createOgImageResponse(jpegBuffer: Uint8Array): Response {
+    return new Response(jpegBuffer, {
         headers: {
-            'content-type': format === 'png' ? 'image/png' : 'image/jpeg',
-            'content-length': Buffer.byteLength(pngBuffer).toString(),
+            'content-type': 'image/jpeg',
+            'content-length': Buffer.byteLength(jpegBuffer).toString(),
             // cache for 10 minutes, shared cache (proxies, cdn) 7 days
             'cache-control': 'public, max-age=600, s-maxage=604800',
         },

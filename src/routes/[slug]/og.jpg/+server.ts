@@ -1,4 +1,4 @@
-import OgCard from '$routes/[slug]/og.[format=ogformat]/OgCard.svelte';
+import OgCard from '$routes/[slug]/og.jpg/OgCard.svelte';
 import { error } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 import { importPostBySlug } from '$lib/server/posts';
@@ -15,14 +15,10 @@ export const GET: RequestHandler = async ({ params, url }) => {
         const post = await importPostBySlug(slug);
         const coverImageSrc = await loadCoverImage(slug, url);
 
-        return await generateOgImage(
-            OgCard,
-            {
-                post,
-                coverImageSrc,
-            },
-            params.format
-        );
+        return await generateOgImage(OgCard, {
+            post,
+            coverImageSrc,
+        });
     } catch (err) {
         console.error(`Failed to generate OG image for slug: ${slug}`, err);
         error(500, 'Failed to generate OG image');

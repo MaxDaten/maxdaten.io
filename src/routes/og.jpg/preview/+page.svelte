@@ -19,7 +19,7 @@
             >
         </p>
         <p class="og-url">
-            Actual OG image URL: <code>/og.png</code>
+            Actual OG image URL: <code>/og.jpg</code>
         </p>
     </div>
 
