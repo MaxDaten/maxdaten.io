@@ -8,7 +8,16 @@
     - Important: It only works with import pattern, which complicates blog posts cover, which is
       dynamic, need a solution for this
 - [x] Apply `svelte-img` Img to article content
-- [ ] Dynamic social media previews for blog posts
+- [ ] Refactor: blog post image organization
+    - Requirements:
+        - Every post (`src/content/blog`) should also have its own image folder:
+            - Cover: $assets/images/posts/{slug}/cover.{extension}
+            - Other: $assets/images/posts/{slug}/{uuid}.{extension}
+        - Configure frontmatter (vscode extension https://frontmatter.codes/ accordingly), inserting
+          images into a post should place the image to the correct post directory with an uuid as
+          base file name
+- [x] Dynamic social media previews for blog posts
+- [x] Add author to frontmatter blog posts display with avatar
 
 ## Bugs
 
