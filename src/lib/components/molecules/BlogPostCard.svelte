@@ -86,6 +86,7 @@
         :global(.cover-image) {
             max-height: 350px;
             object-fit: cover;
+            object-position: 50% 75%;
         }
     }
 </style>
