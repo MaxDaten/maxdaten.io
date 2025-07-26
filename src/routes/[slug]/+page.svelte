@@ -60,6 +60,7 @@
         {#if post.coverImage}
             <Img
                 {...{ class: 'cover-image', 'data-hero-key': post.coverImage }}
+                factor={0.2}
                 src={getCoverBySlug(post.slug)}
                 alt={post.title}
             />
