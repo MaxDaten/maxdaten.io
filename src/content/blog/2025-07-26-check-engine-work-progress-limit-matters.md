@@ -1,22 +1,30 @@
 ---
-title: 'Why a Work In Progress Limit Matters'
-slug: 'why-a-work-in-progress-limit-matters'
-coverImage: ''
+title: 'Check your Engine: Work In Progress Limit Matters'
+slug: 2025-07-26-check-engine-work-progress-limit-matters
+coverImage: src/lib/assets/images/posts/2025-07-26-check-engine-work-progress-limit-matters/cover.png
 excerpt:
-    'Being busy is not inherently productive. Why limiting Work In Progress (WIP) is a crucial
-    practice for improving a development team’s effectiveness and an indicator of process health.'
+    Being busy is not inherently productive. Why limiting Work In Progress (WIP) is a best-practice
+    for improving a development team’s effectiveness and indicator of process health.
 date: 2025-07-26T01:52:21.109Z
 updated: null
-hidden: true
-tags: ['agile', 'kanban', 'wip-limits', 'productivity', 'software-development']
+hidden: false
+tags:
+    - agile
+    - kanban
+    - productivity
+    - software-development
 keywords:
-    [
-        'work in progress limit',
-        'wip limit',
-        'agile development',
-        'team productivity',
-        'software development process',
-    ]
+    - agile development
+    - cost of delay
+    - developer frustration
+    - DORA metrics
+    - kanban
+    - scrum
+    - software development process
+    - team productivity
+    - wip limit
+    - work in progress limit
+    - continuous delivery
 ---
 
 In recent years, I have worked on projects where keeping developers busy was a primary rule.
