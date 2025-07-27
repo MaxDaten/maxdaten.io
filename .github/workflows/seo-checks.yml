@@ -1,12 +1,12 @@
-# This workflow also populates og images to cdn cache
-name: OG Preview Images Test
+# This workflow runs comprehensive SEO checks including robots.txt, sitemap.xml, and meta tags
+name: SEO Checks
 
 on:
     deployment_status:
     workflow_dispatch:
 
 jobs:
-    test-og-preview:
+    seo-checks:
         # Only run if deployment was successful and it's a production deployment
         if:
             github.event_name == 'workflow_dispatch' || github.event_name ==
@@ -31,10 +31,11 @@ jobs:
             - name: Install Playwright browsers
               run: npx playwright install --with-deps chromium
 
-            - name: Run OG Preview Images Test
+            - name: Run SEO Checks
               run:
-                  npx playwright test tests/e2e/og-preview-images.spec.ts
-                  --project=chromium
+                  npx playwright test tests/e2e/robots.test.ts
+                  tests/e2e/sitemap.test.ts tests/e2e/blog-meta-tags.test.ts
+                  tests/e2e/og-preview-images.spec.ts --project=chromium
               env:
                   # Override base URL to test production
                   PLAYWRIGHT_BASE_URL: https://maxdaten.io
@@ -43,7 +44,7 @@ jobs:
               uses: actions/upload-artifact@v4
               if: always()
               with:
-                  name: playwright-report-og-preview
+                  name: playwright-report-seo-checks
                   path: playwright-report/
                   retention-days: 10
 
@@ -51,18 +52,18 @@ jobs:
               uses: actions/upload-artifact@v4
               if: always()
               with:
-                  name: test-results-og-preview
+                  name: test-results-seo-checks
                   path: test-results/
                   retention-days: 10
 
     notify-on-failure:
-        needs: test-og-preview
+        needs: seo-checks
         runs-on: ubuntu-latest
         if: failure()
 
         steps:
             - name: Notify on test failure
               run: |
-                  echo "OG Preview images test failed!"
+                  echo "SEO checks failed!"
                   echo "Check the test results and Playwright report artifacts for details."
                   # You can add additional notification steps here (Slack, email, etc.)
