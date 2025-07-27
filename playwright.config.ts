@@ -8,6 +8,10 @@ import { defineConfig, devices } from '@playwright/test';
 
 /**
  * See https://playwright.dev/docs/test-configuration.
+ *
+ * Note: To mark tests as incompatible with specific browsers:
+ * - Use test.skip(browserName === 'webkit', 'Reason') in your test
+ * - The browserName parameter needs to be added to the test function
  */
 export default defineConfig({
     testDir: './tests/e2e',
