@@ -30,15 +30,19 @@ keywords:
 
 In recent years, I have worked on projects where keeping developers busy was a primary rule.
 Understandably, developers are expensive. Keeping them busy is one way of getting the most value out
-of them, right? This is not only a common management view; often developers themselves are eager to
-stay busy. For a freelancer, being busy is billable — spinning in your chair while waiting for a
-review doesn't pay the bills. As a developer, it's easy to keep yourself busy and signal this to
-others, including management. You are there to work, so you pull a new ticket and report your
-progress in the daily stand-up while your other ticket is waiting for a review or some other
-feedback. But is that really productive? Being busy is not inherently productive and can even be
-counterproductive, causing more harm than value.
+of them, right?
+
+This is not only a common management view; often developers themselves are eager to stay busy. For a
+freelancer, being busy is billable — spinning in your chair while waiting for a review doesn't pay
+the bills. As a developer, it's easy to keep yourself busy and signal this to others, including
+management. You are there to work, so you pull a new ticket and report your progress in the daily
+stand-up while your other ticket is waiting for a review or some other feedback. But is that really
+productive? Being busy is not inherently productive and can even be counterproductive, causing more
+harm than value.
 
 ## Keep Pushing Down the Line
+
+![Convey belt with yellow packages, rough minimalistic sketch](/src/lib/assets/images/posts/2025-07-26-check-engine-work-progress-limit-matters/a160e274-a456-447f-9052-9dfb66c2b1e8.png)
 
 A common pattern I've observed is the decoupling of ongoing developer work. The result is often an
 attempt to optimize the number of tickets in progress — not by decreasing the count, but by
@@ -131,6 +135,8 @@ change is less present in your mental context. You might run into the same categ
 the infamous "big bang" releases, especially if your team resolves a congested board the next day.
 The problem is even bigger with an anti-pattern like late-integrating branches, because all changes
 are integrated as late as possible, not as soon as possible.
+
+![Sketch of the agile concept 'Observe and Adapt': 'Observe': a system of gears under a magnifying glass, 'Adapt': Drawing a new Gear](/src/lib/assets/images/posts/2025-07-26-check-engine-work-progress-limit-matters/f0f32f9f-13f8-4538-9f50-ffaac3d72d66.png)
 
 ## Advocating for a Hard Work In Progress Limit
 
