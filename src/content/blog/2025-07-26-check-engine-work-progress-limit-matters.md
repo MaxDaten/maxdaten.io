@@ -7,6 +7,7 @@ excerpt:
     for improving a development team’s effectiveness and indicator of process health.
 date: 2025-07-26T01:52:21.109Z
 updated: null
+authorId: jloos
 hidden: false
 tags:
     - agile
