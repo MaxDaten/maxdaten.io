@@ -58,12 +58,17 @@
             {/if}
         </div>
         {#if post.coverImage}
-            <Img
-                {...{ class: 'cover-image', 'data-hero-key': post.coverImage }}
-                factor={0.2}
-                src={getCoverBySlug(post.slug)}
-                alt={post.title}
-            />
+            <div class="cover-image-container">
+                <Img
+                    {...{
+                        class: 'cover-image',
+                        'data-hero-key': post.coverImage,
+                    }}
+                    factor={0.5}
+                    src={getCoverBySlug(post.slug)}
+                    alt={post.title}
+                />
+            </div>
         {/if}
         <div class="content">
             <Post />
@@ -156,19 +161,16 @@
             }
         }
 
-        :global(.cover-image) {
-            max-height: 400px;
-            width: 100%;
-            max-width: breakpoints.$breakpoint-desktop-min;
-            object-fit: cover;
+        .cover-image-container {
+            width: 1000px;
             margin: 0 auto;
             border-radius: 12px;
             overflow: hidden;
+            height: 400px;
 
-            @include breakpoints.for-phone-only {
-                max-height: 250px;
-                width: 150%;
-                translate: -15% 0;
+            @media (max-width: 1060px) {
+                transform: translateX(calc((1100px - 100vw) / -2));
+                width: 1100px;
             }
         }
 
