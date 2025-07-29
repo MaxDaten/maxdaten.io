@@ -3,6 +3,9 @@ import type { PageLoad } from './$types';
 import type { BlogPost } from '$utils/types';
 import type { MetaTagsProps, Twitter } from 'svelte-meta-tags';
 import { loaderBySlug } from '$lib/data/posts';
+import { createBlogPostingSchema } from '$lib/data/meta';
+import { getAuthor } from '$lib/data/authors';
+import type { BlogPosting, WithContext } from 'schema-dts';
 
 export const load: PageLoad = async ({ params, data, url }) => {
     const loadPost =
@@ -14,6 +17,14 @@ export const load: PageLoad = async ({ params, data, url }) => {
     }
 
     const ogImageUrl = new URL(`${url.pathname}/og.jpg`, url.origin).href;
+
+    // Generate blog posting schema
+    const author = post.metadata.authorId
+        ? getAuthor(post.metadata.authorId)
+        : undefined;
+    const pageSchema = author
+        ? [createBlogPostingSchema(post.metadata, url.href)]
+        : [];
 
     const pageMetaTags = Object.freeze({
         title: post.metadata.title,
@@ -48,5 +59,9 @@ export const load: PageLoad = async ({ params, data, url }) => {
         ...data,
         content: post.default,
         pageMetaTags,
-    } as BlogPost & { pageMetaTags: MetaTagsProps };
+        pageSchema,
+    } as BlogPost & {
+        pageMetaTags: MetaTagsProps;
+        pageSchema: WithContext<BlogPosting>[];
+    };
 };

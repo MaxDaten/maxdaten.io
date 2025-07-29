@@ -7,7 +7,7 @@
     import Header from '$components/organisms/Header.svelte';
     import Footer from '$components/organisms/Footer.svelte';
     import { page } from '$app/state';
-    import { MetaTags, deepMerge } from 'svelte-meta-tags';
+    import { MetaTags, deepMerge, JsonLd } from 'svelte-meta-tags';
 
     /**
      * @typedef {Object} Props
@@ -21,9 +21,16 @@
     let metaTags = $derived(
         deepMerge(data.baseMetaTags, page.data.pageMetaTags || {})
     );
+
+    let schemaGraph = $derived([
+        ...data.baseSchema,
+        ...(page.data.pageSchema || []),
+    ]);
 </script>
 
 <MetaTags {...metaTags} />
+
+<JsonLd schema={{ '@graph': schemaGraph }} />
 
 <Analytics />
 <Ssgoi {onNavigate} config={transitionConfig}>

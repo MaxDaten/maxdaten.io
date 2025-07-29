@@ -98,6 +98,25 @@ test.describe('Blog Post Meta Tags', () => {
         });
     }
 
+    for (const post of blogPosts) {
+        test(`should have valid JSON-LD schemas for ${post.slug}`, async ({
+            page,
+        }) => {
+            // Navigate to the blog post
+            const response = await page.goto(`/${post.slug}`);
+            expect(response?.status()).toBe(200);
+
+            // Wait for the page to load
+            await page.waitForLoadState('networkidle');
+
+            // Check JSON-LD schemas
+            const jsonLdScripts = await page
+                .locator('script[type="application/ld+json"]')
+                .all();
+            expect(jsonLdScripts.length).toBeGreaterThan(0);
+        });
+    }
+
     test('should have valid default meta tags on homepage', async ({
         page,
     }) => {
@@ -133,5 +152,11 @@ test.describe('Blog Post Meta Tags', () => {
             .locator('meta[name="twitter:card"]')
             .getAttribute('content');
         expect(twitterCard).toBe('summary_large_image');
+
+        // Check JSON-LD schemas on homepage
+        const jsonLdScripts = await page
+            .locator('script[type="application/ld+json"]')
+            .all();
+        expect(jsonLdScripts.length).toBeGreaterThan(0); // Should have WebSite, Person, and Organization schemas
     });
 });

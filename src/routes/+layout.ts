@@ -1,5 +1,5 @@
 import type { MetaTagsProps, Twitter } from 'svelte-meta-tags';
-import { description, title } from '$lib/data/meta';
+import { description, title, baseSchema } from '$lib/data/meta';
 
 export const prerender = true;
 
@@ -57,5 +57,6 @@ export const load = ({ url }) => {
 
     return {
         baseMetaTags,
+        baseSchema,
     };
 };

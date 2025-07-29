@@ -2,9 +2,85 @@
 // So they can be added as suffixes on different pages
 // Via <svelte:head>
 
+import { authors } from './authors';
+import type { BlogPost } from '$lib/utils/types';
+import type {
+    BlogPosting,
+    Organization,
+    Person,
+    WebSite,
+    WithContext,
+} from 'schema-dts';
+
 export const siteBaseUrl = 'https://maxdaten.io';
 
 export const description =
     'DevOps consultant and software engineer specializing in cloud infrastructure, Kubernetes, and modern development workflows. Helping businesses build scalable, secure systems.';
 
 export const title = 'Jan-Philip Loos | maxdaten.io';
+
+export const baseSchema: [WebSite, Person, Organization] = [
+    <WithContext<WebSite>>{
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        '@id': 'https://maxdaten.io/#website',
+        name: 'maxdaten.io',
+        description,
+        url: siteBaseUrl,
+        author: {
+            '@id': 'https://maxdaten.io/#jloos',
+        },
+    },
+    <WithContext<Person>>{
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        '@id': 'https://maxdaten.io/#jloos',
+        name: authors.jloos.name,
+        jobTitle: authors.jloos.role,
+        description: authors.jloos.bio,
+        url: `${siteBaseUrl}`,
+        sameAs: Object.values(authors.jloos.socials || {}).filter(
+            (url) => !url.startsWith('mailto:')
+        ),
+    },
+    <WithContext<Organization>>{
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        '@id': 'https://maxdaten.io/#organization',
+        name: 'maxdaten.io',
+        url: siteBaseUrl,
+        founder: {
+            '@id': 'https://maxdaten.io/#jloos',
+        },
+        description: 'DevOps consulting and cloud infrastructure expertise',
+    },
+];
+
+// Simple mapping function for blog posts (not a complex generator)
+export function createBlogPostingSchema(
+    post: BlogPost,
+    siteUrl: string
+): WithContext<BlogPosting> {
+    return {
+        '@context': 'https://schema.org',
+        '@type': 'BlogPosting',
+        headline: post.title,
+        description: post.excerpt,
+        datePublished: post.date,
+        dateModified: post.updated || post.date,
+        keywords: post.tags,
+        url: `${siteUrl}/${post.slug}`,
+        ...(post.authorId && {
+            author: {
+                '@id': `https://maxdaten.io/#${post.authorId}`,
+            },
+        }),
+        publisher: {
+            '@id': 'https://maxdaten.io/#organization',
+        },
+        ...(post.readingTimeMinutes && {
+            wordCount: post.readingTimeMinutes * 200, // estimate
+            timeRequired: `PT${post.readingTimeMinutes}M`,
+        }),
+    };
+}
