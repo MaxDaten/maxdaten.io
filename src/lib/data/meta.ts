@@ -3,11 +3,13 @@
 // Via <svelte:head>
 
 import { authors } from './authors';
+import MeSrc from '$assets/images/authors/jloos.png?as=run&fit=cover';
 import type { BlogPost } from '$lib/utils/types';
 import type {
     BlogPosting,
     Organization,
     Person,
+    ProfilePage,
     WebSite,
     WithContext,
 } from 'schema-dts';
@@ -20,7 +22,7 @@ export const description =
 
 export const title = 'Jan-Philip Loos | maxdaten.io';
 
-export const baseSchema: [WebSite, Person, Organization] = [
+export const baseSchema: [WebSite, Person, ProfilePage, Organization] = [
     <WithContext<WebSite>>{
         '@context': 'https://schema.org',
         '@type': 'WebSite',
@@ -43,6 +45,17 @@ export const baseSchema: [WebSite, Person, Organization] = [
         sameAs: Object.values(authors.jloos.socials || {}).filter(
             (url) => !url.startsWith('mailto:')
         ),
+    },
+    <WithContext<ProfilePage>>{
+        '@context': 'https://schema.org',
+        '@type': 'ProfilePage',
+        '@id': 'https://maxdaten.io/#profile',
+        url: `${siteBaseUrl}`,
+        inLanguage: 'en-US',
+        mainEntity: {
+            '@id': 'https://maxdaten.io/#jloos',
+        },
+        image: `https://maxdaten.io${MeSrc?.img.src}`,
     },
     <WithContext<Organization>>{
         '@context': 'https://schema.org',
@@ -72,7 +85,7 @@ export function createBlogPostingSchema(
         dateModified: post.updated || post.date,
         keywords: post.tags,
         ...(coverImageSrc && {
-            image: [coverImageSrc],
+            image: `https://maxdaten.io${coverImageSrc}`,
         }),
         url: `${siteUrl}/${post.slug}`,
         ...(post.authorId && {
