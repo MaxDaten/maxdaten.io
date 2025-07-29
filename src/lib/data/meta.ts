@@ -11,6 +11,7 @@ import type {
     WebSite,
     WithContext,
 } from 'schema-dts';
+import { getCoverBySlug } from '$utils/image-loader';
 
 export const siteBaseUrl = 'https://maxdaten.io';
 
@@ -61,6 +62,7 @@ export function createBlogPostingSchema(
     post: BlogPost,
     siteUrl: string
 ): WithContext<BlogPosting> {
+    const coverImageSrc = getCoverBySlug(post.slug)?.img.src;
     return {
         '@context': 'https://schema.org',
         '@type': 'BlogPosting',
@@ -69,6 +71,9 @@ export function createBlogPostingSchema(
         datePublished: post.date,
         dateModified: post.updated || post.date,
         keywords: post.tags,
+        ...(coverImageSrc && {
+            image: [coverImageSrc],
+        }),
         url: `${siteUrl}/${post.slug}`,
         ...(post.authorId && {
             author: {
