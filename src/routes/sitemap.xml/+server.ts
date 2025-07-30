@@ -18,6 +18,7 @@ export async function GET({ url }) {
             '.*\\/preview.*', // Exclude all preview routes
             '.*\\/og-preview.*', // Exclude OG preview routes
             '.*\\/og\\.jpg\\/preview.*', // Exclude OG image preview routes
+            '.*\\/about\\/.*', // Exclude about routes
         ],
         paramValues: {
             '/[slug]': blogPostParams, // Provide slugs with lastmod for dynamic blog post routes
