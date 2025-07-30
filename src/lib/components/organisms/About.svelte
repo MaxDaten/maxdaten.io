@@ -19,9 +19,12 @@
             My expertise spans cloud-native architectures, Infrastructure as
             Code, and modern DevOps practices. I'm passionate about functional
             programming, automation, and creating solutions that make complex
-            systems simple and reliable. Currently working as a freelance
-            consultant, I partner with teams to transform their technical
-            infrastructure and accelerate their delivery capabilities.
+            systems simple and reliable.
+        </p>
+        <p>
+            Currently working as a freelance consultant, I partner with teams to
+            transform their technical infrastructure and accelerate their
+            delivery capabilities.
         </p>
         <p class="specialties">
             <strong>Specializing in:</strong> Kubernetes • Google Cloud Platform
