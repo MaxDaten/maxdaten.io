@@ -31,7 +31,7 @@
 
 <Card {href} target="_self" class="gem-card" data-testid="gem-card">
     {#snippet image()}
-        {#if coverImage}
+        {#if coverImage && coverImageSrc}
             <div class="cover-image-container">
                 <Img
                     {...{ class: 'cover-image' }}

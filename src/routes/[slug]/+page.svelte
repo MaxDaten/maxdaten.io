@@ -12,6 +12,7 @@
     let { data: post }: PageProps = $props();
 
     const author = post.authorId ? getAuthor(post.authorId) : undefined;
+    const cover = getCoverBySlug(post.slug);
 </script>
 
 <PageTransition>
@@ -57,7 +58,7 @@
                 </div>
             {/if}
         </div>
-        {#if post.coverImage}
+        {#if cover}
             <div class="cover-image-container">
                 <Img
                     {...{
@@ -65,7 +66,7 @@
                         'data-hero-key': post.coverImage,
                     }}
                     factor={0.5}
-                    src={getCoverBySlug(post.slug)}
+                    src={cover}
                     alt={post.title}
                 />
             </div>
