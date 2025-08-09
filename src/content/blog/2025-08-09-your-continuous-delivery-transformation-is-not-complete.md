@@ -8,11 +8,11 @@ updated: null
 authorId: jloos
 hidden: false
 tags:
+    - continuous-delivery
+    - software-development
     - agile
     - kanban
     - productivity
-    - software-development
-    - continuous-delivery
 keywords:
     - continuous delivery
     - fast feedback
