@@ -87,7 +87,7 @@ else’s work.
 
 ## The Real Question
 
-Are you in the 90% who think they practice continuous delivery — or the 10% who actually do?
+Are you in the 90% who think they practice continuous delivery—or the 10% who actually do?
 
 The way forward isn’t fancier branching or heavier maintenance rituals. It’s upgrading the technical
 habits that make delivery continuous.
