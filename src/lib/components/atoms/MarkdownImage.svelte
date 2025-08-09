@@ -13,4 +13,8 @@
     const src = getPostImageByPath(originalSrc);
 </script>
 
-<Img {src} {...rest} />
+{#if src}
+    <Img {src} {...rest} />
+{:else}
+    <img src={originalSrc} {...rest} />
+{/if}
