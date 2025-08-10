@@ -259,7 +259,7 @@ const rehypeGithubCallouts = () => (tree) => {
         transformBlockquoteNode
     );
 
-    // 2) Wrap elements produced by other plugins (like remark-github-markdown-alerts)
+    // 2) Wrap elements produced by other plugins
     visit(
         tree,
         (node) =>
