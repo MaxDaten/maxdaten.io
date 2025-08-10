@@ -11,8 +11,10 @@
 
     let { data: post }: PageProps = $props();
 
-    const author = post.authorId ? getAuthor(post.authorId) : undefined;
-    const cover = getCoverBySlug(post.slug);
+    const author = $derived(
+        post.authorId ? getAuthor(post.authorId) : undefined
+    );
+    const cover = $derived(getCoverBySlug(post.slug));
 </script>
 
 <PageTransition>
