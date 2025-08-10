@@ -89,7 +89,8 @@
         "vite": "^6.3.5",
         "vite-imagetools": "^7.1.0",
         "vitest": "^3.2.3",
-        "vitest-browser-svelte": "^1.0.0"
+        "vitest-browser-svelte": "^1.0.0",
+        "remark-github-markdown-alerts": "^1.2.1"
     },
     "type": "module"
 }
