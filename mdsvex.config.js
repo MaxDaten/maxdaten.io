@@ -4,6 +4,7 @@ import { createHighlighter } from 'shiki';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeUnwrapImages from 'rehype-unwrap-images';
 import { fileURLToPath } from 'url';
+import rehypeCollectExternalLinks from './src/lib/rehype/rehype-collect-external-links.js';
 import { dirname, join } from 'path';
 import { escapeSvelte } from 'mdsvex';
 import { transformerCodeBlock } from './src/lib/shiki/transformerCodeBlock.js';
@@ -90,6 +91,14 @@ const config = {
                     properties: {},
                     children: [{ type: 'text', value: '#' }],
                 },
+            },
+        ],
+        [
+            rehypeCollectExternalLinks,
+            {
+                sectionTitle: 'References',
+                internalDomains: ['maxdaten.io', 'www.maxdaten.io'],
+                minCountToShow: 1,
             },
         ],
     ],
