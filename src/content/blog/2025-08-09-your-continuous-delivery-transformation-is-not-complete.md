@@ -100,11 +100,12 @@ habits that make delivery continuous.
 - Limit WIP: set explicit team WIP limits; aim for ≤1‑day PR cycle time.
 - Measure what matters: lead time for changes, deployment frequency, change‑fail rate, and MTTR.
 
-<Components.Callout type="success"> Need support achieving continuous delivery? I offer consulting,
-hands‑on training, and development support focused on CD, DevOps, and Agile.
-
-Let's connect!
-
-<Author author={jloos} />
-
-</Components.Callout>
+> [!NOTE]
+>
+> **Need support achieving continuous delivery?**
+>
+> _I offer consulting, hands‑on training, and development support focused on CD, DevOps, and Agile._
+>
+> Let's connect!
+>
+> <Author author={jloos} />
