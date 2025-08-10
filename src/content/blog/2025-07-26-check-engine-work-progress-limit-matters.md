@@ -33,8 +33,8 @@ Understandably, developers are expensive. Keeping them busy is one way of gettin
 of them, right?
 
 This is not only a common management view; often developers themselves are eager to stay busy. For a
-freelancer, being busy is billable — spinning in your chair while waiting for a review doesn't pay
-the bills. As a developer, it's easy to keep yourself busy and signal this to others, including
+freelancer, being busy is billable—spinning in your chair while waiting for a review doesn't pay the
+bills. As a developer, it's easy to keep yourself busy and signal this to others, including
 management. You are there to work, so you pull a new ticket and report your progress in the daily
 stand-up while your other ticket is waiting for a review or some other feedback. But is that really
 productive? Being busy is not inherently productive and can even be counterproductive, causing more
@@ -45,9 +45,8 @@ harm than value.
 ![Convey belt with yellow packages, rough minimalistic sketch](/src/lib/assets/images/posts/2025-07-26-check-engine-work-progress-limit-matters/a160e274-a456-447f-9052-9dfb66c2b1e8.png)
 
 A common pattern I've observed is the decoupling of ongoing developer work. The result is often an
-attempt to optimize the number of tickets in progress — not by decreasing the count, but by
-increasing it. This isn't a willful act, but rather the result of a sloppy habit gaining the upper
-hand.
+attempt to optimize the number of tickets in progress—not by decreasing the count, but by increasing
+it. This isn't a willful act, but rather the result of a sloppy habit gaining the upper hand.
 
 > DE: Das Gegenteil von gut ist gut gemeint
 >
@@ -97,7 +96,7 @@ Are you able to work efficiently on multiple topics at the same time? Probably n
 development team, if parallelizing work is not advised and considered harmful? It should also be
 common sense that working together to find an excellent solution is better for the health of a
 project than working in isolation. A team should share the same goals, the same understanding of
-problems, and their solutions — so why shouldn't they find those solutions in a shared effort, too?
+problems, and their solutions—so why shouldn't they find those solutions in a shared effort, too?
 
 ## Cost of Delay & Missing Early Feedback
 
@@ -161,7 +160,7 @@ improved. Because it is so often ignored or not even considered, I see a WIP lim
 than the unmotivated Retrospective rituals I have often attended.
 
 [DORA](https://dora.dev/capabilities/wip-limits/) suggests keeping the WIP limit as small as
-possible — to a degree you actually have to work to achieve. It then automatically ceases to be just
+possible—to a degree you actually have to work to achieve. It then automatically ceases to be just
 the next dogmatic ritual. It won't work as the next metric you have to game, like story points for
 sprint velocity. If you don't treat WIP as a dogmatic rule but understand the motivation behind it,
 you will start asking the correct and important questions. You will be forced to challenge the

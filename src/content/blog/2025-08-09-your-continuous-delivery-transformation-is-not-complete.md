@@ -94,7 +94,7 @@ habits that make delivery continuous.
 
 ## How to Move Up
 
-- Merge to main daily - not the other way around!; prefer feature flags over long‑lived branches.
+- Merge to main daily—not the other way around!; prefer feature flags over long‑lived branches.
 - Make the pipeline your product: every push builds, tests, and can deploy the same way, every time.
 - Keep tests reliable: target ≤1% flake rate; quarantine and fix flakes within a day.
 - Limit WIP: set explicit team WIP limits; aim for ≤1‑day PR cycle time.
