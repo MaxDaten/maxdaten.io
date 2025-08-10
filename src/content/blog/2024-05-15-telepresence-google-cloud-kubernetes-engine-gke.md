@@ -35,10 +35,9 @@ restarts. This requires you have to update the
 [Discord Activity URL Mapping settings](https://discord.com/developers/docs/activities/building-an-activity#set-up-your-activity-url-mapping)
 every time you restart the tunnel.
 
-<Components.Callout type="warning"> <b>Development Friction:</b> Before implementing this solution,
-our team spent 2-3 hours daily managing tunnel endpoints and updating Discord configurations,
-reducing actual development time by 30% and causing significant frustration across our 4-person
-development team. </Components.Callout>
+> [!WARNING] <b>Development Friction:</b> Before implementing this solution, our team spent 2-3
+> hours daily managing tunnel endpoints and updating Discord configurations, reducing actual
+> development time by 30% and causing significant frustration across our 4-person development team.
 
 ## Telepresence
 
@@ -48,9 +47,9 @@ debug services within the context of the full system without deploying the servi
 This way, we can provision stable development domains and cluster infrastructure to iterate quickly
 on the Discord integration locally.
 
-<Components.Callout type="success"> <b>Development Velocity:</b> This approach increased our local
-development iteration speed by 400%, reducing feedback cycles from 10-15 minutes to 2-3 minutes, and
-eliminating the daily configuration overhead entirely. </Components.Callout>
+> [!TIP] <b>Development Velocity:</b> This approach increased our local development iteration speed
+> by 400%, reducing feedback cycles from 10-15 minutes to 2-3 minutes, and eliminating the daily
+> configuration overhead entirely.
 
 Telepresence brings two ways for redirecting traffic from a kubernetes service to your local
 machine. The first way
@@ -220,9 +219,9 @@ setting and intercept traffic at any time without any manual reconfiguration on 
 
 ## Business Impact & Results
 
-<Components.Callout variant="success"> <b>Project Outcomes:</b> This Telepresence implementation
-delivered immediate improvements to our development workflow, eliminating manual overhead and
-accelerating our Discord integration development. </Components.Callout>
+> [!TIP] <b>Project Outcomes:</b> This Telepresence implementation delivered immediate improvements
+> to our development workflow, eliminating manual overhead and accelerating our Discord integration
+> development.
 
 ### Development Efficiency
 
