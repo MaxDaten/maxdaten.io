@@ -31,6 +31,7 @@ keywords:
     - Software Development
 type: page
 updated: 2025-07-18T01:11:18.668Z
+noReferences: true
 ---
 
 In this post, I provide a comprehensive overview of the software development tools and technologies
