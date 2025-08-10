@@ -5,6 +5,7 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeUnwrapImages from 'rehype-unwrap-images';
 import { fileURLToPath } from 'url';
 import rehypeCollectExternalLinks from './src/lib/rehype/rehype-collect-external-links.js';
+import rehypeGithubCallouts from './src/lib/rehype/rehype-github-callouts.js';
 import { dirname, join } from 'path';
 import { escapeSvelte } from 'mdsvex';
 import { transformerCodeBlock } from './src/lib/shiki/transformerCodeBlock.js';
@@ -74,6 +75,8 @@ const config = {
     rehypePlugins: [
         rehypeUnwrapImages, // Unwrapping images, so we can use MarkdownImage
         rehypeExternalLinks, // Adds 'target' and 'rel' to external links
+        // Wrap GitHub-style alerts into our Svelte component
+        rehypeGithubCallouts,
         rehypeSlug, // Adds 'id' attributes to Headings (h1,h2,etc)
         [
             rehypeAutolinkHeadings,
