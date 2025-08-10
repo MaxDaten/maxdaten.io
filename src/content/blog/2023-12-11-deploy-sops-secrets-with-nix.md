@@ -37,9 +37,9 @@ time from days to sub day, eliminating "works on my machine" issues across our 8
 team. Broadening my DevOps skills, I've delved into NixOS this year, leveraging it to deploy and
 configure machines.
 
-<Components.Callout type="info"> Business Impact: By standardizing our development environments with
-Nix, we increased developer productivity by 25% and reduced onboarding time for new team members
-from days to sub day. </Components.Callout>
+> [!NOTE] **Business Impact:** By standardizing our development environments with Nix, we increased
+> developer productivity by 25% and reduced onboarding time for new team members from days to sub
+> day.
 
 My use-case: Deploy and manage our own [Hydra](https://github.com/NixOS/hydra) cluster in Google
 Cloud (GC) for our internal CI/CD.
@@ -77,8 +77,7 @@ granular access control, key rotation & auditing.
 
 ## Encode & Deploy secrets with [sops-nix](https://github.com/Mic92/sops-nix) & [GC KMS](https://cloud.google.com/kms)
 
-<Components.Callout type="info"> ☝ Prerequisite: A GCE instance with NixOS and SSH access
-</Components.Callout>
+> [!NOTE] ☝ Prerequisite: A GCE instance with NixOS and SSH access
 
 Our goal: Use sops in combination with GC KMS to provision secrets to a NixOS instance. This secret
 should be accessible by a service running on the instance.å
@@ -162,9 +161,9 @@ creation_rules:
 
 Encrypt a secret using sops
 
-<Components.Callout type="info"> ☝ Assumption: You are allowed to access the GCE crypto key via
-<a href="https://developers.google.com/identity/protocols/application-default-credentials">
-Application Default Credentials</a> </Components.Callout>
+> [!NOTE] ☝ Assumption: You are allowed to access the GCE crypto key via
+> <a href="https://developers.google.com/identity/protocols/application-default-credentials">
+> Application Default Credentials</a>
 
 ```bash
 $ sops example-keypair.enc.yaml
@@ -283,9 +282,8 @@ if secrets are configuration or state, storing secrets this way brings us severa
 
 ## Business Impact & Results
 
-<Components.Callout type="success"> Key Outcomes: Implementation of this secret management system
-delivered measurable business value across security, operational efficiency, and team productivity.
-</Components.Callout>
+> [!TIP] Key Outcomes: Implementation of this secret management system delivered measurable business
+> value across security, operational efficiency, and team productivity.
 
 ### Security & Compliance
 
