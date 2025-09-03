@@ -73,12 +73,12 @@ async function renderPost(post: BlogPost) {
             ${postHtml}
           ]]></content:encoded>
           ${
-              post.coverImage
+              coverImageSrc
                   ? `<media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="${coverImageSrc}"/>`
                   : ''
           }
           ${
-              post.coverImage
+              coverImageSrc
                   ? `<media:content xmlns:media="http://search.yahoo.com/mrss/" medium="image" url="${coverImageSrc}"/>`
                   : ''
           }          

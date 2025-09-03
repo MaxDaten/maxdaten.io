@@ -1,7 +1,6 @@
 ---
 title: Deploy SOPS Secrets with Nix
 slug: 2023-12-11-deploy-sops-secrets-with-nix
-coverImage: src/lib/assets/images/posts/2023-12-11-deploy-sops-secrets-with-nix/cover.png
 excerpt:
     How to manage secrets like private ssh keys or database access in a cloud environment via nix
     and sops.

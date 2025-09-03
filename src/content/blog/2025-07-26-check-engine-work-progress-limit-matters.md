@@ -1,7 +1,6 @@
 ---
 title: 'Check your Engine: Work In Progress Limit Matters'
 slug: 2025-07-26-check-engine-work-progress-limit-matters
-coverImage: src/lib/assets/images/posts/2025-07-26-check-engine-work-progress-limit-matters/cover.png
 excerpt:
     Being busy is not inherently productive. Why limiting Work In Progress (WIP) is a best-practice
     for improving a development team’s effectiveness and indicator of process health.

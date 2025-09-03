@@ -65,7 +65,7 @@
                 <Img
                     {...{
                         class: 'cover-image',
-                        'data-hero-key': post.coverImage,
+                        'data-hero-key': cover.img.src,
                     }}
                     factor={0.5}
                     src={cover}

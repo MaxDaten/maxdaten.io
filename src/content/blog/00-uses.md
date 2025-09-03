@@ -1,7 +1,6 @@
 ---
 title: 'My 2025 Developer Tech Stack: Tools for DevOps & Productivity'
 slug: 00-uses
-coverImage: src/lib/assets/images/posts/00-uses/cover.png
 excerpt:
     Explore the complete 2025 tech stack I use for DevOps consulting and software development. A
     deep dive into my favorite tools, from Nix and Kubernetes to Zed and SvelteKit.

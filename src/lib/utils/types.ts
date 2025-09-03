@@ -41,7 +41,6 @@ export type BlogPost = {
     excerpt: string;
     readingTimeMinutes: number | undefined;
     relatedPosts: BlogPost[];
-    coverImage: string | undefined;
     content: Component;
     authorId?: string;
 };

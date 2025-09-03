@@ -48,12 +48,6 @@
                     "type": "string"
                 },
                 {
-                    "title": "Cover Image",
-                    "name": "coverImage",
-                    "type": "image",
-                    "isPreviewImage": true
-                },
-                {
                     "title": "Excerpt",
                     "name": "excerpt",
                     "type": "string"
