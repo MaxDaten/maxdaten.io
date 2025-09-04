@@ -33,9 +33,9 @@ keywords:
     const jloos = authors.jloos;
 </script>
 
-> Most teams ship infrastructure without tests. That’s like writing application code with no CI and
-> hoping for the best. Infrastructure is critical, complex, and fragile—but too often it’s left
-> unchecked.
+> [!NOTE] Most teams ship infrastructure without tests. That’s like writing application code with no
+> CI and hoping for the best. Infrastructure is critical, complex, and fragile—but too often it’s
+> left unchecked.
 >
 > With Test-Driven Development (TDD), we can flip the script. Instead of praying our Terraform and
 > IAM rules “just work,” we define what good looks like, write tests, and let automation keep us
@@ -60,12 +60,12 @@ trustworthy pipelines.
 
 ## The Lightweight TDD Pattern
 
-We don’t need heavyweight frameworks. With Terragrunt hooks and shell-native tests, we can build a
-fast loop that works anywhere.
+We don’t need heavyweight test frameworks. With Terragrunt hooks and bats, we can build lightweight,
+shell-native, and adaptable infrastructure tests.
 
-Flow: Terragrunt apply → after-apply test hook → Bats tests → JUnit XML → CI report
+![A diagram showing the flow of Terragrunt, Bats, and GitHub Actions](/src/lib/assets/images/posts/2025-09-03-tdd-infrastructure-terragrunt/660ed575-b0d0-46e1-bbb3-2a7849ff73d1.svg)
 
-Key idea: assert behavior at the boundaries. For example, don’t test whether an IAM role is
+**Key idea**: Assert behavior at the boundaries. For example, don’t test whether an IAM role is
 attached—test whether the service account can actually upload to a bucket.
 
 ## Tool Stack
@@ -88,13 +88,7 @@ CI pipelines ensure consistency. With
 [ `dorny/test-reporter`](https://github.com/dorny/test-reporter), we turn JUnit XML output into
 clean GitHub reports.
 
-## The Lightweight TDD Pattern
-
-- TODO: Visual: Diagram showing flow: Terragrunt apply → after-apply test hook → Bats tests (
-  kubectl/Flux) → JUnit XML → CI report
-- Callout: “Assert what good looks like at the boundary” (Flux controllers, CRDs, reconciliations)
-
-### Test Layout Convention and Hooking Up Test Execution
+## Test Layout Convention and Hooking Up Test Execution
 
 Keep it conventional:
 
@@ -120,7 +114,7 @@ terraform {
 }
 ```
 
-### Writing Tests Style
+## Writing Tests Style
 
 Use Bats’ `setup_suite` to fetch cluster credentials once before running tests.
 
@@ -195,7 +189,7 @@ automation CRDs are installed, and that the flux can reconciled its own configur
 > bucket. This avoids brittle tests coupled to implementation details that break on minor changes
 > like role composition.
 
-### CI Integration and Reporting
+## CI Integration and Reporting
 
 Just a cherry on top: bats (and almost all other test runners) can report test results in JUnit XML
 or in another
@@ -268,9 +262,9 @@ improve the validation power of the suite.
 
 > [!NOTE]
 >
-> **Ready to make infrastructure safer and faster?**
+> **Ready to make your infrastructure iterations safer and faster?**
 >
-> _I help teams build test-driven infra practices—through consultations, architecture reviews, and
-> hands-on implementation._
+> _I help teams build test-driven infrastructure practices—through consultations, architecture
+> reviews, trainings and hands-on implementation._
 >
 > <Author author={jloos} />
