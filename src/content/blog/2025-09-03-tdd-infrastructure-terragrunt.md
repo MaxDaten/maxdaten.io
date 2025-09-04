@@ -35,10 +35,10 @@ keywords:
 
 ## Why Test-Driven Development for Infrastructure?
 
-The bitter truth: Throughout my career, I've never encountered a project that implemented
-comprehensive automated testing for infrastructure code. This is particularly concerning given that
-infrastructure is often one of the most essential but complex aspects of modern software systems to
-debug and validate.
+One bitter truth of my career: I've never encountered a project that implemented comprehensive
+automated testing for infrastructure code. This is particularly concerning given that infrastructure
+is often one of the most essential but complex aspects of modern software systems to debug and
+validate.
 
 Infrastructure as Code (IaC) manages intricate systems with many interconnected components, from
 networking and infamous IAM rules to service deployments and data storage solutions. When something
@@ -58,42 +58,27 @@ and direct feedback loops, better design decisions, and increased confidence in 
 manually verifying infrastructure changes work as intended, we can prove it through automated
 testing. We test and verify changes nevertheless, so why not automated?
 
-This blog post describes a pattern for implementing TDD for infrastructure code, which might not be
-novel but pretty straightforward. The pattern is based on terragrunts hooks to execute bats tests in
-a conventional layout.
+This pattern uses Terragrunt hooks to execute shell-native tests in a conventional directory
+structure. It's straightforward, lightweight, and immediately actionable.
 
-## Tool Overview
-
-Short overview of tools I used for this pattern.
+## Tool Stack
 
 ### Terragrunt & Terraform
 
-Terragrunt allows higher composability of terraform modules. In a graph or layer architecture of
-multiple terraform modules, Terragrunt brings the ability to glue modules together by allowing
-module inputs to depend on outputs from other modules. Terragrunt can form a dependency graph, which
-is then used to run terraform in the correct order. It's also possible to define variables and
-configurations in a simple reusable way, which will be used in this pattern
-
-Additionally, terragrunt adds hooks that will be executed before or after terraform commands. Which
-comes handy in this pattern as well.
+Terragrunt orchestrates Terraform modules through dependency graphs and provides execution hooks. We
+leverage these hooks to run tests automatically after infrastructure changes.
 
 ### Bats & Bats-Detik
 
-Bats is a shell-native and lightweight testing framework for Bash. Its main purpose is to test bash
-scripts, but it can also be used to assert output from other commands. In this pattern we will use
-bats as a test runner with bats-detik to validate the state and behavior of a kubernetes cluster
-running Flux. bats-detik provides natural language validation of kubernetes resources but is totally
-optional. The beauty of bats' shell scripting is its simple command execution. This way we can
-simply invoke commands like kubectl, flux, helm, gcloud, or aws to validate the state of the
-infrastructure. But this post won't go too much into testing philosophy and best practices.
+Bats is a shell-native testing framework that brings bash scripting capabilities with easy command
+execution and comprehensive output validation. Combined with bats-detik, we can write
+natural-language assertions against Kubernetes resources. The power lies in simplicity: `kubectl`,
+`flux`, `helm`, `gcloud`, and `aws` commands can be used directly in tests.
 
-### GitHub Actions with `dorny/test-reporter@v2` for Reporting
+### GitHub Actions with Test Reporting
 
-It's recommended rolling out infrastructure changes via a ci/cd pipeline, so you have a clean
-defined process which is your single source of truth, when inspecting the IoC is required. When a
-GitHub action workflow is used, it's also invaluable to have an overview of the test results. Bats
-has support for reporting test results in JUnit XML format. This report format can be used by
-`dorny/test-reporter@v2` to add a nice test results overview to pipeline runs.
+Deploy infrastructure through CI/CD pipelines for consistency and auditability. The
+`dorny/test-reporter@v2` action transforms Bats' JUnit XML output into readable test reports.
 
 ## The Pattern: Test-Driven Infrastructure: A Shell-Native Loop
 
@@ -289,12 +274,9 @@ improve the validation power of the suite.
 
 > [!NOTE]
 >
-> **Need support achieving IaC test-driven development?**
+> **Ready to implement TDD for your infrastructure?**
 >
-> _If your team needs help in developing and implementing these or other patterns, feel free to get
-> in touch. I'm offering one-time consultancies, reviews and second opinions and recommendations,
-> trainings or hands on development closely integrated into your product team._
->
-> Let's get in touch!
+> _I help teams build robust, test-driven infrastructure practices. Available for consultations,
+> architecture reviews, team training, and hands-on implementation._
 >
 > <Author author={jloos} />
