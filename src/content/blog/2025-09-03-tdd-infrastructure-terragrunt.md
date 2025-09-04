@@ -1,17 +1,17 @@
 ---
 title: 'Test-Driven Infrastructure'
 slug: 2025-09-03-tdd-infrastructure-terragrunt
-excerpt:
-    How to set up a fast, repeatable TDD loop for IaC using shell-native tests with CI reporting
+excerpt: |
+    Bring TDD to your infrastructure. 
+    Use Terragrunt hooks and shell-native tests to catch failures early, boost confidence, and make every change safer.
 date: 2025-09-03T20:00:21.109Z
 updated: null
 authorId: jloos
 hidden: false
 tags:
     - infrastructure-as-code
+    - test-driven-development
     - continuous-delivery
-    - software-development
-    - agile
     - design-pattern
 keywords:
     - infrastructure as code
@@ -33,56 +33,62 @@ keywords:
     const jloos = authors.jloos;
 </script>
 
+> Most teams ship infrastructure without tests. That’s like writing application code with no CI and
+> hoping for the best. Infrastructure is critical, complex, and fragile—but too often it’s left
+> unchecked.
+>
+> With Test-Driven Development (TDD), we can flip the script. Instead of praying our Terraform and
+> IAM rules “just work,” we define what good looks like, write tests, and let automation keep us
+> safe.
+
 ## Why Test-Driven Development for Infrastructure?
 
-One bitter truth of my career: I've never encountered a project that implemented comprehensive
-automated testing for infrastructure code. This is particularly concerning given that infrastructure
-is often one of the most essential but complex aspects of modern software systems to debug and
-validate.
+In 15 years of building systems, I’ve never seen a project with comprehensive automated
+infrastructure tests. That gap is dangerous. Infrastructure touches everything: networking, IAM,
+deployments, storage. When something breaks, it often breaks catastrophically.
 
-Infrastructure as Code (IaC) manages intricate systems with many interconnected components, from
-networking and infamous IAM rules to service deployments and data storage solutions. When something
-goes wrong, it sometimes go horribly wrong, and the debugging process can be time-consuming and
-risky, especially in production environments.
+By asking ourselves "what does good look like?" before making changes, TDD gives us:
 
-This is where Test-Driven Development (TDD) comes to the rescue. By asking ourselves "what does good
-look like?" before making changes, we can:
+1. **Defined outcomes** — clarity on what “good” infrastructure means.
+2. **Automated checks** — fast feedback loops that catch issues early.
+3. **Confidence in change** — safer refactors and upgrades.
+4. **A living safety net** — tests that evolve with the system.
+5. **Bonus: Quick Validation Suite** — Troubleshooting built-in.
 
-1. Define the desired state and behavior of our infrastructure
-2. Create automated tests that validate these requirements
-3. Implement changes knowing tests will catch potential issues
-4. Maintain a reliable way to verify infrastructure integrity over time
+We already test changes manually. Automating those tests turns fragile rituals into repeatable,
+trustworthy pipelines.
 
-Test-Driven brings the same benefits to infrastructure that it brings to application code: faster
-and direct feedback loops, better design decisions, and increased confidence in changes. Instead of
-manually verifying infrastructure changes work as intended, we can prove it through automated
-testing. We test and verify changes nevertheless, so why not automated?
+## The Lightweight TDD Pattern
 
-This pattern uses Terragrunt hooks to execute shell-native tests in a conventional directory
-structure. It's straightforward, lightweight, and immediately actionable.
+We don’t need heavyweight frameworks. With Terragrunt hooks and shell-native tests, we can build a
+fast loop that works anywhere.
+
+Flow: Terragrunt apply → after-apply test hook → Bats tests → JUnit XML → CI report
+
+Key idea: assert behavior at the boundaries. For example, don’t test whether an IAM role is
+attached—test whether the service account can actually upload to a bucket.
 
 ## Tool Stack
 
 ### Terragrunt & Terraform
 
-Terragrunt orchestrates Terraform modules through dependency graphs and provides execution hooks. We
-leverage these hooks to run tests automatically after infrastructure changes.
+[Terragrunt](https://terragrunt.gruntwork.io/) orchestrates Terraform and provides execution hooks.
+We use these hooks to run tests right after infrastructure changes.
 
 ### Bats & Bats-Detik
 
-Bats is a shell-native testing framework that brings bash scripting capabilities with easy command
-execution and comprehensive output validation. Combined with bats-detik, we can write
-natural-language assertions against Kubernetes resources. The power lies in simplicity: `kubectl`,
-`flux`, `helm`, `gcloud`, and `aws` commands can be used directly in tests.
+[Bats](https://bats-core.readthedocs.io/en/stable/) is a Bash-native testing framework. Combined
+with [bats-detik](https://github.com/bats-core/bats-detik), it gives us natural-language assertions
+against Kubernetes resources. The power is simplicity: call kubectl, helm, flux, gcloud, or aws
+directly in tests.
 
 ### GitHub Actions with Test Reporting
 
-Deploy infrastructure through CI/CD pipelines for consistency and auditability. The
-`dorny/test-reporter@v2` action transforms Bats' JUnit XML output into readable test reports.
+CI pipelines ensure consistency. With
+[ `dorny/test-reporter`](https://github.com/dorny/test-reporter), we turn JUnit XML output into
+clean GitHub reports.
 
-## The Pattern: Test-Driven Infrastructure: A Shell-Native Loop
-
-TODO: Drawing Board
+## The Lightweight TDD Pattern
 
 - TODO: Visual: Diagram showing flow: Terragrunt apply → after-apply test hook → Bats tests (
   kubectl/Flux) → JUnit XML → CI report
@@ -90,11 +96,11 @@ TODO: Drawing Board
 
 ### Test Layout Convention and Hooking Up Test Execution
 
-Convention over configuration: The tests are placed in a `tests` directory parallel to the terraform
-module root on the same level as the `terraform.hcl` file. Every module SHOULD have a `tests`
-directory, and bats will execute all tests in this directory, after terraform has been applied, if
-the `tests` directory is present. The hook will be defined in the `root.hcl` file of the terragrunt
-project. This way, the hook will be executed for all modules in the project.
+Keep it conventional:
+
+- Place tests in a `tests` directory next to the module’s `terragrunt.hcl`.
+- Terragrunt’s `root.hcl` defines a hook that runs all tests of a module after `apply`.
+- If no tests exist, it simply warns.
 
 ```hcl filename=root.hcl showLineNumbers
 terraform {
@@ -116,16 +122,10 @@ terraform {
 
 ### Writing Tests Style
 
-Using bats is not a requirement for this pattern. But to draw a clearer picture of the
-implementation, a short example of an infrastructure test written with bats + bats-detik is
-provided:
+Use Bats’ `setup_suite` to fetch cluster credentials once before running tests.
 
-First use the `setup_suite` _bats hook_ to get cluster credentials (here via gcloud) for the tests.
-This hook will be executed before any tests are run.
-
-```bash
+```bash filename=cluster/tests/setup_suite.bash showLineNumbers
 #!/usr/bin/env bash
-# cluster/tests/setup_suite.bash
 set -euo pipefail
 
 function setup_suite() {
@@ -155,7 +155,7 @@ bats_load_library bats-detik/detik.bash
 DETIK_CLIENT_NAME="kubectl"
 DETIK_CLIENT_NAMESPACE="flux-system"
 
-@test "Flux controllers healthy" {
+@test "Flux controllers are healthy" {
   flux check
 }
 
@@ -187,21 +187,20 @@ kubernetes cluster with flux also being bootstrapped via terraform. This test wi
 flux controllers are healthy, that the flux kustomization is reconciled successfully, that the image
 automation CRDs are installed, and that the flux can reconciled its own configuration.
 
-> It's strongly recommended to write tests on this level in a most high-level way, focus on the
+> It's strongly recommended to write tests on this level in a most high-level way: Focus on the
 > desired behavior and not on concrete properties or state of the infrastructure.
 >
-> For example, if you need to attach an IAM Role to a principal, don't validate that an exact role
-> is present on the principal. Instead, validate that the principal can act according to the role's
-> permissions, like uploading to a bucket. This way you avoid writing tests that are too tightly
-> coupled to the infrastructure code, which otherwise will tend to be unmaintainable on every small
-> aspect of a change, like composing multiple roles to a new role.
+> For example, if you need to attach an IAM Role to a principal, don't validate the exact role
+> presence. Instead, test that the principal can perform the intended actions like uploading to a
+> bucket. This avoids brittle tests coupled to implementation details that break on minor changes
+> like role composition.
 
 ### CI Integration and Reporting
 
 Just a cherry on top: bats (and almost all other test runners) can report test results in JUnit XML
-or other
+or in another
 [format supported by `dorny/test-reporter@v2`](https://github.com/dorny/test-reporter?tab=readme-ov-file#supported-formats).
-This way, we can integrate the test results into our CI pipeline, to provide a quick overview when
+This way, we can integrate the test results into our CI pipeline to provide a quick overview when
 failures and unexpected behavior occur. A short trimmed-down example of how to integrate reporting:
 
 ```yaml
@@ -249,34 +248,29 @@ jobs:
                   reporter: java-junit
 ```
 
-Example of a test report in GitHub action workflow:
+Result: a clean pass/fail report embedded in your GitHub Actions workflow.
 
 ![A screenshot of a bats report in GitHub action workflow](/src/lib/assets/images/posts/2025-09-03-tdd-infrastructure-terragrunt/f5133fa4-d832-400a-8024-12592e99fbf5.png)
 
 ## Pattern Summary
 
-- Place tests in a optional `tests` directory parallel to the terraform module root
-- Utilize terragrunt hooks to execute test runner (e.g bats) after terraform apply, when `tests`
-  directory is present
-- Write high-level tests that validate desired behavior and not concrete properties or state of the
-  infrastructure
-- Optionally: Use `dorny/test-reporter@v2` to integrate test results into CI pipeline
+- **Place** tests in a `tests` directory at root of the Terraform module.
+- **Hook** Terragrunt to run them automatically after `apply`.
+- **Write** high-level behavior tests, not brittle state checks.
+- **Integrate** results into CI for instant visibility.
 
-This is a lightweight and adaptable pattern. bats is selected for its close relationship to shell
-scripting and small dependency footprint, but every test runner can be used.
+This pattern is lightweight, shell-native, and adaptable. You can extend it to any test runner.
 
 As a bonus, the pattern allows combining all infrastructure tests into one single validation suite,
 which can help pinpoint infrastructure issues and help rule out a bunch of possible causes. A
 recommended discipline is to update and extend tests on every issue you encountered to continuously
 improve the validation power of the suite.
 
----
-
 > [!NOTE]
 >
-> **Ready to implement TDD for your infrastructure?**
+> **Ready to make infrastructure safer and faster?**
 >
-> _I help teams build robust, test-driven infrastructure practices. Available for consultations,
-> architecture reviews, team training, and hands-on implementation._
+> _I help teams build test-driven infra practices—through consultations, architecture reviews, and
+> hands-on implementation._
 >
 > <Author author={jloos} />
