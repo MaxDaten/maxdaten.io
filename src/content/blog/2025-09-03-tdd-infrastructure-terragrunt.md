@@ -185,9 +185,9 @@ automation CRDs are installed, and that the flux can reconciled its own configur
 > desired behavior and not on concrete properties or state of the infrastructure.
 >
 > For example, if you need to attach an IAM Role to a principal, don't validate the exact role
-> presence. Instead, test that the principal can perform the intended actions like uploading to a
-> bucket. This avoids brittle tests coupled to implementation details that break on minor changes
-> like role composition.
+> presence. Instead, verify that the principal can perform its intended actions—for example,
+> uploading to a bucket. This avoids brittle tests coupled to implementation details that break on
+> minor changes like role composition.
 
 ## CI Integration and Reporting
 
