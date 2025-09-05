@@ -47,16 +47,13 @@ In 15 years of building systems, I’ve never seen a project with comprehensive 
 infrastructure tests. That gap is dangerous. Infrastructure touches everything: networking, IAM,
 deployments, storage. When something breaks, it often breaks catastrophically.
 
-By asking ourselves "what does good look like?" before making changes, TDD gives us:
+TDD forces us to ask "what does good look like?" before we change anything. The payoff:
 
-1. **Defined outcomes** — clarity on what “good” infrastructure means.
-2. **Automated checks** — fast feedback loops that catch issues early.
-3. **Confidence in change** — safer refactors and upgrades.
-4. **A living safety net** — tests that evolve with the system.
-5. **Bonus: Quick Validation Suite** — Troubleshooting built-in.
+Clear outcomes – we know what success means Fast feedback – catch issues in seconds, not hours Safe
+changes – refactor without fear Living documentation – tests show how the system works Built-in
+troubleshooting – validation suite ready when things go wrong
 
-We already test changes manually. Automating those tests turns fragile rituals into repeatable,
-trustworthy pipelines.
+We test changes manually anyway. Why not automate them?
 
 ## The Lightweight TDD Pattern
 
@@ -70,23 +67,16 @@ attached—test whether the service account can actually upload to a bucket.
 
 ## Tool Stack
 
-### Terragrunt & Terraform
+**[Terragrunt](https://terragrunt.gruntwork.io/)** orchestrates Terraform and provides execution
+hooks. We run tests immediately after infrastructure changes.
 
-[Terragrunt](https://terragrunt.gruntwork.io/) orchestrates Terraform and provides execution hooks.
-We use these hooks to run tests right after infrastructure changes.
+**[Bats](https://bats-core.readthedocs.io/en/stable/)** is Bash-native testing. With
+[bats-detik](https://github.com/bats-core/bats-detik), we get natural-language assertions for
+Kubernetes. Call kubectl, helm, flux, gcloud, or aws directly—no abstraction layers.
 
-### Bats & Bats-Detik
-
-[Bats](https://bats-core.readthedocs.io/en/stable/) is a Bash-native testing framework. Combined
-with [bats-detik](https://github.com/bats-core/bats-detik), it gives us natural-language assertions
-against Kubernetes resources. The power is simplicity: call kubectl, helm, flux, gcloud, or aws
-directly in tests.
-
-### GitHub Actions with Test Reporting
-
-CI pipelines ensure consistency. With
-[ `dorny/test-reporter`](https://github.com/dorny/test-reporter), we turn JUnit XML output into
-clean GitHub reports.
+**GitHub Actions** runs everything consistently.
+[ `dorny/test-reporter`](https://github.com/dorny/test-reporter) turns JUnit XML into clean GitHub
+reports.
 
 ## Test Layout Convention and Hooking Up Test Execution
 
@@ -253,18 +243,17 @@ Result: a clean pass/fail report embedded in your GitHub Actions workflow.
 - **Write** high-level behavior tests, not brittle state checks.
 - **Integrate** results into CI for instant visibility.
 
-This pattern is lightweight, shell-native, and adaptable. You can extend it to any test runner.
-
-As a bonus, the pattern allows combining all infrastructure tests into one single validation suite,
-which can help pinpoint infrastructure issues and help rule out a bunch of possible causes. A
-recommended discipline is to update and extend tests on every issue you encountered to continuously
-improve the validation power of the suite.
+This pattern is lightweight, shell-native, and extends to any test runner. As a bonus, you build a
+validation suite that pinpoints infrastructure issues instantly. Every production incident becomes a
+new test case.
 
 > [!NOTE]
 >
 > **Ready to make your infrastructure iterations safer and faster?**
 >
-> _I help teams build test-driven infrastructure practices—through consultations, architecture
-> reviews, trainings and hands-on implementation._
+> _I help teams implement test-driven infrastructure—through architecture reviews, training, and
+> hands-on implementation._
+>
+> Get in touch!
 >
 > <Author author={jloos} />
