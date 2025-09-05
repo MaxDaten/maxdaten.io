@@ -1,8 +1,10 @@
 <script lang="ts">
     import OgCard from '../OgCard.svelte';
     import type { PageData } from './$types';
+    import { page } from '$app/state';
 
     let { data }: { data: PageData } = $props();
+    let ogImageUrl = $derived(`/${page.params.slug}/og.jpg`);
 </script>
 
 <svelte:head>
@@ -19,12 +21,26 @@
             >
         </p>
         <p class="og-url">
-            Actual OG image URL: <code>/[slug]/og.jpg</code>
+            URL: <a href={ogImageUrl} target="_blank" rel="noopener noreferrer"
+                ><code>{ogImageUrl}</code></a
+            >
         </p>
     </div>
 
+    <h2>CSS Preview</h2>
     <div class="og-preview-card">
         <OgCard post={data.post} coverImageSrc={data.coverImageSrc} />
+    </div>
+
+    <h2>Image Preview</h2>
+    <div class="og-preview-image">
+        <img
+            src={ogImageUrl}
+            alt={`OG image for ${data.post.title}`}
+            width="1200"
+            height="630"
+            loading="eager"
+        />
     </div>
 
     <div class="og-preview-info">
@@ -63,6 +79,11 @@
 </div>
 
 <style>
+    h2 {
+        padding-top: 64px;
+        padding-bottom: 24px;
+    }
+
     .og-preview-container {
         max-width: 1200px;
         margin: 0 auto;
@@ -93,7 +114,7 @@
     }
 
     .og-url code {
-        background: #f5f5f5;
+        background: #212fc5;
         padding: 0.2rem 0.4rem;
         border-radius: 4px;
         font-family: 'Monaco', 'Menlo', monospace;
@@ -102,6 +123,23 @@
     .og-preview-card {
         width: 1200px;
         height: 630px;
+    }
+
+    .og-preview-image {
+        margin-top: 1rem;
+        display: flex;
+        justify-content: center;
+    }
+
+    .og-preview-image img {
+        width: 100%;
+        height: auto;
+        max-width: 1200px;
+        aspect-ratio: 1200 / 630;
+        border: 1px solid #e5e5e5;
+        border-radius: 6px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        background: #fff;
     }
 
     .og-preview-info {
