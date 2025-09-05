@@ -27,7 +27,7 @@ MStV).
 **Firma:** maxdaten.io  
 **Anschrift:** Oktaviostraße 112E, 22043 Hamburg, Deutschland  
 **Kontakt:** E‑Mail: [`jloos@maxdaten.io`](mailto:[jloos@maxdaten.io])  
-Telefon: `+49 160 96 65 11 88`
+**Telefon:** `+49 160 96 65 11 88`
 
 ## Umsatzsteuer
 
