@@ -83,8 +83,7 @@
                 cursor: pointer;
 
                 &:hover {
-                    box-shadow: var(--card-shadow-hover);
-                    transform: scale(1.01);
+                    box-shadow: 0 0 2px 0.5px var(--color--primary);
                 }
             }
 
