@@ -10,11 +10,13 @@
 
     let { src: originalSrc, ...rest }: Props = $props();
 
-    const src = getPostImageByPath(originalSrc);
+    const resolved = getPostImageByPath(originalSrc);
 </script>
 
-{#if src}
-    <Img {src} {...rest} />
+{#if typeof resolved === 'string'}
+    <img src={resolved} {...rest} />
+{:else if resolved?.img}
+    <Img src={resolved} {...rest} />
 {:else}
     <img src={originalSrc} {...rest} />
 {/if}

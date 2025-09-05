@@ -17,6 +17,17 @@ const blogPostImages = new Map<string, Picture>(
     ).filter(([path]) => !path.includes('/cover.'))
 );
 
+// Now Low-Quality Image Previews Available
+const blogPostImagesRaw = new Map<string, string>(
+    Object.entries(
+        import.meta.glob('$assets/images/posts/**/*.svg', {
+            import: 'default',
+            eager: true,
+            query: { as: 'url' },
+        }) as Record<string, string>
+    )
+);
+
 // Import all post cover images with svelte-img optimization
 const postCoverImagesBySlug = new Map<string, Picture>(
     Object.entries(
@@ -40,8 +51,10 @@ export function getCoverBySlug(postSlug: string): Picture | null {
     return postCoverImagesBySlug.get(postSlug) || null;
 }
 
-export function getPostImageByPath(path: string): Picture | null {
-    return blogPostImages.get(path) || null;
+export function getPostImageByPath(
+    path: string
+): (Picture & { lqip?: string }) | string | null {
+    return (blogPostImages.get(path) ?? blogPostImagesRaw.get(path)) || null;
 }
 
 // Import all author avatars with svelte-img optimization
