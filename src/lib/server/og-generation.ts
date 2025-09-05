@@ -111,10 +111,9 @@ export async function generateOgImage<T extends Record<string, unknown>>(
  * Create standard OG image response
  */
 function createOgImageResponse(jpegBuffer: Uint8Array): Response {
-    return new Response(jpegBuffer, {
+    return new Response(Buffer.from(jpegBuffer), {
         headers: {
             'content-type': 'image/jpeg',
-            'content-length': Buffer.byteLength(jpegBuffer).toString(),
             // cache for 10 minutes, shared cache (proxies, cdn) 7 days
             'cache-control': 'public, max-age=600, s-maxage=604800',
         },
