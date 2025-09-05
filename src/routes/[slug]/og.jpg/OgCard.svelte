@@ -22,6 +22,9 @@
                     >
                 </div>
             {/if}
+            <div class="branding">
+                <span class="site-name">maxdaten.io</span>
+            </div>
         </div>
     {/if}
 
@@ -38,10 +41,6 @@
                         <span class="tag">{tag}</span>
                     {/each}
                 {/if}
-            </div>
-
-            <div class="branding">
-                <span class="site-name">maxdaten.io</span>
             </div>
         </div>
     </div>
@@ -131,13 +130,14 @@
         justify-content: space-between;
         align-items: flex-end;
         margin-top: auto;
+        position: relative;
+        min-height: 64px;
+        padding-right: 220px; /* reserve space for branding */
     }
 
     .tags {
         display: flex;
         gap: 12px;
-        flex-wrap: wrap;
-        margin: auto 0;
     }
 
     .tag {
@@ -149,12 +149,20 @@
         font-size: 1.8rem;
         letter-spacing: 0.08em;
         color: $color-text;
+        white-space: nowrap;
+        overflow: hidden;
+        max-width: 100%;
     }
 
     .branding {
         display: flex;
         flex-direction: column;
         align-items: flex-end;
+        position: absolute;
+        padding: 0 8px;
+        background-color: rgba($color-page-background, 0.75);
+        border-bottom: 2px solid $color-primary;
+        border-radius: 0 0 8px 0;
     }
 
     .site-name {
