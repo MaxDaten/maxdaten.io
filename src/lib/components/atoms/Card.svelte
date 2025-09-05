@@ -83,7 +83,7 @@
                 cursor: pointer;
 
                 &:hover {
-                    box-shadow: 0 0 2px 0.5px var(--color--primary);
+                    box-shadow: 0 0 0 1px rgba(var(--color--primary-rgb), 0.7);
                 }
             }
 
