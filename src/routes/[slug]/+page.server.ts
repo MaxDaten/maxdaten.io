@@ -1,13 +1,9 @@
-import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 import { importPostBySlug } from '$lib/server/posts';
+import { error } from '@sveltejs/kit';
 
 export const load: PageServerLoad = async ({ params }) => {
-    const post = await importPostBySlug(params.slug);
-
-    if (post.hidden) {
-        error(404, 'Post not found');
-    }
-
-    return post;
+    return (
+        (await importPostBySlug(params.slug)) ?? error(404, 'Post not found')
+    );
 };

@@ -9,34 +9,8 @@
 
 <footer>
     <div class="content">
-        <div class="credits">
-            Powered by <a
-                href="https://kit.svelte.dev/"
-                target="_blank"
-                rel="noopener noreferrer">SvelteKit</a
-            >. Icons by
-            <a
-                href="https://iconoir.com/"
-                target="_blank"
-                rel="noopener noreferrer">Iconoir</a
-            >
-            &
-            <a href="https://github.com/catppuccin/vscode-icons"
-                >Catppuccin Icons</a
-            >.
-        </div>
-        <div class="copyright">
-            Based on a <a
-                href="https://github.com/matfantinel/sveltekit-static-blog-template"
-                target="_blank"
-                rel="noopener noreferrer">template</a
-            >
-            built by
-            <a
-                href="https://fantinel.dev?utm_source=maxdaten.io&utm_medium=footer&utm_campaign=blog"
-                target="_blank"
-                rel="noopener noreferrer">Matheus Fantinel</a
-            >.
+        <div class="legal">
+            <a href="/impressum">Impressum</a>
         </div>
         <div class="socials">
             <Socials {...mainAuthor.socials} />
@@ -66,17 +40,6 @@
             gap: 15px;
             font-weight: 600;
             text-align: center;
-
-            .copyright {
-                font-size: 80%;
-                color: var(--color--text-shade);
-            }
-
-            .credits {
-                font-weight: 400;
-                font-size: 90%;
-                color: var(--color--text-shade);
-            }
 
             .socials {
                 display: flex;

@@ -12,10 +12,6 @@ export const load: PageLoad = async ({ params, data, url }) => {
         loaderBySlug.get(params.slug) ?? error(404, 'Post not found');
     const post = await loadPost();
 
-    if (post.metadata.hidden) {
-        error(404, 'Post not found');
-    }
-
     const ogImageUrl = new URL(`${url.pathname}/og.jpg`, url.origin).href;
 
     // Generate blog posting schema
