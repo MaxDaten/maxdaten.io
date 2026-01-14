@@ -10,7 +10,7 @@
 <section id="hero">
     <h1 class="hello">I help engineering teams ship faster</h1>
     <div class="intro">
-        <span class="left">by building infrastructure that scales</span>
+        <span class="left">scalable & reliable</span>
         <hr />
         <span class="right">DevOps • Fullstack • Cloud</span>
     </div>
