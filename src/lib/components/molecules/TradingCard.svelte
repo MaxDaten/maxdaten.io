@@ -210,43 +210,43 @@
             // Animated sparkle dots - layer 1
             repeating-radial-gradient(
                 circle at calc(var(--mouse-x) * 0.5 + 25%) calc(var(--mouse-y) * 0.5 + 25%),
-                rgba(255, 255, 255, 0.8) 0px,
-                rgba(255, 255, 255, 0.8) var(--glitter-size),
+                rgba(255, 255, 255, 0.9) 0px,
+                rgba(255, 255, 255, 0.9) var(--glitter-size),
                 transparent var(--glitter-size),
                 transparent var(--glitter-spacing)
             ),
             // Sparkle dots - layer 2 (offset)
             repeating-radial-gradient(
                 circle at calc(var(--mouse-x) * 0.3 + 50%) calc(var(--mouse-y) * 0.3 + 50%),
-                rgba(var(--color--secondary-rgb), 0.9) 0px,
-                rgba(var(--color--secondary-rgb), 0.9) calc(var(--glitter-size) * 0.8),
+                rgba(var(--color--secondary-rgb), 1) 0px,
+                rgba(var(--color--secondary-rgb), 1) calc(var(--glitter-size) * 0.8),
                 transparent calc(var(--glitter-size) * 0.8),
                 transparent calc(var(--glitter-spacing) * 1.3)
             ),
             // Sparkle dots - layer 3 (gold)
             repeating-radial-gradient(
                 circle at calc(100% - var(--mouse-x) * 0.4) calc(100% - var(--mouse-y) * 0.4),
-                rgba(255, 215, 0, 0.9) 0px,
-                rgba(255, 215, 0, 0.9) calc(var(--glitter-size) * 0.6),
+                rgba(255, 215, 0, 1) 0px,
+                rgba(255, 215, 0, 1) calc(var(--glitter-size) * 0.6),
                 transparent calc(var(--glitter-size) * 0.6),
                 transparent calc(var(--glitter-spacing) * 0.9)
             ),
             // Sparkle dots - layer 4 (primary color)
             repeating-radial-gradient(
                 circle at calc(var(--mouse-x) * 0.6 + 10%) calc(var(--mouse-y) * 0.6 + 10%),
-                rgba(var(--color--primary-rgb), 0.85) 0px,
-                rgba(var(--color--primary-rgb), 0.85) calc(var(--glitter-size) * 0.7),
+                rgba(var(--color--primary-rgb), 1) 0px,
+                rgba(var(--color--primary-rgb), 1) calc(var(--glitter-size) * 0.7),
                 transparent calc(var(--glitter-size) * 0.7),
                 transparent calc(var(--glitter-spacing) * 1.1)
             );
 
         mix-blend-mode: screen;
-        opacity: 0;
+        opacity: 0.6;
         transition: opacity 0.4s ease;
         animation: glitterShimmer 3s ease-in-out infinite;
 
         .hovering & {
-            opacity: 0.9;
+            opacity: 1;
         }
     }
 
@@ -262,23 +262,24 @@
         background: linear-gradient(
             calc(var(--mouse-x) * 3.6deg),
             transparent 0%,
-            rgba(255, 0, 128, 0.15) 10%,
-            rgba(var(--color--secondary-rgb), 0.2) 20%,
-            rgba(0, 255, 128, 0.15) 30%,
+            rgba(255, 0, 128, 0.2) 10%,
+            rgba(var(--color--secondary-rgb), 0.25) 20%,
+            rgba(0, 255, 128, 0.2) 30%,
             transparent 40%,
-            rgba(255, 215, 0, 0.15) 50%,
+            rgba(255, 215, 0, 0.2) 50%,
             transparent 60%,
-            rgba(var(--color--primary-rgb), 0.2) 70%,
-            rgba(180, 100, 255, 0.15) 80%,
+            rgba(var(--color--primary-rgb), 0.25) 70%,
+            rgba(180, 100, 255, 0.2) 80%,
             transparent 90%,
-            rgba(var(--color--secondary-rgb), 0.15) 100%
+            rgba(var(--color--secondary-rgb), 0.2) 100%
         );
         background-size: 200% 200%;
         background-position: calc(var(--mouse-x) * 1%) calc(var(--mouse-y) * 1%);
 
         mix-blend-mode: color-dodge;
-        opacity: 0;
+        opacity: 0.5;
         transition: opacity 0.3s ease;
+        animation: holoShift 8s ease-in-out infinite;
 
         .hovering & {
             opacity: 1;
@@ -297,18 +298,18 @@
             // Main glare spot
             radial-gradient(
                 ellipse 60% 40% at var(--mouse-x) var(--mouse-y),
-                rgba(255, 255, 255, 0.35) 0%,
-                rgba(255, 255, 255, 0.1) 30%,
+                rgba(255, 255, 255, 0.4) 0%,
+                rgba(255, 255, 255, 0.15) 30%,
                 transparent 70%
             ),
             // Secondary softer glow
             radial-gradient(
                 ellipse 100% 80% at var(--mouse-x) var(--mouse-y),
-                rgba(255, 255, 255, 0.1) 0%,
+                rgba(255, 255, 255, 0.15) 0%,
                 transparent 50%
             );
 
-        opacity: 0;
+        opacity: 0.3;
         transition: opacity 0.3s ease;
 
         .hovering & {
@@ -365,7 +366,22 @@
             filter: brightness(1) contrast(1);
         }
         50% {
-            filter: brightness(1.2) contrast(1.1);
+            filter: brightness(1.3) contrast(1.15);
+        }
+    }
+
+    @keyframes holoShift {
+        0%, 100% {
+            background-position: 0% 50%;
+        }
+        25% {
+            background-position: 100% 0%;
+        }
+        50% {
+            background-position: 100% 100%;
+        }
+        75% {
+            background-position: 0% 100%;
         }
     }
 
@@ -380,14 +396,15 @@
             transform: none !important;
         }
 
-        .card-glitter {
+        .card-glitter,
+        .card-holo {
             animation: none;
         }
 
         .card-holo,
         .card-glare,
         .card-glitter {
-            display: none;
+            opacity: 0.3;
         }
     }
 </style>
