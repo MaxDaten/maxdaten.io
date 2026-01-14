@@ -1,5 +1,6 @@
 <script>
     import Socials from '$lib/components/molecules/Socials.svelte';
+    import TradingCard from '$lib/components/molecules/TradingCard.svelte';
     import { FxReveal as Img } from '@zerodevx/svelte-img';
     import MeSrc from '$assets/images/authors/jloos.png?as=run&fit=cover';
     import { authors } from '$lib/data/authors';
@@ -37,13 +38,15 @@
         </div>
     </div>
     <div class="image">
-        <Img
-            src={MeSrc}
-            {...{ class: 'me-image' }}
-            alt="A manga comic drawing of Jan-Philip Loos sitting in front of a window showing a cyberpunk city"
-            sizes="(max-width: 1024px) 400px, 800px"
-            --reveal-transition="opacity 400ms ease-in, transform 0.8s ease-out;"
-        />
+        <TradingCard>
+            <Img
+                src={MeSrc}
+                {...{ class: 'me-image' }}
+                alt="A manga comic drawing of Jan-Philip Loos sitting in front of a window showing a cyberpunk city"
+                sizes="(max-width: 1024px) 400px, 800px"
+                --reveal-transition="opacity 400ms ease-in, transform 0.8s ease-out;"
+            />
+        </TradingCard>
     </div>
 </section>
 
@@ -115,13 +118,15 @@
         }
 
         .image {
-            border-radius: 10%;
-            border: 8px solid rgba(var(--color--primary-rgb), 0.05);
-            overflow: hidden;
-            mix-blend-mode: color-burn;
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
             :global(.me-image) {
-                height: 100%;
+                display: block;
+                width: 100%;
+                max-width: 350px;
+                height: auto;
                 object-fit: cover;
                 object-position: center;
             }
