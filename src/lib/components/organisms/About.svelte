@@ -38,7 +38,7 @@
         </div>
     </div>
     <div class="image">
-        <TradingCard>
+        <TradingCard backgroundSrc={MeSrc}>
             <Img
                 src={MeSrc}
                 {...{ class: 'me-image' }}
