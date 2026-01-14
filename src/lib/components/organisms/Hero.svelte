@@ -8,11 +8,11 @@
 </script>
 
 <section id="hero">
-    <h1 class="hello">Welcome to my blog!</h1>
+    <h1 class="hello">I help engineering teams ship faster</h1>
     <div class="intro">
-        <span class="left">functional & automated</span>
+        <span class="left">by building infrastructure that scales</span>
         <hr />
-        <span class="right">DevOps, Fullstack, Cloud Engineer</span>
+        <span class="right">DevOps • Fullstack • Cloud</span>
     </div>
     <div class="ctas">
         <Button color="secondary" href="https://github.com/MaxDaten">
