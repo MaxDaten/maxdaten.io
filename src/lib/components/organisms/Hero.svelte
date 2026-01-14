@@ -2,6 +2,7 @@
     import BlogIcon from '$lib/icons/blog.svelte';
     import HeartIcon from '$lib/icons/heart.svelte';
     import ExperienceIcon from '$lib/icons/experience.svelte';
+    import CalendarIcon from '$lib/icons/calendar.svelte';
     import GitHubIcon from '$lib/icons/socials/github.svelte';
     import Button from '$lib/components/atoms/Button.svelte';
     import Sparkles from '../atoms/Sparkles.svelte';
@@ -15,6 +16,14 @@
         <span class="right">DevOps, Fullstack, Cloud Engineer</span>
     </div>
     <div class="ctas">
+        <Sparkles>
+            <Button size="medium" href="https://calendar.app.google/KhVdEThcwSEBCjat5">
+                {#snippet icon()}
+                    <CalendarIcon />
+                {/snippet}
+                Book a Call
+            </Button>
+        </Sparkles>
         <Button color="secondary" href="https://github.com/MaxDaten">
             {#snippet icon()}
                 <GitHubIcon />
@@ -33,14 +42,12 @@
             {/snippet}
             Gems
         </Button>
-        <Sparkles>
-            <Button size="medium" href="https://cv.maxdaten.io">
-                {#snippet icon()}
-                    <ExperienceIcon />
-                {/snippet}
-                Résumé
-            </Button>
-        </Sparkles>
+        <Button size="medium" color="secondary" href="https://cv.maxdaten.io">
+            {#snippet icon()}
+                <ExperienceIcon />
+            {/snippet}
+            Résumé
+        </Button>
     </div>
 </section>
 
