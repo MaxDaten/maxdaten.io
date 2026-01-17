@@ -2,6 +2,7 @@ import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 import { NodePackageImporter } from 'sass';
 import { imagetools } from '@zerodevx/svelte-img/vite';
+import { playwright } from '@vitest/browser-playwright';
 
 export default defineConfig({
     plugins: [sveltekit(), imagetools()],
@@ -35,7 +36,7 @@ export default defineConfig({
                                 },
                             },
                         ],
-                        provider: 'playwright',
+                        provider: playwright(),
                     },
                     include: ['src/**/*.svelte.{test,spec}.{js,ts}'],
                     exclude: ['src/lib/server/**'],

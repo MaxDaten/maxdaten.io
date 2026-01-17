@@ -1,8 +1,13 @@
-import { expect, test, describe } from 'vitest';
+import { expect, test, describe, vi, beforeEach } from 'vitest';
 import { render } from 'vitest-browser-svelte';
 import CodeBlock from './CodeBlock.svelte';
 
 describe('CodeBlock Component', () => {
+    // Mock the clipboard writeText method
+    beforeEach(() => {
+        vi.spyOn(navigator.clipboard, 'writeText').mockResolvedValue(undefined);
+    });
+
     test('renders code block with filename', async () => {
         const screen = render(CodeBlock, {
             filename: 'example.js',
