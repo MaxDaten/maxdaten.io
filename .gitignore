@@ -24,4 +24,4 @@ vite.config.ts.timestamp-*
 storybook-static
 .pre-commit-config.yaml
 /.claude/settings.local.json
-**/__screenshots__/
+**/__screenshots__/.devenv.flake.nix
