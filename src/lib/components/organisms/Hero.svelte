@@ -17,7 +17,10 @@
     </div>
     <div class="ctas">
         <Sparkles>
-            <Button size="medium" href="https://calendar.app.google/KhVdEThcwSEBCjat5">
+            <Button
+                size="medium"
+                href="https://calendar.app.google/KhVdEThcwSEBCjat5"
+            >
                 {#snippet icon()}
                     <CalendarIcon />
                 {/snippet}

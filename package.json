@@ -91,5 +91,8 @@
         "vitest": "^3.2.3",
         "vitest-browser-svelte": "^1.0.0"
     },
-    "type": "module"
+    "type": "module",
+    "overrides": {
+        "cookie": "^0.7.0"
+    }
 }
