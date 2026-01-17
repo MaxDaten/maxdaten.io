@@ -40,6 +40,7 @@
       entry = "npm run test:e2e -- --project chromium --reporter list";
       language = "system";
       pass_filenames = false;
+      stages = [ "pre-push" ];
     };
 
     npm-audit = {
@@ -48,6 +49,7 @@
       entry = "npm audit --audit-level=high";
       language = "system";
       pass_filenames = false;
+      stages = [ "pre-push" ];
     };
   };
 
@@ -81,6 +83,7 @@
   packages = with pkgs; [
     npm-check-updates
     nodePackages.vercel
+    config.treefmt.config.build.wrapper
   ];
 
   enterShell = ''
