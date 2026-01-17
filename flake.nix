@@ -104,25 +104,7 @@
                   [
                     npm-check-updates
                     nodePackages.vercel
-                    claude-code
                     treefmtEval.${system}.config.build.wrapper
-
-                    # required by zen mcp
-                    uv
-
-                    # VSCode with Frontmatter extension
-                    (vscode-with-extensions.override {
-                      vscodeExtensions = (
-                        pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-                          {
-                            name = "vscode-front-matter";
-                            publisher = "eliostruyf";
-                            version = "10.9.0";
-                            sha256 = "sha256-XrLN227AFiSLZTey1q62ZFEqr0w3VFjUtj76THPIqL8=";
-                          }
-                        ]
-                      );
-                    })
                   ]
                   ++ lib.attrValues treefmtEval.${system}.config.build.programs;
 
