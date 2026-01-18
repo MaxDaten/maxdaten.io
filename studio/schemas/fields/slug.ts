@@ -12,6 +12,11 @@ export const isUniqueAcrossAllDocuments: SlugIsUniqueValidator = async (
 ) => {
     const { document, getClient } = context;
     const client = getClient({ apiVersion: '2025-01-18' });
+
+    if (!document?._id) {
+        return true; // New documents without ID are valid
+    }
+
     const id = document._id;
 
     // Handle draft document IDs by extracting the published ID

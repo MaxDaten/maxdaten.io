@@ -1,9 +1,18 @@
 {
-    "extends": "@sanity/pkg-utils/tsconfig/tsconfig.sanity-studio.json",
-    "include": ["**/*.ts", "**/*.tsx"],
     "compilerOptions": {
-        "strict": true,
+        "target": "ESNext",
+        "lib": ["DOM", "DOM.Iterable", "ESNext"],
         "module": "ESNext",
-        "moduleResolution": "bundler"
-    }
+        "moduleResolution": "bundler",
+        "jsx": "react-jsx",
+        "strict": true,
+        "skipLibCheck": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "forceConsistentCasingInFileNames": true,
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "noEmit": true
+    },
+    "include": ["**/*.ts", "**/*.tsx"]
 }
