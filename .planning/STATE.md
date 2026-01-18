@@ -9,29 +9,29 @@ image folder management, just write and publish. **Current focus:** Phase 1 - Fo
 
 ## Current Position
 
-Phase: 1 of 4 (Foundation) Plan: 1 of 3 in current phase Status: In progress Last activity:
-2026-01-18 — Completed 01-01-PLAN.md (Initialize Sanity Studio)
+Phase: 1 of 4 (Foundation) Plan: 2 of 3 in current phase Status: In progress Last activity:
+2026-01-18 — Completed 01-02-PLAN.md (Content Schemas)
 
-Progress: [#.........] 8% (1/12 plans)
+Progress: [##........] 17% (2/12 plans)
 
 ## Performance Metrics
 
 **Velocity:**
 
-- Total plans completed: 1
-- Average duration: 4 min
-- Total execution time: 4 min
+- Total plans completed: 2
+- Average duration: 3 min
+- Total execution time: 6 min
 
 **By Phase:**
 
 | Phase         | Plans | Total | Avg/Plan |
 | ------------- | ----- | ----- | -------- |
-| 01-foundation | 1/3   | 4 min | 4 min    |
+| 01-foundation | 2/3   | 6 min | 3 min    |
 
 **Recent Trend:**
 
-- Last 5 plans: 01-01 (4 min)
-- Trend: -
+- Last 5 plans: 01-01 (4 min), 01-02 (2 min)
+- Trend: improving
 
 _Updated after each plan completion_
 
@@ -46,6 +46,10 @@ Decisions are logged in PROJECT.md Key Decisions table. Recent decisions affecti
 | 01-01 | skipLibCheck enabled in tsconfig             | Avoid Sanity v5 dependency type errors              |
 | 01-01 | Structured socialLinks object for author     | Type-safe URL fields vs freeform array              |
 | 01-01 | Guard clause for undefined document in slugs | Handle new document validation before ID assignment |
+| 01-02 | Code block language list matches Shiki setup | Consistency with existing blog rendering            |
+| 01-02 | Callout content uses rich text array         | Allow formatting inside callouts                    |
+| 01-02 | Gem slug has no source option                | Manual entry per CONTEXT.md decision                |
+| 01-02 | Internal links reference post and gem types  | Enable cross-linking between content                |
 
 ### Pending Todos
 
@@ -58,4 +62,4 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-18T21:28:22Z Stopped at: Completed 01-01-PLAN.md Resume file: None
+Last session: 2026-01-18T21:32:46Z Stopped at: Completed 01-02-PLAN.md Resume file: None
