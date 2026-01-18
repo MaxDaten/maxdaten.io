@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { resolve } from '$app/paths';
     import OgCard from '../OgCard.svelte';
     import type { PageData } from './$types';
     import { page } from '$app/state';
@@ -21,7 +22,7 @@
             >
         </p>
         <p class="og-url">
-            URL: <a href={ogImageUrl} target="_blank" rel="noopener noreferrer"
+            URL: <a href={resolve(ogImageUrl)} target="_blank" rel="noopener noreferrer"
                 ><code>{ogImageUrl}</code></a
             >
         </p>

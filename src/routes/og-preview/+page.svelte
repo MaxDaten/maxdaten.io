@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { resolve } from '$app/paths';
     import type { PageData } from './$types';
 
     let { data }: { data: PageData } = $props();
@@ -20,7 +21,7 @@
         <h2>Profile Card</h2>
         <div class="profile-og-card">
             <div class="og-image-container">
-                <a href="/og.jpg" target="_blank" rel="noopener noreferrer">
+                <a href={resolve('/og.jpg')} target="_blank" rel="noopener noreferrer">
                     <img
                         src="/og.jpg"
                         alt="Profile Card of Jan-Philip Loos"
@@ -37,7 +38,7 @@
                 </p>
                 <div class="og-card-links">
                     <a
-                        href="/og.jpg"
+                        href={resolve('/og.jpg')}
                         target="_blank"
                         rel="noopener noreferrer"
                         class="og-link"
@@ -57,7 +58,7 @@
                 <div class="og-card">
                     <div class="og-image-container">
                         <a
-                            href="/{post.slug}"
+                            href={resolve(`/${post.slug}`)}
                             target="_blank"
                             rel="noopener noreferrer"
                         >
@@ -71,7 +72,7 @@
                     <div class="og-card-info">
                         <h3>
                             <a
-                                href="/{post.slug}"
+                                href={resolve(`/${post.slug}`)}
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
@@ -93,7 +94,7 @@
                         </p>
                         <div class="og-card-links">
                             <a
-                                href="/{post.slug}/og.jpg"
+                                href={resolve(`/${post.slug}/og.jpg`)}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 class="og-link"
@@ -101,7 +102,7 @@
                                 View OG Image
                             </a>
                             <a
-                                href="/{post.slug}/og.jpg/preview"
+                                href={resolve(`/${post.slug}/og.jpg/preview`)}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 class="preview-link"

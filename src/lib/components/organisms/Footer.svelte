@@ -1,4 +1,5 @@
 <script>
+    import { resolve } from '$app/paths';
     import Socials from '$lib/components/molecules/Socials.svelte';
     import RssLink from '$lib/components/atoms/RssLink.svelte';
     import { authors } from '$lib/data/authors';
@@ -10,7 +11,7 @@
 <footer>
     <div class="content">
         <div class="legal">
-            <a href="/impressum">Impressum</a>
+            <a href={resolve('/impressum')}>Impressum</a>
         </div>
         <div class="socials">
             <Socials {...mainAuthor.socials} />

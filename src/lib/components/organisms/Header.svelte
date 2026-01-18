@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { resolve } from '$app/paths';
     import Logo from '$lib/components/atoms/Logo.svelte';
     import RssLink from '$lib/components/atoms/RssLink.svelte';
 
@@ -11,12 +12,12 @@
 
 <header class:has-background={showBackground}>
     <nav class="container">
-        <a class="logo" href="/" aria-label="Site logo">
+        <a class="logo" href={resolve('/')} aria-label="Site logo">
             <Logo />
         </a>
         <div class="links">
-            <a href="/blog">Blog</a>
-            <a href="/gems">Gems</a>
+            <a href={resolve('/blog')}>Blog</a>
+            <a href={resolve('/gems')}>Gems</a>
             <RssLink />
         </div>
     </nav>

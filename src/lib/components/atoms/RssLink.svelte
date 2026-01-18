@@ -1,9 +1,10 @@
 <script lang="ts">
+    import { resolve } from '$app/paths';
     import RssIcon from '$lib/icons/rss.svelte';
 </script>
 
 <a
-    href="/rss.xml"
+    href={resolve('/rss.xml')}
     target="_blank"
     rel="noopener noreferrer"
     title="Subscribe to my RSS Feed"

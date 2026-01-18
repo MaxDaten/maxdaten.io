@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { resolve } from '$app/paths';
     import GitHubIcon from '$lib/icons/socials/github.svelte';
     import LinkedInIcon from '$lib/icons/socials/linkedin.svelte';
     import EmailIcon from '$lib/icons/socials/email.svelte';
@@ -16,7 +17,7 @@
 <div class="socials {size}">
     {#if github}
         <a
-            href={github}
+            href={resolve(github)}
             target="_blank"
             rel="noopener noreferrer"
             title="See my GitHub profile"
@@ -26,7 +27,7 @@
     {/if}
     {#if linkedin}
         <a
-            href={linkedin}
+            href={resolve(linkedin)}
             target="_blank"
             rel="noopener noreferrer"
             title="Connect on LinkedIn"
@@ -36,7 +37,7 @@
     {/if}
     {#if email}
         <a
-            href={email}
+            href={resolve(email)}
             target="_blank"
             rel="noopener noreferrer"
             title="Send an email"
