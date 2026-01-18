@@ -54,9 +54,8 @@
   };
 
   treefmt = {
-    config.projectRootFile = "devenv.nix";
+    enable = true;
     config.programs.nixfmt.enable = true;
-    config.programs.nixfmt.package = pkgs.nixfmt-rfc-style;
     config.programs.prettier.enable = true;
     config.programs.prettier.settings = builtins.fromJSON (lib.readFile ./.prettierrc);
     config.programs.prettier.includes = [
@@ -83,7 +82,6 @@
   packages = with pkgs; [
     npm-check-updates
     nodePackages.vercel
-    config.treefmt.config.build.wrapper
   ];
 
   enterShell = ''
