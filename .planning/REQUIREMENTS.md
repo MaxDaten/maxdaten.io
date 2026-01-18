@@ -84,43 +84,43 @@ Explicitly excluded. Documented to prevent scope creep.
 
 Which phases cover which requirements. Updated during roadmap creation.
 
-| Requirement | Phase | Status  |
-| ----------- | ----- | ------- |
-| SCHM-01     | TBD   | Pending |
-| SCHM-02     | TBD   | Pending |
-| SCHM-03     | TBD   | Pending |
-| SCHM-04     | TBD   | Pending |
-| SCHM-05     | TBD   | Pending |
-| SCHM-06     | TBD   | Pending |
-| SCHM-07     | TBD   | Pending |
-| STDO-01     | TBD   | Pending |
-| STDO-02     | TBD   | Pending |
-| STDO-03     | TBD   | Pending |
-| STDO-04     | TBD   | Pending |
-| SLCE-01     | TBD   | Pending |
-| SLCE-02     | TBD   | Pending |
-| SLCE-03     | TBD   | Pending |
-| SLCE-04     | TBD   | Pending |
-| SLCE-05     | TBD   | Pending |
-| SLCE-06     | TBD   | Pending |
-| SLCE-07     | TBD   | Pending |
-| SLCE-08     | TBD   | Pending |
-| MIGR-01     | TBD   | Pending |
-| MIGR-02     | TBD   | Pending |
-| MIGR-03     | TBD   | Pending |
-| MIGR-04     | TBD   | Pending |
-| MIGR-05     | TBD   | Pending |
-| FINL-01     | TBD   | Pending |
-| FINL-02     | TBD   | Pending |
-| FINL-03     | TBD   | Pending |
-| FINL-04     | TBD   | Pending |
+| Requirement | Phase   | Status  |
+| ----------- | ------- | ------- |
+| SCHM-01     | Phase 1 | Pending |
+| SCHM-02     | Phase 1 | Pending |
+| SCHM-03     | Phase 1 | Pending |
+| SCHM-04     | Phase 1 | Pending |
+| SCHM-05     | Phase 1 | Pending |
+| SCHM-06     | Phase 1 | Pending |
+| SCHM-07     | Phase 1 | Pending |
+| STDO-01     | Phase 1 | Pending |
+| STDO-02     | Phase 1 | Pending |
+| STDO-03     | Phase 1 | Pending |
+| STDO-04     | Phase 1 | Pending |
+| SLCE-01     | Phase 2 | Pending |
+| SLCE-02     | Phase 2 | Pending |
+| SLCE-03     | Phase 2 | Pending |
+| SLCE-04     | Phase 2 | Pending |
+| SLCE-05     | Phase 2 | Pending |
+| SLCE-06     | Phase 2 | Pending |
+| SLCE-07     | Phase 2 | Pending |
+| SLCE-08     | Phase 2 | Pending |
+| MIGR-01     | Phase 3 | Pending |
+| MIGR-02     | Phase 3 | Pending |
+| MIGR-03     | Phase 3 | Pending |
+| MIGR-04     | Phase 3 | Pending |
+| MIGR-05     | Phase 3 | Pending |
+| FINL-01     | Phase 4 | Pending |
+| FINL-02     | Phase 4 | Pending |
+| FINL-03     | Phase 4 | Pending |
+| FINL-04     | Phase 4 | Pending |
 
 **Coverage:**
 
 - v1 requirements: 28 total
-- Mapped to phases: 0
-- Unmapped: 28 ⚠️
+- Mapped to phases: 28
+- Unmapped: 0
 
 ---
 
-_Requirements defined: 2025-01-18_ _Last updated: 2025-01-18 after initial definition_
+_Requirements defined: 2025-01-18_ _Last updated: 2025-01-18 after roadmap creation_
