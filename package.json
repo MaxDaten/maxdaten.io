@@ -55,7 +55,7 @@
         "catppuccin-vsc-icons": "github:catppuccin/vscode-icons",
         "dateformat": "^5.0.3",
         "eslint": "^9.2.0",
-        "eslint-config-prettier": "^9.1.0",
+        "eslint-config-prettier": "^10.1.8",
         "eslint-plugin-storybook": "^10.0.0",
         "eslint-plugin-svelte": "^3.10.1",
         "glob": "^11.0.3",
