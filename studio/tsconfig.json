@@ -1,0 +1,9 @@
+{
+    "extends": "@sanity/pkg-utils/tsconfig/tsconfig.sanity-studio.json",
+    "include": ["**/*.ts", "**/*.tsx"],
+    "compilerOptions": {
+        "strict": true,
+        "module": "ESNext",
+        "moduleResolution": "bundler"
+    }
+}
