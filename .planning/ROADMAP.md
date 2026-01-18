@@ -34,13 +34,13 @@ SCHM-06, SCHM-07, STDO-01, STDO-02, STDO-03, STDO-04 **Success Criteria** (what 
 4. Author can see draft/published status for each document in Studio
 5. Slug field validates uniqueness across blog posts and gems
 
-**Plans**: TBD
+**Plans**: 3 plans in 3 waves
 
 Plans:
 
-- [ ] 01-01: TBD
-- [ ] 01-02: TBD
-- [ ] 01-03: TBD
+- [ ] 01-01-PLAN.md - Initialize Sanity Studio and foundational schemas (tag, author, series)
+- [ ] 01-02-PLAN.md - Create content schemas (blog post, gem) with Portable Text
+- [ ] 01-03-PLAN.md - Configure Studio sidebar structure and deploy
 
 ### Phase 2: Vertical Slice
 
@@ -105,7 +105,7 @@ Plans:
 
 | Phase           | Plans Complete | Status      | Completed |
 | --------------- | -------------- | ----------- | --------- |
-| 1. Foundation   | 0/3            | Not started | -         |
+| 1. Foundation   | 0/3            | Planned     | -         |
 | 2. Vertical     | 0/3            | Not started | -         |
 | 3. Migration    | 0/2            | Not started | -         |
 | 4. Finalization | 0/2            | Not started | -         |
