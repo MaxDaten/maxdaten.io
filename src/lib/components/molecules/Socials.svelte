@@ -1,5 +1,4 @@
 <script lang="ts">
-    import { resolve } from '$app/paths';
     import GitHubIcon from '$lib/icons/socials/github.svelte';
     import LinkedInIcon from '$lib/icons/socials/linkedin.svelte';
     import EmailIcon from '$lib/icons/socials/email.svelte';
@@ -14,10 +13,12 @@
     let { github, linkedin, email, size = 'medium' }: Props = $props();
 </script>
 
+<!-- External links - resolve() must NOT be used on external URLs -->
+<!-- eslint-disable svelte/no-navigation-without-resolve -->
 <div class="socials {size}">
     {#if github}
         <a
-            href={resolve(github)}
+            href={github}
             target="_blank"
             rel="noopener noreferrer"
             title="See my GitHub profile"
@@ -27,7 +28,7 @@
     {/if}
     {#if linkedin}
         <a
-            href={resolve(linkedin)}
+            href={linkedin}
             target="_blank"
             rel="noopener noreferrer"
             title="Connect on LinkedIn"
@@ -37,7 +38,7 @@
     {/if}
     {#if email}
         <a
-            href={resolve(email)}
+            href={email}
             target="_blank"
             rel="noopener noreferrer"
             title="Send an email"
@@ -46,6 +47,8 @@
         </a>
     {/if}
 </div>
+
+<!-- eslint-enable svelte/no-navigation-without-resolve -->
 
 <style lang="scss">
     @use '../../scss/breakpoints.scss';
