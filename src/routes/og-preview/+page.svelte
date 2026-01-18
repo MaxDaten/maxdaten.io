@@ -21,7 +21,11 @@
         <h2>Profile Card</h2>
         <div class="profile-og-card">
             <div class="og-image-container">
-                <a href={resolve('/og.jpg')} target="_blank" rel="noopener noreferrer">
+                <a
+                    href={resolve('/og.jpg')}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
                     <img
                         src="/og.jpg"
                         alt="Profile Card of Jan-Philip Loos"

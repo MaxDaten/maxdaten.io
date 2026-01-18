@@ -22,8 +22,10 @@
             >
         </p>
         <p class="og-url">
-            URL: <a href={resolve(ogImageUrl)} target="_blank" rel="noopener noreferrer"
-                ><code>{ogImageUrl}</code></a
+            URL: <a
+                href={resolve(ogImageUrl)}
+                target="_blank"
+                rel="noopener noreferrer"><code>{ogImageUrl}</code></a
             >
         </p>
     </div>
