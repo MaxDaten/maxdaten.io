@@ -9,18 +9,18 @@ image folder management, just write and publish. **Current focus:** Phase 4 - Fi
 
 ## Current Position
 
-Phase: 4 of 4 (Finalization) Plan: 1 of 2 Status: In progress Last activity: 2026-01-20 — Completed
-04-01-PLAN.md (RSS Feed Enhancement)
+Phase: 4 of 4 (Finalization) Plan: 2 of 2 Status: Phase complete Last activity: 2026-01-20 -
+Completed 04-02-PLAN.md (Sitemap & MDsveX Cleanup)
 
-Progress: [##########.] 92% (11/12 plans)
+Progress: [############] 100% (12/12 plans)
 
 ## Performance Metrics
 
 **Velocity:**
 
-- Total plans completed: 11
-- Average duration: 4.5 min
-- Total execution time: 51 min
+- Total plans completed: 12
+- Average duration: 4.7 min
+- Total execution time: 56 min
 
 **By Phase:**
 
@@ -29,11 +29,11 @@ Progress: [##########.] 92% (11/12 plans)
 | 01-foundation     | 3/3   | 9 min  | 3 min    |
 | 02-vertical-slice | 4/4   | 18 min | 4.5 min  |
 | 03-migration      | 3/3   | 21 min | 7 min    |
-| 04-finalization   | 1/2   | 3 min  | 3 min    |
+| 04-finalization   | 2/2   | 8 min  | 4 min    |
 
 **Recent Trend:**
 
-- Last 5 plans: 03-01 (4 min), 03-02 (7 min), 03-03 (10 min), 04-01 (3 min)
+- Last 5 plans: 03-02 (7 min), 03-03 (10 min), 04-01 (3 min), 04-02 (5 min)
 - Trend: stable
 
 _Updated after each plan completion_
@@ -76,6 +76,7 @@ Decisions are logged in PROJECT.md Key Decisions table. Recent decisions affecti
 | 03-02 | Tag names mapped in page template                | Extracting tag.name from Sanity references          |
 | 04-01 | RSS uses rssPostsQuery with body field           | Dedicated query for full body HTML rendering        |
 | 04-01 | Custom RSS components for Portable Text          | Simplified HTML rendering for feed readers          |
+| 04-02 | Keep mdsvex npm packages in package.json         | Not in scope, no runtime impact                     |
 
 ### Pending Todos
 
@@ -87,7 +88,7 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-01-20 Stopped at: Completed 04-01-PLAN.md (RSS Feed Enhancement) Resume file:
+Last session: 2026-01-20 Stopped at: Completed 04-02-PLAN.md (Sitemap & MDsveX Cleanup) Resume file:
 None
 
 ## Phase Completion
@@ -120,9 +121,21 @@ None
 Sanity:** 9/9 (all blog posts migrated) **Gems in Sanity:** 3/3 (all gems migrated) **Old content
 system:** Removed (src/content/blog/, src/lib/assets/images/posts/, src/lib/assets/images/gems/)
 
-**Phase 4 - Finalization:** IN PROGRESS
+**Phase 4 - Finalization:** COMPLETE
 
 - 04-01: RSS Feed Enhancement - DONE
-- 04-02: Deployment Verification - NOT STARTED
+- 04-02: Sitemap & MDsveX Cleanup - DONE
 
-**RSS Feed:** Full HTML body content with @portabletext/to-html, dc:creator author tags
+**RSS Feed:** Full HTML body content with @portabletext/to-html, dc:creator author tags **Sitemap:**
+404 exclusion added, all blog posts included with lastmod dates **MDsveX:** Removed from
+svelte.config.js, orphaned files deleted
+
+## PROJECT COMPLETE
+
+All 4 phases completed successfully. Sanity CMS fully integrated:
+
+- Content management via https://maxdaten.sanity.studio
+- All blog posts (9) and gems (3) migrated from markdown
+- RSS feed with full HTML body content
+- Sitemap with correct exclusions
+- MDsveX preprocessing removed (Sanity-only content delivery)
