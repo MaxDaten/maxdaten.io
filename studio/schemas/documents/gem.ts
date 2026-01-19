@@ -52,16 +52,34 @@ export const gemType = defineType({
             type: 'array',
             of: [{ type: 'reference', to: [{ type: 'tag' }] }],
         }),
+        defineField({
+            name: 'coverImage',
+            title: 'Cover Image',
+            type: 'image',
+            options: {
+                hotspot: true,
+            },
+            fields: [
+                defineField({
+                    name: 'alt',
+                    title: 'Alt Text',
+                    type: 'string',
+                    description: 'Describe the image for accessibility',
+                }),
+            ],
+        }),
     ],
     preview: {
         select: {
             title: 'title',
             url: 'url',
+            media: 'coverImage',
         },
-        prepare({ title, url }) {
+        prepare({ title, url, media }) {
             return {
                 title,
                 subtitle: url,
+                media,
             };
         },
     },
