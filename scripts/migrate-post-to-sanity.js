@@ -412,40 +412,97 @@ function parseMarkdownContent(content) {
             continue;
         }
 
-        // Ordered lists (numbered)
+        // Ordered lists (numbered) with support for nested bullets
         if (line.trim().match(/^\d+\.\s+/)) {
-            while (i < lines.length && lines[i].trim().match(/^\d+\.\s+/)) {
-                const listContent = lines[i].trim().replace(/^\d+\.\s+/, '');
-                const { spans, markDefs } = parseInlineMarkdown(listContent);
-                blocks.push({
-                    _type: 'block',
-                    _key: generateKey(),
-                    style: 'normal',
-                    listItem: 'number',
-                    level: 1,
-                    markDefs,
-                    children: spans,
-                });
-                i++;
+            while (i < lines.length) {
+                const currentLine = lines[i];
+                // Check for numbered list item (level 1)
+                if (currentLine.trim().match(/^\d+\.\s+/)) {
+                    const listContent = currentLine
+                        .trim()
+                        .replace(/^\d+\.\s+/, '');
+                    const { spans, markDefs } =
+                        parseInlineMarkdown(listContent);
+                    blocks.push({
+                        _type: 'block',
+                        _key: generateKey(),
+                        style: 'normal',
+                        listItem: 'number',
+                        level: 1,
+                        markDefs,
+                        children: spans,
+                    });
+                    i++;
+                }
+                // Check for indented bullet item (level 2) - 4 spaces + dash/asterisk
+                else if (currentLine.match(/^    [-*]\s+/)) {
+                    const listContent = currentLine.replace(/^    [-*]\s+/, '');
+                    const { spans, markDefs } =
+                        parseInlineMarkdown(listContent);
+                    blocks.push({
+                        _type: 'block',
+                        _key: generateKey(),
+                        style: 'normal',
+                        listItem: 'bullet',
+                        level: 2,
+                        markDefs,
+                        children: spans,
+                    });
+                    i++;
+                }
+                // Not a list item, exit the list
+                else {
+                    break;
+                }
             }
             continue;
         }
 
-        // Unordered lists
+        // Unordered lists with support for nested items
         if (line.trim().match(/^[-*]\s+/)) {
-            while (i < lines.length && lines[i].trim().match(/^[-*]\s+/)) {
-                const listContent = lines[i].trim().replace(/^[-*]\s+/, '');
-                const { spans, markDefs } = parseInlineMarkdown(listContent);
-                blocks.push({
-                    _type: 'block',
-                    _key: generateKey(),
-                    style: 'normal',
-                    listItem: 'bullet',
-                    level: 1,
-                    markDefs,
-                    children: spans,
-                });
-                i++;
+            while (i < lines.length) {
+                const currentLine = lines[i];
+                // Check for bullet list item (level 1)
+                if (
+                    currentLine.match(/^[-*]\s+/) &&
+                    !currentLine.match(/^    /)
+                ) {
+                    const listContent = currentLine
+                        .trim()
+                        .replace(/^[-*]\s+/, '');
+                    const { spans, markDefs } =
+                        parseInlineMarkdown(listContent);
+                    blocks.push({
+                        _type: 'block',
+                        _key: generateKey(),
+                        style: 'normal',
+                        listItem: 'bullet',
+                        level: 1,
+                        markDefs,
+                        children: spans,
+                    });
+                    i++;
+                }
+                // Check for indented bullet item (level 2) - 4 spaces
+                else if (currentLine.match(/^    [-*]\s+/)) {
+                    const listContent = currentLine.replace(/^    [-*]\s+/, '');
+                    const { spans, markDefs } =
+                        parseInlineMarkdown(listContent);
+                    blocks.push({
+                        _type: 'block',
+                        _key: generateKey(),
+                        style: 'normal',
+                        listItem: 'bullet',
+                        level: 2,
+                        markDefs,
+                        children: spans,
+                    });
+                    i++;
+                }
+                // Not a list item, exit the list
+                else {
+                    break;
+                }
             }
             continue;
         }
