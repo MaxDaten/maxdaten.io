@@ -95,12 +95,12 @@ be TRUE):
 3. Old markdown files removed from repository (src/content/blog/)
 4. Old image folder structure removed from repository (src/lib/assets/images/posts/)
 
-**Plans**: TBD
+**Plans**: 2 plans in 1 wave
 
 Plans:
 
-- [ ] 04-01: TBD
-- [ ] 04-02: TBD
+- [ ] 04-01-PLAN.md - Enhance RSS feed with full HTML body content from Sanity
+- [ ] 04-02-PLAN.md - Verify sitemap and remove MDsveX artifacts
 
 ## Progress
 
@@ -115,4 +115,4 @@ Plans:
 
 ---
 
-_Roadmap created: 2025-01-18_ _Last updated: 2026-01-19 (Phase 3 planned with 3 plans)_
+_Roadmap created: 2025-01-18_ _Last updated: 2026-01-20 (Phase 4 planned with 2 plans)_
