@@ -16,7 +16,7 @@ generation. Each phase delivers verifiable capability before proceeding.
 
 - [x] **Phase 1: Foundation** - Sanity schemas and Studio ready for content
 - [x] **Phase 2: Vertical Slice** - One blog post end-to-end in production
-- [ ] **Phase 3: Migration** - All content moved to Sanity
+- [x] **Phase 3: Migration** - All content moved to Sanity
 - [ ] **Phase 4: Finalization** - RSS, sitemap, cleanup
 
 ## Phase Details
@@ -80,9 +80,9 @@ MIGR-05, SLCE-03 **Success Criteria** (what must be TRUE):
 
 Plans:
 
-- [ ] 03-01-PLAN.md - Batch migrate all remaining blog posts (8 posts)
-- [ ] 03-02-PLAN.md - Add gem coverImage schema, migrate gems, update gems page
-- [ ] 03-03-PLAN.md - Remove dual-source routing and delete old content system
+- [x] 03-01-PLAN.md - Batch migrate all remaining blog posts (8 posts)
+- [x] 03-02-PLAN.md - Add gem coverImage schema, migrate gems, update gems page
+- [x] 03-03-PLAN.md - Remove dual-source routing and delete old content system
 
 ### Phase 4: Finalization
 
@@ -110,7 +110,7 @@ Plans:
 | --------------- | -------------- | ----------- | ---------- |
 | 1. Foundation   | 3/3            | Complete    | 2026-01-19 |
 | 2. Vertical     | 4/4            | Complete    | 2026-01-19 |
-| 3. Migration    | 0/3            | Not started | -          |
+| 3. Migration    | 3/3            | Complete    | 2026-01-19 |
 | 4. Finalization | 0/2            | Not started | -          |
 
 ---
