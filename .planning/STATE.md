@@ -9,29 +9,29 @@ image folder management, just write and publish. **Current focus:** Phase 2 - In
 
 ## Current Position
 
-Phase: 2 of 4 (Vertical Slice) Plan: 1 of 4 in current phase Status: In progress Last activity:
-2026-01-19 — Completed 02-01-PLAN.md (Sanity Client Infrastructure)
+Phase: 2 of 4 (Vertical Slice) Plan: 2 of 4 in current phase Status: In progress Last activity:
+2026-01-19 — Completed 02-02-PLAN.md (Portable Text Renderer)
 
-Progress: [####......] 33% (4/12 plans)
+Progress: [#####.....] 42% (5/12 plans)
 
 ## Performance Metrics
 
 **Velocity:**
 
-- Total plans completed: 4
+- Total plans completed: 5
 - Average duration: 3 min
-- Total execution time: 11 min
+- Total execution time: 15 min
 
 **By Phase:**
 
 | Phase             | Plans | Total | Avg/Plan |
 | ----------------- | ----- | ----- | -------- |
 | 01-foundation     | 3/3   | 9 min | 3 min    |
-| 02-vertical-slice | 1/4   | 2 min | 2 min    |
+| 02-vertical-slice | 2/4   | 6 min | 3 min    |
 
 **Recent Trend:**
 
-- Last 5 plans: 01-01 (4 min), 01-02 (2 min), 01-03 (3 min), 02-01 (2 min)
+- Last 5 plans: 01-02 (2 min), 01-03 (3 min), 02-01 (2 min), 02-02 (4 min)
 - Trend: stable
 
 _Updated after each plan completion_
@@ -58,6 +58,10 @@ Decisions are logged in PROJECT.md Key Decisions table. Recent decisions affecti
 | 02-01 | defineQuery for GROQ queries                     | Proper typing via groq package                      |
 | 02-01 | Standard breakpoints 320-1920px                  | Match CONTEXT.md responsive image decisions         |
 | 02-01 | Auto format for images                           | WebP/AVIF based on browser support                  |
+| 02-02 | Callout tip maps to success type                 | Visual consistency with existing Callout component  |
+| 02-02 | CodeBlock uses async $effect for Shiki           | Browser handles promise, fallback until complete    |
+| 02-02 | Heading slug from text content                   | Standard slugify for anchor IDs                     |
+| 02-02 | Links disable navigation eslint rule             | CMS content doesn't use SvelteKit resolve()         |
 
 ### Pending Todos
 
@@ -69,8 +73,8 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-01-19T04:06:59Z Stopped at: Completed 02-01-PLAN.md (Sanity Client
-Infrastructure) Resume file: None
+Last session: 2026-01-19T04:12:45Z Stopped at: Completed 02-02-PLAN.md (Portable Text Renderer)
+Resume file: None
 
 ## Phase Completion
 
@@ -85,6 +89,6 @@ Infrastructure) Resume file: None
 **Phase 2 - Vertical Slice:** IN PROGRESS
 
 - 02-01: Sanity Client Infrastructure - DONE
-- 02-02: Portable Text Renderer - PENDING
+- 02-02: Portable Text Renderer - DONE
 - 02-03: Dual-Source Routing - PENDING
 - 02-04: Vertical Slice Post - PENDING
