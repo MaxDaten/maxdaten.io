@@ -27,9 +27,9 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Vertical Slice (integration + one post proves everything works)
 
-- [ ] **SLCE-01**: Switch from static adapter to Vercel adapter for SSR
+- [x] **SLCE-01**: Switch from static adapter to Vercel adapter for SSR _(Pre-existing - project
+      already uses @sveltejs/adapter-vercel)_
 - [ ] **SLCE-02**: SvelteKit fetches blog posts from Sanity dynamically (server-side)
-- [ ] **SLCE-03**: SvelteKit fetches gems from Sanity dynamically (server-side)
 - [ ] **SLCE-04**: Portable Text renders correctly with custom code blocks
 - [ ] **SLCE-05**: Images served from Sanity CDN with optimization
 - [ ] **SLCE-06**: Dual-source routing (Sanity for slice post, markdown for rest)
@@ -43,6 +43,8 @@ Requirements for initial release. Each maps to roadmap phases.
 - [ ] **MIGR-03**: Migrate all gems to Sanity
 - [ ] **MIGR-04**: Preserve exact URL slugs for all content
 - [ ] **MIGR-05**: Remove dual-source routing after all content migrated
+- [ ] **SLCE-03**: SvelteKit fetches gems from Sanity dynamically (server-side) _(Moved from Phase 2
+      per CONTEXT.md decision: "Gems: No vertical slice — migrate all at once in Phase 3")_
 
 ### Finalization (after migration complete)
 
@@ -84,36 +86,36 @@ Explicitly excluded. Documented to prevent scope creep.
 
 Which phases cover which requirements. Updated during roadmap creation.
 
-| Requirement | Phase   | Status   |
-| ----------- | ------- | -------- |
-| SCHM-01     | Phase 1 | Complete |
-| SCHM-02     | Phase 1 | Complete |
-| SCHM-03     | Phase 1 | Complete |
-| SCHM-04     | Phase 1 | Complete |
-| SCHM-05     | Phase 1 | Complete |
-| SCHM-06     | Phase 1 | Complete |
-| SCHM-07     | Phase 1 | Complete |
-| STDO-01     | Phase 1 | Complete |
-| STDO-02     | Phase 1 | Complete |
-| STDO-03     | Phase 1 | Complete |
-| STDO-04     | Phase 1 | Complete |
-| SLCE-01     | Phase 2 | Pending  |
-| SLCE-02     | Phase 2 | Pending  |
-| SLCE-03     | Phase 2 | Pending  |
-| SLCE-04     | Phase 2 | Pending  |
-| SLCE-05     | Phase 2 | Pending  |
-| SLCE-06     | Phase 2 | Pending  |
-| SLCE-07     | Phase 2 | Pending  |
-| SLCE-08     | Phase 2 | Pending  |
-| MIGR-01     | Phase 3 | Pending  |
-| MIGR-02     | Phase 3 | Pending  |
-| MIGR-03     | Phase 3 | Pending  |
-| MIGR-04     | Phase 3 | Pending  |
-| MIGR-05     | Phase 3 | Pending  |
-| FINL-01     | Phase 4 | Pending  |
-| FINL-02     | Phase 4 | Pending  |
-| FINL-03     | Phase 4 | Pending  |
-| FINL-04     | Phase 4 | Pending  |
+| Requirement | Phase        | Status   |
+| ----------- | ------------ | -------- |
+| SCHM-01     | Phase 1      | Complete |
+| SCHM-02     | Phase 1      | Complete |
+| SCHM-03     | Phase 1      | Complete |
+| SCHM-04     | Phase 1      | Complete |
+| SCHM-05     | Phase 1      | Complete |
+| SCHM-06     | Phase 1      | Complete |
+| SCHM-07     | Phase 1      | Complete |
+| STDO-01     | Phase 1      | Complete |
+| STDO-02     | Phase 1      | Complete |
+| STDO-03     | Phase 1      | Complete |
+| STDO-04     | Phase 1      | Complete |
+| SLCE-01     | Pre-existing | Complete |
+| SLCE-02     | Phase 2      | Pending  |
+| SLCE-03     | Phase 3      | Pending  |
+| SLCE-04     | Phase 2      | Pending  |
+| SLCE-05     | Phase 2      | Pending  |
+| SLCE-06     | Phase 2      | Pending  |
+| SLCE-07     | Phase 2      | Pending  |
+| SLCE-08     | Phase 2      | Pending  |
+| MIGR-01     | Phase 3      | Pending  |
+| MIGR-02     | Phase 3      | Pending  |
+| MIGR-03     | Phase 3      | Pending  |
+| MIGR-04     | Phase 3      | Pending  |
+| MIGR-05     | Phase 3      | Pending  |
+| FINL-01     | Phase 4      | Pending  |
+| FINL-02     | Phase 4      | Pending  |
+| FINL-03     | Phase 4      | Pending  |
+| FINL-04     | Phase 4      | Pending  |
 
 **Coverage:**
 
@@ -123,4 +125,5 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 
-_Requirements defined: 2025-01-18_ _Last updated: 2025-01-18 after roadmap creation_
+_Requirements defined: 2025-01-18_ _Last updated: 2026-01-19 (SLCE-01 marked pre-existing, SLCE-03
+moved to Phase 3)_

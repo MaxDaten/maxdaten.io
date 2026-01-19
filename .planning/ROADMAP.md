@@ -45,14 +45,14 @@ Plans:
 ### Phase 2: Vertical Slice
 
 **Goal**: One complete blog post served from Sanity, live in production alongside existing markdown
-posts **Depends on**: Phase 1 **Requirements**: SLCE-01, SLCE-02, SLCE-03, SLCE-04, SLCE-05,
-SLCE-06, SLCE-07, SLCE-08 **Success Criteria** (what must be TRUE):
+posts **Depends on**: Phase 1 **Requirements**: SLCE-02, SLCE-04, SLCE-05, SLCE-06, SLCE-07, SLCE-08
+_(Note: SLCE-01 pre-existing, SLCE-03 deferred to Phase 3)_ **Success Criteria** (what must be
+TRUE):
 
 1. Visitor can view migrated blog post at its existing URL with correct rendering
 2. Code blocks render with syntax highlighting, filename display, and line numbers preserved
 3. Images load from Sanity CDN with responsive optimization
-4. Gems page shows gems from Sanity with correct styling
-5. Existing markdown posts continue to work unchanged during this phase
+4. Existing markdown posts continue to work unchanged during this phase
 
 **Plans**: 4 plans in 4 waves
 
@@ -66,14 +66,15 @@ Plans:
 ### Phase 3: Migration
 
 **Goal**: All blog posts and gems migrated to Sanity with markdown content system still present as
-fallback **Depends on**: Phase 2 **Requirements**: MIGR-01, MIGR-02, MIGR-03, MIGR-04, MIGR-05
-**Success Criteria** (what must be TRUE):
+fallback **Depends on**: Phase 2 **Requirements**: MIGR-01, MIGR-02, MIGR-03, MIGR-04, MIGR-05,
+SLCE-03 **Success Criteria** (what must be TRUE):
 
 1. Every existing blog post is accessible from Sanity (count matches original)
 2. Every existing gem is accessible from Sanity (count matches original)
 3. All URLs return identical content to pre-migration state
 4. All images load from Sanity CDN (no local image references remain in served content)
 5. Dual-source routing removed, all content served from Sanity only
+6. Gems page shows gems from Sanity with correct styling
 
 **Plans**: TBD
 
@@ -113,4 +114,5 @@ Plans:
 
 ---
 
-_Roadmap created: 2025-01-18_ _Last updated: 2026-01-19_
+_Roadmap created: 2025-01-18_ _Last updated: 2026-01-19 (SLCE-01 noted as pre-existing, SLCE-03
+moved to Phase 3)_
