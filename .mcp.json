@@ -3,6 +3,10 @@
         "playwright": {
             "command": "npx",
             "args": ["@playwright/mcp@latest"]
+        },
+        "Sanity": {
+            "type": "http",
+            "url": "https://mcp.sanity.io"
         }
     }
 }
