@@ -1,47 +1,22 @@
 <script lang="ts">
     import Card from '$lib/components/atoms/Card.svelte';
     import Tag from '$lib/components/atoms/Tag.svelte';
-    import { FxReveal as Img } from '@zerodevx/svelte-img';
-    import { getCoverBySlug } from '$lib/utils/image-loader';
-    import type { BlogPost } from '$utils/types';
     import type { ListingPost } from '$routes/blog/+page.server';
     import { urlFor, generateSrcSet } from '$lib/sanity/image';
 
     type Props = {
-        post: BlogPost | ListingPost;
+        post: ListingPost;
         showImage?: boolean;
     };
 
     let { post, showImage = true }: Props = $props();
 
-    // Check if this is a Sanity post with coverImage
-    const isSanityWithCover = $derived(
-        'source' in post &&
-            post.source === 'sanity' &&
-            'coverImage' in post &&
-            post.coverImage?.url
-    );
-
-    // Get markdown cover image (only for non-Sanity posts)
-    const optimizedImage = $derived(
-        !('source' in post) || post.source === 'markdown'
-            ? getCoverBySlug(post.slug)
-            : null
-    );
+    // Check if this post has a cover image
+    const hasCoverImage = $derived(post.coverImage?.url);
 </script>
 
-{#snippet markdownImage()}
-    <Img
-        src={optimizedImage}
-        {...{ class: 'cover-image', 'data-hero-key': optimizedImage?.img.src }}
-        alt="Cover of this blog post"
-        sizes="(max-width: 1024px) 500px, 1000px"
-        --reveal-transition="opacity 400ms ease-in, transform 0.8s ease-out;"
-    />
-{/snippet}
-
 {#snippet sanityImage()}
-    {#if 'coverImage' in post && post.coverImage?.url}
+    {#if post.coverImage?.url}
         <img
             class="cover-image sanity-cover"
             src={urlFor(post.coverImage).width(500).auto('format').url()}
@@ -59,21 +34,12 @@
 <Card
     href="/{post.slug}"
     class="blog-post-card"
-    image={showImage
-        ? isSanityWithCover
-            ? sanityImage
-            : optimizedImage
-              ? markdownImage
-              : undefined
-        : undefined}
+    image={showImage && hasCoverImage ? sanityImage : undefined}
 >
     {#snippet content()}
         <p class="title">
             {post.title}
         </p>
-        {#if post.readingTimeMinutes}
-            <div class="note">{post.readingTimeMinutes} min read</div>
-        {/if}
         {#if post.excerpt}
             <p class="text">
                 {post.excerpt}
@@ -108,11 +74,6 @@
             align-items: center;
             gap: 5px;
             flex-wrap: wrap;
-        }
-
-        .note {
-            font-size: 0.8rem;
-            color: rgba(var(--color--secondary-rgb), 0.8);
         }
 
         .text {

@@ -2,59 +2,33 @@
     import Tag from '$components/atoms/Tag.svelte';
     import Author from '$components/molecules/Author.svelte';
     import dateformat from 'dateformat';
-    import RelatedPosts from '$components/organisms/RelatedPosts.svelte';
     import { PageTransition } from 'ssgoi';
     import type { PageProps } from './$types';
-    import { FxParallax as Img } from '@zerodevx/svelte-img';
-    import { getCoverBySlug } from '$utils/image-loader';
-    import { getAuthor } from '$lib/data/authors.js';
     import { PortableText } from '@portabletext/svelte';
     import { portableTextComponents } from '$lib/sanity/portable-text';
     import { urlFor, generateSrcSet } from '$lib/sanity/image';
-    import type { SanityPost, BlogPost } from '$utils/types';
 
     let { data }: PageProps = $props();
 
-    // Derived values based on source type
-    const isSanity = $derived(data.source === 'sanity');
-    const sanityPost = $derived(isSanity ? (data.post as SanityPost) : null);
-    const markdownPost = $derived(!isSanity ? (data.post as BlogPost) : null);
+    // Sanity post data
+    const post = $derived(data.post);
 
-    // Common derived values - normalize across both sources
-    const title = $derived(sanityPost?.title ?? markdownPost?.title ?? '');
-    const date = $derived(sanityPost?.date ?? markdownPost?.date ?? '');
-    const updated = $derived(
-        sanityPost?.lastModified ?? markdownPost?.updated ?? undefined
-    );
-    const tags = $derived(
-        sanityPost?.tags?.map((t) => t.name) ?? markdownPost?.tags ?? []
-    );
+    // Derived values from Sanity post
+    const title = $derived(post.title);
+    const date = $derived(post.date);
+    const updated = $derived(post.lastModified ?? undefined);
+    const tags = $derived(post.tags?.map((t) => t.name) ?? []);
 
-    // Author handling - Sanity has embedded author, markdown uses authorId lookup
+    // Author handling - Sanity has embedded author
     const author = $derived.by(() => {
-        if (sanityPost?.author) {
+        if (post.author) {
             return {
                 id: 'sanity-author',
-                name: sanityPost.author.name,
-                // Sanity author image URL could be used for avatar
+                name: post.author.name,
             };
-        }
-        if (markdownPost?.authorId) {
-            return getAuthor(markdownPost.authorId);
         }
         return undefined;
     });
-
-    // Cover image - Sanity uses CDN, markdown uses local asset lookup
-    const markdownCover = $derived(
-        markdownPost ? getCoverBySlug(markdownPost.slug) : null
-    );
-
-    // Reading time - only available for markdown posts currently
-    const readingTimeMinutes = $derived(markdownPost?.readingTimeMinutes);
-
-    // Related posts - same-source only per CONTEXT.md, skip for Sanity in this phase
-    const relatedPosts = $derived(markdownPost?.relatedPosts ?? []);
 </script>
 
 <PageTransition>
@@ -83,11 +57,6 @@
                             </span>
                         {/if}
                     </div>
-                    {#if readingTimeMinutes}
-                        <div class="note">
-                            {readingTimeMinutes} minutes to read
-                        </div>
-                    {/if}
                 </div>
             </div>
 
@@ -100,55 +69,32 @@
             {/if}
         </div>
 
-        {#if isSanity && sanityPost?.coverImage?.url}
+        {#if post.coverImage?.url}
             <div class="cover-image-container">
                 <img
                     class="cover-image sanity-cover"
-                    src={urlFor(sanityPost.coverImage)
+                    src={urlFor(post.coverImage)
                         .width(1280)
                         .auto('format')
                         .url()}
-                    srcset={generateSrcSet(sanityPost.coverImage)}
+                    srcset={generateSrcSet(post.coverImage)}
                     sizes="(max-width: 1060px) 100vw, 1000px"
-                    alt={sanityPost.coverImage.alt ?? title}
-                    style:background-image={sanityPost.coverImage.lqip
-                        ? `url(${sanityPost.coverImage.lqip})`
+                    alt={post.coverImage.alt ?? title}
+                    style:background-image={post.coverImage.lqip
+                        ? `url(${post.coverImage.lqip})`
                         : undefined}
                     style:background-size="cover"
-                />
-            </div>
-        {:else if markdownCover}
-            <div class="cover-image-container">
-                <Img
-                    {...{
-                        class: 'cover-image',
-                        'data-hero-key': markdownCover.img.src,
-                    }}
-                    factor={0.5}
-                    src={markdownCover}
-                    alt={title}
                 />
             </div>
         {/if}
 
         <div class="content">
-            {#if isSanity && sanityPost}
-                <PortableText
-                    value={sanityPost.body}
-                    components={portableTextComponents}
-                />
-            {:else if data.content}
-                {@const Post = data.content}
-                <Post />
-            {/if}
+            <PortableText
+                value={post.body}
+                components={portableTextComponents}
+            />
         </div>
     </article>
-
-    {#if relatedPosts.length > 0}
-        <div class="container">
-            <RelatedPosts posts={relatedPosts} />
-        </div>
-    {/if}
 </PageTransition>
 
 <style lang="scss">

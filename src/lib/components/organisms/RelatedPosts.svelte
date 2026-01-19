@@ -1,10 +1,10 @@
 <script lang="ts">
-    import type { BlogPost } from '$lib/utils/types';
+    import type { ListingPost } from '$routes/blog/+page.server';
     import BlogPostCard from '$lib/components/molecules/BlogPostCard.svelte';
     import ContentSection from '$lib/components/organisms/ContentSection.svelte';
 
     interface Props {
-        posts: BlogPost[];
+        posts: ListingPost[];
     }
 
     let { posts }: Props = $props();

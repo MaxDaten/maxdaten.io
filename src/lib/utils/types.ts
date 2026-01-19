@@ -1,4 +1,5 @@
 import type { Component } from 'svelte';
+import type { PortableTextBlock } from '@portabletext/types';
 
 export type SparkleType = {
     id: string;
@@ -61,7 +62,7 @@ export type SanityPost = {
     title: string;
     slug: string;
     excerpt?: string;
-    body: unknown[]; // Portable Text array
+    body: PortableTextBlock[]; // Portable Text array
     date: string;
     lastModified?: string;
     hidden?: boolean;
@@ -98,9 +99,7 @@ export type SanityPost = {
 };
 
 /**
- * Discriminated union for dual-source post data.
- * Used by [slug] route to identify rendering path.
+ * Post data from Sanity CMS.
+ * Used by [slug] route for rendering.
  */
-export type PostData =
-    | { source: 'sanity'; post: SanityPost }
-    | { source: 'markdown'; post: BlogPost };
+export type PostData = { source: 'sanity'; post: SanityPost };

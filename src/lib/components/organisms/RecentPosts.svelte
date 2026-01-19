@@ -1,11 +1,11 @@
 <script lang="ts">
     import BlogPostCard from '$lib/components/molecules/BlogPostCard.svelte';
     import ContentSection from '$lib/components/organisms/ContentSection.svelte';
-    import type { BlogPost } from '$lib/utils/types';
+    import type { ListingPost } from '$routes/blog/+page.server';
     import Button from '$lib/components/atoms/Button.svelte';
 
     interface Props {
-        posts: BlogPost[];
+        posts: ListingPost[];
     }
 
     let { posts }: Props = $props();
