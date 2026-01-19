@@ -15,6 +15,7 @@
     "dependencies": {
         "@sanity/vision": "^5.4.0",
         "lucide-react": "^0.562.0",
-        "sanity": "^5.4.0"
+        "sanity": "^5.4.0",
+        "styled-components": "^6.3.8"
     }
 }
