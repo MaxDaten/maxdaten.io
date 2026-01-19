@@ -3,11 +3,26 @@ import { error } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 import { client } from '$lib/sanity/client';
 import { postBySlugQuery } from '$lib/sanity/queries';
-import { generateOgImage, processImageUrl } from '$lib/server/og-generation';
+import { generateOgImage } from '$lib/server/og-generation';
 
 export const prerender = false;
 
-export const GET: RequestHandler = async ({ params, url }) => {
+/**
+ * Process Sanity image URL for OG card - resize to reduce SVG size.
+ * Satori embeds images as base64, so large images cause buffer overflow.
+ */
+function processCoverImageUrl(sanityUrl: string): string {
+    // Sanity CDN URLs support transformation parameters
+    // Resize to max 800px width for OG card (actual display is ~480px at 40% height)
+    // Use format=jpg and quality=80 to further reduce size
+    const url = new URL(sanityUrl);
+    url.searchParams.set('w', '800');
+    url.searchParams.set('q', '80');
+    url.searchParams.set('fm', 'jpg');
+    return url.toString();
+}
+
+export const GET: RequestHandler = async ({ params }) => {
     const { slug } = params;
 
     try {
@@ -18,9 +33,9 @@ export const GET: RequestHandler = async ({ params, url }) => {
             throw error(404, 'Post not found');
         }
 
-        // Use Sanity cover image URL if available
+        // Use Sanity cover image URL if available, resize to prevent SVG buffer overflow
         const coverImageSrc = post.coverImage?.url
-            ? processImageUrl(post.coverImage.url, url)
+            ? processCoverImageUrl(post.coverImage.url)
             : undefined;
 
         return await generateOgImage(OgCard, {
