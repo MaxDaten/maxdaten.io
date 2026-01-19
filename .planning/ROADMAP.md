@@ -65,9 +65,9 @@ Plans:
 
 ### Phase 3: Migration
 
-**Goal**: All blog posts and gems migrated to Sanity with markdown content system still present as
-fallback **Depends on**: Phase 2 **Requirements**: MIGR-01, MIGR-02, MIGR-03, MIGR-04, MIGR-05,
-SLCE-03 **Success Criteria** (what must be TRUE):
+**Goal**: All blog posts and gems migrated to Sanity, dual-source routing removed, old content
+system deleted **Depends on**: Phase 2 **Requirements**: MIGR-01, MIGR-02, MIGR-03, MIGR-04,
+MIGR-05, SLCE-03 **Success Criteria** (what must be TRUE):
 
 1. Every existing blog post is accessible from Sanity (count matches original)
 2. Every existing gem is accessible from Sanity (count matches original)
@@ -76,12 +76,13 @@ SLCE-03 **Success Criteria** (what must be TRUE):
 5. Dual-source routing removed, all content served from Sanity only
 6. Gems page shows gems from Sanity with correct styling
 
-**Plans**: TBD
+**Plans**: 3 plans in 3 waves
 
 Plans:
 
-- [ ] 03-01: TBD
-- [ ] 03-02: TBD
+- [ ] 03-01-PLAN.md - Batch migrate all remaining blog posts (8 posts)
+- [ ] 03-02-PLAN.md - Add gem coverImage schema, migrate gems, update gems page
+- [ ] 03-03-PLAN.md - Remove dual-source routing and delete old content system
 
 ### Phase 4: Finalization
 
@@ -109,10 +110,9 @@ Plans:
 | --------------- | -------------- | ----------- | ---------- |
 | 1. Foundation   | 3/3            | Complete    | 2026-01-19 |
 | 2. Vertical     | 4/4            | Complete    | 2026-01-19 |
-| 3. Migration    | 0/2            | Not started | -          |
+| 3. Migration    | 0/3            | Not started | -          |
 | 4. Finalization | 0/2            | Not started | -          |
 
 ---
 
-_Roadmap created: 2025-01-18_ _Last updated: 2026-01-19 (SLCE-01 noted as pre-existing, SLCE-03
-moved to Phase 3)_
+_Roadmap created: 2025-01-18_ _Last updated: 2026-01-19 (Phase 3 planned with 3 plans)_
