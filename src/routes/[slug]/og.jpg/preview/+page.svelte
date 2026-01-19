@@ -1,5 +1,4 @@
 <script lang="ts">
-    import { resolve } from '$app/paths';
     import OgCard from '../OgCard.svelte';
     import type { PageData } from './$types';
     import { page } from '$app/state';
@@ -22,10 +21,10 @@
             >
         </p>
         <p class="og-url">
-            URL: <a
-                href={resolve(ogImageUrl)}
-                target="_blank"
-                rel="noopener noreferrer"><code>{ogImageUrl}</code></a
+            URL:
+            <!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- External link to OG image -->
+            <a href={ogImageUrl} target="_blank" rel="noopener noreferrer"
+                ><code>{ogImageUrl}</code></a
             >
         </p>
     </div>
@@ -60,11 +59,6 @@
             {#if data.post.tags?.length}
                 <dt>Tags:</dt>
                 <dd>{data.post.tags.join(', ')}</dd>
-            {/if}
-
-            {#if data.post.readingTimeMinutes}
-                <dt>Reading Time:</dt>
-                <dd>{data.post.readingTimeMinutes} minutes</dd>
             {/if}
 
             <dt>Has Cover Image:</dt>

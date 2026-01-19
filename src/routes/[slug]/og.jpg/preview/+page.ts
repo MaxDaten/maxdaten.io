@@ -25,6 +25,7 @@ export const load: PageLoad = async ({ params }) => {
                 slug: post.slug,
                 date: post.date,
                 excerpt: post.excerpt ?? '',
+                tags: post.tags?.map((t: { name: string }) => t.name) ?? [],
             },
             coverImageSrc,
         };

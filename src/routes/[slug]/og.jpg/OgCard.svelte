@@ -1,10 +1,20 @@
 <svelte:options css="injected" />
 
 <script lang="ts">
-    import type { BlogPost } from '$utils/types';
+    /**
+     * Simplified post type for OG card generation.
+     * Only includes fields actually used in the OG image.
+     */
+    type OgCardPost = {
+        title: string;
+        slug: string;
+        excerpt?: string;
+        tags?: string[];
+        readingTimeMinutes?: number;
+    };
 
     type Props = {
-        post: BlogPost;
+        post: OgCardPost;
         coverImageSrc?: string;
     };
 

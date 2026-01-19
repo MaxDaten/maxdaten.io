@@ -2,6 +2,7 @@ import { description, siteBaseUrl, title } from '$lib/data/meta';
 import { client } from '$lib/sanity/client';
 import { allPostsQuery } from '$lib/sanity/queries';
 import { toPlainText } from '@portabletext/svelte';
+import type { PortableTextBlock } from '@portabletext/types';
 import { encode } from 'html-entities';
 
 export const prerender = true;
@@ -12,7 +13,7 @@ type SanityPostForRss = {
     excerpt?: string;
     date: string;
     tags?: Array<{ name: string }>;
-    body: unknown[];
+    body: PortableTextBlock[];
     coverImage?: {
         url?: string;
     };
