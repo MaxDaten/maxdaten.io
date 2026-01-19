@@ -1,8 +1,11 @@
 #!/usr/bin/env node
 /**
- * Migrate a markdown blog post to Sanity CMS.
+ * Migrate markdown blog posts to Sanity CMS.
  *
- * Usage: node scripts/migrate-post-to-sanity.js <path-to-markdown-file>
+ * Usage:
+ *   node scripts/migrate-post-to-sanity.js <path-to-markdown-file>    # Single file
+ *   node scripts/migrate-post-to-sanity.js --batch                    # All files
+ *   node scripts/migrate-post-to-sanity.js --batch --dry-run          # Preview batch
  *
  * Requires environment variables:
  * - SANITY_PROJECT_ID (or PUBLIC_SANITY_PROJECT_ID)
@@ -12,9 +15,64 @@
 
 import { createClient } from '@sanity/client';
 import matter from 'gray-matter';
-import { readFileSync, existsSync } from 'fs';
+import { readFileSync, existsSync, readdirSync } from 'fs';
 import { resolve, dirname, basename, extname } from 'path';
 import { randomUUID } from 'crypto';
+
+// ============================================================================
+// CLI Argument Parsing
+// ============================================================================
+
+const cliArgs = process.argv.slice(2);
+const flags = {
+    batch: cliArgs.includes('--batch'),
+    dryRun: cliArgs.includes('--dry-run'),
+    skipMigrated: !cliArgs.includes('--no-skip-migrated'), // Default: true
+    force: cliArgs.includes('--force'),
+    help: cliArgs.includes('--help') || cliArgs.includes('-h'),
+};
+const positionalArgs = cliArgs.filter((arg) => !arg.startsWith('--'));
+
+// Already migrated posts (from Phase 2)
+const ALREADY_MIGRATED_SLUGS = ['2025-09-03-tdd-infrastructure-terragrunt'];
+
+// ============================================================================
+// Help Text
+// ============================================================================
+
+if (flags.help) {
+    console.log(`
+Migrate markdown blog posts to Sanity CMS.
+
+Usage:
+  node scripts/migrate-post-to-sanity.js <path-to-markdown-file>  # Single file
+  node scripts/migrate-post-to-sanity.js --batch                  # All files
+  node scripts/migrate-post-to-sanity.js --batch --dry-run        # Preview
+
+Options:
+  --batch              Migrate all markdown files in src/content/blog/
+  --dry-run            Preview what would be migrated (no mutations)
+  --no-skip-migrated   Include already-migrated posts (default: skip)
+  --force              Overwrite existing posts with same slug
+  --help, -h           Show this help message
+
+Environment Variables:
+  SANITY_PROJECT_ID    Sanity project ID (or PUBLIC_SANITY_PROJECT_ID)
+  SANITY_DATASET       Dataset name (default: production)
+  SANITY_API_TOKEN     Write token from sanity.io/manage
+
+Examples:
+  # Migrate single file
+  node scripts/migrate-post-to-sanity.js src/content/blog/00-uses.md
+
+  # Preview batch migration
+  node scripts/migrate-post-to-sanity.js --batch --dry-run
+
+  # Run batch migration
+  SANITY_API_TOKEN=xxx node scripts/migrate-post-to-sanity.js --batch
+`);
+    process.exit(0);
+}
 
 // ============================================================================
 // Configuration
@@ -28,22 +86,26 @@ const dataset =
     'production';
 const token = process.env.SANITY_API_TOKEN;
 
-if (!projectId || !token) {
+// Allow dry-run without token for previewing
+if (!flags.dryRun && (!projectId || !token)) {
     console.error('Missing required environment variables:');
     if (!projectId)
         console.error('  - SANITY_PROJECT_ID or PUBLIC_SANITY_PROJECT_ID');
     if (!token) console.error('  - SANITY_API_TOKEN');
     console.error('\nGet a write token from: https://sanity.io/manage');
+    console.error('\nUse --dry-run to preview without credentials.');
     process.exit(1);
 }
 
-const client = createClient({
-    projectId,
-    dataset,
-    apiVersion: '2024-01-01',
-    token,
-    useCdn: false,
-});
+const client = projectId
+    ? createClient({
+          projectId,
+          dataset,
+          apiVersion: '2024-01-01',
+          token,
+          useCdn: false,
+      })
+    : null;
 
 // ============================================================================
 // Portable Text Helpers
@@ -394,6 +456,8 @@ function parseMarkdownContent(content) {
  * Upload an image to Sanity
  */
 async function uploadImage(imagePath, baseDir) {
+    if (!client) return null;
+
     // Resolve path relative to project root
     let fullPath = imagePath;
     if (imagePath.startsWith('/src/')) {
@@ -431,6 +495,8 @@ async function uploadImage(imagePath, baseDir) {
  * Find or create a tag by slug
  */
 async function findOrCreateTag(tagSlug) {
+    if (!client) return `tag-${tagSlug}`;
+
     // Check if tag exists
     const existing = await client.fetch(
         `*[_type == "tag" && slug.current == $slug][0]`,
@@ -463,6 +529,8 @@ async function findOrCreateTag(tagSlug) {
  * Find author by name pattern
  */
 async function findAuthor(authorId) {
+    if (!client) return 'author-placeholder';
+
     // Try to find by document ID or partial name match
     const author = await client.fetch(`*[_type == "author"][0]`);
     return author?._id;
@@ -472,6 +540,8 @@ async function findAuthor(authorId) {
  * Check if post with slug already exists
  */
 async function checkExistingPost(slug) {
+    if (!client) return null;
+
     const existing = await client.fetch(
         `*[_type == "post" && slug.current == $slug][0]`,
         { slug }
@@ -479,12 +549,21 @@ async function checkExistingPost(slug) {
     return existing;
 }
 
+/**
+ * Generate predictable document ID from slug
+ */
+function generatePostId(slug) {
+    return `post-${slug}`;
+}
+
 // ============================================================================
 // Main Migration Function
 // ============================================================================
 
-async function migratePost(markdownPath) {
-    console.log(`\n📄 Migrating: ${markdownPath}\n`);
+async function migratePost(markdownPath, options = {}) {
+    const { dryRun = false, force = false } = options;
+
+    console.log(`\nMigrating: ${markdownPath}`);
 
     // Read and parse markdown file
     const fullPath = resolve(process.cwd(), markdownPath);
@@ -492,40 +571,42 @@ async function migratePost(markdownPath) {
     const content = readFileSync(fullPath, 'utf-8');
     const { data: frontmatter, content: body } = matter(content);
 
-    console.log(`Title: ${frontmatter.title}`);
-    console.log(`Slug: ${frontmatter.slug}`);
+    const slug = frontmatter.slug;
+    const postId = generatePostId(slug);
+
+    console.log(`  Title: ${frontmatter.title}`);
+    console.log(`  Slug: ${slug}`);
+    console.log(`  ID: ${postId}`);
+
+    if (dryRun) {
+        console.log('  [DRY RUN] Would migrate this post');
+        return { _id: postId, slug, title: frontmatter.title };
+    }
 
     // Check if post already exists
-    const existing = await checkExistingPost(frontmatter.slug);
-    if (existing) {
-        console.log(
-            `\n⚠️  Post with slug "${frontmatter.slug}" already exists (ID: ${existing._id})`
-        );
-        console.log(
-            '   Use --force to overwrite or delete the existing post first.'
-        );
-        if (!process.argv.includes('--force')) {
-            return;
-        }
-        console.log('   --force flag detected, will overwrite...');
+    const existing = await checkExistingPost(slug);
+    if (existing && !force) {
+        console.log(`  Post already exists (ID: ${existing._id})`);
+        console.log('  Use --force to overwrite');
+        return existing;
     }
 
     // Parse markdown body to Portable Text
-    console.log('\n📝 Parsing content...');
+    console.log('  Parsing content...');
     const blocks = parseMarkdownContent(body);
-    console.log(`   Found ${blocks.length} blocks`);
+    console.log(`  Found ${blocks.length} blocks`);
 
     // Upload images
-    console.log('\n🖼️  Uploading images...');
+    console.log('  Uploading images...');
 
     // Cover image
     let coverImageRef = null;
-    const postDir = `src/lib/assets/images/posts/${frontmatter.slug}`;
+    const postDir = `src/lib/assets/images/posts/${slug}`;
     const coverPath = `${postDir}/cover.png`;
     if (existsSync(coverPath)) {
         coverImageRef = await uploadImage(coverPath, process.cwd());
     } else {
-        console.log('   No cover image found');
+        console.log('    No cover image found');
     }
 
     // Body images
@@ -540,7 +621,7 @@ async function migratePost(markdownPath) {
     }
 
     // Create/find tags
-    console.log('\n🏷️  Processing tags...');
+    console.log('  Processing tags...');
     const tagRefs = [];
     if (frontmatter.tags && Array.isArray(frontmatter.tags)) {
         for (const tag of frontmatter.tags) {
@@ -554,19 +635,20 @@ async function migratePost(markdownPath) {
     }
 
     // Find author
-    console.log('\n👤 Finding author...');
+    console.log('  Finding author...');
     const authorId = await findAuthor(frontmatter.authorId);
     if (authorId) {
-        console.log(`   Found author: ${authorId}`);
+        console.log(`    Found author: ${authorId}`);
     } else {
-        console.log('   No author found');
+        console.log('    No author found');
     }
 
-    // Build post document
+    // Build post document with predictable ID
     const postDoc = {
+        _id: postId,
         _type: 'post',
         title: frontmatter.title,
-        slug: { _type: 'slug', current: frontmatter.slug },
+        slug: { _type: 'slug', current: slug },
         excerpt: frontmatter.excerpt?.trim() || '',
         date: frontmatter.date,
         hidden: frontmatter.hidden || false,
@@ -583,58 +665,141 @@ async function migratePost(markdownPath) {
         };
     }
 
-    // Create or update post
-    console.log('\n📤 Creating post in Sanity...');
+    // Create or replace post (idempotent)
+    console.log('  Creating/replacing post in Sanity...');
 
     try {
-        let result;
-        if (existing && process.argv.includes('--force')) {
-            // Update existing
-            result = await client.patch(existing._id).set(postDoc).commit();
-            console.log(`\n✅ Updated post: ${result._id}`);
-        } else {
-            // Create new
-            result = await client.create(postDoc);
-            console.log(`\n✅ Created post: ${result._id}`);
-        }
+        const result = await client.createOrReplace(postDoc);
+        console.log(`  Created: ${result._id}`);
 
         console.log(
-            `\n🔗 View in Studio: https://${projectId}.sanity.studio/structure/post;${result._id}`
+            `  Studio: https://${projectId}.sanity.studio/structure/post;${result._id}`
         );
-        console.log(`\n📋 Summary:`);
-        console.log(`   - Title: ${frontmatter.title}`);
-        console.log(`   - Slug: ${frontmatter.slug}`);
-        console.log(`   - Body blocks: ${blocks.length}`);
-        console.log(`   - Tags: ${tagRefs.length}`);
-        console.log(`   - Cover image: ${coverImageRef ? 'Yes' : 'No'}`);
+        console.log(
+            `  Summary: ${blocks.length} blocks, ${tagRefs.length} tags, cover: ${coverImageRef ? 'yes' : 'no'}`
+        );
 
         return result;
     } catch (error) {
-        console.error('\n❌ Failed to create post:', error.message);
+        console.error(`  Failed to create post:`, error.message);
         throw error;
     }
+}
+
+// ============================================================================
+// Batch Migration
+// ============================================================================
+
+/**
+ * Get all markdown files in src/content/blog/
+ */
+function getAllBlogPosts() {
+    const blogDir = resolve(process.cwd(), 'src/content/blog');
+    const files = readdirSync(blogDir)
+        .filter((f) => f.endsWith('.md'))
+        .map((f) => `src/content/blog/${f}`);
+    return files;
+}
+
+/**
+ * Extract slug from markdown file
+ */
+function getSlugFromFile(filePath) {
+    const fullPath = resolve(process.cwd(), filePath);
+    const content = readFileSync(fullPath, 'utf-8');
+    const { data: frontmatter } = matter(content);
+    return frontmatter.slug;
+}
+
+/**
+ * Migrate multiple posts sequentially with stop-on-error
+ */
+async function migrateBatch(postPaths, options = {}) {
+    const { dryRun = false, skipMigrated = true, force = false } = options;
+
+    // Filter out already migrated posts
+    let toMigrate = postPaths;
+    if (skipMigrated) {
+        toMigrate = postPaths.filter((p) => {
+            const slug = getSlugFromFile(p);
+            const shouldSkip = ALREADY_MIGRATED_SLUGS.includes(slug);
+            if (shouldSkip) {
+                console.log(`Skipping already-migrated: ${slug}`);
+            }
+            return !shouldSkip;
+        });
+    }
+
+    console.log(`\n${'='.repeat(60)}`);
+    console.log(`Batch Migration: ${toMigrate.length} posts`);
+    console.log(`${'='.repeat(60)}`);
+
+    if (dryRun) {
+        console.log('[DRY RUN] No mutations will be made\n');
+    }
+
+    const results = [];
+    let succeeded = 0;
+    let failed = 0;
+
+    for (let i = 0; i < toMigrate.length; i++) {
+        const postPath = toMigrate[i];
+        console.log(`\n[${i + 1}/${toMigrate.length}] ${postPath}`);
+
+        try {
+            const result = await migratePost(postPath, { dryRun, force });
+            results.push({ path: postPath, success: true, result });
+            succeeded++;
+        } catch (error) {
+            failed++;
+            console.error(`\nBatch migration stopped due to error.`);
+            console.error(`Failed on: ${postPath}`);
+            console.error(`Error: ${error.message}`);
+            console.error(
+                `\nProgress: ${succeeded} succeeded, ${failed} failed, ${toMigrate.length - i - 1} remaining`
+            );
+            process.exit(1); // Stop on any failure per CONTEXT.md
+        }
+    }
+
+    console.log(`\n${'='.repeat(60)}`);
+    console.log(
+        `Batch Complete: ${succeeded}/${toMigrate.length} posts migrated`
+    );
+    console.log(`${'='.repeat(60)}\n`);
+
+    return results;
 }
 
 // ============================================================================
 // CLI Entry Point
 // ============================================================================
 
-const args = process.argv.slice(2).filter((arg) => !arg.startsWith('--'));
-
-if (args.length === 0) {
-    console.log(
-        'Usage: node scripts/migrate-post-to-sanity.js <path-to-markdown-file> [--force]'
-    );
-    console.log('\nOptions:');
-    console.log('  --force    Overwrite existing post with same slug');
-    console.log('\nExample:');
-    console.log(
-        '  node scripts/migrate-post-to-sanity.js src/content/blog/2025-09-03-tdd-infrastructure-terragrunt.md'
-    );
-    process.exit(1);
+async function main() {
+    if (flags.batch) {
+        // Batch mode: migrate all blog posts
+        const allPosts = getAllBlogPosts();
+        await migrateBatch(allPosts, {
+            dryRun: flags.dryRun,
+            skipMigrated: flags.skipMigrated,
+            force: flags.force,
+        });
+    } else if (positionalArgs.length > 0) {
+        // Single file mode
+        await migratePost(positionalArgs[0], {
+            dryRun: flags.dryRun,
+            force: flags.force,
+        });
+    } else {
+        console.log(
+            'Usage: node scripts/migrate-post-to-sanity.js <file> or --batch'
+        );
+        console.log('Run with --help for more options.');
+        process.exit(1);
+    }
 }
 
-migratePost(args[0]).catch((error) => {
+main().catch((error) => {
     console.error('Migration failed:', error);
     process.exit(1);
 });
