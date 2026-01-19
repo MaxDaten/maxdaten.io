@@ -38,20 +38,20 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Migration (after vertical slice succeeds)
 
-- [ ] **MIGR-01**: Migrate remaining blog posts incrementally to Sanity
-- [ ] **MIGR-02**: Migrate all blog post images to Sanity CDN
-- [ ] **MIGR-03**: Migrate all gems to Sanity
-- [ ] **MIGR-04**: Preserve exact URL slugs for all content
-- [ ] **MIGR-05**: Remove dual-source routing after all content migrated
-- [ ] **SLCE-03**: SvelteKit fetches gems from Sanity dynamically (server-side) _(Moved from Phase 2
+- [x] **MIGR-01**: Migrate remaining blog posts incrementally to Sanity
+- [x] **MIGR-02**: Migrate all blog post images to Sanity CDN
+- [x] **MIGR-03**: Migrate all gems to Sanity
+- [x] **MIGR-04**: Preserve exact URL slugs for all content
+- [x] **MIGR-05**: Remove dual-source routing after all content migrated
+- [x] **SLCE-03**: SvelteKit fetches gems from Sanity dynamically (server-side) _(Moved from Phase 2
       per CONTEXT.md decision: "Gems: No vertical slice — migrate all at once in Phase 3")_
 
 ### Finalization (after migration complete)
 
-- [ ] **FINL-01**: RSS feed generates from Sanity content
-- [ ] **FINL-02**: Sitemap generates from Sanity content
-- [ ] **FINL-03**: Remove old markdown content system
-- [ ] **FINL-04**: Remove old image folder structure
+- [x] **FINL-01**: RSS feed generates from Sanity content with full HTML body
+- [x] **FINL-02**: Sitemap generates from Sanity content (404 excluded)
+- [x] **FINL-03**: Remove old markdown content system _(Completed in Phase 3)_
+- [x] **FINL-04**: Remove old image folder structure _(Completed in Phase 3)_
 
 ## v2 Requirements
 
@@ -101,21 +101,21 @@ Which phases cover which requirements. Updated during roadmap creation.
 | STDO-04     | Phase 1      | Complete |
 | SLCE-01     | Pre-existing | Complete |
 | SLCE-02     | Phase 2      | Complete |
-| SLCE-03     | Phase 3      | Pending  |
+| SLCE-03     | Phase 3      | Complete |
 | SLCE-04     | Phase 2      | Complete |
 | SLCE-05     | Phase 2      | Complete |
 | SLCE-06     | Phase 2      | Complete |
 | SLCE-07     | Phase 2      | Complete |
 | SLCE-08     | Phase 2      | Complete |
-| MIGR-01     | Phase 3      | Pending  |
-| MIGR-02     | Phase 3      | Pending  |
-| MIGR-03     | Phase 3      | Pending  |
-| MIGR-04     | Phase 3      | Pending  |
-| MIGR-05     | Phase 3      | Pending  |
-| FINL-01     | Phase 4      | Pending  |
-| FINL-02     | Phase 4      | Pending  |
-| FINL-03     | Phase 4      | Pending  |
-| FINL-04     | Phase 4      | Pending  |
+| MIGR-01     | Phase 3      | Complete |
+| MIGR-02     | Phase 3      | Complete |
+| MIGR-03     | Phase 3      | Complete |
+| MIGR-04     | Phase 3      | Complete |
+| MIGR-05     | Phase 3      | Complete |
+| FINL-01     | Phase 4      | Complete |
+| FINL-02     | Phase 4      | Complete |
+| FINL-03     | Phase 3      | Complete |
+| FINL-04     | Phase 3      | Complete |
 
 **Coverage:**
 
@@ -125,5 +125,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 
-_Requirements defined: 2025-01-18_ _Last updated: 2026-01-19 (SLCE-01 marked pre-existing, SLCE-03
-moved to Phase 3)_
+_Requirements defined: 2025-01-18_ _Last updated: 2026-01-20 (All v1 requirements complete)_

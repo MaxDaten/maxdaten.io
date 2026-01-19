@@ -5,12 +5,13 @@
 See: .planning/PROJECT.md (updated 2025-01-18)
 
 **Core value:** Creating new blog posts should be frictionless — no manual file scaffolding, no
-image folder management, just write and publish. **Current focus:** Phase 4 - Finalization
+image folder management, just write and publish. **Current focus:** Milestone complete - ready for
+audit
 
 ## Current Position
 
-Phase: 4 of 4 (Finalization) Plan: 2 of 2 Status: Phase complete Last activity: 2026-01-20 -
-Completed 04-02-PLAN.md (Sitemap & MDsveX Cleanup)
+Phase: 4 of 4 (Finalization) Plan: 2 of 2 Status: MILESTONE COMPLETE Last activity: 2026-01-20 —
+Completed Phase 4 (Finalization)
 
 Progress: [############] 100% (12/12 plans)
 

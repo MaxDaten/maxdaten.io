@@ -17,7 +17,7 @@ generation. Each phase delivers verifiable capability before proceeding.
 - [x] **Phase 1: Foundation** - Sanity schemas and Studio ready for content
 - [x] **Phase 2: Vertical Slice** - One blog post end-to-end in production
 - [x] **Phase 3: Migration** - All content moved to Sanity
-- [ ] **Phase 4: Finalization** - RSS, sitemap, cleanup
+- [x] **Phase 4: Finalization** - RSS, sitemap, cleanup
 
 ## Phase Details
 
@@ -97,21 +97,21 @@ on**: Phase 3 **Requirements**: FINL-01, FINL-02 **Success Criteria** (what must
 
 Plans:
 
-- [ ] 04-01-PLAN.md - Enhance RSS feed with full HTML body content from Sanity
-- [ ] 04-02-PLAN.md - Verify sitemap and remove MDsveX artifacts
+- [x] 04-01-PLAN.md - Enhance RSS feed with full HTML body content from Sanity
+- [x] 04-02-PLAN.md - Verify sitemap and remove MDsveX artifacts
 
 ## Progress
 
 **Execution Order:** Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 
-| Phase           | Plans Complete | Status      | Completed  |
-| --------------- | -------------- | ----------- | ---------- |
-| 1. Foundation   | 3/3            | Complete    | 2026-01-19 |
-| 2. Vertical     | 4/4            | Complete    | 2026-01-19 |
-| 3. Migration    | 3/3            | Complete    | 2026-01-19 |
-| 4. Finalization | 0/2            | Not started | -          |
+| Phase           | Plans Complete | Status   | Completed  |
+| --------------- | -------------- | -------- | ---------- |
+| 1. Foundation   | 3/3            | Complete | 2026-01-19 |
+| 2. Vertical     | 4/4            | Complete | 2026-01-19 |
+| 3. Migration    | 3/3            | Complete | 2026-01-19 |
+| 4. Finalization | 2/2            | Complete | 2026-01-20 |
 
 ---
 
-_Roadmap created: 2025-01-18_ _Last updated: 2026-01-20 (Phase 4 success criteria updated - old
-content removal completed in Phase 3)_
+_Roadmap created: 2025-01-18_ _Last updated: 2026-01-20 (Milestone complete - all 4 phases
+finished)_
