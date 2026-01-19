@@ -1,18 +1,18 @@
 <script lang="ts">
     import BlogPostCard from '$components/molecules/BlogPostCard.svelte';
     import ContentSection from '$components/organisms/ContentSection.svelte';
-    import type { BlogPost } from '$utils/types';
+    import type { ListingPost } from './+page.server';
     import { PageTransition } from 'ssgoi';
 
     interface Props {
         data: {
-            posts: BlogPost[];
+            posts: ListingPost[];
         };
     }
 
     let { data }: Props = $props();
 
-    let { posts } = data;
+    const posts = $derived(data.posts);
 </script>
 
 <PageTransition>
