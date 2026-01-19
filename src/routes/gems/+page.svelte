@@ -2,11 +2,24 @@
     import GemCard from '$components/molecules/GemCard.svelte';
     import ContentSection from '$components/organisms/ContentSection.svelte';
     import { PageTransition } from 'ssgoi';
-    import type { GemEntry } from '$utils/types';
+
+    interface SanityGem {
+        _id: string;
+        title: string;
+        slug: string;
+        url: string;
+        description: string;
+        tags?: Array<{ name: string; slug: string }>;
+        coverImage?: {
+            url?: string;
+            alt?: string;
+            lqip?: string;
+        };
+    }
 
     interface Props {
         data: {
-            gems: GemEntry[];
+            gems: SanityGem[];
         };
     }
 
@@ -22,10 +35,10 @@
                 {#each gems as gem, index (index)}
                     <GemCard
                         title={gem.title}
-                        coverImage={gem.coverImage}
+                        coverImage={gem.coverImage || ''}
                         excerpt={gem.description}
-                        href={gem.link}
-                        tags={gem.tags}
+                        href={gem.url}
+                        tags={gem.tags?.map((t) => t.name)}
                     />
                 {/each}
             </div>

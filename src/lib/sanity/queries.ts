@@ -61,3 +61,27 @@ export const allPostsQuery = defineQuery(`
     }
   }
 `);
+
+/**
+ * GROQ query for fetching all gems.
+ * Sorted alphabetically by title.
+ */
+export const allGemsQuery = defineQuery(`
+  *[_type == "gem"] | order(title asc) {
+    _id,
+    title,
+    "slug": slug.current,
+    url,
+    description,
+    tags[]-> {
+      name,
+      "slug": slug.current
+    },
+    coverImage {
+      alt,
+      asset,
+      "url": asset->url,
+      "lqip": asset->metadata.lqip
+    }
+  }
+`);

@@ -1,11 +1,16 @@
 <script lang="ts">
     import Card from '$lib/components/atoms/Card.svelte';
     import Tag from '$components/atoms/Tag.svelte';
-    import { FxReveal as Img } from '@zerodevx/svelte-img';
+
+    interface SanityCoverImage {
+        url?: string;
+        alt?: string;
+        lqip?: string;
+    }
 
     interface Props {
         title: string;
-        coverImage: string;
+        coverImage: string | SanityCoverImage;
         excerpt: string;
         href: string;
         tags: string[] | undefined;
@@ -14,30 +19,27 @@
 
     let { title, coverImage, excerpt, href, tags }: Props = $props();
 
-    const coverImages = Object.entries(
-        import.meta.glob('$assets/images/gems/*.{jpg,jpeg,png,gif,webp}', {
-            import: 'default',
-            eager: true,
-            query: { as: 'run:4', fit: 'cover' },
-        })
-    ).reduce((map: Map<string, unknown>, [key, value]) => {
-        return map.set(key.split('/').pop() as string, value);
-    }, new Map<string, unknown>());
+    // Support both legacy string path and Sanity object with url
+    const coverImageUrl =
+        typeof coverImage === 'string'
+            ? undefined // Legacy path - would need local image handling
+            : coverImage?.url;
 
-    const coverImageSrc = coverImages.get(
-        coverImage.split('/').pop() as string
-    );
+    const coverImageAlt =
+        typeof coverImage === 'string'
+            ? 'Cover preview of this gem'
+            : coverImage?.alt || 'Cover preview of this gem';
 </script>
 
 <Card {href} target="_self" class="gem-card" data-testid="gem-card">
     {#snippet image()}
-        {#if coverImage && coverImageSrc}
+        {#if coverImageUrl}
             <div class="cover-image-container">
-                <Img
-                    {...{ class: 'cover-image' }}
-                    src={coverImageSrc}
-                    alt="Cover preview of this gem"
-                    --reveal-transition="opacity 400ms ease-in, transform 0.8s ease-out;"
+                <img
+                    class="cover-image"
+                    src={coverImageUrl}
+                    alt={coverImageAlt}
+                    loading="lazy"
                 />
             </div>
         {/if}
@@ -101,14 +103,12 @@
 
         .cover-image-container {
             max-height: 350px;
-            //background-color: black;
             object-fit: cover;
             overflow: hidden;
         }
 
         :global(.cover-image) {
             object-fit: cover;
-            //height: 100%;
             width: 100%;
             max-height: 350px;
         }
