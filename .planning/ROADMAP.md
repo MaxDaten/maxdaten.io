@@ -86,14 +86,12 @@ Plans:
 
 ### Phase 4: Finalization
 
-**Goal**: Migration complete with RSS/sitemap generation and old content system removed **Depends
-on**: Phase 3 **Requirements**: FINL-01, FINL-02, FINL-03, FINL-04 **Success Criteria** (what must
-be TRUE):
+**Goal**: Migration complete with RSS/sitemap generation and MDsveX infrastructure removed **Depends
+on**: Phase 3 **Requirements**: FINL-01, FINL-02 **Success Criteria** (what must be TRUE):
 
-1. RSS feed at /rss.xml contains all published blog posts from Sanity
-2. Sitemap includes all blog posts and gems with correct URLs
-3. Old markdown files removed from repository (src/content/blog/)
-4. Old image folder structure removed from repository (src/lib/assets/images/posts/)
+1. RSS feed at /rss.xml contains all published blog posts from Sanity with full HTML body content
+2. Sitemap includes all blog posts and gems with correct URLs (404 page excluded)
+3. MDsveX configuration and unused markdown components removed from codebase
 
 **Plans**: 2 plans in 1 wave
 
@@ -115,4 +113,5 @@ Plans:
 
 ---
 
-_Roadmap created: 2025-01-18_ _Last updated: 2026-01-20 (Phase 4 planned with 2 plans)_
+_Roadmap created: 2025-01-18_ _Last updated: 2026-01-20 (Phase 4 success criteria updated - old
+content removal completed in Phase 3)_
