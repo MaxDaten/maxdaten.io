@@ -404,6 +404,25 @@ function parseMarkdownContent(content) {
             continue;
         }
 
+        // Ordered lists (numbered)
+        if (line.trim().match(/^\d+\.\s+/)) {
+            while (i < lines.length && lines[i].trim().match(/^\d+\.\s+/)) {
+                const listContent = lines[i].trim().replace(/^\d+\.\s+/, '');
+                const { spans, markDefs } = parseInlineMarkdown(listContent);
+                blocks.push({
+                    _type: 'block',
+                    _key: generateKey(),
+                    style: 'normal',
+                    listItem: 'number',
+                    level: 1,
+                    markDefs,
+                    children: spans,
+                });
+                i++;
+            }
+            continue;
+        }
+
         // Unordered lists
         if (line.trim().match(/^[-*]\s+/)) {
             while (i < lines.length && lines[i].trim().match(/^[-*]\s+/)) {
@@ -434,7 +453,8 @@ function parseMarkdownContent(content) {
             !lines[i].trim().startsWith('>') &&
             !lines[i].trim().startsWith('-') &&
             !lines[i].trim().startsWith('*') &&
-            !lines[i].trim().match(/^!\[/)
+            !lines[i].trim().match(/^!\[/) &&
+            !lines[i].trim().match(/^\d+\.\s+/)
         ) {
             paragraphLines.push(lines[i]);
             i++;
