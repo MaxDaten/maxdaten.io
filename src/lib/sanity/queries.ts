@@ -75,6 +75,37 @@ export const allPostsQuery = defineQuery(`
 `);
 
 /**
+ * GROQ query for fetching all posts for RSS feed.
+ * Includes full body for HTML rendering.
+ * Sorted by date descending.
+ */
+export const rssPostsQuery = defineQuery(`
+  *[_type == "post" && !hidden] | order(date desc) {
+    _id,
+    title,
+    "slug": slug.current,
+    excerpt,
+    date,
+    body[]{
+      ...,
+      markDefs[]{
+        ...,
+        _type == "internalLink" => {
+          ...,
+          "reference": reference-> {
+            _type,
+            slug
+          }
+        }
+      }
+    },
+    tags[]-> { name },
+    author-> { name },
+    coverImage { "url": asset->url }
+  }
+`);
+
+/**
  * GROQ query for fetching all gems.
  * Sorted alphabetically by title.
  */
