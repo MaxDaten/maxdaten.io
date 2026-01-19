@@ -52,3 +52,55 @@ export type GemEntry = {
     link: string;
     coverImage: string;
 };
+
+/**
+ * Sanity post type matching the GROQ query projection.
+ */
+export type SanityPost = {
+    _id: string;
+    title: string;
+    slug: string;
+    excerpt?: string;
+    body: unknown[]; // Portable Text array
+    date: string;
+    lastModified?: string;
+    hidden?: boolean;
+    keywords?: string[];
+    author?: {
+        name: string;
+        image?: string;
+    };
+    tags?: Array<{
+        name: string;
+        slug: string;
+    }>;
+    coverImage?: {
+        alt?: string;
+        caption?: string;
+        url?: string;
+        lqip?: string;
+        dimensions?: {
+            width: number;
+            height: number;
+            aspectRatio: number;
+        };
+        hotspot?: {
+            x: number;
+            y: number;
+        };
+        crop?: {
+            top: number;
+            bottom: number;
+            left: number;
+            right: number;
+        };
+    };
+};
+
+/**
+ * Discriminated union for dual-source post data.
+ * Used by [slug] route to identify rendering path.
+ */
+export type PostData =
+    | { source: 'sanity'; post: SanityPost }
+    | { source: 'markdown'; post: BlogPost };
