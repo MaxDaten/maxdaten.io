@@ -5,22 +5,22 @@
 See: .planning/PROJECT.md (updated 2025-01-18)
 
 **Core value:** Creating new blog posts should be frictionless — no manual file scaffolding, no
-image folder management, just write and publish. **Current focus:** Phase 2 - Integration
+image folder management, just write and publish. **Current focus:** Phase 3 - Migration
 
 ## Current Position
 
-Phase: 2 of 4 (Vertical Slice) Plan: 4 of 4 in current phase Status: Complete Last activity:
-2026-01-19 — Phase 2 verified and complete
+Phase: 3 of 4 (Migration) Plan: 1 of 3 in current phase Status: In progress Last activity:
+2026-01-19 — Completed 03-01-PLAN.md (Batch Blog Migration)
 
-Progress: [######....] 58% (7/12 plans)
+Progress: [######....] 67% (8/12 plans)
 
 ## Performance Metrics
 
 **Velocity:**
 
-- Total plans completed: 7
+- Total plans completed: 8
 - Average duration: 3.9 min
-- Total execution time: 27 min
+- Total execution time: 31 min
 
 **By Phase:**
 
@@ -28,10 +28,11 @@ Progress: [######....] 58% (7/12 plans)
 | ----------------- | ----- | ------ | -------- |
 | 01-foundation     | 3/3   | 9 min  | 3 min    |
 | 02-vertical-slice | 4/4   | 18 min | 4.5 min  |
+| 03-migration      | 1/3   | 4 min  | 4 min    |
 
 **Recent Trend:**
 
-- Last 5 plans: 02-01 (2 min), 02-02 (4 min), 02-03 (4 min), 02-04 (8 min)
+- Last 5 plans: 02-02 (4 min), 02-03 (4 min), 02-04 (8 min), 03-01 (4 min)
 - Trend: stable
 
 _Updated after each plan completion_
@@ -66,6 +67,9 @@ Decisions are logged in PROJECT.md Key Decisions table. Recent decisions affecti
 | 02-03 | API error throws 503, not silent fallback        | Per CONTEXT.md: show error to user                  |
 | 02-03 | Listing deduplication: Sanity wins               | Migration path - old markdown removed later         |
 | 02-03 | Related posts skipped for Sanity                 | Same-source only per CONTEXT.md                     |
+| 03-01 | Predictable IDs post-${slug}                     | Enables createOrReplace idempotency                 |
+| 03-01 | Sequential batch processing                      | Safer than parallel, clear progress reporting       |
+| 03-01 | Default skip-migrated                            | Avoids re-processing Phase 2 post                   |
 
 ### Pending Todos
 
@@ -77,7 +81,7 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-01-19 Stopped at: Phase 2 complete and verified Resume file: None
+Last session: 2026-01-19 Stopped at: Completed 03-01-PLAN.md Resume file: None
 
 ## Phase Completion
 
@@ -98,3 +102,11 @@ Last session: 2026-01-19 Stopped at: Phase 2 complete and verified Resume file: 
 
 **Verified:** 5/5 must-haves passed **Migrated Post:** Test-Driven Infrastructure
 (EU2iDf58BdMJj4Pg5YCKHG)
+
+**Phase 3 - Migration:** IN PROGRESS
+
+- 03-01: Batch Blog Migration - DONE
+- 03-02: Gems Migration - PENDING
+- 03-03: Cutover to Sanity-Only - PENDING
+
+**Posts in Sanity:** 9/9 (all blog posts migrated)
