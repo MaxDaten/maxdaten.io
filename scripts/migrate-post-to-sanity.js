@@ -181,6 +181,14 @@ function parseInlineMarkdown(text) {
                 marks: ['strong', 'em'],
             }),
         },
+        // Bold+Italic mixed: _**text**_ or **_text_**
+        {
+            regex: /_\*\*([^*]+)\*\*_|\*\*_([^_]+)_\*\*/,
+            handler: (match) => ({
+                text: match[1] || match[2],
+                marks: ['strong', 'em'],
+            }),
+        },
         // Bold: **text** or __text__
         {
             regex: /\*\*([^*]+)\*\*|__([^_]+)__/,
