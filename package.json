@@ -95,5 +95,11 @@
     "type": "module",
     "overrides": {
         "cookie": "^0.7.0"
+    },
+    "dependencies": {
+        "@portabletext/svelte": "^3.0.1",
+        "@sanity/client": "^7.14.0",
+        "@sanity/image-url": "^2.0.3",
+        "groq": "^5.4.0"
     }
 }
