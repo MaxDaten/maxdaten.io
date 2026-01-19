@@ -54,13 +54,14 @@ SLCE-06, SLCE-07, SLCE-08 **Success Criteria** (what must be TRUE):
 4. Gems page shows gems from Sanity with correct styling
 5. Existing markdown posts continue to work unchanged during this phase
 
-**Plans**: TBD
+**Plans**: 4 plans in 4 waves
 
 Plans:
 
-- [ ] 02-01: TBD
-- [ ] 02-02: TBD
-- [ ] 02-03: TBD
+- [ ] 02-01-PLAN.md - Sanity client, GROQ queries, and image URL builder
+- [ ] 02-02-PLAN.md - Portable Text components (CodeBlock, Callout, Image, Links, Headings)
+- [ ] 02-03-PLAN.md - Dual-source routing and merged blog listing
+- [ ] 02-04-PLAN.md - Migrate one blog post and verify production deployment
 
 ### Phase 3: Migration
 
@@ -105,8 +106,8 @@ Plans:
 
 | Phase           | Plans Complete | Status      | Completed  |
 | --------------- | -------------- | ----------- | ---------- |
-| 1. Foundation   | 3/3            | ✓ Complete  | 2026-01-19 |
-| 2. Vertical     | 0/3            | Not started | -          |
+| 1. Foundation   | 3/3            | Complete    | 2026-01-19 |
+| 2. Vertical     | 0/4            | Not started | -          |
 | 3. Migration    | 0/2            | Not started | -          |
 | 4. Finalization | 0/2            | Not started | -          |
 
