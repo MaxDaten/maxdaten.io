@@ -9,18 +9,18 @@ image folder management, just write and publish. **Current focus:** Phase 3 - Mi
 
 ## Current Position
 
-Phase: 3 of 4 (Migration) Plan: 1 of 3 in current phase Status: In progress Last activity:
-2026-01-19 — Completed 03-01-PLAN.md (Batch Blog Migration)
+Phase: 3 of 4 (Migration) Plan: 2 of 3 in current phase Status: In progress Last activity:
+2026-01-19 — Completed 03-02-PLAN.md (Gems Migration)
 
-Progress: [######....] 67% (8/12 plans)
+Progress: [#######...] 75% (9/12 plans)
 
 ## Performance Metrics
 
 **Velocity:**
 
-- Total plans completed: 8
-- Average duration: 3.9 min
-- Total execution time: 31 min
+- Total plans completed: 9
+- Average duration: 4.2 min
+- Total execution time: 38 min
 
 **By Phase:**
 
@@ -28,11 +28,11 @@ Progress: [######....] 67% (8/12 plans)
 | ----------------- | ----- | ------ | -------- |
 | 01-foundation     | 3/3   | 9 min  | 3 min    |
 | 02-vertical-slice | 4/4   | 18 min | 4.5 min  |
-| 03-migration      | 1/3   | 4 min  | 4 min    |
+| 03-migration      | 2/3   | 11 min | 5.5 min  |
 
 **Recent Trend:**
 
-- Last 5 plans: 02-02 (4 min), 02-03 (4 min), 02-04 (8 min), 03-01 (4 min)
+- Last 5 plans: 02-03 (4 min), 02-04 (8 min), 03-01 (4 min), 03-02 (7 min)
 - Trend: stable
 
 _Updated after each plan completion_
@@ -70,6 +70,9 @@ Decisions are logged in PROJECT.md Key Decisions table. Recent decisions affecti
 | 03-01 | Predictable IDs post-${slug}                     | Enables createOrReplace idempotency                 |
 | 03-01 | Sequential batch processing                      | Safer than parallel, clear progress reporting       |
 | 03-01 | Default skip-migrated                            | Avoids re-processing Phase 2 post                   |
+| 03-02 | Gem ID pattern gem-{slugified-title}             | Enables createOrReplace idempotency for gems        |
+| 03-02 | Removed FxReveal for Sanity CDN images           | Standard img tag works with CDN URLs                |
+| 03-02 | Tag names mapped in page template                | Extracting tag.name from Sanity references          |
 
 ### Pending Todos
 
@@ -81,7 +84,7 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-01-19 Stopped at: Completed 03-01-PLAN.md Resume file: None
+Last session: 2026-01-19 Stopped at: Completed 03-02-PLAN.md Resume file: None
 
 ## Phase Completion
 
@@ -106,7 +109,7 @@ Last session: 2026-01-19 Stopped at: Completed 03-01-PLAN.md Resume file: None
 **Phase 3 - Migration:** IN PROGRESS
 
 - 03-01: Batch Blog Migration - DONE
-- 03-02: Gems Migration - PENDING
+- 03-02: Gems Migration - DONE
 - 03-03: Cutover to Sanity-Only - PENDING
 
-**Posts in Sanity:** 9/9 (all blog posts migrated)
+**Posts in Sanity:** 9/9 (all blog posts migrated) **Gems in Sanity:** 3/3 (all gems migrated)
