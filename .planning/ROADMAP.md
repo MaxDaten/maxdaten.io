@@ -15,7 +15,7 @@ generation. Each phase delivers verifiable capability before proceeding.
 - Decimal phases (e.g., 2.1): Urgent insertions (marked with INSERTED)
 
 - [x] **Phase 1: Foundation** - Sanity schemas and Studio ready for content
-- [ ] **Phase 2: Vertical Slice** - One blog post end-to-end in production
+- [x] **Phase 2: Vertical Slice** - One blog post end-to-end in production
 - [ ] **Phase 3: Migration** - All content moved to Sanity
 - [ ] **Phase 4: Finalization** - RSS, sitemap, cleanup
 
@@ -58,10 +58,10 @@ TRUE):
 
 Plans:
 
-- [ ] 02-01-PLAN.md - Sanity client, GROQ queries, and image URL builder
-- [ ] 02-02-PLAN.md - Portable Text components (CodeBlock, Callout, Image, Links, Headings)
-- [ ] 02-03-PLAN.md - Dual-source routing and merged blog listing
-- [ ] 02-04-PLAN.md - Migrate one blog post and verify production deployment
+- [x] 02-01-PLAN.md - Sanity client, GROQ queries, and image URL builder
+- [x] 02-02-PLAN.md - Portable Text components (CodeBlock, Callout, Image, Links, Headings)
+- [x] 02-03-PLAN.md - Dual-source routing and merged blog listing
+- [x] 02-04-PLAN.md - Migrate one blog post and verify production deployment
 
 ### Phase 3: Migration
 
@@ -108,7 +108,7 @@ Plans:
 | Phase           | Plans Complete | Status      | Completed  |
 | --------------- | -------------- | ----------- | ---------- |
 | 1. Foundation   | 3/3            | Complete    | 2026-01-19 |
-| 2. Vertical     | 0/4            | Not started | -          |
+| 2. Vertical     | 4/4            | Complete    | 2026-01-19 |
 | 3. Migration    | 0/2            | Not started | -          |
 | 4. Finalization | 0/2            | Not started | -          |
 

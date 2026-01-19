@@ -29,12 +29,12 @@ Requirements for initial release. Each maps to roadmap phases.
 
 - [x] **SLCE-01**: Switch from static adapter to Vercel adapter for SSR _(Pre-existing - project
       already uses @sveltejs/adapter-vercel)_
-- [ ] **SLCE-02**: SvelteKit fetches blog posts from Sanity dynamically (server-side)
-- [ ] **SLCE-04**: Portable Text renders correctly with custom code blocks
-- [ ] **SLCE-05**: Images served from Sanity CDN with optimization
-- [ ] **SLCE-06**: Dual-source routing (Sanity for slice post, markdown for rest)
-- [ ] **SLCE-07**: Migrate ONE blog post with images, code blocks, all fields to Sanity
-- [ ] **SLCE-08**: Vertical slice deployed and verified working in production
+- [x] **SLCE-02**: SvelteKit fetches blog posts from Sanity dynamically (server-side)
+- [x] **SLCE-04**: Portable Text renders correctly with custom code blocks
+- [x] **SLCE-05**: Images served from Sanity CDN with optimization
+- [x] **SLCE-06**: Dual-source routing (Sanity for slice post, markdown for rest)
+- [x] **SLCE-07**: Migrate ONE blog post with images, code blocks, all fields to Sanity
+- [x] **SLCE-08**: Vertical slice deployed and verified working in production
 
 ### Migration (after vertical slice succeeds)
 
@@ -100,13 +100,13 @@ Which phases cover which requirements. Updated during roadmap creation.
 | STDO-03     | Phase 1      | Complete |
 | STDO-04     | Phase 1      | Complete |
 | SLCE-01     | Pre-existing | Complete |
-| SLCE-02     | Phase 2      | Pending  |
+| SLCE-02     | Phase 2      | Complete |
 | SLCE-03     | Phase 3      | Pending  |
-| SLCE-04     | Phase 2      | Pending  |
-| SLCE-05     | Phase 2      | Pending  |
-| SLCE-06     | Phase 2      | Pending  |
-| SLCE-07     | Phase 2      | Pending  |
-| SLCE-08     | Phase 2      | Pending  |
+| SLCE-04     | Phase 2      | Complete |
+| SLCE-05     | Phase 2      | Complete |
+| SLCE-06     | Phase 2      | Complete |
+| SLCE-07     | Phase 2      | Complete |
+| SLCE-08     | Phase 2      | Complete |
 | MIGR-01     | Phase 3      | Pending  |
 | MIGR-02     | Phase 3      | Pending  |
 | MIGR-03     | Phase 3      | Pending  |
