@@ -26,6 +26,7 @@ export const postBySlugQuery = defineQuery(`
     coverImage {
       alt,
       caption,
+      asset,
       "url": asset->url,
       "lqip": asset->metadata.lqip,
       "dimensions": asset->metadata.dimensions,
@@ -53,6 +54,7 @@ export const allPostsQuery = defineQuery(`
     },
     coverImage {
       alt,
+      asset,
       "url": asset->url,
       "lqip": asset->metadata.lqip,
       "dimensions": asset->metadata.dimensions
