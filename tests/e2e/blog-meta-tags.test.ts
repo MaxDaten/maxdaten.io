@@ -1,20 +1,17 @@
 import { test, expect } from '@playwright/test';
-import { readdirSync, readFileSync } from 'fs';
-import { basename } from 'path';
 
-const CONTENT_DIR = 'src/content/blog';
-
-// Get all blog posts
-const blogPosts = readdirSync(CONTENT_DIR)
-    .filter((file) => {
-        // Read file content and check for hidden: true
-        const content = readFileSync(`${CONTENT_DIR}/${file}`, 'utf-8');
-        return file.endsWith('.md') && !content.includes('hidden: true');
-    })
-    .map((file) => ({
-        filename: file,
-        slug: basename(file, '.md'),
-    }));
+// Known public blog posts (from Sanity, not hidden)
+// These are the published posts after migration to Sanity CMS
+const blogPosts = [
+    { slug: '00-uses' },
+    { slug: '2023-12-11-deploy-sops-secrets-with-nix' },
+    { slug: '2024-05-15-telepresence-google-cloud-kubernetes-engine-gke' },
+    { slug: '2025-07-26-check-engine-work-progress-limit-matters' },
+    {
+        slug: '2025-08-09-your-continuous-delivery-transformation-is-not-complete',
+    },
+    { slug: '2025-09-03-tdd-infrastructure-terragrunt' },
+];
 
 test.describe('Blog Post Meta Tags', () => {
     for (const post of blogPosts) {
