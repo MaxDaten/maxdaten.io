@@ -1,17 +1,27 @@
 import { description, siteBaseUrl, title } from '$lib/data/meta';
-import type { BlogPost } from '$lib/utils/types';
-import { getCoverBySlug } from '$utils/image-loader';
+import { client } from '$lib/sanity/client';
+import { allPostsQuery } from '$lib/sanity/queries';
+import { toPlainText } from '@portabletext/svelte';
 import { encode } from 'html-entities';
-import { getPostHtml, importPosts } from '$lib/server/posts';
-import { filterPosts } from '$lib/data/posts';
 
 export const prerender = true;
 
-export async function GET() {
-    const allPosts = await importPosts();
-    const filteredPosts = filterPosts(allPosts);
+type SanityPostForRss = {
+    slug: string;
+    title: string;
+    excerpt?: string;
+    date: string;
+    tags?: Array<{ name: string }>;
+    body: unknown[];
+    coverImage?: {
+        url?: string;
+    };
+};
 
-    const body = await xml(filteredPosts);
+export async function GET() {
+    const posts: SanityPostForRss[] = await client.fetch(allPostsQuery);
+
+    const body = await xml(posts);
     const headers = {
         'Cache-Control': 'max-age=0, s-maxage=3600',
         'Content-Type': 'application/xml',
@@ -23,7 +33,7 @@ const escapeXml = (unsafe: string) => {
     return encode(unsafe);
 };
 
-async function xml(posts: BlogPost[]) {
+async function xml(posts: SanityPostForRss[]) {
     const renderedPosts = await Promise.all(
         posts.map(async (post) => await renderPost(post))
     );
@@ -50,38 +60,45 @@ async function xml(posts: BlogPost[]) {
 </rss>`;
 }
 
-async function renderPost(post: BlogPost) {
-    const postHtml = await getPostHtml(post);
-    const coverImageSrc = getCoverBySlug(post.slug)?.img.src;
+async function renderPost(post: SanityPostForRss) {
+    const tags = post.tags ?? [];
+    const postDescription =
+        post.excerpt ?? toPlainText(post.body).slice(0, 200);
+    const coverImageUrl = post.coverImage?.url;
+
+    // Convert Portable Text to plain text for RSS content
+    // Full rich content is available on the website
+    const plainTextContent = toPlainText(post.body);
+
     return `
         <item>
           <guid>${siteBaseUrl}/${post.slug}</guid>
           <title>${escapeXml(post.title)}</title>
-          <description>${escapeXml(post.excerpt)}</description>
+          <description>${escapeXml(postDescription)}</description>
           <link>${siteBaseUrl}/${post.slug}</link>
-					<pubDate>${new Date(post.date).toUTCString()}</pubDate>
-          ${post.tags ? post.tags.map((tag) => `<category>${escapeXml(tag)}</category>`).join('') : ''}
+          <pubDate>${new Date(post.date).toUTCString()}</pubDate>
+          ${tags.map((tag) => `<category>${escapeXml(tag.name)}</category>`).join('')}
           <content:encoded><![CDATA[
             <div style="margin: 50px 0; font-style: italic;">
-              If anything looks wrong, 
+              If anything looks wrong,
               <strong>
                 <a href="${siteBaseUrl}/${post.slug}">
                   read on the site!
                 </a>
               </strong>
             </div>
-            ${postHtml}
+            <p>${escapeXml(plainTextContent)}</p>
           ]]></content:encoded>
           ${
-              coverImageSrc
-                  ? `<media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="${coverImageSrc}"/>`
+              coverImageUrl
+                  ? `<media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="${coverImageUrl}"/>`
                   : ''
           }
           ${
-              coverImageSrc
-                  ? `<media:content xmlns:media="http://search.yahoo.com/mrss/" medium="image" url="${coverImageSrc}"/>`
+              coverImageUrl
+                  ? `<media:content xmlns:media="http://search.yahoo.com/mrss/" medium="image" url="${coverImageUrl}"/>`
                   : ''
-          }          
+          }
         </item>
       `;
 }

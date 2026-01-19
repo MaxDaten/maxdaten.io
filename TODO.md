@@ -18,6 +18,10 @@
           base file name
 - [x] Dynamic social media previews for blog posts
 - [x] Add author to frontmatter blog posts display with avatar
+- [ ] Custom Callout syntax (see github markdown)
+    ```md
+    > ![Info] Ipsum
+    ```
 
 ## Bugs
 

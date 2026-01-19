@@ -1,16 +1,19 @@
 import * as sitemap from 'super-sitemap';
-import { allPosts } from '$lib/server/posts';
+import { client } from '$lib/sanity/client';
+import { allPostsQuery } from '$lib/sanity/queries';
 
 export const prerender = true;
 
 export async function GET({ url }) {
-    // Get all blog posts with lastmod data for parameterized routes
-    const blogPostParams = allPosts
-        .filter((post) => !post.hidden)
-        .map((post) => ({
+    // Get all blog posts from Sanity with lastmod data for parameterized routes
+    const sanityPosts = await client.fetch(allPostsQuery);
+
+    const blogPostParams = sanityPosts.map(
+        (post: { slug: string; lastModified?: string; date: string }) => ({
             values: [post.slug],
-            lastmod: post.updated || post.date, // Use updated date if available, otherwise use date
-        }));
+            lastmod: post.lastModified || post.date,
+        })
+    );
 
     return await sitemap.response({
         origin: url.origin,
