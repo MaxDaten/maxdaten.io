@@ -9,28 +9,29 @@ image folder management, just write and publish. **Current focus:** Phase 2 - In
 
 ## Current Position
 
-Phase: 1 of 4 (Foundation) Plan: 3 of 3 in current phase Status: Phase complete Last activity:
-2026-01-19 — Completed 01-03-PLAN.md (Studio Structure and Deployment)
+Phase: 2 of 4 (Vertical Slice) Plan: 1 of 4 in current phase Status: In progress Last activity:
+2026-01-19 — Completed 02-01-PLAN.md (Sanity Client Infrastructure)
 
-Progress: [###.......] 25% (3/12 plans)
+Progress: [####......] 33% (4/12 plans)
 
 ## Performance Metrics
 
 **Velocity:**
 
-- Total plans completed: 3
+- Total plans completed: 4
 - Average duration: 3 min
-- Total execution time: 9 min
+- Total execution time: 11 min
 
 **By Phase:**
 
-| Phase         | Plans | Total | Avg/Plan |
-| ------------- | ----- | ----- | -------- |
-| 01-foundation | 3/3   | 9 min | 3 min    |
+| Phase             | Plans | Total | Avg/Plan |
+| ----------------- | ----- | ----- | -------- |
+| 01-foundation     | 3/3   | 9 min | 3 min    |
+| 02-vertical-slice | 1/4   | 2 min | 2 min    |
 
 **Recent Trend:**
 
-- Last 5 plans: 01-01 (4 min), 01-02 (2 min), 01-03 (3 min)
+- Last 5 plans: 01-01 (4 min), 01-02 (2 min), 01-03 (3 min), 02-01 (2 min)
 - Trend: stable
 
 _Updated after each plan completion_
@@ -53,10 +54,14 @@ Decisions are logged in PROJECT.md Key Decisions table. Recent decisions affecti
 | 01-03 | Sidebar grouped into Content/Taxonomies/Settings | Per CONTEXT.md Studio Organization decisions        |
 | 01-03 | Draft detection via path pattern                 | Standard Sanity draft/published detection           |
 | 01-03 | Deployment appId stored in sanity.cli.ts         | Consistent future deploys without prompting         |
+| 02-01 | No token in previewClient                        | Pass per-request to avoid bundle exposure           |
+| 02-01 | defineQuery for GROQ queries                     | Proper typing via groq package                      |
+| 02-01 | Standard breakpoints 320-1920px                  | Match CONTEXT.md responsive image decisions         |
+| 02-01 | Auto format for images                           | WebP/AVIF based on browser support                  |
 
 ### Pending Todos
 
-None - Phase 1 complete.
+None.
 
 ### Blockers/Concerns
 
@@ -64,8 +69,8 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-01-19T03:15:00Z Stopped at: Completed 01-03-PLAN.md (Phase 1 complete) Resume
-file: None
+Last session: 2026-01-19T04:06:59Z Stopped at: Completed 02-01-PLAN.md (Sanity Client
+Infrastructure) Resume file: None
 
 ## Phase Completion
 
@@ -76,3 +81,10 @@ file: None
 - 01-03: Studio Structure and Deployment - DONE
 
 **Deployed:** https://maxdaten.sanity.studio
+
+**Phase 2 - Vertical Slice:** IN PROGRESS
+
+- 02-01: Sanity Client Infrastructure - DONE
+- 02-02: Portable Text Renderer - PENDING
+- 02-03: Dual-Source Routing - PENDING
+- 02-04: Vertical Slice Post - PENDING
