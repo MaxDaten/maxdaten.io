@@ -9,21 +9,21 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Schema
 
-- [ ] **SCHM-01**: Blog Post schema with title, slug, body, excerpt, cover image, date, tags,
+- [x] **SCHM-01**: Blog Post schema with title, slug, body, excerpt, cover image, date, tags,
       keywords, hidden
-- [ ] **SCHM-02**: Gems schema with title, url, description, tags
-- [ ] **SCHM-03**: Author schema with name, image, bio
-- [ ] **SCHM-04**: Tag document type with name and slug
-- [ ] **SCHM-05**: SEO object type with meta description, OG image, validation rules
-- [ ] **SCHM-06**: Custom code block type preserving filename and line number metadata
-- [ ] **SCHM-07**: Portable Text configuration for blog post body with code blocks, images, links
+- [x] **SCHM-02**: Gems schema with title, url, description, tags
+- [x] **SCHM-03**: Author schema with name, image, bio
+- [x] **SCHM-04**: Tag document type with name and slug
+- [x] **SCHM-05**: SEO object type with meta description, OG image, validation rules
+- [x] **SCHM-06**: Custom code block type preserving filename and line number metadata
+- [x] **SCHM-07**: Portable Text configuration for blog post body with code blocks, images, links
 
 ### Studio
 
-- [ ] **STDO-01**: Sanity Studio deployed via Sanity's hosted service (sanity.studio)
-- [ ] **STDO-02**: Draft/publish workflow visible in Studio UI
-- [ ] **STDO-03**: Tag management interface
-- [ ] **STDO-04**: Image upload with hotspot/crop support
+- [x] **STDO-01**: Sanity Studio deployed via Sanity's hosted service (sanity.studio)
+- [x] **STDO-02**: Draft/publish workflow visible in Studio UI
+- [x] **STDO-03**: Tag management interface
+- [x] **STDO-04**: Image upload with hotspot/crop support
 
 ### Vertical Slice (integration + one post proves everything works)
 
@@ -84,36 +84,36 @@ Explicitly excluded. Documented to prevent scope creep.
 
 Which phases cover which requirements. Updated during roadmap creation.
 
-| Requirement | Phase   | Status  |
-| ----------- | ------- | ------- |
-| SCHM-01     | Phase 1 | Pending |
-| SCHM-02     | Phase 1 | Pending |
-| SCHM-03     | Phase 1 | Pending |
-| SCHM-04     | Phase 1 | Pending |
-| SCHM-05     | Phase 1 | Pending |
-| SCHM-06     | Phase 1 | Pending |
-| SCHM-07     | Phase 1 | Pending |
-| STDO-01     | Phase 1 | Pending |
-| STDO-02     | Phase 1 | Pending |
-| STDO-03     | Phase 1 | Pending |
-| STDO-04     | Phase 1 | Pending |
-| SLCE-01     | Phase 2 | Pending |
-| SLCE-02     | Phase 2 | Pending |
-| SLCE-03     | Phase 2 | Pending |
-| SLCE-04     | Phase 2 | Pending |
-| SLCE-05     | Phase 2 | Pending |
-| SLCE-06     | Phase 2 | Pending |
-| SLCE-07     | Phase 2 | Pending |
-| SLCE-08     | Phase 2 | Pending |
-| MIGR-01     | Phase 3 | Pending |
-| MIGR-02     | Phase 3 | Pending |
-| MIGR-03     | Phase 3 | Pending |
-| MIGR-04     | Phase 3 | Pending |
-| MIGR-05     | Phase 3 | Pending |
-| FINL-01     | Phase 4 | Pending |
-| FINL-02     | Phase 4 | Pending |
-| FINL-03     | Phase 4 | Pending |
-| FINL-04     | Phase 4 | Pending |
+| Requirement | Phase   | Status   |
+| ----------- | ------- | -------- |
+| SCHM-01     | Phase 1 | Complete |
+| SCHM-02     | Phase 1 | Complete |
+| SCHM-03     | Phase 1 | Complete |
+| SCHM-04     | Phase 1 | Complete |
+| SCHM-05     | Phase 1 | Complete |
+| SCHM-06     | Phase 1 | Complete |
+| SCHM-07     | Phase 1 | Complete |
+| STDO-01     | Phase 1 | Complete |
+| STDO-02     | Phase 1 | Complete |
+| STDO-03     | Phase 1 | Complete |
+| STDO-04     | Phase 1 | Complete |
+| SLCE-01     | Phase 2 | Pending  |
+| SLCE-02     | Phase 2 | Pending  |
+| SLCE-03     | Phase 2 | Pending  |
+| SLCE-04     | Phase 2 | Pending  |
+| SLCE-05     | Phase 2 | Pending  |
+| SLCE-06     | Phase 2 | Pending  |
+| SLCE-07     | Phase 2 | Pending  |
+| SLCE-08     | Phase 2 | Pending  |
+| MIGR-01     | Phase 3 | Pending  |
+| MIGR-02     | Phase 3 | Pending  |
+| MIGR-03     | Phase 3 | Pending  |
+| MIGR-04     | Phase 3 | Pending  |
+| MIGR-05     | Phase 3 | Pending  |
+| FINL-01     | Phase 4 | Pending  |
+| FINL-02     | Phase 4 | Pending  |
+| FINL-03     | Phase 4 | Pending  |
+| FINL-04     | Phase 4 | Pending  |
 
 **Coverage:**
 

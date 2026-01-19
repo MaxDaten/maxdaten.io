@@ -14,7 +14,7 @@ generation. Each phase delivers verifiable capability before proceeding.
 - Integer phases (1, 2, 3, 4): Planned milestone work
 - Decimal phases (e.g., 2.1): Urgent insertions (marked with INSERTED)
 
-- [ ] **Phase 1: Foundation** - Sanity schemas and Studio ready for content
+- [x] **Phase 1: Foundation** - Sanity schemas and Studio ready for content
 - [ ] **Phase 2: Vertical Slice** - One blog post end-to-end in production
 - [ ] **Phase 3: Migration** - All content moved to Sanity
 - [ ] **Phase 4: Finalization** - RSS, sitemap, cleanup
@@ -38,9 +38,9 @@ SCHM-06, SCHM-07, STDO-01, STDO-02, STDO-03, STDO-04 **Success Criteria** (what 
 
 Plans:
 
-- [ ] 01-01-PLAN.md - Initialize Sanity Studio and foundational schemas (tag, author, series)
-- [ ] 01-02-PLAN.md - Create content schemas (blog post, gem) with Portable Text
-- [ ] 01-03-PLAN.md - Configure Studio sidebar structure and deploy
+- [x] 01-01-PLAN.md - Initialize Sanity Studio and foundational schemas (tag, author, series)
+- [x] 01-02-PLAN.md - Create content schemas (blog post, gem) with Portable Text
+- [x] 01-03-PLAN.md - Configure Studio sidebar structure and deploy
 
 ### Phase 2: Vertical Slice
 
@@ -103,13 +103,13 @@ Plans:
 
 **Execution Order:** Phases execute in numeric order: 1 -> 2 -> 3 -> 4
 
-| Phase           | Plans Complete | Status      | Completed |
-| --------------- | -------------- | ----------- | --------- |
-| 1. Foundation   | 0/3            | Planned     | -         |
-| 2. Vertical     | 0/3            | Not started | -         |
-| 3. Migration    | 0/2            | Not started | -         |
-| 4. Finalization | 0/2            | Not started | -         |
+| Phase           | Plans Complete | Status      | Completed  |
+| --------------- | -------------- | ----------- | ---------- |
+| 1. Foundation   | 3/3            | ✓ Complete  | 2026-01-19 |
+| 2. Vertical     | 0/3            | Not started | -          |
+| 3. Migration    | 0/2            | Not started | -          |
+| 4. Finalization | 0/2            | Not started | -          |
 
 ---
 
-_Roadmap created: 2025-01-18_ _Last updated: 2025-01-18_
+_Roadmap created: 2025-01-18_ _Last updated: 2026-01-19_
