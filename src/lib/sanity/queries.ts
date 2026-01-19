@@ -10,7 +10,19 @@ export const postBySlugQuery = defineQuery(`
     title,
     "slug": slug.current,
     excerpt,
-    body,
+    body[]{
+      ...,
+      markDefs[]{
+        ...,
+        _type == "internalLink" => {
+          ...,
+          "reference": reference-> {
+            _type,
+            slug
+          }
+        }
+      }
+    },
     date,
     lastModified,
     hidden,
