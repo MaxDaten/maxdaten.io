@@ -1,9 +1,9 @@
 :root {
     // Fonts
     --font--default: 'Inter', sans-serif;
-    --font--title: 'Merriweather', serif;
+    --font--title: var(--font--default);
     --font-logo: 'Baloo-2', Arial, Helvetica, sans-serif;
-    --font--mono: 'Ubuntu Mono', monospace;
+    --font--mono: 'JetBrains Mono', monospace;
 
     // Grabbed from open-props.style
     --ease-3: cubic-bezier(0.25, 0, 0.3, 1);
