@@ -91,13 +91,13 @@
                 display: flex;
                 flex-direction: column;
                 gap: 10px;
-                padding: 20px 20px;
+                padding: 20px;
                 flex-grow: 1;
+                justify-content: space-between;
 
                 .content {
                     display: flex;
                     flex-direction: column;
-                    flex-grow: 1;
                 }
             }
 

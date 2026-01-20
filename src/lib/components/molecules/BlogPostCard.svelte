@@ -67,6 +67,7 @@
             font-size: 1.2rem;
             font-family: var(--font--title), serif;
             font-weight: 700;
+            margin: 0;
         }
 
         .tags {
@@ -77,20 +78,16 @@
         }
 
         .text {
-            margin-top: 5px;
+            margin: 5px 0 0 0;
             font-size: 0.9rem;
             text-align: justify;
         }
 
         :global(.cover-image) {
-            max-height: 350px;
-            object-fit: cover;
-            object-position: 50% 75%;
-        }
-
-        :global(.sanity-cover) {
             width: 100%;
             height: 100%;
+            object-fit: cover;
+            object-position: center;
         }
     }
 </style>

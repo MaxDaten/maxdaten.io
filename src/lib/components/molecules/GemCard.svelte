@@ -86,6 +86,7 @@
             font-size: 1.2rem;
             font-family: var(--font--title), serif;
             font-weight: 700;
+            margin: 0;
         }
 
         .tags {
@@ -96,21 +97,20 @@
         }
 
         .text {
-            margin-top: 5px;
+            margin: 5px 0 0 0;
             font-size: 0.9rem;
             text-align: justify;
         }
 
         .cover-image-container {
-            max-height: 350px;
-            object-fit: cover;
-            overflow: hidden;
+            width: 100%;
+            height: 100%;
         }
 
         :global(.cover-image) {
-            object-fit: cover;
             width: 100%;
-            max-height: 350px;
+            height: 100%;
+            object-fit: cover;
         }
     }
 </style>
