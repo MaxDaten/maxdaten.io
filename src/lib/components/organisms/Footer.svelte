@@ -29,24 +29,34 @@
             var(--color--waves-end) 100%
         );
         border-top: 1px solid var(--color--waves-start);
-
-        display: grid;
-        grid-template-rows: 120px 1fr;
+        padding: 24px 0;
 
         .content {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             align-items: center;
-            justify-content: center;
-            gap: 15px;
-            font-weight: 600;
-            text-align: center;
+            justify-content: space-between;
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0 15px;
 
-            .socials {
-                display: flex;
-                align-items: center;
-                gap: 20px;
+            @media (max-width: 767px) {
+                flex-direction: column;
+                gap: 16px;
             }
+        }
+
+        .legal {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 0.9rem;
+        }
+
+        .socials {
+            display: flex;
+            align-items: center;
+            gap: 20px;
         }
 
         a {
