@@ -107,26 +107,22 @@
                 border-top-right-radius: 0;
             }
 
-            &:hover :global(.copy-button) {
-                opacity: 0.4;
-            }
-
             :global(.copy-button) {
                 position: absolute;
-                top: 8px;
+                bottom: 8px;
                 right: 8px;
                 z-index: 2;
-                opacity: 0;
+                opacity: 0.5;
                 transition: opacity 0.2s ease-in-out;
                 width: 20ch;
 
                 &:hover {
-                    opacity: 0.7 !important;
+                    opacity: 1;
                 }
-            }
 
-            &:has(figcaption.filename-container) :global(.copy-button) {
-                top: 42px;
+                @media (hover: none) {
+                    opacity: 1;
+                }
             }
         }
 
