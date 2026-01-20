@@ -24,29 +24,29 @@
 
 ### Code Blocks
 
-- [ ] **CODE-01**: Dark background always (independent of page theme)
-- [ ] **CODE-02**: 12px border-radius on code block containers
-- [ ] **CODE-03**: Simplified filename header (remove diagonal strip pattern)
-- [ ] **CODE-04**: Language label displayed in code block header
-- [ ] **CODE-05**: Copy button for code blocks
-- [ ] **CODE-06**: Line highlighting support for tutorials
-- [ ] **CODE-07**: Mobile font size minimum 12px (up from 10px)
+- [x] **CODE-01**: Dark background always (independent of page theme)
+- [x] **CODE-02**: 12px border-radius on code block containers
+- [x] **CODE-03**: Simplified filename header (remove diagonal strip pattern)
+- [x] **CODE-04**: Language label displayed in code block header
+- [x] **CODE-05**: Copy button for code blocks
+- [x] **CODE-06**: Line highlighting support for tutorials
+- [x] **CODE-07**: Mobile font size minimum 12px (up from 10px)
 
 ### Post Meta
 
-- [ ] **META-01**: Date positioned above title (not below)
-- [ ] **META-02**: Monospace uppercase date with wide letter-spacing
-- [ ] **META-03**: Single-line meta consolidation (Author · Date · Reading Time)
-- [ ] **META-04**: Smaller avatar size (32-36px)
-- [ ] **META-05**: Social links moved to bottom author card only
-- [ ] **META-06**: Muted colors for all meta text
+- [x] **META-01**: Date positioned above title (not below)
+- [x] **META-02**: Monospace uppercase date with wide letter-spacing
+- [x] **META-03**: Single-line meta consolidation (Author · Date · Reading Time)
+- [x] **META-04**: Smaller avatar size (32-36px)
+- [x] **META-05**: Social links moved to bottom author card only
+- [x] **META-06**: Muted colors for all meta text
 
 ### Navigation & Layout
 
-- [ ] **LAYOUT-01**: Navigation active state indicator for current page
-- [ ] **LAYOUT-02**: Increased tap targets with proper padding
-- [ ] **LAYOUT-03**: Footer refinement — remove 120px empty space, add value
-- [ ] **LAYOUT-04**: Hero image aspect-ratio (16:9 or 2:1) instead of fixed height
+- [x] **LAYOUT-01**: Navigation active state indicator for current page
+- [x] **LAYOUT-02**: Increased tap targets with proper padding
+- [x] **LAYOUT-03**: Footer refinement — remove 120px empty space, add value
+- [x] **LAYOUT-04**: Hero image aspect-ratio (16:9 or 2:1) instead of fixed height
 
 ## v2.1+ Requirements
 
@@ -85,23 +85,23 @@ Deferred to future release:
 | TYPO-03     | Phase 6 | Complete |
 | TYPO-04     | Phase 6 | Complete |
 | TYPO-05     | Phase 6 | Complete |
-| CODE-01     | Phase 7 | Pending  |
-| CODE-02     | Phase 7 | Pending  |
-| CODE-03     | Phase 7 | Pending  |
-| CODE-04     | Phase 7 | Pending  |
-| CODE-05     | Phase 7 | Pending  |
-| CODE-06     | Phase 7 | Pending  |
-| CODE-07     | Phase 7 | Pending  |
-| META-01     | Phase 8 | Pending  |
-| META-02     | Phase 8 | Pending  |
-| META-03     | Phase 8 | Pending  |
-| META-04     | Phase 8 | Pending  |
-| META-05     | Phase 8 | Pending  |
-| META-06     | Phase 8 | Pending  |
-| LAYOUT-01   | Phase 9 | Pending  |
-| LAYOUT-02   | Phase 9 | Pending  |
-| LAYOUT-03   | Phase 9 | Pending  |
-| LAYOUT-04   | Phase 9 | Pending  |
+| CODE-01     | Phase 7 | Complete |
+| CODE-02     | Phase 7 | Complete |
+| CODE-03     | Phase 7 | Complete |
+| CODE-04     | Phase 7 | Complete |
+| CODE-05     | Phase 7 | Complete |
+| CODE-06     | Phase 7 | Complete |
+| CODE-07     | Phase 7 | Complete |
+| META-01     | Phase 8 | Complete |
+| META-02     | Phase 8 | Complete |
+| META-03     | Phase 8 | Complete |
+| META-04     | Phase 8 | Complete |
+| META-05     | Phase 8 | Complete |
+| META-06     | Phase 8 | Complete |
+| LAYOUT-01   | Phase 9 | Complete |
+| LAYOUT-02   | Phase 9 | Complete |
+| LAYOUT-03   | Phase 9 | Complete |
+| LAYOUT-04   | Phase 9 | Complete |
 
 **Coverage:**
 

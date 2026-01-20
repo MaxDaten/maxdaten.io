@@ -3,7 +3,7 @@
 ## Milestones
 
 - [x] **v1.0 Sanity CMS Migration** - Phases 1-4 (shipped 2026-01-20)
-- [ ] **v2.0 Design Refinement** - Phases 5-9 (in progress)
+- [x] **v2.0 Design Refinement** - Phases 5-9 (shipped 2026-01-20)
 
 ## Phases
 
@@ -15,7 +15,7 @@ gems, 7 tags, 1 author migrated with preserved URLs.
 
 </details>
 
-### v2.0 Design Refinement (In Progress)
+### v2.0 Design Refinement (Complete)
 
 **Milestone Goal:** Evolve the site from "looks good" to precision-engineered minimalism — unified
 spacing, refined typography, professional code blocks, and polished post meta.
@@ -24,7 +24,7 @@ spacing, refined typography, professional code blocks, and polished post meta.
 - [x] **Phase 6: Typography** - Apply typography scale and line-height improvements
 - [x] **Phase 7: Code Blocks** - Refine code block styling and functionality
 - [x] **Phase 8: Post Meta** - Consolidate and polish blog post metadata display
-- [ ] **Phase 9: Navigation & Layout** - Finalize navigation and page layout refinements
+- [x] **Phase 9: Navigation & Layout** - Finalize navigation and page layout refinements
 
 ## Phase Details
 
@@ -127,22 +127,22 @@ Phase 8 **Requirements**: LAYOUT-01, LAYOUT-02, LAYOUT-03, LAYOUT-04
 
 Plans:
 
-- [ ] 09-01-PLAN.md — Navigation active state and mobile tap targets
-- [ ] 09-02-PLAN.md — Footer horizontal layout with copyright
-- [ ] 09-03-PLAN.md — Hero and card image aspect-ratio conversion
+- [x] 09-01-PLAN.md — Navigation active state and mobile tap targets
+- [x] 09-02-PLAN.md — Footer horizontal layout with copyright
+- [x] 09-03-PLAN.md — Hero and card image aspect-ratio conversion
 
 ## Progress
 
 **Execution Order:** 5 -> 6 -> 7 -> 8 -> 9
 
-| Phase              | Milestone | Plans Complete | Status      | Completed  |
-| ------------------ | --------- | -------------- | ----------- | ---------- |
-| 1-4. CMS Migration | v1.0      | -              | Complete    | 2026-01-20 |
-| 5. Design Tokens   | v2.0      | 2/2            | Complete    | 2026-01-20 |
-| 6. Typography      | v2.0      | 3/3            | Complete    | 2026-01-20 |
-| 7. Code Blocks     | v2.0      | 3/3            | Complete    | 2026-01-20 |
-| 8. Post Meta       | v2.0      | 2/2            | Complete    | 2026-01-20 |
-| 9. Navigation      | v2.0      | 0/3            | Not started | -          |
+| Phase              | Milestone | Plans Complete | Status   | Completed  |
+| ------------------ | --------- | -------------- | -------- | ---------- |
+| 1-4. CMS Migration | v1.0      | -              | Complete | 2026-01-20 |
+| 5. Design Tokens   | v2.0      | 2/2            | Complete | 2026-01-20 |
+| 6. Typography      | v2.0      | 3/3            | Complete | 2026-01-20 |
+| 7. Code Blocks     | v2.0      | 3/3            | Complete | 2026-01-20 |
+| 8. Post Meta       | v2.0      | 2/2            | Complete | 2026-01-20 |
+| 9. Navigation      | v2.0      | 3/3            | Complete | 2026-01-20 |
 
 ---
 
