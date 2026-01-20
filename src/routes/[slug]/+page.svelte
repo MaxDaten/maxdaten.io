@@ -167,6 +167,7 @@
             margin: 0 auto 0.8em;
 
             .note {
+                font-family: var(--font--mono), monospace;
                 color: rgba(var(--color--secondary-rgb), 0.8);
                 display: inline-flex;
                 gap: 8px;
@@ -174,6 +175,11 @@
                 @include breakpoints.for-phone-only {
                     gap: 4px;
                 }
+            }
+
+            .note time {
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
             }
 
             .metadata {

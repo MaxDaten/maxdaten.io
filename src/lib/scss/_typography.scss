@@ -61,5 +61,12 @@ h3,
 h4,
 h5 {
     font-family: var(--font--default);
+    line-height: var(--text-heading-leading);
+}
+
+h3,
+h4,
+h5 {
+    line-height: var(--raw-leading-snug);
 }
 // #endregion
