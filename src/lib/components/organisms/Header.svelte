@@ -78,6 +78,7 @@
 
             a {
                 position: relative;
+                padding: 8px 0;
                 color: var(--color--text);
                 text-decoration: none;
 
@@ -109,6 +110,12 @@
 
             .links {
                 gap: 15px;
+
+                a {
+                    min-height: 44px;
+                    display: flex;
+                    align-items: center;
+                }
             }
         }
     }
