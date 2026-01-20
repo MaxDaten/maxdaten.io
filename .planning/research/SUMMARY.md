@@ -1,230 +1,403 @@
-# Project Research Summary
+# v2.0 Design Refinement Research Summary
 
-**Project:** maxdaten.io Sanity.io Migration **Domain:** Headless CMS migration (Markdown to
-Sanity.io) **Researched:** 2026-01-18 **Confidence:** HIGH
+**Project:** maxdaten.io v2.0 Design Refinement **Domain:** Technical blog design evolution
+**Researched:** 2026-01-20 **Confidence:** HIGH
 
 ## Executive Summary
 
-Sanity.io is a mature, well-documented choice for migrating maxdaten.io from git-managed markdown to
-a headless CMS. The official `@sanity/sveltekit` package (v1.0.4+) provides first-party Svelte 5
-support with all necessary exports (client, GROQ, Visual Editing) in a single package. The
-recommended architecture embeds Sanity Studio as a SvelteKit route at `/studio`, preserving the
-existing static generation workflow with Vercel while moving content management to Sanity's hosted
-Content Lake.
+The research across 8 leading engineering blogs (Vercel, Stripe, Tailwind CSS, Sanity, GitHub,
+Cloudflare, Lee Robinson, Linear) reveals a clear pattern for precision-engineered minimalism:
+systematic spacing based on an 8px grid, strict typography hierarchy with 4-5 sizes using a
+mathematical ratio (Major Third 1.25), and code blocks as first-class design citizens rather than
+afterthoughts. The current maxdaten.io implementation has solid foundations but suffers from ad-hoc
+spacing values, competing accent colors, and meta elements that lack the refinement seen in
+best-in-class sites.
 
-The migration is straightforward for a personal blog. All required features (drafts, image handling,
-tags, slug preservation) are table stakes in Sanity. Scheduled publishing requires the Growth plan
-($15/month) but is not blocking for launch. The primary complexity lies in the content migration
-itself: preserving code block metadata (language, filename annotations), handling image asset
-references correctly, and ensuring URL slugs remain unchanged for SEO continuity.
+The recommended approach is a foundation-first design token implementation: establish spacing scale,
+typography scale, and color tokens before touching any components. This prevents the incremental
+drift that causes "bolted-on" aesthetics. Key patterns to adopt include monospace uppercase dates
+with wide letter-spacing (Tailwind pattern), dark code blocks with language labels and 12px border
+radius (Vercel/Geist pattern), and consolidated post meta in a single line with middle-dot
+separators.
 
-The critical risks are: (1) image asset references getting lost during migration if assets are not
-uploaded before content, (2) code block metadata (language, filename) being dropped during
-markdown-to-Portable-Text conversion, and (3) slug uniqueness validation not being configured across
-document types. All three are preventable with proper migration script design and schema
-configuration upfront.
+The primary risks are inconsistent token adoption and scope creep. Prevention requires defining all
+tokens in a single pass before component work, and limiting Phase 1 to foundation-only changes. The
+research identified 16 specific design pitfalls to avoid, with the top 5 being: inconsistent spacing
+systems (DP-1), multiple competing accent colors (DP-2), bolted-on code blocks (DP-3), monotonous
+card layouts (DP-4), and amateur meta element styling (DP-5).
+
+---
 
 ## Key Findings
 
-### Recommended Stack
+### Design Patterns (from PATTERNS.md)
 
-Sanity's official SvelteKit integration provides everything needed. No need to assemble individual
-libraries.
+The research establishes definitive design token systems for spacing, typography, and layout.
 
-**Core technologies:**
+**Spacing Scale (4px base, 8px primary):** | Token | Value | Use Case | |-------|-------|----------|
+| `--space-1` | 4px | Icon gaps, fine adjustments | | `--space-2` | 8px | Tight padding, related
+items | | `--space-3` | 12px | Form spacing, small gaps | | `--space-4` | 16px | Default padding,
+paragraphs | | `--space-5` | 24px | Section padding (mobile), cards | | `--space-6` | 32px | Section
+gaps | | `--space-7` | 48px | Section padding (desktop) | | `--space-8` | 64px | Page sections |
 
-- **@sanity/sveltekit** (^1.0.4): All-in-one package with client, GROQ, Visual Editing components
-- **sanity** (^5.4.0): Sanity Studio for content editing (React-based, embeds in SvelteKit)
-- **@portabletext/svelte** (^3.0.0): Render rich text as Svelte components (requires Svelte 5)
-- **@sanity/image-url** (^2.0.2): Generate optimized CDN image URLs with hotspot/crop support
-- **@sanity/code-input**: Studio plugin for code blocks with language selection
+**Typography Scale (Major Third 1.25 ratio):** | Token | Size | Use Case |
+|-------|------|----------| | `--text-xs` | 12px | Metadata, timestamps | | `--text-sm` | 14px |
+Secondary text, labels | | `--text-base` | 16px | Body (mobile) | | `--text-md` | 18px | Body
+(desktop) | | `--text-lg` | 20px | Lead paragraphs, h4 | | `--text-xl` | 25px | h3 | | `--text-2xl`
+| 31px | h2 | | `--text-3xl` | 39px | h1 (mobile) | | `--text-4xl` | 49px | h1 (desktop), hero |
 
-**Anti-recommendations:** Do not install `@sanity/client` separately (already in sveltekit package),
-do not use GraphQL (GROQ is more powerful), avoid `@sanity/svelte-loader` (older approach).
+**Critical fix:** Body line-height must increase from 1.3 to 1.6 for comfortable reading.
 
-### Expected Features
+### Reference Patterns (from REFERENCES.md)
 
-**Must have (table stakes):**
+Analysis of 8 engineering blogs reveals consistent patterns.
 
-- Content modeling with schema-as-code (blog posts, gems, author)
-- Draft/publish workflow with perspectives API
-- Image asset management with CDN delivery
-- Portable Text for rich content body
-- Slug field with uniqueness validation
-- Tags as array of strings
-- Hidden boolean for filtering unpublished posts
+**Code Blocks (synthesized from Vercel, Tailwind, Mintlify):**
 
-**Should have (competitive):**
+- Dark background always (`#1a1b26` or similar)
+- 12px border radius for modern feel
+- Language label in header (12px, muted color)
+- Copy button always visible (0.5 opacity, 1.0 on hover)
+- Padding: 16px content, 8-16px header
+- Shiki for syntax highlighting
 
-- Scheduled Drafts for "write now, publish later" workflow (Growth plan required)
-- Custom code block type with language/filename metadata
-- Image hotspot and crop for responsive images
-- Basic validation rules (character limits, required fields)
+**Post Meta (synthesized from Tailwind, Dan Abramov, Kent C. Dodds):**
 
-**Defer (v2+):**
+- Date in monospace, uppercase, with `letter-spacing: 0.1em`
+- Order: Date above title OR inline with reading time
+- Consolidate: `[Date] [dot] [Reading Time]`
+- Smaller avatars: 32-36px inline, 96px for author cards
+- Move social links to article footer only
 
-- Live Preview / Visual Editing (high complexity, single author can use standard preview)
-- SEO object schema (can start with existing keyword/excerpt approach)
-- Document Actions customization (polish, not core workflow)
-- AI Assist, Taxonomy Manager, Content Releases (enterprise/team features)
+**Spacing Philosophy (from Vercel, Sanity, Stripe):**
 
-### Architecture Approach
+- 8px base grid used religiously
+- 24px as standard block gap
+- 96px between major sections
+- 680px max content width for prose
+- 1080px max layout width
 
-The target architecture maintains SvelteKit's static generation while replacing the data source.
-Sanity Studio embeds at `/studio` for single-deployment simplicity. Content is fetched at build time
-via GROQ queries. Vercel webhooks trigger rebuilds on content publish. No runtime API calls needed
-for the public site.
+### Component Specifications (from COMPONENTS.md)
 
-**Major components:**
+Detailed recommendations for 5 key components.
 
-1. **Sanity Content Lake** (hosted) - Stores documents and assets, serves GROQ API
-2. **Sanity Studio** (embedded at /studio) - React-based editing UI within SvelteKit app
-3. **SvelteKit App** - Routing, rendering, static generation via entry generators
-4. **Portable Text Renderer** - Maps Sanity rich text to existing Svelte components
-5. **Vercel** - Hosting, builds, deploy hooks triggered by Sanity webhooks
+**Code Blocks:**
 
-### Critical Pitfalls
+- Remove DiagonalStrip pattern from filename header (too busy)
+- Increase mobile font size from 10px to 12px minimum
+- Add line highlighting support with left-border indicator
+- Increase border from 0.5px to 1px for definition
 
-1. **Image Asset Reference Loss (CP-2)** - Upload all images FIRST and capture asset IDs, then
-   create content referencing those IDs. Migration script must await asset upload promises before
-   processing content.
+**Post Meta:**
 
-2. **Code Block Metadata Loss (CP-4)** - Parse markdown code fences BEFORE HTML conversion to
-   extract language, filename annotations, and line number flags. Use `@sanity/code-input` plugin
-   for schema. Test with most code-heavy post first.
+- Consolidate into single flex line with dot separators
+- Reduce avatar to 32px for inline use
+- Use consistent 14px size for all meta
+- Show "Updated" badge only if >30 days from publish
 
-3. **Slug Uniqueness Scope (CP-3)** - Default slug validation is per-document-type. Blog posts and
-   gems could share slugs, breaking routing. Implement custom `isUnique` function checking across
-   ALL document types.
+**Hero Images:**
 
-4. **Non-Idempotent Migration Scripts (MP-1)** - Use `createOrReplace` with deterministic document
-   IDs derived from slugs. Migration must be re-runnable without creating duplicates.
+- Switch from fixed 400px height to `aspect-ratio: 16/9`
+- Add caption/credit support via `<figcaption>`
+- Use placeholder background color to prevent CLS
 
-5. **Webhook/Build Timing (MP-5)** - Sanity CDN may not propagate immediately after publish. Add 2-5
-   second delay before triggering Vercel rebuild, or use `useCdn: false` during builds.
+**Navigation:**
+
+- Add active state indicator for current route
+- Increase tap targets with padding
+- Consider sticky-on-scroll behavior
+
+**Footer:**
+
+- Remove empty 120px grid row
+- Add column structure: About | Navigation | Connect
+- Include secondary navigation links
+
+### Critical Pitfalls (from PITFALLS.md and design/PITFALLS.md)
+
+**Design Pitfalls to Avoid:**
+
+1. **DP-1: Inconsistent Spacing** — Use ONLY scale values, no magic numbers like 10px or 38px.
+   Current site has asymmetric alignment and arbitrary gaps.
+
+2. **DP-2: Multiple Accent Colors** — Define ONE primary accent. Current: orange for CTAs, teal for
+   tags creates competing attention.
+
+3. **DP-3: Bolted-On Code Blocks** — Ensure code styling derives from design system tokens, not
+   library defaults.
+
+4. **DP-4: Monotonous Cards** — Featured card should have unique treatment (larger title, different
+   tag placement, more spacing).
+
+5. **DP-5: Amateur Meta Styling** — Design meta elements as cohesive unit with consistent typography
+   and spacing.
+
+6. **DP-6: Inconsistent Depth** — Commit to ONE depth strategy (borders + surface colors for dark
+   theme, not shadows).
+
+**Sanity Migration Pitfalls (for later reference):**
+
+- CP-1: Svelte 5 compatibility with Sanity packages
+- CP-2: Image asset reference loss during import
+- CP-4: Code block metadata loss (language, filename annotations)
+
+---
+
+## Recommended Design Tokens
+
+### Spacing Scale
+
+```scss
+:root {
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 24px;
+    --space-6: 32px;
+    --space-7: 48px;
+    --space-8: 64px;
+    --space-9: 80px;
+}
+```
+
+### Typography Scale
+
+```scss
+:root {
+    --text-xs: 0.75rem; // 12px
+    --text-sm: 0.875rem; // 14px
+    --text-base: 1rem; // 16px
+    --text-md: 1.125rem; // 18px
+    --text-lg: 1.25rem; // 20px
+    --text-xl: 1.5625rem; // 25px
+    --text-2xl: 1.9375rem; // 31px
+    --text-3xl: 2.4375rem; // 39px
+    --text-4xl: 3.0625rem; // 49px
+
+    --leading-tight: 1.2;
+    --leading-snug: 1.4;
+    --leading-normal: 1.6;
+    --leading-relaxed: 1.7;
+}
+```
+
+### Color Tokens
+
+```scss
+:root {
+    // Backgrounds (dark mode primary)
+    --bg: #1c1e26;
+    --bg-subtle: #13141b;
+    --bg-code: #1a1b26;
+
+    // Text
+    --text: #fffcfc;
+    --text-muted: rgba(255, 255, 255, 0.6);
+
+    // Borders
+    --border: rgba(255, 255, 255, 0.1);
+    --border-subtle: rgba(255, 255, 255, 0.05);
+
+    // Single accent (choose ONE, eliminate competing colors)
+    --accent: #f77f00; // Keep orange
+    // Remove teal from tags - use neutral instead
+}
+```
+
+### Border Radius Scale
+
+```scss
+:root {
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-full: 9999px;
+}
+```
+
+---
+
+## Priority Fixes
+
+### HIGH PRIORITY
+
+| Issue            | Current State                                  | Target State                                   |
+| ---------------- | ---------------------------------------------- | ---------------------------------------------- |
+| Code blocks      | 0.5px border, 8px radius, busy filename header | 1px border, 12px radius, clean header          |
+| Body line-height | 1.3                                            | 1.6                                            |
+| Post meta        | Scattered, 44px avatar, multiple formats       | Consolidated line, 32px avatar, dot separators |
+| Mobile code font | 10px                                           | 12px minimum                                   |
+| Accent colors    | Orange + Teal competing                        | Single accent (orange), neutral tags           |
+
+### MEDIUM PRIORITY
+
+| Issue         | Current State                    | Target State                          |
+| ------------- | -------------------------------- | ------------------------------------- |
+| Spacing       | Ad-hoc pixel values              | Systematic scale tokens               |
+| Typography    | Arbitrary sizes (2.5rem, 1.8rem) | Scale tokens (--text-3xl, --text-2xl) |
+| Hero images   | Fixed 400px height               | Aspect ratio 16:9                     |
+| Navigation    | No active state                  | Route-aware active indicator          |
+| Card variants | All identical                    | Featured vs regular differentiation   |
+
+### LOW PRIORITY (v2.1)
+
+| Issue         | Current State       | Target State                        |
+| ------------- | ------------------- | ----------------------------------- |
+| Footer        | Sparse, empty space | Column structure with secondary nav |
+| Theme toggle  | Icon ambiguity      | Clear current state indication      |
+| Font families | 4 families          | Audit and potentially reduce        |
+
+---
 
 ## Implications for Roadmap
 
-Based on research, suggested phase structure:
+Based on research, the suggested phase structure follows a foundation-first approach.
 
-### Phase 1: Schema and Studio Setup
+### Phase 1: Design Tokens Foundation
 
-**Rationale:** Schemas must exist before any content can be migrated. Studio validation catches
-design issues early. **Delivers:** Sanity project, working embedded Studio at `/studio`, complete
-schemas for blog posts, gems, and authors **Addresses:** Content modeling, slug fields, code block
-type, image fields with hotspot **Avoids:** CP-3 (slug uniqueness) by implementing custom isUnique
-upfront, CP-4 (code blocks) by adding @sanity/code-input **Complexity:** Low-Medium (8-10 hours)
+**Rationale:** Tokens must exist before any component styling to prevent ad-hoc values. All
+reference sites use systematic token systems.
 
-### Phase 2: Content Migration
+**Delivers:**
 
-**Rationale:** Content must exist before frontend can fetch from Sanity. Migration validates schema
-design. **Delivers:** All existing blog posts and gems migrated to Sanity with images, code blocks,
-and metadata preserved **Uses:** Migration script with asset-first approach, deterministic document
-IDs **Implements:** Asset upload pipeline, markdown-to-Portable-Text conversion, frontmatter field
-mapping **Avoids:** CP-2 (image refs) by uploading assets first, MP-1 (idempotency) by using
-createOrReplace **Complexity:** Medium (8-12 hours for script + validation)
+- CSS custom properties for spacing scale
+- CSS custom properties for typography scale
+- CSS custom properties for colors (single accent)
+- CSS custom properties for border radius
 
-### Phase 3: SvelteKit Integration
+**Addresses:** DP-1 (spacing), DP-2 (colors), DP-12 (radius)
 
-**Rationale:** Frontend changes after content exists allows testing against real data. **Delivers:**
-Blog and gems routes fetching from Sanity, Portable Text rendering, image URL builder **Uses:**
-@sanity/sveltekit client, @portabletext/svelte, @sanity/image-url **Implements:** GROQ queries,
-entry generators for prerendering, custom PT components (CodeBlock, Link, Image) **Avoids:** MP-2
-(GROQ perf) by designing queries correctly, MP-3 (draft confusion) by filtering drafts
-**Complexity:** Medium (6-10 hours)
+**Avoids:** Incremental drift back to magic numbers
 
-### Phase 4: Deployment and Cutover
+### Phase 2: Typography and Content Styling
 
-**Rationale:** Final validation and switchover after integration is working. **Delivers:**
-Production deployment with webhook-triggered rebuilds, verified SEO parity, removed markdown files
-**Uses:** Vercel deploy hooks, Sanity webhooks **Implements:** Webhook configuration with timing
-delay, RSS feed from Sanity data, sitemap updates **Avoids:** MP-5 (webhook timing), SEO-1/2/3
-(URL/meta/RSS preservation) **Complexity:** Low (4-6 hours)
+**Rationale:** Typography changes propagate throughout the site and should be stable before
+component work.
+
+**Delivers:**
+
+- Body line-height increase to 1.6
+- Heading sizes aligned to scale
+- Meta element typography (monospace dates)
+- Code block typography (12px mobile minimum)
+
+**Addresses:** DP-5 (meta styling), DP-8 (mobile scaling)
+
+**Uses:** Tokens from Phase 1
+
+### Phase 3: Code Block Refinement
+
+**Rationale:** Code blocks are high-visibility elements on a technical blog. Research shows they
+should be first-class design citizens.
+
+**Delivers:**
+
+- 12px border radius, 1px border
+- Clean filename header (remove DiagonalStrip)
+- Copy button always visible at 0.5 opacity
+- Line highlighting support
+- Consistent spacing above/below
+
+**Addresses:** DP-3 (bolted-on code blocks)
+
+**Avoids:** CP-4 (code block metadata loss in future Sanity migration)
+
+### Phase 4: Post Meta Consolidation
+
+**Rationale:** Meta elements appear on every blog post. Refined meta creates immediate perceived
+quality improvement.
+
+**Delivers:**
+
+- Single-line meta with dot separators
+- 32px inline avatars
+- Monospace uppercase dates with letter-spacing
+- Social links moved to article footer
+
+**Addresses:** DP-5 (amateur meta), high-priority fix list
+
+### Phase 5: Component Refinement
+
+**Rationale:** With tokens and typography stable, component styling can proceed systematically.
+
+**Delivers:**
+
+- Card variant differentiation (featured vs regular)
+- Navigation active state
+- Hero image aspect-ratio approach
+- Footer column structure (if scope allows)
+
+**Addresses:** DP-4 (monotonous cards), DP-7 (nav context), DP-10 (sparse footer)
 
 ### Phase Ordering Rationale
 
-- **Schema before content:** Cannot import content without target schemas defined
-- **Content before frontend:** Need real data to test frontend integration
-- **Frontend before deployment:** Need working site to validate before removing old content system
-- **Parallel opportunity:** Phase 1 schema work and Phase 3 Portable Text component development
-  could overlap
+1. **Foundation before components** — Tokens inform all subsequent decisions
+2. **Typography before components** — Font sizes affect layout calculations
+3. **High-visibility elements early** — Code blocks and meta create immediate impact
+4. **Component work last** — Benefits from stable foundation
 
 ### Research Flags
 
-**Phases likely needing deeper research during planning:**
+**Phases with established patterns (skip additional research):**
 
-- **Phase 2 (Migration):** May need to investigate markdown AST parsing for complex code block
-  metadata extraction. Existing posts should be audited for Svelte component embeds (MDsveX feature)
-  that need custom handling.
+- **Phase 1 (Tokens):** Well-documented in Tailwind, Geist, and design system literature
+- **Phase 2 (Typography):** Clear consensus on scales and line-height
+- **Phase 3 (Code Blocks):** Extensive documentation from Shiki, Vercel Geist
 
-**Phases with standard patterns (skip research-phase):**
+**Phases that may need implementation research:**
 
-- **Phase 1 (Schema):** Well-documented, official Sanity schema docs are comprehensive
-- **Phase 3 (Integration):** @sanity/sveltekit has clear examples, sanity-template-sveltekit-clean
-  provides reference
-- **Phase 4 (Deployment):** Standard webhook patterns, well-documented
+- **Phase 5 (Components):** Card variant implementation may need Svelte 5 pattern validation
 
-## Budget Decision
-
-**Scheduled Drafts requires Growth plan ($15/month).**
-
-Recommendation: Start on free tier. Add Growth plan only if scheduled publishing becomes a real
-need. The free tier includes:
-
-- 1 dataset (sufficient)
-- 10,000 documents (far more than needed)
-- 20 users (more than needed for single author)
-- Built-in asset CDN
-
-Scheduled publishing can be worked around with hidden boolean + manual publish timing.
+---
 
 ## Confidence Assessment
 
-| Area         | Confidence | Notes                                                                     |
-| ------------ | ---------- | ------------------------------------------------------------------------- |
-| Stack        | HIGH       | Official packages, npm registry verified, active maintenance              |
-| Features     | HIGH       | Official Sanity docs, feature availability confirmed                      |
-| Architecture | HIGH       | Official SvelteKit integration, sanity-template-sveltekit-clean reference |
-| Pitfalls     | HIGH       | Combination of official docs + community experience reports               |
+| Area                | Confidence | Notes                                                  |
+| ------------------- | ---------- | ------------------------------------------------------ |
+| Design Patterns     | HIGH       | Direct analysis of 8 production sites                  |
+| Spacing Tokens      | HIGH       | Industry consensus on 8px grid                         |
+| Typography Scale    | HIGH       | Mathematical ratios well-documented                    |
+| Code Block Styling  | HIGH       | Multiple reference implementations                     |
+| Component Specifics | MEDIUM     | Implementation details may vary in Svelte context      |
+| Pitfall Prevention  | HIGH       | Derived from common mistakes documented across sources |
 
 **Overall confidence:** HIGH
 
-The migration path is well-trodden. Sanity has invested significantly in SvelteKit support. The main
-uncertainty is the specifics of content migration (code block parsing, component embeds) which will
-require some experimentation.
-
 ### Gaps to Address
 
-- **Svelte component embeds in markdown:** Some posts may use MDsveX features like inline Svelte
-  components. Need to audit posts and determine if these need custom Portable Text block types or
-  can be refactored.
-- **Exact code block metadata syntax:** Current posts use `filename=` and `showLineNumbers`
-  annotations. Migration script must parse these correctly. Test with sample content before full
-  migration.
-- **Existing slug collision check:** Before migration, verify no slug collisions exist between blog
-  posts and gems. Run audit query on current content.
+- **Variable font consideration:** Research mentions Stripe's Sohne variable font for weight
+  distinctions. Not critical but could be explored for v2.1.
+- **Dark mode weight perception:** Font weight adjustments for dark mode mentioned but not deeply
+  researched. Test after implementation.
+- **Svelte 5 component patterns:** Some component implementations may need validation against Svelte
+  5 specifics.
+
+---
 
 ## Sources
 
 ### Primary (HIGH confidence)
 
-- [Sanity Visual Editing with SvelteKit](https://www.sanity.io/docs/visual-editing/visual-editing-with-sveltekit)
-- [Sanity TypeGen](https://www.sanity.io/docs/apis-and-sdks/sanity-typegen)
-- [sanity-io/sanity-sveltekit GitHub](https://github.com/sanity-io/sanity-sveltekit)
-- [sanity-io/sanity-template-sveltekit-clean](https://github.com/sanity-io/sanity-template-sveltekit-clean)
-- [@portabletext/svelte npm](https://www.npmjs.com/package/@portabletext/svelte)
-- [Sanity Schema and Content Migrations](https://www.sanity.io/docs/content-lake/schema-and-content-migrations)
+- [Vercel Blog](https://vercel.com/blog) — Code blocks, typography, spacing
+- [Vercel Geist Design System](https://vercel.com/geist) — Tokens, code block component
+- [Tailwind CSS Blog](https://tailwindcss.com/blog) — Meta styling, date formatting
+- [Stripe Blog](https://stripe.com/blog) — Typography, author treatment
+- [Sanity.io Blog](https://sanity.io/blog) — Spacing tokens, card layouts
 
 ### Secondary (MEDIUM confidence)
 
-- [Embedding Sanity V3 in SvelteKit](https://chrisjayden.com/articles/sveltekit-sanity-v3)
-- [On-Demand Revalidation with SvelteKit + Sanity](https://www.megamashmedia.com/blog/how-to-setup-on-demand-revalidation-with-sveltekit-sanity-and-vercel)
-- [Importing Data Into Sanity: Gotchas](https://createtoday.io/posts/sanity-import-data)
+- [LogRocket UX Research](https://blog.logrocket.com/ux-design/) — Hero sections, footer design,
+  sticky headers
+- [Design Systems - Space Grids](https://www.designsystems.com/space-grids-and-layouts/) — Spacing
+  methodology
+- [Pimp My Type](https://pimpmytype.com/) — Line length and line height research
 
-### Tertiary (LOW confidence)
+### Tertiary (LOW confidence - general guidance)
 
-- Community GitHub issues for edge cases (Svelte 5 compatibility timing)
+- Linear Design Trend Analysis — Design philosophy
+- Figma community resources — Component patterns
 
 ---
 
-_Research completed: 2026-01-18_ _Ready for roadmap: yes_
+_Research completed: 2026-01-20_ _Ready for roadmap: yes_
