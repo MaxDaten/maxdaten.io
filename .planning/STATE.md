@@ -5,20 +5,19 @@
 See: .planning/PROJECT.md (updated 2026-01-20)
 
 **Core value:** Creating new blog posts should be frictionless — no manual file scaffolding, no
-image folder management, just write and publish. **Current focus:** v2.0 Design Refinement — Phase 9
-Navigation & Layout in progress
+image folder management, just write and publish. **Current focus:** v2.0 Design Refinement complete
 
 ## Current Position
 
-Phase: 9 of 9 (Navigation & Layout) Plan: 3 of 3 in current phase Status: In progress Last activity:
-2026-01-20 — Completed 09-03-PLAN.md (Image Aspect Ratio)
+Phase: 9 of 9 (Navigation & Layout) Plan: 3 of 3 in current phase Status: Phase complete Last
+activity: 2026-01-20 — Completed 09-01-PLAN.md (Navigation Active State)
 
-Progress: [######################] 98% (v1.0 complete, Phases 5-8 complete, 09-02 & 09-03 done)
+Progress: [######################] 100% (v1.0 complete, v2.0 complete)
 
 ## Milestones
 
 - [x] **v1.0 Sanity CMS Migration** — Shipped 2026-01-20
-- [ ] **v2.0 Design Refinement** — In progress (Phases 5-9)
+- [x] **v2.0 Design Refinement** — Complete 2026-01-20 (Phases 5-9)
 
 See: .planning/ROADMAP.md
 
@@ -26,9 +25,9 @@ See: .planning/ROADMAP.md
 
 **Velocity:**
 
-- Total plans completed: 12 (v2.0 milestone)
-- Average duration: 2.7min
-- Total execution time: 32min
+- Total plans completed: 13 (v2.0 milestone)
+- Average duration: 2.8min
+- Total execution time: 36min
 
 **By Phase:**
 
@@ -38,11 +37,11 @@ See: .planning/ROADMAP.md
 | 06-typography        | 3     | 7min  | 2.3min   |
 | 07-code-blocks       | 3     | 8min  | 2.7min   |
 | 08-post-meta         | 2     | 7min  | 3.5min   |
-| 09-navigation-layout | 2     | 5min  | 2.5min   |
+| 09-navigation-layout | 3     | 9min  | 3.0min   |
 
 **Recent Trend:**
 
-- Last 5 plans: 07-03 (2min), 08-01 (3min), 08-02 (4min), 09-02 (2min), 09-03 (3min)
+- Last 5 plans: 08-01 (3min), 08-02 (4min), 09-02 (2min), 09-03 (3min), 09-01 (4min)
 - Trend: Consistent execution speed
 
 _Updated after each plan completion_
@@ -88,6 +87,10 @@ Decisions are logged in PROJECT.md Key Decisions table. Recent decisions affecti
 - 09-03: 2:1 aspect ratio for desktop hero (ultra-wide cinematic)
 - 09-03: 16:9 aspect ratio for mobile hero and all card images
 - 09-03: object-position: center for proper image center cropping
+- 09-01: $app/state (not $app/stores) for Svelte 5 route detection
+- 09-01: Section matching with startsWith for nested route highlighting
+- 09-01: 2px underline positioned 4px below text for active indicator
+- 09-01: 44px mobile tap targets (Apple HIG guideline)
 
 ### Tech Debt (from v1.0)
 
@@ -108,9 +111,9 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-01-20 Stopped at: Completed 09-03-PLAN.md (Image Aspect Ratio) Resume file: None
-— continue with 09-01 (Navigation Active State)
+Last session: 2026-01-20 Stopped at: Completed 09-01-PLAN.md (Navigation Active State) Resume file:
+None — v2.0 Design Refinement milestone complete
 
 ---
 
-_State updated: 2026-01-20 after 09-03 completion_
+_State updated: 2026-01-20 after 09-01 completion (v2.0 complete)_
