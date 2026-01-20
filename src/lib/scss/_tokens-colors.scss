@@ -1,0 +1,39 @@
+// =============================================================================
+// Design Token System: Colors
+// =============================================================================
+// Part of the design token foundation for maxdaten.io
+//
+// Architecture: Two-layer system
+// - Primitive layer (--raw-*): Raw values without context
+// - Semantic layer: Contextual usage references to primitives
+//
+// Single accent color system: Orange (no teal secondary).
+// =============================================================================
+
+:root {
+    // Primitive colors - Orange accent (no teal)
+    --raw-color-orange-400: #ff9933;
+    --raw-color-orange-500: #ff8000;
+    --raw-color-orange-600: #e67300;
+    --raw-color-orange-700: #cc6600;
+    --raw-color-orange-warm: #ffb347;
+
+    // Primitive grays/surfaces
+    --raw-color-gray-900: #1c1e26;
+    --raw-color-gray-850: #141519;
+    --raw-color-gray-800: #32343e;
+    --raw-color-gray-700: #2b3131;
+
+    // Primitive text colors
+    --raw-color-white: #fffcfc;
+    --raw-color-white-muted: #d9f9fd;
+
+    // Semantic colors
+    --color-accent: var(--raw-color-orange-500);
+    --color-accent-hover: var(--raw-color-orange-600);
+    --color-text: var(--raw-color-white);
+    --color-text-muted: rgba(255, 252, 252, 0.7);
+    --color-surface: var(--raw-color-gray-900);
+    --color-surface-elevated: var(--raw-color-gray-800);
+    --color-border: rgba(255, 128, 0, 0.3);
+}

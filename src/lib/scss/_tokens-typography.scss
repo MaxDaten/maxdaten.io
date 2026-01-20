@@ -1,0 +1,47 @@
+// =============================================================================
+// Design Token System: Typography
+// =============================================================================
+// Part of the design token foundation for maxdaten.io
+//
+// Architecture: Two-layer system
+// - Primitive layer (--raw-*): Raw values without context
+// - Semantic layer: Contextual usage references to primitives
+//
+// Typography scale uses Major Third ratio (1.25) from 16px base.
+// =============================================================================
+
+:root {
+    // Primitive typography - Major Third scale (1.25 ratio)
+    --raw-text-xs: 12px;
+    --raw-text-sm: 14px;
+    --raw-text-base: 16px;
+    --raw-text-md: 18px;
+    --raw-text-lg: 20px;
+    --raw-text-xl: 25px;
+    --raw-text-2xl: 31px;
+    --raw-text-3xl: 39px;
+    --raw-text-4xl: 49px;
+
+    // Primitive line-heights
+    --raw-leading-tight: 1.1;
+    --raw-leading-snug: 1.25;
+    --raw-leading-normal: 1.5;
+    --raw-leading-relaxed: 1.65;
+
+    // Font weights
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+
+    // Semantic typography
+    --text-body: var(--raw-text-base);
+    --text-body-leading: var(--raw-leading-relaxed);
+    --text-small: var(--raw-text-sm);
+    --text-caption: var(--raw-text-xs);
+    --text-heading-1: var(--raw-text-3xl);
+    --text-heading-2: var(--raw-text-2xl);
+    --text-heading-3: var(--raw-text-xl);
+    --text-heading-4: var(--raw-text-lg);
+    --text-heading-leading: var(--raw-leading-tight);
+}

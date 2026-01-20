@@ -1,0 +1,28 @@
+// =============================================================================
+// Design Token System: Spacing
+// =============================================================================
+// Part of the design token foundation for maxdaten.io
+//
+// Architecture: Two-layer system
+// - Primitive layer (--raw-*): Raw values without context
+// - Semantic layer: Contextual usage references to primitives
+//
+// Spacing is based on a strict 8px grid.
+// =============================================================================
+
+:root {
+    // Primitive spacing (strict 8px grid)
+    --raw-space-8: 8px;
+    --raw-space-16: 16px;
+    --raw-space-24: 24px;
+    --raw-space-32: 32px;
+    --raw-space-48: 48px;
+    --raw-space-64: 64px;
+    --raw-space-80: 80px;
+
+    // Semantic spacing
+    --space-inline: var(--raw-space-8);
+    --space-block: var(--raw-space-24);
+    --space-section: var(--raw-space-48);
+    --space-page: var(--raw-space-80);
+}
