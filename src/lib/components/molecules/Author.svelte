@@ -117,6 +117,7 @@
     }
 
     .name {
+        font-family: var(--font--mono), monospace;
         font-weight: 600;
         color: var(--color--primary);
         letter-spacing: 0.2px;
