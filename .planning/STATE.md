@@ -10,10 +10,10 @@ Code Blocks in progress
 
 ## Current Position
 
-Phase: 7 of 9 (Code Blocks) Plan: 1 of 3 in current phase Status: In progress Last activity:
-2026-01-20 — Completed 07-01-PLAN.md (Container Styling)
+Phase: 7 of 9 (Code Blocks) Plan: 2 of 3 in current phase Status: In progress Last activity:
+2026-01-20 — Completed 07-02-PLAN.md (Header and Copy Button Modernization)
 
-Progress: [###############.....] 75% (v1.0 complete, Phases 5-6 complete, 07-01 done)
+Progress: [################....] 80% (v1.0 complete, Phases 5-6 complete, 07-01 and 07-02 done)
 
 ## Milestones
 
@@ -26,9 +26,9 @@ See: .planning/ROADMAP.md
 
 **Velocity:**
 
-- Total plans completed: 6 (v2.0 milestone)
-- Average duration: 2.5min
-- Total execution time: 15min
+- Total plans completed: 7 (v2.0 milestone)
+- Average duration: 2.6min
+- Total execution time: 18min
 
 **By Phase:**
 
@@ -36,11 +36,11 @@ See: .planning/ROADMAP.md
 | ---------------- | ----- | ----- | -------- |
 | 05-design-tokens | 2     | 5min  | 2.5min   |
 | 06-typography    | 3     | 7min  | 2.3min   |
-| 07-code-blocks   | 1     | 3min  | 3min     |
+| 07-code-blocks   | 2     | 6min  | 3min     |
 
 **Recent Trend:**
 
-- Last 5 plans: 05-02 (1min), 06-01 (5min), 06-02 (n/a), 06-03 (2min), 07-01 (3min)
+- Last 5 plans: 06-01 (5min), 06-02 (n/a), 06-03 (2min), 07-01 (3min), 07-02 (3min)
 - Trend: Consistent execution speed
 
 _Updated after each plan completion_
@@ -66,6 +66,9 @@ Decisions are logged in PROJECT.md Key Decisions table. Recent decisions affecti
 - 07-01: Near-black (#1a1a1a) code block background (theme-independent)
 - 07-01: 12px border-radius for modern code block appearance
 - 07-01: 12px mobile font-size for code readability
+- 07-02: Copy button positioned bottom-right (avoids obscuring header content)
+- 07-02: Default 0.5 opacity for button discoverability without distraction
+- 07-02: @media (hover: none) for mobile-specific full opacity
 
 ### Tech Debt (from v1.0)
 
@@ -86,9 +89,9 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-01-20 Stopped at: Completed 07-01-PLAN.md (Container Styling) Resume file: None —
-ready for 07-02-PLAN.md (Header Redesign)
+Last session: 2026-01-20 Stopped at: Completed 07-02-PLAN.md (Header and Copy Button Modernization)
+Resume file: None — ready for 07-03-PLAN.md
 
 ---
 
-_State updated: 2026-01-20 after 07-01 plan completion_
+_State updated: 2026-01-20 after 07-02 plan completion_
