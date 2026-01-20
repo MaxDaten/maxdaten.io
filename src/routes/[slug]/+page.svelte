@@ -7,6 +7,7 @@
     import { PortableText } from '@portabletext/svelte';
     import { portableTextComponents } from '$lib/sanity/portable-text';
     import { urlFor, generateSrcSet } from '$lib/sanity/image';
+    import { calculateReadingTime } from '$lib/sanity/reading-time';
 
     let { data }: PageProps = $props();
 
@@ -18,13 +19,27 @@
     const date = $derived(post.date);
     const updated = $derived(post.lastModified ?? undefined);
     const tags = $derived(post.tags?.map((t) => t.name) ?? []);
+    const readingTimeMinutes = $derived(calculateReadingTime(post.body));
 
-    // Author handling - Sanity has embedded author
+    // Author handling - Sanity has embedded author with avatar and social links
     const author = $derived.by(() => {
         if (post.author) {
             return {
                 id: 'sanity-author',
                 name: post.author.name,
+                bio: post.author.bio,
+                avatarUrl: post.author.avatarUrl,
+                avatarAlt: post.author.avatarAlt,
+                socials: post.author.socialLinks
+                    ? {
+                          github: post.author.socialLinks.github,
+                          linkedin: post.author.socialLinks.linkedin,
+                          twitter: post.author.socialLinks.twitter,
+                          email: post.author.email
+                              ? `mailto:${post.author.email}`
+                              : undefined,
+                      }
+                    : undefined,
             };
         }
         return undefined;
@@ -57,6 +72,11 @@
                             </span>
                         {/if}
                     </div>
+                    {#if readingTimeMinutes}
+                        <div class="note">
+                            {readingTimeMinutes} min read
+                        </div>
+                    {/if}
                 </div>
             </div>
 

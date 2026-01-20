@@ -24,10 +24,14 @@ export type Author = {
     role?: string;
     bio?: string;
     specialties?: string[];
+    avatarUrl?: string;
+    avatarAlt?: string;
     socials?: {
         github?: string;
         linkedin?: string;
         email?: string;
+        twitter?: string;
+        website?: string;
     };
 };
 
@@ -69,7 +73,16 @@ export type SanityPost = {
     keywords?: string[];
     author?: {
         name: string;
-        image?: string;
+        bio?: string;
+        email?: string;
+        avatarUrl?: string;
+        avatarAlt?: string;
+        socialLinks?: {
+            twitter?: string;
+            github?: string;
+            linkedin?: string;
+            website?: string;
+        };
     };
     tags?: Array<{
         name: string;

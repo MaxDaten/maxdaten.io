@@ -2,15 +2,17 @@
     import GitHubIcon from '$lib/icons/socials/github.svelte';
     import LinkedInIcon from '$lib/icons/socials/linkedin.svelte';
     import EmailIcon from '$lib/icons/socials/email.svelte';
+    import TwitterIcon from '$lib/icons/socials/twitter.svelte';
 
     type Props = {
         github?: string;
         linkedin?: string;
         email?: string;
+        twitter?: string;
         size?: 'small' | 'medium' | 'large';
     };
 
-    let { github, linkedin, email, size = 'medium' }: Props = $props();
+    let { github, linkedin, email, twitter, size = 'medium' }: Props = $props();
 </script>
 
 <!-- External links - resolve() must NOT be used on external URLs -->
@@ -44,6 +46,16 @@
             title="Send an email"
         >
             <EmailIcon />
+        </a>
+    {/if}
+    {#if twitter}
+        <a
+            href={twitter}
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Follow on X (Twitter)"
+        >
+            <TwitterIcon />
         </a>
     {/if}
 </div>

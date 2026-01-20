@@ -9,15 +9,26 @@
     };
 
     let { author }: Props = $props();
-    const avatar = getAuthorAvatar(author.id);
+    // Use Sanity avatar URL if provided, otherwise fall back to file-based avatar
+    const fileAvatar = $derived(
+        author.avatarUrl ? null : getAuthorAvatar(author.id)
+    );
 </script>
 
 <div class="author">
     <div class="author-info">
-        {#if avatar}
+        {#if author.avatarUrl}
+            <img
+                class="avatar"
+                src={author.avatarUrl}
+                alt={author.avatarAlt ?? `${author.name}'s avatar`}
+                width="44"
+                height="44"
+            />
+        {:else if fileAvatar}
             <Img
                 class="avatar"
-                src={avatar}
+                src={fileAvatar}
                 alt="{author.name}'s avatar"
                 sizes="44px"
             />

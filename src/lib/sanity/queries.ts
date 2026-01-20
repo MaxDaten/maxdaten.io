@@ -29,7 +29,11 @@ export const postBySlugQuery = defineQuery(`
     keywords,
     author-> {
       name,
-      "image": image.asset->url
+      bio,
+      email,
+      "avatarUrl": avatar.asset->url,
+      "avatarAlt": avatar.alt,
+      socialLinks
     },
     tags[]-> {
       name,

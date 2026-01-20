@@ -21,6 +21,17 @@ export const authorType = defineType({
             description: 'Short biography (plain text)',
         }),
         defineField({
+            name: 'email',
+            title: 'Email',
+            type: 'string',
+            validation: (rule) =>
+                rule.regex(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, {
+                    name: 'email',
+                    invert: false,
+                }),
+            description: 'Contact email address',
+        }),
+        defineField({
             name: 'avatar',
             title: 'Avatar',
             type: 'image',
