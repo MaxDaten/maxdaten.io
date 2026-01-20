@@ -6,14 +6,14 @@ See: .planning/PROJECT.md (updated 2026-01-20)
 
 **Core value:** Creating new blog posts should be frictionless — no manual file scaffolding, no
 image folder management, just write and publish. **Current focus:** v2.0 Design Refinement — Phase 8
-Post Meta in progress
+Post Meta complete
 
 ## Current Position
 
-Phase: 8 of 9 (Post Meta) Plan: 1 of 3 in current phase Status: In progress Last activity:
-2026-01-20 — Completed 08-01-PLAN.md (Date Header)
+Phase: 8 of 9 (Post Meta) Plan: 2 of 2 in current phase Status: Phase complete Last activity:
+2026-01-20 — Completed 08-02-PLAN.md (Meta Line Consolidation)
 
-Progress: [##################..] 90% (v1.0 complete, Phases 5-7 complete, 08-01 complete)
+Progress: [###################.] 95% (v1.0 complete, Phases 5-8 complete)
 
 ## Milestones
 
@@ -26,9 +26,9 @@ See: .planning/ROADMAP.md
 
 **Velocity:**
 
-- Total plans completed: 9 (v2.0 milestone)
-- Average duration: 2.5min
-- Total execution time: 23min
+- Total plans completed: 10 (v2.0 milestone)
+- Average duration: 2.7min
+- Total execution time: 27min
 
 **By Phase:**
 
@@ -37,11 +37,11 @@ See: .planning/ROADMAP.md
 | 05-design-tokens | 2     | 5min  | 2.5min   |
 | 06-typography    | 3     | 7min  | 2.3min   |
 | 07-code-blocks   | 3     | 8min  | 2.7min   |
-| 08-post-meta     | 1     | 3min  | 3.0min   |
+| 08-post-meta     | 2     | 7min  | 3.5min   |
 
 **Recent Trend:**
 
-- Last 5 plans: 06-03 (2min), 07-01 (3min), 07-02 (3min), 07-03 (2min), 08-01 (3min)
+- Last 5 plans: 07-01 (3min), 07-02 (3min), 07-03 (2min), 08-01 (3min), 08-02 (4min)
 - Trend: Consistent execution speed
 
 _Updated after each plan completion_
@@ -76,6 +76,10 @@ Decisions are logged in PROJECT.md Key Decisions table. Recent decisions affecti
 - 08-01: Native Intl.RelativeTimeFormat for relative dates (no dependency)
 - 08-01: 7-day threshold for relative vs absolute date display
 - 08-01: Bullet separator for updated date display
+- 08-02: Inline author rendering (18px avatar) instead of Author component
+- 08-02: Orange accent for author name (signals actionable)
+- 08-02: 36px AuthorCard avatar (reduced from 56px)
+- 08-02: Social links consolidated to AuthorCard only
 
 ### Tech Debt (from v1.0)
 
@@ -96,9 +100,9 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-01-20 Stopped at: Completed 08-01-PLAN.md (Date Header) Resume file: None — ready
-for 08-02-PLAN.md
+Last session: 2026-01-20 Stopped at: Completed Phase 8 (Post Meta) — all plans executed, verified
+Resume file: None — ready for Phase 09
 
 ---
 
-_State updated: 2026-01-20 after 08-01 plan completion_
+_State updated: 2026-01-20 after Phase 8 completion_
