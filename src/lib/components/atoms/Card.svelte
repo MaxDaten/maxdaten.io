@@ -105,7 +105,7 @@
                 z-index: 1;
                 position: relative;
                 flex: 0 1 auto;
-                height: 350px;
+                aspect-ratio: 16 / 9; /* Consistent card image ratio */
             }
         }
     }
