@@ -27,7 +27,10 @@
         "test:e2e:headed": "playwright test --headed",
         "test:e2e:debug": "playwright test --debug",
         "storybook": "storybook dev -p 6006",
-        "build-storybook": "storybook build"
+        "build-storybook": "storybook build",
+        "studio:dev": "npm run dev --prefix studio",
+        "studio:build": "npm run build --prefix studio",
+        "studio:deploy": "npm run deploy --prefix studio"
     },
     "devDependencies": {
         "@fontsource-utils/scss": "^0.2.1",
