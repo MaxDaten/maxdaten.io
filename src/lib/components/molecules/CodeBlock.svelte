@@ -102,45 +102,74 @@
                 margin-top: 0;
             }
 
-            .copy-button {
+            :global(pre.shiki .line) {
+                display: inline-block;
+                position: relative;
+                padding-left: 12px;
+                min-height: 1.1em;
+            }
+        }
+
+        &.show-line-numbers {
+            :global(pre.shiki) {
+                padding-left: 4em;
+                counter-reset: line;
+            }
+
+            :global(pre.shiki .line) {
+                counter-increment: line;
+            }
+
+            :global(pre.shiki .line::before) {
+                content: counter(line);
                 position: absolute;
-                bottom: 12px;
-                right: 12px;
-                z-index: 2;
-                opacity: 0.5;
-                transition: opacity 150ms ease-out;
-                background: transparent;
-                border: none;
-                padding: 8px;
-                border-radius: 4px;
-                cursor: pointer;
-                color: rgba(255, 255, 255, 0.7);
-                display: flex;
-                align-items: center;
-                justify-content: center;
+                left: -3em;
+                width: 2.5em;
+                text-align: right;
+                color: rgba(255, 255, 255, 0.3);
+                user-select: none;
+                -webkit-user-select: none;
+            }
+        }
 
-                &:hover {
-                    opacity: 0.9;
-                    background: rgba(255, 255, 255, 0.08);
-                }
+        figure .copy-button {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            z-index: 2;
+            opacity: 0.5;
+            transition: opacity 150ms ease-out;
+            background: transparent;
+            border: none;
+            padding: 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            color: rgba(255, 255, 255, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-                &:disabled {
-                    cursor: default;
-                }
+            &:hover {
+                opacity: 0.9;
+                background: rgba(255, 255, 255, 0.08);
+            }
 
-                &.success {
-                    color: #4ade80;
-                    opacity: 0.9;
-                }
+            &:disabled {
+                cursor: default;
+            }
 
-                &.failure {
-                    color: #f87171;
-                    opacity: 0.9;
-                }
+            &.success {
+                color: #4ade80;
+                opacity: 0.9;
+            }
 
-                @media (hover: none) {
-                    opacity: 0.6;
-                }
+            &.failure {
+                color: #f87171;
+                opacity: 0.9;
+            }
+
+            @media (hover: none) {
+                opacity: 0.6;
             }
         }
 
