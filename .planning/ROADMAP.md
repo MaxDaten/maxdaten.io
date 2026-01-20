@@ -123,11 +123,13 @@ Phase 8 **Requirements**: LAYOUT-01, LAYOUT-02, LAYOUT-03, LAYOUT-04
 3. Footer removes empty space and adds value (column structure or useful content)
 4. Hero images use aspect-ratio (16:9 or 2:1) instead of fixed height
 
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
 
-- [ ] 09-01: TBD
+- [ ] 09-01-PLAN.md — Navigation active state and mobile tap targets
+- [ ] 09-02-PLAN.md — Footer horizontal layout with copyright
+- [ ] 09-03-PLAN.md — Hero and card image aspect-ratio conversion
 
 ## Progress
 
@@ -140,7 +142,7 @@ Plans:
 | 6. Typography      | v2.0      | 3/3            | Complete    | 2026-01-20 |
 | 7. Code Blocks     | v2.0      | 3/3            | Complete    | 2026-01-20 |
 | 8. Post Meta       | v2.0      | 2/2            | Complete    | 2026-01-20 |
-| 9. Navigation      | v2.0      | 0/TBD          | Not started | -          |
+| 9. Navigation      | v2.0      | 0/3            | Not started | -          |
 
 ---
 
