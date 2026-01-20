@@ -2,6 +2,7 @@
     import type { CustomBlockComponentProps } from '@portabletext/svelte';
     import CodeBlockUI from '$components/molecules/CodeBlock.svelte';
     import { codeToHtml } from 'shiki';
+    import { transformerMetaHighlight } from '@shikijs/transformers';
 
     interface CodeBlockValue {
         code: string;
@@ -28,6 +29,14 @@
         codeToHtml(code, {
             lang,
             theme: 'ayu-dark',
+            transformers: [
+                transformerMetaHighlight({
+                    className: 'highlighted',
+                }),
+            ],
+            meta: value.highlightedLines
+                ? { __raw: value.highlightedLines }
+                : undefined,
         }).then((html) => {
             highlightedHtml = html;
         });
