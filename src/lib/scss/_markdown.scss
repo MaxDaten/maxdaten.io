@@ -122,7 +122,8 @@
     pre.shiki {
         font-family: var(--font--mono), monospace;
         font-size: 14px;
-        border-radius: 8px;
+        border-radius: 12px;
+        background-color: #1a1a1a;
 
         // scrollbar
         overflow-x: auto;
@@ -136,7 +137,7 @@
         border: 0.5px solid rgba(var(--color--secondary-rgb), 0.5);
 
         @include breakpoints.for-phone-only {
-            font-size: 10px;
+            font-size: 12px;
         }
 
         code {
