@@ -2,83 +2,81 @@
 
 ## What This Is
 
-Migration of maxdaten.io's content management from git-managed markdown files to Sanity.io CMS.
-Enables frictionless content creation with visual editing, streamlined image handling, and enhanced
-publishing workflows — while preserving the existing site structure and URLs.
+A personal blog (maxdaten.io) powered by Sanity CMS. Content is authored in Sanity Studio with
+visual editing, served via SvelteKit with server-side rendering, and delivered through Vercel. The
+migration from git-managed markdown is complete.
 
 ## Core Value
 
 Creating new blog posts should be frictionless — no manual file scaffolding, no image folder
 management, just write and publish.
 
+## Current State
+
+**Shipped:** v1.0 Sanity CMS Migration (2026-01-20)
+
+- Sanity Studio: https://maxdaten.sanity.studio
+- Content: 9 blog posts, 3 gems, 7 tags, 1 author
+- Tech stack: SvelteKit 2.0, Svelte 5, Sanity.io, Vercel
+
+**Codebase:**
+
+- ~23,000 LOC (TypeScript, Svelte, JS)
+- Sanity schemas in `studio/schemas/`
+- GROQ queries in `src/lib/sanity/`
+- Portable Text components in `src/lib/sanity/portable-text/`
+
 ## Requirements
 
 ### Validated
 
-(None yet — ship to validate)
+- ✓ Blog Post schema with all fields — v1.0
+- ✓ Gems schema — v1.0
+- ✓ Author schema — v1.0
+- ✓ Tag management — v1.0
+- ✓ Portable Text with code blocks, images, callouts — v1.0
+- ✓ Sanity Studio deployed — v1.0
+- ✓ Draft/publish workflow — v1.0
+- ✓ Image optimization via Sanity CDN — v1.0
+- ✓ All content migrated with preserved URLs — v1.0
+- ✓ RSS feed with full HTML body — v1.0
+- ✓ Sitemap generation — v1.0
+- ✓ Old markdown system removed — v1.0
 
 ### Active
 
-- [ ] Blog posts content type in Sanity with all current fields
-- [ ] Gems content type in Sanity
-- [ ] Migrate existing blog posts to Sanity
-- [ ] Migrate existing gems to Sanity
-- [ ] Preserve existing URL slugs
-- [ ] SvelteKit fetches content from Sanity instead of local files
-- [ ] Image handling through Sanity's asset pipeline
-- [ ] Draft support (unpublished posts not visible on site)
 - [ ] Scheduled publishing (publish date in future)
-- [ ] Tags management UI in Sanity
-- [ ] SEO management (meta descriptions, OG images, keywords)
+- [ ] Live preview in Studio
+- [ ] Related posts algorithm
+- [ ] Reading time calculation
 
 ### Out of Scope
 
-- Redesigning the site's appearance — this is a backend/CMS change only
-- Real-time collaborative editing — single author workflow is sufficient
-- Multiple author support — personal blog
+- Real-time collaborative editing — single author workflow
+- Multiple datasets — personal blog
+- Newsletter integration — can be added later
 - Comments system — not part of current site
-- Newsletter integration — can be added later if desired
-
-## Context
-
-**Current state:**
-
-- SvelteKit 2.0 static blog with Svelte 5
-- Blog posts as `.md` files in `src/content/blog/` with MDsveX
-- Images stored in `src/lib/assets/images/posts/` folder structure
-- Gems system in `src/lib/data/gems/`
-- Frontmatter includes: title, slug, coverImage, excerpt, date, tags, keywords, hidden
-
-**Pain points being solved:**
-
-- Manual file creation with implicit naming conventions
-- Frontmatter field requirements hard to remember
-- Image management requires placing files in specific folders
-- No visual editing experience
-- No draft/scheduled publishing workflow
-
-**What stays the same:**
-
-- Site design and appearance
-- URL structure (`/[slug]` for posts)
-- RSS feed generation
-- Static site deployment to Vercel
-
-## Constraints
-
-- **URLs**: Must preserve existing URL slugs — SEO and existing links depend on this
-- **CMS**: Sanity.io (decided)
-- **Framework**: Existing SvelteKit architecture stays — only data source changes
-- **Deployment**: Static generation must continue working (Vercel)
+- Site redesign — backend/CMS change only
 
 ## Key Decisions
 
-| Decision                         | Rationale                                           | Outcome   |
-| -------------------------------- | --------------------------------------------------- | --------- |
-| Sanity.io as CMS                 | User preference, good image handling, visual editor | — Pending |
-| Full migration (not incremental) | Clean break from file-based workflow                | — Pending |
-| Include gems in migration        | Part of site content, same friction applies         | — Pending |
+| Decision                                  | Rationale                               | Outcome    |
+| ----------------------------------------- | --------------------------------------- | ---------- |
+| Sanity.io as CMS                          | Visual editor, good image handling      | ✓ Good     |
+| Full migration (not incremental)          | Clean break from file-based workflow    | ✓ Good     |
+| Predictable IDs (post-{slug}, gem-{slug}) | Enables idempotent migration            | ✓ Good     |
+| Vertical slice before full migration      | Validates approach with minimal risk    | ✓ Good     |
+| Dual-source routing during migration      | Gradual transition, no big bang         | ✓ Good     |
+| RSS with @portabletext/to-html            | Full HTML body without custom rendering | ✓ Good     |
+| skipLibCheck in tsconfig                  | Avoid Sanity v5 type errors             | ⚠️ Revisit |
+
+## Constraints
+
+- **URLs**: Must preserve existing URL slugs
+- **CMS**: Sanity.io (decided)
+- **Framework**: SvelteKit with SSR
+- **Deployment**: Vercel
 
 ---
 
-_Last updated: 2025-01-18 after initialization_
+_Last updated: 2026-01-20 after v1.0 milestone_
