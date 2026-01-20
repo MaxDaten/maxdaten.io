@@ -7,20 +7,20 @@
 
 ### Design Tokens
 
-- [ ] **TOKEN-01**: Spacing scale CSS custom properties (8px base: 4, 8, 12, 16, 24, 32, 48, 64,
+- [x] **TOKEN-01**: Spacing scale CSS custom properties (8px base: 4, 8, 12, 16, 24, 32, 48, 64,
       80px)
-- [ ] **TOKEN-02**: Typography scale CSS custom properties (Major Third 1.25: 12, 14, 16, 18, 20,
+- [x] **TOKEN-02**: Typography scale CSS custom properties (Major Third 1.25: 12, 14, 16, 18, 20,
       25, 31, 39px)
-- [ ] **TOKEN-03**: Color system tokens with single accent color (consolidate orange + teal)
-- [ ] **TOKEN-04**: Semantic tokens (spacing-block, spacing-section, text-body, text-heading)
+- [x] **TOKEN-03**: Color system tokens with single accent color (consolidate orange + teal)
+- [x] **TOKEN-04**: Semantic tokens (spacing-block, spacing-section, text-body, text-heading)
 
 ### Typography
 
-- [ ] **TYPO-01**: Body text line-height increased to 1.6-1.7 (from 1.3)
-- [ ] **TYPO-02**: Heading line-height set to 1.1-1.2
-- [ ] **TYPO-03**: Prose content max-width 680px for optimal reading (60-80 chars)
-- [ ] **TYPO-04**: Monospace font for dates and meta elements
-- [ ] **TYPO-05**: Font audit — reduce to minimal font families
+- [x] **TYPO-01**: Body text line-height increased to 1.6-1.7 (from 1.3)
+- [x] **TYPO-02**: Heading line-height set to 1.1-1.2
+- [x] **TYPO-03**: Prose content max-width 680px for optimal reading (60-80 chars)
+- [x] **TYPO-04**: Monospace font for dates and meta elements
+- [x] **TYPO-05**: Font audit — reduce to minimal font families
 
 ### Code Blocks
 
@@ -74,34 +74,34 @@ Deferred to future release:
 
 ## Traceability
 
-| Requirement | Phase   | Status  |
-| ----------- | ------- | ------- |
-| TOKEN-01    | Phase 5 | Pending |
-| TOKEN-02    | Phase 5 | Pending |
-| TOKEN-03    | Phase 5 | Pending |
-| TOKEN-04    | Phase 5 | Pending |
-| TYPO-01     | Phase 6 | Pending |
-| TYPO-02     | Phase 6 | Pending |
-| TYPO-03     | Phase 6 | Pending |
-| TYPO-04     | Phase 6 | Pending |
-| TYPO-05     | Phase 6 | Pending |
-| CODE-01     | Phase 7 | Pending |
-| CODE-02     | Phase 7 | Pending |
-| CODE-03     | Phase 7 | Pending |
-| CODE-04     | Phase 7 | Pending |
-| CODE-05     | Phase 7 | Pending |
-| CODE-06     | Phase 7 | Pending |
-| CODE-07     | Phase 7 | Pending |
-| META-01     | Phase 8 | Pending |
-| META-02     | Phase 8 | Pending |
-| META-03     | Phase 8 | Pending |
-| META-04     | Phase 8 | Pending |
-| META-05     | Phase 8 | Pending |
-| META-06     | Phase 8 | Pending |
-| LAYOUT-01   | Phase 9 | Pending |
-| LAYOUT-02   | Phase 9 | Pending |
-| LAYOUT-03   | Phase 9 | Pending |
-| LAYOUT-04   | Phase 9 | Pending |
+| Requirement | Phase   | Status   |
+| ----------- | ------- | -------- |
+| TOKEN-01    | Phase 5 | Complete |
+| TOKEN-02    | Phase 5 | Complete |
+| TOKEN-03    | Phase 5 | Complete |
+| TOKEN-04    | Phase 5 | Complete |
+| TYPO-01     | Phase 6 | Complete |
+| TYPO-02     | Phase 6 | Complete |
+| TYPO-03     | Phase 6 | Complete |
+| TYPO-04     | Phase 6 | Complete |
+| TYPO-05     | Phase 6 | Complete |
+| CODE-01     | Phase 7 | Pending  |
+| CODE-02     | Phase 7 | Pending  |
+| CODE-03     | Phase 7 | Pending  |
+| CODE-04     | Phase 7 | Pending  |
+| CODE-05     | Phase 7 | Pending  |
+| CODE-06     | Phase 7 | Pending  |
+| CODE-07     | Phase 7 | Pending  |
+| META-01     | Phase 8 | Pending  |
+| META-02     | Phase 8 | Pending  |
+| META-03     | Phase 8 | Pending  |
+| META-04     | Phase 8 | Pending  |
+| META-05     | Phase 8 | Pending  |
+| META-06     | Phase 8 | Pending  |
+| LAYOUT-01   | Phase 9 | Pending  |
+| LAYOUT-02   | Phase 9 | Pending  |
+| LAYOUT-03   | Phase 9 | Pending  |
+| LAYOUT-04   | Phase 9 | Pending  |
 
 **Coverage:**
 

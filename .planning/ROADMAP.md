@@ -21,7 +21,7 @@ gems, 7 tags, 1 author migrated with preserved URLs.
 spacing, refined typography, professional code blocks, and polished post meta.
 
 - [x] **Phase 5: Design Tokens** - Establish spacing, typography, and color token foundation
-- [ ] **Phase 6: Typography** - Apply typography scale and line-height improvements
+- [x] **Phase 6: Typography** - Apply typography scale and line-height improvements
 - [ ] **Phase 7: Code Blocks** - Refine code block styling and functionality
 - [ ] **Phase 8: Post Meta** - Consolidate and polish blog post metadata display
 - [ ] **Phase 9: Navigation & Layout** - Finalize navigation and page layout refinements
@@ -64,10 +64,10 @@ Phase 5 **Requirements**: TYPO-01, TYPO-02, TYPO-03, TYPO-04, TYPO-05
 
 Plans:
 
-- [ ] 06-01-PLAN.md — Consolidate font families (add JetBrains Mono, remove Merriweather/Ubuntu
+- [x] 06-01-PLAN.md — Consolidate font families (add JetBrains Mono, remove Merriweather/Ubuntu
       Mono)
-- [ ] 06-02-PLAN.md — Apply line-height tokens and configure prose width with breakout
-- [ ] 06-03-PLAN.md — Apply monospace font treatment to meta elements
+- [x] 06-02-PLAN.md — Apply line-height tokens and configure prose width with breakout
+- [x] 06-03-PLAN.md — Apply monospace font treatment to meta elements
 
 ### Phase 7: Code Blocks
 
@@ -134,7 +134,7 @@ Plans:
 | ------------------ | --------- | -------------- | ----------- | ---------- |
 | 1-4. CMS Migration | v1.0      | -              | Complete    | 2026-01-20 |
 | 5. Design Tokens   | v2.0      | 2/2            | Complete    | 2026-01-20 |
-| 6. Typography      | v2.0      | 0/3            | Not started | -          |
+| 6. Typography      | v2.0      | 3/3            | Complete    | 2026-01-20 |
 | 7. Code Blocks     | v2.0      | 0/TBD          | Not started | -          |
 | 8. Post Meta       | v2.0      | 0/TBD          | Not started | -          |
 | 9. Navigation      | v2.0      | 0/TBD          | Not started | -          |
