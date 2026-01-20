@@ -148,7 +148,8 @@
 
         .line {
             display: inline-block;
-            padding-left: 0.75em;
+            position: relative;
+            padding-left: 12px;
             min-height: 1.1em; // Force empty lines to same height
         }
 
