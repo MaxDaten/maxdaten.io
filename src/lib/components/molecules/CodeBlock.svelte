@@ -99,6 +99,7 @@
             figcaption + :global(pre.shiki) {
                 border-top-left-radius: 0;
                 border-top-right-radius: 0;
+                border-top: none;
             }
 
             .copy-button {
@@ -147,7 +148,6 @@
             width: 100%;
             background-color: #1a1a1a;
             border: none;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 12px 12px 0 0;
             display: flex;
             justify-content: space-between;

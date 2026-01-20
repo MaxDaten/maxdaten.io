@@ -123,7 +123,7 @@
         font-family: var(--font--mono), monospace;
         font-size: 14px;
         border-radius: 12px;
-        background-color: #1a1a1a;
+        background-color: #1a1a1a !important; // Override Shiki inline style
 
         // scrollbar
         overflow-x: auto;
