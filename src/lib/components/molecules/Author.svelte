@@ -2,7 +2,6 @@
     import type { Author } from '$lib/utils/types';
     import Img from '@zerodevx/svelte-img';
     import { getAuthorAvatar } from '$lib/utils/image-loader';
-    import Socials from '$components/molecules/Socials.svelte';
 
     type Props = {
         author: Author;
@@ -22,15 +21,15 @@
                 class="avatar"
                 src={author.avatarUrl}
                 alt={author.avatarAlt ?? `${author.name}'s avatar`}
-                width="44"
-                height="44"
+                width="32"
+                height="32"
             />
         {:else if fileAvatar}
             <Img
                 class="avatar"
                 src={fileAvatar}
                 alt="{author.name}'s avatar"
-                sizes="44px"
+                sizes="32px"
             />
         {:else}
             <div class="avatar-placeholder" aria-label="{author.name}'s avatar">
@@ -39,9 +38,6 @@
         {/if}
         <div class="author-details" aria-label="{author.name}'s details">
             <span class="name">{author.name}</span>
-            {#if author.socials}
-                <Socials {...author.socials} size="small" />
-            {/if}
         </div>
     </div>
 </div>
@@ -75,10 +71,6 @@
             display: flex;
             flex-direction: column;
             gap: 4px;
-
-            :global(.socials) {
-                padding: 0 16px;
-            }
         }
 
         @include breakpoints.for-phone-only {
@@ -87,8 +79,8 @@
     }
 
     :global(.avatar) {
-        width: 44px;
-        height: 44px;
+        width: 32px;
+        height: 32px;
         border-radius: 20%;
         overflow: hidden;
         object-fit: cover;
@@ -98,8 +90,8 @@
     }
 
     .avatar-placeholder {
-        width: 44px;
-        height: 44px;
+        width: 32px;
+        height: 32px;
         border-radius: 50%;
         background: linear-gradient(
             135deg,
@@ -111,7 +103,7 @@
         align-items: center;
         justify-content: center;
         font-weight: 600;
-        font-size: 1.2rem;
+        font-size: 1rem;
         border: 2px solid rgba(var(--color--primary-rgb), 0.2);
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     }
