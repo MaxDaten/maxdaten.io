@@ -14,6 +14,14 @@ export const authorType = defineType({
             validation: (rule) => rule.required(),
         }),
         defineField({
+            name: 'tagline',
+            title: 'Tagline',
+            type: 'string',
+            description:
+                'Short one-liner (e.g., "DevOps Engineer & Cloud Architect")',
+            validation: (rule) => rule.max(200),
+        }),
+        defineField({
             name: 'bio',
             title: 'Bio',
             type: 'text',

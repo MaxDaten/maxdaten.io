@@ -21,7 +21,6 @@ export type Author = {
     id: string;
     name: string;
     tagline?: string;
-    role?: string;
     bio?: string;
     specialties?: string[];
     avatarUrl?: string;
@@ -75,6 +74,7 @@ export type SanityPost = {
     outroText?: string;
     author?: {
         name: string;
+        tagline?: string;
         bio?: string;
         email?: string;
         avatarUrl?: string;

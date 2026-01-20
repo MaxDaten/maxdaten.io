@@ -15,11 +15,13 @@
     const fileAvatar = $derived(
         author.avatarUrl ? null : getAuthorAvatar(author.id)
     );
+    // Use explicit outroText, or fall back to author tagline
+    const displayOutro = $derived(outroText ?? author.tagline);
 </script>
 
 <aside class="author-callout">
-    {#if outroText}
-        <p class="outro-text">{outroText}</p>
+    {#if displayOutro}
+        <p class="outro-text">{displayOutro}</p>
     {/if}
 
     <div class="author-card">

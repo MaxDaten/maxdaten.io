@@ -30,6 +30,7 @@ export const postBySlugQuery = defineQuery(`
     outroText,
     author-> {
       name,
+      tagline,
       bio,
       email,
       "avatarUrl": avatar.asset->url,

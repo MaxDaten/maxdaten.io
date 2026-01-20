@@ -28,6 +28,7 @@
             return {
                 id: 'sanity-author',
                 name: post.author.name,
+                tagline: post.author.tagline,
                 bio: post.author.bio,
                 avatarUrl: post.author.avatarUrl,
                 avatarAlt: post.author.avatarAlt,
