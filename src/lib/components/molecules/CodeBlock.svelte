@@ -1,5 +1,4 @@
 <script lang="ts">
-    import Button from '$components/atoms/Button.svelte';
     import FileIcon from '$components/atoms/FileIcon.svelte';
     import CopyIcon from '$lib/icons/copy.svelte';
     import CheckIcon from '$lib/icons/check.svelte';
@@ -65,30 +64,25 @@
             </figcaption>
         {/if}
         {@render children?.()}
-        <Button
+        <button
             class="copy-button {copyButtonState}"
-            size="small"
-            color="secondary"
             disabled={copyButtonState !== 'idle'}
             onclick={copyToClipboard}
+            aria-label="Copy code to clipboard"
+            title={copyButtonState === 'idle'
+                ? 'Copy'
+                : copyButtonState === 'success'
+                  ? 'Copied!'
+                  : 'Error'}
         >
-            {#snippet icon()}
-                {#if copyButtonState === 'idle'}
-                    <CopyIcon width="20px" height="20px" />
-                {:else if copyButtonState === 'success'}
-                    <CheckIcon />
-                {:else if copyButtonState === 'failure'}
-                    <XIcon width="20px" height="20px" />
-                {/if}
-            {/snippet}
             {#if copyButtonState === 'idle'}
-                Copy to clipboard
+                <CopyIcon width="16px" height="16px" />
             {:else if copyButtonState === 'success'}
-                Copied!
+                <CheckIcon width="16px" height="16px" />
             {:else if copyButtonState === 'failure'}
-                Error
+                <XIcon width="16px" height="16px" />
             {/if}
-        </Button>
+        </button>
     </figure>
 </div>
 
@@ -107,38 +101,60 @@
                 border-top-right-radius: 0;
             }
 
-            :global(.copy-button) {
+            .copy-button {
                 position: absolute;
-                bottom: 8px;
-                right: 8px;
+                bottom: 12px;
+                right: 12px;
                 z-index: 2;
-                opacity: 0.5;
+                opacity: 0.4;
                 transition: opacity 0.2s ease-in-out;
-                width: 20ch;
+                background: transparent;
+                border: none;
+                padding: 6px;
+                border-radius: 4px;
+                cursor: pointer;
+                color: rgba(255, 255, 255, 0.7);
+                display: flex;
+                align-items: center;
+                justify-content: center;
 
                 &:hover {
+                    opacity: 1;
+                    background: rgba(255, 255, 255, 0.1);
+                }
+
+                &:disabled {
+                    cursor: default;
+                }
+
+                &.success {
+                    color: #4ade80;
+                    opacity: 1;
+                }
+
+                &.failure {
+                    color: #f87171;
                     opacity: 1;
                 }
 
                 @media (hover: none) {
-                    opacity: 1;
+                    opacity: 0.7;
                 }
             }
         }
 
         figcaption.filename-container {
             width: 100%;
-            background-color: #141414;
+            background-color: #1a1a1a;
             border: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 12px 12px 0 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0.5em 1em;
+            padding: 0.75em 1em;
             position: relative;
-            top: 0.5px; /* To sit on top of the pre border */
             z-index: 1;
-            margin-bottom: -0.5px;
 
             .filename-content {
                 display: flex;

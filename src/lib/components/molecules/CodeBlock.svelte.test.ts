@@ -48,12 +48,12 @@ describe('CodeBlock Component', () => {
 
         const copyButton = screen.getByRole('button', { name: /copy/i });
 
-        // Initially shows "Copy"
-        await expect.element(copyButton).toHaveTextContent('Copy');
+        // Initially has "Copy" title (icon-only button)
+        await expect.element(copyButton).toHaveAttribute('title', 'Copy');
 
         await copyButton.click();
 
-        // After clicking, button should show success state briefly
-        await expect.element(screen.getByText(/copied/i)).toBeInTheDocument();
+        // After clicking, button should show success state via title
+        await expect.element(copyButton).toHaveAttribute('title', 'Copied!');
     });
 });
