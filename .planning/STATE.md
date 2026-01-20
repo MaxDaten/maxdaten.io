@@ -6,14 +6,14 @@ See: .planning/PROJECT.md (updated 2026-01-20)
 
 **Core value:** Creating new blog posts should be frictionless — no manual file scaffolding, no
 image folder management, just write and publish. **Current focus:** v2.0 Design Refinement — Phase 7
-Code Blocks in progress
+Code Blocks complete
 
 ## Current Position
 
-Phase: 7 of 9 (Code Blocks) Plan: 2 of 3 in current phase Status: In progress Last activity:
-2026-01-20 — Completed 07-02-PLAN.md (Header and Copy Button Modernization)
+Phase: 7 of 9 (Code Blocks) Plan: 3 of 3 in current phase Status: Phase complete Last activity:
+2026-01-20 — Completed 07-03-PLAN.md (Line Highlighting)
 
-Progress: [################....] 80% (v1.0 complete, Phases 5-6 complete, 07-01 and 07-02 done)
+Progress: [#################...] 85% (v1.0 complete, Phases 5-7 complete)
 
 ## Milestones
 
@@ -26,9 +26,9 @@ See: .planning/ROADMAP.md
 
 **Velocity:**
 
-- Total plans completed: 7 (v2.0 milestone)
-- Average duration: 2.6min
-- Total execution time: 18min
+- Total plans completed: 8 (v2.0 milestone)
+- Average duration: 2.5min
+- Total execution time: 20min
 
 **By Phase:**
 
@@ -36,11 +36,11 @@ See: .planning/ROADMAP.md
 | ---------------- | ----- | ----- | -------- |
 | 05-design-tokens | 2     | 5min  | 2.5min   |
 | 06-typography    | 3     | 7min  | 2.3min   |
-| 07-code-blocks   | 2     | 6min  | 3min     |
+| 07-code-blocks   | 3     | 8min  | 2.7min   |
 
 **Recent Trend:**
 
-- Last 5 plans: 06-01 (5min), 06-02 (n/a), 06-03 (2min), 07-01 (3min), 07-02 (3min)
+- Last 5 plans: 06-02 (n/a), 06-03 (2min), 07-01 (3min), 07-02 (3min), 07-03 (2min)
 - Trend: Consistent execution speed
 
 _Updated after each plan completion_
@@ -69,6 +69,9 @@ Decisions are logged in PROJECT.md Key Decisions table. Recent decisions affecti
 - 07-02: Copy button positioned bottom-right (avoids obscuring header content)
 - 07-02: Default 0.5 opacity for button discoverability without distraction
 - 07-02: @media (hover: none) for mobile-specific full opacity
+- 07-03: Orange-tinted highlight (rgba 255,128,0,0.1) matching accent color
+- 07-03: Left border indicator for highlighted lines (2px solid)
+- 07-03: Shiki transformerMetaHighlight for line highlight parsing
 
 ### Tech Debt (from v1.0)
 
@@ -89,9 +92,9 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-01-20 Stopped at: Completed 07-02-PLAN.md (Header and Copy Button Modernization)
-Resume file: None — ready for 07-03-PLAN.md
+Last session: 2026-01-20 Stopped at: Completed 07-03-PLAN.md (Line Highlighting) — Phase 7 complete
+Resume file: None — ready for Phase 08
 
 ---
 
-_State updated: 2026-01-20 after 07-02 plan completion_
+_State updated: 2026-01-20 after 07-03 plan completion_
