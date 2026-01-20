@@ -5,15 +5,15 @@
 See: .planning/PROJECT.md (updated 2026-01-20)
 
 **Core value:** Creating new blog posts should be frictionless — no manual file scaffolding, no
-image folder management, just write and publish. **Current focus:** v2.0 Design Refinement — Phase 6
-Typography complete
+image folder management, just write and publish. **Current focus:** v2.0 Design Refinement — Phase 7
+Code Blocks in progress
 
 ## Current Position
 
-Phase: 6 of 9 (Typography) Plan: 3 of 3 in current phase Status: Phase complete Last activity:
-2026-01-20 — Completed 06-03-PLAN.md (Meta Elements Typography)
+Phase: 7 of 9 (Code Blocks) Plan: 1 of 3 in current phase Status: In progress Last activity:
+2026-01-20 — Completed 07-01-PLAN.md (Container Styling)
 
-Progress: [##############......] 70% (v1.0 complete, Phases 5-6 complete)
+Progress: [###############.....] 75% (v1.0 complete, Phases 5-6 complete, 07-01 done)
 
 ## Milestones
 
@@ -26,9 +26,9 @@ See: .planning/ROADMAP.md
 
 **Velocity:**
 
-- Total plans completed: 5 (v2.0 milestone)
-- Average duration: 2.4min
-- Total execution time: 12min
+- Total plans completed: 6 (v2.0 milestone)
+- Average duration: 2.5min
+- Total execution time: 15min
 
 **By Phase:**
 
@@ -36,10 +36,11 @@ See: .planning/ROADMAP.md
 | ---------------- | ----- | ----- | -------- |
 | 05-design-tokens | 2     | 5min  | 2.5min   |
 | 06-typography    | 3     | 7min  | 2.3min   |
+| 07-code-blocks   | 1     | 3min  | 3min     |
 
 **Recent Trend:**
 
-- Last 5 plans: 05-01 (4min), 05-02 (1min), 06-01 (5min), 06-02 (n/a), 06-03 (2min)
+- Last 5 plans: 05-02 (1min), 06-01 (5min), 06-02 (n/a), 06-03 (2min), 07-01 (3min)
 - Trend: Consistent execution speed
 
 _Updated after each plan completion_
@@ -62,6 +63,9 @@ Decisions are logged in PROJECT.md Key Decisions table. Recent decisions affecti
 - 06-01: JetBrains Mono 400 weight only (single weight sufficient for code/meta)
 - 06-03: Dates use uppercase + 0.05em letter-spacing for strong typographic statement
 - 06-03: Meta element monospace pattern (dates, reading time, tags, author use --font--mono)
+- 07-01: Near-black (#1a1a1a) code block background (theme-independent)
+- 07-01: 12px border-radius for modern code block appearance
+- 07-01: 12px mobile font-size for code readability
 
 ### Tech Debt (from v1.0)
 
@@ -82,9 +86,9 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-01-20 Stopped at: Completed 06-03-PLAN.md (Meta Elements Typography) Resume file:
-None — Phase 6 complete, ready for Phase 7 planning
+Last session: 2026-01-20 Stopped at: Completed 07-01-PLAN.md (Container Styling) Resume file: None —
+ready for 07-02-PLAN.md (Header Redesign)
 
 ---
 
-_State updated: 2026-01-20 after 06-03 plan completion_
+_State updated: 2026-01-20 after 07-01 plan completion_
