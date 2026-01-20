@@ -4,7 +4,6 @@
     import CopyIcon from '$lib/icons/copy.svelte';
     import CheckIcon from '$lib/icons/check.svelte';
     import XIcon from '$lib/icons/x.svelte';
-    import DiagonalStrip from '$components/atoms/DiagonalStrip.svelte';
 
     interface Props {
         filename: string | null;
@@ -52,16 +51,15 @@
     bind:this={codeBlockElement}
 >
     <figure>
-        {#if filename}
+        {#if filename || lang}
             <figcaption class="filename-container">
-                <div class="caption-background">
-                    <DiagonalStrip />
-                </div>
                 <div class="filename-content">
-                    <FileIcon {lang} size={16} class="file-icon" />
-                    <div data-testid="code-filename" class="filename">
-                        {filename}
-                    </div>
+                    {#if filename}
+                        <FileIcon {lang} size={16} class="file-icon" />
+                        <div data-testid="code-filename" class="filename">
+                            {filename}
+                        </div>
+                    {/if}
                 </div>
                 <div data-testid="code-lang" class="lang">{lang}</div>
             </figcaption>
@@ -99,6 +97,8 @@
         figure {
             margin: 1.5em 0;
             position: relative;
+            border-radius: 12px;
+            overflow: hidden;
 
             box-shadow: var(--code-box-shaow);
 
@@ -132,27 +132,17 @@
 
         figcaption.filename-container {
             width: 100%;
-            background: var(--color--secondary-tint);
-            border: 0.5px solid rgba(var(--color--secondary-rgb), 0.5);
-            border-bottom: 0.5px solid rgba(var(--color--secondary-rgb), 0.25);
-            border-radius: 8px 8px 0 0;
-            display: inline-block;
+            background-color: #141414;
+            border: none;
+            border-radius: 12px 12px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             padding: 0.5em 1em;
             position: relative;
             top: 0.5px; /* To sit on top of the pre border */
             z-index: 1;
             margin-bottom: -0.5px;
-
-            .caption-background {
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                border-radius: 8px 8px 0 0;
-                z-index: -1;
-                opacity: 0.1;
-            }
 
             .filename-content {
                 display: flex;
@@ -170,7 +160,11 @@
             }
 
             .lang {
-                display: none;
+                font-family: var(--font--mono), monospace;
+                font-size: 12px;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                color: rgba(255, 255, 255, 0.5);
             }
         }
     }
