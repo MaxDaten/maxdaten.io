@@ -94,21 +94,22 @@ Plans:
 ### Phase 8: Post Meta
 
 **Goal**: Present blog post metadata as cohesive, professional design element **Depends on**: Phase
-7 **Requirements**: META-01, META-02, META-03, META-04, META-05, META-06
+7 **Requirements**: META-01, META-02, META-03, META-04, META-05
 
 **Success Criteria** (what must be TRUE):
 
 1. Date displays above post title (not below)
 2. Date displays in monospace uppercase with wide letter-spacing
-3. Post meta consolidates to single line: Author · Date · Reading Time
+3. Post meta consolidates to single line: Author · Reading Time
 4. Author avatar displays at 32-36px size (reduced from 44px)
 5. Social links appear only in bottom author card (removed from header)
 
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
 
-- [ ] 08-01: TBD
+- [ ] 08-01-PLAN.md — Date formatting utility and header restructure (date above title)
+- [ ] 08-02-PLAN.md — Meta line consolidation and author component cleanup
 
 ### Phase 9: Navigation & Layout
 
@@ -138,7 +139,7 @@ Plans:
 | 5. Design Tokens   | v2.0      | 2/2            | Complete    | 2026-01-20 |
 | 6. Typography      | v2.0      | 3/3            | Complete    | 2026-01-20 |
 | 7. Code Blocks     | v2.0      | 3/3            | Complete    | 2026-01-20 |
-| 8. Post Meta       | v2.0      | 0/TBD          | Not started | -          |
+| 8. Post Meta       | v2.0      | 0/2            | Not started | -          |
 | 9. Navigation      | v2.0      | 0/TBD          | Not started | -          |
 
 ---
