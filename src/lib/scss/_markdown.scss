@@ -134,7 +134,7 @@
 
         margin: 0;
         line-height: 1.6;
-        border: 0.5px solid rgba(var(--color--secondary-rgb), 0.5);
+        border: none;
 
         @include breakpoints.for-phone-only {
             font-size: 12px;

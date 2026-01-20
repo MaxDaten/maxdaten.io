@@ -100,6 +100,7 @@
                 border-top-left-radius: 0;
                 border-top-right-radius: 0;
                 border-top: none;
+                margin-top: 0;
             }
 
             .copy-button {
@@ -153,8 +154,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 0.75em 1em;
-            position: relative;
-            z-index: 1;
+            margin: 0;
 
             .filename-content {
                 display: flex;
