@@ -40,11 +40,12 @@ spacing, refined typography, professional code blocks, and polished post meta.
 3. Color tokens consolidate to single accent color (no competing orange + teal)
 4. Semantic tokens exist for common use cases (spacing-block, text-body, text-heading)
 
-**Plans**: 1 plan
+**Plans**: 2 plans
 
 Plans:
 
-- [ ] 05-01-PLAN.md — Create spacing, typography, and color token files
+- [x] 05-01-PLAN.md — Create spacing, typography, and color token files
+- [ ] 05-02-PLAN.md — Close verification gaps (spacing scale + color consolidation)
 
 ### Phase 6: Typography
 
@@ -129,7 +130,7 @@ Plans:
 | Phase              | Milestone | Plans Complete | Status      | Completed  |
 | ------------------ | --------- | -------------- | ----------- | ---------- |
 | 1-4. CMS Migration | v1.0      | -              | Complete    | 2026-01-20 |
-| 5. Design Tokens   | v2.0      | 0/1            | Planned     | -          |
+| 5. Design Tokens   | v2.0      | 1/2            | In progress | -          |
 | 6. Typography      | v2.0      | 0/TBD          | Not started | -          |
 | 7. Code Blocks     | v2.0      | 0/TBD          | Not started | -          |
 | 8. Post Meta       | v2.0      | 0/TBD          | Not started | -          |
