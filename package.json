@@ -36,11 +36,9 @@
         "@fontsource-utils/scss": "^0.2.1",
         "@fontsource-variable/baloo-2": "^5.2.6",
         "@fontsource-variable/inter": "^5",
-        "@fontsource-variable/merriweather": "^5",
         "@fontsource/baloo-2": "^5.2.6",
         "@fontsource/inter": "^5.2.6",
         "@fontsource/merriweather": "^5.2.9",
-        "@fontsource/ubuntu-mono": "^5",
         "@frontmatter/extensibility": "^0.0.18",
         "@playwright/test": "^1.53.1",
         "@shikijs/transformers": "^3.7.0",
@@ -103,6 +101,7 @@
         "cookie": "^0.7.0"
     },
     "dependencies": {
+        "@fontsource/jetbrains-mono": "^5.2.8",
         "@portabletext/svelte": "^3.0.1",
         "@portabletext/to-html": "^5.0.1",
         "@sanity/client": "^7.14.0",
