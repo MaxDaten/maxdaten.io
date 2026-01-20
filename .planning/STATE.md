@@ -10,10 +10,10 @@ Navigation & Layout in progress
 
 ## Current Position
 
-Phase: 9 of 9 (Navigation & Layout) Plan: 2 of 3 in current phase Status: In progress Last activity:
-2026-01-20 — Completed 09-02-PLAN.md (Footer Layout)
+Phase: 9 of 9 (Navigation & Layout) Plan: 3 of 3 in current phase Status: In progress Last activity:
+2026-01-20 — Completed 09-03-PLAN.md (Image Aspect Ratio)
 
-Progress: [#####################] 96% (v1.0 complete, Phases 5-8 complete, 09-02 done)
+Progress: [######################] 98% (v1.0 complete, Phases 5-8 complete, 09-02 & 09-03 done)
 
 ## Milestones
 
@@ -26,9 +26,9 @@ See: .planning/ROADMAP.md
 
 **Velocity:**
 
-- Total plans completed: 11 (v2.0 milestone)
-- Average duration: 2.6min
-- Total execution time: 29min
+- Total plans completed: 12 (v2.0 milestone)
+- Average duration: 2.7min
+- Total execution time: 32min
 
 **By Phase:**
 
@@ -38,11 +38,11 @@ See: .planning/ROADMAP.md
 | 06-typography        | 3     | 7min  | 2.3min   |
 | 07-code-blocks       | 3     | 8min  | 2.7min   |
 | 08-post-meta         | 2     | 7min  | 3.5min   |
-| 09-navigation-layout | 1     | 2min  | 2.0min   |
+| 09-navigation-layout | 2     | 5min  | 2.5min   |
 
 **Recent Trend:**
 
-- Last 5 plans: 07-02 (3min), 07-03 (2min), 08-01 (3min), 08-02 (4min), 09-02 (2min)
+- Last 5 plans: 07-03 (2min), 08-01 (3min), 08-02 (4min), 09-02 (2min), 09-03 (3min)
 - Trend: Consistent execution speed
 
 _Updated after each plan completion_
@@ -85,6 +85,9 @@ Decisions are logged in PROJECT.md Key Decisions table. Recent decisions affecti
 - 09-02: 1080px max-width container constraint for footer content
 - 09-02: 767px breakpoint for mobile footer stacking
 - 09-02: Footer horizontal layout (copyright left, socials right)
+- 09-03: 2:1 aspect ratio for desktop hero (ultra-wide cinematic)
+- 09-03: 16:9 aspect ratio for mobile hero and all card images
+- 09-03: object-position: center for proper image center cropping
 
 ### Tech Debt (from v1.0)
 
@@ -105,9 +108,9 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-01-20 Stopped at: Completed 09-02-PLAN.md (Footer Layout) Resume file: None —
-continue with 09-01 or 09-03
+Last session: 2026-01-20 Stopped at: Completed 09-03-PLAN.md (Image Aspect Ratio) Resume file: None
+— continue with 09-01 (Navigation Active State)
 
 ---
 
-_State updated: 2026-01-20 after 09-02 completion_
+_State updated: 2026-01-20 after 09-03 completion_
