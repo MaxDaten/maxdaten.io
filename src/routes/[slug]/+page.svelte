@@ -129,7 +129,7 @@
     @use '$styles/breakpoints';
 
     article {
-        --main-column-width: 65ch;
+        --main-column-width: 680px;
         position: relative;
         padding: 40px 15px 80px;
         display: flex;
@@ -237,6 +237,17 @@
 
             :global(> *) {
                 grid-column: 2;
+            }
+
+            // Breakout elements - wider than prose column
+            :global(.code-block),
+            :global(pre.shiki),
+            :global(.wrap.reveal) {
+                grid-column: 1 / -1;
+                max-width: 800px;
+                width: 100%;
+                margin-left: auto;
+                margin-right: auto;
             }
         }
 
