@@ -122,14 +122,14 @@
     pre.shiki {
         font-family: var(--font--mono), monospace;
         font-size: 14px;
-        border-radius: 12px;
+        border-radius: 8px;
         background-color: #1a1a1a !important; // Override Shiki inline style
 
         // scrollbar
         overflow-x: auto;
         scrollbar-color: var(--color--secondary) var(--color--secondary-tint);
         scrollbar-width: thin;
-        padding: 1em 1em 20px;
+        padding: 16px 16px 24px;
         position: relative;
 
         margin: 0;
@@ -153,11 +153,11 @@
         }
 
         .line.highlighted {
-            background-color: rgba(255, 128, 0, 0.1);
+            background-color: rgba(255, 128, 0, 0.08);
             display: block;
-            margin: 0 -1em;
-            padding: 0 1em;
-            border-left: 2px solid rgba(255, 128, 0, 0.5);
+            margin: 0 -16px;
+            padding: 0 16px;
+            border-left: 2px solid rgba(255, 128, 0, 0.4);
         }
 
         &.show-line-numbers {

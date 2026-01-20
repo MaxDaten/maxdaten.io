@@ -89,12 +89,11 @@
 <style lang="scss">
     .code-block {
         figure {
-            margin: 1.5em 0;
+            margin: 24px 0;
             position: relative;
-            border-radius: 12px;
+            border-radius: 8px;
             overflow: hidden;
-
-            box-shadow: var(--code-box-shaow);
+            border: 0.5px solid rgba(255, 255, 255, 0.08);
 
             figcaption + :global(pre.shiki) {
                 border-top-left-radius: 0;
@@ -108,11 +107,11 @@
                 bottom: 12px;
                 right: 12px;
                 z-index: 2;
-                opacity: 0.4;
-                transition: opacity 0.2s ease-in-out;
+                opacity: 0.5;
+                transition: opacity 150ms ease-out;
                 background: transparent;
                 border: none;
-                padding: 6px;
+                padding: 8px;
                 border-radius: 4px;
                 cursor: pointer;
                 color: rgba(255, 255, 255, 0.7);
@@ -121,8 +120,8 @@
                 justify-content: center;
 
                 &:hover {
-                    opacity: 1;
-                    background: rgba(255, 255, 255, 0.1);
+                    opacity: 0.9;
+                    background: rgba(255, 255, 255, 0.08);
                 }
 
                 &:disabled {
@@ -131,16 +130,16 @@
 
                 &.success {
                     color: #4ade80;
-                    opacity: 1;
+                    opacity: 0.9;
                 }
 
                 &.failure {
                     color: #f87171;
-                    opacity: 1;
+                    opacity: 0.9;
                 }
 
                 @media (hover: none) {
-                    opacity: 0.7;
+                    opacity: 0.6;
                 }
             }
         }
@@ -148,23 +147,23 @@
         figcaption.filename-container {
             width: 100%;
             background-color: #1a1a1a;
-            border: none;
-            border-radius: 12px 12px 0 0;
+            border-bottom: 0.5px solid rgba(255, 255, 255, 0.06);
+            border-radius: 8px 8px 0 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0.75em 1em;
+            padding: 12px 16px;
             margin: 0;
 
             .filename-content {
                 display: flex;
                 align-items: center;
-                gap: 0.5em;
+                gap: 8px;
             }
 
             .filename {
                 font-family: var(--font--mono), monospace;
-                font-size: 14px;
+                font-size: 13px;
             }
 
             :global(.file-icon) {
@@ -173,10 +172,10 @@
 
             .lang {
                 font-family: var(--font--mono), monospace;
-                font-size: 12px;
+                font-size: 11px;
                 text-transform: uppercase;
                 letter-spacing: 0.05em;
-                color: rgba(255, 255, 255, 0.5);
+                color: rgba(255, 255, 255, 0.4);
             }
         }
     }
