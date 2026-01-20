@@ -7,12 +7,14 @@
 // - Primitive layer (--raw-*): Raw values without context
 // - Semantic layer: Contextual usage references to primitives
 //
-// Spacing is based on a strict 8px grid.
+// Spacing is based on an 8px grid with half-steps (4px, 12px) for fine-tuning.
 // =============================================================================
 
 :root {
-    // Primitive spacing (strict 8px grid)
+    // Primitive spacing (8px grid with half-steps)
+    --raw-space-4: 4px;
     --raw-space-8: 8px;
+    --raw-space-12: 12px;
     --raw-space-16: 16px;
     --raw-space-24: 24px;
     --raw-space-32: 32px;
