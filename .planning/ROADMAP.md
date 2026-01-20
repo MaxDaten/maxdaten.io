@@ -22,7 +22,7 @@ spacing, refined typography, professional code blocks, and polished post meta.
 
 - [x] **Phase 5: Design Tokens** - Establish spacing, typography, and color token foundation
 - [x] **Phase 6: Typography** - Apply typography scale and line-height improvements
-- [ ] **Phase 7: Code Blocks** - Refine code block styling and functionality
+- [x] **Phase 7: Code Blocks** - Refine code block styling and functionality
 - [ ] **Phase 8: Post Meta** - Consolidate and polish blog post metadata display
 - [ ] **Phase 9: Navigation & Layout** - Finalize navigation and page layout refinements
 
@@ -87,9 +87,9 @@ Phase 6 **Requirements**: CODE-01, CODE-02, CODE-03, CODE-04, CODE-05, CODE-06, 
 
 Plans:
 
-- [ ] 07-01-PLAN.md — Container styling (dark background, 12px radius, mobile font size)
-- [ ] 07-02-PLAN.md — Header and copy button (remove diagonal strip, show language, reposition copy)
-- [ ] 07-03-PLAN.md — Line highlighting support for tutorials
+- [x] 07-01-PLAN.md — Container styling (dark background, 12px radius, mobile font size)
+- [x] 07-02-PLAN.md — Header and copy button (remove diagonal strip, show language, reposition copy)
+- [x] 07-03-PLAN.md — Line highlighting support for tutorials
 
 ### Phase 8: Post Meta
 
@@ -137,7 +137,7 @@ Plans:
 | 1-4. CMS Migration | v1.0      | -              | Complete    | 2026-01-20 |
 | 5. Design Tokens   | v2.0      | 2/2            | Complete    | 2026-01-20 |
 | 6. Typography      | v2.0      | 3/3            | Complete    | 2026-01-20 |
-| 7. Code Blocks     | v2.0      | 0/3            | Not started | -          |
+| 7. Code Blocks     | v2.0      | 3/3            | Complete    | 2026-01-20 |
 | 8. Post Meta       | v2.0      | 0/TBD          | Not started | -          |
 | 9. Navigation      | v2.0      | 0/TBD          | Not started | -          |
 
