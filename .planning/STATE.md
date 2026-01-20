@@ -10,10 +10,10 @@ image folder management, just write and publish. **Current focus:** v2.0 Design 
 
 ## Current Position
 
-Phase: 5 of 9 (Design Tokens) Plan: 0 of TBD in current phase Status: Ready to plan Last activity:
-2026-01-20 — Roadmap created for v2.0 milestone
+Phase: 5 of 9 (Design Tokens) Plan: 1 of 1 in current phase Status: Phase complete Last activity:
+2026-01-20 — Completed 05-01-PLAN.md (Design Token Foundation)
 
-Progress: [##########..........] 44% (v1.0 complete, v2.0 starting)
+Progress: [###########.........] 55% (v1.0 complete, Phase 5 complete)
 
 ## Milestones
 
@@ -26,20 +26,20 @@ See: .planning/ROADMAP.md
 
 **Velocity:**
 
-- Total plans completed: 0 (v2.0 milestone)
-- Average duration: -
-- Total execution time: -
+- Total plans completed: 1 (v2.0 milestone)
+- Average duration: 4min
+- Total execution time: 4min
 
 **By Phase:**
 
-| Phase | Plans | Total | Avg/Plan |
-| ----- | ----- | ----- | -------- |
-| -     | -     | -     | -        |
+| Phase            | Plans | Total | Avg/Plan |
+| ---------------- | ----- | ----- | -------- |
+| 05-design-tokens | 1     | 4min  | 4min     |
 
 **Recent Trend:**
 
-- Last 5 plans: -
-- Trend: -
+- Last 5 plans: 05-01 (4min)
+- Trend: N/A (first plan)
 
 _Updated after each plan completion_
 
@@ -52,6 +52,9 @@ Decisions are logged in PROJECT.md Key Decisions table. Recent decisions affecti
 - v2.0 init: Foundation-first approach — tokens before component styling
 - v2.0 init: Single accent color (consolidate orange + teal)
 - v2.0 init: Use Playwright for visual inspection during design work
+- 05-01: Two-layer token architecture (--raw-\* primitives + semantic references)
+- 05-01: Pixel values for token definitions (components convert to rem as needed)
+- 05-01: Import order: reset -> variables -> tokens -> themes
 
 ### Tech Debt (from v1.0)
 
@@ -64,7 +67,7 @@ Non-critical items to address in future:
 
 ### Pending Todos
 
-None yet.
+None.
 
 ### Blockers/Concerns
 
@@ -72,9 +75,9 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-01-20 Stopped at: Roadmap created for v2.0 Design Refinement milestone Resume
-file: None — ready to begin Phase 5 planning
+Last session: 2026-01-20 Stopped at: Completed 05-01-PLAN.md (Design Token Foundation) Resume file:
+None — ready to begin Phase 6 planning
 
 ---
 
-_State updated: 2026-01-20 after v2.0 roadmap creation_
+_State updated: 2026-01-20 after 05-01 plan completion_
