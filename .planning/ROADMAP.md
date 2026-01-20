@@ -20,7 +20,7 @@ gems, 7 tags, 1 author migrated with preserved URLs.
 **Milestone Goal:** Evolve the site from "looks good" to precision-engineered minimalism — unified
 spacing, refined typography, professional code blocks, and polished post meta.
 
-- [ ] **Phase 5: Design Tokens** - Establish spacing, typography, and color token foundation
+- [x] **Phase 5: Design Tokens** - Establish spacing, typography, and color token foundation
 - [ ] **Phase 6: Typography** - Apply typography scale and line-height improvements
 - [ ] **Phase 7: Code Blocks** - Refine code block styling and functionality
 - [ ] **Phase 8: Post Meta** - Consolidate and polish blog post metadata display
@@ -45,7 +45,7 @@ spacing, refined typography, professional code blocks, and polished post meta.
 Plans:
 
 - [x] 05-01-PLAN.md — Create spacing, typography, and color token files
-- [ ] 05-02-PLAN.md — Close verification gaps (spacing scale + color consolidation)
+- [x] 05-02-PLAN.md — Close verification gaps (spacing scale + color consolidation)
 
 ### Phase 6: Typography
 
@@ -130,7 +130,7 @@ Plans:
 | Phase              | Milestone | Plans Complete | Status      | Completed  |
 | ------------------ | --------- | -------------- | ----------- | ---------- |
 | 1-4. CMS Migration | v1.0      | -              | Complete    | 2026-01-20 |
-| 5. Design Tokens   | v2.0      | 1/2            | In progress | -          |
+| 5. Design Tokens   | v2.0      | 2/2            | Complete    | 2026-01-20 |
 | 6. Typography      | v2.0      | 0/TBD          | Not started | -          |
 | 7. Code Blocks     | v2.0      | 0/TBD          | Not started | -          |
 | 8. Post Meta       | v2.0      | 0/TBD          | Not started | -          |
