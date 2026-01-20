@@ -13,6 +13,7 @@
 
 <style lang="scss">
     .tag {
+        font-family: var(--font--mono), monospace;
         display: flex;
         align-items: center;
         justify-content: center;
