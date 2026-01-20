@@ -21,10 +21,3 @@ npm run dev
 
 The site should now be available at http://localhost:5173/ on your local machine, and your local
 machine's IP address on your network—great for testing on mobile OSes.
-
-## Managing Posts
-
-All posts are Markdown files that are processed with [MDsveX](https://mdsvex.pngwn.io/) to allow
-using Svelte components inside them. In order to make it easier to manage posts, I highly recommend
-the [Front Matter VS Code extension](https://frontmatter.codes/), which gives you a nice CMS-like
-UI.
