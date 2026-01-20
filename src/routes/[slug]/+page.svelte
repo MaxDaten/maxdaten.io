@@ -2,7 +2,7 @@
     import Tag from '$components/atoms/Tag.svelte';
     import Author from '$components/molecules/Author.svelte';
     import AuthorCard from '$components/molecules/AuthorCard.svelte';
-    import dateformat from 'dateformat';
+    import { formatPostDate, formatDateISO } from '$lib/utils/format-date';
     import { PageTransition } from 'ssgoi';
     import type { PageProps } from './$types';
     import { PortableText } from '@portabletext/svelte';
@@ -52,6 +52,20 @@
 <PageTransition>
     <article>
         <div class="header">
+            <!-- Date FIRST (above title) -->
+            <div class="date-header">
+                <time datetime={formatDateISO(date)}
+                    >{formatPostDate(date)}</time
+                >
+                {#if updated}
+                    <span class="updated-label">
+                        Updated: <time datetime={formatDateISO(updated)}
+                            >{formatPostDate(updated)}</time
+                        >
+                    </span>
+                {/if}
+            </div>
+
             <h1>{title}</h1>
 
             <div class="metadata">
@@ -59,22 +73,6 @@
                     <Author {author} />
                 {/if}
                 <div class="post-details">
-                    <div class="note">
-                        <time datetime={date}
-                            >{dateformat(date, 'UTC:mmm dd, yyyy')}</time
-                        >
-                        {#if updated}
-                            <span>-</span>
-                            <span>
-                                Updated: <time datetime={updated}
-                                    >{dateformat(
-                                        updated,
-                                        'UTC:mmm dd, yyyy'
-                                    )}</time
-                                >
-                            </span>
-                        {/if}
-                    </div>
                     {#if readingTimeMinutes}
                         <div class="note">
                             {readingTimeMinutes} min read
@@ -166,6 +164,25 @@
             width: min(var(--main-column-width), 100%);
             margin: 0 auto 0.8em;
 
+            .date-header {
+                font-family: var(--font--mono), monospace;
+                font-size: 12px;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                color: rgba(var(--color--secondary-rgb), 0.6);
+                margin-bottom: 16px;
+            }
+
+            .updated-label {
+                margin-left: 12px;
+
+                &::before {
+                    content: '·';
+                    margin-right: 12px;
+                    color: rgba(var(--color--secondary-rgb), 0.4);
+                }
+            }
+
             .note {
                 font-family: var(--font--mono), monospace;
                 color: rgba(var(--color--secondary-rgb), 0.8);
@@ -175,11 +192,6 @@
                 @include breakpoints.for-phone-only {
                     gap: 4px;
                 }
-            }
-
-            .note time {
-                text-transform: uppercase;
-                letter-spacing: 0.05em;
             }
 
             .metadata {
