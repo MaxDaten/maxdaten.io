@@ -4,8 +4,8 @@ test('/robots.txt is valid', async ({ page }) => {
     const response = await page.goto('/robots.txt');
     expect(response?.status()).toBe(200);
 
-    // Check content type
-    expect(response?.headers()['content-type']).toBe('text/plain');
+    // Check content type (may include charset)
+    expect(response?.headers()['content-type']).toContain('text/plain');
 
     // Get the robots.txt content
     const content = await page.textContent('body');
