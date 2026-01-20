@@ -27,6 +27,7 @@ export const postBySlugQuery = defineQuery(`
     lastModified,
     hidden,
     keywords,
+    outroText,
     author-> {
       name,
       bio,

@@ -1,6 +1,7 @@
 <script lang="ts">
     import Tag from '$components/atoms/Tag.svelte';
     import Author from '$components/molecules/Author.svelte';
+    import AuthorCard from '$components/molecules/AuthorCard.svelte';
     import dateformat from 'dateformat';
     import { PageTransition } from 'ssgoi';
     import type { PageProps } from './$types';
@@ -113,6 +114,10 @@
                 value={post.body}
                 components={portableTextComponents}
             />
+
+            {#if author}
+                <AuthorCard {author} outroText={post.outroText} />
+            {/if}
         </div>
     </article>
 </PageTransition>

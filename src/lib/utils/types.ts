@@ -71,6 +71,7 @@ export type SanityPost = {
     lastModified?: string;
     hidden?: boolean;
     keywords?: string[];
+    outroText?: string;
     author?: {
         name: string;
         bio?: string;

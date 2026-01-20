@@ -117,6 +117,15 @@ export const postType = defineType({
                 defineArrayMember({ type: 'youtubeEmbed' }),
             ],
         }),
+        defineField({
+            name: 'outroText',
+            title: 'Author Callout Text',
+            type: 'text',
+            rows: 3,
+            group: 'content',
+            description:
+                'Personalized outro message shown above the author card at the end of the post (e.g., "Thanks for reading! Questions about TDD? Let\'s connect.")',
+        }),
         // Meta group
         defineField({
             name: 'coverImage',
