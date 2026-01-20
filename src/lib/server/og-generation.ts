@@ -15,12 +15,9 @@ const baloo2Font = await read(
     ).default
 ).arrayBuffer();
 
-const merriweatherFont = await read(
-    (
-        await import(
-            '@fontsource/merriweather/files/merriweather-latin-700-normal.woff?inline'
-        )
-    ).default
+const interBoldFont = await read(
+    (await import('@fontsource/inter/files/inter-latin-700-normal.woff?inline'))
+        .default
 ).arrayBuffer();
 
 const interFont = await read(
@@ -46,8 +43,8 @@ export const SATORI_OPTIONS: SatoriOptions = {
             weight: 400,
         },
         {
-            name: 'Merriweather',
-            data: merriweatherFont,
+            name: 'Inter',
+            data: interBoldFont,
             style: 'normal',
             weight: 700,
         },

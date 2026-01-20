@@ -51,7 +51,7 @@
     @use '$lib/scss/_themes.scss' as *;
 
     $font-default: 'Inter', sans-serif;
-    $font-title: 'Merriweather', serif;
+    $font-title: 'Inter', sans-serif;
     $font-logo: 'Baloo-2', sans-serif;
 
     .og-card {
