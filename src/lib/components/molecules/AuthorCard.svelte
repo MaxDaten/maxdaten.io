@@ -31,15 +31,15 @@
                     class="avatar"
                     src={author.avatarUrl}
                     alt={author.avatarAlt ?? `${author.name}'s avatar`}
-                    width="56"
-                    height="56"
+                    width="36"
+                    height="36"
                 />
             {:else if fileAvatar}
                 <Img
                     class="avatar"
                     src={fileAvatar}
                     alt="{author.name}'s avatar"
-                    sizes="56px"
+                    sizes="36px"
                 />
             {:else}
                 <div
@@ -84,7 +84,7 @@
         margin-top: 32px;
         padding: 24px;
         border-radius: 8px;
-        background: var(--color--background);
+        background: rgba(var(--color--secondary-rgb), 0.03);
         border: 1px solid rgba(var(--color--secondary-rgb), 0.12);
 
         @include breakpoints.for-phone-only {
@@ -123,8 +123,8 @@
         flex-shrink: 0;
 
         :global(.avatar) {
-            width: 56px;
-            height: 56px;
+            width: 36px;
+            height: 36px;
             border-radius: 8px;
             object-fit: cover;
             border: 1px solid rgba(var(--color--secondary-rgb), 0.1);
@@ -132,15 +132,15 @@
 
         @include breakpoints.for-phone-only {
             :global(.avatar) {
-                width: 48px;
-                height: 48px;
+                width: 32px;
+                height: 32px;
             }
         }
     }
 
     .avatar-placeholder {
-        width: 56px;
-        height: 56px;
+        width: 36px;
+        height: 36px;
         border-radius: 8px;
         background: rgba(var(--color--secondary-rgb), 0.08);
         color: rgba(var(--color--secondary-rgb), 0.6);
@@ -148,13 +148,13 @@
         align-items: center;
         justify-content: center;
         font-weight: 600;
-        font-size: 18px;
+        font-size: 14px;
         letter-spacing: -0.02em;
 
         @include breakpoints.for-phone-only {
-            width: 48px;
-            height: 48px;
-            font-size: 16px;
+            width: 32px;
+            height: 32px;
+            font-size: 12px;
         }
     }
 
