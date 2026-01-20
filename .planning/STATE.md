@@ -5,37 +5,53 @@
 See: .planning/PROJECT.md (updated 2026-01-20)
 
 **Core value:** Creating new blog posts should be frictionless — no manual file scaffolding, no
-image folder management, just write and publish. **Current focus:** v1.0 complete — planning next
-milestone
+image folder management, just write and publish. **Current focus:** v2.0 Design Refinement — Phase 5
+(Design Tokens)
 
 ## Current Position
 
-Phase: None (milestone complete) Plan: None Status: Ready for next milestone Last activity:
-2026-01-20 — v1.0 milestone shipped
+Phase: 5 of 9 (Design Tokens) Plan: 0 of TBD in current phase Status: Ready to plan Last activity:
+2026-01-20 — Roadmap created for v2.0 milestone
 
-Progress: Milestone v1.0 complete
+Progress: [##########..........] 44% (v1.0 complete, v2.0 starting)
 
 ## Milestones
 
-- ✅ **v1.0 Sanity CMS Migration** — Shipped 2026-01-20
+- [x] **v1.0 Sanity CMS Migration** — Shipped 2026-01-20
+- [ ] **v2.0 Design Refinement** — In progress (Phases 5-9)
 
-See: .planning/MILESTONES.md
+See: .planning/ROADMAP.md
 
-## Session Continuity
+## Performance Metrics
 
-Last session: 2026-01-20 Stopped at: Milestone v1.0 complete Resume: Start next milestone with
-`/gsd:new-milestone`
+**Velocity:**
+
+- Total plans completed: 0 (v2.0 milestone)
+- Average duration: -
+- Total execution time: -
+
+**By Phase:**
+
+| Phase | Plans | Total | Avg/Plan |
+| ----- | ----- | ----- | -------- |
+| -     | -     | -     | -        |
+
+**Recent Trend:**
+
+- Last 5 plans: -
+- Trend: -
+
+_Updated after each plan completion_
 
 ## Accumulated Context
 
 ### Decisions
 
-Full decision log in PROJECT.md. Key decisions from v1.0:
+Decisions are logged in PROJECT.md Key Decisions table. Recent decisions affecting current work:
 
-- Sanity.io as CMS (visual editor, good image handling)
-- Predictable IDs for idempotent migration
-- Vertical slice approach validated before full migration
-- Dual-source routing for gradual transition
+- v2.0 init: Foundation-first approach — tokens before component styling
+- v2.0 init: Single accent color (consolidate orange + teal)
+- v2.0 init: Use Playwright for visual inspection during design work
 
 ### Tech Debt (from v1.0)
 
@@ -46,10 +62,19 @@ Non-critical items to address in future:
 - youtubeEmbed schema without component
 - Pre-existing Svelte 5 reactivity warnings
 
+### Pending Todos
+
+None yet.
+
 ### Blockers/Concerns
 
 None.
 
+## Session Continuity
+
+Last session: 2026-01-20 Stopped at: Roadmap created for v2.0 Design Refinement milestone Resume
+file: None — ready to begin Phase 5 planning
+
 ---
 
-_State updated: 2026-01-20 after v1.0 milestone completion_
+_State updated: 2026-01-20 after v2.0 roadmap creation_

@@ -76,39 +76,39 @@ Deferred to future release:
 
 | Requirement | Phase   | Status  |
 | ----------- | ------- | ------- |
-| TOKEN-01    | Phase 1 | Pending |
-| TOKEN-02    | Phase 1 | Pending |
-| TOKEN-03    | Phase 1 | Pending |
-| TOKEN-04    | Phase 1 | Pending |
-| TYPO-01     | Phase 2 | Pending |
-| TYPO-02     | Phase 2 | Pending |
-| TYPO-03     | Phase 2 | Pending |
-| TYPO-04     | Phase 2 | Pending |
-| TYPO-05     | Phase 2 | Pending |
-| CODE-01     | Phase 3 | Pending |
-| CODE-02     | Phase 3 | Pending |
-| CODE-03     | Phase 3 | Pending |
-| CODE-04     | Phase 3 | Pending |
-| CODE-05     | Phase 3 | Pending |
-| CODE-06     | Phase 3 | Pending |
-| CODE-07     | Phase 3 | Pending |
-| META-01     | Phase 4 | Pending |
-| META-02     | Phase 4 | Pending |
-| META-03     | Phase 4 | Pending |
-| META-04     | Phase 4 | Pending |
-| META-05     | Phase 4 | Pending |
-| META-06     | Phase 4 | Pending |
-| LAYOUT-01   | Phase 5 | Pending |
-| LAYOUT-02   | Phase 5 | Pending |
-| LAYOUT-03   | Phase 5 | Pending |
-| LAYOUT-04   | Phase 5 | Pending |
+| TOKEN-01    | Phase 5 | Pending |
+| TOKEN-02    | Phase 5 | Pending |
+| TOKEN-03    | Phase 5 | Pending |
+| TOKEN-04    | Phase 5 | Pending |
+| TYPO-01     | Phase 6 | Pending |
+| TYPO-02     | Phase 6 | Pending |
+| TYPO-03     | Phase 6 | Pending |
+| TYPO-04     | Phase 6 | Pending |
+| TYPO-05     | Phase 6 | Pending |
+| CODE-01     | Phase 7 | Pending |
+| CODE-02     | Phase 7 | Pending |
+| CODE-03     | Phase 7 | Pending |
+| CODE-04     | Phase 7 | Pending |
+| CODE-05     | Phase 7 | Pending |
+| CODE-06     | Phase 7 | Pending |
+| CODE-07     | Phase 7 | Pending |
+| META-01     | Phase 8 | Pending |
+| META-02     | Phase 8 | Pending |
+| META-03     | Phase 8 | Pending |
+| META-04     | Phase 8 | Pending |
+| META-05     | Phase 8 | Pending |
+| META-06     | Phase 8 | Pending |
+| LAYOUT-01   | Phase 9 | Pending |
+| LAYOUT-02   | Phase 9 | Pending |
+| LAYOUT-03   | Phase 9 | Pending |
+| LAYOUT-04   | Phase 9 | Pending |
 
 **Coverage:**
 
-- v2.0 requirements: 24 total
-- Mapped to phases: 24
+- v2.0 requirements: 26 total
+- Mapped to phases: 26
 - Unmapped: 0
 
 ---
 
-_Requirements defined: 2026-01-20_ _Last updated: 2026-01-20 after initial definition_
+_Requirements defined: 2026-01-20_ _Last updated: 2026-01-20 after roadmap creation_
