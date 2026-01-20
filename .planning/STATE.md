@@ -6,12 +6,12 @@ See: .planning/PROJECT.md (updated 2026-01-20)
 
 **Core value:** Creating new blog posts should be frictionless — no manual file scaffolding, no
 image folder management, just write and publish. **Current focus:** v2.0 Design Refinement — Phase 5
-(Design Tokens)
+complete, ready for Phase 6
 
 ## Current Position
 
-Phase: 5 of 9 (Design Tokens) Plan: 1 of 1 in current phase Status: Phase complete Last activity:
-2026-01-20 — Completed 05-01-PLAN.md (Design Token Foundation)
+Phase: 5 of 9 (Design Tokens) Plan: 2 of 2 in current phase Status: Phase complete Last activity:
+2026-01-20 — Completed 05-02-PLAN.md (Gap Closure)
 
 Progress: [###########.........] 55% (v1.0 complete, Phase 5 complete)
 
@@ -26,20 +26,20 @@ See: .planning/ROADMAP.md
 
 **Velocity:**
 
-- Total plans completed: 1 (v2.0 milestone)
-- Average duration: 4min
-- Total execution time: 4min
+- Total plans completed: 2 (v2.0 milestone)
+- Average duration: 2.5min
+- Total execution time: 5min
 
 **By Phase:**
 
 | Phase            | Plans | Total | Avg/Plan |
 | ---------------- | ----- | ----- | -------- |
-| 05-design-tokens | 1     | 4min  | 4min     |
+| 05-design-tokens | 2     | 5min  | 2.5min   |
 
 **Recent Trend:**
 
-- Last 5 plans: 05-01 (4min)
-- Trend: N/A (first plan)
+- Last 5 plans: 05-01 (4min), 05-02 (1min)
+- Trend: Faster (gap closure plans are quick)
 
 _Updated after each plan completion_
 
@@ -55,6 +55,8 @@ Decisions are logged in PROJECT.md Key Decisions table. Recent decisions affecti
 - 05-01: Two-layer token architecture (--raw-\* primitives + semantic references)
 - 05-01: Pixel values for token definitions (components convert to rem as needed)
 - 05-01: Import order: reset -> variables -> tokens -> themes
+- 05-02: Half-step spacing (4px, 12px) allowed in 8px grid
+- 05-02: Secondary color aliased to primary orange (backward compatible)
 
 ### Tech Debt (from v1.0)
 
@@ -75,9 +77,9 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-01-20 Stopped at: Completed 05-01-PLAN.md (Design Token Foundation) Resume file:
-None — ready to begin Phase 6 planning
+Last session: 2026-01-20 Stopped at: Completed 05-02-PLAN.md (Gap Closure) Resume file: None — ready
+to begin Phase 6 planning
 
 ---
 
-_State updated: 2026-01-20 after 05-01 plan completion_
+_State updated: 2026-01-20 after 05-02 plan completion_
