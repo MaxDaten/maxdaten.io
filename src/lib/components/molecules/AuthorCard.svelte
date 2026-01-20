@@ -27,15 +27,15 @@
                     class="avatar"
                     src={author.avatarUrl}
                     alt={author.avatarAlt ?? `${author.name}'s avatar`}
-                    width="80"
-                    height="80"
+                    width="56"
+                    height="56"
                 />
             {:else if fileAvatar}
                 <Img
                     class="avatar"
                     src={fileAvatar}
                     alt="{author.name}'s avatar"
-                    sizes="80px"
+                    sizes="56px"
                 />
             {:else}
                 <div
@@ -53,50 +53,51 @@
                 <p class="bio">{author.bio}</p>
             {/if}
             {#if author.socials}
-                <Socials {...author.socials} size="medium" />
+                <Socials {...author.socials} size="small" />
             {/if}
         </div>
     </div>
 </aside>
 
 <style lang="scss">
-    @use '$styles/mixins';
     @use '$styles/breakpoints';
 
     .author-callout {
-        margin-top: 3rem;
-        padding: 1.5rem;
-        border-radius: 12px;
-        background: rgba(var(--color--primary-rgb), 0.05);
-        border: 1px solid rgba(var(--color--primary-rgb), 0.15);
+        margin-top: 32px;
+        padding: 24px;
+        border-radius: 8px;
+        background: var(--color--background);
+        border: 1px solid rgba(var(--color--secondary-rgb), 0.12);
 
         @include breakpoints.for-phone-only {
-            padding: 1rem;
+            padding: 16px;
         }
     }
 
     .outro-text {
-        font-size: 1.1rem;
-        line-height: 1.6;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.5;
+        letter-spacing: -0.01em;
         color: var(--color--secondary);
-        margin-bottom: 1.5rem;
-        text-align: center;
+        margin: 0 0 16px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid rgba(var(--color--secondary-rgb), 0.08);
 
         @include breakpoints.for-phone-only {
-            font-size: 1rem;
-            margin-bottom: 1rem;
+            font-size: 13px;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
         }
     }
 
     .author-card {
         display: flex;
-        align-items: flex-start;
-        gap: 1.25rem;
+        align-items: center;
+        gap: 16px;
 
         @include breakpoints.for-phone-only {
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
+            gap: 12px;
         }
     }
 
@@ -104,64 +105,76 @@
         flex-shrink: 0;
 
         :global(.avatar) {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            border-radius: 8px;
             object-fit: cover;
-            border: 2px solid rgba(var(--color--primary-rgb), 0.2);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+            border: 1px solid rgba(var(--color--secondary-rgb), 0.1);
+        }
+
+        @include breakpoints.for-phone-only {
+            :global(.avatar) {
+                width: 48px;
+                height: 48px;
+            }
         }
     }
 
     .avatar-placeholder {
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        background: linear-gradient(
-            135deg,
-            var(--color--primary),
-            var(--color--primary-dark)
-        );
-        color: var(--color--primary-contrast);
+        width: 56px;
+        height: 56px;
+        border-radius: 8px;
+        background: rgba(var(--color--secondary-rgb), 0.08);
+        color: rgba(var(--color--secondary-rgb), 0.6);
         display: flex;
         align-items: center;
         justify-content: center;
         font-weight: 600;
-        font-size: 2rem;
-        border: 2px solid rgba(var(--color--primary-rgb), 0.2);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+        font-size: 18px;
+        letter-spacing: -0.02em;
+
+        @include breakpoints.for-phone-only {
+            width: 48px;
+            height: 48px;
+            font-size: 16px;
+        }
     }
 
     .info-section {
         display: flex;
         flex-direction: column;
-        gap: 0.5rem;
-
-        @include breakpoints.for-phone-only {
-            align-items: center;
-        }
+        gap: 4px;
+        min-width: 0;
     }
 
     .name {
-        font-weight: 700;
-        font-size: 1.2rem;
+        font-weight: 600;
+        font-size: 14px;
+        letter-spacing: -0.02em;
         color: var(--color--primary);
     }
 
     .bio {
-        font-size: 0.95rem;
+        font-size: 13px;
+        font-weight: 400;
         line-height: 1.5;
-        color: rgba(var(--color--secondary-rgb), 0.85);
+        color: rgba(var(--color--secondary-rgb), 0.7);
         margin: 0;
-        max-width: 50ch;
+        max-width: 48ch;
 
         @include breakpoints.for-phone-only {
-            font-size: 0.9rem;
+            font-size: 12px;
         }
     }
 
     .info-section :global(.socials) {
-        margin-top: 0.5rem;
+        margin-top: 8px;
         padding: 0;
+        opacity: 0.6;
+        transition: opacity 150ms cubic-bezier(0.25, 1, 0.5, 1);
+
+        &:hover {
+            opacity: 1;
+        }
     }
 </style>
