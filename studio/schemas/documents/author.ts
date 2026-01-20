@@ -80,6 +80,14 @@ export const authorType = defineType({
                 }),
             ],
         }),
+        defineField({
+            name: 'calendarBookingUrl',
+            title: 'Calendar Booking URL',
+            type: 'url',
+            description:
+                'Link to calendar booking page (e.g., Cal.com, Calendly, Google Calendar)',
+            validation: (rule) => rule.uri({ scheme: ['http', 'https'] }),
+        }),
     ],
     preview: {
         select: {

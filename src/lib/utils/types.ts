@@ -26,6 +26,7 @@ export type Author = {
     specialties?: string[];
     avatarUrl?: string;
     avatarAlt?: string;
+    calendarBookingUrl?: string;
     socials?: {
         github?: string;
         linkedin?: string;
@@ -78,6 +79,7 @@ export type SanityPost = {
         email?: string;
         avatarUrl?: string;
         avatarAlt?: string;
+        calendarBookingUrl?: string;
         socialLinks?: {
             twitter?: string;
             github?: string;

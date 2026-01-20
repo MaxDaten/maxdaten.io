@@ -3,6 +3,8 @@
     import Img from '@zerodevx/svelte-img';
     import { getAuthorAvatar } from '$lib/utils/image-loader';
     import Socials from '$components/molecules/Socials.svelte';
+    import Button from '$components/atoms/Button.svelte';
+    import CalendarIcon from '$lib/icons/calendar.svelte';
 
     type Props = {
         author: Author;
@@ -52,9 +54,23 @@
             {#if author.bio}
                 <p class="bio">{author.bio}</p>
             {/if}
-            {#if author.socials}
-                <Socials {...author.socials} size="small" />
-            {/if}
+            <div class="actions">
+                {#if author.socials}
+                    <Socials {...author.socials} size="small" />
+                {/if}
+                {#if author.calendarBookingUrl}
+                    <Button
+                        size="small"
+                        style="understated"
+                        href={author.calendarBookingUrl}
+                    >
+                        {#snippet icon()}
+                            <CalendarIcon />
+                        {/snippet}
+                        Book a Call
+                    </Button>
+                {/if}
+            </div>
         </div>
     </div>
 </aside>
@@ -151,7 +167,7 @@
         font-weight: 600;
         font-size: 14px;
         letter-spacing: -0.02em;
-        color: var(--color--primary);
+        color: var(--color--text);
     }
 
     .bio {
@@ -167,8 +183,19 @@
         }
     }
 
-    .info-section :global(.socials) {
+    .actions {
+        display: flex;
+        align-items: center;
+        gap: 12px;
         margin-top: 8px;
+        flex-wrap: wrap;
+
+        @include breakpoints.for-phone-only {
+            gap: 8px;
+        }
+    }
+
+    .actions :global(.socials) {
         padding: 0;
         opacity: 0.6;
         transition: opacity 150ms cubic-bezier(0.25, 1, 0.5, 1);

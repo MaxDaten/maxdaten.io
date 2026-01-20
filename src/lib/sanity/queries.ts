@@ -34,7 +34,8 @@ export const postBySlugQuery = defineQuery(`
       email,
       "avatarUrl": avatar.asset->url,
       "avatarAlt": avatar.alt,
-      socialLinks
+      socialLinks,
+      calendarBookingUrl
     },
     tags[]-> {
       name,

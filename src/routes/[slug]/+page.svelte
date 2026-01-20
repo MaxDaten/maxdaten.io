@@ -31,6 +31,7 @@
                 bio: post.author.bio,
                 avatarUrl: post.author.avatarUrl,
                 avatarAlt: post.author.avatarAlt,
+                calendarBookingUrl: post.author.calendarBookingUrl,
                 socials: post.author.socialLinks
                     ? {
                           github: post.author.socialLinks.github,
