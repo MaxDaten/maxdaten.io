@@ -1,6 +1,5 @@
 <script lang="ts">
     import Tag from '$components/atoms/Tag.svelte';
-    import Author from '$components/molecules/Author.svelte';
     import AuthorCard from '$components/molecules/AuthorCard.svelte';
     import { formatPostDate, formatDateISO } from '$lib/utils/format-date';
     import { PageTransition } from 'ssgoi';
@@ -68,17 +67,27 @@
 
             <h1>{title}</h1>
 
-            <div class="metadata">
+            <div class="meta-line">
                 {#if author}
-                    <Author {author} />
+                    <span class="author">
+                        {#if author.avatarUrl}
+                            <img
+                                class="avatar-inline"
+                                src={author.avatarUrl}
+                                alt=""
+                                width="18"
+                                height="18"
+                            />
+                        {/if}
+                        <span class="author-name">{author.name}</span>
+                    </span>
+                    <span class="separator">•</span>
                 {/if}
-                <div class="post-details">
-                    {#if readingTimeMinutes}
-                        <div class="note">
-                            {readingTimeMinutes} min read
-                        </div>
-                    {/if}
-                </div>
+                {#if readingTimeMinutes}
+                    <span class="reading-time"
+                        >{readingTimeMinutes} min read</span
+                    >
+                {/if}
             </div>
 
             {#if tags.length}
@@ -183,40 +192,45 @@
                 }
             }
 
-            .note {
-                font-family: var(--font--mono), monospace;
-                color: rgba(var(--color--secondary-rgb), 0.8);
-                display: inline-flex;
+            .meta-line {
+                display: flex;
+                align-items: center;
                 gap: 8px;
+                font-family: var(--font--mono), monospace;
+                font-size: 13px;
+                color: rgba(var(--color--secondary-rgb), 0.7);
 
                 @include breakpoints.for-phone-only {
+                    flex-direction: column;
+                    align-items: center;
                     gap: 4px;
                 }
             }
 
-            .metadata {
+            .avatar-inline {
+                width: 18px;
+                height: 18px;
+                border-radius: 4px;
+                object-fit: cover;
+                vertical-align: middle;
+            }
+
+            .author {
                 display: inline-flex;
-                flex-direction: column;
                 align-items: center;
-                justify-content: center;
-                gap: 16px;
-                width: min(var(--main-column-width), 100%);
-                margin-bottom: 1em;
+                gap: 6px;
+            }
 
-                .post-details {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    gap: 8px;
-                }
+            .author-name {
+                color: var(--color--primary);
+                font-weight: 500;
+            }
 
-                @include breakpoints.for-tablet-landscape-up {
-                    flex-direction: row;
-                    gap: 32px;
-                }
+            .separator {
+                color: rgba(var(--color--secondary-rgb), 0.4);
 
                 @include breakpoints.for-phone-only {
-                    gap: 12px;
+                    display: none;
                 }
             }
         }
