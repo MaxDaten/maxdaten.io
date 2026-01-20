@@ -12,6 +12,7 @@
     <div class="content">
         <div class="legal">
             <a href={resolve('/impressum')}>Impressum</a>
+            <span class="copyright">&copy; {new Date().getFullYear()}</span>
         </div>
         <div class="socials">
             <Socials {...mainAuthor.socials} />

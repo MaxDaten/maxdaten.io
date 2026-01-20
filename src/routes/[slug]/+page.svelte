@@ -240,17 +240,24 @@
             margin: 0 auto;
             border-radius: 12px;
             overflow: hidden;
-            height: 400px;
+            aspect-ratio: 2 / 1; /* Desktop: ultra-wide per CONTEXT.md */
 
             @media (max-width: 1060px) {
                 transform: translateX(calc((1100px - 100vw) / -2));
                 width: 1100px;
             }
 
+            @media (max-width: 767px) {
+                aspect-ratio: 16 / 9; /* Mobile: taller for better proportion */
+                width: 100%;
+                transform: none;
+            }
+
             .sanity-cover {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
+                object-position: center; /* Center crop per CONTEXT.md */
             }
         }
 
