@@ -83,11 +83,13 @@ Phase 6 **Requirements**: CODE-01, CODE-02, CODE-03, CODE-04, CODE-05, CODE-06, 
 5. Copy button appears on code blocks (0.5 opacity, 1.0 on hover)
 6. Mobile code font size minimum 12px (readable on small screens)
 
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
 
-- [ ] 07-01: TBD
+- [ ] 07-01-PLAN.md — Container styling (dark background, 12px radius, mobile font size)
+- [ ] 07-02-PLAN.md — Header and copy button (remove diagonal strip, show language, reposition copy)
+- [ ] 07-03-PLAN.md — Line highlighting support for tutorials
 
 ### Phase 8: Post Meta
 
@@ -135,7 +137,7 @@ Plans:
 | 1-4. CMS Migration | v1.0      | -              | Complete    | 2026-01-20 |
 | 5. Design Tokens   | v2.0      | 2/2            | Complete    | 2026-01-20 |
 | 6. Typography      | v2.0      | 3/3            | Complete    | 2026-01-20 |
-| 7. Code Blocks     | v2.0      | 0/TBD          | Not started | -          |
+| 7. Code Blocks     | v2.0      | 0/3            | Not started | -          |
 | 8. Post Meta       | v2.0      | 0/TBD          | Not started | -          |
 | 9. Navigation      | v2.0      | 0/TBD          | Not started | -          |
 
