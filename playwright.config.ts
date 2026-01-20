@@ -7,6 +7,12 @@ import { defineConfig, devices } from '@playwright/test';
 // require('dotenv').config();
 
 /**
+ * When PLAYWRIGHT_BASE_URL is set (e.g., testing against production),
+ * we don't need to start a local dev server.
+ */
+const externalBaseUrl = process.env.PLAYWRIGHT_BASE_URL;
+
+/**
  * See https://playwright.dev/docs/test-configuration.
  *
  * Note: To mark tests as incompatible with specific browsers:
@@ -28,7 +34,7 @@ export default defineConfig({
     /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
     use: {
         /* Base URL to use in actions like `await page.goto('/')`. */
-        baseURL: 'http://localhost:5173',
+        baseURL: externalBaseUrl || 'http://localhost:5173',
 
         /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
         trace: 'on-first-retry',
@@ -75,11 +81,13 @@ export default defineConfig({
         // },
     ],
 
-    /* Run your local dev server before starting the tests */
-    webServer: {
-        command: 'npm run dev',
-        url: 'http://localhost:5173',
-        reuseExistingServer: !process.env.CI,
-        timeout: 120 * 1000,
-    },
+    /* Run your local dev server before starting the tests (skip when testing external URL) */
+    webServer: externalBaseUrl
+        ? undefined
+        : {
+              command: 'npm run dev',
+              url: 'http://localhost:5173',
+              reuseExistingServer: !process.env.CI,
+              timeout: 120 * 1000,
+          },
 });
