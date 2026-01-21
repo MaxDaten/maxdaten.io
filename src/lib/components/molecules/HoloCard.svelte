@@ -159,7 +159,7 @@
 
     /* Static mode: reduced motion OR mobile - fixed tilt with visible sheen */
     .holo-card.static-mode {
-        transform: rotateX(3deg) rotateY(-6deg);
+        transform: rotateX(0deg) rotateY(-7deg);
         transition: none;
     }
 
