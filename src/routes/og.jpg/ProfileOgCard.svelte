@@ -11,35 +11,32 @@
     let { author, profileImageSrc }: Props = $props();
 </script>
 
-<div class="og-card">
-    {#if profileImageSrc}
-        <div class="profile-image-container">
-            <img src={profileImageSrc} alt="" class="profile-image" />
-        </div>
-    {/if}
+<div class="og-wrapper">
+    <!-- Card with perspective illusion -->
+    <div class="card-container">
+        <!-- Border glow layer (simulates edge-based shine) -->
+        <div class="border-glow"></div>
 
-    <div class="content">
-        <div class="header">
-            <h1 class="name">{author.name}</h1>
-            <p class="tagline">{author.tagline}</p>
-            <p class="role">{author.role}</p>
-        </div>
+        <!-- Main card -->
+        <div class="card">
+            <!-- Sheen overlay (simulates HoloCard static mode sheen) -->
+            <div class="sheen-overlay"></div>
 
-        {#if author.bio}
-            <p class="bio">{author.bio}</p>
-        {/if}
-
-        <div class="footer">
-            <div class="specialties">
-                {#if author.specialties?.length}
-                    {#each author.specialties.slice(0, 3) as specialty, i (i)}
-                        <span class="specialty">{specialty}</span>
-                    {/each}
+            <!-- Card content -->
+            <div class="content">
+                {#if profileImageSrc}
+                    <div class="avatar-container">
+                        <img src={profileImageSrc} alt="" class="avatar" />
+                        <div class="avatar-glow"></div>
+                    </div>
                 {/if}
-            </div>
 
-            <div class="branding">
-                <span class="site-name">maxdaten.io</span>
+                <h1 class="name">{author.name}</h1>
+                <p class="tagline">{author.tagline}</p>
+
+                <div class="branding">
+                    <span class="site-name">maxdaten.io</span>
+                </div>
             </div>
         </div>
     </div>
@@ -47,130 +44,164 @@
 
 <style lang="scss">
     /* Note: Only Satori-compatible CSS (mainly flexbox) */
-    /* No CSS variable support */
+    /* No CSS variable support - using hardcoded values */
     @use '$lib/scss/_themes.scss' as *;
 
     $font-default: 'Inter', sans-serif;
-    $font-title: 'Inter', sans-serif;
     $font-logo: 'Baloo-2', sans-serif;
 
-    .og-card {
+    /* Colors from theme/HoloCard */
+    $bg-page: #1c1e26;
+    $bg-card: #23252b;
+    $accent: #ff8000;
+    $accent-warm: #ffb347;
+    $text-primary: #fffcfc;
+    $text-muted: #d9f9fd;
+
+    .og-wrapper {
         display: flex;
-        flex-direction: row;
         width: 100%;
         height: 100%;
-        background-color: $color-page-background;
-        border: 8px solid $color-secondary-tint;
+        align-items: center;
+        justify-content: center;
+        background: radial-gradient(
+            ellipse at 30% 40%,
+            rgba($accent, 0.08) 0%,
+            $bg-page 50%,
+            #141519 100%
+        );
         font-family: $font-default;
     }
 
-    .profile-image-container {
+    .card-container {
         display: flex;
-        width: 35%;
-        height: 100%;
-        overflow: hidden;
-        align-items: center;
-        justify-content: center;
+        position: relative;
+        width: 480px;
+        height: 540px;
+    }
+
+    /* Border glow effect - simulates the edge-based shine */
+    .border-glow {
+        display: flex;
+        position: absolute;
+        top: -3px;
+        left: -3px;
+        right: -3px;
+        bottom: -3px;
+        border-radius: 20px;
         background: linear-gradient(
-            135deg,
-            rgba($color-primary, 0.1),
-            rgba($color-secondary, 0.1)
+            -110deg,
+            rgba($accent, 0.6) 0%,
+            rgba($accent, 0.2) 30%,
+            transparent 60%
         );
     }
 
-    .profile-image {
+    .card {
+        display: flex;
+        flex-direction: column;
+        position: relative;
         width: 100%;
         height: 100%;
-        object-fit: cover;
-        border-radius: 12px;
-        margin: 16px;
+        background-color: $bg-card;
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* Sheen overlay - simulates HoloCard static mode sheen at 35% x, 30% y */
+    .sheen-overlay {
+        display: flex;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+            circle at 35% 30%,
+            rgba($accent, 0.3) 0%,
+            rgba($accent, 0.1) 25%,
+            rgba($accent, 0.05) 50%,
+            transparent 70%
+        );
+        border-radius: 16px;
     }
 
     .content {
         display: flex;
         flex-direction: column;
         flex: 1;
-        padding: 24px 24px;
-        background-color: $color-page-background;
-        justify-content: space-between;
+        align-items: center;
+        justify-content: center;
+        padding: 40px;
         gap: 24px;
+        z-index: 1;
     }
 
-    .header {
+    .avatar-container {
         display: flex;
-        flex-direction: column;
-        gap: 8px;
+        position: relative;
+        width: 180px;
+        height: 180px;
+    }
+
+    .avatar {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid rgba($accent, 0.5);
+    }
+
+    /* Glow behind avatar */
+    .avatar-glow {
+        display: flex;
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        right: -10px;
+        bottom: -10px;
+        border-radius: 50%;
+        background: radial-gradient(
+            circle,
+            rgba($accent, 0.3) 0%,
+            rgba($accent, 0.1) 50%,
+            transparent 70%
+        );
+        z-index: -1;
     }
 
     .name {
-        font-size: 4.5rem;
+        font-size: 3.5rem;
         font-weight: 700;
         line-height: 1.1;
-        color: $color-text;
-        font-family: $font-title;
+        color: $text-primary;
         margin: 0;
+        text-align: center;
+        text-shadow: 0 0 30px rgba($accent, 0.3);
     }
 
     .tagline {
-        font-size: 2.1rem;
+        font-size: 2rem;
         font-weight: 500;
-        color: $color-primary;
+        color: $accent;
         font-style: italic;
         margin: 0;
-    }
-
-    .role {
-        font-size: 2rem;
-        font-weight: 600;
-        color: $color-text-shade;
-        margin: 0;
-    }
-
-    .bio {
-        font-size: 1.8rem;
-        line-height: 1.4;
-        color: $color-text;
-        flex: 1;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    .footer {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .specialties {
-        display: flex;
-        position: absolute;
-        bottom: 20px;
-        gap: 12px;
-        flex-wrap: wrap;
-    }
-
-    .specialty {
-        display: flex;
-        align-items: center;
-        padding: 8px 16px;
-        background-color: rgba($color-primary, 0.15);
-        border: 2px solid rgba($color-primary, 0.2);
-        border-radius: 10px;
-        font-size: 1.8rem;
-        font-weight: 500;
-        letter-spacing: 0.05em;
-        color: $color-text;
+        text-align: center;
     }
 
     .branding {
         display: flex;
-        flex-direction: column;
-        align-items: flex-end;
+        position: absolute;
+        bottom: 24px;
+        right: 24px;
     }
 
     .site-name {
         font-family: $font-logo;
-        font-size: 3.5rem;
+        font-size: 2.5rem;
         font-weight: 800;
-        color: $color-primary;
+        color: $accent;
+        text-shadow: 0 0 20px rgba($accent, 0.4);
     }
 </style>
