@@ -201,7 +201,12 @@
         gap: var(--raw-space-12);
         font-family: var(--font--mono);
         font-size: var(--raw-text-sm);
-        color: #555;
+        color: rgba(var(--color-text-rgb), 0.5);
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(12px);
+        padding: var(--raw-space-8) var(--raw-space-16);
+        border-radius: var(--raw-radius-full);
+        width: fit-content;
 
         @include breakpoints.for-tablet-portrait-down {
             justify-content: center;
