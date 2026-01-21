@@ -76,11 +76,11 @@
                   : 'Error'}
         >
             {#if copyButtonState === 'idle'}
-                <CopyIcon width="16px" height="16px" />
+                <CopyIcon width="18px" height="18px" />
             {:else if copyButtonState === 'success'}
-                <CheckIcon width="16px" height="16px" />
+                <CheckIcon width="18px" height="18px" />
             {:else if copyButtonState === 'failure'}
-                <XIcon width="16px" height="16px" />
+                <XIcon width="18px" height="18px" />
             {/if}
         </button>
     </figure>
@@ -140,10 +140,10 @@
             z-index: 2;
             opacity: var(--raw-opacity-medium);
             transition: opacity 150ms ease-out;
-            background: transparent;
+            background: rgba(var(--color-text-rgb), var(--raw-opacity-subtle));
             border: none;
-            padding: var(--raw-space-8);
-            border-radius: var(--raw-radius-xs);
+            padding: var(--raw-space-12);
+            border-radius: var(--raw-radius-sm);
             cursor: pointer;
             color: rgba(var(--color-text-rgb), var(--raw-opacity-strong));
             display: flex;
