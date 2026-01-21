@@ -1,5 +1,6 @@
 <script lang="ts">
     import type { Snippet } from 'svelte';
+    import { spring } from 'svelte/motion';
     import { MediaQuery } from 'svelte/reactivity';
 
     interface Props {
@@ -8,53 +9,99 @@
 
     let { children }: Props = $props();
 
-    // Track mouse position relative to card center
-    let rotateX = $state(0);
-    let rotateY = $state(0);
-    let sheenX = $state(50);
-    let sheenY = $state(50);
-    let isHovering = $state(false);
+    // Spring settings from poke-holo for smooth physics-based animation
+    const springInteract = { stiffness: 0.066, damping: 0.25 };
+    const springSnap = { stiffness: 0.01, damping: 0.06 };
 
-    // Check for reduced motion preference using Svelte's reactive MediaQuery
+    // Spring stores for rotation and sheen
+    const springRotate = spring({ x: 0, y: 0 }, springInteract);
+    const springSheen = spring({ x: 50, y: 50 }, springInteract);
+
+    let isHovering = $state(false);
+    let animationFrame = $state<number | null>(null);
+
+    // Check for reduced motion preference
     const reducedMotionQuery = new MediaQuery(
         'prefers-reduced-motion: reduce',
         false
     );
     let prefersReducedMotion = $derived(reducedMotionQuery.current);
 
+    // Derived values from springs for use in template
+    let rotateX = $derived($springRotate.x);
+    let rotateY = $derived($springRotate.y);
+    let sheenX = $derived($springSheen.x);
+    let sheenY = $derived($springSheen.y);
+
     function handleMouseMove(event: MouseEvent) {
         if (prefersReducedMotion) return;
 
-        const card = event.currentTarget as HTMLElement;
-        const rect = card.getBoundingClientRect();
+        // Throttle with requestAnimationFrame
+        if (animationFrame) return;
 
-        // Calculate mouse position relative to card center (0 to 1)
-        const x = (event.clientX - rect.left) / rect.width;
-        const y = (event.clientY - rect.top) / rect.height;
+        animationFrame = requestAnimationFrame(() => {
+            const card = event.currentTarget as HTMLElement;
+            if (!card) {
+                animationFrame = null;
+                return;
+            }
 
-        // Convert to rotation angles (-8 to 8 degrees) - subtle tilt
-        // rotateY: left/right tilt based on horizontal position
-        // rotateX: up/down tilt based on vertical position (inverted)
-        rotateY = (x - 0.5) * 16; // -8 to 8
-        rotateX = (0.5 - y) * 16; // -8 to 8
+            const rect = card.getBoundingClientRect();
 
-        // Update sheen position (percentage)
-        sheenX = x * 100;
-        sheenY = y * 100;
+            // Calculate position relative to center (-0.5 to 0.5)
+            const centerX = (event.clientX - rect.left) / rect.width - 0.5;
+            const centerY = (event.clientY - rect.top) / rect.height - 0.5;
+
+            // Use interaction spring settings
+            springRotate.stiffness = springInteract.stiffness;
+            springRotate.damping = springInteract.damping;
+            springSheen.stiffness = springInteract.stiffness;
+            springSheen.damping = springInteract.damping;
+
+            // Update rotation (~±14° like poke-holo: center / 3.5)
+            springRotate.set({
+                x: -(centerY * 28), // Inverted Y for natural tilt
+                y: centerX * 28,
+            });
+
+            // Update sheen position (percentage)
+            springSheen.set({
+                x: (centerX + 0.5) * 100,
+                y: (centerY + 0.5) * 100,
+            });
+
+            animationFrame = null;
+        });
     }
 
     function handleMouseEnter() {
         if (prefersReducedMotion) return;
         isHovering = true;
+
+        // Use interaction spring settings
+        springRotate.stiffness = springInteract.stiffness;
+        springRotate.damping = springInteract.damping;
     }
 
     function handleMouseLeave() {
         if (prefersReducedMotion) return;
         isHovering = false;
-        rotateX = 0;
-        rotateY = 0;
-        sheenX = 50;
-        sheenY = 50;
+
+        // Cancel any pending animation frame
+        if (animationFrame) {
+            cancelAnimationFrame(animationFrame);
+            animationFrame = null;
+        }
+
+        // Use slower snap-back spring settings
+        springRotate.stiffness = springSnap.stiffness;
+        springRotate.damping = springSnap.damping;
+        springSheen.stiffness = springSnap.stiffness;
+        springSheen.damping = springSnap.damping;
+
+        // Snap back to center
+        springRotate.set({ x: 0, y: 0 });
+        springSheen.set({ x: 50, y: 50 });
     }
 </script>
 
@@ -85,8 +132,7 @@
         position: relative;
         transform-style: preserve-3d;
         transform: rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg));
-        /* Apple-style spring easing for smooth, fluid motion */
-        transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        /* Spring animation handled by Svelte spring() - no CSS transition needed */
         background-color: var(--color-surface-elevated);
         border-radius: var(--radius-card);
         padding: var(--raw-space-24);
@@ -105,7 +151,7 @@
             transparent 70%
         );
         opacity: 0;
-        transition: opacity 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        transition: opacity 0.3s ease-out;
         pointer-events: none;
         border-radius: inherit;
     }
