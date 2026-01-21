@@ -281,7 +281,8 @@
 
     .stat-row {
         display: flex;
-        justify-content: space-between;
+        flex-direction: column;
+        gap: var(--raw-space-4);
         font-size: var(--raw-text-xs);
     }
 
@@ -292,6 +293,7 @@
 
     .stat-value {
         color: var(--color-text);
+        font-size: var(--raw-text-sm);
     }
 
     .ability-box {
