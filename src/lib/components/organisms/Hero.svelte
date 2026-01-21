@@ -14,12 +14,14 @@
         <div class="content">
             <span class="badge">Available for 2026</span>
             <h1 class="headline">
-                I help engineering teams <span class="accent">ship faster</span
+                From chaotic deploys to <span class="accent"
+                    >confident releases</span
                 >.
             </h1>
             <p class="subheadline">
-                Scalable architectures. Reliable automation. Transforming
-                complex infrastructure into simple workflows.
+                Hands-on infrastructure work plus the knowledge transfer so your
+                team owns it after I leave. 12+ years scaling systems from
+                startup to 100M+ requests/day.
             </p>
             <div class="ctas">
                 <Sparkles>
@@ -48,15 +50,13 @@
                 </Button>
             </div>
             <div class="tech-ticker">
-                <span>Kubernetes</span>
+                <span>K8s at Scale</span>
                 <span class="dot"></span>
-                <span>GCP</span>
+                <span>Multi-Cloud</span>
                 <span class="dot"></span>
-                <span>Terraform</span>
+                <span>GitOps</span>
                 <span class="dot"></span>
-                <span>Go</span>
-                <span class="dot"></span>
-                <span>SvelteKit</span>
+                <span>Full-Stack Functional Architectures</span>
             </div>
         </div>
 
@@ -81,24 +81,25 @@
                     <div class="stat-rows">
                         <div class="stat-row">
                             <span class="stat-label">CLASS</span>
-                            <span class="stat-value">DevOps Consultant</span>
+                            <span class="stat-value"
+                                >Platform Engineering Advisor</span
+                            >
                         </div>
                         <div class="stat-row">
                             <span class="stat-label">SPECIALTY</span>
                             <span class="stat-value"
-                                >Infrastructure as Code</span
+                                >Platform Engineering & Team Enablement</span
                             >
                         </div>
                     </div>
                     <div class="ability-box">
                         <div class="ability-header">
                             <span class="pro-badge">PRO</span>
-                            <span class="ability-name">System Optimization</span
+                            <span class="ability-name">Enterprise Rollouts</span
                             >
                         </div>
                         <p class="ability-description">
-                            Reduces deployment time by 80% and eliminates
-                            configuration drift.
+                            Deployed to 700+ retail locations at Fielmann
                         </p>
                     </div>
                     <div class="card-footer">#001 &middot; HAMBURG, DE</div>
