@@ -31,8 +31,6 @@
 
         <!-- Right Card (Static Trading Card) -->
         <div class="card">
-            <!-- Static glare overlay -->
-            <div class="static-glare"></div>
             <div class="card-header">
                 <span>MAXDATEN.IO</span>
                 <span class="lvl">LVL 99</span>
@@ -158,22 +156,6 @@
         box-shadow:
             0 30px 60px -10px rgba(0, 0, 0, 0.7),
             0 0 0 1px rgba(255, 255, 255, 0.05);
-    }
-
-    /* Static glare overlay for holo effect */
-    .static-glare {
-        display: flex;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 320px;
-        height: 440px;
-        border-radius: 24px;
-        background: linear-gradient(
-            135deg,
-            rgba(255, 255, 255, 0.08),
-            transparent
-        );
     }
 
     .card-header {
