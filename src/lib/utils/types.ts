@@ -29,6 +29,7 @@ export type Author = {
     socials?: {
         github?: string;
         linkedin?: string;
+        cv?: string;
         email?: string;
         twitter?: string;
         website?: string;

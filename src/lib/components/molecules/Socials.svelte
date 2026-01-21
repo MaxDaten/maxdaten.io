@@ -1,18 +1,27 @@
 <script lang="ts">
     import GitHubIcon from '$lib/icons/socials/github.svelte';
     import LinkedInIcon from '$lib/icons/socials/linkedin.svelte';
+    import CvIcon from '$lib/icons/socials/cv.svelte';
     import EmailIcon from '$lib/icons/socials/email.svelte';
     import TwitterIcon from '$lib/icons/socials/twitter.svelte';
 
     type Props = {
         github?: string;
         linkedin?: string;
+        cv?: string;
         email?: string;
         twitter?: string;
         size?: 'small' | 'medium' | 'large';
     };
 
-    let { github, linkedin, email, twitter, size = 'medium' }: Props = $props();
+    let {
+        github,
+        linkedin,
+        cv,
+        email,
+        twitter,
+        size = 'medium',
+    }: Props = $props();
 </script>
 
 <!-- External links - resolve() must NOT be used on external URLs -->
@@ -36,6 +45,16 @@
             title="Connect on LinkedIn"
         >
             <LinkedInIcon />
+        </a>
+    {/if}
+    {#if cv}
+        <a
+            href={cv}
+            target="_blank"
+            rel="noopener noreferrer"
+            title="View my CV"
+        >
+            <CvIcon />
         </a>
     {/if}
     {#if email}

@@ -15,6 +15,7 @@ export const authors: Record<string, Author> = {
         socials: {
             github: 'https://github.com/MaxDaten',
             linkedin: 'https://www.linkedin.com/in/maxdaten',
+            cv: 'https://cv.maxdaten.io',
             email: 'mailto:jloos@maxdaten.com',
         },
     },
