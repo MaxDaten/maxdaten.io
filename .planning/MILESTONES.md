@@ -1,4 +1,32 @@
-# Project Milestones: Sanity CMS Migration
+# Project Milestones: maxdaten.io
+
+## v2.0 Design Refinement (Shipped: 2026-01-21)
+
+**Delivered:** Precision-engineered minimalism — unified design tokens, refined typography,
+professional code blocks, and polished post meta.
+
+**Phases completed:** 5-9 (13 plans total)
+
+**Key accomplishments:**
+
+- Design token foundation with 8px spacing grid, Major Third typography scale, unified orange accent
+- Typography refinements with JetBrains Mono, 1.6-1.7 body line-height, 680px prose width
+- Code block modernization with dark background, 12px radius, copy button, line highlighting
+- Post meta consolidation with date above title, single meta line with inline author
+- Navigation polish with active state indicator, 44px mobile tap targets, horizontal footer
+
+**Stats:**
+
+- 26 requirements satisfied
+- 63 files modified, +6,579 / -304 lines
+- 5 phases, 13 plans, 36 minutes execution time
+- 64 commits in milestone range
+
+**Git range:** `feat(05-01)` → `feat(09-01)`
+
+**What's next:** Enhanced features (variable fonts, dark mode font weight, scheduled publishing)
+
+---
 
 ## v1.0 Sanity CMS Migration (Shipped: 2026-01-20)
 
@@ -29,4 +57,4 @@ authoring workflow.
 
 ---
 
-_Milestones log created: 2026-01-20_
+_Milestones log created: 2026-01-20_ _Last updated: 2026-01-21 after v2.0 milestone_
