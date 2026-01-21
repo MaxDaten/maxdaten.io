@@ -14,14 +14,13 @@
         <div class="content">
             <span class="badge">Available for 2026</span>
             <h1 class="headline">
-                From chaotic deploys to <span class="accent"
-                    >confident releases</span
+                Products that ship. <span class="accent"
+                    >Systems that scale</span
                 >.
             </h1>
             <p class="subheadline">
-                Hands-on infrastructure work plus the knowledge transfer so your
-                team owns it after I leave. 12+ years scaling systems from
-                startup to 100M+ requests/day.
+                Full-stack product engineering with knowledge transfer built in.
+                12+ years scaling from startup to 100M+ requests/day.
             </p>
             <div class="ctas">
                 <Sparkles>
@@ -57,6 +56,8 @@
                 <span>GitOps</span>
                 <span class="dot"></span>
                 <span>Full-Stack Architectures</span>
+                <span class="dot"></span>
+                <span>DX</span>
             </div>
         </div>
 
@@ -82,14 +83,12 @@
                         <div class="stat-row">
                             <span class="stat-label">CLASS</span>
                             <span class="stat-value"
-                                >Platform Engineering Advisor</span
+                                >Technical Product Advisor</span
                             >
                         </div>
                         <div class="stat-row">
                             <span class="stat-label">SPECIALTY</span>
-                            <span class="stat-value"
-                                >Platform Engineering & Team Enablement</span
-                            >
+                            <span class="stat-value">Product Engineering</span>
                         </div>
                     </div>
                     <div class="ability-box">
