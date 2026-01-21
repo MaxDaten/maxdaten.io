@@ -24,10 +24,7 @@
     </div>
 
     <div class="og-preview-card">
-        <ProfileOgCard
-            author={data.author}
-            profileImageSrc={data.profileImageSrc}
-        />
+        <ProfileOgCard badge="Available for 2026" avatarUrl={data.avatarUrl} />
     </div>
 
     <div class="og-preview-info">
@@ -39,9 +36,6 @@
             <dt>Tagline:</dt>
             <dd>{data.author.tagline}</dd>
 
-            <dt>Role:</dt>
-            <dd>{data.author.role}</dd>
-
             <dt>Bio:</dt>
             <dd>{data.author.bio}</dd>
 
@@ -50,9 +44,7 @@
 
             <dt>Has Profile Image:</dt>
             <dd>
-                {data.profileImageSrc
-                    ? `Yes ('${data.profileImageSrc}')`
-                    : 'No'}
+                {data.avatarUrl ? `Yes ('${data.avatarUrl}')` : 'No'}
             </dd>
         </dl>
     </div>

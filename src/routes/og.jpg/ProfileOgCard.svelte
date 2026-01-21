@@ -1,207 +1,190 @@
 <svelte:options css="injected" />
 
 <script lang="ts">
-    import type { Author } from '$utils/types';
-
     type Props = {
-        author: Author;
-        profileImageSrc?: string;
+        badge?: string;
+        avatarUrl?: string;
     };
 
-    let { author, profileImageSrc }: Props = $props();
+    let { badge = 'Available for 2026', avatarUrl }: Props = $props();
 </script>
 
-<div class="og-wrapper">
-    <!-- Card with perspective illusion -->
-    <div class="card-container">
-        <!-- Border glow layer (simulates edge-based shine) -->
-        <div class="border-glow"></div>
+<div class="wrapper">
+    <!-- Ambient Blobs (satori supports filter:blur) -->
+    <div class="blob orange"></div>
+    <div class="blob purple"></div>
 
-        <!-- Main card -->
+    <!-- Content Container -->
+    <div class="container">
+        <!-- Left Text Column -->
+        <div class="text-col">
+            <div class="brand">maxdaten.io</div>
+            <div class="badge">{badge}</div>
+            <h1>
+                <span class="line">Products that ship.</span>
+                <span class="line highlight">Systems that scale.</span>
+            </h1>
+            <p class="sub">
+                Full-stack product engineering with knowledge transfer built in.
+            </p>
+        </div>
+
+        <!-- Right Card (Static Trading Card) -->
         <div class="card">
-            <!-- Sheen overlay (simulates HoloCard static mode sheen) -->
-            <div class="sheen-overlay"></div>
-
-            <!-- Card content -->
-            <div class="content">
-                {#if profileImageSrc}
-                    <div class="avatar-container">
-                        <img src={profileImageSrc} alt="" class="avatar" />
-                        <div class="avatar-glow"></div>
-                    </div>
-                {/if}
-
-                <h1 class="name">{author.name}</h1>
-                <p class="tagline">{author.tagline}</p>
-
-                <div class="branding">
-                    <span class="site-name">maxdaten.io</span>
-                </div>
+            <div class="card-header">
+                <span>MAXDATEN.IO</span>
+                <span class="lvl">LVL 99</span>
             </div>
+            {#if avatarUrl}
+                <img src={avatarUrl} alt="Avatar" class="avatar" />
+            {/if}
+            <div class="card-name">Jan-Philip</div>
+            <div class="card-role">Technical Product Advisor</div>
         </div>
     </div>
 </div>
 
-<style lang="scss">
-    /* Note: Only Satori-compatible CSS (mainly flexbox) */
-    /* No CSS variable support - using hardcoded values */
-    @use '$lib/scss/_themes.scss' as *;
-
-    $font-default: 'Inter', sans-serif;
-    $font-logo: 'Baloo-2', sans-serif;
-
-    /* Colors from theme/HoloCard */
-    $bg-page: #1c1e26;
-    $bg-card: #23252b;
-    $accent: #ff8000;
-    $accent-warm: #ffb347;
-    $text-primary: #fffcfc;
-    $text-muted: #d9f9fd;
-
-    .og-wrapper {
+<style>
+    /* Satori-safe CSS: Flexbox only, no CSS variables */
+    .wrapper {
         display: flex;
-        width: 100%;
         height: 100%;
+        width: 100%;
+        background-color: #0f0f0f;
+        font-family: 'Inter', sans-serif;
+        position: relative;
         align-items: center;
         justify-content: center;
-        background: radial-gradient(
-            ellipse at 30% 40%,
-            rgba($accent, 0.08) 0%,
-            $bg-page 50%,
-            #141519 100%
-        );
-        font-family: $font-default;
     }
 
-    .card-container {
-        display: flex;
-        position: relative;
-        width: 480px;
-        height: 540px;
-    }
-
-    /* Border glow effect - simulates the edge-based shine */
-    .border-glow {
+    .blob {
         display: flex;
         position: absolute;
-        top: -3px;
-        left: -3px;
-        right: -3px;
-        bottom: -3px;
-        border-radius: 20px;
-        background: linear-gradient(
-            -110deg,
-            rgba($accent, 0.6) 0%,
-            rgba($accent, 0.2) 30%,
-            transparent 60%
-        );
+        width: 500px;
+        height: 500px;
+        border-radius: 50%;
+        filter: blur(100px);
+        opacity: 0.2;
+    }
+    .blob.orange {
+        background-color: #ff8000;
+        top: -100px;
+        left: -100px;
+    }
+    .blob.purple {
+        background-color: #6b21a8;
+        bottom: -100px;
+        right: -100px;
     }
 
+    .container {
+        display: flex;
+        width: 100%;
+        padding: 60px;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .text-col {
+        display: flex;
+        flex-direction: column;
+        width: 680px;
+    }
+
+    .brand {
+        display: flex;
+        color: #ff8000;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .badge {
+        display: flex;
+        padding: 8px 16px;
+        border: 1px solid #ff8000;
+        color: #ff8000;
+        border-radius: 50px;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 16px;
+        background-color: rgba(255, 128, 0, 0.1);
+        align-self: flex-start;
+        margin-bottom: 20px;
+    }
+
+    h1 {
+        display: flex;
+        flex-direction: column;
+        font-size: 48px;
+        line-height: 1.15;
+        color: white;
+        margin: 0 0 20px 0;
+        font-weight: 700;
+    }
+
+    .line {
+        display: flex;
+    }
+
+    .highlight {
+        color: #ff8000;
+    }
+
+    .sub {
+        display: flex;
+        font-size: 24px;
+        color: #9ca3af;
+        margin: 0;
+    }
+
+    /* Trading Card */
     .card {
         display: flex;
         flex-direction: column;
-        position: relative;
-        width: 100%;
-        height: 100%;
-        background-color: $bg-card;
-        border-radius: 16px;
-        overflow: hidden;
-        border: 1px solid rgba(255, 255, 255, 0.08);
+        width: 320px;
+        height: 440px;
+        background-color: #23252b;
+        border-radius: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 16px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
     }
 
-    /* Sheen overlay - simulates HoloCard static mode sheen at 35% x, 30% y */
-    .sheen-overlay {
+    .card-header {
         display: flex;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: radial-gradient(
-            circle at 35% 30%,
-            rgba($accent, 0.3) 0%,
-            rgba($accent, 0.1) 25%,
-            rgba($accent, 0.05) 50%,
-            transparent 70%
-        );
-        border-radius: 16px;
+        justify-content: space-between;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 12px;
+        color: #666;
+        margin-bottom: 12px;
     }
 
-    .content {
+    .lvl {
         display: flex;
-        flex-direction: column;
-        flex: 1;
-        align-items: center;
-        justify-content: center;
-        padding: 40px;
-        gap: 24px;
-        z-index: 1;
-    }
-
-    .avatar-container {
-        display: flex;
-        position: relative;
-        width: 180px;
-        height: 180px;
+        color: #ff8000;
     }
 
     .avatar {
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
+        width: 286px;
+        height: 280px;
         object-fit: cover;
-        border: 3px solid rgba($accent, 0.5);
+        border-radius: 12px;
+        border: 1px solid #333;
+        margin-bottom: 16px;
     }
 
-    /* Glow behind avatar */
-    .avatar-glow {
+    .card-name {
         display: flex;
-        position: absolute;
-        top: -10px;
-        left: -10px;
-        right: -10px;
-        bottom: -10px;
-        border-radius: 50%;
-        background: radial-gradient(
-            circle,
-            rgba($accent, 0.3) 0%,
-            rgba($accent, 0.1) 50%,
-            transparent 70%
-        );
-        z-index: -1;
+        font-size: 24px;
+        font-weight: bold;
+        color: white;
+        text-transform: uppercase;
     }
 
-    .name {
-        font-size: 3.5rem;
-        font-weight: 700;
-        line-height: 1.1;
-        color: $text-primary;
-        margin: 0;
-        text-align: center;
-        text-shadow: 0 0 30px rgba($accent, 0.3);
-    }
-
-    .tagline {
-        font-size: 2rem;
-        font-weight: 500;
-        color: $accent;
-        font-style: italic;
-        margin: 0;
-        text-align: center;
-    }
-
-    .branding {
+    .card-role {
         display: flex;
-        position: absolute;
-        bottom: 24px;
-        right: 24px;
-    }
-
-    .site-name {
-        font-family: $font-logo;
-        font-size: 2.5rem;
-        font-weight: 800;
-        color: $accent;
-        text-shadow: 0 0 20px rgba($accent, 0.4);
+        font-size: 14px;
+        color: #ff8000;
+        font-family: 'JetBrains Mono', monospace;
     }
 </style>

@@ -25,6 +25,14 @@ const interFont = await read(
         .default
 ).arrayBuffer();
 
+const jetBrainsMonoFont = await read(
+    (
+        await import(
+            '@fontsource/jetbrains-mono/files/jetbrains-mono-latin-400-normal.woff?inline'
+        )
+    ).default
+).arrayBuffer();
+
 // Standard OG image size
 export const OG_SIZE = {
     width: 1200,
@@ -53,6 +61,12 @@ export const SATORI_OPTIONS: SatoriOptions = {
             data: baloo2Font,
             style: 'normal',
             weight: 800,
+        },
+        {
+            name: 'JetBrains Mono',
+            data: jetBrainsMonoFont,
+            style: 'normal',
+            weight: 400,
         },
     ],
 };

@@ -12,7 +12,7 @@ export const load: PageLoad = async ({ url }) => {
 
         return {
             author,
-            profileImageSrc,
+            avatarUrl: profileImageSrc,
         };
     } catch (err) {
         console.error('Failed to load data for profile OG preview', err);
