@@ -1,56 +1,110 @@
-<script>
-    import BlogIcon from '$lib/icons/blog.svelte';
-    import HeartIcon from '$lib/icons/heart.svelte';
-    import ExperienceIcon from '$lib/icons/experience.svelte';
+<script lang="ts">
+    import HoloCard from '$components/molecules/HoloCard.svelte';
+    import Button from '$components/atoms/Button.svelte';
+    import Sparkles from '$components/atoms/Sparkles.svelte';
     import CalendarIcon from '$lib/icons/calendar.svelte';
     import GitHubIcon from '$lib/icons/socials/github.svelte';
-    import Button from '$lib/components/atoms/Button.svelte';
-    import Sparkles from '../atoms/Sparkles.svelte';
+    import MeSrc from '$assets/images/authors/jloos.png?as=run&fit=cover';
+    import { FxReveal as Img } from '@zerodevx/svelte-img';
 </script>
 
 <section id="hero">
-    <h1 class="hello">I help engineering teams ship faster</h1>
-    <div class="intro">
-        <span class="left">scalable & reliable</span>
-        <hr />
-        <span class="right">DevOps • Fullstack • Cloud</span>
-    </div>
-    <div class="ctas">
-        <Sparkles>
-            <Button
-                size="medium"
-                href="https://calendar.app.google/KhVdEThcwSEBCjat5"
-            >
-                {#snippet icon()}
-                    <CalendarIcon />
-                {/snippet}
-                Book a Call
-            </Button>
-        </Sparkles>
-        <Button color="secondary" href="https://github.com/MaxDaten">
-            {#snippet icon()}
-                <GitHubIcon />
-            {/snippet}
-            Projects
-        </Button>
-        <Button size="medium" color="secondary" href="/blog">
-            {#snippet icon()}
-                <BlogIcon />
-            {/snippet}
-            Blog
-        </Button>
-        <Button size="medium" color="secondary" href="/gems">
-            {#snippet icon()}
-                <HeartIcon />
-            {/snippet}
-            Gems
-        </Button>
-        <Button size="medium" color="secondary" href="https://cv.maxdaten.io">
-            {#snippet icon()}
-                <ExperienceIcon />
-            {/snippet}
-            Résumé
-        </Button>
+    <div class="hero-grid">
+        <!-- Left Column: Value Proposition -->
+        <div class="content">
+            <span class="badge">Available for 2026</span>
+            <h1 class="headline">
+                I help engineering teams <span class="accent">ship faster</span
+                >.
+            </h1>
+            <p class="subheadline">
+                Scalable architectures. Reliable automation. Transforming
+                complex infrastructure into simple workflows.
+            </p>
+            <div class="ctas">
+                <Sparkles>
+                    <Button
+                        size="medium"
+                        style="solid"
+                        color="primary"
+                        href="https://calendar.app.google/KhVdEThcwSEBCjat5"
+                    >
+                        {#snippet icon()}
+                            <CalendarIcon />
+                        {/snippet}
+                        Book a Call
+                    </Button>
+                </Sparkles>
+                <Button
+                    size="medium"
+                    style="ghost"
+                    color="secondary"
+                    href="https://github.com/MaxDaten"
+                >
+                    {#snippet icon()}
+                        <GitHubIcon />
+                    {/snippet}
+                    View Projects
+                </Button>
+            </div>
+            <div class="tech-ticker">
+                <span>Kubernetes</span>
+                <span class="dot"></span>
+                <span>GCP</span>
+                <span class="dot"></span>
+                <span>Terraform</span>
+                <span class="dot"></span>
+                <span>Go</span>
+                <span class="dot"></span>
+                <span>SvelteKit</span>
+            </div>
+        </div>
+
+        <!-- Right Column: Trading Card -->
+        <div class="card-column">
+            <HoloCard>
+                <div class="trading-card">
+                    <div class="card-header">
+                        <span class="card-title">MAXDATEN.IO</span>
+                        <span class="card-level">LVL 99</span>
+                    </div>
+                    <div class="avatar-container">
+                        <Img
+                            src={MeSrc}
+                            {...{
+                                class: 'avatar-image',
+                                alt: 'Jan-Philip Loos',
+                            }}
+                        />
+                    </div>
+                    <div class="card-name">JAN-PHILIP</div>
+                    <div class="stat-rows">
+                        <div class="stat-row">
+                            <span class="stat-label">CLASS</span>
+                            <span class="stat-value">DevOps Consultant</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">SPECIALTY</span>
+                            <span class="stat-value"
+                                >Infrastructure as Code</span
+                            >
+                        </div>
+                    </div>
+                    <div class="ability-box">
+                        <div class="ability-header">
+                            <span class="pro-badge">PRO</span>
+                            <span class="ability-name">System Optimization</span
+                            >
+                        </div>
+                        <p class="ability-description">
+                            Reduces deployment time by 80% and eliminates
+                            configuration drift.
+                        </p>
+                    </div>
+                    <div class="card-footer">#001 &middot; HAMBURG, DE</div>
+                </div>
+            </HoloCard>
+        </div>
     </div>
 </section>
 
@@ -58,58 +112,230 @@
     @use '$lib/scss/breakpoints.scss';
 
     #hero {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: var(--raw-space-16);
-        position: relative;
         padding: var(--raw-space-80) 0;
 
-        @include breakpoints.for-phone-only {
+        @include breakpoints.for-tablet-portrait-down {
             padding: var(--raw-space-48) 0;
         }
+    }
 
-        .hello {
-            text-align: center;
+    .hero-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--raw-space-48);
+        align-items: center;
+
+        @include breakpoints.for-tablet-portrait-down {
+            grid-template-columns: 1fr;
+            gap: var(--raw-space-32);
         }
+    }
 
-        .intro {
-            font-weight: 500;
-            font-size: var(--raw-text-xl);
-            line-height: var(--raw-leading-relaxed);
-            width: min(100%, 440px);
-            display: flex;
-            flex-direction: column;
-            color: rgba(var(--color-text-rgb), var(--raw-opacity-strong));
+    .content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--raw-space-24);
 
-            .left {
-                text-align: left;
-            }
-            .right {
-                text-align: right;
-            }
-
-            @include breakpoints.for-phone-only {
-                display: none;
-            }
-
-            hr {
-                border: 0;
-                margin: 0 auto;
-                border-top: 1px solid
-                    rgba(var(--color-text-rgb), var(--raw-opacity-light));
-                width: 80%;
-            }
-        }
-
-        .ctas {
-            display: flex;
-            flex-wrap: wrap;
+        @include breakpoints.for-tablet-portrait-down {
             align-items: center;
-            justify-content: center;
-            gap: var(--raw-space-12);
-            width: 100%;
+            text-align: center;
+            order: 2;
         }
+    }
+
+    .badge {
+        font-family: var(--font--mono);
+        font-size: var(--raw-text-sm);
+        padding: var(--raw-space-8) var(--raw-space-16);
+        border: 1px solid
+            rgba(var(--color-accent-rgb), var(--raw-opacity-muted));
+        border-radius: var(--raw-radius-full);
+        color: var(--color-accent);
+        width: fit-content;
+    }
+
+    .headline {
+        font-size: var(--raw-text-4xl);
+        line-height: var(--raw-leading-tight);
+        font-weight: 700;
+        color: var(--color-text);
+        margin: 0;
+
+        @include breakpoints.for-phone-only {
+            font-size: var(--raw-text-3xl);
+        }
+
+        .accent {
+            color: var(--color-accent);
+        }
+    }
+
+    .subheadline {
+        font-size: var(--raw-text-lg);
+        line-height: var(--raw-leading-relaxed);
+        color: rgba(var(--color-text-rgb), var(--raw-opacity-strong));
+        margin: 0;
+        max-width: 480px;
+    }
+
+    .ctas {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--raw-space-12);
+
+        @include breakpoints.for-tablet-portrait-down {
+            justify-content: center;
+        }
+    }
+
+    .tech-ticker {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: var(--raw-space-12);
+        font-family: var(--font--mono);
+        font-size: var(--raw-text-sm);
+        color: rgba(var(--color-text-rgb), var(--raw-opacity-muted));
+
+        @include breakpoints.for-tablet-portrait-down {
+            justify-content: center;
+        }
+
+        .dot {
+            width: 4px;
+            height: 4px;
+            border-radius: var(--raw-radius-full);
+            background-color: rgba(
+                var(--color-accent-rgb),
+                var(--raw-opacity-muted)
+            );
+        }
+    }
+
+    .card-column {
+        display: flex;
+        justify-content: center;
+
+        @include breakpoints.for-tablet-portrait-down {
+            order: 1;
+        }
+    }
+
+    /* Trading Card Interior */
+    .trading-card {
+        font-family: var(--font--mono);
+        display: flex;
+        flex-direction: column;
+        gap: var(--raw-space-16);
+        width: 280px;
+    }
+
+    .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: var(--raw-text-xs);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .card-title {
+        color: var(--color-text);
+    }
+
+    .card-level {
+        color: var(--color-accent);
+    }
+
+    .avatar-container {
+        aspect-ratio: 1 / 1;
+        border-radius: var(--raw-radius-sm);
+        overflow: hidden;
+        background-color: rgba(
+            var(--color-text-rgb),
+            var(--raw-opacity-subtle)
+        );
+
+        :global(.avatar-image) {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .card-name {
+        font-size: var(--raw-text-xl);
+        font-weight: 700;
+        text-transform: uppercase;
+        color: var(--color-text);
+        letter-spacing: 0.05em;
+    }
+
+    .stat-rows {
+        display: flex;
+        flex-direction: column;
+        gap: var(--raw-space-8);
+    }
+
+    .stat-row {
+        display: flex;
+        justify-content: space-between;
+        font-size: var(--raw-text-xs);
+    }
+
+    .stat-label {
+        color: rgba(var(--color-text-rgb), var(--raw-opacity-muted));
+        text-transform: uppercase;
+    }
+
+    .stat-value {
+        color: var(--color-text);
+    }
+
+    .ability-box {
+        border-left: 2px solid var(--color-accent);
+        padding-left: var(--raw-space-12);
+        display: flex;
+        flex-direction: column;
+        gap: var(--raw-space-8);
+    }
+
+    .ability-header {
+        display: flex;
+        align-items: center;
+        gap: var(--raw-space-8);
+    }
+
+    .pro-badge {
+        font-size: var(--raw-text-xs);
+        font-weight: 700;
+        padding: var(--raw-space-4) var(--raw-space-8);
+        background-color: var(--color-accent);
+        color: var(--color-surface);
+        border-radius: var(--raw-radius-xs);
+        text-transform: uppercase;
+    }
+
+    .ability-name {
+        font-size: var(--raw-text-sm);
+        font-weight: 600;
+        color: var(--color-text);
+    }
+
+    .ability-description {
+        font-size: var(--raw-text-xs);
+        color: rgba(var(--color-text-rgb), var(--raw-opacity-strong));
+        line-height: var(--raw-leading-relaxed);
+        margin: 0;
+    }
+
+    .card-footer {
+        font-size: var(--raw-text-xs);
+        color: rgba(var(--color-text-rgb), var(--raw-opacity-muted));
+        text-align: center;
+        padding-top: var(--raw-space-8);
+        border-top: 1px solid
+            rgba(var(--color-text-rgb), var(--raw-opacity-subtle));
     }
 </style>

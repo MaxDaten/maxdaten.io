@@ -13,7 +13,7 @@
             },
             style: {
                 control: { type: 'select' },
-                options: ['solid', 'understated', 'clear'],
+                options: ['solid', 'understated', 'clear', 'ghost'],
             },
             size: {
                 control: { type: 'select' },
@@ -59,6 +59,15 @@
 
 <Story name="Secondary Clear" args={{ color: 'secondary', style: 'clear' }}>
     Secondary Button
+</Story>
+
+<!-- Ghost Button Variants -->
+<Story name="Primary Ghost" args={{ color: 'primary', style: 'ghost' }}>
+    Primary Ghost
+</Story>
+
+<Story name="Secondary Ghost" args={{ color: 'secondary', style: 'ghost' }}>
+    Secondary Ghost
 </Story>
 
 <!-- Size Variants -->

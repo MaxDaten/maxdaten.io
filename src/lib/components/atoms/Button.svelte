@@ -5,7 +5,7 @@
 
     interface Props {
         color?: 'primary' | 'secondary';
-        style?: 'solid' | 'understated' | 'clear';
+        style?: 'solid' | 'understated' | 'clear' | 'ghost';
         size?: 'small' | 'medium' | 'large';
         href?: string | undefined;
         class?: ClassValue;
@@ -140,6 +140,24 @@
                     background-color: rgba(
                         var(--main-color),
                         var(--raw-opacity-light)
+                    );
+                }
+            }
+
+            &--ghost {
+                background-color: transparent;
+                color: rgb(var(--main-color));
+                border: 1px solid
+                    rgba(var(--main-color), var(--raw-opacity-muted));
+
+                &:hover {
+                    border-color: rgba(
+                        var(--main-color),
+                        var(--raw-opacity-medium)
+                    );
+                    background-color: rgba(
+                        var(--main-color),
+                        var(--raw-opacity-subtle)
                     );
                 }
             }
