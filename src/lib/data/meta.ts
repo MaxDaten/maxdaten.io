@@ -18,7 +18,7 @@ import { getCoverBySlug } from '$utils/image-loader';
 export const siteBaseUrl = 'https://maxdaten.io';
 
 export const description =
-    'DevOps consultant and software engineer specializing in cloud infrastructure, Kubernetes, and modern development workflows. Helping businesses build scalable, secure systems.';
+    'Full-stack product engineering with knowledge transfer built in. 12+ years scaling systems from startup to 100M+ requests/day. K8s, Multi-Cloud, GitOps.';
 
 export const title = 'Jan-Philip Loos | maxdaten.io';
 
@@ -66,7 +66,7 @@ export const baseSchema: [WebSite, Person, ProfilePage, Organization] = [
         founder: {
             '@id': 'https://maxdaten.io/#jloos',
         },
-        description: 'DevOps consulting and cloud infrastructure expertise',
+        description: 'Full-stack product engineering and technical advisory',
     },
 ];
 

@@ -12,20 +12,20 @@ export const load = ({ url }) => {
         description,
         keywords: [
             'Jan-Philip Loos',
-            'DevOps Consultant',
-            'Cloud Infrastructure',
-            'Kubernetes Expert',
-            'Google Cloud Platform',
-            'Infrastructure as Code',
+            'Technical Product Advisor',
+            'Full-Stack Product Engineering',
+            'Kubernetes at Scale',
+            'Multi-Cloud Architecture',
+            'GitOps',
             'Software Architecture',
-            'DevOps Automation',
+            'Knowledge Transfer',
             'Freelance Consultant',
             'Hamburg Developer',
-            'NixOS',
-            'Terraform',
-            'CI/CD Optimization',
-            'Secret Management',
+            'Platform Engineering',
+            'Developer Experience',
             'System Architecture',
+            'Product Engineering',
+            'Enterprise Deployments',
         ],
         canonical: new URL(url.pathname, url.origin).href,
         openGraph: {
@@ -38,7 +38,7 @@ export const load = ({ url }) => {
             images: [
                 {
                     url: ogImageUrl,
-                    alt: 'Jan-Philip Loos | maxdaten.io profile card',
+                    alt: 'Jan-Philip Loos - Products that ship. Systems that scale.',
                     width: 1200,
                     height: 630,
                     secureUrl: ogImageUrl,
@@ -51,7 +51,8 @@ export const load = ({ url }) => {
             title,
             description,
             image: ogImageUrl,
-            imageAlt: 'Jan-Philip Loos | maxdaten.io profile card',
+            imageAlt:
+                'Jan-Philip Loos - Products that ship. Systems that scale.',
         } as Twitter,
     }) satisfies MetaTagsProps;
 
