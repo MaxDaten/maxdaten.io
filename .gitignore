@@ -27,3 +27,4 @@ storybook-static
 /.claude/settings.local.json
 **/__screenshots__/
 /.playwright-mcp/
+.vercel
