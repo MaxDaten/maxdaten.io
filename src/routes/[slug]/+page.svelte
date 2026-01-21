@@ -65,8 +65,6 @@
                 {/if}
             </div>
 
-            <h1>{title}</h1>
-
             <div class="meta-line">
                 {#if author}
                     <span class="author">
@@ -89,6 +87,8 @@
                     >
                 {/if}
             </div>
+
+            <h1>{title}</h1>
 
             {#if tags.length}
                 <div class="tags">
@@ -179,7 +179,6 @@
                 text-transform: uppercase;
                 letter-spacing: 0.05em;
                 color: rgba(var(--color--secondary-rgb), 0.6);
-                margin-bottom: 16px;
             }
 
             .updated-label {
