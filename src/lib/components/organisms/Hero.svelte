@@ -56,7 +56,7 @@
                 <span class="dot"></span>
                 <span>GitOps</span>
                 <span class="dot"></span>
-                <span>Full-Stack Functional Architectures</span>
+                <span>Full-Stack Architectures</span>
             </div>
         </div>
 
