@@ -221,7 +221,7 @@
     }
 
     .author-name {
-        color: var(--color-text);
+        color: var(--color-accent);
         font-weight: var(--font-weight-medium);
     }
 
