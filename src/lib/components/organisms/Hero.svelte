@@ -226,13 +226,14 @@
         }
     }
 
-    /* Trading Card Interior */
+    /* Trading Card Interior - 2.5:3.5 trading card ratio */
     .trading-card {
         font-family: var(--font--mono);
         display: flex;
         flex-direction: column;
-        gap: var(--raw-space-16);
-        width: 280px;
+        gap: var(--raw-space-12);
+        width: 450px;
+        aspect-ratio: 5 / 7;
     }
 
     .card-header {
@@ -254,7 +255,7 @@
     }
 
     .avatar-container {
-        aspect-ratio: 1 / 1;
+        aspect-ratio: 4 / 3;
         border-radius: var(--raw-radius-sm);
         overflow: hidden;
         background-color: rgba(
