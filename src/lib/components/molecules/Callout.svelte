@@ -11,9 +11,9 @@
     let { type = undefined, children }: Props = $props();
 </script>
 
-<div class="callout-block {type ?? ''}">
+<aside class="callout {type ?? 'default'}">
     {#if type}
-        <div class="icon-wrapper">
+        <div class="icon">
             {#if type === 'info'}
                 <Info />
             {:else if type === 'warning' || type === 'error'}
@@ -23,54 +23,87 @@
             {/if}
         </div>
     {/if}
-    {@render children?.()}
-</div>
+    <div class="content">
+        {@render children?.()}
+    </div>
+</aside>
 
 <style lang="scss">
-    .callout-block {
-        --bg-color: var(--color--page-background);
-        --accent-color: transparent;
-        --text-color: var(--color--text);
+    .callout {
+        --callout-accent: var(--color-text-muted);
+        --callout-accent-rgb: var(--color-text-rgb);
 
-        margin: 40px 0 30px;
-        padding: 25px 25px;
-        border-top-right-radius: 10px;
-        border-bottom-right-radius: 10px;
-        background: var(--bg-color);
-        color: var(--text-color);
-        border-left: 4px solid var(--accent-color);
-
-        position: relative;
-
-        .icon-wrapper {
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            top: 0;
-            left: 0;
-            transform: translate(calc(-50% - 1.5px), -50%);
-            background: var(--color--post-page-background);
-            padding: 8px;
-            border-radius: 50%;
-            fill: var(--accent-color);
-            color: var(--accent-color);
-        }
+        display: flex;
+        gap: var(--raw-space-12);
+        margin: var(--raw-space-24) 0;
+        padding: var(--raw-space-16);
+        border-radius: var(--radius-callout);
+        background: rgba(var(--callout-accent-rgb), var(--raw-opacity-subtle));
+        border-left: 3px solid var(--callout-accent);
 
         &.info {
-            --bg-color: var(--color--callout-background--info);
-            --accent-color: var(--color--callout-accent--info);
+            --callout-accent: var(--color-info);
+            --callout-accent-rgb: var(--color-info-rgb);
         }
+
         &.warning {
-            --bg-color: var(--color--callout-background--warning);
-            --accent-color: var(--color--callout-accent--warning);
+            --callout-accent: var(--color-warning);
+            --callout-accent-rgb: var(--color-warning-rgb);
         }
+
         &.error {
-            --bg-color: var(--color--callout-background--error);
-            --accent-color: var(--color--callout-accent--error);
+            --callout-accent: var(--color-error);
+            --callout-accent-rgb: var(--color-error-rgb);
         }
+
         &.success {
-            --bg-color: var(--color--callout-background--success);
-            --accent-color: var(--color--callout-accent--success);
+            --callout-accent: var(--color-success);
+            --callout-accent-rgb: var(--color-success-rgb);
+        }
+    }
+
+    .icon {
+        flex-shrink: 0;
+        width: 20px;
+        height: 20px;
+        color: var(--callout-accent);
+
+        :global(svg) {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .content {
+        flex: 1;
+        min-width: 0;
+        font-size: var(--raw-text-sm);
+        line-height: var(--raw-leading-relaxed);
+        color: var(--color-text);
+
+        :global(p) {
+            margin: 0;
+        }
+
+        :global(p + p) {
+            margin-top: var(--raw-space-8);
+        }
+
+        :global(a) {
+            color: var(--callout-accent);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+
+            &:hover {
+                text-decoration-thickness: 2px;
+            }
+        }
+
+        :global(code) {
+            font-size: 0.9em;
+            padding: 0.15em 0.4em;
+            border-radius: var(--raw-radius-xs);
+            background: rgba(var(--color-text-rgb), var(--raw-opacity-subtle));
         }
     }
 </style>
