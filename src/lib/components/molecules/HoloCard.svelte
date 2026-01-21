@@ -13,9 +13,10 @@
     const springInteract = { stiffness: 0.066, damping: 0.25 };
     const springSnap = { stiffness: 0.01, damping: 0.06 };
 
-    // Spring stores for rotation and sheen
+    // Spring stores for rotation, sheen, and border angle
     const springRotate = Spring.of(() => ({ x: 0, y: 0 }), springInteract);
     const springSheen = Spring.of(() => ({ x: 50, y: 50 }), springInteract);
+    const springAngle = Spring.of(() => 0, springInteract);
 
     let isHovering = $state(false);
     let animationFrame = $state<number | null>(null);
@@ -53,6 +54,8 @@
             springRotate.damping = springInteract.damping;
             springSheen.stiffness = springInteract.stiffness;
             springSheen.damping = springInteract.damping;
+            springAngle.stiffness = springInteract.stiffness;
+            springAngle.damping = springInteract.damping;
 
             // Update rotation (~±14° like poke-holo: center / 3.5)
             springRotate.set({
@@ -65,6 +68,11 @@
                 x: (centerX + 0.5) * 100,
                 y: (centerY + 0.5) * 100,
             });
+
+            // Calculate angle pointing from center toward cursor (0deg = top, clockwise)
+            const angleRad = Math.atan2(centerX, -centerY);
+            const angleDeg = angleRad * (180 / Math.PI);
+            springAngle.set(angleDeg);
 
             animationFrame = null;
         });
@@ -94,10 +102,13 @@
         springRotate.damping = springSnap.damping;
         springSheen.stiffness = springSnap.stiffness;
         springSheen.damping = springSnap.damping;
+        springAngle.stiffness = springSnap.stiffness;
+        springAngle.damping = springSnap.damping;
 
         // Snap back to center
         springRotate.set({ x: 0, y: 0 });
         springSheen.set({ x: 50, y: 50 });
+        springAngle.set(0);
     }
 </script>
 
@@ -110,6 +121,7 @@
         style:--rotate-y="{springRotate.current.y}deg"
         style:--sheen-x="{springSheen.current.x}%"
         style:--sheen-y="{springSheen.current.y}%"
+        style:--border-angle="{springAngle.current}deg"
         onmousemove={handleMouseMove}
         onmouseenter={handleMouseEnter}
         onmouseleave={handleMouseLeave}
@@ -167,5 +179,40 @@
         opacity: 1;
         --sheen-x: 35%;
         --sheen-y: 30%;
+    }
+
+    /* Edge-based shining border that follows cursor position */
+    .holo-card::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        padding: 1px;
+        background: linear-gradient(
+            calc(var(--border-angle, 0deg) + 180deg),
+            rgba(var(--color-accent-rgb), var(--raw-opacity-muted)) 0%,
+            transparent 50%
+        );
+        /* Modern mask technique (Baseline 2023) */
+        -webkit-mask:
+            conic-gradient(#000 0 0) content-box,
+            conic-gradient(#000 0 0);
+        mask:
+            conic-gradient(#000 0 0) content-box exclude,
+            conic-gradient(#000 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        opacity: 0;
+        transition: opacity 0.3s ease-out;
+        pointer-events: none;
+    }
+
+    .holo-card.hovering::after {
+        opacity: 1;
+    }
+
+    .holo-card.static-mode::after {
+        opacity: 1;
+        --border-angle: -110deg;
     }
 </style>
