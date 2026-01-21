@@ -26,10 +26,11 @@
 
     .orange {
         background: var(--color-accent);
-        width: 400px;
-        height: 400px;
-        top: -100px;
-        left: 20%;
+        width: 300px;
+        height: 300px;
+        top: -120px;
+        left: 15%;
+        opacity: 0.25;
     }
 
     .purple {
