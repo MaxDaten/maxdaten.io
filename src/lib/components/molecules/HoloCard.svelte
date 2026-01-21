@@ -39,18 +39,18 @@
         // Throttle with requestAnimationFrame
         if (animationFrame) return;
 
+        // Capture values BEFORE entering rAF callback (event gets recycled)
+        const card = event.currentTarget as HTMLElement;
+        if (!card) return;
+
+        const rect = card.getBoundingClientRect();
+        const clientX = event.clientX;
+        const clientY = event.clientY;
+
         animationFrame = requestAnimationFrame(() => {
-            const card = event.currentTarget as HTMLElement;
-            if (!card) {
-                animationFrame = null;
-                return;
-            }
-
-            const rect = card.getBoundingClientRect();
-
             // Calculate position relative to center (-0.5 to 0.5)
-            const centerX = (event.clientX - rect.left) / rect.width - 0.5;
-            const centerY = (event.clientY - rect.top) / rect.height - 0.5;
+            const centerX = (clientX - rect.left) / rect.width - 0.5;
+            const centerY = (clientY - rect.top) / rect.height - 0.5;
 
             // Use interaction spring settings
             springRotate.stiffness = springInteract.stiffness;
