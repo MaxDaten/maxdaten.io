@@ -179,9 +179,9 @@
     .subheadline {
         font-size: var(--raw-text-lg);
         line-height: var(--raw-leading-relaxed);
-        color: rgba(var(--color-text-rgb), var(--raw-opacity-strong));
+        color: #d1d5db;
         margin: 0;
-        max-width: 480px;
+        max-width: 540px;
     }
 
     .ctas {
@@ -200,8 +200,9 @@
         align-items: center;
         gap: var(--raw-space-12);
         font-family: var(--font--mono);
-        font-size: var(--raw-text-sm);
-        color: #555;
+        font-size: 13px;
+        color: #9ca3af;
+        margin-top: var(--raw-space-24);
 
         @include breakpoints.for-tablet-portrait-down {
             justify-content: center;
@@ -212,6 +213,7 @@
             height: 4px;
             border-radius: var(--raw-radius-full);
             background-color: var(--color-accent);
+            opacity: 0.8;
         }
     }
 
@@ -301,8 +303,12 @@
     }
 
     .ability-box {
-        border-left: 2px solid var(--color-accent);
-        padding-left: var(--raw-space-12);
+        margin-top: var(--raw-space-16);
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 4px;
+        padding: 10px;
+        border-left: 3px solid var(--color-accent);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
         display: flex;
         flex-direction: column;
         gap: var(--raw-space-8);
@@ -332,17 +338,18 @@
 
     .ability-description {
         font-size: var(--raw-text-xs);
-        color: rgba(var(--color-text-rgb), var(--raw-opacity-strong));
+        color: #9ca3af;
         line-height: var(--raw-leading-relaxed);
-        margin: 0;
+        margin: 4px 0 0 0;
     }
 
     .card-footer {
-        font-size: var(--raw-text-xs);
-        color: rgba(var(--color-text-rgb), var(--raw-opacity-muted));
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 0.05em;
+        color: #6b7280;
         text-align: center;
-        padding-top: var(--raw-space-8);
-        border-top: 1px solid
-            rgba(var(--color-text-rgb), var(--raw-opacity-subtle));
+        padding-top: 12px;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
     }
 </style>

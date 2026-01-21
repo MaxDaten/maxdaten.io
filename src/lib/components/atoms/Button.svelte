@@ -84,6 +84,8 @@
         .icon {
             width: 24px;
             height: 24px;
+            position: relative;
+            top: -1px;
         }
 
         &:disabled {
