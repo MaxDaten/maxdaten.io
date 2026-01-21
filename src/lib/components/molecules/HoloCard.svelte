@@ -1,6 +1,6 @@
 <script lang="ts">
     import type { Snippet } from 'svelte';
-    import { spring } from 'svelte/motion';
+    import { Spring, prefersReducedMotion } from 'svelte/motion';
     import { MediaQuery } from 'svelte/reactivity';
 
     interface Props {
@@ -14,27 +14,23 @@
     const springSnap = { stiffness: 0.01, damping: 0.06 };
 
     // Spring stores for rotation and sheen
-    const springRotate = spring({ x: 0, y: 0 }, springInteract);
-    const springSheen = spring({ x: 50, y: 50 }, springInteract);
+    const springRotate = Spring.of(() => ({ x: 0, y: 0 }), springInteract);
+    const springSheen = Spring.of(() => ({ x: 50, y: 50 }), springInteract);
 
     let isHovering = $state(false);
     let animationFrame = $state<number | null>(null);
 
-    // Check for reduced motion preference
-    const reducedMotionQuery = new MediaQuery(
-        'prefers-reduced-motion: reduce',
-        false
+    // Check for mobile viewport (tablet-portrait-down breakpoint)
+    const mobileQuery = new MediaQuery('(max-width: 900px)', false);
+
+    // Static mode: disable animations for reduced motion OR mobile
+    let isStaticMode = $derived(
+        prefersReducedMotion.current || mobileQuery.current
     );
-    let prefersReducedMotion = $derived(reducedMotionQuery.current);
 
     // Derived values from springs for use in template
-    let rotateX = $derived($springRotate.x);
-    let rotateY = $derived($springRotate.y);
-    let sheenX = $derived($springSheen.x);
-    let sheenY = $derived($springSheen.y);
-
     function handleMouseMove(event: MouseEvent) {
-        if (prefersReducedMotion) return;
+        if (isStaticMode) return;
 
         // Throttle with requestAnimationFrame
         if (animationFrame) return;
@@ -75,7 +71,7 @@
     }
 
     function handleMouseEnter() {
-        if (prefersReducedMotion) return;
+        if (isStaticMode) return;
         isHovering = true;
 
         // Use interaction spring settings
@@ -84,7 +80,7 @@
     }
 
     function handleMouseLeave() {
-        if (prefersReducedMotion) return;
+        if (isStaticMode) return;
         isHovering = false;
 
         // Cancel any pending animation frame
@@ -109,11 +105,11 @@
     <div
         class="holo-card"
         class:hovering={isHovering}
-        class:reduced-motion={prefersReducedMotion}
-        style:--rotate-x="{rotateX}deg"
-        style:--rotate-y="{rotateY}deg"
-        style:--sheen-x="{sheenX}%"
-        style:--sheen-y="{sheenY}%"
+        class:static-mode={isStaticMode}
+        style:--rotate-x="{springRotate.current.x}deg"
+        style:--rotate-y="{springRotate.current.y}deg"
+        style:--sheen-x="{springSheen.current.x}%"
+        style:--sheen-y="{springSheen.current.y}%"
         onmousemove={handleMouseMove}
         onmouseenter={handleMouseEnter}
         onmouseleave={handleMouseLeave}
@@ -161,13 +157,15 @@
         opacity: 1;
     }
 
-    /* Disable all animations for reduced motion */
-    .holo-card.reduced-motion {
-        transform: none;
+    /* Static mode: reduced motion OR mobile - fixed tilt with visible sheen */
+    .holo-card.static-mode {
+        transform: rotateX(3deg) rotateY(-6deg);
         transition: none;
     }
 
-    .holo-card.reduced-motion::before {
-        display: none;
+    .holo-card.static-mode::before {
+        opacity: 1;
+        --sheen-x: 35%;
+        --sheen-y: 30%;
     }
 </style>
