@@ -115,7 +115,7 @@
     h1 {
         display: flex;
         flex-direction: column;
-        font-size: 48px;
+        font-size: 68px;
         line-height: 1.15;
         color: white;
         margin: 0 0 20px 0;
