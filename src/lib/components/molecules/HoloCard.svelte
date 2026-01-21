@@ -8,14 +8,12 @@
 
     let { children }: Props = $props();
 
-    // Reference to the card element
-    let cardElement: HTMLElement | undefined = $state();
-
     // Track mouse position relative to card center
     let rotateX = $state(0);
     let rotateY = $state(0);
     let sheenX = $state(50);
     let sheenY = $state(50);
+    let isHovering = $state(false);
 
     // Check for reduced motion preference using Svelte's reactive MediaQuery
     const reducedMotionQuery = new MediaQuery(
@@ -24,61 +22,54 @@
     );
     let prefersReducedMotion = $derived(reducedMotionQuery.current);
 
-    // Global mouse tracking - responds to mouse anywhere on page
-    $effect(() => {
-        if (prefersReducedMotion || typeof window === 'undefined') return;
+    function handleMouseMove(event: MouseEvent) {
+        if (prefersReducedMotion) return;
 
-        function handleGlobalMouseMove(event: MouseEvent) {
-            if (!cardElement) return;
+        const card = event.currentTarget as HTMLElement;
+        const rect = card.getBoundingClientRect();
 
-            const rect = cardElement.getBoundingClientRect();
-            const cardCenterX = rect.left + rect.width / 2;
-            const cardCenterY = rect.top + rect.height / 2;
+        // Calculate mouse position relative to card center (0 to 1)
+        const x = (event.clientX - rect.left) / rect.width;
+        const y = (event.clientY - rect.top) / rect.height;
 
-            // Calculate offset from card center
-            const offsetX = event.clientX - cardCenterX;
-            const offsetY = event.clientY - cardCenterY;
+        // Convert to rotation angles (-8 to 8 degrees) - subtle tilt
+        // rotateY: left/right tilt based on horizontal position
+        // rotateX: up/down tilt based on vertical position (inverted)
+        rotateY = (x - 0.5) * 16; // -8 to 8
+        rotateX = (0.5 - y) * 16; // -8 to 8
 
-            // Normalize by viewport size for consistent effect across screen
-            const maxDistance =
-                Math.max(window.innerWidth, window.innerHeight) / 2;
-            const normalizedX = Math.max(
-                -1,
-                Math.min(1, offsetX / maxDistance)
-            );
-            const normalizedY = Math.max(
-                -1,
-                Math.min(1, offsetY / maxDistance)
-            );
+        // Update sheen position (percentage)
+        sheenX = x * 100;
+        sheenY = y * 100;
+    }
 
-            // Convert to rotation angles (-15 to 15 degrees)
-            rotateY = normalizedX * 15;
-            rotateX = -normalizedY * 15;
+    function handleMouseEnter() {
+        if (prefersReducedMotion) return;
+        isHovering = true;
+    }
 
-            // Sheen follows mouse relative to card bounds
-            const sheenNormX = (event.clientX - rect.left) / rect.width;
-            const sheenNormY = (event.clientY - rect.top) / rect.height;
-            sheenX = Math.max(0, Math.min(100, sheenNormX * 100));
-            sheenY = Math.max(0, Math.min(100, sheenNormY * 100));
-        }
-
-        window.addEventListener('mousemove', handleGlobalMouseMove);
-
-        return () => {
-            window.removeEventListener('mousemove', handleGlobalMouseMove);
-        };
-    });
+    function handleMouseLeave() {
+        if (prefersReducedMotion) return;
+        isHovering = false;
+        rotateX = 0;
+        rotateY = 0;
+        sheenX = 50;
+        sheenY = 50;
+    }
 </script>
 
 <div class="holo-card-container">
     <div
-        bind:this={cardElement}
         class="holo-card"
+        class:hovering={isHovering}
         class:reduced-motion={prefersReducedMotion}
         style:--rotate-x="{rotateX}deg"
         style:--rotate-y="{rotateY}deg"
         style:--sheen-x="{sheenX}%"
         style:--sheen-y="{sheenY}%"
+        onmousemove={handleMouseMove}
+        onmouseenter={handleMouseEnter}
+        onmouseleave={handleMouseLeave}
         role="presentation"
     >
         {@render children()}
@@ -94,7 +85,8 @@
         position: relative;
         transform-style: preserve-3d;
         transform: rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg));
-        transition: transform 0.15s ease-out;
+        /* Apple-style spring easing for smooth, fluid motion */
+        transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         background-color: var(--color-surface-elevated);
         border-radius: var(--radius-card);
         padding: var(--raw-space-24);
@@ -112,10 +104,14 @@
             rgba(var(--color-accent-rgb), var(--raw-opacity-subtle)) 50%,
             transparent 70%
         );
-        opacity: 1;
-        transition: opacity 0.15s ease-out;
+        opacity: 0;
+        transition: opacity 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         pointer-events: none;
         border-radius: inherit;
+    }
+
+    .holo-card.hovering::before {
+        opacity: 1;
     }
 
     /* Disable all animations for reduced motion */
