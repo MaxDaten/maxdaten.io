@@ -83,6 +83,13 @@ This is a SvelteKit-based static blog site with MDX integration for content auth
 - Global SCSS files in `src/lib/scss/`
 - Component-scoped styles using Svelte's CSS scoping
 - Shiki/CodeBlock styling in `src/lib/scss/_markdown.scss:74` `.code-block` class
+- **Design Tokens:** Always use design tokens for styling values
+    - Two-layer architecture in `src/lib/scss/_tokens-colors.scss`
+    - **Primitive tokens** (`--raw-*`): Raw values without context (e.g., `--raw-radius-xs: 4px`)
+    - **Semantic tokens**: Contextual usage referencing primitives (e.g.,
+      `--radius-tag: var(--raw-radius-xs)`)
+    - Never use hardcoded values for colors, spacing, radius, or opacity
+    - Prefer semantic tokens in components; only use primitives when defining new semantic tokens
 
 **Path Aliases:**
 
