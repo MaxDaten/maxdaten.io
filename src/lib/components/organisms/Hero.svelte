@@ -4,7 +4,7 @@
     import Sparkles from '$components/atoms/Sparkles.svelte';
     import CalendarIcon from '$lib/icons/calendar.svelte';
     import GitHubIcon from '$lib/icons/socials/github.svelte';
-    import MeSrc from '$assets/images/authors/jloos.png?as=run&fit=cover';
+    import MeSrc from '$assets/images/authors/jloos-v2.jpeg?as=run&fit=cover';
     import { FxReveal as Img } from '@zerodevx/svelte-img';
 </script>
 
