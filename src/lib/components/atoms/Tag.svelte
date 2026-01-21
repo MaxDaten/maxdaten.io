@@ -17,26 +17,35 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 5px;
-        padding: 5px 15px;
-        border-radius: 10px;
+        gap: var(--raw-space-4);
+        padding: var(--space-tag-y) var(--space-tag-x);
+        border-radius: var(--radius-tag);
         font-weight: 500;
-        font-size: 0.85rem;
+        font-size: var(--raw-text-sm);
         width: fit-content;
         white-space: nowrap;
 
         border: 0.5px solid;
 
         &.primary {
-            background-color: var(--color--primary-tint);
-            color: var(--color--primary);
-            border-color: rgba(var(--color--primary-rgb), 0.3);
+            background-color: rgba(
+                var(--color-accent-rgb),
+                var(--raw-opacity-light)
+            );
+            color: var(--color-accent);
+            border-color: rgba(
+                var(--color-accent-rgb),
+                var(--raw-opacity-muted)
+            );
         }
 
         &.secondary {
-            background-color: var(--color--secondary-tint);
-            color: var(--color--secondary);
-            border-color: rgba(var(--color--secondary-rgb), 0.3);
+            background-color: rgba(
+                var(--color-text-rgb),
+                var(--raw-opacity-subtle)
+            );
+            color: var(--color-text);
+            border-color: rgba(var(--color-text-rgb), var(--raw-opacity-muted));
         }
     }
 </style>

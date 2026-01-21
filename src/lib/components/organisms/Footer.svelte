@@ -30,7 +30,7 @@
             var(--color--waves-end) 100%
         );
         border-top: 1px solid var(--color--waves-start);
-        padding: 24px 0;
+        padding: var(--raw-space-24) 0;
 
         .content {
             display: flex;
@@ -39,30 +39,30 @@
             justify-content: space-between;
             max-width: 1080px;
             margin: 0 auto;
-            padding: 0 15px;
+            padding: 0 var(--raw-space-16);
 
             @media (max-width: 767px) {
                 flex-direction: column;
-                gap: 16px;
+                gap: var(--raw-space-16);
             }
         }
 
         .legal {
             display: flex;
             align-items: center;
-            gap: 16px;
-            font-size: 0.9rem;
+            gap: var(--raw-space-16);
+            font-size: var(--raw-text-base);
         }
 
         .socials {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: var(--raw-space-24);
         }
 
         a {
             &:hover {
-                filter: drop-shadow(0px 0px 3px var(--color--primary));
+                filter: drop-shadow(0px 0px 3px var(--color-accent));
             }
         }
     }

@@ -89,11 +89,12 @@
 <style lang="scss">
     .code-block {
         figure {
-            margin: 24px 0;
+            margin: var(--raw-space-24) 0;
             position: relative;
-            border-radius: 8px;
+            border-radius: var(--raw-radius-sm);
             overflow: hidden;
-            border: 0.5px solid rgba(255, 255, 255, 0.08);
+            border: 0.5px solid
+                rgba(var(--color-text-rgb), var(--raw-opacity-subtle));
 
             figcaption + :global(pre.shiki) {
                 border-top-left-radius: 0;
@@ -105,7 +106,7 @@
             :global(pre.shiki .line) {
                 display: inline-block;
                 position: relative;
-                padding-left: 12px;
+                padding-left: var(--raw-space-12);
                 min-height: 1.1em;
             }
         }
@@ -126,7 +127,7 @@
                 left: -3em;
                 width: 2.5em;
                 text-align: right;
-                color: rgba(255, 255, 255, 0.3);
+                color: rgba(var(--color-text-rgb), var(--raw-opacity-muted));
                 user-select: none;
                 -webkit-user-select: none;
             }
@@ -134,24 +135,27 @@
 
         figure .copy-button {
             position: absolute;
-            bottom: 12px;
-            right: 12px;
+            bottom: var(--raw-space-12);
+            right: var(--raw-space-12);
             z-index: 2;
-            opacity: 0.5;
+            opacity: var(--raw-opacity-medium);
             transition: opacity 150ms ease-out;
             background: transparent;
             border: none;
-            padding: 8px;
-            border-radius: 4px;
+            padding: var(--raw-space-8);
+            border-radius: var(--raw-radius-xs);
             cursor: pointer;
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(var(--color-text-rgb), var(--raw-opacity-strong));
             display: flex;
             align-items: center;
             justify-content: center;
 
             &:hover {
                 opacity: 0.9;
-                background: rgba(255, 255, 255, 0.08);
+                background: rgba(
+                    var(--color-text-rgb),
+                    var(--raw-opacity-subtle)
+                );
             }
 
             &:disabled {
@@ -159,12 +163,12 @@
             }
 
             &.success {
-                color: #4ade80;
+                color: var(--color-success);
                 opacity: 0.9;
             }
 
             &.failure {
-                color: #f87171;
+                color: var(--color-error);
                 opacity: 0.9;
             }
 
@@ -175,24 +179,24 @@
 
         figcaption.filename-container {
             width: 100%;
-            background-color: #1a1a1a;
-            border-bottom: 0.5px solid rgba(255, 255, 255, 0.06);
-            border-radius: 8px 8px 0 0;
+            background-color: var(--raw-color-gray-850);
+            border-bottom: 0.5px solid rgba(var(--color-text-rgb), 0.06);
+            border-radius: var(--raw-radius-sm) var(--raw-radius-sm) 0 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 16px;
+            padding: var(--raw-space-12) var(--raw-space-16);
             margin: 0;
 
             .filename-content {
                 display: flex;
                 align-items: center;
-                gap: 8px;
+                gap: var(--raw-space-8);
             }
 
             .filename {
                 font-family: var(--font--mono), monospace;
-                font-size: 13px;
+                font-size: var(--raw-text-sm);
             }
 
             :global(.file-icon) {
@@ -201,10 +205,10 @@
 
             .lang {
                 font-family: var(--font--mono), monospace;
-                font-size: 11px;
+                font-size: var(--raw-text-xs);
                 text-transform: uppercase;
                 letter-spacing: 0.05em;
-                color: rgba(255, 255, 255, 0.4);
+                color: rgba(var(--color-text-rgb), 0.4);
             }
         }
     }

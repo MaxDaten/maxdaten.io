@@ -11,29 +11,148 @@
 // =============================================================================
 
 :root {
-    // Primitive colors - Orange accent (no teal)
+    // =========================================================================
+    // Primitive Colors
+    // =========================================================================
+
+    // Orange accent palette
     --raw-color-orange-400: #ff9933;
     --raw-color-orange-500: #ff8000;
     --raw-color-orange-600: #e67300;
     --raw-color-orange-700: #cc6600;
     --raw-color-orange-warm: #ffb347;
 
-    // Primitive grays/surfaces
+    // RGB values for rgba() usage
+    --raw-color-orange-400-rgb: 255, 153, 51;
+    --raw-color-orange-500-rgb: 255, 128, 0;
+    --raw-color-orange-600-rgb: 230, 115, 0;
+    --raw-color-orange-700-rgb: 204, 102, 0;
+
+    // Grays/surfaces
     --raw-color-gray-900: #1c1e26;
     --raw-color-gray-850: #141519;
     --raw-color-gray-800: #32343e;
     --raw-color-gray-700: #2b3131;
+    --raw-color-gray-600: #4a4a5a;
 
-    // Primitive text colors
+    // RGB values for grays
+    --raw-color-gray-900-rgb: 28, 30, 38;
+    --raw-color-gray-850-rgb: 20, 21, 25;
+    --raw-color-gray-800-rgb: 50, 52, 62;
+
+    // Text colors
     --raw-color-white: #fffcfc;
     --raw-color-white-muted: #d9f9fd;
+    --raw-color-white-rgb: 255, 252, 252;
 
-    // Semantic colors
+    // Status colors
+    --raw-color-success: #00c48f;
+    --raw-color-success-rgb: 0, 196, 143;
+    --raw-color-warning: #ffca39;
+    --raw-color-warning-rgb: 255, 202, 57;
+    --raw-color-error: #ff8082;
+    --raw-color-error-rgb: 255, 128, 130;
+    --raw-color-info: #6ca9f7;
+    --raw-color-info-rgb: 108, 169, 247;
+
+    // =========================================================================
+    // Primitive Radius
+    // =========================================================================
+    --raw-radius-xs: 4px;
+    --raw-radius-sm: 8px;
+    --raw-radius-md: 12px;
+    --raw-radius-lg: 16px;
+    --raw-radius-xl: 24px;
+    --raw-radius-2xl: 32px;
+    --raw-radius-full: 9999px;
+
+    // =========================================================================
+    // Primitive Opacity
+    // =========================================================================
+    --raw-opacity-subtle: 0.08;
+    --raw-opacity-light: 0.1;
+    --raw-opacity-muted: 0.3;
+    --raw-opacity-medium: 0.5;
+    --raw-opacity-strong: 0.7;
+    --raw-opacity-heavy: 0.85;
+
+    // =========================================================================
+    // Semantic Colors
+    // =========================================================================
     --color-accent: var(--raw-color-orange-500);
     --color-accent-hover: var(--raw-color-orange-600);
+    --color-accent-rgb: var(--raw-color-orange-500-rgb);
+
     --color-text: var(--raw-color-white);
-    --color-text-muted: rgba(255, 252, 252, 0.7);
+    --color-text-rgb: var(--raw-color-white-rgb);
+    --color-text-muted: rgba(
+        var(--raw-color-white-rgb),
+        var(--raw-opacity-strong)
+    );
+
     --color-surface: var(--raw-color-gray-900);
+    --color-surface-rgb: var(--raw-color-gray-900-rgb);
     --color-surface-elevated: var(--raw-color-gray-800);
-    --color-border: rgba(255, 128, 0, 0.3);
+    --color-surface-dark: var(--raw-color-gray-850);
+
+    --color-border: rgba(
+        var(--raw-color-orange-500-rgb),
+        var(--raw-opacity-muted)
+    );
+
+    // Status semantic colors
+    --color-success: var(--raw-color-success);
+    --color-success-rgb: var(--raw-color-success-rgb);
+    --color-warning: var(--raw-color-warning);
+    --color-warning-rgb: var(--raw-color-warning-rgb);
+    --color-error: var(--raw-color-error);
+    --color-error-rgb: var(--raw-color-error-rgb);
+    --color-info: var(--raw-color-info);
+    --color-info-rgb: var(--raw-color-info-rgb);
+
+    // =========================================================================
+    // Semantic Radius
+    // =========================================================================
+    --radius-card: var(--raw-radius-lg);
+    --radius-button: var(--raw-radius-sm);
+    --radius-tag: var(--raw-radius-md);
+    --radius-input: var(--raw-radius-sm);
+    --radius-avatar: var(--raw-radius-xs);
+
+    // =========================================================================
+    // Syntax Highlighting Colors
+    // =========================================================================
+    // Night Owl-inspired palette for code blocks
+
+    // Selection
+    --syntax-selection-bg: rgba(29, 59, 83, 0.99);
+
+    // Comments and meta
+    --syntax-comment: rgb(99, 119, 119);
+    --syntax-namespace: rgb(178, 204, 214);
+
+    // Punctuation and operators
+    --syntax-punctuation: rgb(199, 146, 234);
+    --syntax-keyword: rgb(127, 219, 202);
+
+    // Properties and symbols
+    --syntax-property: rgb(128, 203, 196);
+
+    // Literals
+    --syntax-boolean: rgb(255, 88, 116);
+    --syntax-number: rgb(247, 140, 108);
+    --syntax-string: rgb(173, 219, 103);
+
+    // Functions and builtins
+    --syntax-function: rgb(130, 170, 255);
+
+    // Classes and attributes
+    --syntax-class: rgb(255, 203, 139);
+
+    // Variables and misc
+    --syntax-variable: rgb(214, 222, 235);
+
+    // Diff colors
+    --syntax-deleted: rgba(239, 83, 80, 0.56);
+    --syntax-inserted: rgb(173, 219, 103);
 }

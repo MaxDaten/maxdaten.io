@@ -274,32 +274,37 @@
         justify-content: center;
         background: radial-gradient(
             ellipse at center,
-            #1a1a2e 0%,
-            #16213e 50%,
-            #0f0f23 100%
+            var(--color-surface) 0%,
+            var(--color-surface-dark) 50%,
+            var(--raw-color-gray-850) 100%
         );
-        padding: 2rem;
+        padding: var(--raw-space-32);
     }
 
     .trading-card {
         width: 350px;
         height: 500px;
-        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-        border-radius: 15px;
-        border: 2px solid rgba(99, 102, 241, 0.3);
+        background: linear-gradient(
+            135deg,
+            var(--color-surface) 0%,
+            var(--color-surface-dark) 100%
+        );
+        border-radius: var(--raw-radius-lg);
+        border: 2px solid
+            rgba(var(--color-accent-rgb), var(--raw-opacity-muted));
         position: relative;
         overflow: hidden;
         transition: all 0.3s ease;
-        padding: 1rem;
+        padding: var(--raw-space-16);
         display: flex;
         flex-direction: column;
-        color: white;
+        color: var(--color-text);
         font-family: 'Courier New', monospace;
 
         &:hover {
             transform: rotateY(5deg) rotateX(5deg);
-            border-color: rgba(99, 102, 241, 0.8);
-            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+            border-color: rgba(var(--color-accent-rgb), 0.8);
+            box-shadow: 0 20px 40px rgba(var(--color-accent-rgb), 0.2);
         }
 
         &::before {
@@ -312,12 +317,12 @@
             background:
                 radial-gradient(
                     circle at 20% 80%,
-                    rgba(16, 185, 129, 0.1) 0%,
+                    rgba(var(--color-accent-rgb), var(--raw-opacity-light)) 0%,
                     transparent 50%
                 ),
                 radial-gradient(
                     circle at 80% 20%,
-                    rgba(99, 102, 241, 0.1) 0%,
+                    rgba(var(--color-accent-rgb), var(--raw-opacity-light)) 0%,
                     transparent 50%
                 );
             pointer-events: none;
@@ -332,41 +337,50 @@
     }
 
     .name {
-        font-size: 1.5rem;
-        font-weight: bold;
-        margin: 0 0 0.5rem 0;
-        text-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
-        background: linear-gradient(45deg, #6366f1, #10b981);
+        font-size: var(--raw-text-xl);
+        font-weight: var(--font-weight-bold);
+        margin: 0 0 var(--raw-space-8) 0;
+        text-shadow: 0 0 10px
+            rgba(var(--color-accent-rgb), var(--raw-opacity-medium));
+        background: linear-gradient(
+            45deg,
+            var(--color-accent),
+            var(--raw-color-orange-400)
+        );
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
     }
 
     .domain {
-        font-size: 0.9rem;
-        color: #10b981;
+        font-size: var(--raw-text-base);
+        color: var(--color-accent);
         display: block;
-        margin-bottom: 0.5rem;
+        margin-bottom: var(--raw-space-8);
     }
 
     .level-bar {
-        font-size: 0.7rem;
-        color: #a0a0a0;
+        font-size: var(--raw-text-xs);
+        color: var(--color-text-muted);
     }
 
     .xp-bar {
         width: 100%;
         height: 4px;
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba(var(--color-text-rgb), var(--raw-opacity-light));
         border-radius: 2px;
-        margin-top: 0.25rem;
+        margin-top: var(--raw-space-4);
         overflow: hidden;
     }
 
     .xp-fill {
         width: 95%;
         height: 100%;
-        background: linear-gradient(90deg, #10b981, #6366f1);
+        background: linear-gradient(
+            90deg,
+            var(--color-accent),
+            var(--raw-color-orange-400)
+        );
         animation: fillXP 2s ease-out;
     }
 
@@ -386,17 +400,23 @@
     .avatar {
         width: 100%;
         height: 100%;
-        border-radius: 50%;
-        border: 2px solid rgba(99, 102, 241, 0.5);
+        border-radius: var(--raw-radius-full);
+        border: 2px solid
+            rgba(var(--color-accent-rgb), var(--raw-opacity-medium));
         transition: all 0.3s ease;
     }
 
     .avatar-placeholder {
         width: 100%;
         height: 100%;
-        border-radius: 50%;
-        border: 2px solid rgba(99, 102, 241, 0.5);
-        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        border-radius: var(--raw-radius-full);
+        border: 2px solid
+            rgba(var(--color-accent-rgb), var(--raw-opacity-medium));
+        background: linear-gradient(
+            135deg,
+            var(--color-surface) 0%,
+            var(--color-surface-dark) 100%
+        );
         display: flex;
         align-items: center;
         justify-content: center;
@@ -404,16 +424,17 @@
     }
 
     .avatar-initials {
-        color: #6366f1;
-        font-size: 1.5rem;
-        font-weight: bold;
-        text-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+        color: var(--color-accent);
+        font-size: var(--raw-text-xl);
+        font-weight: var(--font-weight-bold);
+        text-shadow: 0 0 10px
+            rgba(var(--color-accent-rgb), var(--raw-opacity-medium));
     }
 
     .trading-card:hover .avatar,
     .trading-card:hover .avatar-placeholder {
         transform: scale(1.05);
-        border-color: rgba(99, 102, 241, 0.8);
+        border-color: rgba(var(--color-accent-rgb), 0.8);
     }
 
     .glow-effect {
@@ -422,27 +443,32 @@
         left: -2px;
         right: -2px;
         bottom: -2px;
-        border-radius: 50%;
-        background: conic-gradient(from 0deg, #6366f1, #10b981, #6366f1);
+        border-radius: var(--raw-radius-full);
+        background: conic-gradient(
+            from 0deg,
+            var(--color-accent),
+            var(--raw-color-orange-400),
+            var(--color-accent)
+        );
         opacity: 0;
         transition: opacity 0.3s ease;
         z-index: -1;
     }
 
     .trading-card:hover .glow-effect {
-        opacity: 0.3;
+        opacity: var(--raw-opacity-muted);
         animation: rotate 3s linear infinite;
     }
 
     .stats-panel {
-        margin-bottom: 1rem;
+        margin-bottom: var(--raw-space-16);
         flex: 1;
     }
 
     .stats-title {
-        font-size: 0.8rem;
-        color: #10b981;
-        margin: 0 0 0.5rem 0;
+        font-size: var(--raw-text-sm);
+        color: var(--color-accent);
+        margin: 0 0 var(--raw-space-8) 0;
         text-align: center;
         letter-spacing: 1px;
     }
@@ -450,28 +476,32 @@
     .stat-item {
         display: flex;
         align-items: center;
-        margin-bottom: 0.3rem;
-        font-size: 0.7rem;
+        margin-bottom: var(--raw-space-4);
+        font-size: var(--raw-text-xs);
     }
 
     .stat-label {
         width: 80px;
-        color: #a0a0a0;
+        color: var(--color-text-muted);
         font-size: 0.6rem;
     }
 
     .stat-bar {
         flex: 1;
         height: 6px;
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba(var(--color-text-rgb), var(--raw-opacity-light));
         border-radius: 3px;
-        margin: 0 0.5rem;
+        margin: 0 var(--raw-space-8);
         overflow: hidden;
     }
 
     .stat-fill {
         height: 100%;
-        background: linear-gradient(90deg, #10b981 0%, #6366f1 100%);
+        background: linear-gradient(
+            90deg,
+            var(--color-accent) 0%,
+            var(--raw-color-orange-400) 100%
+        );
         width: var(--stat-value);
         animation: fillBar 2s ease-out;
         border-radius: 3px;
@@ -480,62 +510,64 @@
     .stat-value {
         width: 30px;
         text-align: right;
-        color: #10b981;
+        color: var(--color-accent);
         font-size: 0.6rem;
     }
 
     .abilities {
-        margin-bottom: 1rem;
+        margin-bottom: var(--raw-space-16);
     }
 
     .abilities-title {
-        font-size: 0.8rem;
-        color: #10b981;
-        margin: 0 0 0.5rem 0;
+        font-size: var(--raw-text-sm);
+        color: var(--color-accent);
+        margin: 0 0 var(--raw-space-8) 0;
         text-align: center;
         letter-spacing: 1px;
     }
 
     .ability-item {
-        margin-bottom: 0.3rem;
+        margin-bottom: var(--raw-space-4);
         font-size: 0.6rem;
         text-align: center;
     }
 
     .ability-name {
-        color: #6366f1;
-        font-weight: bold;
+        color: var(--color-accent);
+        font-weight: var(--font-weight-bold);
         display: block;
     }
 
     .ability-description {
-        color: #a0a0a0;
+        color: var(--color-text-muted);
         font-size: 0.55rem;
     }
 
     .tagline {
         text-align: center;
-        font-size: 0.9rem;
-        color: #10b981;
+        font-size: var(--raw-text-base);
+        color: var(--color-accent);
         font-style: italic;
-        margin-bottom: 0.5rem;
-        text-shadow: 0 0 5px rgba(16, 185, 129, 0.3);
+        margin-bottom: var(--raw-space-8);
+        text-shadow: 0 0 5px
+            rgba(var(--color-accent-rgb), var(--raw-opacity-muted));
     }
 
     .specialties {
         display: flex;
         flex-wrap: wrap;
-        gap: 0.25rem;
+        gap: var(--raw-space-4);
         justify-content: center;
     }
 
     .specialty-tag {
-        background: rgba(99, 102, 241, 0.2);
-        color: #6366f1;
-        padding: 0.2rem 0.4rem;
-        border-radius: 4px;
+        background: rgba(var(--color-accent-rgb), 0.2);
+        color: var(--color-accent);
+        padding: var(--raw-space-4) var(--raw-space-8);
+        border-radius: var(--raw-radius-xs);
         font-size: 0.6rem;
-        border: 1px solid rgba(99, 102, 241, 0.3);
+        border: 1px solid
+            rgba(var(--color-accent-rgb), var(--raw-opacity-muted));
     }
 
     @keyframes fillBar {
@@ -621,20 +653,21 @@
         left: 0;
         right: 0;
         bottom: 0;
-        border-radius: 15px;
+        border-radius: var(--raw-radius-lg);
         background-image:
             radial-gradient(
                 circle at var(--pointer-x) var(--pointer-y),
-                #fff 5%,
+                var(--color-text) 5%,
                 #000 50%,
-                #fff 80%
+                var(--color-text) 80%
             ),
-            linear-gradient(-45deg, #000 15%, #fff, #000 85%),
+            linear-gradient(-45deg, #000 15%, var(--color-text), #000 85%),
             linear-gradient(
                 135deg,
-                rgba(99, 102, 241, 0.3) 0%,
-                rgba(16, 185, 129, 0.3) 50%,
-                rgba(99, 102, 241, 0.3) 100%
+                rgba(var(--color-accent-rgb), var(--raw-opacity-muted)) 0%,
+                rgba(var(--raw-color-orange-400-rgb), var(--raw-opacity-muted))
+                    50%,
+                rgba(var(--color-accent-rgb), var(--raw-opacity-muted)) 100%
             );
         background-blend-mode: soft-light, difference;
         background-size:
@@ -659,7 +692,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        border-radius: 15px;
+        border-radius: var(--raw-radius-lg);
         opacity: var(--card-opacity);
         background-image: radial-gradient(
             farthest-corner circle at var(--pointer-x) var(--pointer-y),
@@ -679,7 +712,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        border-radius: 15px;
+        border-radius: var(--raw-radius-lg);
         opacity: var(--card-opacity);
         background-image: radial-gradient(
             farthest-corner circle at var(--pointer-x) var(--pointer-y),

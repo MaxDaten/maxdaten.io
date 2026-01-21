@@ -62,9 +62,9 @@
 
 <style lang="scss">
     .button {
-        --main-color: red;
-        --light-color: blue;
-        --contrast-color: green;
+        --main-color: var(--color-accent-rgb);
+        --light-color: var(--color-accent-rgb);
+        --contrast-color: var(--color-text);
 
         -webkit-appearance: none;
         appearance: none;
@@ -75,10 +75,10 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 5px;
+        gap: var(--raw-space-4);
 
         border: none;
-        border-radius: 20px;
+        border-radius: var(--raw-radius-xl);
         font-weight: 700;
 
         .icon {
@@ -96,15 +96,15 @@
 
         &.color {
             &--primary {
-                --main-color: var(--color--primary-rgb);
-                --light-color: var(--color--primary-tint-rgb);
-                --contrast-color: var(--color--primary-contrast);
+                --main-color: var(--color-accent-rgb);
+                --light-color: var(--color-accent-rgb);
+                --contrast-color: var(--color-surface);
             }
 
             &--secondary {
-                --main-color: var(--color--secondary-rgb);
-                --light-color: var(--color--secondary-tint-rgb);
-                --contrast-color: var(--color--secondary-contrast);
+                --main-color: var(--color-text-rgb);
+                --light-color: var(--color-text-rgb);
+                --contrast-color: var(--color-surface);
             }
         }
 
@@ -114,16 +114,21 @@
                 color: var(--contrast-color);
 
                 &:hover {
-                    box-shadow: 0 0 1px 7px rgba(var(--main-color), 0.3);
+                    box-shadow: 0 0 1px 7px
+                        rgba(var(--main-color), var(--raw-opacity-muted));
                 }
             }
 
             &--understated {
-                background-color: rgb(var(--light-color));
+                background-color: rgba(
+                    var(--main-color),
+                    var(--raw-opacity-light)
+                );
                 color: rgb(var(--main-color));
 
                 &:hover {
-                    box-shadow: 0 0 1px 7px rgba(var(--main-color), 0.3);
+                    box-shadow: 0 0 1px 7px
+                        rgba(var(--main-color), var(--raw-opacity-muted));
                 }
             }
 
@@ -132,15 +137,18 @@
                 color: rgb(var(--main-color));
 
                 &:hover {
-                    background-color: rgb(var(--light-color));
+                    background-color: rgba(
+                        var(--main-color),
+                        var(--raw-opacity-light)
+                    );
                 }
             }
         }
 
         &.size {
             &--small {
-                padding: 5px 10px;
-                font-size: 0.75rem;
+                padding: var(--raw-space-4) var(--raw-space-12);
+                font-size: var(--raw-text-xs);
 
                 .icon {
                     width: 20px;
@@ -149,13 +157,13 @@
             }
 
             &--medium {
-                padding: 10px 20px;
-                font-size: 1rem;
+                padding: var(--raw-space-12) var(--space-button-x);
+                font-size: var(--raw-text-base);
             }
 
             &--large {
-                padding: 15px 30px;
-                font-size: 1.15rem;
+                padding: var(--raw-space-16) var(--raw-space-32);
+                font-size: var(--raw-text-lg);
 
                 .icon {
                     width: 28px;

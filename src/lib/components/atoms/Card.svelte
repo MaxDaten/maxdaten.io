@@ -63,10 +63,10 @@
         width: 100%;
 
         .card {
-            background: var(--color--card-background);
+            background: var(--color-surface-elevated);
             box-shadow: var(--card-shadow);
-            color: var(--color--text);
-            border-radius: 10px;
+            color: var(--color-text);
+            border-radius: var(--radius-card);
             transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
@@ -83,15 +83,16 @@
                 cursor: pointer;
 
                 &:hover {
-                    box-shadow: 0 0 0 1px rgba(var(--color--primary-rgb), 0.7);
+                    box-shadow: 0 0 0 1px
+                        rgba(var(--color-accent-rgb), var(--raw-opacity-strong));
                 }
             }
 
             .body {
                 display: flex;
                 flex-direction: column;
-                gap: 10px;
-                padding: 20px;
+                gap: var(--raw-space-12);
+                padding: var(--space-card-padding);
                 flex-grow: 1;
                 justify-content: space-between;
 

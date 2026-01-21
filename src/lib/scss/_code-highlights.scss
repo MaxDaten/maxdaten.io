@@ -45,7 +45,7 @@ pre[class*='language-'] ::-moz-selection,
 code[class*='language-']::-moz-selection,
 code[class*='language-'] ::-moz-selection {
     text-shadow: none;
-    background: rgba(29, 59, 83, 0.99);
+    background: var(--syntax-selection-bg);
 }
 
 pre[class*='language-']::selection,
@@ -53,7 +53,7 @@ pre[class*='language-'] ::selection,
 code[class*='language-']::selection,
 code[class*='language-'] ::selection {
     text-shadow: none;
-    background: rgba(29, 59, 83, 0.99);
+    background: var(--syntax-selection-bg);
 }
 
 @media print {
@@ -66,58 +66,58 @@ code[class*='language-'] ::selection {
 .token.comment,
 .token.prolog,
 .token.cdata {
-    color: rgb(99, 119, 119);
+    color: var(--syntax-comment);
     font-style: italic;
 }
 
 .token.punctuation {
-    color: rgb(199, 146, 234);
+    color: var(--syntax-punctuation);
 }
 
 .namespace {
-    color: rgb(178, 204, 214);
+    color: var(--syntax-namespace);
 }
 
 .token.deleted {
-    color: rgba(239, 83, 80, 0.56);
+    color: var(--syntax-deleted);
     font-style: italic;
 }
 
 .token.symbol,
 .token.property {
-    color: rgb(128, 203, 196);
+    color: var(--syntax-property);
 }
 
 .token.tag,
 .token.operator,
 .token.keyword {
-    color: rgb(127, 219, 202);
+    color: var(--syntax-keyword);
 }
 
 .token.boolean {
-    color: rgb(255, 88, 116);
+    color: var(--syntax-boolean);
 }
 
 .token.number {
-    color: rgb(247, 140, 108);
+    color: var(--syntax-number);
 }
 
 .token.constant,
 .token.function,
 .token.builtin,
 .token.char {
-    color: rgb(130, 170, 255);
+    color: var(--syntax-function);
 }
 
 .token.selector,
 .token.doctype {
-    color: rgb(199, 146, 234);
+    color: var(--syntax-punctuation);
     font-style: italic;
 }
 
 .token.attr-name,
 .token.inserted {
-    color: rgb(173, 219, 103);
+    color: var(--syntax-inserted);
     font-style: italic;
 }
 
@@ -126,19 +126,19 @@ code[class*='language-'] ::selection {
 .token.entity,
 .language-css .token.string,
 .style .token.string {
-    color: rgb(173, 219, 103);
+    color: var(--syntax-string);
 }
 
 .token.class-name,
 .token.atrule,
 .token.attr-value {
-    color: rgb(255, 203, 139);
+    color: var(--syntax-class);
 }
 
 .token.regex,
 .token.important,
 .token.variable {
-    color: rgb(214, 222, 235);
+    color: var(--syntax-variable);
 }
 
 .token.important,

@@ -24,7 +24,20 @@
 
     // Semantic spacing
     --space-inline: var(--raw-space-8);
+    --space-stack: var(--raw-space-16);
     --space-block: var(--raw-space-24);
+    --space-group: var(--raw-space-32);
     --space-section: var(--raw-space-48);
     --space-page: var(--raw-space-80);
+
+    // Component-specific spacing
+    --space-card-padding: var(--raw-space-24);
+    --space-button-x: var(--raw-space-16);
+    --space-button-y: var(--raw-space-8);
+    --space-tag-x: var(--raw-space-12);
+    --space-tag-y: var(--raw-space-4);
+    --space-header-y: var(--raw-space-24);
+    --space-gap-sm: var(--raw-space-8);
+    --space-gap-md: var(--raw-space-16);
+    --space-gap-lg: var(--raw-space-32);
 }

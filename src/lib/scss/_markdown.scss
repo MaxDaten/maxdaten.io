@@ -3,7 +3,7 @@
 .content {
     a:not(.button) {
         &:hover {
-            filter: drop-shadow(0px 0px 3px var(--color--primary));
+            filter: drop-shadow(0px 0px 3px var(--color-accent));
         }
     }
 
@@ -39,15 +39,15 @@
 
         box-shadow: var(--image-shadow);
 
-        border-radius: 8px;
+        border-radius: var(--raw-radius-sm);
         overflow: hidden;
     }
 
     figcaption {
-        font-size: 0.85rem;
+        font-size: var(--raw-text-sm);
         text-align: center;
         margin-bottom: 2rem;
-        color: rgba(var(--color--text-rgb), 0.8);
+        color: rgba(var(--color-text-rgb), var(--raw-opacity-heavy));
     }
 
     img + figcaption {
@@ -55,12 +55,12 @@
     }
 
     blockquote {
-        padding: 25px 25px 15px;
-        border-radius: 20px;
-        font-size: 1.1rem;
+        padding: var(--raw-space-24) var(--raw-space-24) var(--raw-space-16);
+        border-radius: var(--raw-radius-xl);
+        font-size: var(--raw-text-lg);
         line-height: var(--raw-leading-normal);
-        border-left: 4px solid var(--color--primary);
-        background: var(--color--callout-background);
+        border-left: 4px solid var(--color-accent);
+        background: var(--color-surface-elevated);
     }
 
     // List styling
@@ -97,9 +97,9 @@
     }
 
     a.heading-link {
-        color: var(--color--primary);
+        color: var(--color-accent);
         text-decoration: none;
-        margin-right: 10px;
+        margin-right: var(--raw-space-12);
         position: absolute;
         translate: -120% 0;
         opacity: 0;
@@ -121,23 +121,26 @@
     // Shiki
     pre.shiki {
         font-family: var(--font--mono), monospace;
-        font-size: 14px;
-        border-radius: 8px;
-        background-color: #1a1a1a !important; // Override Shiki inline style
+        font-size: var(--raw-text-sm);
+        border-radius: var(--raw-radius-sm);
+        background-color: var(
+            --raw-color-gray-850
+        ) !important; // Override Shiki inline style
 
         // scrollbar
         overflow-x: auto;
-        scrollbar-color: var(--color--secondary) var(--color--secondary-tint);
+        scrollbar-color: rgba(var(--color-accent-rgb), var(--raw-opacity-muted))
+            rgba(var(--color-text-rgb), var(--raw-opacity-subtle));
         scrollbar-width: thin;
-        padding: 16px 16px 24px;
+        padding: var(--raw-space-16) var(--raw-space-16) var(--raw-space-24);
         position: relative;
 
         margin: 0;
-        line-height: 1.6;
+        line-height: var(--raw-leading-relaxed);
         border: none;
 
         @include breakpoints.for-phone-only {
-            font-size: 12px;
+            font-size: var(--raw-text-xs);
         }
 
         code {
@@ -149,16 +152,20 @@
         .line {
             display: inline-block;
             position: relative;
-            padding-left: 12px;
+            padding-left: var(--raw-space-12);
             min-height: 1.1em; // Force empty lines to same height
         }
 
         .line.highlighted {
-            background-color: rgba(255, 128, 0, 0.08);
+            background-color: rgba(
+                var(--color-accent-rgb),
+                var(--raw-opacity-subtle)
+            );
             display: block;
-            margin: 0 -16px;
-            padding: 0 16px;
-            border-left: 2px solid rgba(255, 128, 0, 0.4);
+            margin: 0 calc(-1 * var(--raw-space-16));
+            padding: 0 var(--raw-space-16);
+            border-left: 2px solid
+                rgba(var(--color-accent-rgb), var(--raw-opacity-muted));
         }
 
         &.show-line-numbers {
@@ -174,7 +181,10 @@
                     left: 0.4em;
                     width: 2.5em;
                     text-align: right;
-                    color: rgba(var(--color--secondary-rgb), 0.5);
+                    color: rgba(
+                        var(--color-text-rgb),
+                        var(--raw-opacity-medium)
+                    );
                     user-select: none;
                     -webkit-user-select: none;
                 }

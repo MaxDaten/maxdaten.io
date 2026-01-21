@@ -62,12 +62,12 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 15px;
+        gap: var(--raw-space-16);
         position: relative;
-        padding: 80px 0;
+        padding: var(--raw-space-80) 0;
 
         @include breakpoints.for-phone-only {
-            padding: 40px 0 50px;
+            padding: var(--raw-space-48) 0;
         }
 
         .hello {
@@ -76,12 +76,12 @@
 
         .intro {
             font-weight: 500;
-            font-size: 1.4rem;
-            line-height: 2.5rem;
+            font-size: var(--raw-text-xl);
+            line-height: var(--raw-leading-relaxed);
             width: min(100%, 440px);
             display: flex;
             flex-direction: column;
-            color: rgba(var(--color--text-shade-rgb), 0.7);
+            color: rgba(var(--color-text-rgb), var(--raw-opacity-strong));
 
             .left {
                 text-align: left;
@@ -97,7 +97,8 @@
             hr {
                 border: 0;
                 margin: 0 auto;
-                border-top: 1px solid rgba(var(--color--text-shade-rgb), 0.1);
+                border-top: 1px solid
+                    rgba(var(--color-text-rgb), var(--raw-opacity-light));
                 width: 80%;
             }
         }
@@ -107,7 +108,7 @@
             flex-wrap: wrap;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: var(--raw-space-12);
             width: 100%;
         }
     }

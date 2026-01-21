@@ -4,6 +4,7 @@
 @use '_tokens-typography.scss';
 @use '_tokens-colors.scss';
 @use '_themes.scss';
+@use '_tokens-migration.scss';
 @use '_breakpoints.scss';
 @use '_functions.scss';
 @use '_mixins.scss';
@@ -55,10 +56,10 @@
 }
 
 body {
-    --body-background-color: var(--color--page-background);
+    --body-background-color: var(--color-surface);
     background-color: var(--body-background-color);
-    color: var(--color--text);
-    fill: var(--color--text);
+    color: var(--color-text);
+    fill: var(--color-text);
     transition: all 0.4s ease;
     font-family: var(--font--default);
     line-height: var(--text-body-leading);

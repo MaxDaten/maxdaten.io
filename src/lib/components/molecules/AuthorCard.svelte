@@ -81,41 +81,42 @@
     @use '$styles/breakpoints';
 
     .author-callout {
-        margin-top: 32px;
-        padding: 24px;
-        border-radius: 8px;
-        background: rgba(var(--color--secondary-rgb), 0.03);
-        border: 1px solid rgba(var(--color--secondary-rgb), 0.12);
+        margin-top: var(--raw-space-32);
+        padding: var(--raw-space-24);
+        border-radius: var(--raw-radius-sm);
+        background: rgba(var(--color-text-rgb), 0.03);
+        border: 1px solid rgba(var(--color-text-rgb), var(--raw-opacity-light));
 
         @include breakpoints.for-phone-only {
-            padding: 16px;
+            padding: var(--raw-space-16);
         }
     }
 
     .outro-text {
-        font-size: 14px;
+        font-size: var(--raw-text-sm);
         font-weight: 500;
-        line-height: 1.5;
+        line-height: var(--raw-leading-normal);
         letter-spacing: -0.01em;
-        color: var(--color--secondary);
-        margin: 0 0 16px;
-        padding-bottom: 16px;
-        border-bottom: 1px solid rgba(var(--color--secondary-rgb), 0.08);
+        color: var(--color-text-muted);
+        margin: 0 0 var(--raw-space-16);
+        padding-bottom: var(--raw-space-16);
+        border-bottom: 1px solid
+            rgba(var(--color-text-rgb), var(--raw-opacity-subtle));
 
         @include breakpoints.for-phone-only {
-            font-size: 13px;
-            margin-bottom: 12px;
-            padding-bottom: 12px;
+            font-size: var(--raw-text-xs);
+            margin-bottom: var(--raw-space-12);
+            padding-bottom: var(--raw-space-12);
         }
     }
 
     .author-card {
         display: flex;
         align-items: center;
-        gap: 16px;
+        gap: var(--raw-space-16);
 
         @include breakpoints.for-phone-only {
-            gap: 12px;
+            gap: var(--raw-space-12);
         }
     }
 
@@ -125,9 +126,10 @@
         :global(.avatar) {
             width: 36px;
             height: 36px;
-            border-radius: 8px;
+            border-radius: var(--raw-radius-sm);
             object-fit: cover;
-            border: 1px solid rgba(var(--color--secondary-rgb), 0.1);
+            border: 1px solid
+                rgba(var(--color-text-rgb), var(--raw-opacity-light));
         }
 
         @include breakpoints.for-phone-only {
@@ -141,59 +143,59 @@
     .avatar-placeholder {
         width: 36px;
         height: 36px;
-        border-radius: 8px;
-        background: rgba(var(--color--secondary-rgb), 0.08);
-        color: rgba(var(--color--secondary-rgb), 0.6);
+        border-radius: var(--raw-radius-sm);
+        background: rgba(var(--color-text-rgb), var(--raw-opacity-subtle));
+        color: rgba(var(--color-text-rgb), var(--raw-opacity-medium));
         display: flex;
         align-items: center;
         justify-content: center;
         font-weight: 600;
-        font-size: 14px;
+        font-size: var(--raw-text-sm);
         letter-spacing: -0.02em;
 
         @include breakpoints.for-phone-only {
             width: 32px;
             height: 32px;
-            font-size: 12px;
+            font-size: var(--raw-text-xs);
         }
     }
 
     .info-section {
         display: flex;
         flex-direction: column;
-        gap: 4px;
+        gap: var(--raw-space-4);
         min-width: 0;
     }
 
     .name {
         font-weight: 600;
-        font-size: 14px;
+        font-size: var(--raw-text-sm);
         letter-spacing: -0.02em;
-        color: var(--color--text);
+        color: var(--color-text);
     }
 
     .bio {
-        font-size: 13px;
+        font-size: var(--raw-text-xs);
         font-weight: 400;
-        line-height: 1.5;
-        color: rgba(var(--color--secondary-rgb), 0.7);
+        line-height: var(--raw-leading-normal);
+        color: rgba(var(--color-text-rgb), var(--raw-opacity-strong));
         margin: 0;
         max-width: 48ch;
 
         @include breakpoints.for-phone-only {
-            font-size: 12px;
+            font-size: var(--raw-text-xs);
         }
     }
 
     .actions {
         display: flex;
         align-items: center;
-        gap: 12px;
-        margin-top: 8px;
+        gap: var(--raw-space-12);
+        margin-top: var(--raw-space-8);
         flex-wrap: wrap;
 
         @include breakpoints.for-phone-only {
-            gap: 8px;
+            gap: var(--raw-space-8);
         }
     }
 

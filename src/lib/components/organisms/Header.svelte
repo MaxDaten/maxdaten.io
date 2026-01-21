@@ -46,7 +46,7 @@
 
     header {
         position: relative;
-        padding: 20px 0;
+        padding: var(--raw-space-24) 0;
         border-bottom: 1px solid var(--color--waves-start);
 
         &.has-background {
@@ -60,7 +60,7 @@
         .container {
             display: flex;
             align-items: center;
-            gap: 30px;
+            gap: var(--raw-space-32);
         }
 
         .logo {
@@ -74,42 +74,42 @@
             display: flex;
             align-items: center;
             justify-content: flex-end;
-            gap: 30px;
+            gap: var(--raw-space-32);
 
             a {
                 position: relative;
-                padding: 8px 0;
-                color: var(--color--text);
+                padding: var(--raw-space-8) 0;
+                color: var(--color-text);
                 text-decoration: none;
 
                 // Active state: orange underline
                 &.active {
-                    color: var(--color--primary);
+                    color: var(--color-accent);
 
                     &::after {
                         content: '';
                         position: absolute;
                         left: 0;
                         right: 0;
-                        bottom: -4px;
+                        bottom: calc(-1 * var(--raw-space-4));
                         height: 2px;
-                        background: var(--color--primary);
+                        background: var(--color-accent);
                     }
                 }
 
                 // Hover only on non-active links
                 &:not(.active):hover {
-                    color: var(--color--primary);
-                    filter: drop-shadow(0px 0px 3px var(--color--primary));
+                    color: var(--color-accent);
+                    filter: drop-shadow(0px 0px 3px var(--color-accent));
                 }
             }
         }
 
         @include breakpoints.for-phone-only {
-            padding: 15px 0;
+            padding: var(--raw-space-16) 0;
 
             .links {
-                gap: 15px;
+                gap: var(--raw-space-16);
 
                 a {
                     min-height: 44px;
