@@ -69,8 +69,9 @@
     }
     .blob.orange {
         background-color: #ff8000;
-        top: -200px;
+        top: -250px;
         left: -150px;
+        opacity: 0.2;
     }
     .blob.purple {
         background-color: #7c3aed;
@@ -94,7 +95,8 @@
 
     .brand {
         display: flex;
-        color: #ff8000;
+        color: #ffffff;
+        opacity: 0.9;
         font-family: 'JetBrains Mono', monospace;
         font-size: 20px;
         letter-spacing: -0.02em;
@@ -137,7 +139,8 @@
     .sub {
         display: flex;
         font-size: 26px;
-        color: #9ca3af;
+        color: #d1d5db;
+        font-weight: 400;
         line-height: 1.4;
         margin: 0;
     }
@@ -151,11 +154,11 @@
         height: 440px;
         background-color: #23252b;
         border-radius: 24px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.15);
         padding: 16px;
         box-shadow:
-            0 30px 60px -10px rgba(0, 0, 0, 0.7),
-            0 0 0 1px rgba(255, 255, 255, 0.05);
+            0 40px 80px -20px rgba(0, 0, 0, 0.9),
+            inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
     }
 
     .card-header {
@@ -163,7 +166,8 @@
         justify-content: space-between;
         font-family: 'JetBrains Mono', monospace;
         font-size: 12px;
-        color: #666;
+        font-weight: 600;
+        color: #9ca3af;
         margin-bottom: 12px;
     }
 
@@ -179,6 +183,7 @@
         border-radius: 12px;
         border: 1px solid #333;
         margin-bottom: 16px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
     }
 
     .card-name {
