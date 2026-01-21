@@ -152,6 +152,7 @@
             rgba(var(--color-accent-rgb), var(--raw-opacity-muted));
         border-radius: var(--raw-radius-full);
         color: var(--color-accent);
+        background: rgba(0, 0, 0, 0.3);
         width: fit-content;
     }
 
@@ -161,13 +162,17 @@
         font-weight: 700;
         color: var(--color-text);
         margin: 0;
+        text-wrap: balance;
 
         @include breakpoints.for-phone-only {
             font-size: var(--raw-text-3xl);
         }
 
         .accent {
-            color: var(--color-accent);
+            background: linear-gradient(90deg, #ff8000 0%, #ff9933 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
     }
 
@@ -196,7 +201,7 @@
         gap: var(--raw-space-12);
         font-family: var(--font--mono);
         font-size: var(--raw-text-sm);
-        color: rgba(var(--color-text-rgb), var(--raw-opacity-muted));
+        color: #555;
 
         @include breakpoints.for-tablet-portrait-down {
             justify-content: center;
@@ -206,10 +211,7 @@
             width: 4px;
             height: 4px;
             border-radius: var(--raw-radius-full);
-            background-color: rgba(
-                var(--color-accent-rgb),
-                var(--raw-opacity-muted)
-            );
+            background-color: var(--color-accent);
         }
     }
 
@@ -287,7 +289,9 @@
     }
 
     .stat-label {
-        color: rgba(var(--color-text-rgb), var(--raw-opacity-muted));
+        font-size: 10px;
+        letter-spacing: 0.05em;
+        color: #666;
         text-transform: uppercase;
     }
 
@@ -311,12 +315,12 @@
     }
 
     .pro-badge {
-        font-size: var(--raw-text-xs);
+        font-size: 10px;
         font-weight: 700;
         padding: var(--raw-space-4) var(--raw-space-8);
         background-color: var(--color-accent);
-        color: var(--color-surface);
-        border-radius: var(--raw-radius-xs);
+        color: black;
+        border-radius: 2px;
         text-transform: uppercase;
     }
 

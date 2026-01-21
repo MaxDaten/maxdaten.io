@@ -133,7 +133,8 @@
         transform-style: preserve-3d;
         transform: rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg));
         /* Spring animation handled by Svelte spring() - no CSS transition needed */
-        background-color: var(--color-surface-elevated);
+        background-color: #23252b;
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
         border-radius: var(--radius-card);
         padding: var(--raw-space-24);
         overflow: hidden;
