@@ -212,9 +212,7 @@
     /* --- Content Layer --- */
     .card-content {
         position: relative;
-        z-index: 1; /* Lowest level */
-        /* Ensure text is above background but below holo effects if desired */
-        /* Note: Usually text sits ON TOP of holo. If so, move z-index higher than holo-layer */
+        z-index: 1; /* Above holo foil for 100% readable text */
         background: transparent;
         padding: 16px;
     }
@@ -223,33 +221,37 @@
     .holo-layer {
         position: absolute;
         inset: 0;
-        z-index: 2;
+        z-index: 2; /* Behind text (z-10), above background */
         border-radius: inherit;
         pointer-events: none;
-        /* Base 0.1, scales up to 0.3 based on tilt intensity */
-        opacity: calc(0.1 + var(--tilt, 0) * 0.2);
+
+        /* Hidden by default for clean dark matte look */
+        opacity: 0.1;
 
         /* BLENDING IS KEY: Color-dodge makes it shine on highlights, hidden on blacks */
         mix-blend-mode: color-dodge;
 
+        /* VIBRANCE BOOST: No brightness to preserve dark background */
+        filter: saturate(1.5);
+
         /*
            LAYER 1 (Top): The Lambda Texture
-           URL-encoded SVG of a Lambda symbol.
-           Stroke is semi-transparent white - catches light via color-dodge.
+           Brighter stroke to catch color-dodge strongly.
         */
-        --pattern-lambda: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 20L10.5 6L8.5 2 M10.5 6L17 20' stroke='rgba(255,255,255,0.5)' stroke-width='2' fill='none' stroke-linecap='square'/%3E%3C/svg%3E");
+        --pattern-lambda: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 20L10.5 6L8.5 2 M10.5 6L17 20' stroke='rgba(255,255,255,0.4)' stroke-width='2' fill='none' stroke-linecap='square'/%3E%3C/svg%3E");
 
         /*
            LAYER 2 (Bottom): The Iridescent Spectrum
-           (Orange -> Purple -> Cyan -> transparent edges)
+           Lighter, neon colors - darker colors get eaten by color-dodge.
+           Tighter bands create "oil slick" effect.
         */
         --gradient-spectrum: linear-gradient(
             115deg,
-            transparent 20%,
-            #ff8000 35%,
-            #7c3aed 50%,
-            #0ea5e9 65%,
-            transparent 80%
+            transparent 25%,
+            oklch(0.774 0.163 60.276) 40%,
+            oklch(0.709 0.159 293.541) 50%,
+            oklch(0.797 0.134 211.502) 60%,
+            transparent 75%
         );
 
         background-image: var(--pattern-lambda), var(--gradient-spectrum);
@@ -257,11 +259,11 @@
         /*
            SIZE:
            - Pattern: 20px (tiny texture)
-           - Spectrum: 300% (large wash)
+           - Spectrum: 250% (tighter wash for more visible bands)
         */
         background-size:
-            20px 20px,
-            300% 300%;
+            17px 17px,
+            350% 350%;
 
         /*
            POSITION:
@@ -280,7 +282,7 @@
     .glare-layer {
         position: absolute;
         inset: 0;
-        z-index: 3;
+        z-index: 3; /* On top of everything for surface reflection */
         pointer-events: none;
 
         /* A radial beam of light */
@@ -338,6 +340,11 @@
         opacity: 1;
     }
 
+    /* Reveal holo foil on hover - 0.5 is plenty visible with color-dodge */
+    .holo-card.hovering .holo-layer {
+        opacity: 0.25;
+    }
+
     .holo-card.static-mode::after {
         opacity: 1;
         --border-angle: -70deg; /* Light from right when tilted left */
@@ -349,10 +356,11 @@
     }
 
     .holo-card.static-mode .holo-layer {
-        --tilt: 0.1; /* Default tilt for static mode */
+        opacity: 0.05; /* Subtle whisper effect on mobile */
         background-position:
             center center,
             20% 20%;
+        transition: opacity 0.5s ease;
     }
 
     .holo-card.static-mode .glare-layer {
