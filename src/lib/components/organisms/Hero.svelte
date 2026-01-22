@@ -196,7 +196,7 @@
         flex-wrap: wrap;
         align-items: center;
         gap: var(--raw-space-12);
-        font-family: var(--font--mono);
+        font-family: var(--font--mono), monospace;
         font-size: 13px;
         color: #9ca3af;
         margin-top: var(--raw-space-24);
@@ -217,6 +217,7 @@
     .card-column {
         display: flex;
         justify-content: center;
+        translate: -1%;
 
         @media (max-width: 900px) {
             order: 1;
