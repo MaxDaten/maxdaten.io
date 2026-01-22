@@ -202,6 +202,11 @@
 
         /* Hardware acceleration hints */
         will-change: transform;
+
+        /* Fix 3D clipping bleed at corners */
+        isolation: isolate;
+        -webkit-mask-image: -webkit-radial-gradient(white, black);
+        mask-image: radial-gradient(white, black);
     }
 
     /* --- Content Layer --- */
@@ -219,6 +224,7 @@
         position: absolute;
         inset: 0;
         z-index: 2;
+        border-radius: inherit;
         pointer-events: none;
         /* Base 0.1, scales up to 0.3 based on tilt intensity */
         opacity: calc(0.1 + var(--tilt, 0) * 0.2);
