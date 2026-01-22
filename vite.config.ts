@@ -1,5 +1,5 @@
 import { sveltekit } from '@sveltejs/kit/vite';
-import { defineConfig } from 'vite';
+import { defineConfig } from 'vitest/config';
 import { imagetools } from '@zerodevx/svelte-img/vite';
 import { playwright } from '@vitest/browser-playwright';
 
@@ -15,19 +15,20 @@ export default defineConfig({
                     browser: {
                         enabled: true,
                         headless: true,
+                        provider: playwright({
+                            contextOptions: {
+                                // https://playwright.dev/docs/api/class-browsercontext#browser-context-grant-permissions
+                                permissions: [
+                                    'clipboard-write',
+                                    'clipboard-read',
+                                ],
+                            },
+                        }),
                         instances: [
                             {
                                 browser: 'chromium',
-                                context: {
-                                    // https://playwright.dev/docs/api/class-browsercontext#browser-context-grant-permissions
-                                    permissions: [
-                                        'clipboard-write',
-                                        'clipboard-read',
-                                    ],
-                                },
                             },
                         ],
-                        provider: playwright(),
                     },
                     include: ['src/**/*.svelte.{test,spec}.{js,ts}'],
                     exclude: ['src/lib/server/**'],
