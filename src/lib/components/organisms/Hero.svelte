@@ -291,7 +291,7 @@
     .stat-label {
         font-size: 10px;
         letter-spacing: 0.05em;
-        color: #666;
+        color: #9ca3af;
         text-transform: uppercase;
     }
 

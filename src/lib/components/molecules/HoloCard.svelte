@@ -340,7 +340,7 @@
 
     .holo-card.static-mode::after {
         opacity: 1;
-        --border-angle: 70deg; /* Light from right when tilted left */
+        --border-angle: -70deg; /* Light from right when tilted left */
     }
 
     /* --- Static / Mobile Mode --- */
@@ -349,7 +349,7 @@
     }
 
     .holo-card.static-mode .holo-layer {
-        --tilt: 0.5; /* Default tilt for static mode */
+        --tilt: 0.1; /* Default tilt for static mode */
         background-position:
             center center,
             20% 20%;
