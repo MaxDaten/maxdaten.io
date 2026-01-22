@@ -143,7 +143,13 @@
     }
 </script>
 
-<div class="holo-scene">
+<div
+    class="holo-scene"
+    onmousemove={handleMouseMove}
+    onmouseenter={handleMouseEnter}
+    onmouseleave={handleMouseLeave}
+    role="presentation"
+>
     <div
         class="holo-card"
         class:hovering={isHovering}
@@ -159,10 +165,6 @@
         style:--pt-y="{springPattern.current.y}%"
         style:--tilt={tiltIntensity}
         style:--border-angle="{springAngle.current}deg"
-        onmousemove={handleMouseMove}
-        onmouseenter={handleMouseEnter}
-        onmouseleave={handleMouseLeave}
-        role="presentation"
     >
         <!-- 1. The Content (Base Layer) -->
         <div class="card-content">
@@ -187,10 +189,16 @@
         perspective: 1000px;
         /* Ensure the scene fits the card content */
         display: inline-block;
+        /* Static wrapper receives all mouse events - prevents Z-fighting flicker */
+        position: relative;
+        border-radius: var(--radius-card, 24px);
     }
 
     .holo-card {
         position: relative;
+        /* Fill the static scene wrapper */
+        width: 100%;
+        height: 100%;
         transform-style: preserve-3d;
         transform: rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg));
         border-radius: var(--radius-card, 24px);
