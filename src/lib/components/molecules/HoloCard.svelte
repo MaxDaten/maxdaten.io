@@ -9,67 +9,94 @@
 
     let { children }: Props = $props();
 
-    // Spring settings from poke-holo for smooth physics-based animation
+    // Physics configuration
     const springInteract = { stiffness: 0.066, damping: 0.25 };
     const springSnap = { stiffness: 0.01, damping: 0.06 };
 
-    // Spring stores for rotation, sheen, and border angle
+    // 1. ROTATION: Physical tilt of the card
     const springRotate = Spring.of(() => ({ x: 0, y: 0 }), springInteract);
-    const springSheen = Spring.of(() => ({ x: 50, y: 50 }), springInteract);
+
+    // 2. GLARE: The white spotlight (follows mouse directly)
+    const springGlare = Spring.of(
+        () => ({ x: 50, y: 50, o: 0 }),
+        springInteract
+    );
+
+    // 3. HOLO BACKGROUND: Moves OPPOSITE to mouse to simulate depth/refraction
+    const springBackground = Spring.of(
+        () => ({ x: 50, y: 50 }),
+        springInteract
+    );
+
+    // 4. PATTERN: Moves slowly for parallax depth effect
+    const springPattern = Spring.of(() => ({ x: 50, y: 50 }), springInteract);
+
+    // 5. BORDER ANGLE: Points from center toward cursor for sheen border
     const springAngle = Spring.of(() => 0, springInteract);
 
     let isHovering = $state(false);
     let animationFrame = $state<number | null>(null);
-
-    // Check for mobile viewport (tablet-portrait-down breakpoint)
     const mobileQuery = new MediaQuery('(max-width: 900px)', false);
 
-    // Static mode: disable animations for reduced motion OR mobile
     let isStaticMode = $derived(
         prefersReducedMotion.current || mobileQuery.current
     );
 
-    // Derived values from springs for use in template
+    // Calculate tilt intensity (0 to 1) based on rotation magnitude
+    // Max tilt is 28° per axis, so max magnitude ≈ 40° (diagonal)
+    const MAX_TILT = 40;
+    let tiltIntensity = $derived.by(() => {
+        const { x, y } = springRotate.current;
+        const magnitude = Math.sqrt(x * x + y * y);
+        return Math.min(magnitude / MAX_TILT, 1);
+    });
+
     function handleMouseMove(event: MouseEvent) {
-        if (isStaticMode) return;
+        if (isStaticMode || animationFrame) return;
 
-        // Throttle with requestAnimationFrame
-        if (animationFrame) return;
-
-        // Capture values BEFORE entering rAF callback (event gets recycled)
         const card = event.currentTarget as HTMLElement;
-        if (!card) return;
-
         const rect = card.getBoundingClientRect();
         const clientX = event.clientX;
         const clientY = event.clientY;
 
         animationFrame = requestAnimationFrame(() => {
-            // Calculate position relative to center (-0.5 to 0.5)
-            const centerX = (clientX - rect.left) / rect.width - 0.5;
-            const centerY = (clientY - rect.top) / rect.height - 0.5;
+            // 0 to 1 relative to card
+            const xPct = (clientX - rect.left) / rect.width;
+            const yPct = (clientY - rect.top) / rect.height;
 
-            // Use interaction spring settings
-            springRotate.stiffness = springInteract.stiffness;
-            springRotate.damping = springInteract.damping;
-            springSheen.stiffness = springInteract.stiffness;
-            springSheen.damping = springInteract.damping;
-            springAngle.stiffness = springInteract.stiffness;
-            springAngle.damping = springInteract.damping;
+            // -0.5 to 0.5 for rotation math
+            const centerX = xPct - 0.5;
+            const centerY = yPct - 0.5;
 
-            // Update rotation (~±14° like poke-holo: center / 3.5)
+            // Apply "Active" spring tension
+            setSpringConfig(springInteract);
+
+            // 1. Tilt
             springRotate.set({
-                x: -(centerY * 28), // Inverted Y for natural tilt
-                y: centerX * 28,
+                x: -(centerY * 28), // Max tilt X
+                y: centerX * 28, // Max tilt Y
             });
 
-            // Update sheen position (percentage)
-            springSheen.set({
-                x: (centerX + 0.5) * 100,
-                y: (centerY + 0.5) * 100,
+            // 2. Glare (Follows mouse)
+            springGlare.set({
+                x: xPct * 100,
+                y: yPct * 100,
+                o: 1, // Visibility
             });
 
-            // Calculate angle pointing from center toward cursor (0deg = top, clockwise)
+            // 3. Holo Spectrum (Moves FAST for rainbow shimmer)
+            springBackground.set({
+                x: 50 + centerX * 80,
+                y: 50 + centerY * 80,
+            });
+
+            // 4. Lambda Pattern (Moves SLOW for parallax depth)
+            springPattern.set({
+                x: 50 + centerX * 10,
+                y: 50 + centerY * 10,
+            });
+
+            // 5. Border angle (points from center toward cursor)
             const angleRad = Math.atan2(centerX, -centerY);
             const angleDeg = angleRad * (180 / Math.PI);
             springAngle.set(angleDeg);
@@ -81,124 +108,218 @@
     function handleMouseEnter() {
         if (isStaticMode) return;
         isHovering = true;
-
-        // Use interaction spring settings
-        springRotate.stiffness = springInteract.stiffness;
-        springRotate.damping = springInteract.damping;
+        setSpringConfig(springInteract);
     }
 
     function handleMouseLeave() {
         if (isStaticMode) return;
         isHovering = false;
 
-        // Cancel any pending animation frame
         if (animationFrame) {
             cancelAnimationFrame(animationFrame);
             animationFrame = null;
         }
 
-        // Use slower snap-back spring settings
-        springRotate.stiffness = springSnap.stiffness;
-        springRotate.damping = springSnap.damping;
-        springSheen.stiffness = springSnap.stiffness;
-        springSheen.damping = springSnap.damping;
-        springAngle.stiffness = springSnap.stiffness;
-        springAngle.damping = springSnap.damping;
-
-        // Snap back to center
+        // Snap back gently
+        setSpringConfig(springSnap);
         springRotate.set({ x: 0, y: 0 });
-        springSheen.set({ x: 50, y: 50 });
+        springGlare.set({ x: 50, y: 50, o: 0 });
+        springBackground.set({ x: 50, y: 50 });
+        springPattern.set({ x: 50, y: 50 });
         springAngle.set(0);
+    }
+
+    function setSpringConfig(config: typeof springInteract) {
+        springRotate.stiffness = config.stiffness;
+        springRotate.damping = config.damping;
+        springGlare.stiffness = config.stiffness;
+        springGlare.damping = config.damping;
+        springBackground.stiffness = config.stiffness;
+        springBackground.damping = config.damping;
+        springPattern.stiffness = config.stiffness;
+        springPattern.damping = config.damping;
+        springAngle.stiffness = config.stiffness;
+        springAngle.damping = config.damping;
     }
 </script>
 
-<div class="holo-card-container">
+<div class="holo-scene">
     <div
         class="holo-card"
         class:hovering={isHovering}
         class:static-mode={isStaticMode}
         style:--rotate-x="{springRotate.current.x}deg"
         style:--rotate-y="{springRotate.current.y}deg"
-        style:--sheen-x="{springSheen.current.x}%"
-        style:--sheen-y="{springSheen.current.y}%"
+        style:--glare-x="{springGlare.current.x}%"
+        style:--glare-y="{springGlare.current.y}%"
+        style:--glare-o={springGlare.current.o}
+        style:--bg-x="{springBackground.current.x}%"
+        style:--bg-y="{springBackground.current.y}%"
+        style:--pt-x="{springPattern.current.x}%"
+        style:--pt-y="{springPattern.current.y}%"
+        style:--tilt={tiltIntensity}
         style:--border-angle="{springAngle.current}deg"
         onmousemove={handleMouseMove}
         onmouseenter={handleMouseEnter}
         onmouseleave={handleMouseLeave}
         role="presentation"
     >
-        {@render children()}
+        <!-- 1. The Content (Base Layer) -->
+        <div class="card-content">
+            {@render children()}
+        </div>
+
+        <!-- 2. The Holographic Foil (Texture + Spectrum) -->
+        <!-- This sits ABOVE content but uses blend modes to interact -->
+        <div class="holo-layer"></div>
+
+        <!-- 3. The Glare (White Reflection) -->
+        <div class="glare-layer"></div>
+
+        <!-- 4. The Edge Highlight -->
+        <div class="border-glow"></div>
     </div>
 </div>
 
 <style>
-    .holo-card-container {
+    /* --- Layout --- */
+    .holo-scene {
         perspective: 1000px;
+        /* Ensure the scene fits the card content */
+        display: inline-block;
     }
 
     .holo-card {
         position: relative;
         transform-style: preserve-3d;
         transform: rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg));
-        /* Spring animation handled by Svelte spring() - no CSS transition needed */
-        background-color: #23252b;
-        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
-        border-radius: var(--radius-card);
-        padding: var(--raw-space-24);
+        border-radius: var(--radius-card, 24px);
+        background-color: #23252b; /* Dark Slate Base */
+
+        /* Important: Holo effects need overflow hidden to stay inside borders */
+        /* But if you want 3D popping elements, move them outside this container */
         overflow: hidden;
+
+        /* Hardware acceleration hints */
+        will-change: transform;
     }
 
-    .holo-card::before {
-        content: '';
+    /* --- Content Layer --- */
+    .card-content {
+        position: relative;
+        z-index: 1; /* Lowest level */
+        /* Ensure text is above background but below holo effects if desired */
+        /* Note: Usually text sits ON TOP of holo. If so, move z-index higher than holo-layer */
+        background: transparent;
+        padding: 16px;
+    }
+
+    /* --- The Amazing Rare Holo Layer --- */
+    .holo-layer {
         position: absolute;
         inset: 0;
-        background: radial-gradient(
-            circle at var(--sheen-x, 50%) var(--sheen-y, 50%),
-            rgba(var(--color-accent-rgb), var(--raw-opacity-muted)) 0%,
-            rgba(var(--color-accent-rgb), var(--raw-opacity-light)) 25%,
-            rgba(var(--color-accent-rgb), var(--raw-opacity-subtle)) 50%,
-            transparent 70%
-        );
-        opacity: 0;
-        transition: opacity 0.3s ease-out;
+        z-index: 2;
         pointer-events: none;
+        /* Base 0.1, scales up to 0.3 based on tilt intensity */
+        opacity: calc(0.1 + var(--tilt, 0) * 0.2);
+
+        /* BLENDING IS KEY: Color-dodge makes it shine on highlights, hidden on blacks */
+        mix-blend-mode: color-dodge;
+
+        /*
+           LAYER 1 (Top): The Lambda Texture
+           URL-encoded SVG of a Lambda symbol.
+           Stroke is semi-transparent white - catches light via color-dodge.
+        */
+        --pattern-lambda: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 20L10.5 6L8.5 2 M10.5 6L17 20' stroke='rgba(255,255,255,0.5)' stroke-width='2' fill='none' stroke-linecap='square'/%3E%3C/svg%3E");
+
+        /*
+           LAYER 2 (Bottom): The Iridescent Spectrum
+           (Orange -> Purple -> Cyan -> transparent edges)
+        */
+        --gradient-spectrum: linear-gradient(
+            115deg,
+            transparent 20%,
+            #ff8000 35%,
+            #7c3aed 50%,
+            #0ea5e9 65%,
+            transparent 80%
+        );
+
+        background-image: var(--pattern-lambda), var(--gradient-spectrum);
+
+        /*
+           SIZE:
+           - Pattern: 20px (tiny texture)
+           - Spectrum: 300% (large wash)
+        */
+        background-size:
+            20px 20px,
+            300% 300%;
+
+        /*
+           POSITION:
+           - Pattern: Slow parallax (--pt-x/y)
+           - Spectrum: Fast movement (--bg-x/y)
+        */
+        background-position:
+            var(--pt-x, 50%) var(--pt-y, 50%),
+            var(--bg-x) var(--bg-y);
+
+        background-blend-mode: overlay;
+        transition: opacity 0.3s ease;
+    }
+
+    /* --- The Glare Layer (White washout) --- */
+    .glare-layer {
+        position: absolute;
+        inset: 0;
+        z-index: 3;
+        pointer-events: none;
+
+        /* A radial beam of light */
+        background: radial-gradient(
+            farthest-corner circle at var(--glare-x) var(--glare-y),
+            rgba(255, 255, 255, 0.4) 0%,
+            rgba(255, 255, 255, 0.1) 25%,
+            transparent 60%
+        );
+
+        mix-blend-mode: overlay;
+        opacity: var(--glare-o);
+        transition: opacity 0.1s;
+    }
+
+    /* --- Border Glow --- */
+    .border-glow {
+        position: absolute;
+        inset: 0;
+        z-index: 4;
         border-radius: inherit;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: inset 0 0 15px rgba(255, 128, 0, 0.1); /* Subtle internal ambient */
+        pointer-events: none;
     }
 
-    .holo-card.hovering::before {
-        opacity: 1;
-    }
-
-    /* Static mode: reduced motion OR mobile - fixed tilt with visible sheen */
-    .holo-card.static-mode {
-        transform: rotateX(0deg) rotateY(-7deg);
-        transition: none;
-    }
-
-    .holo-card.static-mode::before {
-        opacity: 1;
-        --sheen-x: 35%;
-        --sheen-y: 30%;
-    }
-
-    /* Edge-based shining border that follows cursor position */
+    /* --- Sheen Border (follows cursor angle) --- */
     .holo-card::after {
         content: '';
         position: absolute;
         inset: 0;
+        z-index: 5;
         border-radius: inherit;
         padding: 1px;
         background: linear-gradient(
-            calc(var(--border-angle, 0deg) + 180deg),
-            rgba(var(--color-accent-rgb), var(--raw-opacity-muted)) 0%,
+            var(--border-angle, 0deg),
+            rgba(255, 128, 0, 0.25) 0%,
             transparent 50%
         );
-        /* Modern mask technique (Baseline 2023) */
+        /* Mask technique to show only the border */
         -webkit-mask:
             conic-gradient(#000 0 0) content-box,
             conic-gradient(#000 0 0);
         mask:
-            conic-gradient(#000 0 0) content-box exclude,
+            conic-gradient(#000 0 0) content-box,
             conic-gradient(#000 0 0);
         -webkit-mask-composite: xor;
         mask-composite: exclude;
@@ -213,6 +334,22 @@
 
     .holo-card.static-mode::after {
         opacity: 1;
-        --border-angle: -110deg;
+        --border-angle: 70deg; /* Light from right when tilted left */
+    }
+
+    /* --- Static / Mobile Mode --- */
+    .holo-card.static-mode {
+        transform: rotateX(0deg) rotateY(-7deg);
+    }
+
+    .holo-card.static-mode .holo-layer {
+        --tilt: 0.5; /* Default tilt for static mode */
+        background-position:
+            center center,
+            20% 20%;
+    }
+
+    .holo-card.static-mode .glare-layer {
+        display: none;
     }
 </style>
