@@ -142,7 +142,7 @@
     }
 
     .badge {
-        font-family: var(--font--mono);
+        font-family: var(--font--mono), monospace;
         font-size: var(--raw-text-sm);
         padding: var(--raw-space-8) var(--raw-space-16);
         border: 1px solid
