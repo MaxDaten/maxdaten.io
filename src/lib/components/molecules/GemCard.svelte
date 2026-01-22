@@ -20,15 +20,17 @@
     let { title, coverImage, excerpt, href, tags }: Props = $props();
 
     // Support both legacy string path and Sanity object with url
-    const coverImageUrl =
+    let coverImageUrl = $derived(
         typeof coverImage === 'string'
             ? undefined // Legacy path - would need local image handling
-            : coverImage?.url;
+            : coverImage?.url
+    );
 
-    const coverImageAlt =
+    let coverImageAlt = $derived(
         typeof coverImage === 'string'
             ? 'Cover preview of this gem'
-            : coverImage?.alt || 'Cover preview of this gem';
+            : coverImage?.alt || 'Cover preview of this gem'
+    );
 </script>
 
 <Card {href} target="_self" class="gem-card" data-testid="gem-card">

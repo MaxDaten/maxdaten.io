@@ -25,7 +25,7 @@
 
     let { data }: Props = $props();
 
-    let { gems } = data;
+    let gems = $derived(data.gems);
 </script>
 
 <PageTransition>
