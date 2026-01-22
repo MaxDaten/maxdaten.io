@@ -225,12 +225,26 @@
 
     /* Trading Card Interior - 2.5:3.5 trading card ratio */
     .trading-card {
-        font-family: var(--font--mono);
+        font-family: var(--font--mono), monospace;
         display: flex;
         flex-direction: column;
-        gap: var(--raw-space-12);
+        gap: var(--raw-space-8);
         width: 450px;
         aspect-ratio: 5 / 7;
+        overflow: hidden;
+
+        /* Scale down proportionally on small viewports */
+        @media (max-width: 500px) {
+            zoom: 0.78; /* (500 - 48) / 450 ≈ 0.78 */
+        }
+
+        @media (max-width: 420px) {
+            zoom: 0.72; /* (420 - 48) / 450 ≈ 0.72 */
+        }
+
+        @media (max-width: 380px) {
+            zoom: 0.65; /* (380 - 48) / 450 ≈ 0.65 */
+        }
     }
 
     .card-header {
@@ -301,7 +315,7 @@
     }
 
     .ability-box {
-        margin-top: var(--raw-space-16);
+        margin-top: auto;
         background: rgba(0, 0, 0, 0.3);
         border-radius: 4px;
         padding: 10px;
@@ -309,7 +323,7 @@
         box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
         display: flex;
         flex-direction: column;
-        gap: var(--raw-space-8);
+        gap: var(--raw-space-4);
     }
 
     .ability-header {
