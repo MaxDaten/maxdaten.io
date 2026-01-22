@@ -214,7 +214,7 @@
         position: relative;
         z-index: 1; /* Above holo foil for 100% readable text */
         background: transparent;
-        padding: 16px;
+        padding: var(--raw-space-24);
     }
 
     /* --- The Amazing Rare Holo Layer --- */
