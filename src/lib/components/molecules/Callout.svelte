@@ -28,7 +28,7 @@
     </div>
 </aside>
 
-<style lang="scss">
+<style>
     .callout {
         --callout-accent: var(--color-text-muted);
         --callout-accent-rgb: var(--color-text-rgb);

@@ -1,0 +1,47 @@
+/* Styles that are used everywhere */
+
+.container {
+    /* Inlined from padded-container mixin */
+    width: 100%;
+    padding-right: var(--raw-space-16);
+    padding-left: var(--raw-space-16);
+    margin-right: auto;
+    margin-left: auto;
+
+    @media (max-width: 320px) {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    @media (min-width: 768px) {
+        padding-right: var(--raw-space-24);
+        padding-left: var(--raw-space-24);
+    }
+
+    @media (min-width: 901px) {
+        padding-right: var(--raw-space-32);
+        padding-left: var(--raw-space-32);
+    }
+
+    @media (min-width: 1201px) {
+        max-width: 1080px;
+    }
+}
+
+ul,
+ol {
+    margin: 10px 0 10px 40px;
+    padding: 0;
+
+    & li {
+        margin: 6px 0;
+
+        &::marker {
+            color: var(--color--primary);
+        }
+    }
+}
+
+ul {
+    list-style: outside;
+}

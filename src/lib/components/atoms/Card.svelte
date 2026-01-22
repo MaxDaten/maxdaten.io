@@ -57,7 +57,7 @@
     </svelte:element>
 </div>
 
-<style lang="scss">
+<style>
     .card-wrapper {
         container-type: inline-size;
         width: 100%;

@@ -69,7 +69,7 @@
     {/snippet}
 </Card>
 
-<style lang="scss">
+<style>
     :global(.gem-card) {
         .content {
             display: flex;

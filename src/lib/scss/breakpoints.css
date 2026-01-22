@@ -1,0 +1,21 @@
+/* Breakpoint values as CSS custom properties for reference
+ * These are informational - use inline @media queries in components
+ * Example: @media (max-width: 767px) { ... } */
+:root {
+    --breakpoint-iphone-se-max: 320px;
+    --breakpoint-phone-max: 767px;
+    --breakpoint-tablet-portrait-min: 768px;
+    --breakpoint-tablet-portrait-max: 900px;
+    --breakpoint-tablet-landscape-min: 901px;
+    --breakpoint-tablet-landscape-max: 1200px;
+    --breakpoint-desktop-min: 1201px;
+}
+
+/* Breakpoint reference (for documentation purposes):
+ * - iPhone SE / small phones: max-width: 320px
+ * - Phone only: max-width: 767px
+ * - Tablet portrait up: min-width: 768px
+ * - Tablet portrait down: max-width: 900px
+ * - Tablet landscape up: min-width: 901px
+ * - Tablet landscape down: max-width: 1200px
+ * - Desktop up: min-width: 1201px */

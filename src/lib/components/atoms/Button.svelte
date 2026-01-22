@@ -60,7 +60,7 @@
     {@render children?.()}
 </svelte:element>
 
-<style lang="scss">
+<style>
     .button {
         --main-color: var(--color-accent-rgb);
         --light-color: var(--color-accent-rgb);
@@ -96,99 +96,89 @@
             }
         }
 
-        &.color {
-            &--primary {
-                --main-color: var(--color-accent-rgb);
-                --light-color: var(--color-accent-rgb);
-                --contrast-color: var(--color-surface);
-            }
+        &.color--primary {
+            --main-color: var(--color-accent-rgb);
+            --light-color: var(--color-accent-rgb);
+            --contrast-color: var(--color-surface);
+        }
 
-            &--secondary {
-                --main-color: var(--color-text-rgb);
-                --light-color: var(--color-text-rgb);
-                --contrast-color: var(--color-surface);
+        &.color--secondary {
+            --main-color: var(--color-text-rgb);
+            --light-color: var(--color-text-rgb);
+            --contrast-color: var(--color-surface);
+        }
+
+        &.style--solid {
+            background-color: rgb(var(--main-color));
+            color: var(--contrast-color);
+
+            &:hover {
+                box-shadow: 0 0 1px 7px
+                    rgba(var(--main-color), var(--raw-opacity-muted));
             }
         }
 
-        &.style {
-            &--solid {
-                background-color: rgb(var(--main-color));
-                color: var(--contrast-color);
+        &.style--understated {
+            background-color: rgba(var(--main-color), var(--raw-opacity-light));
+            color: rgb(var(--main-color));
 
-                &:hover {
-                    box-shadow: 0 0 1px 7px
-                        rgba(var(--main-color), var(--raw-opacity-muted));
-                }
+            &:hover {
+                box-shadow: 0 0 1px 7px
+                    rgba(var(--main-color), var(--raw-opacity-muted));
             }
+        }
 
-            &--understated {
+        &.style--clear {
+            background-color: transparent;
+            color: rgb(var(--main-color));
+
+            &:hover {
                 background-color: rgba(
                     var(--main-color),
                     var(--raw-opacity-light)
                 );
-                color: rgb(var(--main-color));
-
-                &:hover {
-                    box-shadow: 0 0 1px 7px
-                        rgba(var(--main-color), var(--raw-opacity-muted));
-                }
-            }
-
-            &--clear {
-                background-color: transparent;
-                color: rgb(var(--main-color));
-
-                &:hover {
-                    background-color: rgba(
-                        var(--main-color),
-                        var(--raw-opacity-light)
-                    );
-                }
-            }
-
-            &--ghost {
-                background-color: transparent;
-                color: rgb(var(--main-color));
-                border: 1px solid
-                    rgba(var(--main-color), var(--raw-opacity-muted));
-
-                &:hover {
-                    border-color: rgba(
-                        var(--main-color),
-                        var(--raw-opacity-medium)
-                    );
-                    background-color: rgba(
-                        var(--main-color),
-                        var(--raw-opacity-subtle)
-                    );
-                }
             }
         }
 
-        &.size {
-            &--small {
-                padding: var(--raw-space-4) var(--raw-space-12);
-                font-size: var(--raw-text-xs);
+        &.style--ghost {
+            background-color: transparent;
+            color: rgb(var(--main-color));
+            border: 1px solid rgba(var(--main-color), var(--raw-opacity-muted));
 
-                .icon {
-                    width: 20px;
-                    height: 20px;
-                }
+            &:hover {
+                border-color: rgba(
+                    var(--main-color),
+                    var(--raw-opacity-medium)
+                );
+                background-color: rgba(
+                    var(--main-color),
+                    var(--raw-opacity-subtle)
+                );
             }
+        }
 
-            &--medium {
-                padding: var(--raw-space-12) var(--space-button-x);
-                font-size: var(--raw-text-base);
+        &.size--small {
+            padding: var(--raw-space-4) var(--raw-space-12);
+            font-size: var(--raw-text-xs);
+
+            .icon {
+                width: 20px;
+                height: 20px;
             }
+        }
 
-            &--large {
-                padding: var(--raw-space-16) var(--raw-space-32);
-                font-size: var(--raw-text-lg);
+        &.size--medium {
+            padding: var(--raw-space-12) var(--space-button-x);
+            font-size: var(--raw-text-base);
+        }
 
-                .icon {
-                    width: 28px;
-                    height: 28px;
-                }
+        &.size--large {
+            padding: var(--raw-space-16) var(--raw-space-32);
+            font-size: var(--raw-text-lg);
+
+            .icon {
+                width: 28px;
+                height: 28px;
             }
         }
     }

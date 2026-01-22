@@ -41,9 +41,7 @@
     </nav>
 </header>
 
-<style lang="scss">
-    @use '$lib/scss/breakpoints.scss';
-
+<style>
     header {
         position: relative;
         padding: var(--raw-space-24) 0;
@@ -82,7 +80,7 @@
                 color: var(--color-text);
                 text-decoration: none;
 
-                // Active state: orange underline
+                /* Active state: orange underline */
                 &.active {
                     color: var(--color-accent);
 
@@ -97,7 +95,7 @@
                     }
                 }
 
-                // Hover only on non-active links
+                /* Hover only on non-active links */
                 &:not(.active):hover {
                     color: var(--color-accent);
                     filter: drop-shadow(0px 0px 3px var(--color-accent));
@@ -105,7 +103,7 @@
             }
         }
 
-        @include breakpoints.for-phone-only {
+        @media (max-width: 767px) {
             padding: var(--raw-space-16) 0;
 
             .links {

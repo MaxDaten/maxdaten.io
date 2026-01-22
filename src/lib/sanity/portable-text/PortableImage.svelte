@@ -46,7 +46,7 @@
     {/if}
 </figure>
 
-<style lang="scss">
+<style>
     .portable-image {
         margin: 2rem 0;
 

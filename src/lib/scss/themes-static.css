@@ -1,0 +1,144 @@
+/* ==============================================================================
+ * STATIC COLOR DEFINITIONS
+ * ==============================================================================
+ * This file contains pre-computed CSS custom properties for all theme colors.
+ * Generated from the SCSS define-color mixin to enable migration to pure CSS.
+ *
+ * Each color generates the following properties:
+ *   --color--{name}:          The base color value (hex)
+ *   --color--{name}-h:        Hue channel (HSL)
+ *   --color--{name}-s:        Saturation channel (HSL)
+ *   --color--{name}-l:        Lightness channel (HSL)
+ *   --color--{name}-a:        Alpha channel
+ *   --color--{name}-rgb:      RGB values (comma-separated for use with rgba())
+ *   --color--{name}-contrast: Text color for contrast (based on brightness)
+ *
+ * Brightness formula: (red * 299 + green * 587 + blue * 114) / 1000
+ * If brightness > 186, contrast = var(--color--text), else var(--color--text-inverse)
+ * ============================================================================== */
+
+/* Base theme static values - used by themes.css */
+
+/* --------------------------------------------------------------------------
+ * Primary Colors
+ * -------------------------------------------------------------------------- */
+
+/* primary: #ff8000
+ * RGB: 255, 128, 0 | HSL: 30deg, 100%, 50%
+ * Brightness: (255*299 + 128*587 + 0*114) / 1000 = 151.5 -> contrast: text-inverse */
+
+/* primary-shade: #7e4611
+ * RGB: 126, 70, 17 | HSL: 29.17deg, 76.22%, 28.04%
+ * Brightness: (126*299 + 70*587 + 17*114) / 1000 = 80.5 -> contrast: text-inverse */
+
+/* primary-tint: #2d1d10
+ * RGB: 45, 29, 16 | HSL: 26.9deg, 47.54%, 11.96%
+ * Brightness: (45*299 + 29*587 + 16*114) / 1000 = 32.3 -> contrast: text-inverse */
+
+/* --------------------------------------------------------------------------
+ * Secondary Colors
+ * -------------------------------------------------------------------------- */
+
+/* secondary: #ff8000 (same as primary)
+ * RGB: 255, 128, 0 | HSL: 30deg, 100%, 50%
+ * Brightness: 151.5 -> contrast: text-inverse */
+
+/* secondary-shade: #7e4611
+ * RGB: 126, 70, 17 | HSL: 29.17deg, 76.22%, 28.04%
+ * Brightness: 80.5 -> contrast: text-inverse */
+
+/* secondary-tint: #2d1d10
+ * RGB: 45, 29, 16 | HSL: 26.9deg, 47.54%, 11.96%
+ * Brightness: 32.3 -> contrast: text-inverse */
+
+/* --------------------------------------------------------------------------
+ * Accent Colors
+ * -------------------------------------------------------------------------- */
+
+/* yellow: #ffd400
+ * RGB: 255, 212, 0 | HSL: 49.88deg, 100%, 50%
+ * Brightness: (255*299 + 212*587 + 0*114) / 1000 = 200.5 -> contrast: text */
+
+/* --------------------------------------------------------------------------
+ * Text Colors
+ * -------------------------------------------------------------------------- */
+
+/* text: #fffcfc
+ * RGB: 255, 252, 252 | HSL: 0deg, 100%, 99.41%
+ * Brightness: (255*299 + 252*587 + 252*114) / 1000 = 252.9 -> contrast: text */
+
+/* text-shade: #d9f9fd
+ * RGB: 217, 249, 253 | HSL: 186.67deg, 90%, 92.16%
+ * Brightness: (217*299 + 249*587 + 253*114) / 1000 = 239.9 -> contrast: text */
+
+/* text-inverse: #1c1e26
+ * RGB: 28, 30, 38 | HSL: 228deg, 15.15%, 12.94%
+ * Brightness: (28*299 + 30*587 + 38*114) / 1000 = 30.3 -> contrast: text-inverse */
+
+/* text-inverse-shade: #5d5f65
+ * RGB: 93, 95, 101 | HSL: 225deg, 4.12%, 38.04%
+ * Brightness: (93*299 + 95*587 + 101*114) / 1000 = 95.0 -> contrast: text-inverse */
+
+/* --------------------------------------------------------------------------
+ * Background Colors
+ * -------------------------------------------------------------------------- */
+
+/* page-background: #1c1e26
+ * RGB: 28, 30, 38 | HSL: 228deg, 15.15%, 12.94%
+ * Brightness: 30.3 -> contrast: text-inverse */
+
+/* post-page-background: #141519
+ * RGB: 20, 21, 25 | HSL: 228deg, 11.11%, 8.82%
+ * Brightness: (20*299 + 21*587 + 25*114) / 1000 = 21.2 -> contrast: text-inverse */
+
+/* card-background: #32343e
+ * RGB: 50, 52, 62 | HSL: 230deg, 10.71%, 21.96%
+ * Brightness: (50*299 + 52*587 + 62*114) / 1000 = 52.5 -> contrast: text-inverse */
+
+/* --------------------------------------------------------------------------
+ * Callout Colors
+ * -------------------------------------------------------------------------- */
+
+/* callout-background: #1c1e26
+ * RGB: 28, 30, 38 | HSL: 228deg, 15.15%, 12.94%
+ * Brightness: 30.3 -> contrast: text-inverse */
+
+/* callout-background--info: #1d3874
+ * RGB: 29, 56, 116 | HSL: 221.38deg, 60%, 28.43%
+ * Brightness: (29*299 + 56*587 + 116*114) / 1000 = 54.8 -> contrast: text-inverse */
+
+/* callout-accent--info: #6ca9f7
+ * RGB: 108, 169, 247 | HSL: 213.67deg, 90.26%, 69.61%
+ * Brightness: (108*299 + 169*587 + 247*114) / 1000 = 159.7 -> contrast: text-inverse */
+
+/* callout-background--warning: #724413
+ * RGB: 114, 68, 19 | HSL: 30.95deg, 71.43%, 26.08%
+ * Brightness: (114*299 + 68*587 + 19*114) / 1000 = 76.2 -> contrast: text-inverse */
+
+/* callout-accent--warning: #ffca39
+ * RGB: 255, 202, 57 | HSL: 43.94deg, 100%, 61.18%
+ * Brightness: (255*299 + 202*587 + 57*114) / 1000 = 201.1 -> contrast: text */
+
+/* callout-background--error: #7c1d20
+ * RGB: 124, 29, 32 | HSL: 358.11deg, 62.09%, 30%
+ * Brightness: (124*299 + 29*587 + 32*114) / 1000 = 57.7 -> contrast: text-inverse */
+
+/* callout-accent--error: #ff8082
+ * RGB: 255, 128, 130 | HSL: 359.06deg, 100%, 75.10%
+ * Brightness: (255*299 + 128*587 + 130*114) / 1000 = 166.5 -> contrast: text-inverse */
+
+/* callout-background--success: #004737
+ * RGB: 0, 71, 55 | HSL: 166.48deg, 100%, 13.92%
+ * Brightness: (0*299 + 71*587 + 55*114) / 1000 = 48.0 -> contrast: text-inverse */
+
+/* callout-accent--success: #00c48f
+ * RGB: 0, 196, 143 | HSL: 163.78deg, 100%, 38.43%
+ * Brightness: (0*299 + 196*587 + 143*114) / 1000 = 131.4 -> contrast: text-inverse */
+
+/* --------------------------------------------------------------------------
+ * Code Colors
+ * -------------------------------------------------------------------------- */
+
+/* code-inline-background: #2b3131
+ * RGB: 43, 49, 49 | HSL: 180deg, 6.52%, 18.04%
+ * Brightness: (43*299 + 49*587 + 49*114) / 1000 = 47.3 -> contrast: text-inverse */

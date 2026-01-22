@@ -58,8 +58,8 @@
 
 <style lang="scss">
     /* Note: Only Satori-compatible CSS (mainly flexbox) */
-    /* No CSS variable support */
-    @use '$lib/scss/_themes.scss' as *;
+    /* No CSS variable support - Satori requires static values */
+    @use '$lib/scss/themes-og.scss' as *;
 
     $font-default: 'Inter', sans-serif;
     $font-title: 'Inter', sans-serif;

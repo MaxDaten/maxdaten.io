@@ -81,8 +81,7 @@
 
 <!-- eslint-enable svelte/no-navigation-without-resolve -->
 
-<style lang="scss">
-    @use '../../scss/breakpoints.scss';
+<style>
     .socials {
         display: inline-flex;
         align-items: stretch;
@@ -119,7 +118,7 @@
             }
         }
 
-        @include breakpoints.for-phone-only {
+        @media (max-width: 767px) {
             &.small {
                 gap: 10px;
             }

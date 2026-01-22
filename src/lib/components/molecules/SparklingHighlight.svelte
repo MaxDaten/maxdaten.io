@@ -18,7 +18,7 @@
     ><strong class={color}>{@render children?.()}</strong></Sparkles
 >
 
-<style lang="scss">
+<style>
     strong {
         &.primary {
             color: var(--color--primary);

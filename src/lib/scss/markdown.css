@@ -1,10 +1,8 @@
-@use '$styles/breakpoints';
-
 .content {
-    // =========================================================================
-    // Links
-    // =========================================================================
-    a:not(.button) {
+    /* =========================================================================
+     * Links
+     * ========================================================================= */
+    & a:not(.button) {
         color: var(--color-accent);
         text-decoration: underline;
         text-underline-offset: 2px;
@@ -17,18 +15,18 @@
         }
     }
 
-    // =========================================================================
-    // Paragraphs
-    // =========================================================================
-    p {
+    /* =========================================================================
+     * Paragraphs
+     * ========================================================================= */
+    & p {
         margin: var(--raw-space-16) 0;
         line-height: var(--text-body-leading);
     }
 
-    // =========================================================================
-    // Headings - tight letter-spacing, semibold weight
-    // =========================================================================
-    h2 {
+    /* =========================================================================
+     * Headings - tight letter-spacing, semibold weight
+     * ========================================================================= */
+    & h2 {
         font-size: var(--text-heading-2);
         font-weight: var(--font-weight-semibold);
         line-height: var(--text-heading-leading);
@@ -36,7 +34,7 @@
         margin: var(--space-section) 0 var(--raw-space-16);
     }
 
-    h3 {
+    & h3 {
         font-size: var(--text-heading-3);
         font-weight: var(--font-weight-semibold);
         line-height: var(--text-heading-leading);
@@ -44,7 +42,7 @@
         margin: var(--space-group) 0 var(--raw-space-12);
     }
 
-    h4 {
+    & h4 {
         font-size: var(--text-heading-4);
         font-weight: var(--font-weight-semibold);
         line-height: var(--raw-leading-snug);
@@ -52,11 +50,11 @@
         margin: var(--space-block) 0 var(--raw-space-8);
     }
 
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
+    & h2,
+    & h3,
+    & h4,
+    & h5,
+    & h6 {
         text-wrap: balance;
 
         &:hover .heading-link {
@@ -64,7 +62,7 @@
         }
     }
 
-    a.heading-link {
+    & a.heading-link {
         color: var(--color-accent);
         text-decoration: none;
         margin-right: var(--raw-space-8);
@@ -74,16 +72,16 @@
         transition: opacity 150ms cubic-bezier(0.25, 1, 0.5, 1);
     }
 
-    // =========================================================================
-    // Images
-    // =========================================================================
-    .wrap.reveal {
+    /* =========================================================================
+     * Images
+     * ========================================================================= */
+    & .wrap.reveal {
         margin: var(--space-block) auto;
         border-radius: var(--raw-radius-sm);
         overflow: hidden;
         border: 1px solid rgba(var(--color-text-rgb), var(--raw-opacity-subtle));
 
-        img {
+        & img {
             display: block;
             object-fit: cover;
             width: 100%;
@@ -91,7 +89,7 @@
         }
     }
 
-    figcaption {
+    & figcaption {
         font-size: var(--raw-text-sm);
         text-align: center;
         margin-top: var(--raw-space-8);
@@ -99,14 +97,14 @@
         color: var(--color-text-muted);
     }
 
-    img + figcaption {
+    & img + figcaption {
         margin-top: calc(-1 * var(--raw-space-8));
     }
 
-    // =========================================================================
-    // Blockquotes - sharp corners, left border accent
-    // =========================================================================
-    blockquote {
+    /* =========================================================================
+     * Blockquotes - sharp corners, left border accent
+     * ========================================================================= */
+    & blockquote {
         margin: var(--space-block) 0;
         padding: var(--raw-space-16);
         border-radius: var(--raw-radius-sm);
@@ -117,54 +115,54 @@
         background: rgba(var(--color-text-rgb), var(--raw-opacity-subtle));
         color: var(--color-text-muted);
 
-        p {
+        & p {
             margin: 0;
         }
 
-        p + p {
+        & p + p {
             margin-top: var(--raw-space-12);
         }
     }
 
-    // =========================================================================
-    // Lists
-    // =========================================================================
-    ul,
-    ol {
+    /* =========================================================================
+     * Lists
+     * ========================================================================= */
+    & ul,
+    & ol {
         margin: var(--raw-space-16) 0;
         padding-left: var(--raw-space-24);
         line-height: var(--raw-leading-relaxed);
 
-        li {
+        & li {
             margin: var(--raw-space-8) 0;
         }
     }
 
-    ol {
+    & ol {
         list-style-type: decimal;
     }
 
-    ul {
+    & ul {
         list-style-type: disc;
     }
 
-    ul ul,
-    ol ul {
+    & ul ul,
+    & ol ul {
         list-style-type: circle;
         margin: var(--raw-space-4) 0;
     }
 
-    ol ol,
-    ul ol {
+    & ol ol,
+    & ul ol {
         list-style-type: lower-alpha;
         margin: var(--raw-space-4) 0;
     }
 
-    // =========================================================================
-    // Code blocks (Shiki)
-    // Border is handled by CodeBlock wrapper component
-    // =========================================================================
-    pre.shiki {
+    /* =========================================================================
+     * Code blocks (Shiki)
+     * Border is handled by CodeBlock wrapper component
+     * ========================================================================= */
+    & pre.shiki {
         font-family: var(--font--mono), monospace;
         font-size: var(--raw-text-sm);
         border-radius: var(--raw-radius-sm);
@@ -180,25 +178,25 @@
         margin: 0;
         line-height: var(--raw-leading-relaxed);
 
-        @include breakpoints.for-phone-only {
+        @media (max-width: 767px) {
             font-size: var(--raw-text-xs);
             padding: var(--raw-space-12);
         }
 
-        code {
+        & code {
             width: fit-content;
             min-width: 100%;
             display: block;
         }
 
-        .line {
+        & .line {
             display: inline-block;
             position: relative;
             padding-left: var(--raw-space-8);
             min-height: 1.1em;
         }
 
-        .line.highlighted {
+        & .line.highlighted {
             background-color: rgba(
                 var(--color-accent-rgb),
                 var(--raw-opacity-subtle)
@@ -214,7 +212,7 @@
             padding-left: 4em;
             counter-reset: line;
 
-            .line {
+            & .line {
                 counter-increment: line;
 
                 &::before {
@@ -235,10 +233,10 @@
         }
     }
 
-    // =========================================================================
-    // Inline code
-    // =========================================================================
-    :not(pre) > code {
+    /* =========================================================================
+     * Inline code
+     * ========================================================================= */
+    & :not(pre) > code {
         font-family: var(--font--mono), monospace;
         font-size: 0.9em;
         padding: 0.15em 0.4em;
@@ -246,10 +244,10 @@
         background: rgba(var(--color-text-rgb), var(--raw-opacity-subtle));
     }
 
-    // =========================================================================
-    // Horizontal rule
-    // =========================================================================
-    hr {
+    /* =========================================================================
+     * Horizontal rule
+     * ========================================================================= */
+    & hr {
         border: none;
         height: 1px;
         background: rgba(var(--color-text-rgb), var(--raw-opacity-light));

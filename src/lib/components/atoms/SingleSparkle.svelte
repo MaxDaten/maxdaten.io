@@ -25,7 +25,7 @@
     </svg>
 </div>
 
-<style lang="scss">
+<style>
     .wrapper {
         position: absolute;
         pointer-events: none;

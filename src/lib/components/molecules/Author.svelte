@@ -42,10 +42,7 @@
     </div>
 </div>
 
-<style lang="scss">
-    @use '$styles/mixins';
-    @use '$styles/breakpoints';
-
+<style>
     .author {
         display: flex;
         align-items: center;
@@ -55,7 +52,7 @@
         color: rgba(var(--color--secondary-rgb), 0.8);
         transition: all 0.3s ease;
 
-        @include breakpoints.for-phone-only {
+        @media (max-width: 767px) {
             flex-direction: column;
             align-items: flex-start;
             gap: 12px;
@@ -73,7 +70,7 @@
             gap: 4px;
         }
 
-        @include breakpoints.for-phone-only {
+        @media (max-width: 767px) {
             gap: 8px;
         }
     }

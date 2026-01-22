@@ -29,16 +29,14 @@
     </div>
 </ContentSection>
 
-<style lang="scss">
-    @use '$lib/scss/breakpoints.scss';
-
+<style>
     .grid {
         width: 100%;
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-gap: 20px;
 
-        @include breakpoints.for-phone-only {
+        @media (max-width: 767px) {
             grid-template-columns: 1fr;
         }
     }

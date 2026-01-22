@@ -86,7 +86,7 @@
     </figure>
 </div>
 
-<style lang="scss">
+<style>
     .code-block {
         figure {
             margin: var(--raw-space-24) 0;

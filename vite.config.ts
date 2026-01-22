@@ -1,19 +1,10 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
-import { NodePackageImporter } from 'sass';
 import { imagetools } from '@zerodevx/svelte-img/vite';
 import { playwright } from '@vitest/browser-playwright';
 
 export default defineConfig({
     plugins: [sveltekit(), imagetools()],
-    css: {
-        preprocessorOptions: {
-            scss: {
-                api: 'modern-compiler',
-                importers: [new NodePackageImporter()],
-            },
-        },
-    },
     test: {
         projects: [
             // component tests in browser environment

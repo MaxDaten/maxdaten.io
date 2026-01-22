@@ -20,9 +20,7 @@
     </svg>
 </div>
 
-<style lang="scss">
-    @use '$lib/scss/breakpoints.scss';
-
+<style>
     .logo {
         #logo-text {
             #text {

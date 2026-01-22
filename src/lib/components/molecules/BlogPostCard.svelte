@@ -57,7 +57,7 @@
     {/snippet}
 </Card>
 
-<style lang="scss">
+<style>
     :global(.blog-post-card) {
         .title {
             display: flex;

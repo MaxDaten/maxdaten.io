@@ -21,7 +21,7 @@
     </div>
 </PageTransition>
 
-<style lang="scss">
+<style>
     .error-page {
         background: var(--color--page-background);
         position: relative;

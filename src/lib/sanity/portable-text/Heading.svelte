@@ -58,7 +58,7 @@
 
 <!-- eslint-enable svelte/no-navigation-without-resolve -->
 
-<style lang="scss">
+<style>
     .heading-with-anchor {
         position: relative;
 

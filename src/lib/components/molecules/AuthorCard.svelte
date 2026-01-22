@@ -77,9 +77,7 @@
     </div>
 </aside>
 
-<style lang="scss">
-    @use '$styles/breakpoints';
-
+<style>
     .author-callout {
         margin-top: var(--raw-space-32);
         padding: var(--raw-space-24);
@@ -87,7 +85,7 @@
         background: rgba(var(--color-text-rgb), 0.03);
         border: 1px solid rgba(var(--color-text-rgb), var(--raw-opacity-light));
 
-        @include breakpoints.for-phone-only {
+        @media (max-width: 767px) {
             padding: var(--raw-space-16);
         }
     }
@@ -103,7 +101,7 @@
         border-bottom: 1px solid
             rgba(var(--color-text-rgb), var(--raw-opacity-subtle));
 
-        @include breakpoints.for-phone-only {
+        @media (max-width: 767px) {
             font-size: var(--raw-text-xs);
             margin-bottom: var(--raw-space-12);
             padding-bottom: var(--raw-space-12);
@@ -115,7 +113,7 @@
         align-items: center;
         gap: var(--raw-space-16);
 
-        @include breakpoints.for-phone-only {
+        @media (max-width: 767px) {
             gap: var(--raw-space-12);
         }
     }
@@ -132,7 +130,7 @@
                 rgba(var(--color-text-rgb), var(--raw-opacity-light));
         }
 
-        @include breakpoints.for-phone-only {
+        @media (max-width: 767px) {
             :global(.avatar) {
                 width: 32px;
                 height: 32px;
@@ -153,7 +151,7 @@
         font-size: var(--raw-text-sm);
         letter-spacing: -0.02em;
 
-        @include breakpoints.for-phone-only {
+        @media (max-width: 767px) {
             width: 32px;
             height: 32px;
             font-size: var(--raw-text-xs);
@@ -182,7 +180,7 @@
         margin: 0;
         max-width: 48ch;
 
-        @include breakpoints.for-phone-only {
+        @media (max-width: 767px) {
             font-size: var(--raw-text-xs);
         }
     }
@@ -194,7 +192,7 @@
         margin-top: var(--raw-space-8);
         flex-wrap: wrap;
 
-        @include breakpoints.for-phone-only {
+        @media (max-width: 767px) {
             gap: var(--raw-space-8);
         }
     }

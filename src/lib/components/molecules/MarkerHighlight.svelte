@@ -11,7 +11,7 @@
     {@render children?.()}
 </mark>
 
-<style lang="scss">
+<style>
     mark {
         --mark-color: transparent;
 

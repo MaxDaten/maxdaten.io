@@ -131,9 +131,7 @@
     </article>
 </PageTransition>
 
-<style lang="scss">
-    @use '$styles/breakpoints';
-
+<style>
     article {
         --main-column-width: 680px;
         position: relative;
@@ -142,12 +140,12 @@
         flex-direction: column;
         gap: var(--space-group);
 
-        @include breakpoints.for-tablet-portrait-up {
+        @media (min-width: 768px) {
             padding-left: var(--raw-space-24);
             padding-right: var(--raw-space-24);
         }
 
-        @include breakpoints.for-tablet-landscape-up {
+        @media (min-width: 901px) {
             padding-left: var(--raw-space-32);
             padding-right: var(--raw-space-32);
         }
@@ -200,7 +198,7 @@
         font-variant-numeric: tabular-nums;
         color: var(--color-text-muted);
 
-        @include breakpoints.for-phone-only {
+        @media (max-width: 767px) {
             flex-direction: column;
             gap: var(--raw-space-4);
         }
@@ -228,7 +226,7 @@
     .separator {
         color: rgba(var(--color-text-rgb), var(--raw-opacity-muted));
 
-        @include breakpoints.for-phone-only {
+        @media (max-width: 767px) {
             display: none;
         }
     }

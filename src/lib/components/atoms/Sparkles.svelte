@@ -68,7 +68,7 @@
     </span>
 </div>
 
-<style lang="scss">
+<style>
     .sparkle-wrapper {
         position: relative;
         display: inline-block;

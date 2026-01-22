@@ -1,0 +1,72 @@
+/* =============================================================================
+ * Design Token Migration Bridge
+ * =============================================================================
+ * This file maps the legacy --color--* tokens to the new --color-* system.
+ * It provides backward compatibility during the migration period.
+ *
+ * Usage: Import this AFTER tokens-colors.css in global.css
+ *
+ * Migration status:
+ * - [x] Primary colors
+ * - [x] Text colors
+ * - [x] Surface colors
+ * - [x] Status colors (callout)
+ * - [ ] Components using old tokens (migrate then remove mappings)
+ *
+ * TODO: Remove this file once all components are migrated to new tokens.
+ * ============================================================================= */
+
+:root {
+    /* =========================================================================
+     * Legacy Primary/Secondary -> New Accent
+     * =========================================================================
+     * Old: --color--primary, --color--primary-rgb
+     * New: --color-accent, --color-accent-rgb
+     *
+     * Note: The themes.css still generates these, but we provide
+     * explicit mappings here for clarity and to allow gradual deprecation. */
+
+    /* =========================================================================
+     * Legacy Text Colors -> New Text
+     * =========================================================================
+     * Old: --color--text, --color--text-rgb
+     * New: --color-text, --color-text-rgb */
+
+    /* =========================================================================
+     * Legacy Surface Colors -> New Surface
+     * =========================================================================
+     * Old: --color--page-background
+     * New: --color-surface
+     *
+     * Old: --color--post-page-background
+     * New: --color-surface-dark
+     *
+     * Old: --color--card-background
+     * New: --color-surface-elevated */
+
+    /* =========================================================================
+     * Legacy Callout Colors -> New Status Colors
+     * =========================================================================
+     * These mappings allow Callout component to work with new tokens */
+
+    /* Info */
+    --color-callout-bg-info: rgba(var(--color-info-rgb), 0.15);
+    --color-callout-accent-info: var(--color-info);
+
+    /* Warning */
+    --color-callout-bg-warning: rgba(var(--color-warning-rgb), 0.15);
+    --color-callout-accent-warning: var(--color-warning);
+
+    /* Error */
+    --color-callout-bg-error: rgba(var(--color-error-rgb), 0.15);
+    --color-callout-accent-error: var(--color-error);
+
+    /* Success */
+    --color-callout-bg-success: rgba(var(--color-success-rgb), 0.15);
+    --color-callout-accent-success: var(--color-success);
+
+    /* =========================================================================
+     * Code/Syntax
+     * ========================================================================= */
+    --color-code-bg: var(--raw-color-gray-700);
+}

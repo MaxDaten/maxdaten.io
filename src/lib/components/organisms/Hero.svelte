@@ -108,13 +108,11 @@
     </div>
 </section>
 
-<style lang="scss">
-    @use '$lib/scss/breakpoints.scss';
-
+<style>
     #hero {
         padding: var(--raw-space-80) 0;
 
-        @include breakpoints.for-tablet-portrait-down {
+        @media (max-width: 900px) {
             padding: var(--raw-space-48) 0;
         }
     }
@@ -125,7 +123,7 @@
         gap: var(--raw-space-48);
         align-items: center;
 
-        @include breakpoints.for-tablet-portrait-down {
+        @media (max-width: 900px) {
             grid-template-columns: 1fr;
             gap: var(--raw-space-32);
         }
@@ -136,7 +134,7 @@
         flex-direction: column;
         gap: var(--raw-space-24);
 
-        @include breakpoints.for-tablet-portrait-down {
+        @media (max-width: 900px) {
             align-items: center;
             text-align: center;
             order: 2;
@@ -163,7 +161,7 @@
         margin: 0;
         text-wrap: balance;
 
-        @include breakpoints.for-phone-only {
+        @media (max-width: 767px) {
             font-size: var(--raw-text-3xl);
         }
 
@@ -188,7 +186,7 @@
         flex-wrap: wrap;
         gap: var(--raw-space-12);
 
-        @include breakpoints.for-tablet-portrait-down {
+        @media (max-width: 900px) {
             justify-content: center;
         }
     }
@@ -203,7 +201,7 @@
         color: #9ca3af;
         margin-top: var(--raw-space-24);
 
-        @include breakpoints.for-tablet-portrait-down {
+        @media (max-width: 900px) {
             justify-content: center;
         }
 
@@ -220,7 +218,7 @@
         display: flex;
         justify-content: center;
 
-        @include breakpoints.for-tablet-portrait-down {
+        @media (max-width: 900px) {
             order: 1;
         }
     }

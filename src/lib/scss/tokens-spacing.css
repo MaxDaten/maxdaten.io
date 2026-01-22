@@ -1,17 +1,17 @@
-// =============================================================================
-// Design Token System: Spacing
-// =============================================================================
-// Part of the design token foundation for maxdaten.io
-//
-// Architecture: Two-layer system
-// - Primitive layer (--raw-*): Raw values without context
-// - Semantic layer: Contextual usage references to primitives
-//
-// Spacing is based on an 8px grid with half-steps (4px, 12px) for fine-tuning.
-// =============================================================================
+/* =============================================================================
+ * Design Token System: Spacing
+ * =============================================================================
+ * Part of the design token foundation for maxdaten.io
+ *
+ * Architecture: Two-layer system
+ * - Primitive layer (--raw-*): Raw values without context
+ * - Semantic layer: Contextual usage references to primitives
+ *
+ * Spacing is based on an 8px grid with half-steps (4px, 12px) for fine-tuning.
+ * ============================================================================= */
 
 :root {
-    // Primitive spacing (8px grid with half-steps)
+    /* Primitive spacing (8px grid with half-steps) */
     --raw-space-4: 4px;
     --raw-space-8: 8px;
     --raw-space-12: 12px;
@@ -22,7 +22,7 @@
     --raw-space-64: 64px;
     --raw-space-80: 80px;
 
-    // Semantic spacing
+    /* Semantic spacing */
     --space-inline: var(--raw-space-8);
     --space-stack: var(--raw-space-16);
     --space-block: var(--raw-space-24);
@@ -30,7 +30,7 @@
     --space-section: var(--raw-space-48);
     --space-page: var(--raw-space-80);
 
-    // Component-specific spacing
+    /* Component-specific spacing */
     --space-card-padding: var(--raw-space-24);
     --space-button-x: var(--raw-space-16);
     --space-button-y: var(--raw-space-8);

@@ -18,9 +18,7 @@
     </div>
 </ContentSection>
 
-<style lang="scss">
-    @use '$lib/scss/breakpoints.scss';
-
+<style>
     .simple-grid {
         width: 100%;
         display: grid;
@@ -31,7 +29,7 @@
             grid-template-columns: 1fr 1fr;
         }
 
-        @include breakpoints.for-tablet-portrait-down {
+        @media (max-width: 900px) {
             grid-template-columns: 1fr;
         }
     }

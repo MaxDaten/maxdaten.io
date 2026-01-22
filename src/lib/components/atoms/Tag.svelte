@@ -11,7 +11,7 @@
     {@render children?.()}
 </div>
 
-<style lang="scss">
+<style>
     .tag {
         font-family: var(--font--mono), monospace;
         display: flex;

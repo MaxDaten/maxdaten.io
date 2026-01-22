@@ -47,9 +47,7 @@
     </div>
 </section>
 
-<style lang="scss">
-    @use '$lib/scss/breakpoints.scss';
-
+<style>
     #about {
         position: relative;
         display: grid;
@@ -58,7 +56,7 @@
         justify-content: space-between;
         padding-bottom: 50px;
 
-        @include breakpoints.for-phone-only {
+        @media (max-width: 767px) {
             grid-template-columns: 1fr;
             justify-items: center;
             gap: 20px;
@@ -70,7 +68,7 @@
             gap: 15px;
 
             h2 {
-                @include breakpoints.for-phone-only {
+                @media (max-width: 767px) {
                     text-align: center;
                     text-wrap: balance;
                 }
@@ -79,7 +77,7 @@
             p {
                 line-height: 1.6;
 
-                @include breakpoints.for-phone-only {
+                @media (max-width: 767px) {
                     text-align: justify;
                     max-inline-size: 50ch;
                     text-wrap: pretty;
@@ -95,7 +93,7 @@
                 border-left: 3px solid rgba(var(--color--primary-rgb), 0.4);
             }
 
-            @include breakpoints.for-phone-only {
+            @media (max-width: 767px) {
                 gap: 20px;
             }
         }
@@ -105,7 +103,7 @@
             align-items: center;
             gap: 15px;
 
-            @include breakpoints.for-phone-only {
+            @media (max-width: 767px) {
                 justify-content: center;
                 margin-bottom: 10px;
                 span {

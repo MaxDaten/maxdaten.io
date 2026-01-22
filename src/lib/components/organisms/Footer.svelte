@@ -21,7 +21,7 @@
     </div>
 </footer>
 
-<style lang="scss">
+<style>
     footer {
         width: 100%;
         background: linear-gradient(

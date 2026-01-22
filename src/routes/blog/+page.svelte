@@ -27,38 +27,35 @@
     </div>
 </PageTransition>
 
-<style lang="scss">
-    @use '$styles/mixins';
-    @use '$styles/breakpoints';
-
+<style>
     .grid {
         width: 100%;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
         grid-gap: 20px;
 
-        @include breakpoints.for-tablet-portrait-down {
+        @media (max-width: 900px) {
             grid-template-columns: 1fr;
         }
 
-        @include breakpoints.for-tablet-landscape-up {
-            // Select every 6 elements, starting from position 1
-            // And make it take up 6 columns
+        @media (min-width: 901px) {
+            /* Select every 6 elements, starting from position 1 */
+            /* And make it take up 6 columns */
             > :global(:nth-child(6n + 1)) {
                 grid-column: span 6;
             }
-            // Select every 6 elements, starting from position 2
-            // And make it take up 3 columns
+            /* Select every 6 elements, starting from position 2 */
+            /* And make it take up 3 columns */
             > :global(:nth-child(6n + 2)) {
                 grid-column: span 3;
             }
-            // Select every 6 elements, starting from position 3
-            // And make it take up 3 columns
+            /* Select every 6 elements, starting from position 3 */
+            /* And make it take up 3 columns */
             > :global(:nth-child(6n + 3)) {
                 grid-column: span 3;
             }
-            // Select every 6 elements, starting from position 4, 5 and 6
-            // And make it take up 2 columns
+            /* Select every 6 elements, starting from position 4, 5 and 6 */
+            /* And make it take up 2 columns */
             > :global(:nth-child(6n + 4)),
             :global(:nth-child(6n + 5)),
             :global(:nth-child(6n + 6)) {

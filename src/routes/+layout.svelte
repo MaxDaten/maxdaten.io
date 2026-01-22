@@ -1,5 +1,6 @@
 <script>
-    import '$lib/scss/global.scss';
+    import '$lib/scss/fonts';
+    import '$lib/scss/global.css';
     import Analytics from '$components/atoms/Analytics.svelte';
     import { Ssgoi } from 'ssgoi';
     import { transitionConfig } from '$lib/config/transitions';
@@ -45,7 +46,7 @@
     </div>
 </Ssgoi>
 
-<style lang="scss">
+<style>
     .stage {
         height: 100%;
         min-height: 100vh;

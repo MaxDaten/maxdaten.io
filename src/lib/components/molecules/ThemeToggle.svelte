@@ -48,7 +48,7 @@
     <span class="label">Auto</span>
 </button>
 
-<style lang="scss">
+<style>
     .theme-toggle {
         height: 24px;
         padding: 0;
@@ -117,29 +117,16 @@
         transition: all 0.5s var(--ease-out-3);
     }
 
-    @mixin light-icon {
-        & #sun {
+    /* light-icon styles expanded */
+    .theme-toggle:not([data-theme]) {
+        #sun {
             transform: scale(0.5);
         }
 
-        & #sun-beams {
+        #sun-beams {
             transform: rotateZ(0.25turn);
             --_opacity-dur: 0.5s;
         }
-    }
-
-    @mixin dark-icon {
-        & #moon > circle {
-            transform: translateX(-20px);
-        }
-
-        & #sun-beams {
-            opacity: 0;
-        }
-    }
-
-    .theme-toggle:not([data-theme]) {
-        @include light-icon;
     }
 
     [data-theme='auto'] {
@@ -150,19 +137,45 @@
         }
 
         @media not all and (prefers-color-scheme: dark) {
-            @include light-icon;
+            #sun {
+                transform: scale(0.5);
+            }
+
+            #sun-beams {
+                transform: rotateZ(0.25turn);
+                --_opacity-dur: 0.5s;
+            }
         }
 
         @media (prefers-color-scheme: dark) {
-            @include dark-icon;
+            #moon > circle {
+                transform: translateX(-20px);
+            }
+
+            #sun-beams {
+                opacity: 0;
+            }
         }
     }
 
     [data-theme='light'] {
-        @include light-icon;
+        #sun {
+            transform: scale(0.5);
+        }
+
+        #sun-beams {
+            transform: rotateZ(0.25turn);
+            --_opacity-dur: 0.5s;
+        }
     }
 
     [data-theme='dark'] {
-        @include dark-icon;
+        #moon > circle {
+            transform: translateX(-20px);
+        }
+
+        #sun-beams {
+            opacity: 0;
+        }
     }
 </style>

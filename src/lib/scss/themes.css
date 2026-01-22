@@ -1,0 +1,333 @@
+/* ==============================================================================
+ * THEME DEFINITIONS
+ * ==============================================================================
+ * This file contains all theme color definitions as CSS custom properties.
+ * Previously generated using SCSS mixins, now pre-computed for pure CSS.
+ *
+ * Color source values (kept for reference):
+ * - color-primary: #ff8000
+ * - color-primary-shade: #7e4611
+ * - color-primary-tint: #2d1d10
+ * - color-secondary: #ff8000
+ * - color-secondary-shade: #7e4611
+ * - color-secondary-tint: #2d1d10
+ * - color-yellow: #ffd400
+ * - color-text: #fffcfc
+ * - color-text-shade: #d9f9fd
+ * - color-text-inverse: #1c1e26
+ * - color-text-inverse-shade: #5d5f65
+ * - color-page-background: #1c1e26
+ * - color-post-page-background: #141519
+ * - color-card-background: #32343e
+ * - color-callout-background: #1c1e26
+ * - color-callout-background-info: #1d3874
+ * - color-callout-accent-info: #6ca9f7
+ * - color-callout-background-warning: #724413
+ * - color-callout-accent-warning: #ffca39
+ * - color-callout-background-error: #7c1d20
+ * - color-callout-accent-error: #ff8082
+ * - color-callout-background-success: #004737
+ * - color-callout-accent-success: #00c48f
+ * - color-code-inline-background: #2b3131
+ * ============================================================================== */
+
+:root {
+    /* --------------------------------------------------------------------------
+     * Primary Colors
+     * -------------------------------------------------------------------------- */
+
+    /* primary: #ff8000
+     * RGB: 255, 128, 0 | HSL: 30deg, 100%, 50%
+     * Brightness: (255*299 + 128*587 + 0*114) / 1000 = 151.5 -> contrast: text-inverse */
+    --color--primary: #ff8000;
+    --color--primary-h: 30deg;
+    --color--primary-s: 100%;
+    --color--primary-l: 50%;
+    --color--primary-a: 1;
+    --color--primary-rgb: 255, 128, 0;
+    --color--primary-contrast: var(--color--text-inverse);
+
+    /* primary-shade: #7e4611
+     * RGB: 126, 70, 17 | HSL: 29.17deg, 76.22%, 28.04%
+     * Brightness: (126*299 + 70*587 + 17*114) / 1000 = 80.5 -> contrast: text-inverse */
+    --color--primary-shade: #7e4611;
+    --color--primary-shade-h: 29.1743119266deg;
+    --color--primary-shade-s: 76.2237762238%;
+    --color--primary-shade-l: 28.0392156863%;
+    --color--primary-shade-a: 1;
+    --color--primary-shade-rgb: 126, 70, 17;
+    --color--primary-shade-contrast: var(--color--text-inverse);
+
+    /* primary-tint: #2d1d10
+     * RGB: 45, 29, 16 | HSL: 26.9deg, 47.54%, 11.96%
+     * Brightness: (45*299 + 29*587 + 16*114) / 1000 = 32.3 -> contrast: text-inverse */
+    --color--primary-tint: #2d1d10;
+    --color--primary-tint-h: 26.8965517241deg;
+    --color--primary-tint-s: 47.5409836066%;
+    --color--primary-tint-l: 11.9607843137%;
+    --color--primary-tint-a: 1;
+    --color--primary-tint-rgb: 45, 29, 16;
+    --color--primary-tint-contrast: var(--color--text-inverse);
+
+    /* --------------------------------------------------------------------------
+     * Secondary Colors
+     * -------------------------------------------------------------------------- */
+
+    /* secondary: #ff8000
+     * RGB: 255, 128, 0 | HSL: 30deg, 100%, 50%
+     * Brightness: 151.5 -> contrast: text-inverse */
+    --color--secondary: #ff8000;
+    --color--secondary-h: 30deg;
+    --color--secondary-s: 100%;
+    --color--secondary-l: 50%;
+    --color--secondary-a: 1;
+    --color--secondary-rgb: 255, 128, 0;
+    --color--secondary-contrast: var(--color--text-inverse);
+
+    /* secondary-shade: #7e4611
+     * RGB: 126, 70, 17 | HSL: 29.17deg, 76.22%, 28.04%
+     * Brightness: 80.5 -> contrast: text-inverse */
+    --color--secondary-shade: #7e4611;
+    --color--secondary-shade-h: 29.1743119266deg;
+    --color--secondary-shade-s: 76.2237762238%;
+    --color--secondary-shade-l: 28.0392156863%;
+    --color--secondary-shade-a: 1;
+    --color--secondary-shade-rgb: 126, 70, 17;
+    --color--secondary-shade-contrast: var(--color--text-inverse);
+
+    /* secondary-tint: #2d1d10
+     * RGB: 45, 29, 16 | HSL: 26.9deg, 47.54%, 11.96%
+     * Brightness: 32.3 -> contrast: text-inverse */
+    --color--secondary-tint: #2d1d10;
+    --color--secondary-tint-h: 26.8965517241deg;
+    --color--secondary-tint-s: 47.5409836066%;
+    --color--secondary-tint-l: 11.9607843137%;
+    --color--secondary-tint-a: 1;
+    --color--secondary-tint-rgb: 45, 29, 16;
+    --color--secondary-tint-contrast: var(--color--text-inverse);
+
+    /* --------------------------------------------------------------------------
+     * Accent Colors
+     * -------------------------------------------------------------------------- */
+
+    /* yellow: #ffd400
+     * RGB: 255, 212, 0 | HSL: 49.88deg, 100%, 50%
+     * Brightness: (255*299 + 212*587 + 0*114) / 1000 = 200.5 -> contrast: text */
+    --color--yellow: #ffd400;
+    --color--yellow-h: 49.8823529412deg;
+    --color--yellow-s: 100%;
+    --color--yellow-l: 50%;
+    --color--yellow-a: 1;
+    --color--yellow-rgb: 255, 212, 0;
+    --color--yellow-contrast: var(--color--text);
+
+    /* --------------------------------------------------------------------------
+     * Text Colors
+     * -------------------------------------------------------------------------- */
+
+    /* text: #fffcfc
+     * RGB: 255, 252, 252 | HSL: 0deg, 100%, 99.41%
+     * Brightness: (255*299 + 252*587 + 252*114) / 1000 = 252.9 -> contrast: text */
+    --color--text: #fffcfc;
+    --color--text-h: 0deg;
+    --color--text-s: 100%;
+    --color--text-l: 99.4117647059%;
+    --color--text-a: 1;
+    --color--text-rgb: 255, 252, 252;
+    --color--text-contrast: var(--color--text);
+
+    /* text-shade: #d9f9fd
+     * RGB: 217, 249, 253 | HSL: 186.67deg, 90%, 92.16%
+     * Brightness: (217*299 + 249*587 + 253*114) / 1000 = 239.9 -> contrast: text */
+    --color--text-shade: #d9f9fd;
+    --color--text-shade-h: 186.6666666667deg;
+    --color--text-shade-s: 90%;
+    --color--text-shade-l: 92.1568627451%;
+    --color--text-shade-a: 1;
+    --color--text-shade-rgb: 217, 249, 253;
+    --color--text-shade-contrast: var(--color--text);
+
+    /* text-inverse: #1c1e26
+     * RGB: 28, 30, 38 | HSL: 228deg, 15.15%, 12.94%
+     * Brightness: (28*299 + 30*587 + 38*114) / 1000 = 30.3 -> contrast: text-inverse */
+    --color--text-inverse: #1c1e26;
+    --color--text-inverse-h: 228deg;
+    --color--text-inverse-s: 15.1515151515%;
+    --color--text-inverse-l: 12.9411764706%;
+    --color--text-inverse-a: 1;
+    --color--text-inverse-rgb: 28, 30, 38;
+    --color--text-inverse-contrast: var(--color--text-inverse);
+
+    /* text-inverse-shade: #5d5f65
+     * RGB: 93, 95, 101 | HSL: 225deg, 4.12%, 38.04%
+     * Brightness: (93*299 + 95*587 + 101*114) / 1000 = 95.0 -> contrast: text-inverse */
+    --color--text-inverse-shade: #5d5f65;
+    --color--text-inverse-shade-h: 225deg;
+    --color--text-inverse-shade-s: 4.1237113402%;
+    --color--text-inverse-shade-l: 38.0392156863%;
+    --color--text-inverse-shade-a: 1;
+    --color--text-inverse-shade-rgb: 93, 95, 101;
+    --color--text-inverse-shade-contrast: var(--color--text-inverse);
+
+    /* --------------------------------------------------------------------------
+     * Background Colors
+     * -------------------------------------------------------------------------- */
+
+    /* page-background: #1c1e26
+     * RGB: 28, 30, 38 | HSL: 228deg, 15.15%, 12.94%
+     * Brightness: 30.3 -> contrast: text-inverse */
+    --color--page-background: #1c1e26;
+    --color--page-background-h: 228deg;
+    --color--page-background-s: 15.1515151515%;
+    --color--page-background-l: 12.9411764706%;
+    --color--page-background-a: 1;
+    --color--page-background-rgb: 28, 30, 38;
+    --color--page-background-contrast: var(--color--text-inverse);
+
+    /* post-page-background: #141519
+     * RGB: 20, 21, 25 | HSL: 228deg, 11.11%, 8.82%
+     * Brightness: (20*299 + 21*587 + 25*114) / 1000 = 21.2 -> contrast: text-inverse */
+    --color--post-page-background: #141519;
+    --color--post-page-background-h: 228deg;
+    --color--post-page-background-s: 11.1111111111%;
+    --color--post-page-background-l: 8.8235294118%;
+    --color--post-page-background-a: 1;
+    --color--post-page-background-rgb: 20, 21, 25;
+    --color--post-page-background-contrast: var(--color--text-inverse);
+
+    /* card-background: #32343e
+     * RGB: 50, 52, 62 | HSL: 230deg, 10.71%, 21.96%
+     * Brightness: (50*299 + 52*587 + 62*114) / 1000 = 52.5 -> contrast: text-inverse */
+    --color--card-background: #32343e;
+    --color--card-background-h: 230deg;
+    --color--card-background-s: 10.7142857143%;
+    --color--card-background-l: 21.9607843137%;
+    --color--card-background-a: 1;
+    --color--card-background-rgb: 50, 52, 62;
+    --color--card-background-contrast: var(--color--text-inverse);
+
+    /* --------------------------------------------------------------------------
+     * Callout Colors
+     * -------------------------------------------------------------------------- */
+
+    /* callout-background: #1c1e26
+     * RGB: 28, 30, 38 | HSL: 228deg, 15.15%, 12.94%
+     * Brightness: 30.3 -> contrast: text-inverse */
+    --color--callout-background: #1c1e26;
+    --color--callout-background-h: 228deg;
+    --color--callout-background-s: 15.1515151515%;
+    --color--callout-background-l: 12.9411764706%;
+    --color--callout-background-a: 1;
+    --color--callout-background-rgb: 28, 30, 38;
+    --color--callout-background-contrast: var(--color--text-inverse);
+
+    /* callout-background--info: #1d3874
+     * RGB: 29, 56, 116 | HSL: 221.38deg, 60%, 28.43%
+     * Brightness: (29*299 + 56*587 + 116*114) / 1000 = 54.8 -> contrast: text-inverse */
+    --color--callout-background--info: #1d3874;
+    --color--callout-background--info-h: 221.3793103448deg;
+    --color--callout-background--info-s: 60%;
+    --color--callout-background--info-l: 28.431372549%;
+    --color--callout-background--info-a: 1;
+    --color--callout-background--info-rgb: 29, 56, 116;
+    --color--callout-background--info-contrast: var(--color--text-inverse);
+
+    /* callout-accent--info: #6ca9f7
+     * RGB: 108, 169, 247 | HSL: 213.67deg, 90.26%, 69.61%
+     * Brightness: (108*299 + 169*587 + 247*114) / 1000 = 159.7 -> contrast: text-inverse */
+    --color--callout-accent--info: #6ca9f7;
+    --color--callout-accent--info-h: 213.6690647482deg;
+    --color--callout-accent--info-s: 90.2597402597%;
+    --color--callout-accent--info-l: 69.6078431373%;
+    --color--callout-accent--info-a: 1;
+    --color--callout-accent--info-rgb: 108, 169, 247;
+    --color--callout-accent--info-contrast: var(--color--text-inverse);
+
+    /* callout-background--warning: #724413
+     * RGB: 114, 68, 19 | HSL: 30.95deg, 71.43%, 26.08%
+     * Brightness: (114*299 + 68*587 + 19*114) / 1000 = 76.2 -> contrast: text-inverse */
+    --color--callout-background--warning: #724413;
+    --color--callout-background--warning-h: 30.9473684211deg;
+    --color--callout-background--warning-s: 71.4285714286%;
+    --color--callout-background--warning-l: 26.0784313725%;
+    --color--callout-background--warning-a: 1;
+    --color--callout-background--warning-rgb: 114, 68, 19;
+    --color--callout-background--warning-contrast: var(--color--text-inverse);
+
+    /* callout-accent--warning: #ffca39
+     * RGB: 255, 202, 57 | HSL: 43.94deg, 100%, 61.18%
+     * Brightness: (255*299 + 202*587 + 57*114) / 1000 = 201.1 -> contrast: text */
+    --color--callout-accent--warning: #ffca39;
+    --color--callout-accent--warning-h: 43.9393939394deg;
+    --color--callout-accent--warning-s: 100%;
+    --color--callout-accent--warning-l: 61.1764705882%;
+    --color--callout-accent--warning-a: 1;
+    --color--callout-accent--warning-rgb: 255, 202, 57;
+    --color--callout-accent--warning-contrast: var(--color--text);
+
+    /* callout-background--error: #7c1d20
+     * RGB: 124, 29, 32 | HSL: 358.11deg, 62.09%, 30%
+     * Brightness: (124*299 + 29*587 + 32*114) / 1000 = 57.7 -> contrast: text-inverse */
+    --color--callout-background--error: #7c1d20;
+    --color--callout-background--error-h: 358.1052631579deg;
+    --color--callout-background--error-s: 62.091503268%;
+    --color--callout-background--error-l: 30%;
+    --color--callout-background--error-a: 1;
+    --color--callout-background--error-rgb: 124, 29, 32;
+    --color--callout-background--error-contrast: var(--color--text-inverse);
+
+    /* callout-accent--error: #ff8082
+     * RGB: 255, 128, 130 | HSL: 359.06deg, 100%, 75.10%
+     * Brightness: (255*299 + 128*587 + 130*114) / 1000 = 166.5 -> contrast: text-inverse */
+    --color--callout-accent--error: #ff8082;
+    --color--callout-accent--error-h: 359.0551181102deg;
+    --color--callout-accent--error-s: 100%;
+    --color--callout-accent--error-l: 75.0980392157%;
+    --color--callout-accent--error-a: 1;
+    --color--callout-accent--error-rgb: 255, 128, 130;
+    --color--callout-accent--error-contrast: var(--color--text-inverse);
+
+    /* callout-background--success: #004737
+     * RGB: 0, 71, 55 | HSL: 166.48deg, 100%, 13.92%
+     * Brightness: (0*299 + 71*587 + 55*114) / 1000 = 48.0 -> contrast: text-inverse */
+    --color--callout-background--success: #004737;
+    --color--callout-background--success-h: 166.4788732394deg;
+    --color--callout-background--success-s: 100%;
+    --color--callout-background--success-l: 13.9215686275%;
+    --color--callout-background--success-a: 1;
+    --color--callout-background--success-rgb: 0, 71, 55;
+    --color--callout-background--success-contrast: var(--color--text-inverse);
+
+    /* callout-accent--success: #00c48f
+     * RGB: 0, 196, 143 | HSL: 163.78deg, 100%, 38.43%
+     * Brightness: (0*299 + 196*587 + 143*114) / 1000 = 131.4 -> contrast: text-inverse */
+    --color--callout-accent--success: #00c48f;
+    --color--callout-accent--success-h: 163.7755102041deg;
+    --color--callout-accent--success-s: 100%;
+    --color--callout-accent--success-l: 38.431372549%;
+    --color--callout-accent--success-a: 1;
+    --color--callout-accent--success-rgb: 0, 196, 143;
+    --color--callout-accent--success-contrast: var(--color--text-inverse);
+
+    /* --------------------------------------------------------------------------
+     * Code Colors
+     * -------------------------------------------------------------------------- */
+
+    /* code-inline-background: #2b3131
+     * RGB: 43, 49, 49 | HSL: 180deg, 6.52%, 18.04%
+     * Brightness: (43*299 + 49*587 + 49*114) / 1000 = 47.3 -> contrast: text-inverse */
+    --color--code-inline-background: #2b3131;
+    --color--code-inline-background-h: 180deg;
+    --color--code-inline-background-s: 6.5217391304%;
+    --color--code-inline-background-l: 18.0392156863%;
+    --color--code-inline-background-a: 1;
+    --color--code-inline-background-rgb: 43, 49, 49;
+    --color--code-inline-background-contrast: var(--color--text-inverse);
+
+    /* --------------------------------------------------------------------------
+     * Derived Colors (using rgb values from above)
+     * -------------------------------------------------------------------------- */
+
+    --color--waves-start: rgba(var(--color--secondary-shade-rgb), 0.3);
+    --color--waves-end: rgba(var(--color--secondary-shade-rgb), 0.1);
+}

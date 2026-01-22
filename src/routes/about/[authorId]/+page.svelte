@@ -266,7 +266,7 @@
     </div>
 </main>
 
-<style lang="scss">
+<style>
     .card-container {
         min-height: 100vh;
         display: flex;
