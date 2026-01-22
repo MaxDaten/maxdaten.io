@@ -56,25 +56,19 @@
     </div>
 </div>
 
-<style lang="scss">
+<style>
     /* Note: Only Satori-compatible CSS (mainly flexbox) */
     /* No CSS variable support - Satori requires static values */
-    @use '$lib/scss/themes-og.scss' as *;
-
-    $font-default: 'Inter', sans-serif;
-    $font-title: 'Inter', sans-serif;
-    $font-logo: 'Baloo-2', sans-serif;
+    /* Colors inlined from themes-og.scss - dark theme values */
 
     .og-card {
         display: flex;
         flex-direction: column;
         width: 100%;
         height: 100%;
-        background-color: $color-page-background;
-
-        border: 8px solid $color-secondary-tint;
-
-        font-family: $font-default;
+        background-color: #1c1e26;
+        border: 8px solid #2d1d10;
+        font-family: 'Inter', sans-serif;
     }
 
     .cover-image-container {
@@ -96,16 +90,16 @@
         position: absolute;
         bottom: 16px;
         right: 16px;
-        background-color: rgba($color-page-background, 0.85);
+        background-color: rgba(28, 30, 38, 0.85);
         border-radius: 8px;
         padding: 8px 12px;
-        border: 1px solid $color-primary;
+        border: 1px solid #ff8000;
     }
 
     .reading-time-text {
         font-size: 2.1rem;
         font-weight: 900;
-        color: $color-primary;
+        color: #ff8000;
     }
 
     .content {
@@ -113,21 +107,21 @@
         flex-direction: column;
         flex: 1;
         padding: 12px 24px;
-        background-color: $color-page-background;
+        background-color: #1c1e26;
     }
 
     .title {
         font-size: 56px;
         font-weight: 700;
         line-height: 1.2;
-        color: $color-text;
-        font-family: $font-title;
+        color: #fffcfc;
+        font-family: 'Inter', sans-serif;
     }
 
     .excerpt {
         font-size: 1.6rem;
         line-height: 1.5;
-        color: $color-text-shade;
+        color: #d9f9fd;
         flex: 1;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -154,11 +148,11 @@
         display: flex;
         align-items: center;
         padding: 8px 16px;
-        background-color: rgba($color-text-inverse-shade, 0.5);
+        background-color: rgba(93, 95, 101, 0.5);
         border-radius: 10px;
         font-size: 1.8rem;
         letter-spacing: 0.08em;
-        color: $color-text;
+        color: #fffcfc;
         white-space: nowrap;
         overflow: hidden;
         max-width: 100%;
@@ -170,15 +164,15 @@
         align-items: flex-end;
         position: absolute;
         padding: 0 8px;
-        background-color: rgba($color-page-background, 0.75);
-        border-bottom: 2px solid $color-primary;
+        background-color: rgba(28, 30, 38, 0.75);
+        border-bottom: 2px solid #ff8000;
         border-radius: 0 0 8px 0;
     }
 
     .site-name {
-        font-family: $font-logo;
+        font-family: 'Baloo-2', sans-serif;
         font-size: 3.5rem;
         font-weight: 800;
-        color: $color-primary;
+        color: #ff8000;
     }
 </style>

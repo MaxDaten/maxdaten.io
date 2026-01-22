@@ -1,7 +1,6 @@
 {
     "name": "maxdaten-io",
     "version": "1.0.0",
-    "sass": "src/lib/scss/global.scss",
     "private": true,
     "engines": {
         "node": ">=20.0.0"
@@ -73,7 +72,6 @@
         "rehype-external-links": "^3.0.0",
         "rehype-slug": "^6.0.0",
         "rehype-unwrap-images": "^1.0.0",
-        "sass": "^1.89.2",
         "satori": "^0.19.1",
         "satori-html": "^0.3.2",
         "schema-dts": "^1.1.5",
