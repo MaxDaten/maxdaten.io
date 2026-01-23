@@ -68,9 +68,24 @@
             // Border angle follows tilt direction (roughly 10x tiltY)
             const borderAngle = tiltY * 10;
 
+            // Animate holo background based on scroll (subtle movement)
+            const bgX = 50 + (scrollProgress - 0.5) * 20;
+            const bgY = 50 + (scrollProgress - 0.5) * 15;
+
+            // Pattern parallax (slower movement for depth)
+            const ptX = 50 + (scrollProgress - 0.5) * 5;
+            const ptY = 50 + (scrollProgress - 0.5) * 4;
+
+            // Glare follows scroll position (subtle)
+            const glareX = 40 + scrollProgress * 20;
+            const glareY = 35 + scrollProgress * 15;
+
             setSpringConfig(springSnap);
             springRotate.set({ x: 0, y: tiltY });
             springAngle.set(borderAngle);
+            springBackground.set({ x: bgX, y: bgY });
+            springPattern.set({ x: ptX, y: ptY });
+            springGlare.set({ x: glareX, y: glareY, o: 0.2 });
         }
 
         window.addEventListener('scroll', handleScroll, { passive: true });
@@ -426,15 +441,11 @@
     }
 
     .holo-card.scroll-mode .holo-layer {
-        opacity: 0.15; /* Slightly more visible than static */
-        background-position:
-            center center,
-            30% 30%;
-        transition: opacity 0.5s ease;
+        opacity: 0.25; /* Same as hover state */
     }
 
     .holo-card.scroll-mode .glare-layer {
-        display: none;
+        /* Glare position controlled by scroll via spring */
     }
 
     .holo-card.scroll-mode::after {
