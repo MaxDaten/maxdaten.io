@@ -363,6 +363,7 @@
     /* --- Static / Mobile Mode --- */
     .holo-card.static-mode {
         transform: rotateX(0deg) rotateY(-7deg);
+        translate: -1.5%; /* Moves card center to compensate for perspective skew */
     }
 
     .holo-card.static-mode .holo-layer {

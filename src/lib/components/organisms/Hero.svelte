@@ -217,11 +217,9 @@
     .card-column {
         display: flex;
         justify-content: center;
-        translate: -1%;
 
         @media (max-width: 900px) {
             order: 1;
-            translate: none;
             /* Constrain container width with padding */
             padding-inline: var(--raw-space-24);
             /* Enable container queries for dynamic card scaling */
