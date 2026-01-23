@@ -367,10 +367,10 @@
     }
 
     .holo-card.static-mode .holo-layer {
-        opacity: 0.05; /* Subtle whisper effect on mobile */
+        opacity: 0.1; /* Balanced holo effect on mobile */
         background-position:
             center center,
-            20% 20%;
+            30% 30%;
         transition: opacity 0.5s ease;
     }
 
