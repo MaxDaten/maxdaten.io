@@ -441,7 +441,7 @@
     }
 
     .holo-card.scroll-mode .holo-layer {
-        opacity: 0.25; /* Same as hover state */
+        opacity: 0.15;
     }
 
     .holo-card.scroll-mode .glare-layer {
