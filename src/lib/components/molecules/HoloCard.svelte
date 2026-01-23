@@ -38,9 +38,48 @@
     let animationFrame = $state<number | null>(null);
     const mobileQuery = new MediaQuery('(max-width: 900px)', false);
 
-    let isStaticMode = $derived(
-        prefersReducedMotion.current || mobileQuery.current
-    );
+    // Separate concerns for clearer logic
+    let isMobile = $derived(mobileQuery.current);
+    let isReducedMotion = $derived(prefersReducedMotion.current);
+
+    // Static mode: only when user prefers reduced motion
+    let isStaticMode = $derived(isReducedMotion);
+
+    // Scroll mode: mobile without reduced motion preference
+    let isScrollMode = $derived(isMobile && !isReducedMotion);
+
+    // Reference to the card element for scroll calculations
+    let sceneElement = $state<HTMLElement | null>(null);
+
+    // Scroll-based tilt for mobile (when motion allowed)
+    $effect(() => {
+        if (!isScrollMode) return;
+
+        function handleScroll() {
+            if (!sceneElement) return;
+
+            // Use scroll position: 0 at top of page, increases as user scrolls down
+            const maxScroll = 400; // Full tilt range over 400px of scroll
+            const scrollProgress = Math.min(window.scrollY / maxScroll, 1);
+
+            // Map progress to tilt: -10deg (not scrolled) to +10deg (scrolled)
+            const tiltY = -10 + scrollProgress * 20;
+
+            // Border angle follows tilt direction (roughly 10x tiltY)
+            const borderAngle = tiltY * 10;
+
+            setSpringConfig(springSnap);
+            springRotate.set({ x: 0, y: tiltY });
+            springAngle.set(borderAngle);
+        }
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        handleScroll(); // Initial position
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    });
 
     // Calculate tilt intensity (0 to 1) based on rotation magnitude
     // Max tilt is 28° per axis, so max magnitude ≈ 40° (diagonal)
@@ -52,7 +91,7 @@
     });
 
     function handleMouseMove(event: MouseEvent) {
-        if (isStaticMode || animationFrame) return;
+        if (isStaticMode || isScrollMode || animationFrame) return;
 
         const card = event.currentTarget as HTMLElement;
         const rect = card.getBoundingClientRect();
@@ -106,13 +145,13 @@
     }
 
     function handleMouseEnter() {
-        if (isStaticMode) return;
+        if (isStaticMode || isScrollMode) return;
         isHovering = true;
         setSpringConfig(springInteract);
     }
 
     function handleMouseLeave() {
-        if (isStaticMode) return;
+        if (isStaticMode || isScrollMode) return;
         isHovering = false;
 
         if (animationFrame) {
@@ -145,6 +184,7 @@
 
 <div
     class="holo-scene"
+    bind:this={sceneElement}
     onmousemove={handleMouseMove}
     onmouseenter={handleMouseEnter}
     onmouseleave={handleMouseLeave}
@@ -154,6 +194,7 @@
         class="holo-card"
         class:hovering={isHovering}
         class:static-mode={isStaticMode}
+        class:scroll-mode={isScrollMode}
         style:--rotate-x="{springRotate.current.x}deg"
         style:--rotate-y="{springRotate.current.y}deg"
         style:--glare-x="{springGlare.current.x}%"
@@ -376,5 +417,28 @@
 
     .holo-card.static-mode .glare-layer {
         display: none;
+    }
+
+    /* --- Scroll Mode (Mobile with motion) --- */
+    .holo-card.scroll-mode {
+        /* Let spring handle transform, just compensate for perspective */
+        translate: -1.5%;
+    }
+
+    .holo-card.scroll-mode .holo-layer {
+        opacity: 0.15; /* Slightly more visible than static */
+        background-position:
+            center center,
+            30% 30%;
+        transition: opacity 0.5s ease;
+    }
+
+    .holo-card.scroll-mode .glare-layer {
+        display: none;
+    }
+
+    .holo-card.scroll-mode::after {
+        opacity: 1;
+        /* Border angle follows tilt via spring */
     }
 </style>
