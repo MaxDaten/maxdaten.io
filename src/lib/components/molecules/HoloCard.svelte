@@ -203,6 +203,8 @@
         transform: rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg));
         border-radius: var(--radius-card, 24px);
         background-color: #23252b; /* Dark Slate Base */
+        /* Printed border ~0.3cm (11px) - inset */
+        box-shadow: inset 0 0 0 11px rgba(255, 128, 0, 0.1);
 
         /* Important: Holo effects need overflow hidden to stay inside borders */
         /* But if you want 3D popping elements, move them outside this container */

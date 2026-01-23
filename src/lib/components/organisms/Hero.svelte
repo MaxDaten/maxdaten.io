@@ -221,6 +221,11 @@
 
         @media (max-width: 900px) {
             order: 1;
+            translate: none;
+            /* Constrain container width with padding */
+            padding-inline: var(--raw-space-24);
+            /* Enable container queries for dynamic card scaling */
+            container-type: inline-size;
         }
     }
 
@@ -234,17 +239,10 @@
         aspect-ratio: 5 / 7;
         overflow: hidden;
 
-        /* Scale down proportionally on small viewports */
-        @media (max-width: 500px) {
-            zoom: 0.78; /* (500 - 48) / 450 ≈ 0.78 */
-        }
-
-        @media (max-width: 420px) {
-            zoom: 0.72; /* (420 - 48) / 450 ≈ 0.72 */
-        }
-
-        @media (max-width: 380px) {
-            zoom: 0.65; /* (380 - 48) / 450 ≈ 0.65 */
+        /* Dynamic scaling using container queries */
+        @container (max-width: 450px) {
+            /* Scale = container width / card width */
+            zoom: calc(100cqi / 450px);
         }
     }
 
