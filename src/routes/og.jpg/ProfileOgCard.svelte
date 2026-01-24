@@ -10,9 +10,11 @@
 </script>
 
 <div class="wrapper">
-    <!-- Ambient Blobs - Using radial gradients (Satori blur filter workaround) -->
-    <div class="blob purple"></div>
-    <div class="blob orange"></div>
+    <!-- Single ambient gradient spanning the whole canvas -->
+    <div class="ambient-gradient"></div>
+
+    <!-- Fade overlay for smooth card exit on right edge -->
+    <div class="fade-overlay"></div>
 
     <!-- Content Container -->
     <div class="container">
@@ -60,35 +62,32 @@
         overflow: hidden;
     }
 
-    /* Ambient blobs - using radial gradients instead of blur filter (Satori workaround) */
-    .blob {
+    /* Single ambient gradient spanning full canvas */
+    .ambient-gradient {
         display: flex;
         position: absolute;
-        border-radius: 50%;
-    }
-    .blob.purple {
-        width: 800px;
-        height: 800px;
-        background: radial-gradient(
-            circle,
-            rgba(124, 58, 237, 0.4) 0%,
-            rgba(124, 58, 237, 0.15) 40%,
-            transparent 70%
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+            135deg,
+            rgba(124, 58, 237, 0.35),
+            rgba(255, 128, 0, 0.25)
         );
-        top: 20%;
-        left: -20%;
+        z-index: 0;
     }
-    .blob.orange {
-        width: 700px;
-        height: 700px;
-        background: radial-gradient(
-            circle,
-            rgba(255, 128, 0, 0.35) 0%,
-            rgba(255, 128, 0, 0.12) 40%,
-            transparent 70%
-        );
-        top: -25%;
-        right: -15%;
+
+    /* Wide fade overlay - 600px for imperceptible transition */
+    .fade-overlay {
+        display: flex;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 600px;
+        background: linear-gradient(90deg, rgba(10, 10, 12, 0), #0a0a0c);
+        z-index: 50;
     }
 
     .container {
@@ -98,6 +97,7 @@
         padding: 64px 0 64px 72px;
         justify-content: space-between;
         align-items: center;
+        z-index: 10;
     }
 
     .text-col {
@@ -163,7 +163,7 @@
     .card-wrapper {
         display: flex;
         position: relative;
-        margin-right: -100px;
+        margin-right: -130px;
         transform: rotate(-6deg);
     }
 
@@ -178,10 +178,7 @@
         border-radius: 24px;
         border: 1px solid rgba(255, 255, 255, 0.1);
         padding: 24px;
-        box-shadow:
-            0 60px 100px -30px rgba(0, 0, 0, 0.95),
-            0 30px 60px -20px rgba(0, 0, 0, 0.8),
-            inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+        box-shadow: 0 50px 70px -20px rgba(0, 0, 0, 0.9);
     }
 
     .card-header {
