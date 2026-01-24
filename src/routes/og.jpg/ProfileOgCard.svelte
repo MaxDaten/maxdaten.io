@@ -13,13 +13,10 @@
     <!-- Single ambient gradient spanning the whole canvas -->
     <div class="ambient-gradient"></div>
 
-    <!-- Fade overlay for smooth card exit on right edge -->
-    <div class="fade-overlay"></div>
-
     <!-- Content Container -->
     <div class="container">
         <!-- Left Text Column -->
-        <div class="text-col">
+        <div class="og_textbox">
             <div class="brand">maxdaten.io</div>
             <div class="badge">{badge}</div>
             <h1>
@@ -47,6 +44,9 @@
             </div>
         </div>
     </div>
+
+    <!-- Fade overlay for smooth card exit on right edge (last for stacking) -->
+    <div class="fade-overlay"></div>
 </div>
 
 <style>
@@ -72,7 +72,6 @@
         bottom: 0;
         /* prettier-ignore */
         background: linear-gradient(135deg, rgba(124, 58, 237, 0.35), rgba(255, 128, 0, 0.25));
-        z-index: 0;
     }
 
     /* Wide fade overlay - 600px for imperceptible transition */
@@ -82,9 +81,8 @@
         top: 0;
         right: 0;
         bottom: 0;
-        width: 600px;
+        width: 120px;
         background: linear-gradient(90deg, rgba(10, 10, 12, 0), #0a0a0c);
-        z-index: 50;
     }
 
     .container {
@@ -94,10 +92,9 @@
         padding: 64px 0 64px 72px;
         justify-content: space-between;
         align-items: center;
-        z-index: 10;
     }
 
-    .text-col {
+    .og_textbox {
         display: flex;
         flex-direction: column;
         width: 620px;
