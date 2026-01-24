@@ -10,9 +10,9 @@
 </script>
 
 <div class="wrapper">
-    <!-- Ambient Blobs - Warm top-left, Cool bottom-right -->
-    <div class="blob orange"></div>
+    <!-- Ambient Blobs - Warm accent behind card, Cool bottom-left -->
     <div class="blob purple"></div>
+    <div class="blob orange"></div>
 
     <!-- Content Container -->
     <div class="container">
@@ -29,17 +29,19 @@
             </p>
         </div>
 
-        <!-- Right Card (Static Trading Card) -->
-        <div class="card">
-            <div class="card-header">
-                <span>MAXDATEN.IO</span>
-                <span class="lvl">LVL 99</span>
+        <!-- Right Card - Extends beyond frame edge -->
+        <div class="card-wrapper">
+            <div class="card-glow"></div>
+            <div class="card">
+                <div class="card-header">
+                    <span>MAXDATEN.IO</span>
+                </div>
+                {#if avatarUrl}
+                    <img src={avatarUrl} alt="Avatar" class="avatar" />
+                {/if}
+                <div class="card-name">Jan-Philip</div>
+                <div class="card-role">Technical Product Advisor</div>
             </div>
-            {#if avatarUrl}
-                <img src={avatarUrl} alt="Avatar" class="avatar" />
-            {/if}
-            <div class="card-name">Jan-Philip</div>
-            <div class="card-role">Technical Product Advisor</div>
         </div>
     </div>
 </div>
@@ -50,39 +52,40 @@
         display: flex;
         height: 100%;
         width: 100%;
-        background-color: #0b0c10;
+        background-color: #0a0a0c;
         font-family: 'Inter', sans-serif;
         position: relative;
-        align-items: center;
-        justify-content: center;
+        overflow: hidden;
     }
 
-    /* Ambient blobs - separated warm/cool light sources */
+    /* Ambient blobs */
     .blob {
         display: flex;
         position: absolute;
-        width: 600px;
-        height: 600px;
         border-radius: 50%;
-        filter: blur(120px);
-        opacity: 0.25;
-    }
-    .blob.orange {
-        background-color: #ff8000;
-        top: -250px;
-        left: -150px;
-        opacity: 0.2;
+        filter: blur(100px);
     }
     .blob.purple {
         background-color: #7c3aed;
+        width: 500px;
+        height: 500px;
         bottom: -200px;
-        right: -150px;
+        left: -100px;
+        opacity: 0.2;
+    }
+    .blob.orange {
+        background-color: #ff8000;
+        width: 400px;
+        height: 400px;
+        top: 50px;
+        right: 100px;
+        opacity: 0.15;
     }
 
     .container {
         display: flex;
         width: 100%;
-        padding: 60px;
+        padding: 64px 0 64px 72px;
         justify-content: space-between;
         align-items: center;
     }
@@ -90,40 +93,41 @@
     .text-col {
         display: flex;
         flex-direction: column;
-        width: 680px;
+        width: 620px;
     }
 
     .brand {
         display: flex;
         color: #ffffff;
-        opacity: 0.9;
+        opacity: 0.7;
         font-family: 'JetBrains Mono', monospace;
-        font-size: 20px;
-        letter-spacing: -0.02em;
-        margin-bottom: 24px;
+        font-size: 18px;
+        letter-spacing: 0.02em;
+        margin-bottom: 20px;
     }
 
     .badge {
         display: flex;
-        padding: 8px 16px;
-        border: 1px solid #ff8000;
+        padding: 10px 20px;
+        border: 1.5px solid #ff8000;
         color: #ff8000;
         border-radius: 50px;
         font-family: 'JetBrains Mono', monospace;
-        font-size: 16px;
-        background-color: rgba(255, 128, 0, 0.1);
+        font-size: 15px;
+        font-weight: 500;
+        background-color: rgba(255, 128, 0, 0.08);
         align-self: flex-start;
-        margin-bottom: 32px;
+        margin-bottom: 28px;
     }
 
     h1 {
         display: flex;
         flex-direction: column;
-        font-size: 60px;
-        line-height: 1.15;
+        font-size: 56px;
+        line-height: 1.1;
         letter-spacing: -0.03em;
         color: white;
-        margin: 0 0 24px 0;
+        margin: 0 0 20px 0;
         font-weight: 700;
     }
 
@@ -138,11 +142,33 @@
 
     .sub {
         display: flex;
-        font-size: 26px;
-        color: #d1d5db;
+        font-size: 22px;
+        color: #a1a1aa;
         font-weight: 400;
-        line-height: 1.4;
+        line-height: 1.5;
         margin: 0;
+    }
+
+    /* Card wrapper - positioned to cut into frame with natural tilt */
+    .card-wrapper {
+        display: flex;
+        position: relative;
+        margin-right: -100px;
+        transform: rotate(-6deg);
+    }
+
+    /* Glow effect behind card */
+    .card-glow {
+        display: flex;
+        position: absolute;
+        width: 480px;
+        height: 620px;
+        top: -30px;
+        left: -30px;
+        background-color: #ff8000;
+        border-radius: 50px;
+        filter: blur(80px);
+        opacity: 0.12;
     }
 
     /* Trading Card - Physical object feel */
@@ -150,54 +176,56 @@
         display: flex;
         flex-direction: column;
         position: relative;
-        width: 320px;
-        height: 440px;
-        background-color: #23252b;
+        width: 420px;
+        height: 560px;
+        background-color: #18191d;
         border-radius: 24px;
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        padding: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 24px;
         box-shadow:
-            0 40px 80px -20px rgba(0, 0, 0, 0.9),
-            inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+            0 60px 100px -30px rgba(0, 0, 0, 0.95),
+            0 30px 60px -20px rgba(0, 0, 0, 0.8),
+            inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
     }
 
     .card-header {
         display: flex;
         justify-content: space-between;
         font-family: 'JetBrains Mono', monospace;
-        font-size: 12px;
+        font-size: 14px;
         font-weight: 600;
-        color: #9ca3af;
-        margin-bottom: 12px;
-    }
-
-    .lvl {
-        display: flex;
-        color: #ff8000;
+        color: #71717a;
+        letter-spacing: 0.05em;
+        margin-bottom: 16px;
     }
 
     .avatar {
-        width: 286px;
-        height: 280px;
+        width: 370px;
+        height: 360px;
         object-fit: cover;
-        border-radius: 12px;
-        border: 1px solid #333;
-        margin-bottom: 16px;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        margin-bottom: 20px;
+        box-shadow:
+            0 12px 32px rgba(0, 0, 0, 0.7),
+            inset 0 0 0 1px rgba(255, 255, 255, 0.05);
     }
 
     .card-name {
         display: flex;
-        font-size: 24px;
-        font-weight: bold;
-        color: white;
+        font-size: 32px;
+        font-weight: 700;
+        color: #fafafa;
         text-transform: uppercase;
+        letter-spacing: 0.02em;
     }
 
     .card-role {
         display: flex;
-        font-size: 14px;
+        font-size: 16px;
         color: #ff8000;
         font-family: 'JetBrains Mono', monospace;
+        margin-top: 6px;
+        letter-spacing: 0.02em;
     }
 </style>
