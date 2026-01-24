@@ -10,7 +10,7 @@
 </script>
 
 <div class="wrapper">
-    <!-- Ambient Blobs - Warm accent behind card, Cool bottom-left -->
+    <!-- Ambient Blobs - Using radial gradients (Satori blur filter workaround) -->
     <div class="blob purple"></div>
     <div class="blob orange"></div>
 
@@ -33,7 +33,6 @@
 
         <!-- Right Card - Extends beyond frame edge -->
         <div class="card-wrapper">
-            <div class="card-glow"></div>
             <div class="card">
                 <div class="card-header">
                     <span>MAXDATEN.IO</span>
@@ -49,7 +48,7 @@
 </div>
 
 <style>
-    /* Satori-safe CSS: Flexbox only, no CSS variables, no z-index */
+    /* Satori-safe CSS: Flexbox only, no CSS variables */
     /* Font fallback: 'Inter Variable' for browser preview, 'Inter' for Satori OG generation */
     .wrapper {
         display: flex;
@@ -61,31 +60,39 @@
         overflow: hidden;
     }
 
-    /* Ambient blobs */
+    /* Ambient blobs - using radial gradients instead of blur filter (Satori workaround) */
     .blob {
         display: flex;
         position: absolute;
         border-radius: 50%;
-        filter: blur(100px);
     }
     .blob.purple {
-        background-color: #7c3aed;
-        width: 500px;
-        height: 500px;
-        bottom: -200px;
-        left: -100px;
-        opacity: 0.2;
+        width: 800px;
+        height: 800px;
+        background: radial-gradient(
+            circle,
+            rgba(124, 58, 237, 0.4) 0%,
+            rgba(124, 58, 237, 0.15) 40%,
+            transparent 70%
+        );
+        top: 20%;
+        left: -20%;
     }
     .blob.orange {
-        background-color: #ff8000;
-        width: 400px;
-        height: 400px;
-        top: 50px;
-        right: 100px;
-        opacity: 0.15;
+        width: 700px;
+        height: 700px;
+        background: radial-gradient(
+            circle,
+            rgba(255, 128, 0, 0.35) 0%,
+            rgba(255, 128, 0, 0.12) 40%,
+            transparent 70%
+        );
+        top: -25%;
+        right: -15%;
     }
 
     .container {
+        position: relative;
         display: flex;
         width: 100%;
         padding: 64px 0 64px 72px;
@@ -158,20 +165,6 @@
         position: relative;
         margin-right: -100px;
         transform: rotate(-6deg);
-    }
-
-    /* Glow effect behind card */
-    .card-glow {
-        display: flex;
-        position: absolute;
-        width: 480px;
-        height: 620px;
-        top: -30px;
-        left: -30px;
-        background-color: #ff8000;
-        border-radius: 50px;
-        filter: blur(80px);
-        opacity: 0.12;
     }
 
     /* Trading Card - Physical object feel */
