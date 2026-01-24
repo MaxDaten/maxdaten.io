@@ -70,11 +70,8 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: linear-gradient(
-            135deg,
-            rgba(124, 58, 237, 0.35),
-            rgba(255, 128, 0, 0.25)
-        );
+        /* prettier-ignore */
+        background: linear-gradient(135deg, rgba(124, 58, 237, 0.35), rgba(255, 128, 0, 0.25));
         z-index: 0;
     }
 
@@ -163,7 +160,7 @@
     .card-wrapper {
         display: flex;
         position: relative;
-        margin-right: -130px;
+        margin-right: -80px;
         transform: rotate(-6deg);
     }
 
