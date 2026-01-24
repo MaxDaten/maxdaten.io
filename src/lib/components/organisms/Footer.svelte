@@ -9,7 +9,7 @@
 </script>
 
 <footer>
-    <div class="content">
+    <div class="footer-content">
         <div class="legal">
             <a href={resolve('/impressum')}>Impressum</a>
             <span class="copyright">&copy; {new Date().getFullYear()}</span>
@@ -32,7 +32,7 @@
         border-top: 1px solid var(--color--waves-start);
         padding: var(--raw-space-24) 0;
 
-        .content {
+        .footer-content {
             display: flex;
             flex-direction: row;
             align-items: center;
