@@ -34,6 +34,9 @@
     // 5. BORDER ANGLE: Points from center toward cursor for sheen border
     const springAngle = Spring.of(() => 0, springInteract);
 
+    // 6. TRANSLATE: Compensates for perspective skew, animates to 0 at max tilt
+    const springTranslate = Spring.of(() => -1.5, springInteract);
+
     let isHovering = $state(false);
     let animationFrame = $state<number | null>(null);
     const mobileQuery = new MediaQuery('(max-width: 900px)', false);
@@ -80,12 +83,16 @@
             const glareX = 40 + scrollProgress * 20;
             const glareY = 35 + scrollProgress * 15;
 
+            // Translate: -1.5% at top, 0% at max scroll
+            const translateX = -1.5 + scrollProgress * 1.5;
+
             setSpringConfig(springSnap);
             springRotate.set({ x: 0, y: tiltY });
             springAngle.set(borderAngle);
             springBackground.set({ x: bgX, y: bgY });
             springPattern.set({ x: ptX, y: ptY });
             springGlare.set({ x: glareX, y: glareY, o: 0.2 });
+            springTranslate.set(translateX);
         }
 
         window.addEventListener('scroll', handleScroll, { passive: true });
@@ -194,6 +201,8 @@
         springPattern.damping = config.damping;
         springAngle.stiffness = config.stiffness;
         springAngle.damping = config.damping;
+        springTranslate.stiffness = config.stiffness;
+        springTranslate.damping = config.damping;
     }
 </script>
 
@@ -221,6 +230,7 @@
         style:--pt-y="{springPattern.current.y}%"
         style:--tilt={tiltIntensity}
         style:--border-angle="{springAngle.current}deg"
+        style:--translate-x="{springTranslate.current}%"
     >
         <!-- 1. The Content (Base Layer) -->
         <div class="card-content">
@@ -436,16 +446,12 @@
 
     /* --- Scroll Mode (Mobile with motion) --- */
     .holo-card.scroll-mode {
-        /* Let spring handle transform, just compensate for perspective */
-        translate: -1.5%;
+        /* Translate animates from -1.5% to 0% as user scrolls to max tilt */
+        translate: var(--translate-x, -1.5%);
     }
 
     .holo-card.scroll-mode .holo-layer {
         opacity: 0.15;
-    }
-
-    .holo-card.scroll-mode .glare-layer {
-        /* Glare position controlled by scroll via spring */
     }
 
     .holo-card.scroll-mode::after {
