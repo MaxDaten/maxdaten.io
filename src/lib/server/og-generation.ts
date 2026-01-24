@@ -130,12 +130,3 @@ function createOgImageResponse(jpegBuffer: Uint8Array): Response {
         },
     });
 }
-
-/**
- * Process image URL to ensure it's absolute
- */
-export function processImageUrl(imageSrc: string, baseUrl: URL): string {
-    return imageSrc.startsWith('http')
-        ? imageSrc
-        : new URL(imageSrc, baseUrl.origin).href;
-}

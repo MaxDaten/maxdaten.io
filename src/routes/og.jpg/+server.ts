@@ -1,13 +1,14 @@
 import ProfileOgCard from '$routes/og.jpg/ProfileOgCard.svelte';
 import { error } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { generateOgImage, processImageUrl } from '$lib/server/og-generation';
+import { generateOgImage } from '$lib/server/og-generation';
+import { loadProfileImageUrl } from './profile-image';
 
 export const prerender = false;
 
 export const GET: RequestHandler = async ({ url }) => {
     try {
-        const avatarUrl = await loadProfileImage(url);
+        const avatarUrl = await loadProfileImageUrl(url);
 
         return await generateOgImage(ProfileOgCard, {
             badge: 'Available for 2026',
@@ -18,15 +19,3 @@ export const GET: RequestHandler = async ({ url }) => {
         error(500, 'Failed to generate profile OG image');
     }
 };
-
-async function loadProfileImage(url: URL) {
-    try {
-        const profileImageSrc = (
-            await import(`$assets/images/authors/jloos.png?url`)
-        ).default;
-        return processImageUrl(profileImageSrc, url);
-    } catch (_err) {
-        console.warn('Profile image not found, proceeding without image');
-        return undefined;
-    }
-}
