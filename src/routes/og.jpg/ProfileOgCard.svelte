@@ -22,7 +22,9 @@
             <div class="badge">{badge}</div>
             <h1>
                 <span class="line">Products that ship.</span>
-                <span class="line highlight">Systems that scale.</span>
+                <span class="line"
+                    ><span class="highlight">Systems that scale</span>.</span
+                >
             </h1>
             <p class="sub">
                 Full-stack product engineering with knowledge transfer built in.
@@ -48,12 +50,13 @@
 
 <style>
     /* Satori-safe CSS: Flexbox only, no CSS variables, no z-index */
+    /* Font fallback: 'Inter Variable' for browser preview, 'Inter' for Satori OG generation */
     .wrapper {
         display: flex;
         height: 100%;
         width: 100%;
         background-color: #0a0a0c;
-        font-family: 'Inter', sans-serif;
+        font-family: 'Inter Variable', 'Inter', sans-serif;
         position: relative;
         overflow: hidden;
     }
@@ -123,9 +126,9 @@
     h1 {
         display: flex;
         flex-direction: column;
+        font-family: 'Inter Variable', 'Inter', sans-serif;
         font-size: 56px;
         line-height: 1.1;
-        letter-spacing: -0.03em;
         color: white;
         margin: 0 0 20px 0;
         font-weight: 700;
