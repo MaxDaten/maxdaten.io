@@ -111,12 +111,12 @@
 
     .badge {
         display: flex;
-        padding: 10px 20px;
-        border: 1.5px solid #ff8000;
+        padding: 14px 28px;
+        border: 2px solid #ff8000;
         color: #ff8000;
         border-radius: 50px;
         font-family: 'JetBrains Mono', monospace;
-        font-size: 15px;
+        font-size: 24px;
         font-weight: 500;
         background-color: rgba(255, 128, 0, 0.08);
         align-self: flex-start;
@@ -225,10 +225,10 @@
 
     .card-role {
         display: flex;
-        font-size: 16px;
+        font-size: 24px;
         color: #ff8000;
         font-family: 'JetBrains Mono', monospace;
-        margin-top: 6px;
+        margin-top: 8px;
         letter-spacing: 0.02em;
     }
 </style>
