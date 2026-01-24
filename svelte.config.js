@@ -5,6 +5,9 @@ import adapter from '@sveltejs/adapter-vercel';
 const config = {
     kit: {
         adapter: adapter(),
+        version: {
+            name: Date.now().toString(),
+        },
         prerender: {
             handleHttpError: 'warn',
             origin: process.env.VERCEL_PROJECT_PRODUCTION_URL

@@ -1,10 +1,11 @@
 import type { MetaTagsProps, Twitter } from 'svelte-meta-tags';
 import { description, title, baseSchema } from '$lib/data/meta';
+import { version } from '$app/environment';
 
 export const prerender = true;
 
 export const load = ({ url }) => {
-    const ogImageUrl = new URL('/og.jpg', url.origin).href;
+    const ogImageUrl = new URL(`/og.jpg?v=${version}`, url.origin).href;
 
     const baseMetaTags = Object.freeze({
         title: 'Jan-Philip Loos',

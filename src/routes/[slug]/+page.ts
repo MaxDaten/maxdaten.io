@@ -3,6 +3,7 @@ import type { PostData, SanityPost } from '$utils/types';
 import type { MetaTagsProps, Twitter } from 'svelte-meta-tags';
 import { createBlogPostingSchema } from '$lib/data/meta';
 import type { BlogPosting, WithContext } from 'schema-dts';
+import { version } from '$app/environment';
 
 type PageData = PostData & {
     pageMetaTags: MetaTagsProps;
@@ -12,7 +13,10 @@ type PageData = PostData & {
 export const load: PageLoad = async ({ data, url }): Promise<PageData> => {
     const serverData = data as PostData;
     const post = serverData.post as SanityPost;
-    const ogImageUrl = new URL(`${url.pathname}/og.jpg`, url.origin).href;
+    const ogImageUrl = new URL(
+        `${url.pathname}/og.jpg?v=${version}`,
+        url.origin
+    ).href;
 
     // Build schema with Sanity post data
     const pageSchema = post.author
