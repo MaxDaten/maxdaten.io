@@ -4,6 +4,7 @@
     import CvIcon from '$lib/icons/socials/cv.svelte';
     import EmailIcon from '$lib/icons/socials/email.svelte';
     import TwitterIcon from '$lib/icons/socials/twitter.svelte';
+    import SignalIcon from '$lib/icons/socials/signal.svelte';
 
     type Props = {
         github?: string;
@@ -11,6 +12,7 @@
         cv?: string;
         email?: string;
         twitter?: string;
+        signal?: string;
         size?: 'small' | 'medium' | 'large';
     };
 
@@ -20,6 +22,7 @@
         cv,
         email,
         twitter,
+        signal,
         size = 'medium',
     }: Props = $props();
 </script>
@@ -75,6 +78,16 @@
             title="Follow on X (Twitter)"
         >
             <TwitterIcon />
+        </a>
+    {/if}
+    {#if signal}
+        <a
+            href={signal}
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Contact me on Signal"
+        >
+            <SignalIcon />
         </a>
     {/if}
 </div>

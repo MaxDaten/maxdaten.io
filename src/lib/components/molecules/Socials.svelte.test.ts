@@ -36,6 +36,18 @@ describe('Socials Component', () => {
         await expect.element(link).toHaveAttribute('href', emailUrl);
     });
 
+    test('renders Signal link with correct URL', async () => {
+        const signalUrl =
+            'https://signal.me/#eu/ZhTXMlQRJW4dZM1cEdqRWraCLE-YPKtv_1grKZ6bXQlQqzTGMnhJJp9mrHYeblqp';
+        const screen = render(Socials, {
+            signal: signalUrl,
+        });
+
+        const link = screen.getByRole('link', { name: /signal/i });
+        await expect.element(link).toBeInTheDocument();
+        await expect.element(link).toHaveAttribute('href', signalUrl);
+    });
+
     test('external URLs are not mangled by resolve()', async () => {
         const screen = render(Socials, {
             github: 'https://github.com/MaxDaten',

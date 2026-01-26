@@ -32,6 +32,7 @@ export type Author = {
         cv?: string;
         email?: string;
         twitter?: string;
+        signal?: string;
         website?: string;
     };
 };

@@ -16,6 +16,7 @@ export const authors: Record<string, Author> = {
             linkedin: 'https://www.linkedin.com/in/maxdaten',
             cv: 'https://cv.maxdaten.io',
             email: 'mailto:jloos@maxdaten.com',
+            signal: 'https://signal.me/#eu/ZhTXMlQRJW4dZM1cEdqRWraCLE-YPKtv_1grKZ6bXQlQqzTGMnhJJp9mrHYeblqp',
         },
     },
 };
