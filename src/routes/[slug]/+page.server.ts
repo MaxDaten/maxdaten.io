@@ -3,11 +3,14 @@ import { client, previewClient } from '$lib/sanity/client';
 import { postBySlugQuery } from '$lib/sanity/queries';
 import { error } from '@sveltejs/kit';
 import { env } from '$env/dynamic/private';
+import { building } from '$app/environment';
 
 export const load: PageServerLoad = async ({ params, url }) => {
     const previewSecret = env.SANITY_PREVIEW_SECRET;
     const isPreview =
-        previewSecret && url.searchParams.get('preview') === previewSecret;
+        !building &&
+        previewSecret &&
+        url.searchParams.get('preview') === previewSecret;
     const sanityClient = isPreview ? previewClient : client;
 
     const post = await sanityClient.fetch(postBySlugQuery, {
