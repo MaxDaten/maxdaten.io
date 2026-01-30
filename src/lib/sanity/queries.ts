@@ -113,6 +113,14 @@ export const rssPostsQuery = defineQuery(`
 `);
 
 /**
+ * GROQ query for fetching all post slugs including hidden posts.
+ * Used by the [slug] route's entries() to ensure all posts are prerendered.
+ */
+export const allPostSlugsQuery = defineQuery(`
+  *[_type == "post"] { "slug": slug.current }
+`);
+
+/**
  * GROQ query for fetching all gems.
  * Sorted alphabetically by title.
  */
