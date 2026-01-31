@@ -256,6 +256,7 @@
     }
 
     .card-title {
+        font-family: var(--font-logo), sans-serif;
         color: var(--color-text);
     }
 
@@ -280,6 +281,7 @@
     }
 
     .card-name {
+        font-family: var(--font-logo), sans-serif;
         font-size: var(--raw-text-xl);
         font-weight: 700;
         text-transform: uppercase;
