@@ -170,12 +170,12 @@
         display: flex;
         align-items: center;
         padding: 8px 16px;
-        border: 1px solid rgba(255, 128, 0, 0.3);
+        border: 1px solid rgba(255, 128, 0, 0.5);
         border-radius: 8px;
         font-family: 'JetBrains Mono', monospace;
         font-size: 18px;
-        color: #ff9533;
-        background-color: rgba(255, 128, 0, 0.05);
+        color: #ffb366;
+        background-color: rgba(255, 128, 0, 0.12);
     }
 
     /* Cover image as "window" frame at the bottom */
