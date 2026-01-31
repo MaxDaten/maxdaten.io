@@ -91,7 +91,8 @@
     "type": "module",
     "overrides": {
         "cookie": "^0.7.0",
-        "fast-xml-parser": "^5.3.4"
+        "fast-xml-parser": "^5.3.4",
+        "sharp": "^0.34.5"
     },
     "dependencies": {
         "@fontsource/jetbrains-mono": "^5.2.8",
