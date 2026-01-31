@@ -165,6 +165,8 @@
     & pre.shiki {
         font-family: var(--font--mono), monospace;
         font-size: var(--raw-text-sm);
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
         border-radius: var(--raw-radius-sm);
         background-color: var(--raw-color-gray-850) !important;
         border: none;
