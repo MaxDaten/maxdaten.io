@@ -54,11 +54,15 @@
         {#if coverImageSrc}
             <div class="image-frame">
                 <img src={coverImageSrc} alt="" class="wide-cover-image" />
-                <div class="cta-overlay">
-                    <div class="cta">Read More</div>
-                </div>
             </div>
         {/if}
+    </div>
+
+    <!-- Fade overlay for smooth cover image exit at bottom edge -->
+    <div class="image-fade"></div>
+    <!-- CTA last in DOM so it paints on top of the fade (Satori has no z-index) -->
+    <div class="cta-overlay">
+        <div class="cta">Read More</div>
     </div>
 </div>
 
@@ -197,6 +201,17 @@
         border-radius: 12px 12px 0 0;
     }
 
+    /* Bottom fade overlay - mirrors ProfileOgCard's right-edge fade pattern */
+    .image-fade {
+        display: flex;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 200px;
+        background: linear-gradient(180deg, rgba(10, 10, 12, 0), #0a0a0c);
+    }
+
     .cta-overlay {
         display: flex;
         position: absolute;
@@ -216,7 +231,9 @@
         font-size: 34px;
         font-weight: 700;
         box-shadow:
-            0 4px 12px rgba(255, 128, 0, 0.4),
+            0 0 40px rgba(255, 128, 0, 0.6),
+            0 0 80px rgba(255, 128, 0, 0.3),
+            0 4px 12px rgba(255, 128, 0, 0.5),
             inset 0 1px 0 rgba(255, 255, 255, 0.4);
     }
 </style>
