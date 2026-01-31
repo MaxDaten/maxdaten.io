@@ -26,6 +26,14 @@
       pass_filenames = false;
     };
 
+    svelte-check = {
+      enable = true;
+      name = "svelte-check";
+      entry = "npm run check";
+      language = "system";
+      pass_filenames = false;
+    };
+
     unit-tests = {
       enable = true;
       name = "unit-tests";
