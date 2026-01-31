@@ -26,9 +26,8 @@
                 >
             </h1>
             <p class="sub">
-                Full-stack product engineering with knowledge transfer built in.
-                15+ years spanning product development, platform architecture,
-                and technical leadership.
+                Full-stack product engineering with knowledge transfer built in
+                — 15+ years from startup to 100M+ requests/day.
             </p>
         </div>
 
@@ -130,7 +129,7 @@
         display: flex;
         flex-direction: column;
         font-family: 'Inter Variable', 'Inter', sans-serif;
-        font-size: 56px;
+        font-size: 64px;
         line-height: 1.1;
         color: white;
         margin: 0 0 20px 0;
@@ -148,10 +147,10 @@
 
     .sub {
         display: flex;
-        font-size: 22px;
+        font-size: 26px;
         color: #a1a1aa;
         font-weight: 400;
-        line-height: 1.5;
+        line-height: 1.4;
         margin: 0;
     }
 
