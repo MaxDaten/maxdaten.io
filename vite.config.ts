@@ -5,6 +5,15 @@ import { playwright } from '@vitest/browser-playwright';
 
 export default defineConfig({
     plugins: [sveltekit(), imagetools()],
+    build: {
+        rollupOptions: {
+            onLog(level, log, defaultHandler) {
+                // Suppress misplaced @__PURE__ annotation warnings from dependencies
+                if (log.code === 'INVALID_ANNOTATION') return;
+                defaultHandler(level, log);
+            },
+        },
+    },
     test: {
         projects: [
             // component tests in browser environment
