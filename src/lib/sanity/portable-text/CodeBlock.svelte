@@ -1,8 +1,6 @@
 <script lang="ts">
     import type { CustomBlockComponentProps } from '@portabletext/svelte';
     import CodeBlockUI from '$components/molecules/CodeBlock.svelte';
-    import { codeToHtml } from 'shiki';
-    import { transformerMetaHighlight } from '@shikijs/transformers';
 
     interface CodeBlockValue {
         code: string;
@@ -19,27 +17,32 @@
     let { portableText }: Props = $props();
     let value = $derived(portableText.value);
 
-    // Server-side syntax highlighting with Shiki
+    // Client-side syntax highlighting with Shiki
     let highlightedHtml = $state<string>('');
 
     $effect(() => {
         const code = value.code || '';
         const lang = value.language || 'text';
+        const lines = value.highlightedLines;
 
-        codeToHtml(code, {
-            lang,
-            theme: 'ayu-dark',
-            transformers: [
-                transformerMetaHighlight({
-                    className: 'highlighted',
-                }),
-            ],
-            meta: value.highlightedLines
-                ? { __raw: value.highlightedLines }
-                : undefined,
-        }).then((html) => {
+        (async () => {
+            const { codeToHtml } = await import('shiki');
+            const { transformerMetaHighlight } = await import(
+                '@shikijs/transformers'
+            );
+
+            const html = await codeToHtml(code, {
+                lang,
+                theme: 'ayu-dark',
+                transformers: [
+                    transformerMetaHighlight({
+                        className: 'highlighted',
+                    }),
+                ],
+                meta: lines ? { __raw: lines } : undefined,
+            });
             highlightedHtml = html;
-        });
+        })();
     });
 </script>
 
