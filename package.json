@@ -14,6 +14,7 @@
         "lint": "eslint .",
         "format": "treefmt",
         "vercel-build": "npm run build",
+        "redeploy-latest": "node scripts/redeploy-latest.js",
         "update-site-preview-image": "node scripts/update-site-preview-image.js",
         "migrate:post": "node --env-file=.env scripts/migrate-post-to-sanity.js",
         "migrate:gems": "node --env-file=.env scripts/migrate-gems-to-sanity.js",
