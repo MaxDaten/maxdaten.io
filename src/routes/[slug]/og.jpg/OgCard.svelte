@@ -208,14 +208,14 @@
         left: 0;
         right: 0;
         bottom: 0;
-        height: 200px;
+        height: 150px;
         background: linear-gradient(180deg, rgba(10, 10, 12, 0), #0a0a0c);
     }
 
     .cta-overlay {
         display: flex;
         position: absolute;
-        bottom: 20px;
+        bottom: 40px;
         left: 0;
         right: 0;
         justify-content: center;
