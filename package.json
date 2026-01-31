@@ -90,7 +90,8 @@
     },
     "type": "module",
     "overrides": {
-        "cookie": "^0.7.0"
+        "cookie": "^0.7.0",
+        "fast-xml-parser": "^5.3.4"
     },
     "dependencies": {
         "@fontsource/jetbrains-mono": "^5.2.8",
