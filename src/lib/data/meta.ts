@@ -39,7 +39,7 @@ export const baseSchema: [WebSite, Person, ProfilePage, Organization] = [
         '@type': 'Person',
         '@id': 'https://maxdaten.io/#jloos',
         name: authors.jloos.name,
-        jobTitle: authors.jloos.role,
+        jobTitle: authors.jloos.tagline,
         description: authors.jloos.bio,
         url: `${siteBaseUrl}`,
         sameAs: Object.values(authors.jloos.socials || {}).filter(

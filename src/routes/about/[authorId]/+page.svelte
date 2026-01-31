@@ -127,7 +127,7 @@
     <title>{author.name} - Trading Card | maxdaten.io</title>
     <meta
         name="description"
-        content="Trading card for {author.name} - {author.role}"
+        content="Trading card for {author.name} - {author.tagline}"
     />
     <meta name="robots" content="noindex, nofollow" />
 </svelte:head>
