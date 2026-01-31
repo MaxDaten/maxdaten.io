@@ -21,158 +21,202 @@
     let { post, coverImageSrc }: Props = $props();
 </script>
 
-<div class="og-card">
-    {#if coverImageSrc}
-        <div class="cover-image-container">
-            <img src={coverImageSrc} alt="" class="cover-image" />
-            {#if post.readingTimeMinutes}
-                <div class="reading-time-overlay">
-                    <span class="reading-time-text"
-                        >{post.readingTimeMinutes} min read</span
-                    >
-                </div>
-            {/if}
-            <div class="branding">
-                <span class="site-name">maxdaten.io</span>
-            </div>
+<div class="wrapper">
+    <!-- Single ambient gradient spanning the whole canvas -->
+    <div class="ambient-gradient"></div>
+
+    <!-- Content Container -->
+    <div class="container">
+        <!-- Brand badge centered at top -->
+        <div class="brand-bar">
+            <div class="brand">maxdaten.io</div>
         </div>
-    {/if}
 
-    <div class="content">
-        <h1 class="title">{post.title}</h1>
-        {#if post.excerpt}
-            <p class="excerpt">{post.excerpt}</p>
-        {/if}
-
-        <div class="footer">
-            <div class="tags">
-                {#if post.tags?.length}
+        <!-- Centered text content -->
+        <div class="og_textbox">
+            {#if post.readingTimeMinutes}
+                <div class="badge">{post.readingTimeMinutes} min read</div>
+            {/if}
+            <h1>{post.title}</h1>
+            {#if post.excerpt}
+                <p class="sub">{post.excerpt}</p>
+            {/if}
+            {#if post.tags?.length}
+                <div class="tags">
                     {#each post.tags.slice(0, 3) as tag, i (i)}
                         <span class="tag">{tag}</span>
                     {/each}
-                {/if}
-            </div>
+                </div>
+            {/if}
         </div>
+
+        <!-- Cover image as wide "window" frame at bottom -->
+        {#if coverImageSrc}
+            <div class="image-frame">
+                <img src={coverImageSrc} alt="" class="wide-cover-image" />
+                <div class="cta-overlay">
+                    <div class="cta">Read More</div>
+                </div>
+            </div>
+        {/if}
     </div>
 </div>
 
 <style>
-    /* Note: Only Satori-compatible CSS (mainly flexbox) */
-    /* No CSS variable support - Satori requires static values */
-    /* Colors inlined from themes-og.scss - dark theme values */
-
-    .og-card {
+    /* Satori-safe CSS: Flexbox only, no CSS variables */
+    /* Font fallback: 'Inter Variable' for browser preview, 'Inter' for Satori OG generation */
+    .wrapper {
         display: flex;
-        flex-direction: column;
-        width: 100%;
         height: 100%;
-        background-color: #1c1e26;
-        border: 8px solid #2d1d10;
-        font-family: 'Inter', sans-serif;
-    }
-
-    .cover-image-container {
-        display: flex;
-        position: relative;
         width: 100%;
-        height: 40%;
+        background-color: #0a0a0c;
+        font-family: 'Inter Variable', 'Inter', sans-serif;
+        position: relative;
         overflow: hidden;
     }
 
-    .cover-image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    .reading-time-overlay {
+    /* Single ambient gradient spanning full canvas */
+    .ambient-gradient {
         display: flex;
         position: absolute;
-        bottom: 16px;
-        right: 16px;
-        background-color: rgba(28, 30, 38, 0.85);
-        border-radius: 8px;
-        padding: 8px 12px;
-        border: 1px solid #ff8000;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        /* prettier-ignore */
+        background: linear-gradient(135deg, rgba(124, 58, 237, 0.35), rgba(255, 128, 0, 0.25));
     }
 
-    .reading-time-text {
-        font-size: 2.1rem;
-        font-weight: 900;
-        color: #ff8000;
-    }
-
-    .content {
+    .container {
         display: flex;
         flex-direction: column;
-        flex: 1;
-        padding: 12px 24px;
-        background-color: #1c1e26;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        padding: 32px 60px 0 60px;
     }
 
-    .title {
-        font-size: 56px;
-        font-weight: 700;
-        line-height: 1.2;
-        color: #fffcfc;
-        font-family: 'Inter', sans-serif;
-    }
-
-    .excerpt {
-        font-size: 1.6rem;
-        line-height: 1.5;
-        color: #d9f9fd;
-        flex: 1;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        text-align: start;
-        margin: -4px 0;
-    }
-
-    .footer {
+    .brand-bar {
         display: flex;
-        justify-content: space-between;
-        align-items: flex-end;
-        margin-top: auto;
-        position: relative;
-        min-height: 64px;
-        padding-right: 220px; /* reserve space for branding */
+        margin-bottom: 16px;
+    }
+
+    .brand {
+        display: flex;
+        padding: 10px 28px;
+        border: 2px solid #ff8000;
+        color: #ff8000;
+        border-radius: 50px;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 20px;
+        font-weight: 500;
+        letter-spacing: 0.02em;
+        background-color: rgba(255, 128, 0, 0.08);
+    }
+
+    .og_textbox {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+        max-width: 900px;
+        margin-bottom: 20px;
+        z-index: 10;
+    }
+
+    .badge {
+        display: flex;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 16px;
+        color: #a1a1aa;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        padding: 4px 12px;
+        margin-bottom: 12px;
+        background: transparent;
+    }
+
+    h1 {
+        display: flex;
+        font-family: 'Inter Variable', 'Inter', sans-serif;
+        font-size: 44px;
+        line-height: 1.15;
+        color: white;
+        margin: 0 0 12px 0;
+        font-weight: 800;
+        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .sub {
+        display: flex;
+        font-size: 18px;
+        color: #d4d4d8;
+        line-height: 1.4;
+        max-width: 700px;
+        margin: 0 0 16px 0;
     }
 
     .tags {
         display: flex;
-        gap: 12px;
+        gap: 8px;
     }
 
     .tag {
         display: flex;
         align-items: center;
         padding: 8px 16px;
-        background-color: rgba(93, 95, 101, 0.5);
-        border-radius: 10px;
-        font-size: 1.8rem;
-        letter-spacing: 0.08em;
-        color: #fffcfc;
-        white-space: nowrap;
-        overflow: hidden;
-        max-width: 100%;
+        border: 1px solid rgba(255, 128, 0, 0.3);
+        border-radius: 8px;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 18px;
+        color: #ff9533;
+        background-color: rgba(255, 128, 0, 0.05);
     }
 
-    .branding {
+    /* Cover image as "window" frame at the bottom */
+    .image-frame {
         display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-        position: absolute;
-        padding: 0 8px;
-        background-color: rgba(28, 30, 38, 0.75);
-        border-bottom: 2px solid #ff8000;
-        border-radius: 0 0 8px 0;
+        position: relative;
+        width: 100%;
+        flex: 1;
+        background: #18191d;
+        border-radius: 20px 20px 0 0;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-bottom: none;
+        padding: 12px 12px 0 12px;
+        box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.5);
+        overflow: hidden;
     }
 
-    .site-name {
-        font-family: 'Baloo-2', sans-serif;
-        font-size: 3.5rem;
-        font-weight: 800;
-        color: #ff8000;
+    .wide-cover-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top center;
+        border-radius: 12px 12px 0 0;
+    }
+
+    .cta-overlay {
+        display: flex;
+        position: absolute;
+        bottom: 20px;
+        left: 0;
+        right: 0;
+        justify-content: center;
+    }
+
+    .cta {
+        display: flex;
+        padding: 24px 64px;
+        background: linear-gradient(180deg, #ff9533 0%, #ff8000 100%);
+        color: #0a0a0c;
+        border-radius: 14px;
+        font-family: 'Inter Variable', 'Inter', sans-serif;
+        font-size: 34px;
+        font-weight: 700;
+        box-shadow:
+            0 4px 12px rgba(255, 128, 0, 0.4),
+            inset 0 1px 0 rgba(255, 255, 255, 0.4);
     }
 </style>
