@@ -7,10 +7,10 @@ import type { Component } from 'svelte';
 import sharp from 'sharp';
 
 // Load fonts once at module level
-const baloo2Font = await read(
+const spaceGroteskFont = await read(
     (
         await import(
-            '@fontsource/baloo-2/files/baloo-2-latin-800-normal.woff?inline'
+            '@fontsource/space-grotesk/files/space-grotesk-latin-700-normal.woff?inline'
         )
     ).default
 ).arrayBuffer();
@@ -57,10 +57,10 @@ export const SATORI_OPTIONS: SatoriOptions = {
             weight: 700,
         },
         {
-            name: 'Baloo-2',
-            data: baloo2Font,
+            name: 'Space Grotesk',
+            data: spaceGroteskFont,
             style: 'normal',
-            weight: 800,
+            weight: 700,
         },
         {
             name: 'JetBrains Mono',

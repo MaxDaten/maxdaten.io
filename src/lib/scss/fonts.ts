@@ -14,6 +14,5 @@ import '@fontsource-variable/inter/wght.css';
 // Weight: 400
 import '@fontsource/jetbrains-mono/400.css';
 
-// Baloo 2 Variable - logo font
-// Weight: 400
-import '@fontsource-variable/baloo-2/wght.css';
+// Space Grotesk Variable - logo font
+import '@fontsource-variable/space-grotesk/wght.css';
