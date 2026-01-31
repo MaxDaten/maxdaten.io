@@ -2,7 +2,7 @@
     /* =========================================================================
      * Links
      * ========================================================================= */
-    & a:not(.button) {
+    & a:not(.button):not(.socials a) {
         color: var(--color-accent);
         text-decoration: underline;
         text-underline-offset: 2px;
