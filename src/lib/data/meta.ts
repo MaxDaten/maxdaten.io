@@ -18,7 +18,7 @@ import { getCoverBySlug } from '$utils/image-loader';
 export const siteBaseUrl = 'https://maxdaten.io';
 
 export const description =
-    'Full-stack product engineering with knowledge transfer built in. 15+ years scaling systems from startup to 100M+ requests/day. K8s, Multi-Cloud, GitOps.';
+    'Full-stack product engineering with knowledge transfer built in. 15+ years spanning product development, platform architecture, and technical leadership — from startup to 100M+ requests/day.';
 
 export const title = 'Jan-Philip Loos | maxdaten.io';
 

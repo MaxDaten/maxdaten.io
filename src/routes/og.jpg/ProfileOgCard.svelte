@@ -27,6 +27,8 @@
             </h1>
             <p class="sub">
                 Full-stack product engineering with knowledge transfer built in.
+                15+ years spanning product development, platform architecture,
+                and technical leadership.
             </p>
         </div>
 

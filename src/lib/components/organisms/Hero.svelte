@@ -20,7 +20,8 @@
             </h1>
             <p class="subheadline">
                 Full-stack product engineering with knowledge transfer built in.
-                15+ years scaling from startup to 100M+ requests/day.
+                15+ years spanning product development, platform architecture,
+                and technical leadership — from startup to 100M+ requests/day.
             </p>
             <div class="ctas">
                 <Sparkles>
