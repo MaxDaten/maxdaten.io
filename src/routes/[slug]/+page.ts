@@ -50,34 +50,23 @@ export const load: PageLoad = async ({ data, url }): Promise<PageData> => {
             description: post.excerpt ?? '',
             url: new URL(url.pathname, url.origin).href,
             type: 'article',
-            images: post.coverImage?.url
-                ? [
-                      {
-                          url: post.coverImage.url,
-                          width: post.coverImage.dimensions?.width ?? 1200,
-                          height: post.coverImage.dimensions?.height ?? 630,
-                          secureUrl: post.coverImage.url,
-                          alt: post.coverImage.alt ?? post.title,
-                          type: 'image/jpeg',
-                      },
-                  ]
-                : [
-                      {
-                          url: ogImageUrl,
-                          width: 1200,
-                          height: 630,
-                          secureUrl: ogImageUrl,
-                          alt: post.title,
-                          type: 'image/jpeg',
-                      },
-                  ],
+            images: [
+                {
+                    url: ogImageUrl,
+                    width: 1200,
+                    height: 630,
+                    secureUrl: ogImageUrl,
+                    alt: post.title,
+                    type: 'image/jpeg',
+                },
+            ],
         },
         twitter: {
             title: post.title,
             description: post.excerpt ?? '',
             cardType: 'summary_large_image',
-            image: post.coverImage?.url ?? ogImageUrl,
-            imageAlt: post.coverImage?.alt ?? post.title,
+            image: ogImageUrl,
+            imageAlt: post.title,
         } as Twitter,
     }) satisfies MetaTagsProps;
 
