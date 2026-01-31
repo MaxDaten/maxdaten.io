@@ -128,7 +128,7 @@
     h1 {
         display: flex;
         flex-direction: column;
-        font-family: 'Inter Variable', 'Inter', sans-serif;
+        font-family: 'Space Grotesk', sans-serif;
         font-size: 64px;
         line-height: 1.1;
         color: white;

@@ -143,12 +143,12 @@
 
     h1 {
         display: flex;
-        font-family: 'Inter Variable', 'Inter', sans-serif;
+        font-family: 'Space Grotesk', sans-serif;
         font-size: 44px;
         line-height: 1.15;
         color: white;
         margin: 0 0 12px 0;
-        font-weight: 800;
+        font-weight: 700;
         text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     }
 
