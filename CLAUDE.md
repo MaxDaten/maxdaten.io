@@ -84,6 +84,8 @@ This is a SvelteKit-based static blog site with MDX integration for content auth
 - Unit tests in `src/lib/i18n/i18n.test.ts` verify both locales have identical keys and that
   translated keys differ between locales (except `nav.blog`, `nav.gems`, `footer.impressum`,
   `meta.title`)
+- When implementing i18n or domain-based routing changes, always update E2E tests to reflect new
+  translation strings and test both domain variants (.io and .de).
 
 **Routing Structure:**
 
