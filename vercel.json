@@ -1,15 +1,19 @@
 {
-    "rewrites": [
+    "redirects": [
         {
-            "source": "/((?!en/).*)",
+            "source": "/",
             "has": [{ "type": "host", "value": "www.maxdaten.io" }],
-            "destination": "/en/$1"
+            "destination": "/en",
+            "statusCode": 302
         },
         {
-            "source": "/((?!en/).*)",
+            "source": "/",
             "has": [{ "type": "host", "value": "maxdaten.io" }],
-            "destination": "/en/$1"
-        },
+            "destination": "/en",
+            "statusCode": 302
+        }
+    ],
+    "rewrites": [
         {
             "source": "/scitylana/js/script.js",
             "destination": "https://plausible.io/js/script.js"

@@ -15,7 +15,7 @@
     );
     let enHref = $derived(
         isTranslatedRoute(page.url.pathname)
-            ? `${localeDomains.en}/`
+            ? `${localeDomains.en}/en/`
             : `${localeDomains.en}/`
     );
 </script>
