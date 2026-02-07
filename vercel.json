@@ -1,7 +1,12 @@
 {
     "rewrites": [
         {
-            "source": "/(.*)",
+            "source": "/((?!en/).*)",
+            "has": [{ "type": "host", "value": "www.maxdaten.io" }],
+            "destination": "/en/$1"
+        },
+        {
+            "source": "/((?!en/).*)",
             "has": [{ "type": "host", "value": "maxdaten.io" }],
             "destination": "/en/$1"
         },
