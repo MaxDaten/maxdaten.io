@@ -30,4 +30,6 @@ export const de: TranslationKeys = {
         'Ich entwickle Ihr digitales Produkt end-to-end und sorge dafür, dass das Wissen in Ihrem Team bleibt. 15+ Jahre Erfahrung in Produktentwicklung, Plattform-Architektur und Tech-Leadership — vom Startup bis zu Systemen mit 100M+ Requests am Tag.',
     'meta.ogImageAlt':
         'Jan-Philip Loos - Robuste Produkte. Skalierbare Systeme.',
+    'meta.keywords':
+        'Jan-Philip Loos, DevOps Berater, Freelancer Hamburg, Kubernetes Consulting, Technische Beratung, Platform Engineering, Skalierung, Produktentwicklung, Full-Stack Entwicklung, Software Architektur, GitOps, Cloud Infrastruktur',
 };

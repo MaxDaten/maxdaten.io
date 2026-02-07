@@ -30,4 +30,6 @@ export const en: TranslationKeys = {
         'Full-stack product engineering with knowledge transfer built in. 15+ years spanning product development, platform architecture, and technical leadership — from startup to 100M+ requests/day.',
     'meta.ogImageAlt':
         'Jan-Philip Loos - Products that ship. Systems that scale.',
+    'meta.keywords':
+        'Jan-Philip Loos, Technical Product Advisor, Full-Stack Product Engineering, Kubernetes at Scale, Multi-Cloud Architecture, GitOps, Software Architecture, Knowledge Transfer, Freelance Consultant, Hamburg Developer, Platform Engineering, Developer Experience, System Architecture, Product Engineering, Enterprise Deployments',
 };

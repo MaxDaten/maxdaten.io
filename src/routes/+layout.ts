@@ -12,39 +12,6 @@ import {
 
 export const prerender = true;
 
-const germanKeywords = [
-    'Jan-Philip Loos',
-    'DevOps Berater',
-    'Freelancer Hamburg',
-    'Kubernetes Consulting',
-    'Technische Beratung',
-    'Platform Engineering',
-    'Skalierung',
-    'Produktentwicklung',
-    'Full-Stack Entwicklung',
-    'Software Architektur',
-    'GitOps',
-    'Cloud Infrastruktur',
-];
-
-const englishKeywords = [
-    'Jan-Philip Loos',
-    'Technical Product Advisor',
-    'Full-Stack Product Engineering',
-    'Kubernetes at Scale',
-    'Multi-Cloud Architecture',
-    'GitOps',
-    'Software Architecture',
-    'Knowledge Transfer',
-    'Freelance Consultant',
-    'Hamburg Developer',
-    'Platform Engineering',
-    'Developer Experience',
-    'System Architecture',
-    'Product Engineering',
-    'Enterprise Deployments',
-];
-
 export const load = ({ url }) => {
     const locale: Locale = getLocaleFromPath(url.pathname);
     const localeBaseUrl = getSiteBaseUrl(locale);
@@ -85,7 +52,7 @@ export const load = ({ url }) => {
         title: 'Jan-Philip Loos',
         titleTemplate: `%s | ${siteName}`,
         description,
-        keywords: locale === 'de' ? germanKeywords : englishKeywords,
+        keywords: t(locale, 'meta.keywords').split(', '),
         canonical: canonicalUrl,
         additionalLinkTags,
         openGraph: {
