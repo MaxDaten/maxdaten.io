@@ -4,6 +4,9 @@ import { allPostsQuery } from '$lib/sanity/queries';
 
 export const prerender = true;
 
+/** Paths that exist in both German (/) and English (/en/) versions. */
+const translatedPaths = new Set(['/']);
+
 export async function GET({ url }) {
     // Get all blog posts from Sanity with lastmod data for parameterized routes
     const sanityPosts = await client.fetch(allPostsQuery);
@@ -27,6 +30,20 @@ export async function GET({ url }) {
         paramValues: {
             '/[slug]': blogPostParams, // Provide slugs with lastmod for dynamic blog post routes
         },
+        additionalPaths: ['/en'],
+        processPaths: (paths) =>
+            paths.map((p) => {
+                if (translatedPaths.has(p.path) || p.path === '/en') {
+                    return {
+                        ...p,
+                        alternates: [
+                            { lang: 'de', path: '/' },
+                            { lang: 'en', path: '/en' },
+                        ],
+                    };
+                }
+                return p;
+            }),
         sort: 'alpha', // Optional: sort URLs alphabetically
     });
 }

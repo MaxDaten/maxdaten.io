@@ -6,22 +6,24 @@
     import GitHubIcon from '$lib/icons/socials/github.svelte';
     import MeSrc from '$assets/images/authors/jloos-v2.jpeg?as=run&fit=cover';
     import { FxReveal as Img } from '@zerodevx/svelte-img';
+    import { getContext } from 'svelte';
+    import { t, type Locale } from '$lib/i18n';
+
+    const getLocale: () => Locale = getContext('locale');
+    let locale = $derived(getLocale());
 </script>
 
 <section id="hero">
     <div class="hero-grid">
         <!-- Left Column: Value Proposition -->
         <div class="content">
-            <span class="badge">Available for 2026</span>
+            <span class="badge">{t(locale, 'hero.badge')}</span>
             <h1 class="headline">
-                Products that ship. <span class="accent"
-                    >Systems that scale</span
-                >.
+                {t(locale, 'hero.headline')}
+                <span class="accent">{t(locale, 'hero.headlineAccent')}</span>.
             </h1>
             <p class="subheadline">
-                Full-stack product engineering with knowledge transfer built in.
-                15+ years spanning product development, platform architecture,
-                and technical leadership — from startup to 100M+ requests/day.
+                {t(locale, 'hero.subheadline')}
             </p>
             <div class="ctas">
                 <Sparkles>
@@ -34,7 +36,7 @@
                         {#snippet icon()}
                             <CalendarIcon />
                         {/snippet}
-                        Book a Call
+                        {t(locale, 'hero.ctaBook')}
                     </Button>
                 </Sparkles>
                 <Button
@@ -46,7 +48,7 @@
                     {#snippet icon()}
                         <GitHubIcon />
                     {/snippet}
-                    View Projects
+                    {t(locale, 'hero.ctaProjects')}
                 </Button>
             </div>
             <div class="tech-ticker">
@@ -99,7 +101,7 @@
                             >
                         </div>
                         <p class="ability-description">
-                            Deployed to 700+ retail locations at Fielmann
+                            {t(locale, 'hero.abilityDescription')}
                         </p>
                     </div>
                     <div class="card-footer">#001 &middot; HAMBURG, DE</div>

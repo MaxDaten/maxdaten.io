@@ -1,6 +1,6 @@
 import { client } from '$lib/sanity/client';
 import { allPostsQuery } from '$lib/sanity/queries';
-import type { ListingPost } from './blog/+page.server';
+import type { ListingPost } from '../blog/+page.server';
 
 export async function load() {
     const sanityPosts = await client.fetch(allPostsQuery);

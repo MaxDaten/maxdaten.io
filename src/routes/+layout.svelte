@@ -9,6 +9,7 @@
     import Footer from '$components/organisms/Footer.svelte';
     import { page } from '$app/state';
     import { MetaTags, deepMerge, JsonLd } from 'svelte-meta-tags';
+    import { setContext } from 'svelte';
 
     /**
      * @typedef {Object} Props
@@ -18,6 +19,10 @@
 
     /** @type {Props} */
     let { children, data } = $props();
+
+    // Locale comes from (de)/+layout.ts or en/+layout.ts; English-only routes default to 'en'
+    let locale = $derived(page.data.locale ?? 'en');
+    setContext('locale', () => locale);
 
     let metaTags = $derived(
         deepMerge(data.baseMetaTags, page.data.pageMetaTags || {})

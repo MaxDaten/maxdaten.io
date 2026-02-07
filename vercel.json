@@ -1,6 +1,11 @@
 {
     "rewrites": [
         {
+            "source": "/(.*)",
+            "has": [{ "type": "host", "value": "maxdaten.io" }],
+            "destination": "/en/$1"
+        },
+        {
             "source": "/scitylana/js/script.js",
             "destination": "https://plausible.io/js/script.js"
         },

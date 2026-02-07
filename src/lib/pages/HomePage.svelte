@@ -2,18 +2,22 @@
     import Hero from '$components/organisms/Hero.svelte';
     import RecentPosts from '$components/organisms/RecentPosts.svelte';
     import { PageTransition } from 'ssgoi';
-    import type { PageProps } from './$types';
     import Bubbles from '$components/organisms/Bubbles.svelte';
+    import type { ListingPost } from '$routes/blog/+page.server';
 
-    let { data }: PageProps = $props();
+    interface Props {
+        posts: ListingPost[];
+    }
+
+    let { posts }: Props = $props();
 </script>
 
 <PageTransition>
     <Bubbles />
     <div class="container">
         <Hero />
-        {#if data?.posts && data?.posts.length > 0}
-            <RecentPosts posts={data.posts} />
+        {#if posts && posts.length > 0}
+            <RecentPosts {posts} />
         {/if}
     </div>
 </PageTransition>

@@ -3,23 +3,28 @@
     import ContentSection from '$lib/components/organisms/ContentSection.svelte';
     import type { ListingPost } from '$routes/blog/+page.server';
     import Button from '$lib/components/atoms/Button.svelte';
+    import { getContext } from 'svelte';
+    import { t, type Locale } from '$lib/i18n';
 
     interface Props {
         posts: ListingPost[];
     }
 
     let { posts }: Props = $props();
+
+    const getLocale: () => Locale = getContext('locale');
+    let locale = $derived(getLocale());
 </script>
 
 <ContentSection
     id="recent-posts"
-    title="Blog posts"
-    description="Most recent blog posts"
+    title={t(locale, 'recentPosts.title')}
+    description={t(locale, 'recentPosts.description')}
     align="left"
 >
     {#snippet button()}
         <div>
-            <Button href="/blog">View More</Button>
+            <Button href="/blog">{t(locale, 'recentPosts.viewMore')}</Button>
         </div>
     {/snippet}
     <div class="grid">

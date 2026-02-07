@@ -1,11 +1,45 @@
 import type { MetaTagsProps, Twitter } from 'svelte-meta-tags';
-import { description, title, baseSchema } from '$lib/data/meta';
+import { baseSchema } from '$lib/data/meta';
 import { version } from '$app/environment';
+import {
+    t,
+    getLocaleFromPath,
+    isTranslatedRoute,
+    localeDomains,
+    type Locale,
+} from '$lib/i18n';
 
 export const prerender = true;
 
 export const load = ({ url }) => {
+    const locale: Locale = getLocaleFromPath(url.pathname);
     const ogImageUrl = new URL(`/og.jpg?v=${version}`, url.origin).href;
+
+    const description = t(locale, 'meta.description');
+    const title = t(locale, 'meta.title');
+    const ogImageAlt = t(locale, 'meta.ogImageAlt');
+    const ogLocale = locale === 'de' ? 'de_DE' : 'en_US';
+
+    // hreflang link tags for translated pages
+    const additionalLinkTags = isTranslatedRoute(url.pathname)
+        ? [
+              {
+                  rel: 'alternate',
+                  hreflang: 'de',
+                  href: `${localeDomains.de}/`,
+              },
+              {
+                  rel: 'alternate',
+                  hreflang: 'en',
+                  href: `${localeDomains.en}/`,
+              },
+              {
+                  rel: 'alternate',
+                  hreflang: 'x-default',
+                  href: `${localeDomains.de}/`,
+              },
+          ]
+        : [];
 
     const baseMetaTags = Object.freeze({
         title: 'Jan-Philip Loos',
@@ -29,17 +63,18 @@ export const load = ({ url }) => {
             'Enterprise Deployments',
         ],
         canonical: new URL(url.pathname, url.origin).href,
+        additionalLinkTags,
         openGraph: {
             type: 'website',
             url: new URL(url.pathname, url.origin).href,
-            locale: 'en_US',
+            locale: ogLocale,
             title,
             description,
             siteName: 'maxdaten.io',
             images: [
                 {
                     url: ogImageUrl,
-                    alt: 'Jan-Philip Loos - Products that ship. Systems that scale.',
+                    alt: ogImageAlt,
                     width: 1200,
                     height: 630,
                     secureUrl: ogImageUrl,
@@ -52,8 +87,7 @@ export const load = ({ url }) => {
             title,
             description,
             image: ogImageUrl,
-            imageAlt:
-                'Jan-Philip Loos - Products that ship. Systems that scale.',
+            imageAlt: ogImageAlt,
         } as Twitter,
     }) satisfies MetaTagsProps;
 

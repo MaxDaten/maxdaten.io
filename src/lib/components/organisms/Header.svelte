@@ -3,12 +3,18 @@
     import { resolve } from '$app/paths';
     import Logo from '$lib/components/atoms/Logo.svelte';
     import RssLink from '$lib/components/atoms/RssLink.svelte';
+    import LanguageSwitcher from '$lib/components/molecules/LanguageSwitcher.svelte';
+    import { getContext } from 'svelte';
+    import { t, type Locale } from '$lib/i18n';
 
     interface Props {
         showBackground?: boolean;
     }
 
     let { showBackground = false }: Props = $props();
+
+    const getLocale: () => Locale = getContext('locale');
+    let locale = $derived(getLocale());
 
     function isActive(href: string): boolean {
         const pathname = page.url.pathname;
@@ -29,13 +35,16 @@
             <a
                 href={resolve('/blog')}
                 class:active={isActive('/blog')}
-                aria-current={isActive('/blog') ? 'page' : undefined}>Blog</a
+                aria-current={isActive('/blog') ? 'page' : undefined}
+                >{t(locale, 'nav.blog')}</a
             >
             <a
                 href={resolve('/gems')}
                 class:active={isActive('/gems')}
-                aria-current={isActive('/gems') ? 'page' : undefined}>Gems</a
+                aria-current={isActive('/gems') ? 'page' : undefined}
+                >{t(locale, 'nav.gems')}</a
             >
+            <LanguageSwitcher />
             <RssLink />
         </div>
     </nav>

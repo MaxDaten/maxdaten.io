@@ -1,0 +1,32 @@
+import type { TranslationKeys } from './types';
+
+export const de: TranslationKeys = {
+    // Hero
+    'hero.badge': 'Verfügbar für 2026',
+    'hero.headline': 'Produkte, die ausliefern.',
+    'hero.headlineAccent': 'Systeme, die skalieren',
+    'hero.subheadline':
+        'Full-Stack Product Engineering mit integriertem Wissenstransfer. 15+ Jahre Erfahrung in Produktentwicklung, Plattform-Architektur und technischer Führung — vom Startup bis 100M+ Requests/Tag.',
+    'hero.ctaBook': 'Gespräch buchen',
+    'hero.ctaProjects': 'Projekte ansehen',
+    'hero.abilityDescription': 'Ausgerollt an 700+ Fielmann-Filialen',
+
+    // Navigation
+    'nav.blog': 'Blog',
+    'nav.gems': 'Gems',
+
+    // Footer
+    'footer.impressum': 'Impressum',
+
+    // Recent Posts
+    'recentPosts.title': 'Blog-Beiträge',
+    'recentPosts.description': 'Neueste Blog-Beiträge',
+    'recentPosts.viewMore': 'Alle anzeigen',
+
+    // Meta / SEO
+    'meta.title': 'Jan-Philip Loos | maxdaten.io',
+    'meta.description':
+        'Full-Stack Product Engineering mit integriertem Wissenstransfer. 15+ Jahre Erfahrung in Produktentwicklung, Plattform-Architektur und technischer Führung — vom Startup bis 100M+ Requests/Tag.',
+    'meta.ogImageAlt':
+        'Jan-Philip Loos - Produkte, die ausliefern. Systeme, die skalieren.',
+};
