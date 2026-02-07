@@ -3,8 +3,8 @@ import type { TranslationKeys } from './types';
 export const de: TranslationKeys = {
     // Hero
     'hero.badge': 'Verfügbar für 2026',
-    'hero.headline': 'Robuste Produkte.',
-    'hero.headlineAccent': 'Skalierbare Systeme.',
+    'hero.headline': 'Robuste Produkte',
+    'hero.headlineAccent': 'Skalierbare Systeme',
     'hero.subheadline':
         'Ich entwickle Ihr digitales Produkt end-to-end und sorge dafür, dass das Wissen in Ihrem Team bleibt. 15+ Jahre Erfahrung in Produktentwicklung, Plattform-Architektur und Tech-Leadership — vom Startup bis zu Systemen mit 100M+ Requests am Tag.',
     'hero.ctaBook': 'Gespräch buchen',

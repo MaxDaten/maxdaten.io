@@ -19,7 +19,7 @@
         <div class="content">
             <span class="badge">{t(locale, 'hero.badge')}</span>
             <h1 class="headline">
-                {t(locale, 'hero.headline')}
+                {t(locale, 'hero.headline')}.
                 <span class="accent">{t(locale, 'hero.headlineAccent')}</span>.
             </h1>
             <p class="subheadline">

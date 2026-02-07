@@ -3,7 +3,7 @@ import type { TranslationKeys } from './types';
 export const en: TranslationKeys = {
     // Hero
     'hero.badge': 'Available for 2026',
-    'hero.headline': 'Products that ship.',
+    'hero.headline': 'Products that ship',
     'hero.headlineAccent': 'Systems that scale',
     'hero.subheadline':
         'Full-stack product engineering with knowledge transfer built in. 15+ years spanning product development, platform architecture, and technical leadership — from startup to 100M+ requests/day.',
