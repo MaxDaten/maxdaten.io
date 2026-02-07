@@ -33,7 +33,7 @@
             <h1>
                 <span class="line">{headline}.</span>
                 <span class="line"
-                    ><span class="highlight">{headlineAccent}</span>.</span
+                    ><span class="highlight">{headlineAccent}.</span></span
                 >
             </h1>
             <p class="sub">
