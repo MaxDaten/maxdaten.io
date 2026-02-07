@@ -9,6 +9,7 @@ export interface TranslationKeys {
     'hero.ctaBook': string;
     'hero.ctaProjects': string;
     'hero.abilityDescription': string;
+    'hero.techTag5': string;
 
     // Navigation
     'nav.blog': string;

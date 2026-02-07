@@ -10,6 +10,7 @@ export const en: TranslationKeys = {
     'hero.ctaBook': 'Book a Call',
     'hero.ctaProjects': 'View Projects',
     'hero.abilityDescription': 'Deployed to 700+ retail locations at Fielmann',
+    'hero.techTag5': 'DX',
 
     // Navigation
     'nav.blog': 'Blog',

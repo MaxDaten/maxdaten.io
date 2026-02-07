@@ -60,7 +60,7 @@
                 <span class="dot"></span>
                 <span>Full-Stack Architectures</span>
                 <span class="dot"></span>
-                <span>DX</span>
+                <span>{t(locale, 'hero.techTag5')}</span>
             </div>
         </div>
 

@@ -10,6 +10,7 @@ export const de: TranslationKeys = {
     'hero.ctaBook': 'Gespräch buchen',
     'hero.ctaProjects': 'Projekte ansehen',
     'hero.abilityDescription': 'Ausgerollt an 700+ Fielmann-Filialen',
+    'hero.techTag5': 'Deutsch Muttersprachler',
 
     // Navigation
     'nav.blog': 'Blog',
