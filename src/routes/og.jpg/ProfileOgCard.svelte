@@ -3,10 +3,21 @@
 <script lang="ts">
     type Props = {
         badge?: string;
+        headline?: string;
+        headlineAccent?: string;
+        sub?: string;
+        brand?: string;
         avatarUrl?: string;
     };
 
-    let { badge = 'Available for 2026', avatarUrl }: Props = $props();
+    let {
+        badge = 'Available for 2026',
+        headline = 'Products that ship',
+        headlineAccent = 'Systems that scale',
+        sub = 'Full-stack product engineering with knowledge transfer built in — 15+ years from startup to 100M+ requests/day.',
+        brand = 'maxdaten.io',
+        avatarUrl,
+    }: Props = $props();
 </script>
 
 <div class="wrapper">
@@ -17,17 +28,16 @@
     <div class="container">
         <!-- Left Text Column -->
         <div class="og_textbox">
-            <div class="brand">maxdaten.io</div>
+            <div class="brand">{brand}</div>
             <div class="badge">{badge}</div>
             <h1>
-                <span class="line">Products that ship.</span>
+                <span class="line">{headline}.</span>
                 <span class="line"
-                    ><span class="highlight">Systems that scale</span>.</span
+                    ><span class="highlight">{headlineAccent}</span>.</span
                 >
             </h1>
             <p class="sub">
-                Full-stack product engineering with knowledge transfer built in
-                — 15+ years from startup to 100M+ requests/day.
+                {sub}
             </p>
         </div>
 
@@ -35,7 +45,7 @@
         <div class="card-wrapper">
             <div class="card">
                 <div class="card-header">
-                    <span>MAXDATEN.IO</span>
+                    <span>{brand.toUpperCase()}</span>
                 </div>
                 {#if avatarUrl}
                     <img src={avatarUrl} alt="Avatar" class="avatar" />

@@ -24,7 +24,7 @@
     </div>
 
     <div class="og-preview-card">
-        <ProfileOgCard badge="Available for 2026" avatarUrl={data.avatarUrl} />
+        <ProfileOgCard {...data.ogProps} avatarUrl={data.avatarUrl} />
     </div>
 
     <div class="og-preview-info">
