@@ -9,6 +9,7 @@ import type {
     BlogPosting,
     Organization,
     Person,
+    ProfessionalService,
     ProfilePage,
     WebSite,
     WithContext,
@@ -36,7 +37,7 @@ const descriptions: Record<Locale, { person: string; organization: string }> = {
 
 export function getBaseSchema(
     locale: Locale
-): [WebSite, Person, ProfilePage, Organization] {
+): [WebSite, Person, ProfilePage, Organization, ProfessionalService] {
     const localeBaseUrl = getSiteBaseUrl(locale);
     const inLanguage = locale === 'de' ? 'de-DE' : 'en-US';
     const siteName = locale === 'de' ? 'maxdaten.de' : 'maxdaten.io';
@@ -87,6 +88,35 @@ export function getBaseSchema(
                 '@id': 'https://maxdaten.io/#jloos',
             },
             description: desc.organization,
+        },
+        <WithContext<ProfessionalService>>{
+            '@context': 'https://schema.org',
+            '@type': 'ProfessionalService',
+            '@id': 'https://maxdaten.io/#business',
+            name: siteName,
+            description: desc.organization,
+            url: localeBaseUrl,
+            founder: {
+                '@id': 'https://maxdaten.io/#jloos',
+            },
+            employee: {
+                '@id': 'https://maxdaten.io/#jloos',
+            },
+            address: {
+                '@type': 'PostalAddress',
+                addressLocality: 'Hamburg',
+                addressRegion: 'Hamburg',
+                addressCountry: 'DE',
+                postalCode: '22043',
+            },
+            areaServed: [
+                { '@type': 'Country', name: 'Germany' },
+                { '@type': 'Country', name: 'Austria' },
+                { '@type': 'Country', name: 'Switzerland' },
+            ],
+            priceRange: '$$$$',
+            currenciesAccepted: 'EUR',
+            knowsLanguage: ['de', 'en'],
         },
     ];
 }
