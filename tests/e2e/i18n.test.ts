@@ -23,7 +23,7 @@ test.describe('i18n — German home page (/)', () => {
         const description = await page
             .locator('meta[name="description"]')
             .getAttribute('content');
-        expect(description).toContain('Wissenstransfer');
+        expect(description).toContain('Ich entwickle Ihr digitales Produkt');
     });
 
     test('has OG locale de_DE', async ({ page }) => {

@@ -6,7 +6,7 @@ export const de: TranslationKeys = {
     'hero.headline': 'Produkte, die liefern.',
     'hero.headlineAccent': 'Systeme, die skalieren',
     'hero.subheadline':
-        'Full-Stack Product Engineering mit integriertem Wissenstransfer. 15+ Jahre Erfahrung in Produktentwicklung, Plattform-Architektur und technischer Führung — vom Startup bis 100M+ Requests/Tag.',
+        'Ich entwickle Ihr digitales Produkt end-to-end und sorge dafür, dass das Wissen in Ihrem Team bleibt. 15+ Jahre Erfahrung in Produktentwicklung, Plattform-Architektur und Tech-Leadership — vom Startup bis zu Systemen mit 100M+ Requests am Tag.',
     'hero.ctaBook': 'Gespräch buchen',
     'hero.ctaProjects': 'Projekte ansehen',
     'hero.abilityDescription': 'Ausgerollt an 700+ Fielmann-Filialen',
@@ -26,7 +26,7 @@ export const de: TranslationKeys = {
     // Meta / SEO
     'meta.title': 'Jan-Philip Loos | maxdaten.io',
     'meta.description':
-        'Full-Stack Product Engineering mit integriertem Wissenstransfer. 15+ Jahre Erfahrung in Produktentwicklung, Plattform-Architektur und technischer Führung — vom Startup bis 100M+ Requests/Tag.',
+        'Ich entwickle Ihr digitales Produkt end-to-end und sorge dafür, dass das Wissen in Ihrem Team bleibt. 15+ Jahre Erfahrung in Produktentwicklung, Plattform-Architektur und Tech-Leadership — vom Startup bis zu Systemen mit 100M+ Requests am Tag.',
     'meta.ogImageAlt':
         'Jan-Philip Loos - Produkte, die liefern. Systeme, die skalieren.',
 };
