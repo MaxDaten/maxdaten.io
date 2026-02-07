@@ -5,10 +5,10 @@ test.describe('i18n — German home page (/)', () => {
         await page.goto('/');
         await expect(page.locator('.badge')).toHaveText('Verfügbar für 2026');
         await expect(page.locator('.headline')).toContainText(
-            'Produkte, die liefern.'
+            'Robuste Produkte.'
         );
         await expect(page.locator('.headline .accent')).toContainText(
-            'Systeme, die skalieren'
+            'Skalierbare Systeme.'
         );
     });
 
