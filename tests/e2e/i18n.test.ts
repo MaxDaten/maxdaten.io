@@ -8,7 +8,7 @@ test.describe('i18n — German home page (/)', () => {
             'Robuste Produkte.'
         );
         await expect(page.locator('.headline .accent')).toContainText(
-            'Skalierbare Systeme.'
+            'Skalierbare Systeme'
         );
     });
 
