@@ -70,6 +70,21 @@ This is a SvelteKit-based static blog site with MDX integration for content auth
 - Site metadata configured in `src/lib/data/meta.ts` with comprehensive SEO fields
 - Content processing pipeline includes image optimization and sitemap generation
 
+**i18n / Translations:**
+
+- Locales: `de` (default), `en` — defined in `src/lib/i18n/types.ts` (`Locale` type)
+- Translation files: `src/lib/i18n/de.ts` and `src/lib/i18n/en.ts` (flat key-value, typed by
+  `TranslationKeys`)
+- Lookup: `t(locale, key)` in `src/lib/i18n/index.ts`, falls back to `de`
+- Routing: `/` is German, `/en/` is English; derived by `getLocaleFromPath()`
+- Only the homepage is translated (`isTranslatedRoute()`); blog/gems stay English
+- Canonical domains: `maxdaten.de` (de), `maxdaten.io` (en)
+- `hero.subheadline` is reused as `meta.description` — keep them in sync when editing
+- When changing translation text, also update E2E assertions in `tests/e2e/i18n.test.ts`
+- Unit tests in `src/lib/i18n/i18n.test.ts` verify both locales have identical keys and that
+  translated keys differ between locales (except `nav.blog`, `nav.gems`, `footer.impressum`,
+  `meta.title`)
+
 **Routing Structure:**
 
 - Dynamic blog routing via `[slug]` for individual posts (e.g., `/my-post-slug`)
@@ -156,11 +171,6 @@ This is a SvelteKit-based static blog site with MDX integration for content auth
 
 ## Approach
 
-Core principle is to maintain focused contexts for both yourself (the orchestrator/main agent) and
-each sub-agent. Therefore, use the Task tool to delegate suitable tasks to sub-agents to improve
-task efficiency and optimize token usage. Use `/zen:planner` for planning and architectural
-evaluation and changes.
-
 **Development Workflow:**
 
 1. Write failing test for small feature increment
@@ -173,6 +183,37 @@ Always run tests between changes. Prioritize clean, well-tested code over speed.
 
 You are able to use the Svelte MCP server, where you have access to comprehensive Svelte 5 and
 SvelteKit documentation. Here's how to use the available tools effectively:
+
+## Debugging
+
+## Debugging
+
+**Multi-Agent Debugging Process:**
+
+When debugging, follow this structured approach using the Task tool with the `general-purpose`
+subagent:
+
+1. **Hypothesis Generation (Agent 1):** Launch an agent to analyze the issue and propose 1-3
+   specific hypotheses about the root cause. Each hypothesis should include:
+    - Description of the suspected cause
+    - Expected symptoms if hypothesis is correct
+    - Suggested verification method
+
+2. **Hypothesis Rating (Agent 2):** Launch a second agent to evaluate each hypothesis and assign a
+   probability rating (high/medium/low) based on:
+    - Available evidence
+    - Code complexity
+    - Likelihood given the symptoms
+
+3. **Hypothesis Verification (Agent 3):** Launch a third agent to test hypotheses in order from
+   highest to lowest rating until the root cause is found.
+
+**Example workflow:**
+
+- Agent 1 finds: "Race condition in API call", "Missing null check in render", "Incorrect cache
+  invalidation"
+- Agent 2 rates: High, Medium, Low
+- Agent 3 tests the race condition hypothesis first, then proceeds to next if needed
 
 ## Available MCP Tools:
 
