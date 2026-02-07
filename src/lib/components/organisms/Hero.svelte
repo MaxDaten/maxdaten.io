@@ -23,7 +23,8 @@
                 <span class="accent">{t(locale, 'hero.headlineAccent')}</span>.
             </h1>
             <p class="subheadline">
-                {t(locale, 'hero.subheadline')}
+                <!-- eslint-disable-next-line svelte/no-at-html-tags -- trusted i18n string -->
+                {@html t(locale, 'hero.subheadline')}
             </p>
             <div class="ctas">
                 <Sparkles>
