@@ -24,7 +24,7 @@ export const de: TranslationKeys = {
     'recentPosts.viewMore': 'Alle anzeigen',
 
     // Meta / SEO
-    'meta.title': 'Jan-Philip Loos | maxdaten.io',
+    'meta.title': 'Jan-Philip Loos | maxdaten.de',
     'meta.description':
         'Ich entwickle Ihr digitales Produkt end-to-end und sorge dafür, dass das Wissen in Ihrem Team bleibt. 15+ Jahre Erfahrung in Produktentwicklung, Plattform-Architektur und Tech-Leadership — vom Startup bis zu Systemen mit 100M+ Requests am Tag.',
     'meta.ogImageAlt':

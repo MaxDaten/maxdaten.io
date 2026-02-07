@@ -11,6 +11,18 @@
             "has": [{ "type": "host", "value": "maxdaten.io" }],
             "destination": "/en",
             "statusCode": 302
+        },
+        {
+            "source": "/:path*",
+            "has": [{ "type": "host", "value": "www.maxdaten.de" }],
+            "destination": "https://maxdaten.de/:path*",
+            "statusCode": 301
+        },
+        {
+            "source": "/en/:path*",
+            "has": [{ "type": "host", "value": "maxdaten.de" }],
+            "destination": "https://maxdaten.io/en/:path*",
+            "statusCode": 301
         }
     ],
     "rewrites": [

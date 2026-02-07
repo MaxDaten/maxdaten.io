@@ -4,7 +4,7 @@ export const authors: Record<string, Author> = {
     jloos: {
         id: 'jloos',
         name: 'Jan-Philip Loos',
-        tagline: 'functional & automated',
+        tagline: 'Freelance DevOps & Product Engineer',
         bio: 'Software engineer and DevOps consultant from Hamburg, Germany. Helping businesses build robust, scalable products and their infrastructure.',
         specialties: [
             'Kubernetes',

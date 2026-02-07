@@ -14,6 +14,7 @@ import type {
     WithContext,
 } from 'schema-dts';
 import { getCoverBySlug } from '$utils/image-loader';
+import { getSiteBaseUrl, type Locale } from '$lib/i18n';
 
 export const siteBaseUrl = 'https://maxdaten.io';
 
@@ -22,53 +23,73 @@ export const description =
 
 export const title = 'Jan-Philip Loos | maxdaten.io';
 
-export const baseSchema: [WebSite, Person, ProfilePage, Organization] = [
-    <WithContext<WebSite>>{
-        '@context': 'https://schema.org',
-        '@type': 'WebSite',
-        '@id': 'https://maxdaten.io/#website',
-        name: 'maxdaten.io',
-        description,
-        url: siteBaseUrl,
-        author: {
-            '@id': 'https://maxdaten.io/#jloos',
+const descriptions: Record<Locale, { person: string; organization: string }> = {
+    de: {
+        person: 'Software-Ingenieur und DevOps-Berater aus Hamburg. Ich helfe Unternehmen, robuste und skalierbare Produkte und Infrastrukturen aufzubauen.',
+        organization: 'Full-Stack Produktentwicklung und technische Beratung',
+    },
+    en: {
+        person: authors.jloos.bio ?? '',
+        organization: 'Full-stack product engineering and technical advisory',
+    },
+};
+
+export function getBaseSchema(
+    locale: Locale
+): [WebSite, Person, ProfilePage, Organization] {
+    const localeBaseUrl = getSiteBaseUrl(locale);
+    const inLanguage = locale === 'de' ? 'de-DE' : 'en-US';
+    const siteName = locale === 'de' ? 'maxdaten.de' : 'maxdaten.io';
+    const desc = descriptions[locale];
+
+    return [
+        <WithContext<WebSite>>{
+            '@context': 'https://schema.org',
+            '@type': 'WebSite',
+            '@id': 'https://maxdaten.io/#website',
+            name: siteName,
+            description: desc.organization,
+            url: localeBaseUrl,
+            author: {
+                '@id': 'https://maxdaten.io/#jloos',
+            },
         },
-    },
-    <WithContext<Person>>{
-        '@context': 'https://schema.org',
-        '@type': 'Person',
-        '@id': 'https://maxdaten.io/#jloos',
-        name: authors.jloos.name,
-        jobTitle: authors.jloos.tagline,
-        description: authors.jloos.bio,
-        url: `${siteBaseUrl}`,
-        sameAs: Object.values(authors.jloos.socials || {}).filter(
-            (url) => !url.startsWith('mailto:')
-        ),
-    },
-    <WithContext<ProfilePage>>{
-        '@context': 'https://schema.org',
-        '@type': 'ProfilePage',
-        '@id': 'https://maxdaten.io/#profile',
-        url: `${siteBaseUrl}`,
-        inLanguage: 'en-US',
-        mainEntity: {
+        <WithContext<Person>>{
+            '@context': 'https://schema.org',
+            '@type': 'Person',
             '@id': 'https://maxdaten.io/#jloos',
+            name: authors.jloos.name,
+            jobTitle: authors.jloos.tagline,
+            description: desc.person,
+            url: localeBaseUrl,
+            sameAs: Object.values(authors.jloos.socials || {}).filter(
+                (url) => !url.startsWith('mailto:')
+            ),
         },
-        image: `https://maxdaten.io${MeSrc?.img.src}`,
-    },
-    <WithContext<Organization>>{
-        '@context': 'https://schema.org',
-        '@type': 'Organization',
-        '@id': 'https://maxdaten.io/#organization',
-        name: 'maxdaten.io',
-        url: siteBaseUrl,
-        founder: {
-            '@id': 'https://maxdaten.io/#jloos',
+        <WithContext<ProfilePage>>{
+            '@context': 'https://schema.org',
+            '@type': 'ProfilePage',
+            '@id': 'https://maxdaten.io/#profile',
+            url: localeBaseUrl,
+            inLanguage,
+            mainEntity: {
+                '@id': 'https://maxdaten.io/#jloos',
+            },
+            image: `https://maxdaten.io${MeSrc?.img.src}`,
         },
-        description: 'Full-stack product engineering and technical advisory',
-    },
-];
+        <WithContext<Organization>>{
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            '@id': 'https://maxdaten.io/#organization',
+            name: siteName,
+            url: localeBaseUrl,
+            founder: {
+                '@id': 'https://maxdaten.io/#jloos',
+            },
+            description: desc.organization,
+        },
+    ];
+}
 
 // Simple mapping function for blog posts (not a complex generator)
 export function createBlogPostingSchema(

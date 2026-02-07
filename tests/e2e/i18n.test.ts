@@ -49,6 +49,38 @@ test.describe('i18n — German home page (/)', () => {
         expect(enHreflang).toBe('https://maxdaten.io/');
         expect(xDefault).toBe('https://maxdaten.de/');
     });
+
+    test('has canonical pointing to maxdaten.de', async ({ page }) => {
+        await page.goto('/');
+        const canonical = await page
+            .locator('link[rel="canonical"]')
+            .getAttribute('href');
+        expect(canonical).toContain('maxdaten.de');
+    });
+
+    test('has titleTemplate with maxdaten.de', async ({ page }) => {
+        await page.goto('/');
+        const title = await page.title();
+        expect(title).toContain('maxdaten.de');
+    });
+
+    test('has German keywords in meta tags', async ({ page }) => {
+        await page.goto('/');
+        const keywords = await page
+            .locator('meta[name="keywords"]')
+            .getAttribute('content');
+        expect(keywords).toContain('DevOps Berater');
+        expect(keywords).toContain('Freelancer Hamburg');
+        expect(keywords).toContain('Kubernetes Consulting');
+    });
+
+    test('has OG siteName maxdaten.de', async ({ page }) => {
+        await page.goto('/');
+        const siteName = await page
+            .locator('meta[property="og:site_name"]')
+            .getAttribute('content');
+        expect(siteName).toBe('maxdaten.de');
+    });
 });
 
 test.describe('i18n — English home page (/en/)', () => {
@@ -95,6 +127,37 @@ test.describe('i18n — English home page (/en/)', () => {
             .getAttribute('href');
         expect(deHreflang).toBe('https://maxdaten.de/');
         expect(enHreflang).toBe('https://maxdaten.io/');
+    });
+
+    test('has canonical pointing to maxdaten.io', async ({ page }) => {
+        await page.goto('/en');
+        const canonical = await page
+            .locator('link[rel="canonical"]')
+            .getAttribute('href');
+        expect(canonical).toContain('maxdaten.io');
+    });
+
+    test('has titleTemplate with maxdaten.io', async ({ page }) => {
+        await page.goto('/en');
+        const title = await page.title();
+        expect(title).toContain('maxdaten.io');
+    });
+
+    test('has English keywords in meta tags', async ({ page }) => {
+        await page.goto('/en');
+        const keywords = await page
+            .locator('meta[name="keywords"]')
+            .getAttribute('content');
+        expect(keywords).toContain('Technical Product Advisor');
+        expect(keywords).toContain('Full-Stack Product Engineering');
+    });
+
+    test('has OG siteName maxdaten.io', async ({ page }) => {
+        await page.goto('/en');
+        const siteName = await page
+            .locator('meta[property="og:site_name"]')
+            .getAttribute('content');
+        expect(siteName).toBe('maxdaten.io');
     });
 });
 

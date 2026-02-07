@@ -26,7 +26,6 @@ describe('i18n', () => {
                 'nav.blog',
                 'nav.gems',
                 'footer.impressum',
-                'meta.title',
             ]);
 
             for (const key of Object.keys(de) as (keyof TranslationKeys)[]) {

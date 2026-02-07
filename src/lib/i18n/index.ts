@@ -33,3 +33,8 @@ export const localeDomains: Record<Locale, string> = {
     de: 'https://maxdaten.de',
     en: 'https://maxdaten.io',
 };
+
+/** Returns the canonical base URL for a locale. */
+export function getSiteBaseUrl(locale: Locale): string {
+    return localeDomains[locale];
+}
