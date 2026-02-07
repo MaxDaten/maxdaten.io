@@ -3,7 +3,7 @@ import type { TranslationKeys } from './types';
 export const de: TranslationKeys = {
     // Hero
     'hero.badge': 'Verfügbar für 2026',
-    'hero.headline': 'Produkte, die ausliefern.',
+    'hero.headline': 'Produkte, die liefern.',
     'hero.headlineAccent': 'Systeme, die skalieren',
     'hero.subheadline':
         'Full-Stack Product Engineering mit integriertem Wissenstransfer. 15+ Jahre Erfahrung in Produktentwicklung, Plattform-Architektur und technischer Führung — vom Startup bis 100M+ Requests/Tag.',
@@ -28,5 +28,5 @@ export const de: TranslationKeys = {
     'meta.description':
         'Full-Stack Product Engineering mit integriertem Wissenstransfer. 15+ Jahre Erfahrung in Produktentwicklung, Plattform-Architektur und technischer Führung — vom Startup bis 100M+ Requests/Tag.',
     'meta.ogImageAlt':
-        'Jan-Philip Loos - Produkte, die ausliefern. Systeme, die skalieren.',
+        'Jan-Philip Loos - Produkte, die liefern. Systeme, die skalieren.',
 };
