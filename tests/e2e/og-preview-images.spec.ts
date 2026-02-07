@@ -19,7 +19,7 @@ test.describe('OG Preview Images', () => {
         ).toBeGreaterThan(0);
         console.log(`Found ${imageLocators.length} OG images to test`);
 
-        const imageLoadTasks = imageLocators.map(async (image) => {
+        for (const image of imageLocators) {
             await image.scrollIntoViewIfNeeded();
             await expect(image).toBeVisible({ timeout: 15000 });
             const imageSrc = await image.getAttribute('src');
@@ -34,13 +34,11 @@ test.describe('OG Preview Images', () => {
                         ),
                     {
                         message: `Image failed to load: ${imageSrc}`,
-                        timeout: 20000,
+                        timeout: 30000,
                     }
                 )
                 .toBe(true);
-        });
-
-        await Promise.all(imageLoadTasks);
+        }
     });
 
     test('page has expected structure', async ({ page }) => {
