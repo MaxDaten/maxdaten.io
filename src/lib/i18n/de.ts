@@ -6,7 +6,7 @@ export const de: TranslationKeys = {
     'hero.headline': 'Robuste Produkte',
     'hero.headlineAccent': 'Skalierbare Systeme',
     'hero.subheadline':
-        'Ich entwickle Ihr digitales Produkt end-to-end und sorge dafür, dass das Wissen in Ihrem Team bleibt. 15+ Jahre Erfahrung in Produktentwicklung, Plattform-Architektur und Tech-Leadership — vom Startup bis zu Systemen mit 100M+ Requests am Tag.',
+        'Ich entwickle Ihr digitales Produkt end-to-end und sorge dafür, dass das Wissen in Ihrem Team bleibt. 15+ Jahre Erfahrung in Produktentwicklung, Plattform-Architektur und Tech-Leadership — vom Startup bis zu Systemen mit 100M+ Requests am Tag. Hamburg.',
     'hero.ctaBook': 'Gespräch buchen',
     'hero.ctaProjects': 'Projekte ansehen',
     'hero.abilityDescription': 'Ausgerollt an 700+ Fielmann-Filialen',
