@@ -89,7 +89,6 @@
 
   packages = with pkgs; [
     npm-check-updates
-    nodePackages.vercel
   ];
 
   enterShell = ''
