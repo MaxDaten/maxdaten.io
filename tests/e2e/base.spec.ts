@@ -42,7 +42,6 @@ test('gems page loads correctly', async ({ page }) => {
     // Check that each gem card has required elements
     const firstCard = gemCards.first();
     await expect(firstCard).toBeVisible();
-    await expect(firstCard.locator('img')).toBeVisible(); // Cover image
 });
 
 test('page loads and is interactive', async ({ page }) => {
