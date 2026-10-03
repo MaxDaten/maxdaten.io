@@ -1,8 +1,12 @@
 import { error } from '@sveltejs/kit';
-import { getAuthor } from '#lib/data/authors.js';
+import { authors, getAuthor } from '#lib/data/authors.js';
 import type { PageServerLoad } from './$types';
 
-export const prerender = false;
+export const prerender = true;
+
+export function entries() {
+    return Object.keys(authors).map((authorId) => ({ authorId }));
+}
 
 export const load: PageServerLoad = async ({ params }) => {
     const { authorId } = params;
@@ -15,11 +19,10 @@ export const load: PageServerLoad = async ({ params }) => {
 
     return {
         author,
-        // Merged over the layout's tags; the card is a playful extra, not an indexed page.
+        // Merged over the layout's tags: this is the author page that post bylines link to.
         pageMetaTags: {
-            title: `${author.name} - Trading Card`,
-            description: `Trading card for ${author.name} - ${author.tagline}`,
-            robots: 'noindex,nofollow',
+            title: `About ${author.name}`,
+            description: author.bio,
         },
     };
 };

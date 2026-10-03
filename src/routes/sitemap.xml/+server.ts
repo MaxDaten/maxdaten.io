@@ -2,6 +2,7 @@ import * as sitemap from 'super-sitemap/sveltekit';
 import { client } from '#lib/sanity/client.js';
 import { allPostsQuery } from '#lib/sanity/queries.js';
 import { canonicalUrl } from '#lib/i18n/index.js';
+import { authors } from '#lib/data/authors.js';
 
 export const prerender = true;
 
@@ -25,10 +26,10 @@ export async function GET({ url }) {
             /\/preview/, // Exclude all preview routes
             /\/og-preview/, // Exclude OG preview routes
             /\/og\.jpg\/preview/, // Exclude OG image preview routes
-            /\/about\//, // Exclude about routes
             /\/404/, // Exclude 404 error page
         ],
         paramValues: {
+            '/about/[authorId]': Object.keys(authors),
             '/[slug]': blogPostParams, // Provide slugs with lastmod for dynamic blog post routes
         },
         additionalPaths: ['/en'],

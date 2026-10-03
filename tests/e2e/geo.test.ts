@@ -33,16 +33,41 @@ test('post headings contain only their own text', async ({ page }) => {
     }
 });
 
-test('/about/jloos sends one consistent set of meta tags', async ({ page }) => {
+const aboutUrl = 'https://www.maxdaten.io/about/jloos';
+
+test('/about/jloos is an indexable author page', async ({ page }) => {
     await page.goto('/about/jloos');
 
     const robots = page.locator('meta[name="robots"]');
     await expect(robots).toHaveCount(1);
-    await expect(robots).toHaveAttribute('content', /noindex/);
+    await expect(robots).toHaveAttribute('content', /^index/);
     await expect(page.locator('meta[name="description"]')).toHaveCount(1);
-    await expect(page).toHaveTitle(
-        'Jan-Philip Loos - Trading Card | maxdaten.io'
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+        'href',
+        aboutUrl
     );
+    await expect(page).toHaveTitle('About Jan-Philip Loos | maxdaten.io');
+});
+
+test('posts credit the author with a link to the author page', async ({
+    page,
+}) => {
+    await page.goto('/2026-01-31-ship-your-toolchain-not-just-infrastructure');
+
+    await expect(
+        page.locator('.meta-line a', { hasText: 'Jan-Philip Loos' })
+    ).toHaveAttribute('href', '/about/jloos');
+});
+
+test('the author page is in the sitemap and is the ProfilePage', async ({
+    page,
+    request,
+}) => {
+    const sitemap = await (await request.get('/sitemap.xml')).text();
+    expect(sitemap).toContain(`<loc>${aboutUrl}</loc>`);
+
+    const profile = byType(await jsonLd(page, '/en'), 'ProfilePage');
+    expect(profile?.url).toBe(aboutUrl);
 });
 
 type Schema = Record<string, unknown> & { '@type'?: string; '@id'?: string };

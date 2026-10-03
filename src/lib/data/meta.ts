@@ -15,7 +15,7 @@ import type {
     WebSite,
     WithContext,
 } from 'schema-dts';
-import { getSiteBaseUrl, type Locale } from '#lib/i18n/index.js';
+import { canonicalUrl, type Locale } from '#lib/i18n/index.js';
 
 export const siteBaseUrl = 'https://www.maxdaten.io';
 
@@ -38,8 +38,6 @@ const descriptions: Record<Locale, { person: string; organization: string }> = {
 export function getBaseSchema(
     locale: Locale
 ): [WebSite, Person, ProfilePage, Organization, ProfessionalService] {
-    const localeBaseUrl = getSiteBaseUrl(locale);
-    const inLanguage = locale === 'de' ? 'de-DE' : 'en-US';
     // One name and URL per entity, whatever the page language: answer engines merge entities
     // by @id and distrust ones whose properties disagree.
     const entityName = 'maxdaten.io';
@@ -78,8 +76,8 @@ export function getBaseSchema(
             '@context': 'https://schema.org',
             '@type': 'ProfilePage',
             '@id': 'https://maxdaten.io/#profile',
-            url: localeBaseUrl,
-            inLanguage,
+            url: canonicalUrl('/about/jloos'),
+            inLanguage: 'en-US',
             mainEntity: {
                 '@id': 'https://maxdaten.io/#jloos',
             },

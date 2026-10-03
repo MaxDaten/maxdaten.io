@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { resolve } from '$app/paths';
     import Tag from '#lib/components/atoms/Tag.svelte';
     import AuthorCard from '#lib/components/molecules/AuthorCard.svelte';
     import { formatPostDate, formatDateISO } from '#lib/utils/format-date.js';
@@ -77,7 +78,13 @@
                                 height="18"
                             />
                         {/if}
-                        <span class="author-name">{author.name}</span>
+                        <a
+                            class="author-name"
+                            href={resolve('/about/[authorId]', {
+                                // Sanity authors have no id yet; the site has one author.
+                                authorId: 'jloos',
+                            })}>{author.name}</a
+                        >
                     </span>
                     <span class="separator">•</span>
                 {/if}
