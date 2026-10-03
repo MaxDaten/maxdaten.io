@@ -20,3 +20,15 @@ for (const path of ['/', '/en', '/blog']) {
         ).toHaveAttribute('href', 'https://www.maxdaten.io/rss.xml');
     });
 }
+
+test('post headings contain only their own text', async ({ page }) => {
+    await page.goto('/2026-01-31-ship-your-toolchain-not-just-infrastructure');
+    const headings = await page
+        .locator('article h2, article h3')
+        .allTextContents();
+
+    expect(headings.length).toBeGreaterThan(0);
+    for (const text of headings) {
+        expect(text.trim()).not.toMatch(/^#/);
+    }
+});

@@ -52,8 +52,8 @@
         title="Permalink"
         aria-hidden="true"
         tabindex="-1"
-        onclick={copyAnchorUrl}>#</a
-    >
+        onclick={copyAnchorUrl}
+    ></a>
     {@render children()}
 </svelte:element>
 
@@ -72,6 +72,11 @@
             opacity: 0;
             transition: opacity 0.2s ease-in-out;
             cursor: pointer;
+
+            /* Drawn by CSS so the '#' stays out of the heading's text, which crawlers extract. */
+            &::before {
+                content: '#';
+            }
         }
 
         &:hover .heading-link {
