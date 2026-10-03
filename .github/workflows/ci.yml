@@ -34,7 +34,7 @@ jobs:
             - run: npm ci
 
             - name: Install Playwright chromium
-              run: npx playwright install --with-deps chromium
+              run: npx playwright install --with-deps --only-shell chromium
 
             - name: Format
               run: npx prettier --check .
