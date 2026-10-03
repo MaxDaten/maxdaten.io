@@ -53,3 +53,15 @@ export function getSiteBaseUrl(locale: Locale): string {
 export function canonicalUrl(pathname: string): string {
     return new URL(pathname, getSiteBaseUrl(getLocaleFromPath(pathname))).href;
 }
+
+const homePaths: Record<Locale, string> = { de: '/', en: '/en' };
+
+/**
+ * Link to a locale's home page. On the production domains the locales live on different hosts,
+ * so the link crosses domains; anywhere else (localhost, preview deployments) it stays on the
+ * current host.
+ */
+export function homeHref(locale: Locale, currentOrigin: string): string {
+    const onProduction = Object.values(localeDomains).includes(currentOrigin);
+    return onProduction ? canonicalUrl(homePaths[locale]) : homePaths[locale];
+}

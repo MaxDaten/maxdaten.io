@@ -245,3 +245,18 @@ test.describe('i18n — home page services and results', () => {
         ).toBeVisible();
     });
 });
+
+test('outside production the language switcher stays on this host', async ({
+    page,
+}) => {
+    await page.goto('/en');
+    const switcher = page.locator('.language-switcher');
+    await expect(switcher.locator('a[hreflang="de"]')).toHaveAttribute(
+        'href',
+        '/'
+    );
+    await expect(switcher.locator('a[hreflang="en"]')).toHaveAttribute(
+        'href',
+        '/en'
+    );
+});

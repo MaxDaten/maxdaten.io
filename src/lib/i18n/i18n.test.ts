@@ -5,6 +5,7 @@ import {
     isTranslatedRoute,
     canonicalUrl,
     heroSummary,
+    homeHref,
     defaultLocale,
     supportedLocales,
 } from './index';
@@ -127,6 +128,30 @@ describe('i18n', () => {
                 expect(t(locale, 'hero.subheadline')).toMatch(
                     new RegExp(`^${RegExp.escape(summary)}<br><br>`)
                 );
+            }
+        );
+    });
+
+    describe('homeHref()', () => {
+        it.each([
+            ['https://maxdaten.de', 'en', 'https://www.maxdaten.io/en'],
+            ['https://www.maxdaten.io', 'de', 'https://maxdaten.de/'],
+            ['https://www.maxdaten.io', 'en', 'https://www.maxdaten.io/en'],
+        ] as const)(
+            'links across production domains (%s → %s)',
+            (origin, locale, expected) => {
+                expect(homeHref(locale, origin)).toBe(expected);
+            }
+        );
+
+        it.each([
+            ['http://localhost:5173', 'de', '/'],
+            ['http://localhost:5173', 'en', '/en'],
+            ['https://maxdaten-git-x.vercel.app', 'en', '/en'],
+        ] as const)(
+            'stays on the current host elsewhere (%s → %s)',
+            (origin, locale, expected) => {
+                expect(homeHref(locale, origin)).toBe(expected);
             }
         );
     });
