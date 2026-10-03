@@ -8,7 +8,7 @@ SvelteKit 2 + Svelte 5 (runes), prerendered and deployed on Vercel, content in S
 Run inside the devenv shell (direnv loads it); `treefmt` only exists there.
 
 - `npm run dev` / `build` / `preview`
-- `npm run check` — svelte-check (uses `jsconfig.json`)
+- `npm run check` — svelte-check (uses `tsconfig.json`)
 - `npm run lint` — eslint only (`**/*.js` is ignored by the eslint config)
 - `npm run format` — `treefmt` (prettier + nixfmt); whole-repo runs must be a no-op
 - `npm run test` — fast vitest run: `server` project (node) + `browser` project (`*.svelte.test.ts`,
