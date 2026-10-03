@@ -13,13 +13,13 @@
     "deny": []
   },
   "hooks": {
-    "PreToolUse": [
+    "PostToolUse": [
       {
         "matcher": "Write|Edit|MultiEdit",
         "hooks": [
           {
             "type": "command",
-            "command": "treefmt"
+            "command": "f=$(jq -r '.tool_input.file_path // empty'); [ -n \"$f\" ] && command -v treefmt >/dev/null 2>&1 || exit 0; treefmt --quiet --on-unmatched=debug \"$f\""
           }
         ]
       }
