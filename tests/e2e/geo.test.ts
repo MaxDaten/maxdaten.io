@@ -109,3 +109,26 @@ test('a post has breadcrumbs and a modified date', async ({ page }) => {
     expect(posting?.dateModified).toBeTruthy();
     expect(posting?.dateModified).not.toBe(posting?.datePublished);
 });
+
+test('/llms.txt summarises the site for answer engines', async ({
+    request,
+}) => {
+    const response = await request.get('/llms.txt');
+
+    expect(response.status()).toBe(200);
+    expect(response.headers()['content-type']).toMatch(/^text\/plain/);
+    const text = await response.text();
+    expect(text).toMatch(/^# Jan-Philip Loos\n/);
+    expect(text).toContain(
+        '(https://www.maxdaten.io/2026-01-31-ship-your-toolchain-not-just-infrastructure)'
+    );
+});
+
+test('/llms-full.txt carries the full post text', async ({ request }) => {
+    const response = await request.get('/llms-full.txt');
+
+    expect(response.status()).toBe(200);
+    const text = await response.text();
+    expect(text).toContain('# Ship Your Toolchain, Not Just Infrastructure');
+    expect(text).toContain('## OpenSSL: Version Drift in the Fields');
+});

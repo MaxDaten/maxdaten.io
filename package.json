@@ -90,6 +90,7 @@
         "@fontsource-variable/space-grotesk": "^5.2.10",
         "@fontsource/jetbrains-mono": "^5.2.8",
         "@fontsource/space-grotesk": "^5.2.10",
+        "@portabletext/markdown": "^2.5.0",
         "@sanity/image-url": "^2.0.3"
     },
     "imports": {
