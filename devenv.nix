@@ -10,6 +10,8 @@
   languages.nix.enable = true;
   languages.javascript = {
     enable = true;
+    # Keep in sync with engines.node in package.json (CI and Vercel read that).
+    package = pkgs.nodejs_24;
     npm = {
       enable = true;
       install.enable = true;
