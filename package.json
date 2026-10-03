@@ -35,6 +35,9 @@
         "@fontsource-variable/inter": "^5",
         "@fontsource/inter": "^5.2.6",
         "@playwright/test": "^1.53.1",
+        "@portabletext/svelte": "^4.0.0",
+        "@portabletext/to-html": "^6.0.0",
+        "@sanity/client": "^8.9.0",
         "@shikijs/transformers": "^4.5.0",
         "@storybook/addon-docs": "^10.0.0",
         "@storybook/addon-svelte-csf": "^5.0.3",
@@ -52,6 +55,7 @@
         "eslint-plugin-storybook": "^10.0.0",
         "eslint-plugin-svelte": "^3.10.1",
         "globals": "^17.0.0",
+        "groq": "^6.17.0",
         "html-entities": "^2.6.0",
         "imagetools-core": "^9.1.0",
         "prettier": "^3.6.2",
@@ -84,10 +88,6 @@
         "@fontsource-variable/space-grotesk": "^5.2.10",
         "@fontsource/jetbrains-mono": "^5.2.8",
         "@fontsource/space-grotesk": "^5.2.10",
-        "@portabletext/svelte": "^3.0.1",
-        "@portabletext/to-html": "^5.0.1",
-        "@sanity/client": "^7.14.0",
-        "@sanity/image-url": "^2.0.3",
-        "groq": "^5.4.0"
+        "@sanity/image-url": "^2.0.3"
     }
 }

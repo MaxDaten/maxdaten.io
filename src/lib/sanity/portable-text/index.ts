@@ -25,8 +25,8 @@ export const portableTextComponents: PortableTextComponents = {
         link: ExternalLink,
     },
     // A partial override: mergeComponents spreads it over the default block styles at runtime.
-    // CustomStyles is typed as a full Record, which requires every style once the hoisted
-    // @portabletext/types is v4 (an undeclared dependency of @portabletext/svelte 3).
+    // @portabletext/svelte types CustomStyles as a full Record over every block style
+    // (including normal and blockquote), so a partial map needs the assertion.
     block: {
         h1: Heading,
         h2: Heading,
