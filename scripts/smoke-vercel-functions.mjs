@@ -1,6 +1,6 @@
 // Check the built Vercel output (what production serves), which neither `vite preview` nor the
 // dev server reflects:
-// - prerendered OG images exist as static JPEGs, one per post;
+// - prerendered OG images exist as static JPEGs: one per home locale and one per post;
 // - the function bundle, which only contains files Vercel's tracing picked up, still answers
 //   at request time, so missing runtime files fail here instead of in production.
 // Usage: npm run build && node scripts/smoke-vercel-functions.mjs
@@ -22,7 +22,11 @@ const posts = [
     .filter((slug) => !['en', 'blog', 'gems'].includes(slug));
 report(posts.length >= 5, `${posts.length} posts in the sitemap`);
 
-for (const path of [...posts.map((slug) => `/${slug}/og.jpg`)]) {
+for (const path of [
+    '/og/de.jpg',
+    '/og/en.jpg',
+    ...posts.map((slug) => `/${slug}/og.jpg`),
+]) {
     let bytes;
     try {
         bytes = readFileSync(`${staticDir}${path}`);
@@ -41,8 +45,7 @@ const { default: handler } = await import(
 );
 
 for (const [path, expected, type] of [
-    ['/og.jpg', 200, 'image/jpeg'],
-    ['/og.jpg?locale=de', 200, 'image/jpeg'],
+    ['/og.jpg/preview', 200, 'text/html'],
     ['/no-such-post/og.jpg', 404],
 ]) {
     let status, contentType;
@@ -55,7 +58,7 @@ for (const [path, expected, type] of [
     } catch (error) {
         status = `threw ${error.message}`;
     }
-    const ok = status === expected && (!type || contentType === type);
+    const ok = status === expected && (!type || contentType?.startsWith(type));
     report(ok, `function ${status} ${contentType ?? ''} ${path}`);
 }
 process.exit(failed ? 1 : 0);

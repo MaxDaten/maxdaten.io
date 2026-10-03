@@ -14,10 +14,8 @@ export const prerender = true;
 
 export const load = ({ url }) => {
     const locale: Locale = getLocaleFromPath(url.pathname);
-    const ogImageUrl = new URL(
-        `/og.jpg?locale=${locale}&v=${version}`,
-        url.origin
-    ).href;
+    const ogImageUrl = new URL(`/og/${locale}.jpg?v=${version}`, url.origin)
+        .href;
 
     const description = t(locale, 'meta.description');
     const title = t(locale, 'meta.title');

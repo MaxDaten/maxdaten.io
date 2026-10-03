@@ -68,7 +68,7 @@ describe('vercel.json redirects', () => {
         ['maxdaten.de', '/sitemap.xml'],
         ['maxdaten.de', '/robots.txt'],
         ['maxdaten.de', '/rss.xml'],
-        ['maxdaten.de', '/og.jpg'],
+        ['maxdaten.de', '/og/de.jpg'],
         ['maxdaten.de', '/2026-01-31-ship/og.jpg'],
         ['www.maxdaten.io', '/en'],
         ['www.maxdaten.io', '/blog'],

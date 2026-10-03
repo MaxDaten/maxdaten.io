@@ -22,12 +22,12 @@
         <div class="profile-og-card">
             <div class="og-image-container">
                 <a
-                    href={resolve('og.jpg')}
+                    href={resolve('/og/[locale].jpg', { locale: 'en' })}
                     target="_blank"
                     rel="noopener noreferrer"
                 >
                     <img
-                        src="/og.jpg"
+                        src="/og/en.jpg"
                         alt="Profile Card of Jan-Philip Loos"
                         loading="lazy"
                     />
@@ -42,7 +42,7 @@
                 </p>
                 <div class="og-card-links">
                     <a
-                        href={resolve('og.jpg')}
+                        href={resolve('/og/[locale].jpg', { locale: 'en' })}
                         target="_blank"
                         rel="noopener noreferrer"
                         class="og-link"

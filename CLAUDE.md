@@ -39,8 +39,9 @@ chromium e2e and `npm audit --audit-level=high`. Don't bypass them.
 
 - `(de)/` = German home at `/`, `en/` = English home at `/en`. Only the home page is translated;
   `/blog`, `/gems`, `/[slug]` (posts), `/about/[authorId]` are English-only.
-- Other routes: `/impressum`, `/404`, `og.jpg` + `[slug]/og.jpg` (satori + sharp, see
-  `src/lib/server/og-generation.ts`), `/og-preview`, `rss.xml`, `sitemap.xml` (super-sitemap),
+- Other routes: `/impressum`, `/datenschutz`, `/404`, OG images `og/[locale].jpg` + `[slug]/og.jpg`
+  (satori + sharp, see `src/lib/server/og-generation.ts`; prerendered, so the smoke script checks
+  them in `.vercel/output/static`), `/og-preview`, `rss.xml`, `sitemap.xml` (super-sitemap),
   `robots.txt`.
 - Translations: flat typed key/value in `src/lib/i18n/{de,en}.ts`; `t(locale, key)` in
   `src/lib/i18n/index.ts` falls back to `de`. Locale comes from `getLocaleFromPath()`.
