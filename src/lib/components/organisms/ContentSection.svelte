@@ -2,6 +2,8 @@
     interface Props {
         id?: string | undefined;
         title?: string | undefined;
+        /** h1 when the section title is the page title. */
+        headingLevel?: 'h1' | 'h2';
         description?: string | undefined;
         align?: 'left' | 'top' | 'right';
         button?: import('svelte').Snippet;
@@ -11,6 +13,7 @@
     let {
         id = undefined,
         title = undefined,
+        headingLevel = 'h2',
         description = undefined,
         align = 'top',
         button,
@@ -23,9 +26,9 @@
         {#if title || description}
             <div class="text">
                 {#if title}
-                    <h2>
+                    <svelte:element this={headingLevel}>
                         {title}
-                    </h2>
+                    </svelte:element>
                 {/if}
                 {#if description}
                     <p>

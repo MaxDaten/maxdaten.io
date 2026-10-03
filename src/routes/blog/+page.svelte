@@ -23,7 +23,7 @@
 
 <PageTransition>
     <div class="container">
-        <ContentSection title="All Blog Posts">
+        <ContentSection title="All Blog Posts" headingLevel="h1">
             <div class="grid">
                 {#each posts as post, index (post.slug)}
                     <BlogPostCard {post} sizes={coverSizes(index)} />

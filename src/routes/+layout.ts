@@ -24,8 +24,15 @@ export const load = ({ url }) => {
     const siteName = locale === 'de' ? 'maxdaten.de' : 'maxdaten.io';
     const canonicalUrl = toCanonicalUrl(url.pathname);
 
+    const rssLinkTag = {
+        rel: 'alternate',
+        type: 'application/rss+xml',
+        title: 'maxdaten.io blog',
+        href: `${localeDomains.en}/rss.xml`,
+    };
+
     // hreflang link tags for translated pages
-    const additionalLinkTags = isTranslatedRoute(url.pathname)
+    const hreflangLinkTags = isTranslatedRoute(url.pathname)
         ? [
               {
                   rel: 'alternate',
@@ -51,7 +58,7 @@ export const load = ({ url }) => {
         description,
         keywords: t(locale, 'meta.keywords').split(', '),
         canonical: canonicalUrl,
-        additionalLinkTags,
+        additionalLinkTags: [rssLinkTag, ...hreflangLinkTags],
         openGraph: {
             type: 'website',
             url: canonicalUrl,

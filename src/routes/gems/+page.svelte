@@ -30,7 +30,7 @@
 
 <PageTransition>
     <div class="container">
-        <ContentSection title="Gems of Precious Friends">
+        <ContentSection title="Gems of Precious Friends" headingLevel="h1">
             <div class="grid">
                 {#each gems as gem, index (index)}
                     <GemCard
