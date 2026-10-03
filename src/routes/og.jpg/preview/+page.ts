@@ -2,7 +2,7 @@ import { error } from '@sveltejs/kit';
 import type { PageLoad } from './$types';
 import { authors } from '#lib/data/authors.js';
 import { loadProfileImageUrl } from '../profile-image';
-import { t, type Locale } from '#lib/i18n/index.js';
+import { t, type Locale, heroSummary } from '#lib/i18n/index.js';
 
 // Reads ?locale= at request time, so it cannot be prerendered.
 export const prerender = false;
@@ -21,7 +21,7 @@ export const load: PageLoad = async ({ url }) => {
                 badge: t(locale, 'hero.badge'),
                 headline: t(locale, 'hero.headline'),
                 headlineAccent: t(locale, 'hero.headlineAccent'),
-                sub: t(locale, 'hero.subheadline'),
+                sub: heroSummary(locale),
                 brand: locale === 'de' ? 'maxdaten.de' : 'maxdaten.io',
             },
         };

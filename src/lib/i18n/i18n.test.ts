@@ -4,6 +4,7 @@ import {
     getLocaleFromPath,
     isTranslatedRoute,
     canonicalUrl,
+    heroSummary,
     defaultLocale,
     supportedLocales,
 } from './index';
@@ -112,6 +113,19 @@ describe('i18n', () => {
         ])('maps %s to its final URL %s', (path, expected) => {
             expect(canonicalUrl(path)).toBe(expected);
         });
+    });
+
+    describe('heroSummary()', () => {
+        it.each(['de', 'en'] as const)(
+            'is the first subheadline paragraph as plain text (%s)',
+            (locale) => {
+                const summary = heroSummary(locale);
+                expect(summary).not.toMatch(/[<>]/);
+                expect(t(locale, 'hero.subheadline')).toMatch(
+                    new RegExp(`^${RegExp.escape(summary)}<br><br>`)
+                );
+            }
+        );
     });
 
     describe('constants', () => {

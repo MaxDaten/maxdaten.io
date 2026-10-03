@@ -23,7 +23,9 @@ test.describe('i18n — German home page (/)', () => {
         const description = await page
             .locator('meta[name="description"]')
             .getAttribute('content');
-        expect(description).toContain('Ich entwickle Ihr digitales Produkt');
+        expect(description).toBe(
+            'Ich entwickle Ihr digitales Produkt end-to-end und sorge dafür, dass das Wissen in Ihrem Team bleibt — mit Continuous Delivery und Hochverfügbarkeit als Grundlage. Freelance Platform & Product Engineer mit 15+ Jahren Erfahrung in Produktentwicklung, Plattform-Architektur und Tech-Leadership — vom Startup bis zu Systemen mit 100M+ Requests am Tag. Hamburg.'
+        );
     });
 
     test('has OG locale de_DE', async ({ page }) => {
@@ -106,7 +108,9 @@ test.describe('i18n — English home page (/en/)', () => {
         const description = await page
             .locator('meta[name="description"]')
             .getAttribute('content');
-        expect(description).toContain('knowledge transfer');
+        expect(description).toBe(
+            'I build your digital product end to end and make sure the knowledge stays in your team — with continuous delivery and high availability as the foundation. Freelance Platform & Product Engineer with 15+ years in product development, platform architecture and tech leadership — from startup to systems at 100M+ requests a day. Hamburg.'
+        );
     });
 
     test('has OG locale en_US', async ({ page }) => {
@@ -148,8 +152,8 @@ test.describe('i18n — English home page (/en/)', () => {
         const keywords = await page
             .locator('meta[name="keywords"]')
             .getAttribute('content');
-        expect(keywords).toContain('Technical Product Advisor');
-        expect(keywords).toContain('Full-Stack Product Engineering');
+        expect(keywords).toContain('Freelance Platform & Product Engineer');
+        expect(keywords).not.toContain('Technical Product Advisor');
     });
 
     test('has OG siteName maxdaten.io', async ({ page }) => {

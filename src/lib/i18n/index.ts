@@ -14,6 +14,11 @@ export function t(locale: Locale, key: keyof TranslationKeys): string {
     return translations[locale]?.[key] ?? translations[defaultLocale][key];
 }
 
+/** First paragraph of the hero subheadline as plain text, for places that can't render HTML. */
+export function heroSummary(locale: Locale): string {
+    return t(locale, 'hero.subheadline').split('<br><br>')[0];
+}
+
 /** German pages: the German home and the legal pages. Everything else is English. */
 const germanRoutes = new Set(['/', '/impressum', '/datenschutz']);
 

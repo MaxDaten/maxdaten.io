@@ -3,7 +3,12 @@ import { error } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 import { generateOgImage } from '#lib/server/og-generation.js';
 import { ogPortraitDataUri } from '#lib/server/og-portrait.js';
-import { t, supportedLocales, type Locale } from '#lib/i18n/index.js';
+import {
+    t,
+    supportedLocales,
+    type Locale,
+    heroSummary,
+} from '#lib/i18n/index.js';
 
 // Rendered at build time, one card per locale: satori is too slow for a cold request.
 export const prerender = true;
@@ -22,7 +27,7 @@ export const GET: RequestHandler = async ({ params }) => {
         badge: t(locale, 'hero.badge'),
         headline: t(locale, 'hero.headline'),
         headlineAccent: t(locale, 'hero.headlineAccent'),
-        sub: t(locale, 'hero.subheadline'),
+        sub: heroSummary(locale),
         brand: locale === 'de' ? 'maxdaten.de' : 'maxdaten.io',
         avatarUrl: ogPortraitDataUri,
     });
