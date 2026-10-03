@@ -25,14 +25,13 @@ function processCoverImageUrl(sanityUrl: string): string {
 export const GET: RequestHandler = async ({ params }) => {
     const { slug } = params;
 
+    // Outside the try: the catch below would turn this 404 into a 500.
+    const post = await client.fetch(postBySlugQuery, { slug });
+    if (!post) {
+        error(404, 'Post not found');
+    }
+
     try {
-        // Get the blog post data from Sanity
-        const post = await client.fetch(postBySlugQuery, { slug });
-
-        if (!post) {
-            throw error(404, 'Post not found');
-        }
-
         // Use Sanity cover image URL if available, resize to prevent SVG buffer overflow
         const coverImageSrc = post.coverImage?.url
             ? processCoverImageUrl(post.coverImage.url)

@@ -14,3 +14,9 @@ for (const path of [
         expect((await response.body()).length).toBeGreaterThan(20_000);
     });
 }
+
+test('an unknown post has no OG image', async ({ request }) => {
+    const response = await request.get('/no-such-post/og.jpg');
+
+    expect(response.status()).toBe(404);
+});
