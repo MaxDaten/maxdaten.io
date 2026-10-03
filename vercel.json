@@ -1,6 +1,11 @@
 {
     "redirects": [
         {
+            "source": "/00-impressum",
+            "destination": "/impressum",
+            "permanent": true
+        },
+        {
             "source": "/",
             "has": [{ "type": "host", "value": "www.maxdaten.io" }],
             "destination": "/en",

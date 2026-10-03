@@ -1,5 +1,34 @@
 import { expect, test } from '@playwright/test';
 
+test.describe('Impressum', () => {
+    test('is a standalone page citing the DDG, not the repealed TMG', async ({
+        page,
+    }) => {
+        const response = await page.goto('/impressum');
+
+        expect(response?.status()).toBe(200);
+        expect(new URL(page.url()).pathname).toBe('/impressum');
+        await expect(page.locator('h1')).toHaveText('Impressum');
+        await expect(page.locator('main')).toContainText('§ 5 DDG');
+        await expect(page.locator('main')).not.toContainText('TMG');
+    });
+
+    test('has a working contact email link', async ({ page }) => {
+        await page.goto('/impressum');
+
+        const mail = page.locator('main a[href^="mailto:"]');
+        await expect(mail).toHaveAttribute('href', 'mailto:jloos@maxdaten.com');
+        await expect(mail).toHaveText('jloos@maxdaten.com');
+    });
+
+    test('has no blog-post chrome', async ({ page }) => {
+        await page.goto('/impressum');
+
+        await expect(page.locator('.reading-time')).toHaveCount(0);
+        await expect(page.locator('.date-header')).toHaveCount(0);
+    });
+});
+
 test.describe('Datenschutzerklärung', () => {
     test('names every third party that receives visitor data', async ({
         page,
