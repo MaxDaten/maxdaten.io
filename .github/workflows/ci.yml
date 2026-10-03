@@ -51,6 +51,10 @@ jobs:
             - name: Build
               run: npm run build
 
+            # Runs the built Vercel function bundle, which only holds traced files (unlike dev/preview).
+            - name: Smoke-test Vercel functions
+              run: node scripts/smoke-vercel-functions.mjs
+
             - name: E2E (chromium)
               run: npx playwright test --project=chromium
 
