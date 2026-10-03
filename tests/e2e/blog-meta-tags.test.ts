@@ -109,6 +109,23 @@ test.describe('Blog Post Meta Tags', () => {
                 .locator('script[type="application/ld+json"]')
                 .all();
             expect(jsonLdScripts.length).toBeGreaterThan(0);
+
+            const schemas = await Promise.all(
+                jsonLdScripts.map(async (s) =>
+                    JSON.parse((await s.textContent()) ?? '')
+                )
+            );
+            const posting = schemas
+                .flatMap((s) => s['@graph'] ?? s)
+                .find((s) => s['@type'] === 'BlogPosting');
+            const canonical = `https://www.maxdaten.io/${post.slug}`;
+            expect(posting).toMatchObject({
+                url: canonical,
+                mainEntityOfPage: canonical,
+                inLanguage: 'en',
+                author: { '@id': 'https://maxdaten.io/#jloos' },
+            });
+            expect(posting.image).toMatch(/^https:\/\//);
         });
     }
 

@@ -37,7 +37,8 @@ export const load: PageLoad = async ({ data, url }): Promise<PageData> => {
                       content: undefined as unknown as never,
                       authorId: 'jloos', // TODO: map from Sanity author
                   },
-                  url.href
+                  canonicalUrl(url.pathname),
+                  post.coverImage?.url ?? ogImageUrl
               ),
           ]
         : [];

@@ -123,7 +123,8 @@ export function getBaseSchema(
 // Simple mapping function for blog posts (not a complex generator)
 export function createBlogPostingSchema(
     post: BlogPost,
-    siteUrl: string
+    pageUrl: string,
+    image: string
 ): WithContext<BlogPosting> {
     return {
         '@context': 'https://schema.org',
@@ -133,7 +134,10 @@ export function createBlogPostingSchema(
         datePublished: post.date,
         dateModified: post.updated || post.date,
         keywords: post.tags,
-        url: `${siteUrl}/${post.slug}`,
+        url: pageUrl,
+        mainEntityOfPage: pageUrl,
+        image,
+        inLanguage: 'en',
         ...(post.authorId && {
             author: {
                 '@id': `https://maxdaten.io/#${post.authorId}`,
