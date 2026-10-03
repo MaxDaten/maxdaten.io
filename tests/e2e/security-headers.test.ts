@@ -19,12 +19,14 @@ test('vercel.json sets the baseline security headers site-wide', () => {
     expect(header('referrer-policy')).toBe('strict-origin-when-cross-origin');
     expect(header('x-frame-options')).toBe('DENY');
     expect(header('permissions-policy')).toBeTruthy();
-    expect(header('content-security-policy-report-only')).toContain(
+    expect(header('content-security-policy')).toContain(
         "frame-ancestors 'none'"
     );
+    expect(header('content-security-policy-report-only')).toBeUndefined();
 });
 
-// The CSP ships report-only. Enforce the same policy here to prove the pages would not break.
+// Vercel adds the CSP only in production; inject the same policy here to prove the pages run
+// under it.
 // Vite's dev server adds its own HMR websocket and inline module scripts, so those are allowed.
 const devAllowance = " ws://localhost:* 'unsafe-eval'";
 
@@ -33,11 +35,13 @@ for (const path of [
     '/en',
     '/blog',
     '/gems',
+    '/about/jloos',
+    '/impressum',
     '/datenschutz',
     'first-post',
 ]) {
     test(`pages run under the enforced CSP: ${path}`, async ({ page }) => {
-        const csp = header('content-security-policy-report-only')!.replace(
+        const csp = header('content-security-policy')!.replace(
             /(connect-src[^;]*)/,
             `$1${devAllowance}`
         );
