@@ -43,7 +43,6 @@ export default [
             'playwright-report/',
             'test-results/',
             '.vercel/',
-            '**/*.js',
         ],
     },
     {
