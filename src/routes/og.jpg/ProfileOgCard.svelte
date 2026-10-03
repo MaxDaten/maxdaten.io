@@ -51,8 +51,10 @@
                     <img src={avatarUrl} alt="Avatar" class="avatar" />
                 {/if}
                 <div class="card-name">Jan-Philip</div>
+                <!-- Explicit lines: the card runs past the image edge, so wrapped text gets clipped. -->
                 <div class="card-role">
-                    Freelance Platform & Product Engineer
+                    <div>Freelance Platform &</div>
+                    <div>Product Engineer</div>
                 </div>
             </div>
         </div>
@@ -222,7 +224,8 @@
 
     .card-role {
         display: flex;
-        font-size: 24px;
+        flex-direction: column;
+        font-size: 22px;
         color: #ff8000;
         font-family: 'JetBrains Mono', monospace;
         margin-top: 8px;
