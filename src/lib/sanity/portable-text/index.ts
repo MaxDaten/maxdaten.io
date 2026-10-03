@@ -24,6 +24,9 @@ export const portableTextComponents: PortableTextComponents = {
         internalLink: InternalLink,
         link: ExternalLink,
     },
+    // A partial override: mergeComponents spreads it over the default block styles at runtime.
+    // CustomStyles is typed as a full Record, which requires every style once the hoisted
+    // @portabletext/types is v4 (an undeclared dependency of @portabletext/svelte 3).
     block: {
         h1: Heading,
         h2: Heading,
@@ -31,7 +34,7 @@ export const portableTextComponents: PortableTextComponents = {
         h4: Heading,
         h5: Heading,
         h6: Heading,
-    },
+    } as PortableTextComponents['block'],
 };
 
 // Re-export individual components for direct use
