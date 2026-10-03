@@ -12,6 +12,7 @@
     <div class="footer-content">
         <div class="legal">
             <a href={resolve('/impressum')}>Impressum</a>
+            <a href={resolve('/datenschutz')}>Datenschutz</a>
             <span class="copyright">&copy; {new Date().getFullYear()}</span>
         </div>
         <div class="socials">
