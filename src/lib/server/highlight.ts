@@ -2,6 +2,8 @@ import { bundledLanguages, createHighlighter, type Highlighter } from 'shiki';
 import { transformerMetaHighlight } from '@shikijs/transformers';
 
 const THEME = 'ayu-dark';
+// ayu-dark's comment colour is 3.11:1 on the code background; lift it to 4.92:1 (WCAG AA).
+const COLOR_REPLACEMENTS = { '#5a6673': '#7a8693' };
 
 // One highlighter for the whole build; languages load on first use.
 let highlighter: Promise<Highlighter> | undefined;
@@ -48,6 +50,7 @@ export async function highlightCodeBlocks<T extends Block>(
             const highlightedHtml = instance.codeToHtml(code, {
                 lang,
                 theme: THEME,
+                colorReplacements: COLOR_REPLACEMENTS,
                 transformers: [
                     transformerMetaHighlight({ className: 'highlighted' }),
                 ],

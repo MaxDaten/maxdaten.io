@@ -44,6 +44,14 @@ describe('highlightCodeBlocks', () => {
         expect(code.highlightedHtml).toContain('<pre class="shiki ayu-dark"');
     });
 
+    it('renders comments with WCAG AA contrast on the code background', async () => {
+        const [code] = await highlightCodeBlocks([codeBlock('// note', 'ts')]);
+
+        // ayu-dark's #5A6673 is 3.11:1 on #141519; #7a8693 is 4.92:1.
+        expect(code.highlightedHtml.toLowerCase()).not.toContain('#5a6673');
+        expect(code.highlightedHtml.toLowerCase()).toContain('color:#7a8693');
+    });
+
     it('handles posts without a body', async () => {
         expect(await highlightCodeBlocks(undefined)).toEqual([]);
     });
