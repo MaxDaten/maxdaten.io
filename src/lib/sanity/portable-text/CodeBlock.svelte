@@ -7,7 +7,8 @@
         language?: string;
         filename?: string;
         showLineNumbers?: boolean;
-        highlightedLines?: string;
+        /** Shiki HTML added at build time by `highlightCodeBlocks` (src/lib/server/highlight.ts). */
+        highlightedHtml?: string;
     }
 
     interface Props {
@@ -16,33 +17,6 @@
 
     let { portableText }: Props = $props();
     let value = $derived(portableText.value);
-
-    // Client-side syntax highlighting with Shiki
-    let highlightedHtml = $state<string>('');
-
-    $effect(() => {
-        const code = value.code || '';
-        const lang = value.language || 'text';
-        const lines = value.highlightedLines;
-
-        (async () => {
-            const { codeToHtml } = await import('shiki');
-            const { transformerMetaHighlight } =
-                await import('@shikijs/transformers');
-
-            const html = await codeToHtml(code, {
-                lang,
-                theme: 'ayu-dark',
-                transformers: [
-                    transformerMetaHighlight({
-                        className: 'highlighted',
-                    }),
-                ],
-                meta: lines ? { __raw: lines } : undefined,
-            });
-            highlightedHtml = html;
-        })();
-    });
 </script>
 
 <CodeBlockUI
@@ -50,9 +24,9 @@
     showLineNumbers={value.showLineNumbers ?? false}
     lang={value.language ?? null}
 >
-    {#if highlightedHtml}
-        <!-- eslint-disable-next-line svelte/no-at-html-tags -- Shiki output is trusted -->
-        {@html highlightedHtml}
+    {#if value.highlightedHtml}
+        <!-- eslint-disable-next-line svelte/no-at-html-tags -- Shiki output generated at build time -->
+        {@html value.highlightedHtml}
     {:else}
         <pre class="shiki"><code>{value.code}</code></pre>
     {/if}

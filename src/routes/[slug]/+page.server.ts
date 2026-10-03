@@ -4,6 +4,7 @@ import { postBySlugQuery, allPostSlugsQuery } from '$lib/sanity/queries';
 import { error } from '@sveltejs/kit';
 import { env } from '$env/dynamic/private';
 import { building } from '$app/environment';
+import { highlightCodeBlocks } from '$lib/server/highlight';
 
 export async function entries() {
     const posts = await client.fetch(allPostSlugsQuery);
@@ -28,6 +29,6 @@ export const load: PageServerLoad = async ({ params, url }) => {
 
     return {
         source: 'sanity' as const,
-        post,
+        post: { ...post, body: await highlightCodeBlocks(post.body) },
     };
 };
