@@ -3,7 +3,9 @@ import type { PageLoad } from './$types';
 import { client } from '#lib/sanity/client.js';
 import { postBySlugQuery } from '#lib/sanity/queries.js';
 
-export const prerender = 'auto';
+// Rendered on request: a prerendered <slug>/og.jpg/ directory would collide with the
+// prerendered <slug>/og.jpg image file.
+export const prerender = false;
 
 export const load: PageLoad = async ({ params }) => {
     const { slug } = params;

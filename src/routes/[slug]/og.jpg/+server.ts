@@ -2,10 +2,16 @@ import OgCard from '#routes/[slug]/og.jpg/OgCard.svelte';
 import { error } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 import { client } from '#lib/sanity/client.js';
-import { postBySlugQuery } from '#lib/sanity/queries.js';
+import { allPostSlugsQuery, postBySlugQuery } from '#lib/sanity/queries.js';
 import { generateOgImage } from '#lib/server/og-generation.js';
 
-export const prerender = false;
+// Rendered at build time: satori takes ~3 s per card, too slow for a cold request.
+export const prerender = true;
+
+export async function entries() {
+    const posts = await client.fetch(allPostSlugsQuery);
+    return posts.map((post: { slug: string }) => ({ slug: post.slug }));
+}
 
 /**
  * Process Sanity image URL for OG card - resize to reduce SVG size.

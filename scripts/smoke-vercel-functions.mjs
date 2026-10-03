@@ -1,8 +1,38 @@
-// Invoke the built Vercel function bundle (what production runs) for endpoints rendered at
-// request time. Unlike `vite preview` or the dev server, the bundle only contains files that
-// Vercel's tracing picked up, so missing runtime files fail here instead of in production.
+// Check the built Vercel output (what production serves), which neither `vite preview` nor the
+// dev server reflects:
+// - prerendered OG images exist as static JPEGs, one per post;
+// - the function bundle, which only contains files Vercel's tracing picked up, still answers
+//   at request time, so missing runtime files fail here instead of in production.
 // Usage: npm run build && node scripts/smoke-vercel-functions.mjs
-import { realpathSync } from 'node:fs';
+import { readFileSync, realpathSync } from 'node:fs';
+
+const staticDir = realpathSync('.vercel/output/static');
+let failed = 0;
+const report = (ok, line) => {
+    if (!ok) failed++;
+    console.log(`${ok ? 'ok  ' : 'FAIL'} ${line}`);
+};
+
+// Every post listed in the sitemap needs a prerendered OG image.
+const sitemap = readFileSync(`${staticDir}/sitemap.xml`, 'utf8');
+const posts = [
+    ...sitemap.matchAll(/<loc>https:\/\/www\.maxdaten\.io\/([^/<]+)<\/loc>/g),
+]
+    .map((m) => m[1])
+    .filter((slug) => !['en', 'blog', 'gems'].includes(slug));
+report(posts.length >= 5, `${posts.length} posts in the sitemap`);
+
+for (const path of [...posts.map((slug) => `/${slug}/og.jpg`)]) {
+    let bytes;
+    try {
+        bytes = readFileSync(`${staticDir}${path}`);
+    } catch {
+        report(false, `static ${path} missing`);
+        continue;
+    }
+    const isJpeg = bytes[0] === 0xff && bytes[1] === 0xd8 && bytes[2] === 0xff;
+    report(isJpeg && bytes.length > 20_000, `static ${path} ${bytes.length} B`);
+}
 
 const fn = realpathSync('.vercel/output/functions/![-]/catchall.func');
 process.chdir(fn); // Vercel runs the handler from the function root
@@ -10,17 +40,11 @@ const { default: handler } = await import(
     `${fn}/.svelte-kit/vercel-tmp/index.js`
 );
 
-const checks = [
-    ['/og.jpg', 'image/jpeg'],
-    ['/og.jpg?locale=de', 'image/jpeg'],
-    [
-        '/2026-01-31-ship-your-toolchain-not-just-infrastructure/og.jpg',
-        'image/jpeg',
-    ],
-];
-
-let failed = 0;
-for (const [path, type] of checks) {
+for (const [path, expected, type] of [
+    ['/og.jpg', 200, 'image/jpeg'],
+    ['/og.jpg?locale=de', 200, 'image/jpeg'],
+    ['/no-such-post/og.jpg', 404],
+]) {
     let status, contentType;
     try {
         const response = await handler.fetch(
@@ -31,10 +55,7 @@ for (const [path, type] of checks) {
     } catch (error) {
         status = `threw ${error.message}`;
     }
-    const ok = status === 200 && contentType === type;
-    if (!ok) failed++;
-    console.log(
-        `${ok ? 'ok  ' : 'FAIL'} ${status} ${contentType ?? ''} ${path}`
-    );
+    const ok = status === expected && (!type || contentType === type);
+    report(ok, `function ${status} ${contentType ?? ''} ${path}`);
 }
 process.exit(failed ? 1 : 0);
