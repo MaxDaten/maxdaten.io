@@ -1,4 +1,4 @@
-import '$lib/scss/global.scss';
+import '../src/lib/scss/global.css';
 
 import { themes } from 'storybook/theming';
 
