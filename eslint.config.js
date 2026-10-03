@@ -36,6 +36,8 @@ export default [
             'build/',
             '.svelte-kit/',
             'dist/',
+            'studio/dist/',
+            'studio/.sanity/',
             'node_modules/',
             '.histoire/',
             'storybook-static/',
