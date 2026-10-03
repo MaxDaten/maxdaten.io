@@ -25,6 +25,27 @@ export const de: TranslationKeys = {
     'recentPosts.description': 'Neueste Blog-Beiträge',
     'recentPosts.viewMore': 'Alle anzeigen',
 
+    // Services and selected results (home page)
+    'services.title': 'Was ich mache',
+    'services.description':
+        'Praktisch und gemeinsam mit Ihrem Team, damit das Wissen bleibt, wenn ich gehe.',
+    'services.platform.title': 'Platform Engineering',
+    'services.platform.text':
+        'Entwicklerplattformen und Toolchains, die Ihre Teams selbst betreiben: Kubernetes, GitOps und reproduzierbare Umgebungen mit Nix und devenv, damit jeder Entwickler und jeder CI-Lauf dieselben Werkzeuge nutzt.',
+    'services.delivery.title': 'Continuous Delivery',
+    'services.delivery.text':
+        'Von fragilen Release-Pipelines zu Continuous Delivery: Trunk-based Development, verlässliche Testautomatisierung und ein automatisierter Weg in die Produktion.',
+    'services.product.title': 'Produktentwicklung',
+    'services.product.text':
+        'Ihr Produkt end-to-end, von der Infrastruktur bis zur Oberfläche, im Pairing mit Ihren Entwicklern.',
+    'results.title': 'Ausgewählte Projekte',
+    'results.description': 'Ergebnisse aus bisherigen Projekten.',
+    'results.klingel':
+        'Plattform und Delivery für eine E-Commerce-Gruppe mit über 100 Mio. Requests am Tag und täglich 20 Mio. Produkt-Updates ohne Störungen.',
+    'results.fielmann': 'Tech Lead für einen Rollout in über 700 Filialen.',
+    'results.papego':
+        'Mitgründer des Unternehmens hinter Papego, ausgezeichnet mit dem German Design Award 2018.',
+
     // Meta / SEO
     'meta.title': 'Jan-Philip Loos | maxdaten.de',
     'meta.description':

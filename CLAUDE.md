@@ -56,7 +56,8 @@ chromium e2e and `npm audit --audit-level=high`. Don't bypass them.
 - `hero.subheadline` doubles as `meta.description` — keep them in sync.
 - When changing translation text, update `tests/e2e/i18n.test.ts`. `src/lib/i18n/i18n.test.ts`
   enforces identical keys across locales and differing values (except `nav.blog`, `nav.gems`,
-  `footer.impressum`, `meta.title`). Test both domain variants for routing changes.
+  `footer.impressum`, `meta.title`, `services.platform.title`, `services.delivery.title`). Test both
+  domain variants for routing changes.
 
 ## Styling
 

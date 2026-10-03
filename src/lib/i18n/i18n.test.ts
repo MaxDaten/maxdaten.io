@@ -28,6 +28,9 @@ describe('i18n', () => {
                 'nav.blog',
                 'nav.gems',
                 'footer.impressum',
+                // Service names German buyers use in English.
+                'services.platform.title',
+                'services.delivery.title',
             ]);
 
             for (const key of Object.keys(de) as (keyof TranslationKeys)[]) {

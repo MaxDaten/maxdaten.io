@@ -215,3 +215,33 @@ test.describe('i18n — Blog pages remain English', () => {
         await expect(hreflangLinks).toHaveCount(0);
     });
 });
+
+test.describe('i18n — home page services and results', () => {
+    test('/en names the services and dated results', async ({ page }) => {
+        await page.goto('/en');
+        await expect(
+            page.getByRole('heading', { level: 2, name: 'What I do' })
+        ).toBeVisible();
+        await expect(
+            page.getByText(/reproducible environments with Nix and devenv/)
+        ).toBeVisible();
+        await expect(
+            page.getByRole('heading', { level: 2, name: 'Selected work' })
+        ).toBeVisible();
+        await expect(page.getByText('Klingel Gruppe')).toBeVisible();
+        await expect(page.getByText('2021–2023')).toBeVisible();
+    });
+
+    test('/ shows the same sections in German', async ({ page }) => {
+        await page.goto('/');
+        await expect(
+            page.getByRole('heading', { level: 2, name: 'Was ich mache' })
+        ).toBeVisible();
+        await expect(
+            page.getByRole('heading', {
+                level: 2,
+                name: 'Ausgewählte Projekte',
+            })
+        ).toBeVisible();
+    });
+});

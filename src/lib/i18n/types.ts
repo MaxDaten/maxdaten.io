@@ -24,6 +24,21 @@ export interface TranslationKeys {
     'recentPosts.description': string;
     'recentPosts.viewMore': string;
 
+    // Services and selected results (home page)
+    'services.title': string;
+    'services.description': string;
+    'services.platform.title': string;
+    'services.platform.text': string;
+    'services.delivery.title': string;
+    'services.delivery.text': string;
+    'services.product.title': string;
+    'services.product.text': string;
+    'results.title': string;
+    'results.description': string;
+    'results.klingel': string;
+    'results.fielmann': string;
+    'results.papego': string;
+
     // Meta / SEO
     'meta.title': string;
     'meta.description': string;

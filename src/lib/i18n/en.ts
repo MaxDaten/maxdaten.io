@@ -25,6 +25,27 @@ export const en: TranslationKeys = {
     'recentPosts.description': 'Most recent blog posts',
     'recentPosts.viewMore': 'View More',
 
+    // Services and selected results (home page)
+    'services.title': 'What I do',
+    'services.description':
+        'Hands-on, alongside your team, so the knowledge stays when I leave.',
+    'services.platform.title': 'Platform Engineering',
+    'services.platform.text':
+        'Developer platforms and toolchains your teams own: Kubernetes, GitOps and reproducible environments with Nix and devenv, so every developer and every CI run uses the same tools.',
+    'services.delivery.title': 'Continuous Delivery',
+    'services.delivery.text':
+        'From brittle release pipelines to continuous delivery: trunk-based development, reliable test automation and one automated path to production.',
+    'services.product.title': 'Product Engineering',
+    'services.product.text':
+        'Your product built end to end, from infrastructure to UI, pairing with your developers along the way.',
+    'results.title': 'Selected work',
+    'results.description': 'Results from previous engagements.',
+    'results.klingel':
+        'Platform and delivery for an e-commerce group serving 100M+ requests a day, with 20M product updates daily without incidents.',
+    'results.fielmann': 'Tech lead for a rollout to 700+ retail stores.',
+    'results.papego':
+        'Co-founded the company behind Papego, winner of the German Design Award 2018.',
+
     // Meta / SEO
     'meta.title': 'Jan-Philip Loos | maxdaten.io',
     'meta.description':
