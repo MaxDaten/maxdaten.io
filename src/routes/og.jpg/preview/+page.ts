@@ -4,7 +4,8 @@ import { authors } from '$lib/data/authors';
 import { loadProfileImageUrl } from '../profile-image';
 import { t, type Locale } from '$lib/i18n';
 
-export const prerender = 'auto';
+// Reads ?locale= at request time, so it cannot be prerendered.
+export const prerender = false;
 
 export const load: PageLoad = async ({ url }) => {
     try {
