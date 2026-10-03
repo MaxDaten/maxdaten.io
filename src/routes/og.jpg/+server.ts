@@ -2,15 +2,19 @@ import ProfileOgCard from '$routes/og.jpg/ProfileOgCard.svelte';
 import { error } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 import { generateOgImage } from '$lib/server/og-generation';
+import { profileAvatarDataUri } from '$lib/server/profile-avatar';
 import { loadProfileImageUrl } from './profile-image';
 import { t, type Locale } from '$lib/i18n';
 
 export const prerender = false;
 
-export const GET: RequestHandler = async ({ url }) => {
+export const GET: RequestHandler = async ({ url, fetch }) => {
     try {
         const locale = (url.searchParams.get('locale') as Locale) || 'en';
-        const avatarUrl = await loadProfileImageUrl(url);
+        const portraitUrl = await loadProfileImageUrl(url);
+        const avatarUrl = portraitUrl
+            ? await profileAvatarDataUri(fetch, portraitUrl)
+            : undefined;
 
         return await generateOgImage(ProfileOgCard, {
             badge: t(locale, 'hero.badge'),
