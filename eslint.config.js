@@ -39,6 +39,8 @@ export default [
         ignores: [
             'build/',
             '.svelte-kit/',
+            // Claude Code agent worktrees: full checkouts with their own build output.
+            '.claude/worktrees/',
             'dist/',
             'studio/dist/',
             'studio/.sanity/',

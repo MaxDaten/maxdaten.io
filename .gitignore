@@ -28,3 +28,6 @@ storybook-static
 **/__screenshots__/
 /.playwright-mcp/
 .vercel
+
+# Claude Code agent worktrees
+.claude/worktrees/
