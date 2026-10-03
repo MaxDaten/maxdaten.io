@@ -1,4 +1,4 @@
-import * as sitemap from 'super-sitemap';
+import * as sitemap from 'super-sitemap/sveltekit';
 import { client } from '$lib/sanity/client';
 import { allPostsQuery } from '$lib/sanity/queries';
 
@@ -21,11 +21,11 @@ export async function GET({ url }) {
     return await sitemap.response({
         origin: url.origin,
         excludeRoutePatterns: [
-            '.*\\/preview.*', // Exclude all preview routes
-            '.*\\/og-preview.*', // Exclude OG preview routes
-            '.*\\/og\\.jpg\\/preview.*', // Exclude OG image preview routes
-            '.*\\/about\\/.*', // Exclude about routes
-            '.*\\/404.*', // Exclude 404 error page
+            /\/preview/, // Exclude all preview routes
+            /\/og-preview/, // Exclude OG preview routes
+            /\/og\.jpg\/preview/, // Exclude OG image preview routes
+            /\/about\//, // Exclude about routes
+            /\/404/, // Exclude 404 error page
         ],
         paramValues: {
             '/[slug]': blogPostParams, // Provide slugs with lastmod for dynamic blog post routes
@@ -37,8 +37,8 @@ export async function GET({ url }) {
                     return {
                         ...p,
                         alternates: [
-                            { lang: 'de', path: '/' },
-                            { lang: 'en', path: '/en' },
+                            { hreflang: 'de', path: '/' },
+                            { hreflang: 'en', path: '/en' },
                         ],
                     };
                 }
