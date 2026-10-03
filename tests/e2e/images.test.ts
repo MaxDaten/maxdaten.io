@@ -25,3 +25,15 @@ test('post avatars are served at display size', async ({ page, request }) => {
         );
     }
 });
+
+for (const path of ['/', '/en']) {
+    test(`hero portrait on ${path} loads eagerly with high priority`, async ({
+        page,
+    }) => {
+        await page.goto(path);
+
+        const hero = page.locator('img.avatar-image');
+        await expect(hero).toHaveAttribute('loading', 'eager');
+        await expect(hero).toHaveAttribute('fetchpriority', 'high');
+    });
+}

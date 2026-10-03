@@ -5,7 +5,7 @@
     import CalendarIcon from '$lib/icons/calendar.svelte';
     import GitHubIcon from '$lib/icons/socials/github.svelte';
     import MeSrc from '$assets/images/authors/jloos-v2.jpeg?as=run&fit=cover';
-    import { FxReveal as Img } from '@zerodevx/svelte-img';
+    import Img from '@zerodevx/svelte-img';
     import { getContext } from 'svelte';
     import { t, type Locale } from '$lib/i18n';
 
@@ -79,6 +79,9 @@
                             {...{
                                 class: 'avatar-image',
                                 alt: 'Jan-Philip Loos',
+                                // Largest element above the fold (LCP): fetch it first.
+                                loading: 'eager',
+                                fetchpriority: 'high',
                             }}
                         />
                     </div>
