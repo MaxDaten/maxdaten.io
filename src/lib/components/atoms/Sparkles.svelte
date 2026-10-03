@@ -21,7 +21,7 @@
                     ? 'var(--color-accent)'
                     : color === 'secondary'
                       ? 'var(--color-accent)'
-                      : 'var(--color-sparkle',
+                      : 'var(--color-sparkle)',
             size: random(10, 20),
             style: {
                 // Pick a random spot in the available space
