@@ -24,8 +24,8 @@ export const postBySlugQuery = defineQuery(`
       }
     },
     date,
-    // Editors rarely set lastModified; fall back to the document's last edit.
-    "lastModified": coalesce(lastModified, _updatedAt),
+    lastModified,
+    _updatedAt,
     hidden,
     keywords,
     outroText,

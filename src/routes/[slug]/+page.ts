@@ -28,7 +28,10 @@ export const load: PageLoad = async ({ data, url }): Promise<PageData> => {
                       title: post.title,
                       slug: post.slug,
                       date: post.date,
-                      updated: post.lastModified ?? post.date,
+                      // Editors rarely set lastModified (shown on the page as "Updated");
+                      // for machines, fall back to the document's last edit.
+                      updated:
+                          post.lastModified ?? post._updatedAt ?? post.date,
                       excerpt: post.excerpt ?? '',
                       tags: post.tags?.map((t) => t.name) ?? [],
                       keywords: post.keywords ?? [],

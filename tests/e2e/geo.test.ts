@@ -132,3 +132,11 @@ test('/llms-full.txt carries the full post text', async ({ request }) => {
     expect(text).toContain('# Ship Your Toolchain, Not Just Infrastructure');
     expect(text).toContain('## OpenSSL: Version Drift in the Fields');
 });
+
+test('a post shows "Updated" only when an editor set lastModified', async ({
+    page,
+}) => {
+    await page.goto('/2026-01-31-ship-your-toolchain-not-just-infrastructure');
+
+    await expect(page.locator('.updated-label')).toHaveCount(0);
+});

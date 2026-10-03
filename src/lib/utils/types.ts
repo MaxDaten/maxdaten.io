@@ -71,6 +71,7 @@ export type SanityPost = {
     body: PortableTextBlock[]; // Portable Text array
     date: string;
     lastModified?: string;
+    _updatedAt?: string;
     hidden?: boolean;
     keywords?: string[];
     outroText?: string;
