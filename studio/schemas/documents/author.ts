@@ -14,11 +14,26 @@ export const authorType = defineType({
             validation: (rule) => rule.required(),
         }),
         defineField({
+            name: 'slug',
+            title: 'Slug',
+            type: 'slug',
+            description: 'Author page path: /about/<slug>',
+            options: { source: 'name' },
+            validation: (rule) => rule.required(),
+        }),
+        defineField({
+            name: 'jobTitle',
+            title: 'Job Title',
+            type: 'string',
+            description:
+                'Used for the structured data, the author page and llms.txt',
+        }),
+        defineField({
             name: 'tagline',
             title: 'Tagline',
             type: 'string',
             description:
-                'Short one-liner (e.g., "DevOps Engineer & Cloud Architect")',
+                'Closing pitch shown under posts without their own outro text',
             validation: (rule) => rule.max(200),
         }),
         defineField({
@@ -27,6 +42,14 @@ export const authorType = defineType({
             type: 'text',
             rows: 4,
             description: 'Short biography (plain text)',
+        }),
+        defineField({
+            name: 'specialties',
+            title: 'Specialties',
+            type: 'array',
+            of: [{ type: 'string' }],
+            description:
+                'Expertise list (structured data knowsAbout, author page)',
         }),
         defineField({
             name: 'email',
@@ -78,6 +101,19 @@ export const authorType = defineType({
                     type: 'url',
                     validation: (rule) =>
                         rule.uri({ scheme: ['http', 'https'] }),
+                }),
+                defineField({
+                    name: 'cv',
+                    title: 'CV',
+                    type: 'url',
+                    validation: (rule) =>
+                        rule.uri({ scheme: ['http', 'https'] }),
+                }),
+                defineField({
+                    name: 'signal',
+                    title: 'Signal',
+                    type: 'url',
+                    validation: (rule) => rule.uri({ scheme: ['https'] }),
                 }),
                 defineField({
                     name: 'website',

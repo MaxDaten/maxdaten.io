@@ -209,3 +209,15 @@ test('/about/jloos shows the front-page card next to the bio', async ({
     await expect(page.getByText('Nix & devenv')).toBeVisible();
     await expect(page.getByText('Bug resistance')).toHaveCount(0);
 });
+
+test('the author card and footer use the one contact address', async ({
+    page,
+}) => {
+    await page.goto('/2026-01-31-ship-your-toolchain-not-just-infrastructure');
+
+    for (const scope of ['.author-card', 'footer']) {
+        await expect(
+            page.locator(`${scope} a[href^="mailto:"]`).first()
+        ).toHaveAttribute('href', 'mailto:jloos@maxdaten.com');
+    }
+});
