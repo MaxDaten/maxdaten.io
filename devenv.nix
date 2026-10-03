@@ -89,6 +89,10 @@
     ];
   };
 
+  # devenv runs a whole-repo treefmt on every shell entry, silently rewriting unrelated
+  # files. Formatting is enforced on staged files by the treefmt git hook instead.
+  tasks."devenv:treefmt:run".before = lib.mkForce [ ];
+
   packages = with pkgs; [
     npm-check-updates
   ];
