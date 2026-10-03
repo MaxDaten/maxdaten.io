@@ -1,10 +1,9 @@
 <script lang="ts">
-    import HoloCard from '#lib/components/molecules/HoloCard.svelte';
+    import ProfileCard from '#lib/components/molecules/ProfileCard.svelte';
     import Button from '#lib/components/atoms/Button.svelte';
     import Sparkles from '#lib/components/atoms/Sparkles.svelte';
     import CalendarIcon from '#lib/icons/calendar.svelte';
     import GitHubIcon from '#lib/icons/socials/github.svelte';
-    import MeSrc from '#lib/assets/images/authors/jloos-v2.jpeg?enhanced';
     import { getContext } from 'svelte';
     import { t, type Locale } from '#lib/i18n/index.js';
 
@@ -66,49 +65,7 @@
 
         <!-- Right Column: Trading Card -->
         <div class="card-column">
-            <HoloCard>
-                <div class="trading-card">
-                    <div class="card-header">
-                        <span class="card-title">MAXDATEN.IO</span>
-                        <span class="card-level">LVL 99</span>
-                    </div>
-                    <div class="avatar-container">
-                        <!-- Largest element above the fold (LCP): fetch it first. -->
-                        <enhanced:img
-                            src={MeSrc}
-                            class="avatar-image"
-                            alt="Jan-Philip Loos"
-                            loading="eager"
-                            fetchpriority="high"
-                            sizes="(max-width: 767px) 90vw, 450px"
-                        />
-                    </div>
-                    <div class="card-name">JAN-PHILIP</div>
-                    <div class="stat-rows">
-                        <div class="stat-row">
-                            <span class="stat-label">CLASS</span>
-                            <span class="stat-value"
-                                >Freelance Platform & Product Engineer</span
-                            >
-                        </div>
-                        <div class="stat-row">
-                            <span class="stat-label">SPECIALTY</span>
-                            <span class="stat-value">Product Engineering</span>
-                        </div>
-                    </div>
-                    <div class="ability-box">
-                        <div class="ability-header">
-                            <span class="pro-badge">PRO</span>
-                            <span class="ability-name">Enterprise Rollouts</span
-                            >
-                        </div>
-                        <p class="ability-description">
-                            {t(locale, 'hero.abilityDescription')}
-                        </p>
-                    </div>
-                    <div class="card-footer">#001 &middot; HAMBURG, DE</div>
-                </div>
-            </HoloCard>
+            <ProfileCard />
         </div>
     </div>
 </section>
@@ -230,142 +187,5 @@
             /* Enable container queries for dynamic card scaling */
             container-type: inline-size;
         }
-    }
-
-    /* Trading Card Interior - 2.5:3.5 trading card ratio */
-    .trading-card {
-        font-family: var(--font--mono), monospace;
-        display: flex;
-        flex-direction: column;
-        gap: var(--raw-space-8);
-        width: 450px;
-        aspect-ratio: 5 / 7;
-        overflow: hidden;
-
-        /* Dynamic scaling using container queries */
-        @container (max-width: 450px) {
-            /* Scale = container width / card width */
-            zoom: calc(100cqi / 450px);
-        }
-    }
-
-    .card-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-size: var(--raw-text-xs);
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-    }
-
-    .card-title {
-        font-family: var(--font-logo), sans-serif;
-        color: var(--color-text);
-    }
-
-    .card-level {
-        color: var(--color-accent);
-    }
-
-    .avatar-container {
-        aspect-ratio: 4 / 3;
-        border-radius: var(--raw-radius-sm);
-        overflow: hidden;
-        background-color: rgba(
-            var(--color-text-rgb),
-            var(--raw-opacity-subtle)
-        );
-
-        :global(.avatar-image) {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-    }
-
-    .card-name {
-        font-family: var(--font-logo), sans-serif;
-        font-size: var(--raw-text-xl);
-        font-weight: 700;
-        text-transform: uppercase;
-        color: var(--color-text);
-        letter-spacing: 0.05em;
-    }
-
-    .stat-rows {
-        display: flex;
-        flex-direction: column;
-        gap: var(--raw-space-8);
-    }
-
-    .stat-row {
-        display: flex;
-        flex-direction: column;
-        gap: var(--raw-space-4);
-        font-size: var(--raw-text-xs);
-    }
-
-    .stat-label {
-        font-size: 10px;
-        letter-spacing: 0.05em;
-        color: #9ca3af;
-        text-transform: uppercase;
-    }
-
-    .stat-value {
-        color: var(--color-text);
-        font-size: var(--raw-text-sm);
-    }
-
-    .ability-box {
-        margin-top: auto;
-        background: rgba(0, 0, 0, 0.3);
-        border-radius: 4px;
-        padding: 10px;
-        border-left: 3px solid var(--color-accent);
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
-        display: flex;
-        flex-direction: column;
-        gap: var(--raw-space-4);
-    }
-
-    .ability-header {
-        display: flex;
-        align-items: center;
-        gap: var(--raw-space-8);
-    }
-
-    .pro-badge {
-        font-size: 10px;
-        font-weight: 700;
-        padding: var(--raw-space-4) var(--raw-space-8);
-        background-color: var(--color-accent);
-        color: black;
-        border-radius: 2px;
-        text-transform: uppercase;
-    }
-
-    .ability-name {
-        font-size: var(--raw-text-sm);
-        font-weight: 600;
-        color: var(--color-text);
-    }
-
-    .ability-description {
-        font-size: var(--raw-text-xs);
-        color: #9ca3af;
-        line-height: var(--raw-leading-relaxed);
-        margin: 4px 0 0 0;
-    }
-
-    .card-footer {
-        font-size: 10px;
-        font-weight: 500;
-        letter-spacing: 0.05em;
-        color: #6b7280;
-        text-align: center;
-        padding-top: 12px;
-        border-top: 1px solid rgba(255, 255, 255, 0.05);
     }
 </style>
