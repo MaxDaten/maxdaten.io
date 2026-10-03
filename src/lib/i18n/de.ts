@@ -26,9 +26,9 @@ export const de: TranslationKeys = {
     'recentPosts.viewMore': 'Alle anzeigen',
 
     // Services and selected results (home page)
-    'services.title': 'Was ich mache',
+    'services.title': 'Leistungen',
     'services.description':
-        'Praktisch und gemeinsam mit Ihrem Team, damit das Wissen bleibt, wenn ich gehe.',
+        'Hands-on und gemeinsam mit Ihrem Team – damit das Wissen bleibt, wenn ich gehe.',
     'services.platform.title': 'Platform Engineering',
     'services.platform.text':
         'Entwicklerplattformen und Toolchains, die Ihre Teams selbst betreiben: Kubernetes, GitOps und reproduzierbare Umgebungen mit Nix und devenv, damit jeder Entwickler und jeder CI-Lauf dieselben Werkzeuge nutzt.',

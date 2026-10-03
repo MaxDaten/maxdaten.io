@@ -235,7 +235,7 @@ test.describe('i18n — home page services and results', () => {
     test('/ shows the same sections in German', async ({ page }) => {
         await page.goto('/');
         await expect(
-            page.getByRole('heading', { level: 2, name: 'Was ich mache' })
+            page.getByRole('heading', { level: 2, name: 'Leistungen' })
         ).toBeVisible();
         await expect(
             page.getByRole('heading', {
