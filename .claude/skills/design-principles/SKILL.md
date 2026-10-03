@@ -1,19 +1,9 @@
 ---
+name: design-principles
 description: |
   Design principles and patterns for maxdaten.io. Use when creating or modifying UI components,
-  styling, layouts, or any visual elements. Ensures consistency with the precision-engineered
-  minimalist aesthetic established in v2.0.
-triggers:
-  - design
-  - styling
-  - css
-  - scss
-  - layout
-  - typography
-  - spacing
-  - colors
-  - component styling
-  - UI work
+  styling, layouts, typography, spacing, colors, or any visual elements. Ensures consistency with
+  the precision-engineered minimalist aesthetic established in v2.0.
 ---
 
 # maxdaten.io Design Principles
@@ -29,7 +19,7 @@ and polished post meta. Established in v2.0 Design Refinement milestone.
 2. **Semantic tokens**: Contextual usage referencing primitives
 
 ```scss
-// Primitives (in _tokens-*.scss)
+// Primitives (in tokens-*.css)
 --raw-space-8: 8px;
 --raw-radius-md: 12px;
 
@@ -255,13 +245,16 @@ Avoid these common mistakes:
 
 ## File Locations
 
-- Spacing tokens: `src/lib/scss/_tokens-spacing.scss`
-- Typography tokens: `src/lib/scss/_tokens-typography.scss`
-- Color tokens: `src/lib/scss/_tokens-colors.scss`
-- Themes: `src/lib/scss/_themes.scss`
-- Global styles: `src/lib/scss/global.scss`
-- Markdown/prose: `src/lib/scss/_markdown.scss`
-- Typography base: `src/lib/scss/_typography.scss`
+All styles are plain CSS in `src/lib/scss/` (the directory name is historical).
+
+- Spacing tokens: `src/lib/scss/tokens-spacing.css`
+- Typography tokens: `src/lib/scss/tokens-typography.css`
+- Color tokens: `src/lib/scss/tokens-colors.css`
+- Legacy `--color--*` bridge (migrate away from it): `src/lib/scss/tokens-migration.css`
+- Themes: `src/lib/scss/themes.css`
+- Global styles: `src/lib/scss/global.css`
+- Prose / portable text: `src/lib/scss/markdown.css`
+- Typography base: `src/lib/scss/typography.css`
 
 ---
 
