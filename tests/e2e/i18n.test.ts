@@ -184,15 +184,21 @@ test.describe('i18n — Language switcher', () => {
 });
 
 test.describe('i18n — Blog pages remain English', () => {
-    test('/blog has lang="en"', async ({ page }) => {
-        await page.goto('/blog');
-        // Blog is an English-only route, so no locale layout → defaults to 'en'
-        const lang = await page.locator('html').getAttribute('lang');
-        // Blog sits at root level (no locale prefix), so hooks.server.ts detects 'de'
-        // But the content itself is English. This is by design — the html lang will be 'de'
-        // because blog lives under the root. For English-only content accessed via
-        // maxdaten.io/blog (rewrite), it'll get lang="en".
-        expect(lang).toBeDefined();
+    for (const path of [
+        '/blog',
+        '/gems',
+        '/2026-01-31-ship-your-toolchain-not-just-infrastructure',
+    ]) {
+        test(`${path} is marked as English`, async ({ page }) => {
+            await page.goto(path);
+            await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+            await expect(page).toHaveTitle(/\| maxdaten\.io$/);
+        });
+    }
+
+    test('/impressum stays German', async ({ page }) => {
+        await page.goto('/impressum');
+        await expect(page.locator('html')).toHaveAttribute('lang', 'de');
     });
 
     test('/blog has no hreflang tags', async ({ page }) => {

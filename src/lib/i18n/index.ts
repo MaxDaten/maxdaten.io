@@ -14,10 +14,12 @@ export function t(locale: Locale, key: keyof TranslationKeys): string {
     return translations[locale]?.[key] ?? translations[defaultLocale][key];
 }
 
-/** Derive locale from a URL pathname. `/en/*` → 'en', everything else → 'de'. */
+/** German pages: the German home and the legal pages. Everything else is English. */
+const germanRoutes = new Set(['/', '/impressum', '/datenschutz']);
+
+/** Derive locale from a URL pathname. */
 export function getLocaleFromPath(pathname: string): Locale {
-    if (pathname === '/en' || pathname.startsWith('/en/')) return 'en';
-    return 'de';
+    return germanRoutes.has(pathname) ? 'de' : 'en';
 }
 
 /** Routes that have both a German and English version. */

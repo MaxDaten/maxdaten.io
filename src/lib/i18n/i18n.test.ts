@@ -61,16 +61,21 @@ describe('i18n', () => {
             expect(getLocaleFromPath('/')).toBe('de');
         });
 
-        it('returns "de" for /blog', () => {
-            expect(getLocaleFromPath('/blog')).toBe('de');
-        });
+        it.each(['/impressum', '/datenschutz'])(
+            'returns "de" for the German legal page %s',
+            (path) => {
+                expect(getLocaleFromPath(path)).toBe('de');
+            }
+        );
 
-        it('returns "de" for /gems', () => {
-            expect(getLocaleFromPath('/gems')).toBe('de');
-        });
-
-        it('does not match /enterprise as "en"', () => {
-            expect(getLocaleFromPath('/enterprise')).toBe('de');
+        it.each([
+            '/blog',
+            '/gems',
+            '/2026-01-31-ship-your-toolchain-not-just-infrastructure',
+            '/about/jloos',
+            '/enterprise',
+        ])('returns "en" for the English-only route %s', (path) => {
+            expect(getLocaleFromPath(path)).toBe('en');
         });
     });
 
