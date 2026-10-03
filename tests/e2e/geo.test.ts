@@ -195,3 +195,17 @@ test('JSON-LD Person lists the agreed expertise and bio', async ({ page }) => {
         /^Jan-Philip Loos ist Freelance Platform & Product Engineer in Hamburg\./
     );
 });
+
+test('/about/jloos shows the front-page card next to the bio', async ({
+    page,
+}) => {
+    await page.goto('/about/jloos');
+
+    await expect(page.locator('h1')).toHaveText('Jan-Philip Loos');
+    await expect(
+        page.locator('.stat-row', { hasText: 'CLASS' }).locator('.stat-value')
+    ).toHaveText(jobTitle);
+    await expect(page.getByText('company behind Papego')).toBeVisible();
+    await expect(page.getByText('Nix & devenv')).toBeVisible();
+    await expect(page.getByText('Bug resistance')).toHaveCount(0);
+});

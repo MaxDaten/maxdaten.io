@@ -10,7 +10,7 @@ async function firstPostPath(page: import('@playwright/test').Page) {
 }
 
 test.describe('colour contrast (WCAG AA)', () => {
-    for (const path of ['/', '/en', '/blog', '/gems']) {
+    for (const path of ['/', '/en', '/blog', '/gems', '/about/jloos']) {
         test(path, async ({ page }) => {
             await page.goto(path);
             const { violations } = await new AxeBuilder({ page })
