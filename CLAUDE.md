@@ -47,8 +47,11 @@ chromium e2e and `npm audit --audit-level=high`. Don't bypass them.
 - The root layout exposes the locale as a getter: `setContext('locale', () => locale)`; read it with
   `getContext('locale')` inside `$derived()` to stay reactive.
 - `hooks.server.ts` sets `<html lang>` per request.
-- Domains: maxdaten.de → German, maxdaten.io → English. Host redirects (not rewrites) live in
-  `vercel.json` (`/` on .io → `/en`, `/en/*` on .de → .io, www.maxdaten.de → apex).
+- Domains: German pages (`/`, `/impressum`, `/datenschutz`) live on maxdaten.de, everything else on
+  www.maxdaten.io (Vercel's domain settings redirect the maxdaten.io apex there). `canonicalUrl()`
+  in `src/lib/i18n/index.ts` gives a page's final URL; use it for canonical, hreflang, sitemap and
+  feed links. Host redirects live in `vercel.json` (English pages on .de → www.maxdaten.io, `/` on
+  .io → `/en`, www.maxdaten.de → apex), tested in `tests/vercel-redirects.test.ts`.
 - `hero.subheadline` doubles as `meta.description` — keep them in sync.
 - When changing translation text, update `tests/e2e/i18n.test.ts`. `src/lib/i18n/i18n.test.ts`
   enforces identical keys across locales and differing values (except `nav.blog`, `nav.gems`,

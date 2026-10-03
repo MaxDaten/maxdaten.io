@@ -48,6 +48,7 @@
         "@sveltejs/load-config": "^0.2.2",
         "@sveltejs/vite-plugin-svelte": "^7.0.0",
         "@types/node": "^24.19.1",
+        "@vercel/routing-utils": "^6.6.0",
         "@vitest/browser": "^5.0.3",
         "@vitest/browser-playwright": "^5.0.3",
         "catppuccin-vsc-icons": "github:catppuccin/vscode-icons",
