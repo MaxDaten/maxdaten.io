@@ -9,7 +9,7 @@ const config = {
             name: Date.now().toString(),
         },
         prerender: {
-            handleHttpError: 'warn',
+            handleHttpError: 'fail',
             origin: process.env.VERCEL_PROJECT_PRODUCTION_URL
                 ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
                 : undefined,
