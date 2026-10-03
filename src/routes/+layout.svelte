@@ -51,7 +51,7 @@
             {@render children?.()}
         </main>
 
-        <Footer />
+        <Footer author={data.siteAuthor} />
     </div>
 </Ssgoi>
 

@@ -30,6 +30,7 @@ export const postBySlugQuery = defineQuery(`
     keywords,
     outroText,
     author-> {
+      "id": slug.current,
       name,
       tagline,
       bio,
@@ -143,4 +144,28 @@ export const allGemsQuery = defineQuery(`
       "lqip": asset->metadata.lqip
     }
   }
+`);
+
+const authorProjection = `{
+    "slug": slug.current,
+    name,
+    jobTitle,
+    tagline,
+    bio,
+    specialties,
+    email,
+    "avatarUrl": avatar.asset->url,
+    "avatarAlt": avatar.alt,
+    socialLinks,
+    calendarBookingUrl
+}`;
+
+/** One author by slug (the site author is "jloos"). */
+export const authorBySlugQuery = defineQuery(`
+  *[_type == "author" && slug.current == $slug][0] ${authorProjection}
+`);
+
+/** Slugs of all authors, for prerendering /about/[authorId]. */
+export const authorSlugsQuery = defineQuery(`
+  *[_type == "author" && defined(slug.current)].slug.current
 `);

@@ -13,7 +13,7 @@
     <div class="about-grid">
         <div class="content">
             <h1 class="name">{author.name}</h1>
-            <p class="role">{author.tagline}</p>
+            <p class="role">{author.jobTitle}</p>
             <p class="bio">{author.bio}</p>
             {#if author.specialties?.length}
                 <ul class="expertise" aria-label="Expertise">

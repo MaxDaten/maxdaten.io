@@ -1,6 +1,19 @@
 import { describe, expect, it } from 'vitest';
 import { t } from '#lib/i18n/index.js';
 import { renderLlmsFullTxt, renderLlmsTxt, type LlmsPost } from './llms';
+import type { Author } from '#lib/utils/types.js';
+
+const author: Author = {
+    id: 'jloos',
+    name: 'Jan-Philip Loos',
+    bio: 'Bio.',
+    specialties: ['Platform Engineering', 'Nix & devenv'],
+    socials: {
+        github: 'https://github.com/MaxDaten',
+        email: 'mailto:jloos@maxdaten.com',
+        signal: 'https://signal.me/#eu/x',
+    },
+};
 
 const post: LlmsPost = {
     title: 'Ship Your Toolchain',
@@ -60,7 +73,7 @@ const post: LlmsPost = {
 };
 
 describe('llms.txt', () => {
-    const txt = renderLlmsTxt([post]);
+    const txt = renderLlmsTxt([post], author);
 
     it('opens with the name and the site description as summary', () => {
         expect(txt.split('\n').slice(0, 3)).toEqual([
@@ -77,9 +90,10 @@ describe('llms.txt', () => {
     });
 
     it('keeps a multi-line excerpt on its list item', () => {
-        const multiLine = renderLlmsTxt([
-            { ...post, excerpt: 'First line. \nSecond line.' },
-        ]);
+        const multiLine = renderLlmsTxt(
+            [{ ...post, excerpt: 'First line. \nSecond line.' }],
+            author
+        );
         expect(multiLine).toContain('): First line. Second line.\n');
     });
 
@@ -91,7 +105,7 @@ describe('llms.txt', () => {
 });
 
 describe('llms-full.txt', () => {
-    const full = renderLlmsFullTxt([post]);
+    const full = renderLlmsFullTxt([post], author);
 
     it('renders each post body as Markdown under its title and URL', () => {
         expect(full).toContain('# Ship Your Toolchain');

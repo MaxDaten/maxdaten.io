@@ -1,16 +1,15 @@
 import { error } from '@sveltejs/kit';
 import type { PageLoad } from './$types';
-import { authors } from '#lib/data/authors.js';
 import { loadProfileImageUrl } from '../profile-image';
 import { t, type Locale, heroSummary } from '#lib/i18n/index.js';
 
 // Reads ?locale= at request time, so it cannot be prerendered.
 export const prerender = false;
 
-export const load: PageLoad = async ({ url }) => {
+export const load: PageLoad = async ({ url, parent }) => {
     try {
         const locale = (url.searchParams.get('locale') as Locale) || 'en';
-        const author = authors.jloos;
+        const { siteAuthor: author } = await parent();
         const avatarUrl = await loadProfileImageUrl(url);
 
         return {

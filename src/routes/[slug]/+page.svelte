@@ -78,13 +78,16 @@
                                 height="18"
                             />
                         {/if}
-                        <a
-                            class="author-name"
-                            href={resolve('/about/[authorId]', {
-                                // Sanity authors have no id yet; the site has one author.
-                                authorId: 'jloos',
-                            })}>{author.name}</a
-                        >
+                        {#if post.author?.id}
+                            <a
+                                class="author-name"
+                                href={resolve('/about/[authorId]', {
+                                    authorId: post.author.id,
+                                })}>{author.name}</a
+                            >
+                        {:else}
+                            <span class="author-name">{author.name}</span>
+                        {/if}
                     </span>
                     <span class="separator">•</span>
                 {/if}

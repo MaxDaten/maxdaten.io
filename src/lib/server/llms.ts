@@ -8,7 +8,7 @@ import {
     type PortableTextRenderers,
 } from '@portabletext/markdown';
 import type { ArbitraryTypedObject } from '@portabletext/types';
-import { authors } from '#lib/data/authors.js';
+import type { Author } from '#lib/utils/types.js';
 import { canonicalUrl, localeDomains, t } from '#lib/i18n/index.js';
 
 export type LlmsPost = {
@@ -19,7 +19,6 @@ export type LlmsPost = {
     body: ArbitraryTypedObject[];
 };
 
-const author = authors.jloos;
 const fullTextUrl = `${localeDomains.en}/llms-full.txt`;
 
 const renderers: Partial<PortableTextRenderers> = {
@@ -51,7 +50,7 @@ function toMarkdown(body: LlmsPost['body']): string {
     return portableTextToMarkdown(body, renderers);
 }
 
-function header(): string {
+function header(author: Author): string {
     return [
         `# ${author.name}`,
         '',
@@ -64,7 +63,7 @@ function header(): string {
 }
 
 /** Public profile links: not mailto: or the Signal contact link. */
-function profiles(): string[] {
+function profiles(author: Author): string[] {
     return Object.entries(author.socials ?? {})
         .filter(
             ([, url]) =>
@@ -73,9 +72,9 @@ function profiles(): string[] {
         .map(([name, url]) => `- [${name}](${url})`);
 }
 
-export function renderLlmsTxt(posts: LlmsPost[]): string {
+export function renderLlmsTxt(posts: LlmsPost[], author: Author): string {
     return [
-        header(),
+        header(author),
         '',
         '## Blog posts',
         '',
@@ -86,7 +85,7 @@ export function renderLlmsTxt(posts: LlmsPost[]): string {
         '',
         '## Profiles',
         '',
-        ...profiles(),
+        ...profiles(author),
         '',
         '## Optional',
         '',
@@ -95,7 +94,7 @@ export function renderLlmsTxt(posts: LlmsPost[]): string {
     ].join('\n');
 }
 
-export function renderLlmsFullTxt(posts: LlmsPost[]): string {
+export function renderLlmsFullTxt(posts: LlmsPost[], author: Author): string {
     const sections = posts.map((post) =>
         [
             `# ${post.title}`,
@@ -107,5 +106,5 @@ export function renderLlmsFullTxt(posts: LlmsPost[]): string {
             toMarkdown(post.body),
         ].join('\n')
     );
-    return [header(), ...sections].join('\n\n---\n\n') + '\n';
+    return [header(author), ...sections].join('\n\n---\n\n') + '\n';
 }

@@ -1,17 +1,17 @@
 import { error } from '@sveltejs/kit';
-import { authors, getAuthor } from '#lib/data/authors.js';
+import { getAuthor, getAuthorSlugs } from '#lib/sanity/author.js';
 import type { PageServerLoad } from './$types';
 
 export const prerender = true;
 
-export function entries() {
-    return Object.keys(authors).map((authorId) => ({ authorId }));
+export async function entries() {
+    return (await getAuthorSlugs()).map((authorId) => ({ authorId }));
 }
 
 export const load: PageServerLoad = async ({ params }) => {
     const { authorId } = params;
 
-    const author = getAuthor(authorId);
+    const author = await getAuthor(authorId);
 
     if (!author) {
         throw error(404, `Author with ID "${authorId}" not found`);

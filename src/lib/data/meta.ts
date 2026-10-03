@@ -2,9 +2,8 @@
 // So they can be added as suffixes on different pages
 // Via <svelte:head>
 
-import { authors } from './authors';
 import MeSrc from '#lib/assets/images/authors/jloos.png?enhanced';
-import type { BlogPost } from '#lib/utils/types.js';
+import type { Author, BlogPost } from '#lib/utils/types.js';
 import type {
     BlogPosting,
     BreadcrumbList,
@@ -24,25 +23,27 @@ export const description =
 
 export const title = 'Jan-Philip Loos | maxdaten.io';
 
-const descriptions: Record<Locale, { person: string; organization: string }> = {
-    de: {
-        person: 'Jan-Philip Loos ist Freelance Platform & Product Engineer in Hamburg. Seit über 15 Jahren baut er Produkte und die Plattformen, auf denen sie laufen — von der Mitgründung der Briends GmbH, dem Unternehmen hinter Papego, bis zu Systemen mit 100M+ Requests am Tag. Er schreibt über Platform Engineering, Nix und Continuous Delivery.',
-        organization: 'Full-Stack Produktentwicklung und technische Beratung',
-    },
-    en: {
-        person: authors.jloos.bio ?? '',
-        organization: 'Full-stack product engineering and technical advisory',
-    },
+/** The author bio lives in Sanity in English; this is its German translation. */
+const germanPersonDescription =
+    'Jan-Philip Loos ist Freelance Platform & Product Engineer in Hamburg. Seit über 15 Jahren baut er Produkte und die Plattformen, auf denen sie laufen — von der Mitgründung der Briends GmbH, dem Unternehmen hinter Papego, bis zu Systemen mit 100M+ Requests am Tag. Er schreibt über Platform Engineering, Nix und Continuous Delivery.';
+
+const organizationDescriptions: Record<Locale, string> = {
+    de: 'Full-Stack Produktentwicklung und technische Beratung',
+    en: 'Full-stack product engineering and technical advisory',
 };
 
 export function getBaseSchema(
-    locale: Locale
+    locale: Locale,
+    author: Author
 ): [WebSite, Person, ProfilePage, Organization, ProfessionalService] {
     // One name and URL per entity, whatever the page language: answer engines merge entities
     // by @id and distrust ones whose properties disagree.
     const entityName = 'maxdaten.io';
     const portraitUrl = `${siteBaseUrl}${MeSrc?.img.src}`;
-    const desc = descriptions[locale];
+    const desc = {
+        person: locale === 'de' ? germanPersonDescription : (author.bio ?? ''),
+        organization: organizationDescriptions[locale],
+    };
 
     return [
         <WithContext<WebSite>>{
@@ -60,14 +61,14 @@ export function getBaseSchema(
             '@context': 'https://schema.org',
             '@type': 'Person',
             '@id': 'https://maxdaten.io/#jloos',
-            name: authors.jloos.name,
-            jobTitle: authors.jloos.tagline,
+            name: author.name,
+            jobTitle: author.jobTitle,
             description: desc.person,
             url: siteBaseUrl,
             image: portraitUrl,
-            knowsAbout: authors.jloos.specialties,
+            knowsAbout: author.specialties,
             // Public profiles only: not the mailto: or the Signal contact link.
-            sameAs: Object.values(authors.jloos.socials || {}).filter(
+            sameAs: Object.values(author.socials || {}).filter(
                 (url) =>
                     url.startsWith('https://') && !url.includes('signal.me')
             ),

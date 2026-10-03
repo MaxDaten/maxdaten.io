@@ -20,6 +20,8 @@ export type TagType = {
 export type Author = {
     id: string;
     name: string;
+    jobTitle?: string;
+    /** Closing pitch under posts without their own outro text. */
     tagline?: string;
     bio?: string;
     specialties?: string[];
@@ -76,6 +78,7 @@ export type SanityPost = {
     keywords?: string[];
     outroText?: string;
     author?: {
+        id?: string;
         name: string;
         tagline?: string;
         bio?: string;

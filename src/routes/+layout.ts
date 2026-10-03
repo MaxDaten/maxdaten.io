@@ -12,7 +12,7 @@ import {
 
 export const prerender = true;
 
-export const load = ({ url }) => {
+export const load = ({ url, data }) => {
     const locale: Locale = getLocaleFromPath(url.pathname);
     const ogImageUrl = new URL(`/og/${locale}.jpg?v=${version}`, url.origin)
         .href;
@@ -87,7 +87,8 @@ export const load = ({ url }) => {
     }) satisfies MetaTagsProps;
 
     return {
+        ...data,
         baseMetaTags,
-        baseSchema: getBaseSchema(locale),
+        baseSchema: getBaseSchema(locale, data.siteAuthor),
     };
 };

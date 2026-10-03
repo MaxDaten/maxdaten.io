@@ -1,11 +1,10 @@
-<script>
+<script lang="ts">
     import { resolve } from '$app/paths';
     import Socials from '#lib/components/molecules/Socials.svelte';
     import RssLink from '#lib/components/atoms/RssLink.svelte';
-    import { authors } from '#lib/data/authors.js';
+    import type { Author } from '#lib/utils/types.js';
 
-    // Get the main site author's socials
-    const mainAuthor = authors.jloos;
+    let { author }: { author: Author } = $props();
 </script>
 
 <footer>
@@ -16,7 +15,7 @@
             <span class="copyright">© {new Date().getFullYear()}</span>
         </div>
         <div class="socials">
-            <Socials {...mainAuthor.socials} />
+            <Socials {...author.socials} />
             <RssLink />
         </div>
     </div>
