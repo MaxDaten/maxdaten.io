@@ -62,7 +62,7 @@
             font-size: 0.85rem;
             text-align: center;
             margin-top: 0.5rem;
-            color: rgba(var(--color--text-rgb), 0.8);
+            color: rgba(var(--color-text-rgb), 0.8);
         }
     }
 </style>

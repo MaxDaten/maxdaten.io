@@ -24,7 +24,7 @@
     .logo {
         #logo-text {
             #text {
-                --text-color: var(--color--primary);
+                --text-color: var(--color-accent);
                 transition: all 0.2s ease-in-out;
                 fill: var(--text-color);
                 stroke: none;
@@ -38,7 +38,7 @@
 
         &:hover {
             #logo-text {
-                filter: drop-shadow(0px 0px 3px var(--color--primary));
+                filter: drop-shadow(0px 0px 3px var(--color-accent));
             }
         }
     }
@@ -47,7 +47,7 @@
         .animated {
             #text {
                 animation: svg-text-stroke 4s ease-in-out;
-                --text-color: var(--color--primary);
+                --text-color: var(--color-accent);
             }
         }
     }

@@ -77,8 +77,7 @@ and polished post meta. Established in v2.0 Design Refinement milestone.
 **Single accent color (orange):**
 
 ```scss
---color--primary: #ff8000; // Main accent
---color--secondary: #ff8000; // Aliased to primary (consolidated)
+--color-accent: var(--raw-color-orange-500); // #ff8000, the only accent
 ```
 
 **Rule:** No competing colors. Orange is the only accent.
@@ -250,8 +249,6 @@ All styles are plain CSS in `src/lib/scss/` (the directory name is historical).
 - Spacing tokens: `src/lib/scss/tokens-spacing.css`
 - Typography tokens: `src/lib/scss/tokens-typography.css`
 - Color tokens: `src/lib/scss/tokens-colors.css`
-- Legacy `--color--*` bridge (migrate away from it): `src/lib/scss/tokens-migration.css`
-- Themes: `src/lib/scss/themes.css`
 - Global styles: `src/lib/scss/global.css`
 - Prose / portable text: `src/lib/scss/markdown.css`
 - Typography base: `src/lib/scss/typography.css`

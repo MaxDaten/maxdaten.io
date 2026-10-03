@@ -18,10 +18,10 @@
             createdAt: Date.now(),
             color:
                 color === 'primary'
-                    ? 'var(--color--primary)'
+                    ? 'var(--color-accent)'
                     : color === 'secondary'
-                      ? 'var(--color--secondary)'
-                      : 'var(--color--yellow',
+                      ? 'var(--color-accent)'
+                      : 'var(--color-sparkle',
             size: random(10, 20),
             style: {
                 // Pick a random spot in the available space

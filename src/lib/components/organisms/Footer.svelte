@@ -27,10 +27,10 @@
         width: 100%;
         background: linear-gradient(
             60deg,
-            var(--color--waves-start) 0%,
-            var(--color--waves-end) 100%
+            var(--color-bar-start) 0%,
+            var(--color-bar-end) 100%
         );
-        border-top: 1px solid var(--color--waves-start);
+        border-top: 1px solid var(--color-bar-start);
         padding: var(--raw-space-24) 0;
 
         .footer-content {

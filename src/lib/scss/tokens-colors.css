@@ -21,12 +21,15 @@
     --raw-color-orange-600: #e67300;
     --raw-color-orange-700: #cc6600;
     --raw-color-orange-warm: #ffb347;
+    --raw-color-orange-900: #7e4611;
+    --raw-color-yellow-400: #ffd400;
 
     /* RGB values for rgba() usage */
     --raw-color-orange-400-rgb: 255, 153, 51;
     --raw-color-orange-500-rgb: 255, 128, 0;
     --raw-color-orange-600-rgb: 230, 115, 0;
     --raw-color-orange-700-rgb: 204, 102, 0;
+    --raw-color-orange-900-rgb: 126, 70, 17;
 
     /* Grays/surfaces */
     --raw-color-gray-900: #1c1e26;
@@ -84,9 +87,18 @@
     /* Accent for small text on accent-tinted surfaces (tags): orange-500 drops below 4.5:1 there. */
     --color-accent-text: var(--raw-color-orange-400);
     --color-accent-rgb: var(--raw-color-orange-500-rgb);
+    --color-accent-shade: var(--raw-color-orange-900);
+    --color-accent-shade-rgb: var(--raw-color-orange-900-rgb);
+    /* Header and footer bar: a dark-orange wash, stronger at the edge. */
+    --color-bar-start: rgba(var(--color-accent-shade-rgb), 0.3);
+    --color-bar-end: rgba(var(--color-accent-shade-rgb), 0.1);
+    --color-sparkle: var(--raw-color-yellow-400);
 
     --color-text: var(--raw-color-white);
     --color-text-rgb: var(--raw-color-white-rgb);
+    /* Text on accent backgrounds (buttons, badges). */
+    --color-text-inverse: var(--raw-color-gray-900);
+    --color-text-subtle: var(--raw-color-white-muted);
     --color-text-muted: rgba(
         var(--raw-color-white-rgb),
         var(--raw-opacity-strong)
@@ -111,6 +123,18 @@
     --color-error-rgb: var(--raw-color-error-rgb);
     --color-info: var(--raw-color-info);
     --color-info-rgb: var(--raw-color-info-rgb);
+
+    /* Callouts */
+    --color-callout-bg-info: rgba(var(--color-info-rgb), 0.15);
+    --color-callout-accent-info: var(--color-info);
+    --color-callout-bg-warning: rgba(var(--color-warning-rgb), 0.15);
+    --color-callout-accent-warning: var(--color-warning);
+    --color-callout-bg-error: rgba(var(--color-error-rgb), 0.15);
+    --color-callout-accent-error: var(--color-error);
+    --color-callout-bg-success: rgba(var(--color-success-rgb), 0.15);
+    --color-callout-accent-success: var(--color-success);
+
+    --color-code-bg: var(--raw-color-gray-700);
 
     /* =========================================================================
      * Semantic Radius

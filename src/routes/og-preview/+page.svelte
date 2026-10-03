@@ -143,12 +143,12 @@
         text-align: center;
     }
     .og-preview-header h1 {
-        color: var(--color--text);
+        color: var(--color-text);
         margin-bottom: 0.5rem;
         font-size: 2.5rem;
     }
     .og-preview-header p {
-        color: var(--color--text-shade);
+        color: var(--color-text-subtle);
         font-size: 1.1rem;
     }
     .og-grid {
@@ -158,7 +158,7 @@
         margin-bottom: 2rem;
     }
     .og-card {
-        background: var(--color--card-background);
+        background: var(--color-surface-elevated);
         border-radius: 12px;
         box-shadow: var(--card-shadow);
         overflow: hidden;
@@ -199,17 +199,17 @@
         line-height: 1.4;
     }
     .og-card-info h3 a {
-        color: var(--color--text);
+        color: var(--color-text);
         text-decoration: none;
         transition: color 0.2s var(--ease-3);
     }
     .og-card-info h3 a:hover {
-        color: var(--color--primary);
+        color: var(--color-accent);
     }
     .og-card-meta {
         margin: 0 0 1rem 0;
         font-size: 0.9rem;
-        color: var(--color--text-shade);
+        color: var(--color-text-subtle);
         display: flex;
         flex-direction: column;
         gap: 0.25rem;
@@ -234,25 +234,25 @@
         transition: all 0.2s var(--ease-3);
     }
     .og-link {
-        background: var(--color--primary);
-        color: var(--color--text-inverse);
+        background: var(--color-accent);
+        color: var(--color-text-inverse);
     }
     .og-link:hover {
-        background: var(--color--primary-shade);
+        background: var(--color-accent-shade);
     }
     .preview-link {
-        background: var(--color--page-background);
-        color: var(--color--text);
+        background: var(--color-surface);
+        color: var(--color-text);
         border: 1px solid #ddd;
     }
     .preview-link:hover {
-        background: var(--color--code-inline-background);
+        background: var(--color-code-bg);
         border-color: #ccc;
     }
     .no-posts {
         text-align: center;
         padding: 3rem;
-        color: var(--color--text-shade);
+        color: var(--color-text-subtle);
         font-size: 1.1rem;
     }
 
@@ -264,17 +264,17 @@
 
     .profile-section h2,
     .posts-section h2 {
-        color: var(--color--text);
+        color: var(--color-text);
         font-size: 1.8rem;
         margin-bottom: 1.5rem;
         padding-bottom: 0.5rem;
-        border-bottom: 2px solid var(--color--primary);
+        border-bottom: 2px solid var(--color-accent);
     }
 
     /* Profile OG card specific styles */
     .profile-og-card {
         max-width: 600px;
-        background: var(--color--card-background);
+        background: var(--color-surface-elevated);
         border-radius: 12px;
         box-shadow: var(--card-shadow);
         overflow: hidden;

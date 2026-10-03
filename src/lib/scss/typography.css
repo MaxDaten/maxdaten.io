@@ -1,6 +1,6 @@
 a {
-    color: var(--color--text);
-    text-decoration-color: var(--color--primary);
+    color: var(--color-text);
+    text-decoration-color: var(--color-accent);
     text-underline-offset: 0.1em;
     text-decoration-thickness: 2px;
     transition: all 0.2s ease-in-out;
@@ -11,8 +11,8 @@ a {
 }
 
 ::selection {
-    background-color: rgba(var(--color--primary-rgb), 0.3);
-    color: var(--color--text);
+    background-color: rgba(var(--color-accent-rgb), 0.3);
+    color: var(--color-text);
     text-shadow: none;
 }
 

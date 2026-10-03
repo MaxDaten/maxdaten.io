@@ -1,6 +1,6 @@
 @keyframes svg-text-stroke {
     0% {
-        filter: drop-shadow(0px 0px 3px var(--color--primary));
+        filter: drop-shadow(0px 0px 3px var(--color-accent));
         fill: transparent;
         stroke: var(--text-color);
         stroke-dashoffset: 25%;
@@ -8,18 +8,18 @@
         stroke-width: 1;
     }
     70% {
-        filter: drop-shadow(0px 0px 3px var(--color--primary));
+        filter: drop-shadow(0px 0px 3px var(--color-accent));
         fill: transparent;
         stroke: var(--text-color);
     }
     80% {
-        filter: drop-shadow(0px 0px 3px var(--color--primary));
+        filter: drop-shadow(0px 0px 3px var(--color-accent));
         fill: transparent;
         stroke: var(--text-color);
         stroke-width: 1;
     }
     90% {
-        filter: drop-shadow(0px 0px 3px var(--color--primary));
+        filter: drop-shadow(0px 0px 3px var(--color-accent));
         fill: var(--text-color);
         stroke: transparent;
         stroke-dashoffset: -25%;

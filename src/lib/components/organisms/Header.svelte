@@ -54,13 +54,13 @@
     header {
         position: relative;
         padding: var(--raw-space-24) 0;
-        border-bottom: 1px solid var(--color--waves-start);
+        border-bottom: 1px solid var(--color-bar-start);
 
         &.has-background {
             background: linear-gradient(
                 60deg,
-                var(--color--waves-start) 0%,
-                var(--color--waves-end) 100%
+                var(--color-bar-start) 0%,
+                var(--color-bar-end) 100%
             );
         }
 

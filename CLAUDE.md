@@ -62,8 +62,8 @@ chromium e2e and `npm audit --audit-level=high`. Don't bypass them.
 
 - Plain CSS (no SCSS despite the `src/lib/scss/` directory name), Svelte-scoped component styles.
 - Design tokens are mandatory — no hardcoded colors, spacing, radius or opacity. Primitives
-  `--raw-*` in `tokens-{colors,spacing,typography}.css`; components use semantic tokens.
-  `tokens-migration.css` is a bridge for legacy `--color--*` names; don't add new uses.
+  `--raw-*` in `tokens-{colors,spacing,typography}.css`; components use semantic tokens
+  (`--color-*`, `--radius-*`, …). Add a semantic token rather than using a primitive directly.
 - Exception: OG cards (`OgCard`, `ProfileOgCard`) need literal values because satori cannot resolve
   CSS variables.
 - Load the `design-principles` skill for UI work.

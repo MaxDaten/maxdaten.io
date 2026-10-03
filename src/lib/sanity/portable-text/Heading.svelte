@@ -64,7 +64,7 @@
         position: relative;
 
         .heading-link {
-            color: var(--color--primary);
+            color: var(--color-accent);
             text-decoration: none;
             margin-right: 10px;
             position: absolute;

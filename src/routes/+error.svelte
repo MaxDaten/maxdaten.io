@@ -28,7 +28,7 @@
 
 <style>
     .error-page {
-        background: var(--color--page-background);
+        background: var(--color-surface);
         position: relative;
     }
 

@@ -16,13 +16,13 @@
     a {
         transition: all 0.2s ease-in-out;
         width: 24px;
-        color: var(--color--text);
-        fill: var(--color--text);
+        color: var(--color-text);
+        fill: var(--color-text);
 
         &:hover {
-            color: var(--color--primary);
-            fill: var(--color--primary);
-            filter: drop-shadow(0px 0px 3px var(--color--primary));
+            color: var(--color-accent);
+            fill: var(--color-accent);
+            filter: drop-shadow(0px 0px 3px var(--color-accent));
         }
     }
 </style>

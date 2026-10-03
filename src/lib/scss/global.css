@@ -14,12 +14,6 @@
 @import 'tokens-typography.css';
 @import 'tokens-colors.css';
 
-/* Theme definitions (includes all legacy --color--* variables) */
-@import 'themes.css';
-
-/* Migration bridge for legacy tokens */
-@import 'tokens-migration.css';
-
 /* Breakpoint reference values */
 @import 'breakpoints.css';
 
