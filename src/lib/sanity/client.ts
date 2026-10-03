@@ -19,25 +19,3 @@ export const client = createClient({
     useCdn: true,
     perspective: 'published',
 });
-
-/**
- * Preview client for fetching draft content.
- * Use this only in preview mode with a valid token.
- * Token should be set via SANITY_API_TOKEN environment variable.
- */
-export const previewClient = createClient({
-    projectId,
-    dataset,
-    apiVersion,
-    useCdn: false,
-    perspective: 'previewDrafts',
-    // Token is intentionally not included here - it should be passed per-request
-    // to avoid exposing it in client bundles
-});
-
-/**
- * Get the appropriate client based on preview mode.
- */
-export function getClient(preview = false) {
-    return preview ? previewClient : client;
-}
