@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { t } from '#lib/i18n/index.js';
 import { renderLlmsFullTxt, renderLlmsTxt, type LlmsPost } from './llms';
 
 const post: LlmsPost = {
@@ -61,8 +62,12 @@ const post: LlmsPost = {
 describe('llms.txt', () => {
     const txt = renderLlmsTxt([post]);
 
-    it('opens with the name and a one-line summary', () => {
-        expect(txt).toMatch(/^# Jan-Philip Loos\n\n> .+\n/);
+    it('opens with the name and the site description as summary', () => {
+        expect(txt.split('\n').slice(0, 3)).toEqual([
+            '# Jan-Philip Loos',
+            '',
+            `> ${t('en', 'meta.description')}`,
+        ]);
     });
 
     it('lists each post with its canonical URL and excerpt', () => {

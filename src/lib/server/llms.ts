@@ -55,7 +55,7 @@ function header(): string {
     return [
         `# ${author.name}`,
         '',
-        `> ${author.tagline} from Hamburg, Germany. ${t('en', 'meta.description')}`,
+        `> ${t('en', 'meta.description')}`,
         '',
         author.bio,
         '',
