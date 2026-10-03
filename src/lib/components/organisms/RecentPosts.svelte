@@ -1,7 +1,7 @@
 <script lang="ts">
     import BlogPostCard from '#lib/components/molecules/BlogPostCard.svelte';
     import ContentSection from '#lib/components/organisms/ContentSection.svelte';
-    import type { ListingPost } from '#routes/blog/+page.server.js';
+    import type { ListingPost } from '#lib/sanity/listing.js';
     import Button from '#lib/components/atoms/Button.svelte';
     import { getContext } from 'svelte';
     import { t, type Locale } from '#lib/i18n/index.js';

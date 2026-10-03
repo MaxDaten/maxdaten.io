@@ -1,7 +1,7 @@
 <script lang="ts">
     import BlogPostCard from '#lib/components/molecules/BlogPostCard.svelte';
     import ContentSection from '#lib/components/organisms/ContentSection.svelte';
-    import type { ListingPost } from './+page.server';
+    import type { ListingPost } from '#lib/sanity/listing.js';
     import { PageTransition } from 'ssgoi';
 
     interface Props {

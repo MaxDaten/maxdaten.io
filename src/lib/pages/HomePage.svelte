@@ -3,7 +3,7 @@
     import RecentPosts from '#lib/components/organisms/RecentPosts.svelte';
     import { PageTransition } from 'ssgoi';
     import Bubbles from '#lib/components/organisms/Bubbles.svelte';
-    import type { ListingPost } from '#routes/blog/+page.server.js';
+    import type { ListingPost } from '#lib/sanity/listing.js';
 
     interface Props {
         posts: ListingPost[];

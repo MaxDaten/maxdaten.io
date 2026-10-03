@@ -1,27 +1,9 @@
 import type { PageServerLoad } from './$types';
-import { client } from '#lib/sanity/client.js';
-import { allPostsQuery } from '#lib/sanity/queries.js';
+import { getListingPosts } from '#lib/sanity/listing.js';
 
 export const prerender = true;
 
 export const load: PageServerLoad = async () => {
-    const sanityPosts = await client.fetch(allPostsQuery);
-
-    const posts = sanityPosts.map(
-        (p: {
-            slug: string;
-            title: string;
-            excerpt?: string;
-            date: string;
-            coverImage?: { url?: string };
-        }) => ({
-            slug: p.slug,
-            title: p.title,
-            excerpt: p.excerpt,
-            date: p.date,
-            coverImage: p.coverImage,
-        })
-    );
-
+    const posts = await getListingPosts();
     return { posts };
 };

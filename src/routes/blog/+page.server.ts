@@ -1,51 +1,9 @@
 import type { PageServerLoad } from './$types';
 import type { MetaTagsProps } from 'svelte-meta-tags';
-import { client } from '#lib/sanity/client.js';
-import { allPostsQuery } from '#lib/sanity/queries.js';
-
-/**
- * Listing post type - normalized shape for Sanity posts.
- * Used for card display on blog listing page.
- */
-export type ListingPost = {
-    slug: string;
-    title: string;
-    excerpt?: string;
-    date: string;
-    tags: string[];
-    source: 'sanity';
-    coverImage?: {
-        url?: string;
-        alt?: string;
-        lqip?: string;
-    };
-};
+import { getListingPosts } from '#lib/sanity/listing.js';
 
 export const load: PageServerLoad = async () => {
-    const sanityPosts = await client.fetch(allPostsQuery);
-
-    const posts: ListingPost[] = sanityPosts.map(
-        (p: {
-            slug: string;
-            title: string;
-            excerpt?: string;
-            date: string;
-            tags?: Array<{ name: string; slug: string }>;
-            coverImage?: {
-                url?: string;
-                alt?: string;
-                lqip?: string;
-            };
-        }) => ({
-            slug: p.slug,
-            title: p.title,
-            excerpt: p.excerpt,
-            date: p.date,
-            tags: p.tags?.map((t) => t.name) ?? [],
-            source: 'sanity' as const,
-            coverImage: p.coverImage,
-        })
-    );
+    const posts = await getListingPosts();
 
     const pageMetaTags = Object.freeze({
         title: 'Blog',

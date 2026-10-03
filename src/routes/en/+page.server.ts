@@ -1,34 +1,5 @@
-import { client } from '#lib/sanity/client.js';
-import { allPostsQuery } from '#lib/sanity/queries.js';
-import type { ListingPost } from '../blog/+page.server';
+import { getListingPosts } from '#lib/sanity/listing.js';
 
 export async function load() {
-    const sanityPosts = await client.fetch(allPostsQuery);
-
-    const posts: ListingPost[] = sanityPosts.slice(0, 4).map(
-        (p: {
-            slug: string;
-            title: string;
-            excerpt?: string;
-            date: string;
-            tags?: Array<{ name: string; slug: string }>;
-            coverImage?: {
-                url?: string;
-                alt?: string;
-                lqip?: string;
-            };
-        }) => ({
-            slug: p.slug,
-            title: p.title,
-            excerpt: p.excerpt,
-            date: p.date,
-            tags: p.tags?.map((t) => t.name) ?? [],
-            source: 'sanity' as const,
-            coverImage: p.coverImage,
-        })
-    );
-
-    return {
-        posts,
-    };
+    return { posts: await getListingPosts(4) };
 }
