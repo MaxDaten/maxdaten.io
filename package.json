@@ -14,7 +14,6 @@
         "lint": "eslint .",
         "format": "treefmt",
         "vercel-build": "npm run build",
-        "redeploy-latest": "node scripts/redeploy-latest.js",
         "update-site-preview-image": "node scripts/update-site-preview-image.js",
         "test:unit": "vitest",
         "test": "VITEST_SKIP_SLOW=true vitest --run",
