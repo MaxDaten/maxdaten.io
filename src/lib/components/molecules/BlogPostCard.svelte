@@ -7,9 +7,17 @@
     type Props = {
         post: ListingPost;
         showImage?: boolean;
+        /** The cover's rendered width, as an <img sizes> value; depends on the grid slot. */
+        sizes?: string;
     };
 
-    let { post, showImage = true }: Props = $props();
+    let {
+        post,
+        showImage = true,
+        sizes = '(max-width: 900px) calc(100vw - 2rem), 500px',
+    }: Props = $props();
+
+    const COVER_WIDTHS = [320, 400, 480, 640, 800, 1000, 1280, 1600, 2000];
 
     // Check if this post has a cover image
     const hasCoverImage = $derived(post.coverImage?.url);
@@ -20,8 +28,8 @@
         <img
             class="cover-image sanity-cover"
             src={urlFor(post.coverImage).width(500).auto('format').url()}
-            srcset={generateSrcSet(post.coverImage, [320, 500, 1000])}
-            sizes="(max-width: 1024px) 500px, 1000px"
+            srcset={generateSrcSet(post.coverImage, COVER_WIDTHS)}
+            {sizes}
             alt={post.coverImage.alt ?? 'Cover of this blog post'}
             style:background-image={post.coverImage.lqip
                 ? `url(${post.coverImage.lqip})`

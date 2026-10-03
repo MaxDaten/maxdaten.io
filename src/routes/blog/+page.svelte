@@ -13,14 +13,20 @@
     let { data }: Props = $props();
 
     const posts = $derived(data.posts);
+
+    // Mirrors the .grid layout below: one column up to 900px, then a repeating
+    // 6-card pattern spanning 6, 3, 3, 2, 2 and 2 of 6 columns (max ~1016px wide).
+    const SPAN_WIDTHS = [1016, 500, 500, 330, 330, 330];
+    const coverSizes = (index: number) =>
+        `(max-width: 900px) calc(100vw - 2rem), ${SPAN_WIDTHS[index % 6]}px`;
 </script>
 
 <PageTransition>
     <div class="container">
         <ContentSection title="All Blog Posts">
             <div class="grid">
-                {#each posts as post (post.slug)}
-                    <BlogPostCard {post} />
+                {#each posts as post, index (post.slug)}
+                    <BlogPostCard {post} sizes={coverSizes(index)} />
                 {/each}
             </div>
         </ContentSection>

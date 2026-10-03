@@ -37,3 +37,37 @@ for (const path of ['/', '/en']) {
         await expect(hero).toHaveAttribute('fetchpriority', 'high');
     });
 }
+
+for (const [width, dpr] of [
+    [412, 1.75],
+    [1350, 1],
+]) {
+    test.describe(`blog covers at ${width}px @${dpr}x`, () => {
+        test.use({ viewport: { width, height: 900 }, deviceScaleFactor: dpr });
+
+        test('download at most 1.3x the rendered device pixels', async ({
+            page,
+        }) => {
+            await page.goto('/blog', { waitUntil: 'networkidle' });
+            const covers = await page.$$eval('a.blog-post-card img', (imgs) =>
+                imgs.map((img) => ({
+                    rendered:
+                        img.getBoundingClientRect().width * devicePixelRatio,
+                    downloaded: Number(
+                        new URL(
+                            (img as HTMLImageElement).currentSrc
+                        ).searchParams.get('w')
+                    ),
+                }))
+            );
+
+            expect(covers.length).toBeGreaterThan(0);
+            for (const { rendered, downloaded } of covers) {
+                expect(
+                    downloaded,
+                    `rendered ${Math.round(rendered)}px`
+                ).toBeLessThanOrEqual(Math.ceil(rendered * 1.3));
+            }
+        });
+    });
+}
