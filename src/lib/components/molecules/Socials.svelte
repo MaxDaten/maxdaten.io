@@ -1,10 +1,10 @@
 <script lang="ts">
-    import GitHubIcon from '$lib/icons/socials/github.svelte';
-    import LinkedInIcon from '$lib/icons/socials/linkedin.svelte';
-    import CvIcon from '$lib/icons/socials/cv.svelte';
-    import EmailIcon from '$lib/icons/socials/email.svelte';
-    import TwitterIcon from '$lib/icons/socials/twitter.svelte';
-    import SignalIcon from '$lib/icons/socials/signal.svelte';
+    import GitHubIcon from '#lib/icons/socials/github.svelte';
+    import LinkedInIcon from '#lib/icons/socials/linkedin.svelte';
+    import CvIcon from '#lib/icons/socials/cv.svelte';
+    import EmailIcon from '#lib/icons/socials/email.svelte';
+    import TwitterIcon from '#lib/icons/socials/twitter.svelte';
+    import SignalIcon from '#lib/icons/socials/signal.svelte';
 
     type Props = {
         github?: string;

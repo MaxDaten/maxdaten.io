@@ -1,11 +1,11 @@
 <script lang="ts">
     import { page } from '$app/state';
     import { resolve } from '$app/paths';
-    import Logo from '$lib/components/atoms/Logo.svelte';
-    import RssLink from '$lib/components/atoms/RssLink.svelte';
-    import LanguageSwitcher from '$lib/components/molecules/LanguageSwitcher.svelte';
+    import Logo from '#lib/components/atoms/Logo.svelte';
+    import RssLink from '#lib/components/atoms/RssLink.svelte';
+    import LanguageSwitcher from '#lib/components/molecules/LanguageSwitcher.svelte';
     import { getContext } from 'svelte';
-    import { t, type Locale } from '$lib/i18n';
+    import { t, type Locale } from '#lib/i18n/index.js';
 
     interface Props {
         showBackground?: boolean;
@@ -28,18 +28,18 @@
 
 <header class:has-background={showBackground}>
     <nav class="container">
-        <a class="logo" href={resolve('/')} aria-label="maxdaten.io">
+        <a class="logo" href={resolve('')} aria-label="maxdaten.io">
             <Logo />
         </a>
         <div class="links">
             <a
-                href={resolve('/blog')}
+                href={resolve('blog')}
                 class:active={isActive('/blog')}
                 aria-current={isActive('/blog') ? 'page' : undefined}
                 >{t(locale, 'nav.blog')}</a
             >
             <a
-                href={resolve('/gems')}
+                href={resolve('gems')}
                 class:active={isActive('/gems')}
                 aria-current={isActive('/gems') ? 'page' : undefined}
                 >{t(locale, 'nav.gems')}</a

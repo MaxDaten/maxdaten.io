@@ -1,6 +1,6 @@
 import type { MetaTagsProps, Twitter } from 'svelte-meta-tags';
-import { getBaseSchema } from '$lib/data/meta';
-import { version } from '$app/environment';
+import { getBaseSchema } from '#lib/data/meta.js';
+import { version } from '$app/env';
 import {
     t,
     getLocaleFromPath,
@@ -8,7 +8,7 @@ import {
     localeDomains,
     getSiteBaseUrl,
     type Locale,
-} from '$lib/i18n';
+} from '#lib/i18n/index.js';
 
 export const prerender = true;
 

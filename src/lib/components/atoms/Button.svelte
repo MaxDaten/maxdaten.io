@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { HttpRegex } from '$lib/utils/regex';
+    import { HttpRegex } from '#lib/utils/regex.js';
     import type { Snippet } from 'svelte';
     import type { ClassValue } from 'svelte/elements';
 

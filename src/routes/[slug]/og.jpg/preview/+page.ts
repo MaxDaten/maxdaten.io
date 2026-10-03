@@ -1,7 +1,7 @@
 import { error } from '@sveltejs/kit';
 import type { PageLoad } from './$types';
-import { client } from '$lib/sanity/client';
-import { postBySlugQuery } from '$lib/sanity/queries';
+import { client } from '#lib/sanity/client.js';
+import { postBySlugQuery } from '#lib/sanity/queries.js';
 
 export const prerender = 'auto';
 

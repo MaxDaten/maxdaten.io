@@ -1,8 +1,8 @@
 import { error } from '@sveltejs/kit';
 import type { PageLoad } from './$types';
-import { authors } from '$lib/data/authors';
+import { authors } from '#lib/data/authors.js';
 import { loadProfileImageUrl } from '../profile-image';
-import { t, type Locale } from '$lib/i18n';
+import { t, type Locale } from '#lib/i18n/index.js';
 
 // Reads ?locale= at request time, so it cannot be prerendered.
 export const prerender = false;

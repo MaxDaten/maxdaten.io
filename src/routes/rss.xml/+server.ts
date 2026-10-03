@@ -1,6 +1,6 @@
-import { description, siteBaseUrl, title } from '$lib/data/meta';
-import { client } from '$lib/sanity/client';
-import { rssPostsQuery } from '$lib/sanity/queries';
+import { description, siteBaseUrl, title } from '#lib/data/meta.js';
+import { client } from '#lib/sanity/client.js';
+import { rssPostsQuery } from '#lib/sanity/queries.js';
 import { toHTML } from '@portabletext/to-html';
 import type {
     PortableTextBlock,

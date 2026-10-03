@@ -1,6 +1,6 @@
 <script lang="ts">
     /* eslint-disable svelte/no-at-html-tags */
-    import { getFileIcon } from '$lib/utils/fileIcons.js';
+    import { getFileIcon } from '#lib/utils/fileIcons.js';
 
     interface Props {
         lang: string | null;

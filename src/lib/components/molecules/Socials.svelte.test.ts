@@ -5,7 +5,7 @@ import Socials from './Socials.svelte';
 describe('Socials Component', () => {
     test('renders GitHub link with correct external URL', async () => {
         const githubUrl = 'https://github.com/MaxDaten';
-        const screen = render(Socials, {
+        const screen = await render(Socials, {
             github: githubUrl,
         });
 
@@ -16,7 +16,7 @@ describe('Socials Component', () => {
 
     test('renders LinkedIn link with correct external URL', async () => {
         const linkedinUrl = 'https://www.linkedin.com/in/maxdaten';
-        const screen = render(Socials, {
+        const screen = await render(Socials, {
             linkedin: linkedinUrl,
         });
 
@@ -27,7 +27,7 @@ describe('Socials Component', () => {
 
     test('renders email link with correct mailto URL', async () => {
         const emailUrl = 'mailto:jloos@maxdaten.com';
-        const screen = render(Socials, {
+        const screen = await render(Socials, {
             email: emailUrl,
         });
 
@@ -39,7 +39,7 @@ describe('Socials Component', () => {
     test('renders Signal link with correct URL', async () => {
         const signalUrl =
             'https://signal.me/#eu/ZhTXMlQRJW4dZM1cEdqRWraCLE-YPKtv_1grKZ6bXQlQqzTGMnhJJp9mrHYeblqp';
-        const screen = render(Socials, {
+        const screen = await render(Socials, {
             signal: signalUrl,
         });
 
@@ -49,7 +49,7 @@ describe('Socials Component', () => {
     });
 
     test('external URLs are not mangled by resolve()', async () => {
-        const screen = render(Socials, {
+        const screen = await render(Socials, {
             github: 'https://github.com/MaxDaten',
             linkedin: 'https://www.linkedin.com/in/maxdaten',
             email: 'mailto:jloos@maxdaten.com',
@@ -72,7 +72,7 @@ describe('Socials Component', () => {
     });
 
     test('links open in new tab with security attributes', async () => {
-        const screen = render(Socials, {
+        const screen = await render(Socials, {
             github: 'https://github.com/MaxDaten',
         });
 
@@ -84,7 +84,7 @@ describe('Socials Component', () => {
     });
 
     test('only renders provided social links', async () => {
-        const screen = render(Socials, {
+        const screen = await render(Socials, {
             github: 'https://github.com/MaxDaten',
         });
 

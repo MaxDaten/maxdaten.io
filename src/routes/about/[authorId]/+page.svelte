@@ -1,6 +1,6 @@
 <script lang="ts">
     import type { PageData } from './$types';
-    import { getAuthorAvatar } from '$lib/utils/image-loader';
+    import { getAuthorAvatar } from '#lib/utils/image-loader.js';
     import { onMount } from 'svelte';
 
     export let data: PageData;

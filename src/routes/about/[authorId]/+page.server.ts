@@ -1,5 +1,5 @@
 import { error } from '@sveltejs/kit';
-import { getAuthor } from '$lib/data/authors';
+import { getAuthor } from '#lib/data/authors.js';
 import type { PageServerLoad } from './$types';
 
 export const prerender = false;

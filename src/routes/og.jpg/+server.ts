@@ -1,10 +1,10 @@
 import ProfileOgCard from '$routes/og.jpg/ProfileOgCard.svelte';
 import { error } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { generateOgImage } from '$lib/server/og-generation';
-import { profileAvatarDataUri } from '$lib/server/profile-avatar';
+import { generateOgImage } from '#lib/server/og-generation.js';
+import { profileAvatarDataUri } from '#lib/server/profile-avatar.js';
 import { loadProfileImageUrl } from './profile-image';
-import { t, type Locale } from '$lib/i18n';
+import { t, type Locale } from '#lib/i18n/index.js';
 
 export const prerender = false;
 

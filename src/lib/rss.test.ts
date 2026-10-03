@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { GET } from '$routes/rss.xml/+server';
 
 // Mock the Sanity client
-vi.mock('$lib/sanity/client', () => ({
+vi.mock('#lib/sanity/client.js', () => ({
     client: {
         fetch: vi.fn().mockResolvedValue([
             {

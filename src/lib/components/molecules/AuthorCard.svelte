@@ -1,10 +1,10 @@
 <script lang="ts">
-    import type { Author } from '$lib/utils/types';
-    import { getAuthorAvatar } from '$lib/utils/image-loader';
-    import { avatarUrl } from '$lib/sanity/image';
+    import type { Author } from '#lib/utils/types.js';
+    import { getAuthorAvatar } from '#lib/utils/image-loader.js';
+    import { avatarUrl } from '#lib/sanity/image.js';
     import Socials from '$components/molecules/Socials.svelte';
     import Button from '$components/atoms/Button.svelte';
-    import CalendarIcon from '$lib/icons/calendar.svelte';
+    import CalendarIcon from '#lib/icons/calendar.svelte';
 
     type Props = {
         author: Author;

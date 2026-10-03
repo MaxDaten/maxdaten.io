@@ -1,5 +1,5 @@
-import { client } from '$lib/sanity/client';
-import { allGemsQuery } from '$lib/sanity/queries';
+import { client } from '#lib/sanity/client.js';
+import { allGemsQuery } from '#lib/sanity/queries.js';
 
 export async function load({ setHeaders }) {
     setHeaders({

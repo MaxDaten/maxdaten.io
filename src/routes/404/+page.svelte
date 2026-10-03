@@ -1,6 +1,6 @@
 <script>
     import Button from '$components/atoms/Button.svelte';
-    import Error from '$lib/icons/error.svelte';
+    import Error from '#lib/icons/error.svelte';
     import { PageTransition } from 'ssgoi';
 </script>
 

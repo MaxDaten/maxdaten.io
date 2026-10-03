@@ -1,5 +1,5 @@
 import { createTransitionConfig } from 'ssgoi';
-import crossfade from '$lib/transitions/crossfade';
+import crossfade from '#lib/transitions/crossfade.js';
 
 export const transitionConfig = createTransitionConfig({
     transitions: [],

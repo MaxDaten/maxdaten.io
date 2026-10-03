@@ -1,7 +1,7 @@
 import type { PageServerLoad } from './$types';
 import type { MetaTagsProps } from 'svelte-meta-tags';
-import { client } from '$lib/sanity/client';
-import { allPostsQuery } from '$lib/sanity/queries';
+import { client } from '#lib/sanity/client.js';
+import { allPostsQuery } from '#lib/sanity/queries.js';
 
 /**
  * Listing post type - normalized shape for Sanity posts.

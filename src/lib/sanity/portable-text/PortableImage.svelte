@@ -1,6 +1,6 @@
 <script lang="ts">
     import type { CustomBlockComponentProps } from '@portabletext/svelte';
-    import { urlFor, generateSrcSet } from '$lib/sanity/image';
+    import { urlFor, generateSrcSet } from '#lib/sanity/image.js';
 
     interface ImageValue {
         image: {

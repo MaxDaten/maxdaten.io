@@ -1,9 +1,9 @@
 import OgCard from '$routes/[slug]/og.jpg/OgCard.svelte';
 import { error } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { client } from '$lib/sanity/client';
-import { postBySlugQuery } from '$lib/sanity/queries';
-import { generateOgImage } from '$lib/server/og-generation';
+import { client } from '#lib/sanity/client.js';
+import { postBySlugQuery } from '#lib/sanity/queries.js';
+import { generateOgImage } from '#lib/server/og-generation.js';
 
 export const prerender = false;
 

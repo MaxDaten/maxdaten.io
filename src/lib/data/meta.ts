@@ -4,7 +4,7 @@
 
 import { authors } from './authors';
 import MeSrc from '$assets/images/authors/jloos.png?enhanced';
-import type { BlogPost } from '$lib/utils/types';
+import type { BlogPost } from '#lib/utils/types.js';
 import type {
     BlogPosting,
     Organization,
@@ -14,7 +14,7 @@ import type {
     WebSite,
     WithContext,
 } from 'schema-dts';
-import { getSiteBaseUrl, type Locale } from '$lib/i18n';
+import { getSiteBaseUrl, type Locale } from '#lib/i18n/index.js';
 
 export const siteBaseUrl = 'https://maxdaten.io';
 

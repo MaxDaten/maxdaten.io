@@ -1,10 +1,36 @@
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
+import adapter from '@sveltejs/adapter-vercel';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vitest/config';
 import { enhancedImages } from '@sveltejs/enhanced-img';
 import { playwright } from '@vitest/browser-playwright';
 
 export default defineConfig({
-    plugins: [enhancedImages(), sveltekit()],
+    plugins: [
+        enhancedImages(),
+        sveltekit({
+            inspector: true,
+            preprocess: [vitePreprocess({ script: true })],
+            extensions: ['.svelte'],
+            adapter: adapter(),
+            version: { name: Date.now().toString() },
+            prerender: { handleHttpError: 'fail' },
+            alias: {
+                $components: './src/lib/components',
+                $lib: './src/lib',
+                $stores: './src/lib/stores',
+                $styles: './src/lib/scss',
+                $utils: './src/lib/utils',
+                $routes: './src/routes',
+                $assets: './src/lib/assets',
+            },
+            paths: {
+                origin: process.env.VERCEL_PROJECT_PRODUCTION_URL
+                    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+                    : undefined,
+            },
+        }),
+    ],
     build: {
         rollupOptions: {
             onLog(level, log, defaultHandler) {

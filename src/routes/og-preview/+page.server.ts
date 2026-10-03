@@ -1,6 +1,6 @@
 import type { PageServerLoad } from './$types';
-import { client } from '$lib/sanity/client';
-import { allPostsQuery } from '$lib/sanity/queries';
+import { client } from '#lib/sanity/client.js';
+import { allPostsQuery } from '#lib/sanity/queries.js';
 
 export const prerender = true;
 

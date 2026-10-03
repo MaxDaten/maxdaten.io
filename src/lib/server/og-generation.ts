@@ -1,6 +1,8 @@
 import { render } from 'svelte/server';
 import { html as toReactNode } from 'satori-html';
 import satori, { type SatoriOptions } from 'satori';
+
+type SatoriElement = Parameters<typeof satori>[0];
 import { read } from '$app/server';
 import { decode } from 'html-entities';
 import type { Component } from 'svelte';
@@ -88,13 +90,15 @@ export async function svgToJpg(
 export function renderCardToHtml<T extends Record<string, unknown>>(
     component: Component<T>,
     props: T
-): unknown {
+): SatoriElement {
     const result = render(component, { props });
 
+    // satori-html builds the VNode tree satori consumes, but types it as its own VNode rather
+    // than React's ReactNode (whose type depends on whether @types/react is installed).
     return toReactNode(
         // unescape special characters: https://github.com/natemoo-re/satori-html/issues/20
         `<head>${result.head}</head>${decode(result.body)}`
-    );
+    ) as unknown as SatoriElement;
 }
 
 /**
@@ -107,7 +111,6 @@ export async function generateOgImage<T extends Record<string, unknown>>(
     const element = renderCardToHtml(component, props);
 
     // Generate the OG image using the rendered Svelte component
-    // @ts-expect-error for VNode to match ReactNode
     const svg = await satori(element, SATORI_OPTIONS);
 
     const imageBuffer = await svgToJpg(svg);

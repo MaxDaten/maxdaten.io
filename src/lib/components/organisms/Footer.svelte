@@ -1,8 +1,8 @@
 <script>
     import { resolve } from '$app/paths';
-    import Socials from '$lib/components/molecules/Socials.svelte';
-    import RssLink from '$lib/components/atoms/RssLink.svelte';
-    import { authors } from '$lib/data/authors';
+    import Socials from '#lib/components/molecules/Socials.svelte';
+    import RssLink from '#lib/components/atoms/RssLink.svelte';
+    import { authors } from '#lib/data/authors.js';
 
     // Get the main site author's socials
     const mainAuthor = authors.jloos;
@@ -11,9 +11,9 @@
 <footer>
     <div class="footer-content">
         <div class="legal">
-            <a href={resolve('/impressum')}>Impressum</a>
-            <a href={resolve('/datenschutz')}>Datenschutz</a>
-            <span class="copyright">&copy; {new Date().getFullYear()}</span>
+            <a href={resolve('impressum')}>Impressum</a>
+            <a href={resolve('datenschutz')}>Datenschutz</a>
+            <span class="copyright">© {new Date().getFullYear()}</span>
         </div>
         <div class="socials">
             <Socials {...mainAuthor.socials} />

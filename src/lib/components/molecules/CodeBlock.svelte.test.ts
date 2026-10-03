@@ -9,7 +9,7 @@ describe('CodeBlock Component', () => {
     });
 
     test('renders code block with filename', async () => {
-        const screen = render(CodeBlock, {
+        const screen = await render(CodeBlock, {
             filename: 'example.js',
             lang: 'javascript',
             showLineNumbers: true,
@@ -28,7 +28,7 @@ describe('CodeBlock Component', () => {
     });
 
     test('renders copy button', async () => {
-        const screen = render(CodeBlock, {
+        const screen = await render(CodeBlock, {
             filename: 'example.js',
             lang: 'javascript',
             showLineNumbers: true,
@@ -40,7 +40,7 @@ describe('CodeBlock Component', () => {
     });
 
     test('copy button shows success state when clicked', async () => {
-        const screen = render(CodeBlock, {
+        const screen = await render(CodeBlock, {
             filename: 'example.js',
             lang: 'javascript',
             showLineNumbers: true,

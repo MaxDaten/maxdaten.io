@@ -1,10 +1,10 @@
 import type { PageServerLoad } from './$types';
-import { client, previewClient } from '$lib/sanity/client';
-import { postBySlugQuery, allPostSlugsQuery } from '$lib/sanity/queries';
+import { client, previewClient } from '#lib/sanity/client.js';
+import { postBySlugQuery, allPostSlugsQuery } from '#lib/sanity/queries.js';
 import { error } from '@sveltejs/kit';
-import { env } from '$env/dynamic/private';
-import { building } from '$app/environment';
-import { highlightCodeBlocks } from '$lib/server/highlight';
+import { SANITY_PREVIEW_SECRET } from '$app/env/private';
+import { building } from '$app/env';
+import { highlightCodeBlocks } from '#lib/server/highlight.js';
 
 export async function entries() {
     const posts = await client.fetch(allPostSlugsQuery);
@@ -12,7 +12,7 @@ export async function entries() {
 }
 
 export const load: PageServerLoad = async ({ params, url }) => {
-    const previewSecret = env.SANITY_PREVIEW_SECRET;
+    const previewSecret = SANITY_PREVIEW_SECRET;
     const isPreview =
         !building &&
         previewSecret &&

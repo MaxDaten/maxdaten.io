@@ -1,13 +1,13 @@
 <script lang="ts">
     import Tag from '$components/atoms/Tag.svelte';
     import AuthorCard from '$components/molecules/AuthorCard.svelte';
-    import { formatPostDate, formatDateISO } from '$lib/utils/format-date';
+    import { formatPostDate, formatDateISO } from '#lib/utils/format-date.js';
     import { PageTransition } from 'ssgoi';
     import type { PageProps } from './$types';
     import { PortableText } from '@portabletext/svelte';
-    import { portableTextComponents } from '$lib/sanity/portable-text';
-    import { urlFor, generateSrcSet, avatarUrl } from '$lib/sanity/image';
-    import { calculateReadingTime } from '$lib/sanity/reading-time';
+    import { portableTextComponents } from '#lib/sanity/portable-text/index.js';
+    import { urlFor, generateSrcSet, avatarUrl } from '#lib/sanity/image.js';
+    import { calculateReadingTime } from '#lib/sanity/reading-time.js';
 
     let { data }: PageProps = $props();
 

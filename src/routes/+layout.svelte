@@ -1,10 +1,10 @@
 <script>
-    import '$lib/scss/fonts';
-    import '$lib/scss/global.css';
+    import '#lib/scss/fonts.js';
+    import '#lib/scss/global.css';
     import Analytics from '$components/atoms/Analytics.svelte';
     import { Ssgoi } from 'ssgoi';
-    import { transitionConfig } from '$lib/config/transitions';
-    import { t } from '$lib/i18n';
+    import { transitionConfig } from '#lib/config/transitions.js';
+    import { t } from '#lib/i18n/index.js';
     import { onNavigate } from '$app/navigation';
     import Header from '$components/organisms/Header.svelte';
     import Footer from '$components/organisms/Footer.svelte';

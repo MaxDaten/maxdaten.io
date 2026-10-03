@@ -1,5 +1,5 @@
-import { client } from '$lib/sanity/client';
-import { allPostsQuery } from '$lib/sanity/queries';
+import { client } from '#lib/sanity/client.js';
+import { allPostsQuery } from '#lib/sanity/queries.js';
 import type { ListingPost } from '../blog/+page.server';
 
 export async function load() {

@@ -1,7 +1,11 @@
 <script lang="ts">
     import { getContext } from 'svelte';
     import { page } from '$app/state';
-    import { localeDomains, isTranslatedRoute, type Locale } from '$lib/i18n';
+    import {
+        localeDomains,
+        isTranslatedRoute,
+        type Locale,
+    } from '#lib/i18n/index.js';
 
     const getLocale: () => Locale = getContext('locale');
     let locale = $derived(getLocale());

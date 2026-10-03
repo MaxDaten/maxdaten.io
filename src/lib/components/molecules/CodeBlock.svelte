@@ -1,8 +1,8 @@
 <script lang="ts">
     import FileIcon from '$components/atoms/FileIcon.svelte';
-    import CopyIcon from '$lib/icons/copy.svelte';
-    import CheckIcon from '$lib/icons/check.svelte';
-    import XIcon from '$lib/icons/x.svelte';
+    import CopyIcon from '#lib/icons/copy.svelte';
+    import CheckIcon from '#lib/icons/check.svelte';
+    import XIcon from '#lib/icons/x.svelte';
 
     interface Props {
         filename: string | null;

@@ -1,7 +1,7 @@
 # CLAUDE.md
 
 Personal site and blog of a freelance consultant: maxdaten.de (German) and maxdaten.io (English).
-SvelteKit 2 + Svelte 5 (runes), prerendered and deployed on Vercel, content in Sanity CMS.
+SvelteKit 3 + Svelte 5 (runes) on Vite 8, prerendered and deployed on Vercel, content in Sanity CMS.
 
 ## Commands
 
@@ -67,8 +67,10 @@ chromium e2e and `npm audit --audit-level=high`. Don't bypass them.
 
 ## Conventions
 
-- Path aliases (`svelte.config.js`): `$components`, `$lib`, `$stores`, `$styles` (→ `src/lib/scss`),
-  `$utils`, `$routes`, `$assets` (→ `src/lib/assets`).
+- SvelteKit config lives in the `sveltekit({...})` call in `vite.config.ts` (there is no
+  `svelte.config.js`). `src/lib` is imported as `#lib/...` (Node subpath imports in `package.json`);
+  the other aliases (`$components`, `$stores`, `$styles` → `src/lib/scss`, `$utils`, `$routes`,
+  `$assets` → `src/lib/assets`) still come from the deprecated `alias` option there.
 - Commit messages: conventional commits (`feat(seo): …`, `chore(deps): …`, `content(gems): …`). Keep
   structural (tidy) and behavioural changes in separate commits.
 - Blog prose style guide: `WRITING.md` (only for writing posts).

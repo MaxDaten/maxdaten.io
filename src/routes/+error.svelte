@@ -1,6 +1,6 @@
 <script>
-    import Button from '$lib/components/atoms/Button.svelte';
-    import Error from '$lib/icons/error.svelte';
+    import Button from '#lib/components/atoms/Button.svelte';
+    import Error from '#lib/icons/error.svelte';
 </script>
 
 <div class="error-page">

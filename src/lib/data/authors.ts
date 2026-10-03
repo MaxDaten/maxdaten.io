@@ -1,4 +1,4 @@
-import type { Author } from '$lib/utils/types';
+import type { Author } from '#lib/utils/types.js';
 
 export const authors: Record<string, Author> = {
     jloos: {

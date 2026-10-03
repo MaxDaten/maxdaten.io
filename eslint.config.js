@@ -4,7 +4,11 @@ import svelte from 'eslint-plugin-svelte';
 import storybook from 'eslint-plugin-storybook';
 import tseslint from 'typescript-eslint';
 import globals from 'globals';
-import svelteConfig from './svelte.config.js';
+import { loadConfig } from '@sveltejs/load-config';
+
+const loaded = await loadConfig('./', { traverse: false });
+if (loaded && 'error' in loaded) throw loaded.error;
+const svelteConfig = loaded?.config;
 
 export default [
     eslint.configs.recommended,

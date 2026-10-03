@@ -1,8 +1,8 @@
 <script lang="ts">
-    import Card from '$lib/components/atoms/Card.svelte';
-    import Tag from '$lib/components/atoms/Tag.svelte';
+    import Card from '#lib/components/atoms/Card.svelte';
+    import Tag from '#lib/components/atoms/Tag.svelte';
     import type { ListingPost } from '$routes/blog/+page.server';
-    import { urlFor, generateSrcSet } from '$lib/sanity/image';
+    import { urlFor, generateSrcSet } from '#lib/sanity/image.js';
 
     type Props = {
         post: ListingPost;

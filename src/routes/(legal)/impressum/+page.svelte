@@ -3,17 +3,19 @@
 </script>
 
 <h1>Impressum</h1>
-
 <p>
     Angaben gemäß § 5 DDG und Verantwortlicher nach § 18 Abs. 2
     Medienstaatsvertrag (MStV).
 </p>
-
 <h2>Dienstanbieter</h2>
+
 <p>
-    <strong>Name:</strong> Jan-Philip Loos – maxdaten.io<br />
-    <strong>Anschrift:</strong> Oktaviostraße 112E, 22043 Hamburg, Deutschland<br
-    />
+    <strong>Name:</strong>
+    Jan-Philip Loos – maxdaten.io
+    <br />
+    <strong>Anschrift:</strong>
+    Oktaviostraße 112E, 22043 Hamburg, Deutschland
+    <br />
     <strong>E-Mail:</strong>
     <a href="mailto:jloos@maxdaten.com">jloos@maxdaten.com</a><br />
     <strong>Telefon:</strong> +49 160 96 65 11 88
@@ -55,19 +57,27 @@
 
 <h2>Datenschutz</h2>
 <p>
-    Informationen zur Verarbeitung personenbezogener Daten: <a
-        href={resolve('/datenschutz')}>Datenschutzerklärung</a
-    >.
+    Informationen zur Verarbeitung personenbezogener Daten:
+    <a href={resolve('datenschutz')}>Datenschutzerklärung</a>
+    .
 </p>
 
 <h2>Credits und Urheberhinweise</h2>
-<h3>Technologie &amp; Icons</h3>
+<h3>Technologie & Icons</h3>
 <ul>
-    <li>Powered by <a href="https://svelte.dev/docs/kit">SvelteKit</a>.</li>
     <li>
-        Icons by <a href="https://iconoir.com/">Iconoir</a> &amp;
+        Powered by
+        <a href="https://svelte.dev/docs/kit">SvelteKit</a>
+        .
+    </li>
+
+    <li>
+        Icons by
+        <a href="https://iconoir.com/">Iconoir</a>
+        &
         <a href="https://github.com/catppuccin/vscode-icons">Catppuccin Icons</a
-        >.
+        >
+        .
     </li>
 </ul>
 <h3>Vorlage</h3>
