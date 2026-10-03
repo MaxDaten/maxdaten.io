@@ -42,7 +42,7 @@
         "@sveltejs/adapter-vercel": "^6.3.0",
         "@sveltejs/kit": "^2.0.0",
         "@sveltejs/vite-plugin-svelte": "^6.2.4",
-        "@types/node": "^25.0.9",
+        "@types/node": "^24.19.1",
         "@vitest/browser": "^4.0.17",
         "@vitest/browser-playwright": "^4.0.17",
         "@zerodevx/svelte-img": "^2.1.2",
