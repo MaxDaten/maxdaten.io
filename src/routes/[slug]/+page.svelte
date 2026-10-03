@@ -1,6 +1,6 @@
 <script lang="ts">
-    import Tag from '$components/atoms/Tag.svelte';
-    import AuthorCard from '$components/molecules/AuthorCard.svelte';
+    import Tag from '#lib/components/atoms/Tag.svelte';
+    import AuthorCard from '#lib/components/molecules/AuthorCard.svelte';
     import { formatPostDate, formatDateISO } from '#lib/utils/format-date.js';
     import { PageTransition } from 'ssgoi';
     import type { PageProps } from './$types';

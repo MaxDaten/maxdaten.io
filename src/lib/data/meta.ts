@@ -3,7 +3,7 @@
 // Via <svelte:head>
 
 import { authors } from './authors';
-import MeSrc from '$assets/images/authors/jloos.png?enhanced';
+import MeSrc from '#lib/assets/images/authors/jloos.png?enhanced';
 import type { BlogPost } from '#lib/utils/types.js';
 import type {
     BlogPosting,

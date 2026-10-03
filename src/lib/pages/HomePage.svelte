@@ -1,9 +1,9 @@
 <script lang="ts">
-    import Hero from '$components/organisms/Hero.svelte';
-    import RecentPosts from '$components/organisms/RecentPosts.svelte';
+    import Hero from '#lib/components/organisms/Hero.svelte';
+    import RecentPosts from '#lib/components/organisms/RecentPosts.svelte';
     import { PageTransition } from 'ssgoi';
-    import Bubbles from '$components/organisms/Bubbles.svelte';
-    import type { ListingPost } from '$routes/blog/+page.server';
+    import Bubbles from '#lib/components/organisms/Bubbles.svelte';
+    import type { ListingPost } from '#routes/blog/+page.server.js';
 
     interface Props {
         posts: ListingPost[];

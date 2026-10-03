@@ -1,6 +1,6 @@
 <script lang="ts">
     import Card from '#lib/components/atoms/Card.svelte';
-    import Tag from '$components/atoms/Tag.svelte';
+    import Tag from '#lib/components/atoms/Tag.svelte';
 
     interface SanityCoverImage {
         url?: string;

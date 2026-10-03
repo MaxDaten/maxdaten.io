@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { GET } from '$routes/rss.xml/+server';
+import { GET } from '#routes/rss.xml/+server.js';
 
 // Mock the Sanity client
 vi.mock('#lib/sanity/client.js', () => ({

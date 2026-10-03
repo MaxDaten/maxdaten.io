@@ -1,6 +1,6 @@
 <script lang="ts">
     import type { CustomBlockComponentProps } from '@portabletext/svelte';
-    import CodeBlockUI from '$components/molecules/CodeBlock.svelte';
+    import CodeBlockUI from '#lib/components/molecules/CodeBlock.svelte';
 
     interface CodeBlockValue {
         code: string;

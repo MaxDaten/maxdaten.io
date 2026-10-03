@@ -1,10 +1,10 @@
 <script lang="ts">
-    import HoloCard from '$components/molecules/HoloCard.svelte';
-    import Button from '$components/atoms/Button.svelte';
-    import Sparkles from '$components/atoms/Sparkles.svelte';
+    import HoloCard from '#lib/components/molecules/HoloCard.svelte';
+    import Button from '#lib/components/atoms/Button.svelte';
+    import Sparkles from '#lib/components/atoms/Sparkles.svelte';
     import CalendarIcon from '#lib/icons/calendar.svelte';
     import GitHubIcon from '#lib/icons/socials/github.svelte';
-    import MeSrc from '$assets/images/authors/jloos-v2.jpeg?enhanced';
+    import MeSrc from '#lib/assets/images/authors/jloos-v2.jpeg?enhanced';
     import { getContext } from 'svelte';
     import { t, type Locale } from '#lib/i18n/index.js';
 

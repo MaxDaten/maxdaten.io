@@ -1,4 +1,4 @@
-import ProfileOgCard from '$routes/og.jpg/ProfileOgCard.svelte';
+import ProfileOgCard from '#routes/og.jpg/ProfileOgCard.svelte';
 import { error } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 import { generateOgImage } from '#lib/server/og-generation.js';

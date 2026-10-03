@@ -1,4 +1,4 @@
-import OgCard from '$routes/[slug]/og.jpg/OgCard.svelte';
+import OgCard from '#routes/[slug]/og.jpg/OgCard.svelte';
 import { error } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 import { client } from '#lib/sanity/client.js';

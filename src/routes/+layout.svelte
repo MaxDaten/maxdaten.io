@@ -1,13 +1,13 @@
 <script>
     import '#lib/scss/fonts.js';
     import '#lib/scss/global.css';
-    import Analytics from '$components/atoms/Analytics.svelte';
+    import Analytics from '#lib/components/atoms/Analytics.svelte';
     import { Ssgoi } from 'ssgoi';
     import { transitionConfig } from '#lib/config/transitions.js';
     import { t } from '#lib/i18n/index.js';
     import { onNavigate } from '$app/navigation';
-    import Header from '$components/organisms/Header.svelte';
-    import Footer from '$components/organisms/Footer.svelte';
+    import Header from '#lib/components/organisms/Header.svelte';
+    import Footer from '#lib/components/organisms/Footer.svelte';
     import { page } from '$app/state';
     import { MetaTags, deepMerge, JsonLd } from 'svelte-meta-tags';
     import { setContext } from 'svelte';

@@ -2,7 +2,7 @@
     import type { CustomBlockComponentProps } from '@portabletext/svelte';
     import type { PortableTextBlock } from '@portabletext/types';
     import { PortableText } from '@portabletext/svelte';
-    import CalloutUI from '$components/molecules/Callout.svelte';
+    import CalloutUI from '#lib/components/molecules/Callout.svelte';
 
     interface CalloutValue {
         type: 'info' | 'warning' | 'tip';

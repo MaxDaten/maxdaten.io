@@ -68,9 +68,9 @@ chromium e2e and `npm audit --audit-level=high`. Don't bypass them.
 ## Conventions
 
 - SvelteKit config lives in the `sveltekit({...})` call in `vite.config.ts` (there is no
-  `svelte.config.js`). `src/lib` is imported as `#lib/...` (Node subpath imports in `package.json`);
-  the other aliases (`$components`, `$stores`, `$styles` → `src/lib/scss`, `$utils`, `$routes`,
-  `$assets` → `src/lib/assets`) still come from the deprecated `alias` option there.
+  `svelte.config.js`). Imports use Node subpath imports from `package.json`: `#lib/...` for
+  `src/lib` (components, assets, utils, …) and `#routes/...` for `src/routes`. TypeScript modules
+  are imported with a `.js` extension (`#lib/sanity/client.js`).
 - Commit messages: conventional commits (`feat(seo): …`, `chore(deps): …`, `content(gems): …`). Keep
   structural (tidy) and behavioural changes in separate commits.
 - Blog prose style guide: `WRITING.md` (only for writing posts).

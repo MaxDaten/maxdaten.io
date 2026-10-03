@@ -7,7 +7,8 @@
  */
 export async function loadProfileImageSrc(): Promise<string | undefined> {
     try {
-        const module = await import('$assets/images/authors/jloos-v2.jpeg?url');
+        const module =
+            await import('#lib/assets/images/authors/jloos-v2.jpeg?url');
         return module.default;
     } catch (_err) {
         console.warn('Profile image not found, proceeding without image');

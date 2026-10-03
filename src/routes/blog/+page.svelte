@@ -1,6 +1,6 @@
 <script lang="ts">
-    import BlogPostCard from '$components/molecules/BlogPostCard.svelte';
-    import ContentSection from '$components/organisms/ContentSection.svelte';
+    import BlogPostCard from '#lib/components/molecules/BlogPostCard.svelte';
+    import ContentSection from '#lib/components/organisms/ContentSection.svelte';
     import type { ListingPost } from './+page.server';
     import { PageTransition } from 'ssgoi';
 

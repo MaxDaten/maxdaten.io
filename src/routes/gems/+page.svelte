@@ -1,6 +1,6 @@
 <script lang="ts">
-    import GemCard from '$components/molecules/GemCard.svelte';
-    import ContentSection from '$components/organisms/ContentSection.svelte';
+    import GemCard from '#lib/components/molecules/GemCard.svelte';
+    import ContentSection from '#lib/components/organisms/ContentSection.svelte';
     import { PageTransition } from 'ssgoi';
 
     interface SanityGem {

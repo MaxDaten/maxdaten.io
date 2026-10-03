@@ -1,5 +1,5 @@
 import type { PageLoad } from './$types';
-import type { PostData, SanityPost } from '$utils/types';
+import type { PostData, SanityPost } from '#lib/utils/types.js';
 import type { MetaTagsProps, Twitter } from 'svelte-meta-tags';
 import { createBlogPostingSchema } from '#lib/data/meta.js';
 import type { BlogPosting, WithContext } from 'schema-dts';

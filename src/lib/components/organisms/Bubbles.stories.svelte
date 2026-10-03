@@ -1,6 +1,6 @@
 <script module>
     import { defineMeta } from '@storybook/addon-svelte-csf';
-    import Bubbles from '$components/organisms/Bubbles.svelte';
+    import Bubbles from '#lib/components/organisms/Bubbles.svelte';
 
     const { Story } = defineMeta({
         title: 'Organisms/Bubbles',

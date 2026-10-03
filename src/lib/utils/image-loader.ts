@@ -7,11 +7,14 @@ import type { Picture } from '@sveltejs/enhanced-img';
 
 const authorAvatars = new Map<string, Picture>(
     Object.entries(
-        import.meta.glob('$assets/images/authors/*.{png,jpg,jpeg,webp}', {
-            import: 'default',
-            eager: true,
-            query: { enhanced: true, w: '100' },
-        }) as Record<string, Picture>
+        import.meta.glob(
+            '/src/lib/assets/images/authors/*.{png,jpg,jpeg,webp}',
+            {
+                import: 'default',
+                eager: true,
+                query: { enhanced: true, w: '100' },
+            }
+        ) as Record<string, Picture>
     ).map(([path, image]) => {
         // Author ID from the filename, e.g. "jloos.png" -> "jloos"
         const authorId =
