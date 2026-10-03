@@ -7,6 +7,7 @@ import MeSrc from '#lib/assets/images/authors/jloos.png?enhanced';
 import type { BlogPost } from '#lib/utils/types.js';
 import type {
     BlogPosting,
+    BreadcrumbList,
     Organization,
     Person,
     ProfessionalService,
@@ -39,7 +40,10 @@ export function getBaseSchema(
 ): [WebSite, Person, ProfilePage, Organization, ProfessionalService] {
     const localeBaseUrl = getSiteBaseUrl(locale);
     const inLanguage = locale === 'de' ? 'de-DE' : 'en-US';
-    const siteName = locale === 'de' ? 'maxdaten.de' : 'maxdaten.io';
+    // One name and URL per entity, whatever the page language: answer engines merge entities
+    // by @id and distrust ones whose properties disagree.
+    const entityName = 'maxdaten.io';
+    const portraitUrl = `${siteBaseUrl}${MeSrc?.img.src}`;
     const desc = descriptions[locale];
 
     return [
@@ -47,9 +51,9 @@ export function getBaseSchema(
             '@context': 'https://schema.org',
             '@type': 'WebSite',
             '@id': 'https://maxdaten.io/#website',
-            name: siteName,
+            name: entityName,
             description: desc.organization,
-            url: localeBaseUrl,
+            url: siteBaseUrl,
             author: {
                 '@id': 'https://maxdaten.io/#jloos',
             },
@@ -61,9 +65,13 @@ export function getBaseSchema(
             name: authors.jloos.name,
             jobTitle: authors.jloos.tagline,
             description: desc.person,
-            url: localeBaseUrl,
+            url: siteBaseUrl,
+            image: portraitUrl,
+            knowsAbout: authors.jloos.specialties,
+            // Public profiles only: not the mailto: or the Signal contact link.
             sameAs: Object.values(authors.jloos.socials || {}).filter(
-                (url) => !url.startsWith('mailto:')
+                (url) =>
+                    url.startsWith('https://') && !url.includes('signal.me')
             ),
         },
         <WithContext<ProfilePage>>{
@@ -75,14 +83,14 @@ export function getBaseSchema(
             mainEntity: {
                 '@id': 'https://maxdaten.io/#jloos',
             },
-            image: `https://maxdaten.io${MeSrc?.img.src}`,
+            image: portraitUrl,
         },
         <WithContext<Organization>>{
             '@context': 'https://schema.org',
             '@type': 'Organization',
             '@id': 'https://maxdaten.io/#organization',
-            name: siteName,
-            url: localeBaseUrl,
+            name: entityName,
+            url: siteBaseUrl,
             founder: {
                 '@id': 'https://maxdaten.io/#jloos',
             },
@@ -92,9 +100,9 @@ export function getBaseSchema(
             '@context': 'https://schema.org',
             '@type': 'ProfessionalService',
             '@id': 'https://maxdaten.io/#business',
-            name: siteName,
+            name: entityName,
             description: desc.organization,
-            url: localeBaseUrl,
+            url: siteBaseUrl,
             founder: {
                 '@id': 'https://maxdaten.io/#jloos',
             },
@@ -150,5 +158,21 @@ export function createBlogPostingSchema(
             wordCount: post.readingTimeMinutes * 200, // estimate
             timeRequired: `PT${post.readingTimeMinutes}M`,
         }),
+    };
+}
+
+/** BreadcrumbList from [name, url] pairs, outermost first. */
+export function createBreadcrumbSchema(
+    trail: [name: string, url: string][]
+): WithContext<BreadcrumbList> {
+    return {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: trail.map(([name, item], index) => ({
+            '@type': 'ListItem',
+            position: index + 1,
+            name,
+            item,
+        })),
     };
 }

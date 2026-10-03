@@ -2,13 +2,14 @@ import type { PageLoad } from './$types';
 import type { PostData, SanityPost } from '#lib/utils/types.js';
 import type { MetaTagsProps, Twitter } from 'svelte-meta-tags';
 import { createBlogPostingSchema } from '#lib/data/meta.js';
-import type { BlogPosting, WithContext } from 'schema-dts';
+import type { BlogPosting, BreadcrumbList, WithContext } from 'schema-dts';
 import { version } from '$app/env';
 import { canonicalUrl } from '#lib/i18n/index.js';
+import { createBreadcrumbSchema } from '#lib/data/meta.js';
 
 type PageData = PostData & {
     pageMetaTags: MetaTagsProps;
-    pageSchema: WithContext<BlogPosting>[];
+    pageSchema: (WithContext<BlogPosting> | WithContext<BreadcrumbList>)[];
 };
 
 export const load: PageLoad = async ({ data, url }): Promise<PageData> => {
@@ -40,6 +41,11 @@ export const load: PageLoad = async ({ data, url }): Promise<PageData> => {
                   canonicalUrl(url.pathname),
                   post.coverImage?.url ?? ogImageUrl
               ),
+              createBreadcrumbSchema([
+                  ['Home', canonicalUrl('/en')],
+                  ['Blog', canonicalUrl('/blog')],
+                  [post.title, canonicalUrl(url.pathname)],
+              ]),
           ]
         : [];
 

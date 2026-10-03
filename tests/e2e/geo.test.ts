@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test, type Page } from '@playwright/test';
 
 // Structure that answer engines and crawlers rely on to extract and attribute content.
 
@@ -43,4 +43,69 @@ test('/about/jloos sends one consistent set of meta tags', async ({ page }) => {
     await expect(page).toHaveTitle(
         'Jan-Philip Loos - Trading Card | maxdaten.io'
     );
+});
+
+type Schema = Record<string, unknown> & { '@type'?: string; '@id'?: string };
+
+async function jsonLd(page: Page, path: string): Promise<Schema[]> {
+    await page.goto(path);
+    const scripts = await page
+        .locator('script[type="application/ld+json"]')
+        .allTextContents();
+    return scripts.flatMap((s) => {
+        const parsed = JSON.parse(s);
+        return parsed['@graph'] ?? [parsed];
+    });
+}
+
+const byType = (graph: Schema[], type: string) =>
+    graph.find((s) => s['@type'] === type);
+
+test('JSON-LD names each entity the same in both languages', async ({
+    page,
+}) => {
+    const de = await jsonLd(page, '/');
+    const en = await jsonLd(page, '/en');
+
+    for (const type of ['WebSite', 'Organization', 'ProfessionalService']) {
+        const [deEntity, enEntity] = [byType(de, type), byType(en, type)];
+        expect(deEntity?.name, type).toBe('maxdaten.io');
+        expect(deEntity?.name, type).toBe(enEntity?.name);
+        expect(deEntity?.url, type).toBe(enEntity?.url);
+    }
+});
+
+test('JSON-LD Person carries an image, expertise and real profiles', async ({
+    page,
+}) => {
+    const person = byType(await jsonLd(page, '/en'), 'Person');
+
+    expect(person?.image).toMatch(/^https:\/\/www\.maxdaten\.io\//);
+    expect(person?.knowsAbout).toEqual(expect.arrayContaining(['Kubernetes']));
+    expect(person?.sameAs).toContain('https://github.com/MaxDaten');
+    expect(JSON.stringify(person?.sameAs)).not.toContain('signal.me');
+});
+
+test('a post has breadcrumbs and a modified date', async ({ page }) => {
+    const slug = '2026-01-31-ship-your-toolchain-not-just-infrastructure';
+    const graph = await jsonLd(page, `/${slug}`);
+
+    const breadcrumbs = byType(graph, 'BreadcrumbList');
+    expect(breadcrumbs?.itemListElement).toEqual([
+        expect.objectContaining({
+            position: 1,
+            item: 'https://www.maxdaten.io/en',
+        }),
+        expect.objectContaining({
+            position: 2,
+            item: 'https://www.maxdaten.io/blog',
+        }),
+        expect.objectContaining({
+            position: 3,
+            item: `https://www.maxdaten.io/${slug}`,
+        }),
+    ]);
+    const posting = byType(graph, 'BlogPosting');
+    expect(posting?.dateModified).toBeTruthy();
+    expect(posting?.dateModified).not.toBe(posting?.datePublished);
 });
