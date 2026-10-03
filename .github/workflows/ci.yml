@@ -1,0 +1,63 @@
+# Same checks as the local git hooks (devenv.nix), so `--no-verify` can't land broken code.
+name: CI
+
+on:
+    push:
+        branches: [main]
+    pull_request:
+
+concurrency:
+    group: ci-${{ github.ref }}
+    cancel-in-progress: true
+
+permissions:
+    contents: read
+
+env:
+    # Public values (they ship in the client bundle), required by $env/static/public at build time.
+    PUBLIC_SANITY_PROJECT_ID: hvsy54ho
+    PUBLIC_SANITY_DATASET: production
+
+jobs:
+    verify:
+        runs-on: ubuntu-latest
+        timeout-minutes: 20
+
+        steps:
+            - uses: actions/checkout@v7
+
+            - uses: actions/setup-node@v7
+              with:
+                  node-version-file: package.json
+                  cache: npm
+
+            - run: npm ci
+
+            - name: Install Playwright chromium
+              run: npx playwright install --with-deps chromium
+
+            - name: Format
+              run: npx prettier --check .
+
+            - name: Lint
+              run: npm run lint
+
+            - name: Type check
+              run: npm run check
+
+            - name: Unit tests
+              run: npm run test
+
+            - name: Build
+              run: npm run build
+
+            - name: E2E (chromium)
+              run: npx playwright test --project=chromium
+
+            - name: Upload Playwright report
+              uses: actions/upload-artifact@v7
+              if: failure()
+              with:
+                  name: playwright-report
+                  path: playwright-report/
+                  retention-days: 10
