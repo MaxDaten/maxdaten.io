@@ -14,6 +14,7 @@ export interface TranslationKeys {
     // Navigation
     'nav.blog': string;
     'nav.gems': string;
+    'nav.skipToContent': string;
 
     // Footer
     'footer.impressum': string;

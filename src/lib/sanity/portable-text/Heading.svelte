@@ -51,6 +51,7 @@
         class="heading-link"
         title="Permalink"
         aria-hidden="true"
+        tabindex="-1"
         onclick={copyAnchorUrl}>#</a
     >
     {@render children()}

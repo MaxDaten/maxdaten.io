@@ -36,3 +36,36 @@ test.describe('colour contrast (WCAG AA)', () => {
         ).toEqual([]);
     });
 });
+
+test.describe('keyboard and labelling', () => {
+    test('focusable elements are not hidden and names match visible labels', async ({
+        page,
+    }) => {
+        for (const path of ['/en', await firstPostPath(page)]) {
+            await page.goto(path);
+            const { violations } = await new AxeBuilder({ page })
+                .withRules(['aria-hidden-focus', 'label-content-name-mismatch'])
+                .analyze();
+            expect(
+                violations.map((v) => `${path}: ${v.id} (${v.nodes.length})`)
+            ).toEqual([]);
+        }
+    });
+
+    for (const [path, label] of [
+        ['/', 'Zum Inhalt springen'],
+        ['/en', 'Skip to content'],
+    ]) {
+        test(`first Tab on ${path} reaches a skip link to the main content`, async ({
+            page,
+        }) => {
+            await page.goto(path);
+            await page.keyboard.press('Tab');
+
+            const focused = page.locator(':focus');
+            await expect(focused).toHaveText(label);
+            await expect(focused).toHaveAttribute('href', '#main-content');
+            await expect(page.locator('main#main-content')).toHaveCount(1);
+        });
+    }
+});

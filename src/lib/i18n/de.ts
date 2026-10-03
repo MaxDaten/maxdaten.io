@@ -15,6 +15,7 @@ export const de: TranslationKeys = {
     // Navigation
     'nav.blog': 'Blog',
     'nav.gems': 'Gems',
+    'nav.skipToContent': 'Zum Inhalt springen',
 
     // Footer
     'footer.impressum': 'Impressum',

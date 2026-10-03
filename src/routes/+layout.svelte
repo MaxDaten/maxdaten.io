@@ -4,6 +4,7 @@
     import Analytics from '$components/atoms/Analytics.svelte';
     import { Ssgoi } from 'ssgoi';
     import { transitionConfig } from '$lib/config/transitions';
+    import { t } from '$lib/i18n';
     import { onNavigate } from '$app/navigation';
     import Header from '$components/organisms/Header.svelte';
     import Footer from '$components/organisms/Footer.svelte';
@@ -41,9 +42,12 @@
 <Analytics />
 <Ssgoi {onNavigate} config={transitionConfig}>
     <div class="stage">
+        <a class="skip-link" href="#main-content"
+            >{t(locale, 'nav.skipToContent')}</a
+        >
         <Header showBackground={true} />
 
-        <main class="fill-height">
+        <main id="main-content" class="fill-height" tabindex="-1">
             {@render children?.()}
         </main>
 
@@ -52,6 +56,27 @@
 </Ssgoi>
 
 <style>
+    .skip-link {
+        position: absolute;
+        top: var(--raw-space-8);
+        left: var(--raw-space-8);
+        z-index: 100;
+        padding: var(--raw-space-8) var(--raw-space-12);
+        border-radius: var(--radius-button);
+        background: var(--color-accent);
+        color: var(--color-surface);
+        font-weight: var(--font-weight-semibold);
+        transform: translateY(-200%);
+
+        &:focus {
+            transform: none;
+        }
+    }
+
+    main:focus {
+        outline: none;
+    }
+
     .stage {
         height: 100%;
         min-height: 100vh;

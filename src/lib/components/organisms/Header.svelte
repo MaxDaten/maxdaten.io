@@ -28,7 +28,7 @@
 
 <header class:has-background={showBackground}>
     <nav class="container">
-        <a class="logo" href={resolve('/')} aria-label="Site logo">
+        <a class="logo" href={resolve('/')} aria-label="maxdaten.io">
             <Logo />
         </a>
         <div class="links">
