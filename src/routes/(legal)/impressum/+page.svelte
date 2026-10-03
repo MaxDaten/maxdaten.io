@@ -11,7 +11,7 @@
 
 <h2>Dienstanbieter</h2>
 <p>
-    <strong>Name:</strong> Jan-Philip Loos – maxdaten<br />
+    <strong>Name:</strong> Jan-Philip Loos – maxdaten.io<br />
     <strong>Anschrift:</strong> Oktaviostraße 112E, 22043 Hamburg, Deutschland<br
     />
     <strong>E-Mail:</strong>
