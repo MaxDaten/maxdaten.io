@@ -41,6 +41,9 @@ test.describe('Datenschutzerklärung', () => {
         await expect(main).toContainText('Vercel Inc.');
         await expect(main).toContainText('Sanity');
         await expect(main).toContainText('Data Privacy Framework');
+        await expect(main).toContainText('Plausible Insights OÜ');
+        // Plausible is proxied through the site's own domain (vercel.json /scitylana/*).
+        await expect(main).not.toContainText('keine Analyse');
     });
 });
 

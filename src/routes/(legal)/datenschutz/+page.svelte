@@ -9,11 +9,12 @@
 
 <h2>Das Wichtigste in Kürze</h2>
 <p>
-    Diese Website setzt keine Cookies, speichert nichts im Browser, verwendet
-    keine Analyse- oder Tracking-Dienste und bindet keine Social-Media-Plugins
-    ein. Schriftarten werden vom eigenen Server geladen. Personenbezogene Daten
-    fallen nur dort an, wo es technisch nötig ist: beim Ausliefern der Seiten
-    (Hosting) und der Bilder (Bild-CDN) sowie wenn Sie mich kontaktieren.
+    Diese Website setzt keine Cookies, speichert nichts in Ihrem Browser und
+    bindet keine Social-Media-Plugins ein. Schriftarten werden vom eigenen
+    Server geladen. Personenbezogene Daten fallen beim Ausliefern der Seiten
+    (Hosting) und der Bilder (Bild-CDN), bei einer cookielosen
+    Reichweitenmessung mit Plausible Analytics sowie dann an, wenn Sie mich
+    kontaktieren.
 </p>
 
 <h2>Hosting</h2>
@@ -49,6 +50,27 @@
     dafür Google Cloud ein, primär in Belgien. Soweit Daten in die USA
     übermittelt werden, geschieht dies auf Grundlage der
     EU-Standardvertragsklauseln (Art. 46 Abs. 2 lit. c DSGVO).
+</p>
+
+<h2>Reichweitenmessung mit Plausible Analytics</h2>
+<p>
+    Um zu verstehen, welche Inhalte gelesen werden, nutze ich Plausible
+    Analytics. Anbieter ist Plausible Insights OÜ, Västriku tn 2, 50403 Tartu,
+    Estland. Das Skript und die Messdaten werden über diese Website selbst
+    ausgeliefert und an Plausible weitergeleitet. Erfasst werden die aufgerufene
+    Seite, die verweisende Seite, Browser, Betriebssystem und Gerätetyp sowie
+    das aus der IP-Adresse abgeleitete Land, die Region und die Stadt.
+</p>
+<p>
+    Plausible setzt keine Cookies und speichert nichts in Ihrem Browser.
+    IP-Adresse und User-Agent werden nicht gespeichert, sondern nur zusammen mit
+    einem täglich wechselnden und danach gelöschten Zufallswert zu einer
+    Prüfsumme verrechnet, um Besuche zu zählen. Ein Wiedererkennen über Tage
+    hinweg ist dadurch nicht möglich. Die Daten werden ausschließlich in der EU
+    verarbeitet. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO; mein
+    berechtigtes Interesse liegt in einer datensparsamen Auswertung der Nutzung
+    dieser Website. Plausible verarbeitet die Daten als Auftragsverarbeiter
+    (Art. 28 DSGVO).
 </p>
 
 <h2>Kontaktaufnahme</h2>
