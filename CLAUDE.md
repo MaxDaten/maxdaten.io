@@ -1,245 +1,75 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this
-repository.
+Personal site and blog of a freelance consultant: maxdaten.de (German) and maxdaten.io (English).
+SvelteKit 2 + Svelte 5 (runes), prerendered and deployed on Vercel, content in Sanity CMS.
 
-## Essential Commands
+## Commands
 
-**Development:**
+Run inside the devenv shell (direnv loads it); `treefmt` only exists there.
 
-- `npm run dev` - Start development server with host binding
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
+- `npm run dev` / `build` / `preview`
+- `npm run check` — svelte-check (uses `jsconfig.json`)
+- `npm run lint` — eslint only (`**/*.js` is ignored by the eslint config)
+- `npm run format` — `treefmt` (prettier + nixfmt); whole-repo runs must be a no-op
+- `npm run test` — fast vitest run: `server` project (node) + `browser` project (`*.svelte.test.ts`,
+  chromium; needs `npx playwright install chromium` once)
+- `npm run test:e2e` — Playwright; use `-- --project chromium` for a quick run
+- `npm run studio:dev` / `studio:deploy` — Sanity Studio in `studio/`
 
-**Code Quality:**
+Git hooks (prek, from `devenv.nix`): pre-commit runs treefmt, lint, check, unit tests; pre-push runs
+chromium e2e and `npm audit --audit-level=high`. Don't bypass them.
 
-- `npm run check` - Run svelte-check with TypeScript validation
-- `npm run lint` - Run prettier and eslint checks
-- `npm run format` - Format code with prettier
+**Verify a change:** `npm run check && npm run lint && npm run test`; for UI or routing changes also
+`npm run test:e2e -- --project chromium`.
 
-**Testing:**
+## Content: Sanity
 
-- `npm run test` - Run fast unit tests only (suitable for commit hooks, skips slow tests)
-- `npm run test:all` - Run all tests including slow ones (unit tests + link checker)
-- `npm run test:unit` - Run unit tests in watch mode
-- `npm run test:links` - Check all blog articles for dead links (slow, ~30s)
-- `npm run test:e2e` - Run end-to-end tests with Playwright
-- `npm run test:e2e:ui` - Run E2E tests with interactive UI
-- `npm run test:e2e:headed` - Run E2E tests in headed browser mode
-- `npm run test:e2e:debug` - Run E2E tests in debug mode
+- All posts, gems, authors, tags and series live in Sanity — never create content files in the repo.
+  Sanity project `hvsy54ho`, dataset `production` (pass both to the Sanity MCP).
+- Schemas: `studio/schemas/documents/{post,gem,author,series,tag}.ts`. Schema changes need a studio
+  deploy (`.github/workflows/studio-deploy.yml` on push to `main`).
+- All GROQ lives in `src/lib/sanity/queries.ts` (`defineQuery`); client in `client.ts` (CDN,
+  published content only). Images via `src/lib/sanity/image.ts`.
+- Post bodies are Portable Text, rendered by components in `src/lib/sanity/portable-text/`. Code
+  blocks are highlighted with Shiki in `portable-text/CodeBlock.svelte`.
+- The site is prerendered (`src/routes/+layout.ts`), so published content only appears after a new
+  deploy.
 
-**Content Management:**
+## Routing and i18n
 
-- `npm run storybook` - Start Storybook component development server
-- `npm run update-site-preview-image` - Update site preview image
+- `(de)/` = German home at `/`, `en/` = English home at `/en`. Only the home page is translated;
+  `/blog`, `/gems`, `/[slug]` (posts), `/about/[authorId]` are English-only.
+- Other routes: `/impressum`, `/404`, `og.jpg` + `[slug]/og.jpg` (satori + sharp, see
+  `src/lib/server/og-generation.ts`), `/og-preview`, `rss.xml`, `sitemap.xml` (super-sitemap),
+  `robots.txt`.
+- Translations: flat typed key/value in `src/lib/i18n/{de,en}.ts`; `t(locale, key)` in
+  `src/lib/i18n/index.ts` falls back to `de`. Locale comes from `getLocaleFromPath()`.
+- The root layout exposes the locale as a getter: `setContext('locale', () => locale)`; read it with
+  `getContext('locale')` inside `$derived()` to stay reactive.
+- `hooks.server.ts` sets `<html lang>` per request.
+- Domains: maxdaten.de → German, maxdaten.io → English. Host redirects (not rewrites) live in
+  `vercel.json` (`/` on .io → `/en`, `/en/*` on .de → .io, www.maxdaten.de → apex).
+- `hero.subheadline` doubles as `meta.description` — keep them in sync.
+- When changing translation text, update `tests/e2e/i18n.test.ts`. `src/lib/i18n/i18n.test.ts`
+  enforces identical keys across locales and differing values (except `nav.blog`, `nav.gems`,
+  `footer.impressum`, `meta.title`). Test both domain variants for routing changes.
 
-## Architecture Overview
+## Styling
 
-This is a SvelteKit-based static blog site with MDX integration for content authoring.
+- Plain CSS (no SCSS despite the `src/lib/scss/` directory name), Svelte-scoped component styles.
+- Design tokens are mandatory — no hardcoded colors, spacing, radius or opacity. Primitives
+  `--raw-*` in `tokens-{colors,spacing,typography}.css`; components use semantic tokens.
+  `tokens-migration.css` is a bridge for legacy `--color--*` names; don't add new uses.
+- Exception: OG cards (`OgCard`, `ProfileOgCard`) need literal values because satori cannot resolve
+  CSS variables.
+- Load the `design-principles` skill for UI work.
+- Components follow atoms / molecules / organisms in `src/lib/components/`.
 
-**Key Technologies:**
+## Conventions
 
-- SvelteKit 2.0 with Svelte 5
-- MDsveX for Markdown with Svelte components
-- SCSS for styling with atomic design methodology
-- Vitest for unit testing with separate client/server configurations
-- Playwright for end-to-end testing across browsers
-- Image optimization pipeline using image-transmutation
-- UI components are developed via Storybook in isolation
-- Shiki for advanced syntax highlighting with custom transformers
-
-**Component Architecture:**
-
-- **Atoms:** Basic UI elements (Button, Card, Image, etc.)
-- **Molecules:** Composed components (BlogPostCard, ThemeToggle, etc.)
-- **Organisms:** Complex layouts (Header, Footer, Hero, etc.)
-
-**Content System:**
-
-- Blog posts are `.md` files in `src/content/blog/` directory
-- Dynamic routing via `src/routes/[slug]/` imports posts using `import.meta.glob()` pattern
-- Posts use rich frontmatter (title, slug, coverImage, excerpt, date, tags, keywords, hidden)
-- Blog data management in `src/lib/data/blog-posts/` with advanced features:
-    - Automatic reading time calculation (200 wpm)
-    - Related posts algorithm based on tag similarity
-    - HTML rendering with Svelte component support
-    - Hidden post filtering capability
-- Gems (curated recommendations) system in `src/lib/data/gems/`
-- MDsveX integration with custom layout (`MdsvexWrapper.svelte`) enables Svelte components in
-  markdown
-- Site metadata configured in `src/lib/data/meta.ts` with comprehensive SEO fields
-- Content processing pipeline includes image optimization and sitemap generation
-
-**i18n / Translations:**
-
-- Locales: `de` (default), `en` — defined in `src/lib/i18n/types.ts` (`Locale` type)
-- Translation files: `src/lib/i18n/de.ts` and `src/lib/i18n/en.ts` (flat key-value, typed by
-  `TranslationKeys`)
-- Lookup: `t(locale, key)` in `src/lib/i18n/index.ts`, falls back to `de`
-- Routing: `/` is German, `/en/` is English; derived by `getLocaleFromPath()`
-- Only the homepage is translated (`isTranslatedRoute()`); blog/gems stay English
-- Canonical domains: `maxdaten.de` (de), `maxdaten.io` (en)
-- `hero.subheadline` is reused as `meta.description` — keep them in sync when editing
-- When changing translation text, also update E2E assertions in `tests/e2e/i18n.test.ts`
-- Unit tests in `src/lib/i18n/i18n.test.ts` verify both locales have identical keys and that
-  translated keys differ between locales (except `nav.blog`, `nav.gems`, `footer.impressum`,
-  `meta.title`)
-- When implementing i18n or domain-based routing changes, always update E2E tests to reflect new
-  translation strings and test both domain variants (.io and .de).
-
-**Routing Structure:**
-
-- Dynamic blog routing via `[slug]` for individual posts (e.g., `/my-post-slug`)
-- Static routes: `/blog` (listing), `/gems` (curated links), `/404` (error page), `/` (home)
-- API routes: `/rss.xml` for RSS feed generation
-- Content stored in `/src/content/blog/` as `.md` files (not in routes directory)
-- Sitemap auto-generated via `svelte-sitemap` package during build
-
-**Styling System:**
-
-- Global SCSS files in `src/lib/scss/`
-- Component-scoped styles using Svelte's CSS scoping
-- Shiki/CodeBlock styling in `src/lib/scss/_markdown.scss:74` `.code-block` class
-- **Design Tokens:** Always use design tokens for styling values
-    - Two-layer architecture in `src/lib/scss/_tokens-colors.scss`
-    - **Primitive tokens** (`--raw-*`): Raw values without context (e.g., `--raw-radius-xs: 4px`)
-    - **Semantic tokens**: Contextual usage referencing primitives (e.g.,
-      `--radius-tag: var(--raw-radius-xs)`)
-    - Never use hardcoded values for colors, spacing, radius, or opacity
-    - Prefer semantic tokens in components; only use primitives when defining new semantic tokens
-
-**Path Aliases:**
-
-- `$components` → `./src/lib/components`
-- `$lib` → `./src/lib`
-- `$stores` → `./src/lib/stores`
-- `$styles` → `./src/lib/scss`
-- `$utils` → `./src/lib/utils`
-- `$routes` → `./src/routes`
-
-**Deployment:**
-
-- Vercel deployment with automatic image optimization
-- Static site generation with prerendering
-- Automatic sitemap generation post-build
-
-**Syntax Highlighting System:**
-
-- Shiki 3.7 for code blocks
-- Custom transformers for enhanced features (filename display, line numbers, copy buttons)
-- Supported languages: bash, css, haskell, hcl, html, http, js, kotlin, nix, svelte, terraform,
-  text, ts, yaml, docker, scss, python, nginx, java
-- Integration through MDsveX with custom `CodeBlock` component
-- Configuration in `mdsvex.config.js` and `src/lib/shiki/transformerCodeBlock.js`
-
-**Development Environment:**
-
-- Nix flake for reproducible development environment
-- Node.js 22 with npm
-- Includes claude-code, vercel CLI, and formatting tools
-
-## Development Guidelines
-
-**TDD & Tidy First Principles:**
-
-- **TDD Cycle:** Always follow Red → Green → Refactor
-    - Write the simplest failing test first (Red)
-    - Implement minimum code to make test pass (Green)
-    - Refactor only after tests are passing (Refactor)
-- **Tidy First:** Separate structural from behavioral changes
-    - STRUCTURAL CHANGES: Rearranging code without changing behavior
-    - BEHAVIORAL CHANGES: Adding or modifying actual functionality
-    - Never mix structural and behavioral changes in the same commit
-    - Always make structural changes first when both are needed
-    - Validate structural changes don't alter behavior by running tests
-
-**Testing Strategy:**
-
-- **Unit Tests (Vitest):** Use describe/it spec pattern, add stories alongside components
-- **E2E Tests (Playwright):** Test user workflows across browsers
-- Use meaningful test names that describe behavior
-- Tests located in `tests/` for E2E and alongside components for unit tests
-
-**Code Quality Standards:**
-
-- Eliminate duplication ruthlessly
-- Express intent clearly through naming and structure
-- Make dependencies explicit
-- Keep methods small and focused on a single responsibility
-- Minimize state and side effects
-- Use the simplest solution that could possibly work
-- Prefer functional style before imperative style
-- Follow clean code style guides moderately
-
-## Approach
-
-**Development Workflow:**
-
-1. Write failing test for small feature increment
-2. Implement minimum code to pass
-3. Refactor if needed (run tests after each change)
-4. Commit structural and behavioral changes separately
-5. Repeat for next increment
-
-Always run tests between changes. Prioritize clean, well-tested code over speed.
-
-You are able to use the Svelte MCP server, where you have access to comprehensive Svelte 5 and
-SvelteKit documentation. Here's how to use the available tools effectively:
-
-## Debugging
-
-## Debugging
-
-**Multi-Agent Debugging Process:**
-
-When debugging, follow this structured approach using the Task tool with the `general-purpose`
-subagent:
-
-1. **Hypothesis Generation (Agent 1):** Launch an agent to analyze the issue and propose 1-3
-   specific hypotheses about the root cause. Each hypothesis should include:
-    - Description of the suspected cause
-    - Expected symptoms if hypothesis is correct
-    - Suggested verification method
-
-2. **Hypothesis Rating (Agent 2):** Launch a second agent to evaluate each hypothesis and assign a
-   probability rating (high/medium/low) based on:
-    - Available evidence
-    - Code complexity
-    - Likelihood given the symptoms
-
-3. **Hypothesis Verification (Agent 3):** Launch a third agent to test hypotheses in order from
-   highest to lowest rating until the root cause is found.
-
-**Example workflow:**
-
-- Agent 1 finds: "Race condition in API call", "Missing null check in render", "Incorrect cache
-  invalidation"
-- Agent 2 rates: High, Medium, Low
-- Agent 3 tests the race condition hypothesis first, then proceeds to next if needed
-
-## Available MCP Tools:
-
-### 1. list-sections
-
-Use this FIRST to discover all available documentation sections. Returns a structured list with
-titles, use_cases, and paths. When asked about Svelte or SvelteKit topics, ALWAYS use this tool at
-the start of the chat to find relevant sections.
-
-### 2. get-documentation
-
-Retrieves full documentation content for specific sections. Accepts single or multiple sections.
-After calling the list-sections tool, you MUST analyze the returned documentation sections
-(especially the use_cases field) and then use the get-documentation tool to fetch ALL documentation
-sections that are relevant for the user's task.
-
-### 3. svelte-autofixer
-
-Analyzes Svelte code and returns issues and suggestions. You MUST use this tool whenever writing
-Svelte code before sending it to the user. Keep calling it until no issues or suggestions are
-returned.
-
-### 4. playground-link
-
-Generates a Svelte Playground link with the provided code. After completing the code, ask the user
-if they want a playground link. Only call this tool after user confirmation and NEVER if code was
-written to files in their project.
+- Path aliases (`svelte.config.js`): `$components`, `$lib`, `$stores`, `$styles` (→ `src/lib/scss`),
+  `$utils`, `$routes`, `$assets` (→ `src/lib/assets`).
+- Commit messages: conventional commits (`feat(seo): …`, `chore(deps): …`, `content(gems): …`). Keep
+  structural (tidy) and behavioural changes in separate commits.
+- Blog prose style guide: `WRITING.md` (only for writing posts).
+- `.planning/` is historical; don't trust it as a description of the code.
