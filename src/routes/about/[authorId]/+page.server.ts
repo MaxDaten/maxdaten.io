@@ -15,5 +15,11 @@ export const load: PageServerLoad = async ({ params }) => {
 
     return {
         author,
+        // Merged over the layout's tags; the card is a playful extra, not an indexed page.
+        pageMetaTags: {
+            title: `${author.name} - Trading Card`,
+            description: `Trading card for ${author.name} - ${author.tagline}`,
+            robots: 'noindex,nofollow',
+        },
     };
 };

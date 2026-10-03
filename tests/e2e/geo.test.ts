@@ -32,3 +32,15 @@ test('post headings contain only their own text', async ({ page }) => {
         expect(text.trim()).not.toMatch(/^#/);
     }
 });
+
+test('/about/jloos sends one consistent set of meta tags', async ({ page }) => {
+    await page.goto('/about/jloos');
+
+    const robots = page.locator('meta[name="robots"]');
+    await expect(robots).toHaveCount(1);
+    await expect(robots).toHaveAttribute('content', /noindex/);
+    await expect(page.locator('meta[name="description"]')).toHaveCount(1);
+    await expect(page).toHaveTitle(
+        'Jan-Philip Loos - Trading Card | maxdaten.io'
+    );
+});

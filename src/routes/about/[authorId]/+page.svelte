@@ -123,15 +123,6 @@
     });
 </script>
 
-<svelte:head>
-    <title>{author.name} - Trading Card | maxdaten.io</title>
-    <meta
-        name="description"
-        content="Trading card for {author.name} - {author.tagline}"
-    />
-    <meta name="robots" content="noindex, nofollow" />
-</svelte:head>
-
 <main class="card-container">
     <div class="trading-card" bind:this={cardElement}>
         <!-- Header Section -->
