@@ -4,8 +4,7 @@
     import Sparkles from '$components/atoms/Sparkles.svelte';
     import CalendarIcon from '$lib/icons/calendar.svelte';
     import GitHubIcon from '$lib/icons/socials/github.svelte';
-    import MeSrc from '$assets/images/authors/jloos-v2.jpeg?as=run&fit=cover';
-    import Img from '@zerodevx/svelte-img';
+    import MeSrc from '$assets/images/authors/jloos-v2.jpeg?enhanced';
     import { getContext } from 'svelte';
     import { t, type Locale } from '$lib/i18n';
 
@@ -74,15 +73,14 @@
                         <span class="card-level">LVL 99</span>
                     </div>
                     <div class="avatar-container">
-                        <Img
+                        <!-- Largest element above the fold (LCP): fetch it first. -->
+                        <enhanced:img
                             src={MeSrc}
-                            {...{
-                                class: 'avatar-image',
-                                alt: 'Jan-Philip Loos',
-                                // Largest element above the fold (LCP): fetch it first.
-                                loading: 'eager',
-                                fetchpriority: 'high',
-                            }}
+                            class="avatar-image"
+                            alt="Jan-Philip Loos"
+                            loading="eager"
+                            fetchpriority="high"
+                            sizes="(max-width: 767px) 90vw, 450px"
                         />
                     </div>
                     <div class="card-name">JAN-PHILIP</div>

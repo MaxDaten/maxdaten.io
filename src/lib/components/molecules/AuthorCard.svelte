@@ -1,6 +1,5 @@
 <script lang="ts">
     import type { Author } from '$lib/utils/types';
-    import Img from '@zerodevx/svelte-img';
     import { getAuthorAvatar } from '$lib/utils/image-loader';
     import { avatarUrl } from '$lib/sanity/image';
     import Socials from '$components/molecules/Socials.svelte';
@@ -36,7 +35,7 @@
                     height="36"
                 />
             {:else if fileAvatar}
-                <Img
+                <enhanced:img
                     class="avatar"
                     src={fileAvatar}
                     alt="{author.name}'s avatar"
