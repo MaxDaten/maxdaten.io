@@ -226,6 +226,12 @@ test.describe('i18n — home page services and results', () => {
             page.getByText(/reproducible environments with Nix and devenv/)
         ).toBeVisible();
         await expect(
+            page.getByRole('heading', {
+                level: 3,
+                name: 'Modern Product Engineering',
+            })
+        ).toBeVisible();
+        await expect(
             page.getByRole('heading', { level: 2, name: 'Selected work' })
         ).toBeVisible();
         await expect(page.getByText('Klingel Gruppe')).toBeVisible();

@@ -35,9 +35,9 @@ export const de: TranslationKeys = {
     'services.delivery.title': 'Continuous Delivery',
     'services.delivery.text':
         'Von fragilen Release-Pipelines zu Continuous Delivery: Trunk-based Development, verlässliche Testautomatisierung und ein automatisierter Weg in die Produktion.',
-    'services.product.title': 'Produktentwicklung',
+    'services.product.title': 'Moderne Produktentwicklung',
     'services.product.text':
-        'Ihr Produkt end-to-end, von der Infrastruktur bis zur Oberfläche, im Pairing mit Ihren Entwicklern.',
+        'Ihr Produkt end-to-end, von der Infrastruktur bis zur Oberfläche: Entwickler, die Ergebnisse verantworten statt Tickets abzuarbeiten, liefern in kleinen Schritten und lernen schnell aus echtem Nutzerfeedback.',
     'results.title': 'Ausgewählte Projekte',
     'results.description': 'Ergebnisse aus bisherigen Projekten.',
     'results.klingel':
