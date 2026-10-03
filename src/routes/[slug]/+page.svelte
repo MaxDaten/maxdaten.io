@@ -6,7 +6,7 @@
     import type { PageProps } from './$types';
     import { PortableText } from '@portabletext/svelte';
     import { portableTextComponents } from '$lib/sanity/portable-text';
-    import { urlFor, generateSrcSet } from '$lib/sanity/image';
+    import { urlFor, generateSrcSet, avatarUrl } from '$lib/sanity/image';
     import { calculateReadingTime } from '$lib/sanity/reading-time';
 
     let { data }: PageProps = $props();
@@ -71,7 +71,7 @@
                         {#if author.avatarUrl}
                             <img
                                 class="avatar-inline"
-                                src={author.avatarUrl}
+                                src={avatarUrl(author.avatarUrl, 20)}
                                 alt=""
                                 width="18"
                                 height="18"

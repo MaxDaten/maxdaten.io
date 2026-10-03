@@ -2,6 +2,7 @@
     import type { Author } from '$lib/utils/types';
     import Img from '@zerodevx/svelte-img';
     import { getAuthorAvatar } from '$lib/utils/image-loader';
+    import { avatarUrl } from '$lib/sanity/image';
     import Socials from '$components/molecules/Socials.svelte';
     import Button from '$components/atoms/Button.svelte';
     import CalendarIcon from '$lib/icons/calendar.svelte';
@@ -29,7 +30,7 @@
             {#if author.avatarUrl}
                 <img
                     class="avatar"
-                    src={author.avatarUrl}
+                    src={avatarUrl(author.avatarUrl, 36)}
                     alt={author.avatarAlt ?? `${author.name}'s avatar`}
                     width="36"
                     height="36"

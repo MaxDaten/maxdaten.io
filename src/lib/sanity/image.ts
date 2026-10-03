@@ -42,3 +42,23 @@ export function generateSrcSet(
         .map((w) => `${urlFor(source).width(w).auto('format').url()} ${w}w`)
         .join(', ');
 }
+
+/**
+ * URL for a square avatar shown at `displaySize` CSS pixels: cropped, in a modern
+ * format, and at 2x for high-density screens instead of the full-size upload.
+ *
+ * @example
+ * <img src={avatarUrl(author.avatarUrl, 36)} width="36" height="36" />
+ */
+export function avatarUrl(
+    source: SanityImageSource,
+    displaySize: number
+): string {
+    const size = displaySize * 2;
+    return urlFor(source)
+        .width(size)
+        .height(size)
+        .fit('crop')
+        .auto('format')
+        .url();
+}
