@@ -5,6 +5,8 @@
   ...
 }:
 {
+  dotenv.enable = true;
+
   languages.nix.enable = true;
   languages.javascript = {
     enable = true;
