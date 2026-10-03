@@ -30,13 +30,21 @@ export function isTranslatedRoute(pathname: string): boolean {
     return translatedRoutes.has(pathname);
 }
 
-/** Canonical domain per locale (used for hreflang / language switcher). */
+/**
+ * Canonical origin per locale. The English origin is www because Vercel redirects the
+ * maxdaten.io apex there; pointing at the apex would add a redirect hop.
+ */
 export const localeDomains: Record<Locale, string> = {
     de: 'https://maxdaten.de',
-    en: 'https://maxdaten.io',
+    en: 'https://www.maxdaten.io',
 };
 
 /** Returns the canonical base URL for a locale. */
 export function getSiteBaseUrl(locale: Locale): string {
     return localeDomains[locale];
+}
+
+/** The final (non-redirecting) URL of a page, on its locale's origin. */
+export function canonicalUrl(pathname: string): string {
+    return new URL(pathname, getSiteBaseUrl(getLocaleFromPath(pathname))).href;
 }

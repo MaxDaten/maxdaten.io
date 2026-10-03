@@ -29,3 +29,19 @@ test('/sitemap.xml is valid', async ({ page, browserName }) => {
         // expect(url.priority).toBe('0.7');
     }
 });
+
+test('/sitemap.xml lists each page on its final host', async ({ request }) => {
+    const xml = await (await request.get('/sitemap.xml')).text();
+    const urls = [...xml.matchAll(/<loc>([^<]+)<\/loc>|href="([^"]+)"/g)].map(
+        (m) => new URL(m[1] ?? m[2])
+    );
+    const germanPaths = new Set(['/', '/impressum', '/datenschutz']);
+
+    expect(urls.map((u) => u.href)).toContain('https://www.maxdaten.io/en');
+    for (const url of urls) {
+        const expectedOrigin = germanPaths.has(url.pathname)
+            ? 'https://maxdaten.de'
+            : 'https://www.maxdaten.io';
+        expect(url.origin, url.href).toBe(expectedOrigin);
+    }
+});

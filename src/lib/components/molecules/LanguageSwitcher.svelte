@@ -1,27 +1,13 @@
 <script lang="ts">
     import { getContext } from 'svelte';
-    import { page } from '$app/state';
-    import {
-        localeDomains,
-        isTranslatedRoute,
-        type Locale,
-    } from '#lib/i18n/index.js';
+    import { localeDomains, type Locale } from '#lib/i18n/index.js';
 
     const getLocale: () => Locale = getContext('locale');
     let locale = $derived(getLocale());
 
-    // On translated pages, link to the alternate domain's home page.
-    // On English-only pages (blog, gems), link to the other domain's home page.
-    let deHref = $derived(
-        isTranslatedRoute(page.url.pathname)
-            ? `${localeDomains.de}/`
-            : `${localeDomains.de}/`
-    );
-    let enHref = $derived(
-        isTranslatedRoute(page.url.pathname)
-            ? `${localeDomains.en}/en/`
-            : `${localeDomains.en}/`
-    );
+    // Both links go to the home page in that language; only the home page is translated.
+    const deHref = `${localeDomains.de}/`;
+    const enHref = `${localeDomains.en}/en`;
 </script>
 
 <!-- eslint-disable svelte/no-navigation-without-resolve — external domain links -->

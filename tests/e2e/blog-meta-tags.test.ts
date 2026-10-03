@@ -78,9 +78,7 @@ test.describe('Blog Post Meta Tags', () => {
             const canonical = await page
                 .locator('link[rel="canonical"]')
                 .getAttribute('href');
-            expect(canonical).toBeTruthy();
-            // expect(canonical).toMatch(/^https?:\/\//); // Should be absolute URL, but not locally atm
-            expect(canonical).toContain(post.slug);
+            expect(canonical).toBe(`https://www.maxdaten.io/${post.slug}`);
 
             // Check basic meta tags
             const description = await page

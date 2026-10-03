@@ -46,7 +46,7 @@ test.describe('i18n — German home page (/)', () => {
             .locator('link[hreflang="x-default"]')
             .getAttribute('href');
         expect(deHreflang).toBe('https://maxdaten.de/');
-        expect(enHreflang).toBe('https://maxdaten.io/');
+        expect(enHreflang).toBe('https://www.maxdaten.io/en');
         expect(xDefault).toBe('https://maxdaten.de/');
     });
 
@@ -55,7 +55,7 @@ test.describe('i18n — German home page (/)', () => {
         const canonical = await page
             .locator('link[rel="canonical"]')
             .getAttribute('href');
-        expect(canonical).toContain('maxdaten.de');
+        expect(canonical).toBe('https://maxdaten.de/');
     });
 
     test('has titleTemplate with maxdaten.de', async ({ page }) => {
@@ -126,7 +126,7 @@ test.describe('i18n — English home page (/en/)', () => {
             .locator('link[hreflang="en"]')
             .getAttribute('href');
         expect(deHreflang).toBe('https://maxdaten.de/');
-        expect(enHreflang).toBe('https://maxdaten.io/');
+        expect(enHreflang).toBe('https://www.maxdaten.io/en');
     });
 
     test('has canonical pointing to maxdaten.io', async ({ page }) => {
@@ -134,7 +134,7 @@ test.describe('i18n — English home page (/en/)', () => {
         const canonical = await page
             .locator('link[rel="canonical"]')
             .getAttribute('href');
-        expect(canonical).toContain('maxdaten.io');
+        expect(canonical).toBe('https://www.maxdaten.io/en');
     });
 
     test('has titleTemplate with maxdaten.io', async ({ page }) => {
@@ -193,6 +193,10 @@ test.describe('i18n — Blog pages remain English', () => {
             await page.goto(path);
             await expect(page.locator('html')).toHaveAttribute('lang', 'en');
             await expect(page).toHaveTitle(/\| maxdaten\.io$/);
+            await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+                'href',
+                `https://www.maxdaten.io${path}`
+            );
         });
     }
 

@@ -6,7 +6,7 @@ import {
     getLocaleFromPath,
     isTranslatedRoute,
     localeDomains,
-    getSiteBaseUrl,
+    canonicalUrl as toCanonicalUrl,
     type Locale,
 } from '#lib/i18n/index.js';
 
@@ -14,7 +14,6 @@ export const prerender = true;
 
 export const load = ({ url }) => {
     const locale: Locale = getLocaleFromPath(url.pathname);
-    const localeBaseUrl = getSiteBaseUrl(locale);
     const ogImageUrl = new URL(
         `/og.jpg?locale=${locale}&v=${version}`,
         url.origin
@@ -25,7 +24,7 @@ export const load = ({ url }) => {
     const ogImageAlt = t(locale, 'meta.ogImageAlt');
     const ogLocale = locale === 'de' ? 'de_DE' : 'en_US';
     const siteName = locale === 'de' ? 'maxdaten.de' : 'maxdaten.io';
-    const canonicalUrl = new URL(url.pathname, localeBaseUrl).href;
+    const canonicalUrl = toCanonicalUrl(url.pathname);
 
     // hreflang link tags for translated pages
     const additionalLinkTags = isTranslatedRoute(url.pathname)
@@ -38,7 +37,7 @@ export const load = ({ url }) => {
               {
                   rel: 'alternate',
                   hreflang: 'en',
-                  href: `${localeDomains.en}/`,
+                  href: `${localeDomains.en}/en`,
               },
               {
                   rel: 'alternate',

@@ -4,6 +4,7 @@ import type { MetaTagsProps, Twitter } from 'svelte-meta-tags';
 import { createBlogPostingSchema } from '#lib/data/meta.js';
 import type { BlogPosting, WithContext } from 'schema-dts';
 import { version } from '$app/env';
+import { canonicalUrl } from '#lib/i18n/index.js';
 
 type PageData = PostData & {
     pageMetaTags: MetaTagsProps;
@@ -44,11 +45,11 @@ export const load: PageLoad = async ({ data, url }): Promise<PageData> => {
     const pageMetaTags = Object.freeze({
         title: post.title,
         description: post.excerpt ?? '',
-        canonical: new URL(url.pathname, url.origin).href,
+        canonical: canonicalUrl(url.pathname),
         openGraph: {
             title: post.title,
             description: post.excerpt ?? '',
-            url: new URL(url.pathname, url.origin).href,
+            url: canonicalUrl(url.pathname),
             type: 'article',
             images: [
                 {

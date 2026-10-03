@@ -16,7 +16,7 @@ import type {
 } from 'schema-dts';
 import { getSiteBaseUrl, type Locale } from '#lib/i18n/index.js';
 
-export const siteBaseUrl = 'https://maxdaten.io';
+export const siteBaseUrl = 'https://www.maxdaten.io';
 
 export const description =
     'Full-stack product engineering with knowledge transfer built in. 15+ years spanning product development, platform architecture, and technical leadership — from startup to 100M+ requests/day.';

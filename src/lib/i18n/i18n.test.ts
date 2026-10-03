@@ -3,6 +3,7 @@ import {
     t,
     getLocaleFromPath,
     isTranslatedRoute,
+    canonicalUrl,
     defaultLocale,
     supportedLocales,
 } from './index';
@@ -98,6 +99,18 @@ describe('i18n', () => {
 
         it('returns false for /some-slug', () => {
             expect(isTranslatedRoute('/some-slug')).toBe(false);
+        });
+    });
+
+    describe('canonicalUrl()', () => {
+        it.each([
+            ['/', 'https://maxdaten.de/'],
+            ['/impressum', 'https://maxdaten.de/impressum'],
+            ['/en', 'https://www.maxdaten.io/en'],
+            ['/blog', 'https://www.maxdaten.io/blog'],
+            ['/some-slug', 'https://www.maxdaten.io/some-slug'],
+        ])('maps %s to its final URL %s', (path, expected) => {
+            expect(canonicalUrl(path)).toBe(expected);
         });
     });
 
