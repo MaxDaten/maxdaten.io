@@ -208,7 +208,7 @@
                 font-size: var(--raw-text-xs);
                 text-transform: uppercase;
                 letter-spacing: 0.05em;
-                color: rgba(var(--color-text-rgb), 0.4);
+                color: var(--color-text-muted);
             }
         }
     }

@@ -33,6 +33,7 @@
         "studio:deploy": "npm run deploy --prefix studio"
     },
     "devDependencies": {
+        "@axe-core/playwright": "^4.13.0",
         "@fontsource-variable/inter": "^5",
         "@fontsource/inter": "^5.2.6",
         "@frontmatter/extensibility": "^0.0.18",

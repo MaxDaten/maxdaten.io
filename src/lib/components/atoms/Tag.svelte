@@ -32,7 +32,7 @@
                 var(--color-accent-rgb),
                 var(--raw-opacity-light)
             );
-            color: var(--color-accent);
+            color: var(--color-accent-text);
             border-color: rgba(
                 var(--color-accent-rgb),
                 var(--raw-opacity-muted)

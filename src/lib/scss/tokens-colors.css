@@ -81,6 +81,8 @@
      * ========================================================================= */
     --color-accent: var(--raw-color-orange-500);
     --color-accent-hover: var(--raw-color-orange-600);
+    /* Accent for small text on accent-tinted surfaces (tags): orange-500 drops below 4.5:1 there. */
+    --color-accent-text: var(--raw-color-orange-400);
     --color-accent-rgb: var(--raw-color-orange-500-rgb);
 
     --color-text: var(--raw-color-white);
