@@ -51,7 +51,9 @@
                     <img src={avatarUrl} alt="Avatar" class="avatar" />
                 {/if}
                 <div class="card-name">Jan-Philip</div>
-                <div class="card-role">Technical Product Advisor</div>
+                <div class="card-role">
+                    Freelance Platform & Product Engineer
+                </div>
             </div>
         </div>
     </div>

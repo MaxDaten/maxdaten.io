@@ -26,7 +26,7 @@ export const title = 'Jan-Philip Loos | maxdaten.io';
 
 const descriptions: Record<Locale, { person: string; organization: string }> = {
     de: {
-        person: 'Software-Ingenieur und DevOps-Berater aus Hamburg. Ich helfe Unternehmen, robuste und skalierbare Produkte und Infrastrukturen aufzubauen.',
+        person: 'Jan-Philip Loos ist Freelance Platform & Product Engineer in Hamburg. Seit über 15 Jahren baut er Produkte und die Plattformen, auf denen sie laufen — von der Mitgründung der Briends GmbH, dem Unternehmen hinter Papego, bis zu Systemen mit 100M+ Requests am Tag. Er schreibt über Platform Engineering, Nix und Continuous Delivery.',
         organization: 'Full-Stack Produktentwicklung und technische Beratung',
     },
     en: {

@@ -88,7 +88,7 @@
                         <div class="stat-row">
                             <span class="stat-label">CLASS</span>
                             <span class="stat-value"
-                                >Technical Product Advisor</span
+                                >Freelance Platform & Product Engineer</span
                             >
                         </div>
                         <div class="stat-row">

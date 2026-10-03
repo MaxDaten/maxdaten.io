@@ -4,12 +4,15 @@ export const authors: Record<string, Author> = {
     jloos: {
         id: 'jloos',
         name: 'Jan-Philip Loos',
-        tagline: 'Freelance DevOps & Product Engineer',
-        bio: 'Software engineer and DevOps consultant from Hamburg, Germany. Helping businesses build robust, scalable products and their infrastructure.',
+        tagline: 'Freelance Platform & Product Engineer',
+        bio: 'Jan-Philip Loos is a freelance platform and product engineer in Hamburg. For 15+ years he has built products and the platforms they run on — from co-founding Briends GmbH, the company behind Papego, to scaling systems at 100M+ requests a day. He writes about platform engineering, Nix and continuous delivery.',
         specialties: [
+            'Platform Engineering',
+            'Continuous Delivery',
+            'Nix & devenv',
             'Kubernetes',
-            'DevOps Transformation',
-            'CI/CD Automation',
+            'Product Engineering',
+            'Developer Experience',
         ],
         socials: {
             github: 'https://github.com/MaxDaten',

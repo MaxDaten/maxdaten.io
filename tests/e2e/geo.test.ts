@@ -165,3 +165,33 @@ test('a post shows "Updated" only when an editor set lastModified', async ({
 
     await expect(page.locator('.updated-label')).toHaveCount(0);
 });
+
+const jobTitle = 'Freelance Platform & Product Engineer';
+
+test('the hero card and JSON-LD carry the one job title', async ({ page }) => {
+    const person = byType(await jsonLd(page, '/en'), 'Person');
+    expect(person?.jobTitle).toBe(jobTitle);
+    await expect(
+        page.locator('.stat-row', { hasText: 'CLASS' }).locator('.stat-value')
+    ).toHaveText(jobTitle);
+});
+
+test('JSON-LD Person lists the agreed expertise and bio', async ({ page }) => {
+    const en = byType(await jsonLd(page, '/en'), 'Person');
+    expect(en?.knowsAbout).toEqual([
+        'Platform Engineering',
+        'Continuous Delivery',
+        'Nix & devenv',
+        'Kubernetes',
+        'Product Engineering',
+        'Developer Experience',
+    ]);
+    expect(en?.description).toMatch(
+        /^Jan-Philip Loos is a freelance platform and product engineer in Hamburg\./
+    );
+
+    const de = byType(await jsonLd(page, '/'), 'Person');
+    expect(de?.description).toMatch(
+        /^Jan-Philip Loos ist Freelance Platform & Product Engineer in Hamburg\./
+    );
+});
