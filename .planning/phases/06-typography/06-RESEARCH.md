@@ -299,9 +299,7 @@ blockquote {
     $metadata: JetBrains-Mono.$metadata,
     $family: 'JetBrains Mono',
     $subsets: latin,
-    $weights: (
-        400,
-    ),
+    $weights: (400),
     $styles: all
 );
 ```

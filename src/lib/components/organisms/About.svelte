@@ -27,8 +27,8 @@
             delivery capabilities.
         </p>
         <p class="specialties">
-            <strong>Specializing in:</strong> Kubernetes • Google Cloud Platform
-            • Infrastructure as Code • CI/CD Automation • Secret Management • Cloud
+            <strong>Specializing in:</strong> Kubernetes • Google Cloud Platform •
+            Infrastructure as Code • CI/CD Automation • Secret Management • Cloud
             Security
         </p>
         <div class="socials">

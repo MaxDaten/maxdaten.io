@@ -9,9 +9,7 @@ import sharp from 'sharp';
 // Load fonts once at module level
 const spaceGroteskFont = await read(
     (
-        await import(
-            '@fontsource/space-grotesk/files/space-grotesk-latin-700-normal.woff?inline'
-        )
+        await import('@fontsource/space-grotesk/files/space-grotesk-latin-700-normal.woff?inline')
     ).default
 ).arrayBuffer();
 
@@ -27,9 +25,7 @@ const interFont = await read(
 
 const jetBrainsMonoFont = await read(
     (
-        await import(
-            '@fontsource/jetbrains-mono/files/jetbrains-mono-latin-400-normal.woff?inline'
-        )
+        await import('@fontsource/jetbrains-mono/files/jetbrains-mono-latin-400-normal.woff?inline')
     ).default
 ).arrayBuffer();
 

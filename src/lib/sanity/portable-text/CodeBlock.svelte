@@ -27,9 +27,8 @@
 
         (async () => {
             const { codeToHtml } = await import('shiki');
-            const { transformerMetaHighlight } = await import(
-                '@shikijs/transformers'
-            );
+            const { transformerMetaHighlight } =
+                await import('@shikijs/transformers');
 
             const html = await codeToHtml(code, {
                 lang,
