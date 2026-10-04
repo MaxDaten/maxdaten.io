@@ -1,4 +1,5 @@
 <svg
+    aria-hidden="true"
     width="100%"
     height="100%"
     stroke-width="1.5"

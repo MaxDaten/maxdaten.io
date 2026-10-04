@@ -1,11 +1,21 @@
 import { expect, test, describe } from 'vitest';
 import { render } from 'vitest-browser-svelte';
 import Socials from './Socials.svelte';
+import type { Locale } from '#lib/i18n/index.js';
+
+type SocialsProps = Parameters<typeof Socials>[1];
+
+// The root layout provides the locale; components read it from context.
+const renderSocials = (props: SocialsProps, locale: Locale = 'en') =>
+    render(Socials, {
+        props,
+        context: new Map([['locale', () => locale]]),
+    });
 
 describe('Socials Component', () => {
     test('renders GitHub link with correct external URL', async () => {
         const githubUrl = 'https://github.com/MaxDaten';
-        const screen = await render(Socials, {
+        const screen = await renderSocials({
             github: githubUrl,
         });
 
@@ -16,7 +26,7 @@ describe('Socials Component', () => {
 
     test('renders LinkedIn link with correct external URL', async () => {
         const linkedinUrl = 'https://www.linkedin.com/in/maxdaten';
-        const screen = await render(Socials, {
+        const screen = await renderSocials({
             linkedin: linkedinUrl,
         });
 
@@ -27,7 +37,7 @@ describe('Socials Component', () => {
 
     test('renders email link with correct mailto URL', async () => {
         const emailUrl = 'mailto:jloos@maxdaten.com';
-        const screen = await render(Socials, {
+        const screen = await renderSocials({
             email: emailUrl,
         });
 
@@ -39,7 +49,7 @@ describe('Socials Component', () => {
     test('renders Signal link with correct URL', async () => {
         const signalUrl =
             'https://signal.me/#eu/ZhTXMlQRJW4dZM1cEdqRWraCLE-YPKtv_1grKZ6bXQlQqzTGMnhJJp9mrHYeblqp';
-        const screen = await render(Socials, {
+        const screen = await renderSocials({
             signal: signalUrl,
         });
 
@@ -49,7 +59,7 @@ describe('Socials Component', () => {
     });
 
     test('external URLs are not mangled by resolve()', async () => {
-        const screen = await render(Socials, {
+        const screen = await renderSocials({
             github: 'https://github.com/MaxDaten',
             linkedin: 'https://www.linkedin.com/in/maxdaten',
             email: 'mailto:jloos@maxdaten.com',
@@ -71,8 +81,29 @@ describe('Socials Component', () => {
             .toHaveAttribute('href', 'mailto:jloos@maxdaten.com');
     });
 
+    test('names icon links in the page language', async () => {
+        const screen = await renderSocials(
+            { github: 'https://github.com/MaxDaten' },
+            'de'
+        );
+
+        await expect
+            .element(screen.getByRole('link', { name: 'GitHub-Profil' }))
+            .toBeInTheDocument();
+    });
+
+    test('mailto opens the mail app, not a new tab', async () => {
+        const screen = await renderSocials({
+            email: 'mailto:jloos@maxdaten.com',
+        });
+
+        const link = screen.getByRole('link', { name: /email/i });
+        await expect.element(link).not.toHaveAttribute('target');
+        await expect.element(link).not.toHaveAttribute('rel');
+    });
+
     test('links open in new tab with security attributes', async () => {
-        const screen = await render(Socials, {
+        const screen = await renderSocials({
             github: 'https://github.com/MaxDaten',
         });
 
@@ -84,7 +115,7 @@ describe('Socials Component', () => {
     });
 
     test('only renders provided social links', async () => {
-        const screen = await render(Socials, {
+        const screen = await renderSocials({
             github: 'https://github.com/MaxDaten',
         });
 

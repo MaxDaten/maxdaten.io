@@ -19,6 +19,15 @@ export interface TranslationKeys {
     // Footer
     'footer.impressum': string;
 
+    // Icon links (social profiles, RSS)
+    'social.github': string;
+    'social.linkedin': string;
+    'social.cv': string;
+    'social.email': string;
+    'social.twitter': string;
+    'social.signal': string;
+    'social.rss': string;
+
     // Recent Posts
     'recentPosts.title': string;
     'recentPosts.description': string;

@@ -5,6 +5,8 @@
     import EmailIcon from '#lib/icons/socials/email.svelte';
     import TwitterIcon from '#lib/icons/socials/twitter.svelte';
     import SignalIcon from '#lib/icons/socials/signal.svelte';
+    import { getContext } from 'svelte';
+    import { t, type Locale } from '#lib/i18n/index.js';
 
     type Props = {
         github?: string;
@@ -25,71 +27,40 @@
         signal,
         size = 'medium',
     }: Props = $props();
+
+    const getLocale: () => Locale = getContext('locale');
+    let locale = $derived(getLocale());
+
+    let links = $derived(
+        (
+            [
+                { href: github, key: 'social.github', Icon: GitHubIcon },
+                { href: linkedin, key: 'social.linkedin', Icon: LinkedInIcon },
+                { href: cv, key: 'social.cv', Icon: CvIcon },
+                { href: email, key: 'social.email', Icon: EmailIcon },
+                { href: twitter, key: 'social.twitter', Icon: TwitterIcon },
+                { href: signal, key: 'social.signal', Icon: SignalIcon },
+            ] as const
+        ).filter((link): link is typeof link & { href: string } => !!link.href)
+    );
 </script>
 
 <!-- External links - resolve() must NOT be used on external URLs -->
 <!-- eslint-disable svelte/no-navigation-without-resolve -->
 <div class="socials {size}">
-    {#if github}
+    {#each links as { href, key, Icon } (key)}
+        <!-- The icon is decorative; the link is named by its aria-label (title is only a tooltip).
+             mailto: opens the mail app, so it gets no new tab. -->
         <a
-            href={github}
-            target="_blank"
-            rel="noopener noreferrer"
-            title="See my GitHub profile"
+            {href}
+            target={href.startsWith('mailto:') ? undefined : '_blank'}
+            rel={href.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
+            aria-label={t(locale, key)}
+            title={t(locale, key)}
         >
-            <GitHubIcon />
+            <Icon />
         </a>
-    {/if}
-    {#if linkedin}
-        <a
-            href={linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            title="Connect on LinkedIn"
-        >
-            <LinkedInIcon />
-        </a>
-    {/if}
-    {#if cv}
-        <a
-            href={cv}
-            target="_blank"
-            rel="noopener noreferrer"
-            title="View my CV"
-        >
-            <CvIcon />
-        </a>
-    {/if}
-    {#if email}
-        <a
-            href={email}
-            target="_blank"
-            rel="noopener noreferrer"
-            title="Send an email"
-        >
-            <EmailIcon />
-        </a>
-    {/if}
-    {#if twitter}
-        <a
-            href={twitter}
-            target="_blank"
-            rel="noopener noreferrer"
-            title="Follow on X (Twitter)"
-        >
-            <TwitterIcon />
-        </a>
-    {/if}
-    {#if signal}
-        <a
-            href={signal}
-            target="_blank"
-            rel="noopener noreferrer"
-            title="Contact me on Signal"
-        >
-            <SignalIcon />
-        </a>
-    {/if}
+    {/each}
 </div>
 
 <!-- eslint-enable svelte/no-navigation-without-resolve -->

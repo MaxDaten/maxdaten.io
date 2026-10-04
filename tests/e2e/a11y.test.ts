@@ -198,4 +198,36 @@ test.describe('keyboard and labelling', () => {
             expect(failures).toEqual([]);
         }
     });
+
+    for (const [path, rss, github] of [
+        ['/', 'RSS-Feed abonnieren', 'GitHub-Profil'],
+        ['/en', 'Subscribe to the RSS feed', 'GitHub profile'],
+    ]) {
+        test(`icon links on ${path} have names in the page language`, async ({
+            page,
+        }) => {
+            await page.goto(path);
+            await expect(
+                page.locator('header').getByRole('link', { name: rss })
+            ).toBeVisible();
+            const footer = page.locator('footer');
+            await expect(footer.getByRole('link', { name: rss })).toBeVisible();
+            await expect(
+                footer.getByRole('link', { name: github })
+            ).toBeVisible();
+
+            const icons = page.locator('.socials a, a[href$="rss.xml"]');
+            expect(await icons.count()).toBeGreaterThan(3);
+            for (const link of await icons.all()) {
+                await expect(link).toHaveAttribute('aria-label', /\S/);
+                await expect(link.locator('svg')).toHaveAttribute(
+                    'aria-hidden',
+                    'true'
+                );
+            }
+            // The mail app opens itself; a blank tab would be left behind.
+            for (const mail of await page.locator('a[href^="mailto:"]').all())
+                await expect(mail).not.toHaveAttribute('target', /./);
+        });
+    }
 });
