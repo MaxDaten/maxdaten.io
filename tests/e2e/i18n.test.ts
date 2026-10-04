@@ -202,6 +202,27 @@ test.describe('i18n — Language switcher', () => {
         const enLink = page.locator('.language-switcher a[hreflang="en"]');
         await expect(enLink).toHaveClass(/active/);
     });
+
+    for (const [path, active, other] of [
+        ['/', 'de', 'en'],
+        ['/en', 'en', 'de'],
+    ]) {
+        test(`announces ${active} as current on ${path}`, async ({ page }) => {
+            await page.goto(path);
+            const switcher = page.locator('.language-switcher');
+            await expect(
+                switcher.locator(`a[hreflang="${active}"]`)
+            ).toHaveAttribute('aria-current', 'true');
+            await expect(
+                switcher.locator(`a[hreflang="${other}"]`)
+            ).not.toHaveAttribute('aria-current', /./);
+            // The "|" between the links is decoration, not content.
+            await expect(switcher.locator('.separator')).toHaveAttribute(
+                'aria-hidden',
+                'true'
+            );
+        });
+    }
 });
 
 test.describe('i18n — Blog pages remain English', () => {
