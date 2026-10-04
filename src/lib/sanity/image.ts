@@ -2,9 +2,17 @@ import {
     createImageUrlBuilder,
     type SanityImageSource,
 } from '@sanity/image-url';
-import { client } from './client';
+import {
+    PUBLIC_SANITY_PROJECT_ID,
+    PUBLIC_SANITY_DATASET,
+} from '$app/env/public';
 
-const builder = createImageUrlBuilder(client);
+// Image URLs need only the project and dataset. Passing the client instead would ship the whole
+// @sanity/client to the browser on every page that renders an image.
+const builder = createImageUrlBuilder({
+    projectId: PUBLIC_SANITY_PROJECT_ID,
+    dataset: PUBLIC_SANITY_DATASET || 'production',
+});
 
 /**
  * Build an image URL from a Sanity image reference.
