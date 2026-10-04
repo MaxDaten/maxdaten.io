@@ -26,6 +26,16 @@
     let { data }: Props = $props();
 
     let gems = $derived(data.gems);
+
+    // Rendered cover width per grid slot, mirroring the 6-card pattern in the styles below:
+    // one full-width card, two halves, three thirds of the 1080px container.
+    const MOBILE = '(max-width: 900px) calc(100vw - 2rem)';
+    function coverSizes(index: number) {
+        const slot = index % 6;
+        if (slot === 0) return `${MOBILE}, 1080px`;
+        if (slot <= 2) return `${MOBILE}, 530px`;
+        return `${MOBILE}, 350px`;
+    }
 </script>
 
 <PageTransition>
@@ -39,6 +49,7 @@
                         excerpt={gem.description}
                         href={gem.url}
                         tags={gem.tags?.map((t) => t.name)}
+                        sizes={coverSizes(index)}
                     />
                 {/each}
             </div>
