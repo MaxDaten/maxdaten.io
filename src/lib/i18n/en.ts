@@ -46,7 +46,7 @@ export const en: TranslationKeys = {
         'From brittle release pipelines to continuous delivery: trunk-based development, reliable test automation and one automated path to production.',
     'services.product.title': 'Modern Product Engineering',
     'services.product.text':
-        'Your product built end to end, from infrastructure to UI: small increments, fast feedback from real users, and engineers who own outcomes instead of tickets.',
+        'Your product built end to end, from infrastructure to UI: small increments, fast feedback from real users, and engineers who don’t just own outcomes but help solve the strategic problems behind them.',
     'results.title': 'Selected work',
     'results.description': 'Results from previous engagements.',
     'results.klingel':
