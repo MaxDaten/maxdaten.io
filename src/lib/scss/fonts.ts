@@ -1,18 +1,16 @@
 /**
- * Font imports using @fontsource packages.
- * Import this file in +layout.svelte to load fonts.
+ * Fonts, from the @fontsource packages. Import this file in +layout.svelte to load them.
  *
- * Previously, fonts were loaded via SCSS using @fontsource-utils/scss.
- * This approach uses the JavaScript imports which inject the CSS automatically.
+ * fonts.css declares the latin faces only; `fontPreloads` lists the same files so the layout can
+ * preload them (all three render above the fold: body copy, headlines and readouts).
  */
 
-// Inter Variable - primary font
-// Weights: 500, 600, 700
-import '@fontsource-variable/inter/wght.css';
+// Inter Variable: body text. Space Grotesk Variable: logo and headlines. JetBrains Mono 400:
+// metadata readouts.
+import './fonts.css';
 
-// JetBrains Mono - monospace font
-// Weight: 400
-import '@fontsource/jetbrains-mono/400.css';
+import inter from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
+import spaceGrotesk from '@fontsource-variable/space-grotesk/files/space-grotesk-latin-wght-normal.woff2?url';
+import jetbrainsMono from '@fontsource/jetbrains-mono/files/jetbrains-mono-latin-400-normal.woff2?url';
 
-// Space Grotesk Variable - logo font
-import '@fontsource-variable/space-grotesk/wght.css';
+export const fontPreloads = [inter, spaceGrotesk, jetbrainsMono];
