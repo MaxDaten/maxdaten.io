@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  inputs,
   ...
 }:
 let
@@ -134,6 +135,28 @@ in
       description = "After a deploy: redirects, lang/canonical, headers, OG images, llms.txt on production";
     };
   };
+
+  # Impeccable design skill (pinned in devenv.yaml): skill + its subagents, symlinked read-only into
+  # .claude/. Its engine binary is downloaded on first use into ~/.impeccable/bin/<version>.
+  files =
+    let
+      src = "${inputs.impeccable}/.claude";
+      agents = [
+        "asset-producer"
+        "documenter"
+        "finish-reviewer"
+        "manual-edit-applier"
+      ];
+    in
+    {
+      ".claude/skills/impeccable".source = "${src}/skills/impeccable";
+    }
+    // lib.listToAttrs (
+      map (a: {
+        name = ".claude/agents/impeccable-${a}.md";
+        value.source = "${src}/agents/impeccable-${a}.md";
+      }) agents
+    );
 
   packages = with pkgs; [
     npm-check-updates

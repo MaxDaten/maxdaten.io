@@ -31,3 +31,7 @@ storybook-static
 
 # Claude Code agent worktrees
 .claude/worktrees/
+
+# Impeccable skill, symlinked from the Nix store by devenv.nix
+/.claude/skills/impeccable
+/.claude/agents/impeccable-*.md

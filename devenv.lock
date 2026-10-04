@@ -52,6 +52,23 @@
         "type": "github"
       }
     },
+    "impeccable": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1790908449,
+        "narHash": "sha256-bWmBWThANkAyJ5xd6rrO3UXL/QMm7sut4nf0tgqVk74=",
+        "owner": "pbakaus",
+        "repo": "impeccable",
+        "rev": "b06a8e043140ae0857482400882d16a5a2c1e697",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pbakaus",
+        "ref": "skill-v4.5.0",
+        "repo": "impeccable",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1787631388,
@@ -104,6 +121,7 @@
       "inputs": {
         "devenv": "devenv",
         "git-hooks": "git-hooks",
+        "impeccable": "impeccable",
         "nixpkgs": "nixpkgs_2",
         "treefmt-nix": "treefmt-nix"
       }

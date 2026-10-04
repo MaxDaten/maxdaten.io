@@ -5,3 +5,7 @@ inputs:
         url: github:numtide/treefmt-nix
     git-hooks:
         url: github:cachix/git-hooks.nix
+    # Design skill for Claude Code, linked into .claude/ by devenv.nix. Bump the tag to update.
+    impeccable:
+        url: github:pbakaus/impeccable/skill-v4.5.0
+        flake: false
