@@ -1,13 +1,19 @@
 <script lang="ts">
     import { resolve } from '$app/paths';
     import RssIcon from '#lib/icons/rss.svelte';
+    import { getContext } from 'svelte';
+    import { t, type Locale } from '#lib/i18n/index.js';
+
+    const getLocale: () => Locale = getContext('locale');
+    let locale = $derived(getLocale());
 </script>
 
 <a
     href={resolve('rss.xml')}
     target="_blank"
     rel="noopener noreferrer"
-    title="Subscribe to my RSS Feed"
+    aria-label={t(locale, 'social.rss')}
+    title={t(locale, 'social.rss')}
 >
     <RssIcon />
 </a>

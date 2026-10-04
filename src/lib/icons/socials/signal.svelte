@@ -1,5 +1,6 @@
 <!-- Signal logo - stroke style to match other social icons -->
 <svg
+    aria-hidden="true"
     width="100%"
     height="100%"
     stroke-width="1.5"

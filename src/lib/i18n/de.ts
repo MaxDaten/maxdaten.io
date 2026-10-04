@@ -20,6 +20,15 @@ export const de: TranslationKeys = {
     // Footer
     'footer.impressum': 'Impressum',
 
+    // Icon links (social profiles, RSS)
+    'social.github': 'GitHub-Profil',
+    'social.linkedin': 'LinkedIn-Profil',
+    'social.cv': 'Lebenslauf ansehen',
+    'social.email': 'E-Mail schreiben',
+    'social.twitter': 'Auf X (Twitter) folgen',
+    'social.signal': 'Auf Signal schreiben',
+    'social.rss': 'RSS-Feed abonnieren',
+
     // Recent Posts
     'recentPosts.title': 'Blog-Beiträge',
     'recentPosts.description': 'Neueste Blog-Beiträge',
