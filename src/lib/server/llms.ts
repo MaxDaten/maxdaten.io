@@ -9,7 +9,7 @@ import {
 } from '@portabletext/markdown';
 import type { ArbitraryTypedObject } from '@portabletext/types';
 import type { Author } from '#lib/utils/types.js';
-import { canonicalUrl, localeDomains, t } from '#lib/i18n/index.js';
+import { canonicalUrl, heroSummary, localeDomains } from '#lib/i18n/index.js';
 import { internalLinkPath } from '#lib/sanity/internal-link.js';
 
 export type LlmsPost = {
@@ -53,7 +53,7 @@ function header(author: Author): string {
     return [
         `# ${author.name}`,
         '',
-        `> ${t('en', 'meta.description')}`,
+        `> ${heroSummary('en')}`,
         '',
         author.bio,
         '',

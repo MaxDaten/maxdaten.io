@@ -41,7 +41,7 @@ test.describe('i18n — German home page (/)', () => {
             .locator('meta[name="description"]')
             .getAttribute('content');
         expect(description).toBe(
-            'Ich entwickle Ihr digitales Produkt end-to-end und sorge dafür, dass das Wissen in Ihrem Team bleibt — mit Continuous Delivery und Hochverfügbarkeit als Grundlage. Freelance Platform & Product Engineer mit 15+ Jahren Erfahrung in Produktentwicklung, Plattform-Architektur und Tech-Leadership — vom Startup bis zu Systemen mit 100M+ Requests am Tag. Hamburg.'
+            'Ich entwickle Ihr digitales Produkt end-to-end und sorge dafür, dass das Wissen in Ihrem Team bleibt — mit Continuous Delivery und Hochverfügbarkeit als Grundlage.'
         );
     });
 
@@ -126,7 +126,7 @@ test.describe('i18n — English home page (/en/)', () => {
             .locator('meta[name="description"]')
             .getAttribute('content');
         expect(description).toBe(
-            'I build your digital product end to end and make sure the knowledge stays in your team — with continuous delivery and high availability as the foundation. Freelance Platform & Product Engineer with 15+ years in product development, platform architecture and tech leadership — from startup to systems at 100M+ requests a day. Hamburg.'
+            'I build your digital product end to end and make sure the knowledge stays in your team — with continuous delivery and high availability as the foundation.'
         );
     });
 

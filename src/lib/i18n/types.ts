@@ -50,7 +50,6 @@ export interface TranslationKeys {
 
     // Meta / SEO
     'meta.title': string;
-    'meta.description': string;
     'meta.ogImageAlt': string;
     'meta.keywords': string;
 }

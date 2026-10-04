@@ -70,7 +70,8 @@ sessions `devenv` is a shell function wrapping it.
   in `src/lib/i18n/index.ts` gives a page's final URL; use it for canonical, hreflang, sitemap and
   feed links. Host redirects live in `vercel.json` (English pages on .de → www.maxdaten.io, `/` on
   .io → `/en`, www.maxdaten.de → apex), tested in `tests/vercel-redirects.test.ts`.
-- `hero.subheadline` doubles as `meta.description` — keep them in sync.
+- The meta description is the first paragraph of `hero.subheadline` (`heroSummary()`, also on the OG
+  card and in llms.txt); keep that paragraph at 155 characters or fewer.
 - When changing translation text, update `tests/e2e/i18n.test.ts`. `src/lib/i18n/i18n.test.ts`
   enforces identical keys across locales and differing values (except `nav.blog`, `nav.gems`,
   `footer.impressum`, `meta.title`, `services.platform.title`, `services.delivery.title`). Test both
