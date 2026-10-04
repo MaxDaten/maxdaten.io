@@ -4,7 +4,7 @@ test('homepage has title and navigation', async ({ page }) => {
     await page.goto('/');
 
     // Expect a title "to contain" a substring.
-    await expect(page).toHaveTitle(/maxdaten/);
+    await expect(page).toHaveTitle(/Jan-Philip Loos/);
 
     // Check that main navigation elements are present
     await expect(page.locator('nav')).toBeVisible();
