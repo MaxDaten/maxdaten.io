@@ -1,0 +1,458 @@
+{
+    "schemaVersion": 2,
+    "generatedAt": "2026-10-04T01:01:44+00:00",
+    "title": "Design System: maxdaten.io",
+    "extensions": {
+        "colorMeta": {
+            "forge-orange": {
+                "role": "primary",
+                "displayName": "Forge Orange",
+                "canonical": "oklch(73.2% 0.186 53.0)",
+                "tonalRamp": [
+                    "oklch(15% 0.186 53.0)",
+                    "oklch(26% 0.186 53.0)",
+                    "oklch(38% 0.186 53.0)",
+                    "oklch(50% 0.186 53.0)",
+                    "oklch(62% 0.186 53.0)",
+                    "oklch(74% 0.186 53.0)",
+                    "oklch(85% 0.186 53.0)",
+                    "oklch(95% 0.186 53.0)"
+                ]
+            },
+            "forge-orange-hover": {
+                "role": "primary",
+                "displayName": "Forge Orange Hover",
+                "canonical": "oklch(67.1% 0.172 52.9)",
+                "tonalRamp": [
+                    "oklch(15% 0.172 52.9)",
+                    "oklch(26% 0.172 52.9)",
+                    "oklch(38% 0.172 52.9)",
+                    "oklch(50% 0.172 52.9)",
+                    "oklch(62% 0.172 52.9)",
+                    "oklch(74% 0.172 52.9)",
+                    "oklch(85% 0.172 52.9)",
+                    "oklch(95% 0.172 52.9)"
+                ]
+            },
+            "forge-orange-text": {
+                "role": "primary",
+                "displayName": "Forge Orange Text",
+                "canonical": "oklch(77.4% 0.163 60.3)",
+                "tonalRamp": [
+                    "oklch(15% 0.163 60.3)",
+                    "oklch(26% 0.163 60.3)",
+                    "oklch(38% 0.163 60.3)",
+                    "oklch(50% 0.163 60.3)",
+                    "oklch(62% 0.163 60.3)",
+                    "oklch(74% 0.163 60.3)",
+                    "oklch(85% 0.163 60.3)",
+                    "oklch(95% 0.163 60.3)"
+                ]
+            },
+            "forge-ember": {
+                "role": "primary",
+                "displayName": "Forge Ember",
+                "canonical": "oklch(45.3% 0.099 58.2)",
+                "tonalRamp": [
+                    "oklch(15% 0.099 58.2)",
+                    "oklch(26% 0.099 58.2)",
+                    "oklch(38% 0.099 58.2)",
+                    "oklch(50% 0.099 58.2)",
+                    "oklch(62% 0.099 58.2)",
+                    "oklch(74% 0.099 58.2)",
+                    "oklch(85% 0.099 58.2)",
+                    "oklch(95% 0.099 58.2)"
+                ]
+            },
+            "spark-yellow": {
+                "role": "tertiary",
+                "displayName": "Spark Yellow",
+                "canonical": "oklch(88.1% 0.181 94.0)",
+                "tonalRamp": [
+                    "oklch(15% 0.181 94.0)",
+                    "oklch(26% 0.181 94.0)",
+                    "oklch(38% 0.181 94.0)",
+                    "oklch(50% 0.181 94.0)",
+                    "oklch(62% 0.181 94.0)",
+                    "oklch(74% 0.181 94.0)",
+                    "oklch(85% 0.181 94.0)",
+                    "oklch(95% 0.181 94.0)"
+                ]
+            },
+            "midnight-console": {
+                "role": "neutral",
+                "displayName": "Midnight Console",
+                "canonical": "oklch(23.7% 0.016 274.1)",
+                "tonalRamp": [
+                    "oklch(15% 0.016 274.1)",
+                    "oklch(26% 0.016 274.1)",
+                    "oklch(38% 0.016 274.1)",
+                    "oklch(50% 0.016 274.1)",
+                    "oklch(62% 0.016 274.1)",
+                    "oklch(74% 0.016 274.1)",
+                    "oklch(85% 0.016 274.1)",
+                    "oklch(95% 0.016 274.1)"
+                ]
+            },
+            "console-raised": {
+                "role": "neutral",
+                "displayName": "Console Raised",
+                "canonical": "oklch(32.7% 0.018 276.4)",
+                "tonalRamp": [
+                    "oklch(15% 0.018 276.4)",
+                    "oklch(26% 0.018 276.4)",
+                    "oklch(38% 0.018 276.4)",
+                    "oklch(50% 0.018 276.4)",
+                    "oklch(62% 0.018 276.4)",
+                    "oklch(74% 0.018 276.4)",
+                    "oklch(85% 0.018 276.4)",
+                    "oklch(95% 0.018 276.4)"
+                ]
+            },
+            "console-deep": {
+                "role": "neutral",
+                "displayName": "Console Deep",
+                "canonical": "oklch(19.6% 0.008 274.5)",
+                "tonalRamp": [
+                    "oklch(15% 0.008 274.5)",
+                    "oklch(26% 0.008 274.5)",
+                    "oklch(38% 0.008 274.5)",
+                    "oklch(50% 0.008 274.5)",
+                    "oklch(62% 0.008 274.5)",
+                    "oklch(74% 0.008 274.5)",
+                    "oklch(85% 0.008 274.5)",
+                    "oklch(95% 0.008 274.5)"
+                ]
+            },
+            "code-slate": {
+                "role": "neutral",
+                "displayName": "Code Slate",
+                "canonical": "oklch(30.7% 0.008 196.7)",
+                "tonalRamp": [
+                    "oklch(15% 0.008 196.7)",
+                    "oklch(26% 0.008 196.7)",
+                    "oklch(38% 0.008 196.7)",
+                    "oklch(50% 0.008 196.7)",
+                    "oklch(62% 0.008 196.7)",
+                    "oklch(74% 0.008 196.7)",
+                    "oklch(85% 0.008 196.7)",
+                    "oklch(95% 0.008 196.7)"
+                ]
+            },
+            "paper-white": {
+                "role": "neutral",
+                "displayName": "Paper White",
+                "canonical": "oklch(99.3% 0.003 17.2)",
+                "tonalRamp": [
+                    "oklch(15% 0.003 17.2)",
+                    "oklch(26% 0.003 17.2)",
+                    "oklch(38% 0.003 17.2)",
+                    "oklch(50% 0.003 17.2)",
+                    "oklch(62% 0.003 17.2)",
+                    "oklch(74% 0.003 17.2)",
+                    "oklch(85% 0.003 17.2)",
+                    "oklch(95% 0.003 17.2)"
+                ]
+            },
+            "ice-white": {
+                "role": "neutral",
+                "displayName": "Ice White",
+                "canonical": "oklch(96.0% 0.034 205.8)",
+                "tonalRamp": [
+                    "oklch(15% 0.034 205.8)",
+                    "oklch(26% 0.034 205.8)",
+                    "oklch(38% 0.034 205.8)",
+                    "oklch(50% 0.034 205.8)",
+                    "oklch(62% 0.034 205.8)",
+                    "oklch(74% 0.034 205.8)",
+                    "oklch(85% 0.034 205.8)",
+                    "oklch(95% 0.034 205.8)"
+                ]
+            },
+            "status-success": {
+                "role": "tertiary",
+                "displayName": "Status Success",
+                "canonical": "oklch(72.7% 0.152 165.2)",
+                "tonalRamp": [
+                    "oklch(15% 0.152 165.2)",
+                    "oklch(26% 0.152 165.2)",
+                    "oklch(38% 0.152 165.2)",
+                    "oklch(50% 0.152 165.2)",
+                    "oklch(62% 0.152 165.2)",
+                    "oklch(74% 0.152 165.2)",
+                    "oklch(85% 0.152 165.2)",
+                    "oklch(95% 0.152 165.2)"
+                ]
+            },
+            "status-warning": {
+                "role": "tertiary",
+                "displayName": "Status Warning",
+                "canonical": "oklch(86.3% 0.161 87.2)",
+                "tonalRamp": [
+                    "oklch(15% 0.161 87.2)",
+                    "oklch(26% 0.161 87.2)",
+                    "oklch(38% 0.161 87.2)",
+                    "oklch(50% 0.161 87.2)",
+                    "oklch(62% 0.161 87.2)",
+                    "oklch(74% 0.161 87.2)",
+                    "oklch(85% 0.161 87.2)",
+                    "oklch(95% 0.161 87.2)"
+                ]
+            },
+            "status-error": {
+                "role": "tertiary",
+                "displayName": "Status Error",
+                "canonical": "oklch(74.5% 0.155 20.5)",
+                "tonalRamp": [
+                    "oklch(15% 0.155 20.5)",
+                    "oklch(26% 0.155 20.5)",
+                    "oklch(38% 0.155 20.5)",
+                    "oklch(50% 0.155 20.5)",
+                    "oklch(62% 0.155 20.5)",
+                    "oklch(74% 0.155 20.5)",
+                    "oklch(85% 0.155 20.5)",
+                    "oklch(95% 0.155 20.5)"
+                ]
+            },
+            "status-info": {
+                "role": "tertiary",
+                "displayName": "Status Info",
+                "canonical": "oklch(72.6% 0.131 255.2)",
+                "tonalRamp": [
+                    "oklch(15% 0.131 255.2)",
+                    "oklch(26% 0.131 255.2)",
+                    "oklch(38% 0.131 255.2)",
+                    "oklch(50% 0.131 255.2)",
+                    "oklch(62% 0.131 255.2)",
+                    "oklch(74% 0.131 255.2)",
+                    "oklch(85% 0.131 255.2)",
+                    "oklch(95% 0.131 255.2)"
+                ]
+            },
+            "paper-white-muted": {
+                "role": "neutral",
+                "displayName": "Paper White Muted",
+                "canonical": "rgba(255, 252, 252, 0.7)"
+            },
+            "forge-border": {
+                "role": "neutral",
+                "displayName": "Forge Border",
+                "canonical": "rgba(255, 128, 0, 0.3)"
+            }
+        },
+        "typographyMeta": {
+            "display": {
+                "displayName": "Display",
+                "purpose": "The hero headline only; 39px below 768px."
+            },
+            "headline": {
+                "displayName": "Headline",
+                "purpose": "Page H1; 2rem below 768px."
+            },
+            "title": {
+                "displayName": "Title",
+                "purpose": "Section and card titles (H2 1.8rem, H3 1.5rem)."
+            },
+            "body": {
+                "displayName": "Body",
+                "purpose": "All reading text; prose columns cap at 680px."
+            },
+            "label": {
+                "displayName": "Label",
+                "purpose": "Monospace metadata: tags, badges, dates, stats, tech lists."
+            }
+        },
+        "shadows": [
+            {
+                "name": "halo",
+                "value": "0 0 1px 7px rgba(255, 128, 0, 0.3)",
+                "purpose": "Solid and understated button hover; a ring of light, not a lift."
+            },
+            {
+                "name": "outline-glow",
+                "value": "0 0 0 1px rgba(255, 128, 0, 0.7)",
+                "purpose": "Interactive card hover."
+            },
+            {
+                "name": "text-glow",
+                "value": "drop-shadow(0 0 3px #ff8000)",
+                "purpose": "Navigation and footer link hover (a filter, not a box-shadow)."
+            },
+            {
+                "name": "holo-inset-border",
+                "value": "inset 0 0 0 11px rgba(255, 128, 0, 0.1)",
+                "purpose": "The printed border of the holo profile card."
+            }
+        ],
+        "motion": [
+            {
+                "name": "ease-3",
+                "value": "cubic-bezier(0.25, 0, 0.3, 1)",
+                "purpose": "Standard easing (open-props)."
+            },
+            {
+                "name": "ease-4",
+                "value": "cubic-bezier(0.25, 0, 0.2, 1)",
+                "purpose": "Stronger standard easing."
+            },
+            {
+                "name": "ease-out-3",
+                "value": "cubic-bezier(0, 0, 0.3, 1)",
+                "purpose": "Entrances."
+            },
+            {
+                "name": "ease-elastic-4",
+                "value": "cubic-bezier(0.5, 1.5, 0.75, 1.25)",
+                "purpose": "Playful overshoot for small delights."
+            },
+            {
+                "name": "interaction",
+                "value": "0.2s ease-in-out",
+                "purpose": "Buttons and links."
+            },
+            {
+                "name": "surface",
+                "value": "0.4s ease",
+                "purpose": "Cards and page background."
+            },
+            {
+                "name": "ambient-drift",
+                "value": "22–30s ease-in-out infinite",
+                "purpose": "Background blobs; disabled under prefers-reduced-motion."
+            }
+        ],
+        "breakpoints": [
+            {
+                "name": "phone-max",
+                "value": "767px"
+            },
+            {
+                "name": "tablet-portrait-max",
+                "value": "900px"
+            },
+            {
+                "name": "tablet-landscape-max",
+                "value": "1200px"
+            },
+            {
+                "name": "desktop-min",
+                "value": "1201px"
+            }
+        ]
+    },
+    "components": [
+        {
+            "name": "Primary Button",
+            "kind": "button",
+            "refersTo": "button-primary",
+            "description": "Solid Forge Orange near-pill; the booking call to action.",
+            "html": "<a class=\"ds-btn-primary\" href=\"#\">Book a Call</a>",
+            "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: var(--raw-space-4); padding: var(--raw-space-12) var(--space-button-x); border-radius: var(--raw-radius-xl); background: var(--color-accent); color: var(--color-surface); font-family: var(--font--default); font-size: var(--raw-text-base); font-weight: 700; text-decoration: none; border: none; transition: all 0.2s ease-in-out; } .ds-btn-primary:hover, .ds-btn-primary:focus-visible { box-shadow: 0 0 1px 7px rgba(var(--color-accent-rgb), var(--raw-opacity-muted)); outline: none; }"
+        },
+        {
+            "name": "Ghost Button",
+            "kind": "button",
+            "refersTo": "button-ghost-secondary",
+            "description": "Transparent near-pill with a white hairline; secondary actions.",
+            "html": "<a class=\"ds-btn-ghost\" href=\"#\">View Projects</a>",
+            "css": ".ds-btn-ghost { display: inline-flex; align-items: center; justify-content: center; padding: var(--raw-space-12) var(--space-button-x); border-radius: var(--raw-radius-xl); background: transparent; color: rgb(var(--color-text-rgb)); border: 1px solid rgba(var(--color-text-rgb), var(--raw-opacity-muted)); font-family: var(--font--default); font-size: var(--raw-text-base); font-weight: 700; text-decoration: none; transition: all 0.2s ease-in-out; } .ds-btn-ghost:hover, .ds-btn-ghost:focus-visible { border-color: rgba(var(--color-text-rgb), var(--raw-opacity-medium)); background: rgba(var(--color-text-rgb), var(--raw-opacity-subtle)); outline: none; }"
+        },
+        {
+            "name": "Tag",
+            "kind": "chip",
+            "refersTo": "tag-primary",
+            "description": "Monospace orange-tinted label for post tags.",
+            "html": "<span class=\"ds-tag\">kubernetes</span> <span class=\"ds-tag ds-tag--secondary\">nix</span>",
+            "css": ".ds-tag { display: inline-flex; align-items: center; padding: var(--space-tag-y) var(--space-tag-x); border-radius: var(--radius-tag); font-family: var(--font--mono), monospace; font-size: var(--raw-text-sm); font-weight: 500; white-space: nowrap; background: rgba(var(--color-accent-rgb), var(--raw-opacity-light)); color: var(--color-accent-text); border: 0.5px solid rgba(var(--color-accent-rgb), var(--raw-opacity-muted)); } .ds-tag--secondary { background: rgba(var(--color-text-rgb), var(--raw-opacity-subtle)); color: var(--color-text); border-color: rgba(var(--color-text-rgb), var(--raw-opacity-muted)); }"
+        },
+        {
+            "name": "Hero Badge",
+            "kind": "chip",
+            "refersTo": "badge",
+            "description": "Round monospace pill announcing availability.",
+            "html": "<span class=\"ds-badge\">Available for 2026</span>",
+            "css": ".ds-badge { display: inline-block; padding: var(--raw-space-8) var(--raw-space-16); border-radius: var(--raw-radius-full); font-family: var(--font--mono), monospace; font-size: var(--raw-text-sm); color: var(--color-accent); background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(var(--color-accent-rgb), var(--raw-opacity-muted)); }"
+        },
+        {
+            "name": "Service Card",
+            "kind": "card",
+            "refersTo": "card",
+            "description": "Console Raised tile; interactive cards light an orange outline.",
+            "html": "<a class=\"ds-card\" href=\"#\"><span class=\"ds-card-meta\">15+ years</span><h3 class=\"ds-card-title\">Platform Engineering</h3><p class=\"ds-card-text\">Developer platforms and toolchains your teams own.</p></a>",
+            "css": ".ds-card { display: flex; flex-direction: column; gap: var(--raw-space-8); max-width: 320px; padding: var(--space-card-padding); border-radius: var(--radius-card); background: var(--color-surface-elevated); color: var(--color-text); text-decoration: none; transition: all 0.4s ease; } .ds-card:hover, .ds-card:focus-visible { box-shadow: 0 0 0 1px rgba(var(--color-accent-rgb), var(--raw-opacity-strong)); outline: none; } .ds-card-meta { font-family: var(--font--mono), monospace; font-size: var(--raw-text-sm); color: var(--color-accent-text); } .ds-card-title { margin: 0; font-family: var(--font--title); font-size: var(--raw-text-lg); font-weight: 600; } .ds-card-text { margin: 0; color: var(--color-text-muted); line-height: var(--raw-leading-relaxed); }"
+        },
+        {
+            "name": "Navigation",
+            "kind": "nav",
+            "refersTo": "nav-link",
+            "description": "Header links on the Forge Ember wash; active link underlined in orange.",
+            "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-link ds-nav-link--active\" href=\"#\">Blog</a><a class=\"ds-nav-link\" href=\"#\">Gems</a></nav>",
+            "css": ".ds-nav { display: flex; gap: var(--raw-space-32); padding: var(--raw-space-24) var(--raw-space-32); background: linear-gradient(60deg, var(--color-bar-start) 0%, var(--color-bar-end) 100%); border-bottom: 1px solid var(--color-bar-start); } .ds-nav-link { position: relative; padding: var(--raw-space-8) 0; color: var(--color-text); text-decoration: none; font-family: var(--font--default); } .ds-nav-link:hover, .ds-nav-link:focus-visible { color: var(--color-accent); filter: drop-shadow(0 0 3px var(--color-accent)); outline: none; } .ds-nav-link--active { color: var(--color-accent); } .ds-nav-link--active::after { content: ''; position: absolute; left: 0; right: 0; bottom: calc(-1 * var(--raw-space-4)); height: 2px; background: var(--color-accent); }"
+        },
+        {
+            "name": "Callout",
+            "kind": "custom",
+            "refersTo": "callout-info",
+            "description": "Status-ruled note inside posts; the only place status hues appear.",
+            "html": "<div class=\"ds-callout\"><p>Pin every input so the build is reproducible.</p></div>",
+            "css": ".ds-callout { display: flex; gap: var(--raw-space-12); padding: var(--raw-space-16); border-radius: var(--radius-callout); background: rgba(var(--color-info-rgb), var(--raw-opacity-subtle)); border-left: 3px solid var(--color-info); color: var(--color-text); font-size: var(--raw-text-sm); line-height: var(--raw-leading-relaxed); } .ds-callout p { margin: 0; }"
+        },
+        {
+            "name": "Holo Profile Card",
+            "kind": "custom",
+            "refersTo": "card",
+            "description": "The signature collectible: a 5:7 trading card whose foil and sheen wake on hover.",
+            "html": "<div class=\"ds-holo\"><div class=\"ds-holo-foil\"></div><div class=\"ds-holo-content\"><span class=\"ds-holo-level\">LVL 15+</span><strong class=\"ds-holo-name\">JAN-PHILIP LOOS</strong><span class=\"ds-holo-stat\">Platform &amp; Product Engineer</span></div></div>",
+            "css": ".ds-holo { position: relative; width: 225px; aspect-ratio: 5 / 7; border-radius: var(--radius-card); background: #23252b; box-shadow: inset 0 0 0 11px rgba(255, 128, 0, 0.1); overflow: hidden; transition: transform 0.3s ease; } .ds-holo:hover { transform: perspective(1000px) rotateY(-7deg); } .ds-holo-foil { position: absolute; inset: 0; opacity: 0.1; mix-blend-mode: color-dodge; background: linear-gradient(115deg, transparent 25%, oklch(0.774 0.163 60.276) 40%, oklch(0.709 0.159 293.541) 50%, oklch(0.797 0.134 211.502) 60%, transparent 75%); background-size: 350% 350%; transition: opacity 0.3s ease; pointer-events: none; } .ds-holo:hover .ds-holo-foil { opacity: 0.25; } .ds-holo-content { position: relative; display: flex; flex-direction: column; gap: var(--raw-space-8); padding: var(--raw-space-24); font-family: var(--font--mono), monospace; font-size: var(--raw-text-xs); color: var(--color-text); } .ds-holo-level { color: var(--color-accent); font-weight: 700; letter-spacing: 0.05em; } .ds-holo-name { font-family: var(--font-logo), sans-serif; font-size: var(--raw-text-lg); letter-spacing: 0.05em; }"
+        }
+    ],
+    "narrative": {
+        "northStar": "The Rare Holo Card",
+        "overview": "The engineer is the collectible. Everything sits on dark matte card stock, Midnight Console, with one warm accent, Forge Orange, struck sparingly like the printed border of a trading card. The shine is rare and earned: foil, glare and glow appear only when light hits (on hover, on tilt, on scroll) and settle back to a faint trace at rest. The signature object is literal: the profile is a 5:7 trading card with stat rows, an ability box, an iridescent foil and a λ texture that nods to functional programming.\n\nThe system is precision-engineered minimalism, dark and warm, playful only in the details. Layout is calm and generous, built on an 8px grid; type is a technical pairing of a geometric display face, a neutral sans for reading and a monospace for every piece of metadata. Density is low: one idea per section, short copy, wide gutters. Play lives in small, deliberate moments (the holo card, sparkles, the drifting ambient glow behind the page), never in the structure.",
+        "keyCharacteristics": [
+            "Dark only: one theme, a Midnight Console base with tonal raises, no light mode.",
+            "One accent: Forge Orange carries every interactive and emphasis signal.",
+            "Light as interaction: glow, halo and foil respond to the visitor, then rest.",
+            "Monospace metadata: dates, tags, badges, stats and tech lists read like instrument readouts.",
+            "One collectible: the holo profile card is the system's single showpiece."
+        ],
+        "rules": [
+            {
+                "name": "The One Forge Rule",
+                "body": "Forge Orange is the only accent. No second brand hue competes with it; status colors live inside callouts and nowhere else.",
+                "section": "colors"
+            },
+            {
+                "name": "The Small-Text Rule",
+                "body": "Orange text below 18px on an orange-tinted surface uses Forge Orange Text, not Forge Orange.",
+                "section": "colors"
+            },
+            {
+                "name": "The Readout Rule",
+                "body": "Metadata is monospace. Dates, tags, badges, years, stats and tech names set in JetBrains Mono; narrative copy never does.",
+                "section": "typography"
+            },
+            {
+                "name": "The Light-Not-Lift Rule",
+                "body": "Nothing casts a drop shadow. Surfaces answer interaction with light (halo, outline, glow, foil), never by floating upward.",
+                "section": "elevation"
+            }
+        ],
+        "dos": [
+            "**Do** keep every surface on Midnight Console or one tonal step from it (Console Raised, Console Deep, 30% black wells).",
+            "**Do** express interaction with light: the Halo on buttons, the Outline glow on cards, the text glow on links.",
+            "**Do** set metadata in JetBrains Mono, narrative copy in Inter, and names and headlines in Space Grotesk.",
+            "**Do** use Forge Orange Text for small orange text on orange-tinted surfaces.",
+            "**Do** keep reading text at 1.65 line height and prose columns at 680px.",
+            "**Do** reference tokens (`--color-*`, `--radius-*`, `--space-*`) instead of literal values; OG cards are the only exception.",
+            "**Do** hide or still ambient motion under `prefers-reduced-motion`."
+        ],
+        "donts": [
+            "**Don't** introduce a second accent color; status hues stay inside callouts.",
+            "**Don't** add drop shadows that lift surfaces; depth is tonal, shine is light.",
+            "**Don't** run foil, glare or glow at full strength at rest; at most a faint trace (the foil's 10%), with the shine earned on interaction.",
+            "**Don't** add a second collectible showpiece; the holo profile card is the one.",
+            "**Don't** set narrative copy in monospace or metadata in the body face."
+        ]
+    }
+}
