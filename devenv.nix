@@ -57,16 +57,8 @@ in
       pass_filenames = false;
     };
 
-    e2e-tests = {
-      enable = true;
-      name = "e2e-tests";
-      # A private dev server, not whatever already listens on :5173 (see scripts/e2e.sh).
-      entry = "bash scripts/e2e.sh --reporter list";
-      language = "system";
-      pass_filenames = false;
-      stages = [ "pre-push" ];
-    };
-
+    # No e2e here: the full Playwright run takes minutes and CI runs it on every PR. Run `e2e` or
+    # `gate` by hand for UI or routing changes.
     npm-audit = {
       enable = true;
       name = "npm-audit";
