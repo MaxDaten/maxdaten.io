@@ -87,4 +87,4 @@ calendar booking link). The blog and gems demonstrate depth and earn trust and i
 
 ## Accessibility & Inclusion
 
-Open decision: no conformance target set yet (WCAG 2.2 AA proposed).
+WCAG 2.2 AA is the required standard for every surface, in both languages.
