@@ -30,7 +30,10 @@ Git hooks (prek, from `devenv.nix`): pre-commit runs treefmt, lint, check, unit 
 
 Claude Code on the web: the environment's setup script runs `scripts/claude-web-setup.sh` (Nix +
 devenv, see its header for the paste-in snippet and allowlist), and a SessionStart hook runs
-`scripts/claude-web-session.sh`, which loads the devenv shell into every Bash call.
+`scripts/claude-web-session.sh`, which loads the devenv shell into every Bash call. The session's
+GitHub proxy blocks the archive downloads behind `github:` inputs, so both go through
+`scripts/claude-web-devenv.sh` (inputs fetched over git, passed as `--override-input`); in those
+sessions `devenv` is a shell function wrapping it.
 
 **Verify a change:** `npm run check && npm run lint && npm run test`; for UI or routing changes also
 `e2e`. Before pushing a larger change: `gate`.
