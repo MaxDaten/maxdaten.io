@@ -46,18 +46,148 @@
         { kind: 'sparkle', x: 78, y: 16, size: 14, depth: 2, turn: 20 },
     ];
 
-    // The mouse's offset from the band's centre, -1..1 on each axis; the confetti leans away
-    // from it, nearer glyphs further, for a hint of depth.
-    let lean = $state({ x: 0, y: 0 });
+    // The mouse moves through the confetti like a stone through water: glyphs near it stream
+    // aside, nearer ones (higher depth) further and quicker, and drift back once it passes. Each
+    // glyph seeds a cell of a Voronoi grid that bends with them, lit only around the pointer.
+    const reach = 140; // px: how far from the pointer glyphs feel it
+    const give = [0.3, 0.45, 0.6] as const; // per depth: push at the pointer, × reach
+    const lag = [0.36, 0.26, 0.18] as const; // per depth: seconds to close most of the gap
+
+    let field: HTMLElement | undefined = $state();
+    let size = { width: 0, height: 0 };
+    let pointer: { x: number; y: number } | undefined;
+    let offsets = $state.raw(confetti.map(() => ({ x: 0, y: 0 })));
+    let lit = $state(false);
+    let spot = $state({ x: 0, y: 0 });
+    let grid = $state('');
+    let frame = 0;
+    let last = 0;
+
+    const still = () =>
+        typeof matchMedia === 'function' &&
+        matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function seeds() {
+        return confetti.map((glyph, index) => ({
+            x: (glyph.x / 100) * size.width + offsets[index].x,
+            y: (glyph.y / 100) * size.height + offsets[index].y,
+        }));
+    }
+
+    function step(time: number) {
+        const dt = last ? Math.min((time - last) / 1000, 0.1) : 1 / 60;
+        last = time;
+        let moving = false;
+        offsets = confetti.map((glyph, index) => {
+            let target = { x: 0, y: 0 };
+            if (pointer && !still()) {
+                const dx = (glyph.x / 100) * size.width - pointer.x;
+                const dy = (glyph.y / 100) * size.height - pointer.y;
+                const distance = Math.hypot(dx, dy);
+                if (distance < reach) {
+                    const falloff = (1 - distance / reach) ** 2;
+                    const push = falloff * give[glyph.depth] * reach;
+                    // Dead centre has no direction: step aside upwards.
+                    const [ux, uy] =
+                        distance > 0.5
+                            ? [dx / distance, dy / distance]
+                            : [0, -1];
+                    target = { x: ux * push, y: uy * push };
+                }
+            }
+            const current = offsets[index];
+            const blend = 1 - Math.exp(-dt / lag[glyph.depth]);
+            const next = {
+                x: current.x + (target.x - current.x) * blend,
+                y: current.y + (target.y - current.y) * blend,
+            };
+            if (Math.hypot(target.x - next.x, target.y - next.y) > 0.1)
+                moving = true;
+            return next;
+        });
+        if (!moving && !pointer) offsets = confetti.map(() => ({ x: 0, y: 0 }));
+        grid = voronoi(seeds(), size.width, size.height);
+        frame = moving ? requestAnimationFrame(step) : 0;
+        if (!moving) last = 0;
+    }
+
+    function wake() {
+        if (!frame) frame = requestAnimationFrame(step);
+    }
 
     function follow(event: PointerEvent) {
-        if (event.pointerType !== 'mouse') return;
-        const band = event.currentTarget as HTMLElement;
-        const { left, top, width, height } = band.getBoundingClientRect();
-        lean = {
-            x: ((event.clientX - left) / width) * 2 - 1,
-            y: ((event.clientY - top) / height) * 2 - 1,
-        };
+        if (event.pointerType !== 'mouse' || !field) return;
+        const box = field.getBoundingClientRect();
+        size = { width: box.width, height: box.height };
+        pointer = { x: event.clientX - box.left, y: event.clientY - box.top };
+        spot = pointer;
+        lit = true;
+        wake();
+    }
+
+    function release() {
+        pointer = undefined;
+        lit = false;
+        wake();
+    }
+
+    $effect(() => () => cancelAnimationFrame(frame));
+
+    // The cell edges between seeds, each drawn once, without the field's border: clip the field
+    // by the bisector to every other seed, and track which seed made each edge of the cell.
+    function voronoi(
+        points: { x: number; y: number }[],
+        width: number,
+        height: number
+    ) {
+        type Vertex = { x: number; y: number; edge: number };
+        const border = -1;
+        let path = '';
+        points.forEach((seed, i) => {
+            let cell: Vertex[] = [
+                { x: 0, y: 0, edge: border },
+                { x: width, y: 0, edge: border },
+                { x: width, y: height, edge: border },
+                { x: 0, y: height, edge: border },
+            ];
+            points.forEach((other, j) => {
+                if (j === i || cell.length === 0) return;
+                // Keep the side nearer to seed: (p - mid) · (other - seed) <= 0.
+                const nx = other.x - seed.x;
+                const ny = other.y - seed.y;
+                const c =
+                    (nx * (seed.x + other.x)) / 2 +
+                    (ny * (seed.y + other.y)) / 2;
+                const side = (v: { x: number; y: number }) =>
+                    v.x * nx + v.y * ny - c;
+                const clipped: Vertex[] = [];
+                cell.forEach((a, k) => {
+                    const b = cell[(k + 1) % cell.length];
+                    const sa = side(a);
+                    const sb = side(b);
+                    const cross = () => {
+                        const t = sa / (sa - sb);
+                        return {
+                            x: a.x + (b.x - a.x) * t,
+                            y: a.y + (b.y - a.y) * t,
+                        };
+                    };
+                    if (sa <= 0) {
+                        clipped.push(a);
+                        if (sb > 0) clipped.push({ ...cross(), edge: j });
+                    } else if (sb <= 0) {
+                        clipped.push({ ...cross(), edge: a.edge });
+                    }
+                });
+                cell = clipped;
+            });
+            cell.forEach((a, k) => {
+                if (a.edge <= i) return; // border, or drawn from the other cell
+                const b = cell[(k + 1) % cell.length];
+                path += `M${a.x.toFixed(1)} ${a.y.toFixed(1)}L${b.x.toFixed(1)} ${b.y.toFixed(1)}`;
+            });
+        });
+        return path;
     }
 
     // Names, dates and roles read the same in both languages; only the outcome is translated.
@@ -92,17 +222,23 @@
     id="services"
     class="merged"
     aria-labelledby="services-title"
-    style:--lean-x={lean.x}
-    style:--lean-y={lean.y}
     onpointermove={follow}
-    onpointerleave={() => (lean = { x: 0, y: 0 })}
+    onpointerleave={release}
 >
     <header>
         <h2 id="services-title">{t(locale, 'services.title')}</h2>
         <p>{t(locale, 'services.description')}</p>
     </header>
 
-    <div class="confetti" aria-hidden="true">
+    <div class="confetti" aria-hidden="true" bind:this={field}>
+        <svg
+            class="voronoi"
+            class:lit
+            style:--spot-x="{spot.x}px"
+            style:--spot-y="{spot.y}px"
+        >
+            <path d={grid} />
+        </svg>
         {#each confetti as glyph, index (index)}
             <span
                 class="glyph depth-{glyph.depth}"
@@ -113,6 +249,8 @@
                 style:--turn="{glyph.turn}deg"
                 style:--float="{7 + ((index * 5) % 6)}s"
                 style:--phase="{-index * 1.7}s"
+                style:transform="translate({offsets[index].x}px, {offsets[index]
+                    .y}px)"
             >
                 <Glyph kind={glyph.kind} width="100%" height="100%" />
             </span>
@@ -243,6 +381,33 @@
             min-height: calc(var(--space-major) + var(--space-stack));
             margin: calc(-1 * var(--space-block)) calc(-1 * var(--space-block))
                 0;
+        }
+    }
+
+    /* The cells between the glyphs: barely there, and only in a pool of light at the pointer. */
+    .voronoi {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+        opacity: 0;
+        mask-image: radial-gradient(
+            circle calc(var(--space-major) * 2.5) at var(--spot-x) var(--spot-y),
+            black,
+            transparent
+        );
+        transition: opacity 0.4s var(--ease-3);
+
+        &.lit {
+            opacity: 1;
+        }
+
+        path {
+            fill: none;
+            stroke: rgba(var(--color-accent-rgb), var(--opacity-border));
+            stroke-width: 1;
+            vector-effect: non-scaling-stroke;
         }
     }
 
@@ -409,16 +574,6 @@
     @media (prefers-reduced-motion: no-preference) {
         .glyph :global(svg) {
             animation: float var(--float) ease-in-out var(--phase) infinite;
-        }
-
-        /* Parallax on hover: the span leans while its svg floats, so the two compose. The slow
-         * transition smooths the mouse and lets the glyphs settle back when it leaves. */
-        .glyph {
-            transform: translate(
-                calc(var(--lean-x, 0) * var(--drift) * -0.5),
-                calc(var(--lean-y, 0) * var(--drift) * -0.5)
-            );
-            transition: transform 0.8s var(--ease-3);
         }
 
         @supports (animation-timeline: view()) {
