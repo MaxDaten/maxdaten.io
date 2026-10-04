@@ -12,6 +12,8 @@
     // Physics configuration
     const springInteract = { stiffness: 0.066, damping: 0.25 };
     const springSnap = { stiffness: 0.01, damping: 0.06 };
+    // Scroll tilt settles within a few frames of the scroll stopping instead of drifting on.
+    const springScroll = { stiffness: 0.1, damping: 0.5 };
 
     // 1. ROTATION: Physical tilt of the card
     const springRotate = Spring.of(() => ({ x: 0, y: 0 }), springInteract);
@@ -59,9 +61,20 @@
     // Reference to the card element for scroll calculations
     let sceneElement = $state<HTMLElement | null>(null);
 
+    // Off-screen, the card stops listening to scroll.
+    let isOnScreen = $state(true);
+    $effect(() => {
+        if (!sceneElement) return;
+        const observer = new IntersectionObserver(([entry]) => {
+            isOnScreen = entry.isIntersecting;
+        });
+        observer.observe(sceneElement);
+        return () => observer.disconnect();
+    });
+
     // Scroll-based tilt for touch input (when motion allowed)
     $effect(() => {
-        if (!isScrollMode) return;
+        if (!isScrollMode || !isOnScreen) return;
 
         function handleScroll() {
             if (!sceneElement) return;
@@ -91,7 +104,7 @@
             // Translate: -1.5% at top, 0% at max scroll
             const translateX = -1.5 + scrollProgress * 1.5;
 
-            setSpringConfig(springSnap);
+            setSpringConfig(springScroll);
             springRotate.set({ x: 0, y: tiltY });
             springAngle.set(borderAngle);
             springBackground.set({ x: bgX, y: bgY });
@@ -106,15 +119,6 @@
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    });
-
-    // Calculate tilt intensity (0 to 1) based on rotation magnitude
-    // Max tilt is 28° per axis, so max magnitude ≈ 40° (diagonal)
-    const MAX_TILT = 40;
-    let tiltIntensity = $derived.by(() => {
-        const { x, y } = springRotate.current;
-        const magnitude = Math.sqrt(x * x + y * y);
-        return Math.min(magnitude / MAX_TILT, 1);
     });
 
     function handleMouseMove(event: MouseEvent) {
@@ -224,18 +228,12 @@
         class:hovering={isHovering}
         class:static-mode={isStaticMode}
         class:scroll-mode={isScrollMode}
-        style:--rotate-x="{springRotate.current.x}deg"
-        style:--rotate-y="{springRotate.current.y}deg"
-        style:--glare-x="{springGlare.current.x}%"
-        style:--glare-y="{springGlare.current.y}%"
-        style:--glare-o={springGlare.current.o}
-        style:--bg-x="{springBackground.current.x}%"
-        style:--bg-y="{springBackground.current.y}%"
-        style:--pt-x="{springPattern.current.x}%"
-        style:--pt-y="{springPattern.current.y}%"
-        style:--tilt={tiltIntensity}
-        style:--border-angle="{springAngle.current}deg"
-        style:--translate-x="{springTranslate.current}%"
+        style:transform={isStaticMode
+            ? undefined
+            : `rotateX(${springRotate.current.x}deg) rotateY(${springRotate.current.y}deg)`}
+        style:translate={isScrollMode
+            ? `${springTranslate.current}%`
+            : undefined}
     >
         <!-- 1. The Content (Base Layer) -->
         <div class="card-content">
@@ -244,13 +242,34 @@
 
         <!-- 2. The Holographic Foil (Texture + Spectrum) -->
         <!-- This sits ABOVE content but uses blend modes to interact -->
-        <div class="holo-layer"></div>
+        <!-- Each layer gets only the values it reads, so a frame restyles that layer and not the
+             card's text. -->
+        <div
+            class="holo-layer"
+            style:--bg-x="{springBackground.current.x}%"
+            style:--bg-y="{springBackground.current.y}%"
+            style:--pt-x="{springPattern.current.x}%"
+            style:--pt-y="{springPattern.current.y}%"
+        ></div>
 
         <!-- 3. The Glare (White Reflection) -->
-        <div class="glare-layer"></div>
+        <div
+            class="glare-layer"
+            style:--glare-x="{springGlare.current.x}%"
+            style:--glare-y="{springGlare.current.y}%"
+            style:--glare-o={springGlare.current.o}
+        ></div>
 
         <!-- 4. The Edge Highlight -->
         <div class="border-glow"></div>
+
+        <!-- 5. The Sheen Border (follows the cursor angle) -->
+        <div
+            class="sheen-layer"
+            style:--border-angle={isStaticMode
+                ? undefined
+                : `${springAngle.current}deg`}
+        ></div>
     </div>
 </div>
 
@@ -271,7 +290,6 @@
         width: 100%;
         height: 100%;
         transform-style: preserve-3d;
-        transform: rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg));
         border-radius: var(--radius-card, 24px);
         background-color: #23252b; /* Dark Slate Base */
         /* Printed border ~0.3cm (11px) - inset */
@@ -280,9 +298,6 @@
         /* Important: Holo effects need overflow hidden to stay inside borders */
         /* But if you want 3D popping elements, move them outside this container */
         overflow: hidden;
-
-        /* Hardware acceleration hints */
-        will-change: transform;
 
         /* Fix 3D clipping bleed at corners */
         isolation: isolate;
@@ -391,8 +406,7 @@
     }
 
     /* --- Sheen Border (follows cursor angle) --- */
-    .holo-card::after {
-        content: '';
+    .sheen-layer {
         position: absolute;
         inset: 0;
         z-index: 5;
@@ -417,7 +431,12 @@
         pointer-events: none;
     }
 
-    .holo-card.hovering::after {
+    /* Promote the card only while it tilts under the pointer. */
+    .holo-card.hovering {
+        will-change: transform;
+    }
+
+    .holo-card.hovering .sheen-layer {
         opacity: 1;
     }
 
@@ -426,7 +445,7 @@
         opacity: 0.25;
     }
 
-    .holo-card.static-mode::after {
+    .holo-card.static-mode .sheen-layer {
         opacity: 1;
         --border-angle: -70deg; /* Light from right when tilted left */
     }
@@ -450,16 +469,11 @@
     }
 
     /* --- Scroll Mode (touch input with motion) --- */
-    .holo-card.scroll-mode {
-        /* Translate animates from -1.5% to 0% as user scrolls to max tilt */
-        translate: var(--translate-x, -1.5%);
-    }
-
     .holo-card.scroll-mode .holo-layer {
         opacity: 0.15;
     }
 
-    .holo-card.scroll-mode::after {
+    .holo-card.scroll-mode .sheen-layer {
         opacity: 1;
         /* Border angle follows tilt via spring */
     }
