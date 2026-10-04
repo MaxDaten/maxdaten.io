@@ -7,20 +7,25 @@ SvelteKit 3 + Svelte 5 (runes) on Vite 8, prerendered and deployed on Vercel, co
 
 Run inside the devenv shell (direnv loads it); `treefmt` only exists there.
 
-- `npm run dev` / `build` / `preview`
+- `devenv up` — dev server at http://maxdaten.localhost via devenv's proxy (a git worktree gets
+  `<worktree>.maxdaten.localhost`); `npm run dev` / `build` / `preview` also work
 - `npm run check` — svelte-check (uses `tsconfig.json`)
 - `npm run lint` — eslint only (formatting is checked by treefmt)
 - `npm run format` — `treefmt` (prettier + nixfmt); whole-repo runs must be a no-op
 - `npm run test` — fast vitest run: `server` project (node) + `browser` project (`*.svelte.test.ts`,
   chromium; needs `npx playwright install chromium` once)
-- `npm run test:e2e` — Playwright; use `-- --project chromium` for a quick run
+- `e2e [playwright args]` — Playwright (chromium) against a private dev server on its own port.
+  Prefer it over `npm run test:e2e`, which reuses anything on :5173 and honours a stray
+  `PLAYWRIGHT_BASE_URL`
+- `smoke` — build, then check `.vercel/output` (prerendered OG images, function bundle)
+- `gate` — everything CI checks, in order; `prod-check` — verify production after a deploy
 - `npm run studio:dev` / `studio:deploy` — Sanity Studio in `studio/`
 
 Git hooks (prek, from `devenv.nix`): pre-commit runs treefmt, lint, check, unit tests; pre-push runs
-chromium e2e and `npm audit --audit-level=high`. Don't bypass them.
+`scripts/e2e.sh` and `npm audit --audit-level=high`. Don't bypass them.
 
 **Verify a change:** `npm run check && npm run lint && npm run test`; for UI or routing changes also
-`npm run test:e2e -- --project chromium`.
+`e2e`. Before pushing a larger change: `gate`.
 
 ## Content: Sanity
 
