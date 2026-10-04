@@ -26,7 +26,8 @@ calendar booking link). The blog and gems demonstrate depth and earn trust and i
 - **Product Engineering, end to end:** the guiding principle. One person who covers the whole path,
   from infrastructure and platform to UI, and from modern product practice (small increments, fast
   feedback from real users) to engineering and team processes (trunk-based development, continuous
-  delivery, engineers who own outcomes instead of tickets).
+  delivery, engineers who own outcomes and help solve the strategic problems behind them, not just
+  tickets).
 - **Hands-on, and the knowledge stays:** builds alongside the team rather than advising from the
   side, so the team owns and sustains what was built after the engagement ends.
 - **Functional programming + DevOps:** a rare combination, part of the claim.
@@ -51,8 +52,8 @@ calendar booking link). The blog and gems demonstrate depth and earn trust and i
   of Precious Friends": recommended resources), author page, RSS, llms.txt, legal pages (Impressum,
   Datenschutz).
 - Job title is "Freelance Platform & Product Engineer" everywhere, in both languages.
-- Services as currently named: Platform Engineering, Continuous Delivery, Modern Product
-  Engineering.
+- Services as currently named, in this order: Modern Product Engineering, Continuous Delivery,
+  Platform Engineering.
 - German legal requirements (Impressum, Datenschutzerklärung); analytics are Plausible, which any
   privacy text must mention.
 
