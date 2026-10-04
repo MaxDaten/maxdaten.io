@@ -1,7 +1,13 @@
 <script lang="ts">
     import Sparkle from '#lib/components/atoms/SingleSparkle.svelte';
     import type { SparkleType } from '#lib/utils/types.js';
-    import { onDestroy, onMount } from 'svelte';
+    import { prefersReducedMotion } from 'svelte/motion';
+
+    // Auto-played motion must stop within five seconds (WCAG 2.2.2); afterwards the
+    // sparkles return only while the wrapped control is hovered or focused.
+    const BURST_MS = 3500;
+    const SPAWN_MS = 400;
+
     const random = (min: number, max: number) =>
         Math.floor(Math.random() * (max - min)) + min;
 
@@ -12,9 +18,10 @@
 
     let { color = 'default', children }: Props = $props();
 
+    let nextId = 0;
     const generateSparkle = (): SparkleType => {
         return {
-            id: String(random(10000, 99999)),
+            id: String(nextId++),
             createdAt: Date.now(),
             color:
                 color === 'primary'
@@ -32,35 +39,44 @@
     };
 
     let sparkles: SparkleType[] = $state([]);
-    let sparklesInterval: ReturnType<typeof setInterval>;
+    let bursting = $state(true);
+    let engaged = $state(false);
+    let active = $derived(
+        !prefersReducedMotion.current && (bursting || engaged)
+    );
 
-    onMount(() => {
-        sparklesInterval = setInterval(() => {
-            const now = Date.now();
-            // Create a new sparkle
-            const sparkle = generateSparkle();
-            // Clean up any "expired" sparkles
-            const nextSparkles = sparkles.filter((sparkle) => {
-                const delta = now - sparkle.createdAt;
-                return delta < 1500;
-            });
-            // Include our new sparkle
-            nextSparkles.push(sparkle);
-            sparkles = nextSparkles;
-        }, 400);
+    $effect(() => {
+        const timeout = setTimeout(() => (bursting = false), BURST_MS);
+        return () => clearTimeout(timeout);
     });
 
-    onDestroy(() => {
-        clearInterval(sparklesInterval);
+    $effect(() => {
+        if (!active) return;
+        const interval = setInterval(() => {
+            sparkles = [...sparkles, generateSparkle()];
+        }, SPAWN_MS);
+        return () => clearInterval(interval);
     });
+
+    const remove = (id: string) => {
+        sparkles = sparkles.filter((sparkle) => sparkle.id !== id);
+    };
 </script>
 
-<div class="sparkle-wrapper">
+<div
+    class="sparkle-wrapper"
+    role="presentation"
+    onpointerenter={() => (engaged = true)}
+    onpointerleave={() => (engaged = false)}
+    onfocusin={() => (engaged = true)}
+    onfocusout={() => (engaged = false)}
+>
     {#each sparkles as sparkle (sparkle.id)}
         <Sparkle
             color={sparkle.color}
             size="{sparkle.size}px"
             style={sparkle.style}
+            onend={() => remove(sparkle.id)}
         />
     {/each}
     <span class="slot-wrapper">
