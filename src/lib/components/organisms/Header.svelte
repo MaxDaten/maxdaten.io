@@ -45,7 +45,7 @@
                 >{t(locale, 'nav.gems')}</a
             >
             <LanguageSwitcher />
-            <RssLink />
+            <span class="rss"><RssLink /></span>
         </div>
     </nav>
 </header>
@@ -112,11 +112,28 @@
             }
         }
 
+        .rss {
+            display: flex;
+        }
+
         @media (max-width: 767px) {
             padding: var(--raw-space-16) 0;
 
-            .links {
+            .container {
                 gap: var(--raw-space-16);
+            }
+
+            .logo {
+                min-width: auto;
+            }
+
+            /* Too narrow for every link at 320px; the footer carries the same feed link */
+            .rss {
+                display: none;
+            }
+
+            .links {
+                gap: var(--raw-space-8);
 
                 a {
                     min-height: 44px;
