@@ -32,7 +32,7 @@
             <div class="avatar-shield" data-holo-shield aria-hidden="true">
                 <enhanced:img
                     src={MeSrc}
-                    class="avatar-image"
+                    class="avatar-shield-image"
                     alt=""
                     loading="eager"
                     fetchpriority="high"
@@ -111,7 +111,8 @@
         overflow: hidden;
         background-color: rgba(var(--color-text-rgb), var(--opacity-tint));
 
-        :global(.avatar-image) {
+        :global(.avatar-image),
+        :global(.avatar-shield-image) {
             width: 100%;
             height: 100%;
             object-fit: cover;
