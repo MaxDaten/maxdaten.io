@@ -56,7 +56,8 @@
 
     .about-grid {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        /* minmax(0, …) lets the card column shrink instead of squeezing the text */
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
         gap: var(--space-section);
         align-items: center;
 
@@ -125,12 +126,12 @@
     .card-column {
         display: flex;
         justify-content: center;
+        padding-inline: var(--space-block);
+        /* Lets ProfileCard scale down below its 450px width. */
+        container-type: inline-size;
 
         @media (max-width: 900px) {
             order: 1;
-            padding-inline: var(--space-block);
-            /* Lets ProfileCard scale down below its 450px width. */
-            container-type: inline-size;
         }
     }
 </style>

@@ -56,6 +56,26 @@ test.describe('touch targets on phones', () => {
     });
 });
 
+for (const width of [920, 1000, 1100, 1280]) {
+    test.describe(`two-column hero at ${width}px`, () => {
+        test.use({ viewport: { width, height: 900 } });
+
+        test('shares the row between headline and card', async ({ page }) => {
+            await page.goto('/en');
+            const box = async (selector: string) =>
+                (await page.locator(selector).first().boundingBox())!;
+            const grid = await box('.hero-grid');
+            const content = await box('.hero-grid .content');
+            const column = await box('.card-column');
+            const card = await box('.holo-card');
+
+            expect(content.width).toBeGreaterThanOrEqual(grid.width * 0.4);
+            expect(card.x).toBeGreaterThanOrEqual(column.x - 1);
+            expect(card.x + card.width).toBeLessThanOrEqual(column.x + column.width + 1);
+        });
+    });
+}
+
 test('text scales with the browser default font size', async ({ page }) => {
     // A reader who raises the default font size from 16px to 20px expects 25% larger text.
     const cdp = await page.context().newCDPSession(page);

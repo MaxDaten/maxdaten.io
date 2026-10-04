@@ -81,7 +81,9 @@
 
     .hero-grid {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        /* minmax(0, …): a plain 1fr track can't shrink below the 450px card, which squeezed the
+           headline between 900 and 1100px */
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
         gap: var(--space-section);
         align-items: center;
 
@@ -179,13 +181,13 @@
     .card-column {
         display: flex;
         justify-content: center;
+        /* The card scales to this container (ProfileCard's container query); the padding makes
+           room for the holo card's own inner padding, which sits outside the scaled area */
+        padding-inline: var(--space-block);
+        container-type: inline-size;
 
         @media (max-width: 900px) {
             order: 1;
-            /* Constrain container width with padding */
-            padding-inline: var(--space-block);
-            /* Enable container queries for dynamic card scaling */
-            container-type: inline-size;
         }
     }
 </style>
