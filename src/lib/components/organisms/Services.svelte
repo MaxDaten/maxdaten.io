@@ -41,7 +41,7 @@
     title={t(locale, 'services.title')}
     description={t(locale, 'services.description')}
 >
-    <ul class="cards">
+    <ul class="cards services">
         {#each services as service (service)}
             <li class="card">
                 <h3>{t(locale, `services.${service}.title`)}</h3>
@@ -84,23 +84,36 @@
         }
     }
 
+    /* Service cards span two rows of the list as a subgrid, so the copy lines up across the row
+     * even when a title wraps. */
+    .services .card {
+        grid-row: span 2;
+        grid-template-rows: subgrid;
+        gap: var(--space-tight);
+    }
+
     .card {
-        display: flex;
-        flex-direction: column;
+        display: grid;
+        align-content: start;
         gap: var(--space-inline);
+        margin: 0;
         padding: var(--space-block);
         border-radius: var(--radius-card);
         background-color: var(--color-surface-elevated);
+        box-shadow: inset 0 1px 0 var(--color-hairline);
 
         h3 {
             font-size: var(--text-large);
+            text-wrap: balance;
             margin: 0;
         }
 
         p {
             margin: 0;
+            font-size: var(--text-ui);
             color: var(--color-text-muted);
             line-height: var(--text-body-leading);
+            text-wrap: pretty;
         }
 
         .meta {
