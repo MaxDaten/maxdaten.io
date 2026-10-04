@@ -7,6 +7,7 @@ import { version } from '$app/env';
 import { canonicalUrl } from '#lib/i18n/index.js';
 import { createBreadcrumbSchema } from '#lib/data/meta.js';
 import { urlFor } from '#lib/sanity/image.js';
+import { postModifiedAt } from '#lib/sanity/post-dates.js';
 
 type PageData = PostData & {
     pageMetaTags: MetaTagsProps;
@@ -34,10 +35,7 @@ export const load: PageLoad = async ({ data, url }): Promise<PageData> => {
                       title: post.title,
                       slug: post.slug,
                       date: post.date,
-                      // Editors rarely set lastModified (shown on the page as "Updated");
-                      // for machines, fall back to the document's last edit.
-                      updated:
-                          post.lastModified ?? post._updatedAt ?? post.date,
+                      updated: postModifiedAt(post),
                       excerpt: metaDescription,
                       tags: post.tags?.map((t) => t.name) ?? [],
                       keywords: post.keywords ?? [],
