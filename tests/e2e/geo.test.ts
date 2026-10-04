@@ -40,7 +40,10 @@ test('/about/jloos is an indexable author page', async ({ page }) => {
 
     const robots = page.locator('meta[name="robots"]');
     await expect(robots).toHaveCount(1);
-    await expect(robots).toHaveAttribute('content', /^index/);
+    await expect(robots).toHaveAttribute(
+        'content',
+        'index,follow,max-image-preview:large'
+    );
     await expect(page.locator('meta[name="description"]')).toHaveCount(1);
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
         'href',

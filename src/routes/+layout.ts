@@ -58,6 +58,8 @@ export const load = ({ url, data }) => {
         description,
         keywords: t(locale, 'meta.keywords').split(', '),
         canonical: canonicalUrl,
+        // Lets search show the large OG and cover images in results and Discover.
+        additionalRobotsProps: { maxImagePreview: 'large' as const },
         additionalLinkTags: [rssLinkTag, ...hreflangLinkTags],
         openGraph: {
             type: 'website',
