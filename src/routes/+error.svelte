@@ -1,5 +1,6 @@
 <script lang="ts">
     import { page } from '$app/state';
+    import { homeHref } from '#lib/i18n/index.js';
     import Button from '#lib/components/atoms/Button.svelte';
     import Error from '#lib/icons/error.svelte';
 
@@ -22,7 +23,7 @@
             {/if}
         </p>
         <br />
-        <Button href="/">Start over</Button>
+        <Button href={homeHref('en', page.url.origin)}>Start over</Button>
     </div>
 </div>
 

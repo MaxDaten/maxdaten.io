@@ -1,5 +1,7 @@
 <script lang="ts">
+    import { page } from '$app/state';
     import Card from '#lib/components/atoms/Card.svelte';
+    import { siteHref } from '#lib/i18n/index.js';
     import Tag from '#lib/components/atoms/Tag.svelte';
     import type { ListingPost } from '#lib/sanity/listing.js';
     import { urlFor, generateSrcSet } from '#lib/sanity/image.js';
@@ -49,7 +51,7 @@
 {/snippet}
 
 <Card
-    href="/{post.slug}"
+    href={siteHref(`/${post.slug}`, page.url.origin)}
     class="blog-post-card"
     image={showImage && hasCoverImage ? sanityImage : undefined}
 >

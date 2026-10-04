@@ -1,15 +1,16 @@
 <script lang="ts">
-    import { resolve } from '$app/paths';
+    import { page } from '$app/state';
     import RssIcon from '#lib/icons/rss.svelte';
     import { getContext } from 'svelte';
-    import { t, type Locale } from '#lib/i18n/index.js';
+    import { siteHref, t, type Locale } from '#lib/i18n/index.js';
 
     const getLocale: () => Locale = getContext('locale');
     let locale = $derived(getLocale());
 </script>
 
+<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- the feed lives on www.maxdaten.io -->
 <a
-    href={resolve('rss.xml')}
+    href={siteHref('/rss.xml', page.url.origin)}
     target="_blank"
     rel="noopener noreferrer"
     aria-label={t(locale, 'social.rss')}

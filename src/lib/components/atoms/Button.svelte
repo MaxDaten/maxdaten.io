@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { HttpRegex } from '#lib/utils/regex.js';
+    import { isExternalHref } from '#lib/i18n/index.js';
     import type { Snippet } from 'svelte';
     import type { ClassValue } from 'svelte/elements';
 
@@ -30,7 +30,7 @@
         ...rest
     }: Props = $props();
 
-    const isExternalLink = $derived(!!href && HttpRegex.test(href));
+    const isExternalLink = $derived(!!href && isExternalHref(href));
     let tag = $derived(href ? 'a' : 'button');
     let linkProps = $derived({
         href,
