@@ -81,3 +81,27 @@ for (const [width, dpr] of [
         });
     });
 }
+
+test('blog index fetches the first cover first and lazy-loads the rest', async ({
+    page,
+}) => {
+    await page.goto('/blog');
+    const covers = page.locator('a.blog-post-card img');
+    expect(await covers.count()).toBeGreaterThan(1);
+    await expect(covers.first()).toHaveAttribute('loading', 'eager');
+    await expect(covers.first()).toHaveAttribute('fetchpriority', 'high');
+    for (const cover of (await covers.all()).slice(1)) {
+        await expect(cover).toHaveAttribute('loading', 'lazy');
+        await expect(cover).not.toHaveAttribute('fetchpriority', /./);
+    }
+});
+
+test('a post cover loads eagerly with high priority', async ({ page }) => {
+    await page.goto('/blog');
+    await page.goto(
+        (await page.locator('a.blog-post-card').first().getAttribute('href'))!
+    );
+    const cover = page.locator('img.cover-image');
+    await expect(cover).toHaveAttribute('loading', 'eager');
+    await expect(cover).toHaveAttribute('fetchpriority', 'high');
+});

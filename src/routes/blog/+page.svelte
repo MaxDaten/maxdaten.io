@@ -26,7 +26,11 @@
         <ContentSection title="All Blog Posts" headingLevel="h1">
             <div class="grid">
                 {#each posts as post, index (post.slug)}
-                    <BlogPostCard {post} sizes={coverSizes(index)} />
+                    <BlogPostCard
+                        {post}
+                        sizes={coverSizes(index)}
+                        priority={index === 0}
+                    />
                 {/each}
             </div>
         </ContentSection>
