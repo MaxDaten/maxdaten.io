@@ -7,6 +7,8 @@ import type {
     PortableTextMarkDefinition,
 } from '@portabletext/types';
 import { encode } from 'html-entities';
+import type { SanityImageSource } from '@sanity/image-url';
+import { urlFor } from '#lib/sanity/image.js';
 
 export const prerender = true;
 
@@ -40,12 +42,19 @@ const rssComponents = {
         portableImage: ({
             value,
         }: {
-            value: { asset?: { url?: string }; alt?: string; caption?: string };
+            value: {
+                image?: SanityImageSource;
+                alt?: string;
+                caption?: string;
+            };
         }) => {
-            const url = value.asset?.url;
-            if (!url) return '';
+            if (!value.image) return '';
+            const url = encode(urlFor(value.image).width(1280).url());
             const alt = encode(value.alt || '');
-            return `<figure><img src="${url}" alt="${alt}" /></figure>`;
+            const caption = value.caption
+                ? `<figcaption>${encode(value.caption)}</figcaption>`
+                : '';
+            return `<figure><img src="${url}" alt="${alt}" />${caption}</figure>`;
         },
         callout: ({
             value,
