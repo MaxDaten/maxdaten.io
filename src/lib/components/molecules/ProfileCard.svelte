@@ -95,10 +95,7 @@
         aspect-ratio: 4 / 3;
         border-radius: var(--radius-block);
         overflow: hidden;
-        background-color: rgba(
-            var(--color-text-rgb),
-            var(--opacity-tint)
-        );
+        background-color: rgba(var(--color-text-rgb), var(--opacity-tint));
 
         :global(.avatar-image) {
             width: 100%;

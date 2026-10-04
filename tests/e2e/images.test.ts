@@ -46,41 +46,51 @@ const coverPages = [
 for (const [width, dpr] of [
     [412, 1.75],
     [1350, 1],
-]) for (const [name, path, selector] of coverPages) {
-    test.describe(`${name} at ${width}px @${dpr}x`, () => {
-        test.use({ viewport: { width, height: 900 }, deviceScaleFactor: dpr });
+])
+    for (const [name, path, selector] of coverPages) {
+        test.describe(`${name} at ${width}px @${dpr}x`, () => {
+            test.use({
+                viewport: { width, height: 900 },
+                deviceScaleFactor: dpr,
+            });
 
-        test('download at most 1.3x the rendered device pixels', async ({
-            page,
-        }) => {
-            await page.goto(path, { waitUntil: 'networkidle' });
-            await page.$$eval(selector, (imgs) =>
-                imgs.forEach((img) => ((img as HTMLImageElement).loading = 'eager'))
-            );
-            await page.waitForLoadState('networkidle');
-            const covers = await page.$$eval(selector, (imgs) =>
-                imgs.map((img) => ({
-                    rendered:
-                        img.getBoundingClientRect().width * devicePixelRatio,
-                    downloaded: Number(
-                        new URL(
-                            (img as HTMLImageElement).currentSrc
-                        ).searchParams.get('w')
-                    ),
-                }))
-            );
+            test('download at most 1.3x the rendered device pixels', async ({
+                page,
+            }) => {
+                await page.goto(path, { waitUntil: 'networkidle' });
+                await page.$$eval(selector, (imgs) =>
+                    imgs.forEach(
+                        (img) => ((img as HTMLImageElement).loading = 'eager')
+                    )
+                );
+                await page.waitForLoadState('networkidle');
+                const covers = await page.$$eval(selector, (imgs) =>
+                    imgs.map((img) => ({
+                        rendered:
+                            img.getBoundingClientRect().width *
+                            devicePixelRatio,
+                        downloaded: Number(
+                            new URL(
+                                (img as HTMLImageElement).currentSrc
+                            ).searchParams.get('w')
+                        ),
+                    }))
+                );
 
-            expect(covers.length).toBeGreaterThan(0);
-            for (const { rendered, downloaded } of covers) {
-                expect(downloaded, 'a resized image (w= parameter)').toBeGreaterThan(0);
-                expect(
-                    downloaded,
-                    `rendered ${Math.round(rendered)}px`
-                ).toBeLessThanOrEqual(Math.ceil(rendered * 1.3));
-            }
+                expect(covers.length).toBeGreaterThan(0);
+                for (const { rendered, downloaded } of covers) {
+                    expect(
+                        downloaded,
+                        'a resized image (w= parameter)'
+                    ).toBeGreaterThan(0);
+                    expect(
+                        downloaded,
+                        `rendered ${Math.round(rendered)}px`
+                    ).toBeLessThanOrEqual(Math.ceil(rendered * 1.3));
+                }
+            });
         });
-    });
-}
+    }
 
 test('blog index fetches the first cover first and lazy-loads the rest', async ({
     page,

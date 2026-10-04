@@ -169,10 +169,16 @@
      * Semantic Opacity
      * =========================================================================
      * Alpha steps used with rgba(var(--color-*-rgb), …). Named after their role in DESIGN.md. */
-    --opacity-hairline: var(--raw-opacity-faint); /* 5% dividers, inner highlights */
-    --opacity-tint: var(--raw-opacity-subtle); /* 8% surface tints, secondary chips */
+    --opacity-hairline: var(
+        --raw-opacity-faint
+    ); /* 5% dividers, inner highlights */
+    --opacity-tint: var(
+        --raw-opacity-subtle
+    ); /* 8% surface tints, secondary chips */
     --opacity-wash: var(--raw-opacity-light); /* 10% accent tints */
-    --opacity-border: var(--raw-opacity-muted); /* 30% hairline borders, wells */
+    --opacity-border: var(
+        --raw-opacity-muted
+    ); /* 30% hairline borders, wells */
     --opacity-half: var(--raw-opacity-medium);
     --opacity-text-muted: var(--raw-opacity-strong); /* 70% secondary copy */
     --opacity-heavy: var(--raw-opacity-heavy);

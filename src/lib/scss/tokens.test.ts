@@ -40,7 +40,9 @@ function matches(path: string, pattern: RegExp) {
     return source
         .replace(/\/\*[\s\S]*?\*\//g, blank)
         .split('\n')
-        .flatMap((line, index) => (pattern.test(line) ? [`${path}:${index + 1}`] : []));
+        .flatMap((line, index) =>
+            pattern.test(line) ? [`${path}:${index + 1}`] : []
+        );
 }
 
 // Effect internals tuned as one piece (holo foil, glare, ambient blobs, error illustration) keep
@@ -51,11 +53,14 @@ const EFFECTS = [
     /^lib\/icons\//,
     /^lib\/scss\/breakpoints\.css$/,
 ];
-const styled = files.filter((path) => !EFFECTS.some((pattern) => pattern.test(path)));
+const styled = files.filter(
+    (path) => !EFFECTS.some((pattern) => pattern.test(path))
+);
 
 describe('design tokens', () => {
     it('components take colours from tokens', () => {
-        const colour = /[:,(\s](#[0-9a-f]{3,8}\b|rgba?\(\s*\d|(black|white)\s*[;)])/i;
+        const colour =
+            /[:,(\s](#[0-9a-f]{3,8}\b|rgba?\(\s*\d|(black|white)\s*[;)])/i;
         expect(styled.flatMap((path) => matches(path, colour))).toEqual([]);
     });
 
@@ -67,7 +72,8 @@ describe('design tokens', () => {
 
     it('spacing stays on the 8px grid tokens', () => {
         // Hairline borders and the visually-hidden clip are 1px by definition.
-        const spacing = /^\s*(padding|margin|gap|grid-gap|row-gap|column-gap)[a-z-]*:[^;]*\b(?!1px\b)\d+(\.\d+)?(px|rem)/;
+        const spacing =
+            /^\s*(padding|margin|gap|grid-gap|row-gap|column-gap)[a-z-]*:[^;]*\b(?!1px\b)\d+(\.\d+)?(px|rem)/;
         expect(styled.flatMap((path) => matches(path, spacing))).toEqual([]);
     });
 
@@ -86,13 +92,18 @@ describe('design tokens', () => {
         // Definitions: declarations in CSS and style blocks, and style:--name directives in markup.
         const defined = new Set(
             styleSources().flatMap((path) =>
-                [...readFileSync(path, 'utf8').matchAll(/(?:^|[\s{;]|style:)(--[\w-]+)\s*[:=]/g)].map(
-                    ([, name]) => name
-                )
+                [
+                    ...readFileSync(path, 'utf8').matchAll(
+                        /(?:^|[\s{;]|style:)(--[\w-]+)\s*[:=]/g
+                    ),
+                ].map(([, name]) => name)
             )
         );
         const undefinedRefs = files.flatMap((path) => {
-            const source = readFileSync(join(SRC, path), 'utf8').replace(/\/\*[\s\S]*?\*\//g, '');
+            const source = readFileSync(join(SRC, path), 'utf8').replace(
+                /\/\*[\s\S]*?\*\//g,
+                ''
+            );
             return [...source.matchAll(/var\(\s*(--[\w-]+)/g)]
                 .map(([, name]) => name)
                 .filter((name) => !defined.has(name))

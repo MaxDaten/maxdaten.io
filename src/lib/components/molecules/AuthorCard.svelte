@@ -126,8 +126,7 @@
             height: 36px;
             border-radius: var(--radius-block);
             object-fit: cover;
-            border: 1px solid
-                rgba(var(--color-text-rgb), var(--opacity-wash));
+            border: 1px solid rgba(var(--color-text-rgb), var(--opacity-wash));
         }
 
         @media (max-width: 767px) {

@@ -33,17 +33,11 @@
                 var(--opacity-wash)
             );
             color: var(--color-accent-text);
-            border-color: rgba(
-                var(--color-accent-rgb),
-                var(--opacity-border)
-            );
+            border-color: rgba(var(--color-accent-rgb), var(--opacity-border));
         }
 
         &.secondary {
-            background-color: rgba(
-                var(--color-text-rgb),
-                var(--opacity-tint)
-            );
+            background-color: rgba(var(--color-text-rgb), var(--opacity-tint));
             color: var(--color-text);
             border-color: rgba(var(--color-text-rgb), var(--opacity-border));
         }

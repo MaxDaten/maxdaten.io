@@ -108,8 +108,7 @@
             position: relative;
             border-radius: var(--radius-block);
             overflow: hidden;
-            border: 0.5px solid
-                rgba(var(--color-text-rgb), var(--opacity-tint));
+            border: 0.5px solid rgba(var(--color-text-rgb), var(--opacity-tint));
 
             figcaption + :global(pre.shiki) {
                 border-top-left-radius: 0;
@@ -168,10 +167,7 @@
             &:hover,
             &:focus-visible {
                 opacity: 0.9;
-                background: rgba(
-                    var(--color-text-rgb),
-                    var(--opacity-tint)
-                );
+                background: rgba(var(--color-text-rgb), var(--opacity-tint));
             }
 
             &.success,
