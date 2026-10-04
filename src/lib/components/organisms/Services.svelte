@@ -645,6 +645,25 @@
                         calc(var(--node-center) + var(--pop) * 2);
             }
 
+            /* The release's colour runs into its title as the blaze lands: a soft-edged fill
+             * sweeping left to right, scrubbed with the node, so scrolling back drains it. */
+            .log h3 {
+                background: linear-gradient(
+                        to right,
+                        var(--color-accent-text) 46%,
+                        var(--color-text) 54%
+                    )
+                    100% 0 / 220% 100% no-repeat;
+                /* The sweep spans the words, not the whole column. */
+                width: fit-content;
+                background-clip: text;
+                color: transparent;
+                animation: kindle linear both;
+                animation-timeline: --release;
+                animation-range: entry var(--node-center) entry
+                    calc(var(--node-center) + var(--pop) * 2);
+            }
+
             .commit {
                 view-timeline: --commit block;
                 view-timeline-inset: var(--scan-inset);
@@ -688,6 +707,12 @@
      * like jelly (stretch and squash, damped) and cools into its circle. The ember glow outlasts
      * the wobble, fading as slowly as the trail behind the tip. The radii are drop shapes, not
      * design radii; they all settle on a circle. */
+    @keyframes kindle {
+        to {
+            background-position: 0 0;
+        }
+    }
+
     @keyframes merge {
         0% {
             scale: 0.4 0.55;
