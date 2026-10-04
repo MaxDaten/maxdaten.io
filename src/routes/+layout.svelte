@@ -25,6 +25,11 @@
     let locale = $derived(page.data.locale ?? 'en');
     setContext('locale', () => locale);
 
+    // hooks.server.ts sets <html lang> on the server render only; keep it in sync on client-side navigation
+    $effect(() => {
+        document.documentElement.lang = locale;
+    });
+
     let metaTags = $derived(
         deepMerge(data.baseMetaTags, page.data.pageMetaTags || {})
     );

@@ -209,6 +209,19 @@ test.describe('i18n — Blog pages remain English', () => {
         await expect(page.locator('html')).toHaveAttribute('lang', 'de');
     });
 
+    test('client-side navigation keeps html lang in sync', async ({ page }) => {
+        await page.goto('/');
+        await expect(page.locator('html')).toHaveAttribute('lang', 'de');
+
+        await page.locator('header a[href="/blog"]').click();
+        await expect(page).toHaveURL(/\/blog$/);
+        await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+
+        await page.goBack();
+        await expect(page).toHaveURL(/\/$/);
+        await expect(page.locator('html')).toHaveAttribute('lang', 'de');
+    });
+
     test('/blog has no hreflang tags', async ({ page }) => {
         await page.goto('/blog');
         const hreflangLinks = page.locator('link[hreflang]');
