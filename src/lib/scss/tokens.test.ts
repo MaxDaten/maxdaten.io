@@ -76,6 +76,25 @@ describe('design tokens', () => {
         expect(styled.flatMap((path) => matches(path, radius))).toEqual([]);
     });
 
+    it('every var() names a custom property that is defined somewhere', () => {
+        // Definitions: declarations in CSS and style blocks, and style:--name directives in markup.
+        const defined = new Set(
+            styleSources().flatMap((path) =>
+                [...readFileSync(path, 'utf8').matchAll(/(?:^|[\s{;]|style:)(--[\w-]+)\s*[:=]/g)].map(
+                    ([, name]) => name
+                )
+            )
+        );
+        const undefinedRefs = files.flatMap((path) => {
+            const source = readFileSync(join(SRC, path), 'utf8').replace(/\/\*[\s\S]*?\*\//g, '');
+            return [...source.matchAll(/var\(\s*(--[\w-]+)/g)]
+                .map(([, name]) => name)
+                .filter((name) => !defined.has(name))
+                .map((name) => `${path}: ${name}`);
+        });
+        expect(undefinedRefs).toEqual([]);
+    });
+
     it('scans the component and style sources', () => {
         expect(files.length).toBeGreaterThan(20);
     });

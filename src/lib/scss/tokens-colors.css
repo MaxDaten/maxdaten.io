@@ -159,16 +159,6 @@
     --color-info: var(--raw-color-info);
     --color-info-rgb: var(--raw-color-info-rgb);
 
-    /* Callouts */
-    --color-callout-bg-info: rgba(var(--color-info-rgb), 0.15);
-    --color-callout-accent-info: var(--color-info);
-    --color-callout-bg-warning: rgba(var(--color-warning-rgb), 0.15);
-    --color-callout-accent-warning: var(--color-warning);
-    --color-callout-bg-error: rgba(var(--color-error-rgb), 0.15);
-    --color-callout-accent-error: var(--color-error);
-    --color-callout-bg-success: rgba(var(--color-success-rgb), 0.15);
-    --color-callout-accent-success: var(--color-success);
-
     --color-code-bg: var(--raw-color-gray-700);
     /* Code block and caption surface. */
     --color-code-surface: var(--raw-color-gray-850);
@@ -201,41 +191,4 @@
     --radius-block: var(--raw-radius-sm);
     /* Fully round: hero badge, ticker dots. */
     --radius-full: var(--raw-radius-full);
-
-    /* =========================================================================
-     * Syntax Highlighting Colors
-     * =========================================================================
-     * Night Owl-inspired palette for code blocks */
-
-    /* Selection */
-    --syntax-selection-bg: rgba(29, 59, 83, 0.99);
-
-    /* Comments and meta */
-    --syntax-comment: rgb(99, 119, 119);
-    --syntax-namespace: rgb(178, 204, 214);
-
-    /* Punctuation and operators */
-    --syntax-punctuation: rgb(199, 146, 234);
-    --syntax-keyword: rgb(127, 219, 202);
-
-    /* Properties and symbols */
-    --syntax-property: rgb(128, 203, 196);
-
-    /* Literals */
-    --syntax-boolean: rgb(255, 88, 116);
-    --syntax-number: rgb(247, 140, 108);
-    --syntax-string: rgb(173, 219, 103);
-
-    /* Functions and builtins */
-    --syntax-function: rgb(130, 170, 255);
-
-    /* Classes and attributes */
-    --syntax-class: rgb(255, 203, 139);
-
-    /* Variables and misc */
-    --syntax-variable: rgb(214, 222, 235);
-
-    /* Diff colors */
-    --syntax-deleted: rgba(239, 83, 80, 0.56);
-    --syntax-inserted: rgb(173, 219, 103);
 }

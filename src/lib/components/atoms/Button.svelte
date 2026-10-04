@@ -63,7 +63,6 @@
 <style>
     .button {
         --main-color: var(--color-accent-rgb);
-        --light-color: var(--color-accent-rgb);
         --contrast-color: var(--color-text);
 
         -webkit-appearance: none;
@@ -98,13 +97,11 @@
 
         &.color--primary {
             --main-color: var(--color-accent-rgb);
-            --light-color: var(--color-accent-rgb);
             --contrast-color: var(--color-surface);
         }
 
         &.color--secondary {
             --main-color: var(--color-text-rgb);
-            --light-color: var(--color-text-rgb);
             --contrast-color: var(--color-surface);
         }
 

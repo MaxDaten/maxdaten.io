@@ -160,7 +160,6 @@
     .og-card {
         background: var(--color-surface-elevated);
         border-radius: 12px;
-        box-shadow: var(--card-shadow);
         overflow: hidden;
         transition:
             transform 0.2s var(--ease-3),
@@ -168,7 +167,6 @@
     }
     .og-card:hover {
         transform: translateY(-4px);
-        box-shadow: var(--card-shadow-hover);
     }
     .og-image-container {
         position: relative;
@@ -276,7 +274,6 @@
         max-width: 600px;
         background: var(--color-surface-elevated);
         border-radius: 12px;
-        box-shadow: var(--card-shadow);
         overflow: hidden;
         transition:
             transform 0.2s var(--ease-3),
@@ -285,7 +282,6 @@
 
     .profile-og-card:hover {
         transform: translateY(-4px);
-        box-shadow: var(--card-shadow-hover);
     }
 
     .description {

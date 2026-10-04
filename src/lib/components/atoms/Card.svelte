@@ -64,7 +64,6 @@
 
         .card {
             background: var(--color-surface-elevated);
-            box-shadow: var(--card-shadow);
             color: var(--color-text);
             border-radius: var(--radius-card);
             transition: all 0.4s ease;
