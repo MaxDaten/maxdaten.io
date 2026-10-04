@@ -119,6 +119,8 @@
                         .url()}
                     srcset={generateSrcSet(post.coverImage)}
                     sizes="(max-width: 1060px) 100vw, 1000px"
+                    loading="eager"
+                    fetchpriority="high"
                     alt={post.coverImage.alt ?? title}
                     style:background-image={post.coverImage.lqip
                         ? `url(${post.coverImage.lqip})`

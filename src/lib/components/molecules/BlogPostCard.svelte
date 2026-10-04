@@ -9,12 +9,15 @@
         showImage?: boolean;
         /** The cover's rendered width, as an <img sizes> value; depends on the grid slot. */
         sizes?: string;
+        /** The first cover on the page is the likely LCP element: fetch it first, lazy-load the rest. */
+        priority?: boolean;
     };
 
     let {
         post,
         showImage = true,
         sizes = '(max-width: 900px) calc(100vw - 2rem), 500px',
+        priority = false,
     }: Props = $props();
 
     const COVER_WIDTHS = [320, 400, 480, 640, 800, 1000, 1280, 1600, 2000];
@@ -30,6 +33,8 @@
             src={urlFor(post.coverImage).width(500).auto('format').url()}
             srcset={generateSrcSet(post.coverImage, COVER_WIDTHS)}
             {sizes}
+            loading={priority ? 'eager' : 'lazy'}
+            fetchpriority={priority ? 'high' : undefined}
             alt={post.coverImage.alt ?? 'Cover of this blog post'}
             style:background-image={post.coverImage.lqip
                 ? `url(${post.coverImage.lqip})`
