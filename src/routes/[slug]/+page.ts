@@ -4,7 +4,7 @@ import type { MetaTagsProps, Twitter } from 'svelte-meta-tags';
 import { createBlogPostingSchema } from '#lib/data/meta.js';
 import type { BlogPosting, BreadcrumbList, WithContext } from 'schema-dts';
 import { version } from '$app/env';
-import { canonicalUrl } from '#lib/i18n/index.js';
+import { canonicalUrl, localeDomains } from '#lib/i18n/index.js';
 import { createBreadcrumbSchema } from '#lib/data/meta.js';
 import { urlFor } from '#lib/sanity/image.js';
 import { postModifiedAt } from '#lib/sanity/post-dates.js';
@@ -23,7 +23,7 @@ export const load: PageLoad = async ({ data, url }): Promise<PageData> => {
     const metaDescription = seo.metaDescription || post.excerpt || '';
     const ogImageUrl = seo.ogImage
         ? urlFor(seo.ogImage).width(1200).height(630).format('jpg').url()
-        : new URL(`${url.pathname}/og.jpg?v=${version}`, url.origin).href;
+        : `${localeDomains.en}${url.pathname}/og.jpg?v=${version}`;
     // Hidden posts are unlisted, not private: reachable by link, but kept out of search.
     const noIndex = (post.hidden ?? false) || (seo.noIndex ?? false);
 
