@@ -299,7 +299,7 @@
            only faintly (see data-holo-shield) */
         --holo-shield-base: rgba(35, 37, 43, 0.6);
         /* How much a shielded copy of content (e.g. an image laid over itself) hides the foil */
-        --holo-shield-strength: 0.8;
+        --holo-shield-strength: 0.5;
         /* Printed border ~0.3cm (11px) - inset */
         box-shadow: inset 0 0 0 11px rgba(255, 128, 0, 0.1);
 

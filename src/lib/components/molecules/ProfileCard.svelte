@@ -27,8 +27,8 @@
                 fetchpriority="high"
                 sizes="(max-width: 767px) 90vw, 450px"
             />
-            <!-- The same image again above the foil: it covers the foiled one at 80%, so the
-                 shimmer only glows faintly across the face. -->
+            <!-- The same image again above the foil: it covers the foiled one at 50%, so the
+                 shimmer shows at half strength across the face. -->
             <div class="avatar-shield" data-holo-shield aria-hidden="true">
                 <enhanced:img
                     src={MeSrc}
