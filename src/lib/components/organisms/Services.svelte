@@ -7,7 +7,7 @@
     const getLocale: () => Locale = getContext('locale');
     let locale = $derived(getLocale());
 
-    const services = ['platform', 'delivery', 'product'] as const;
+    const services = ['product', 'delivery', 'platform'] as const;
     const serviceGlyph: Record<(typeof services)[number], GlyphKind> = {
         platform: 'cube',
         delivery: 'loop',
@@ -15,8 +15,7 @@
     };
 
     // Merge confetti, after GitHub's "Branch merged" banner, drawn from the craft's own glyphs:
-    // positions in % of the field, size in px, depth 0–2 sets opacity and how far the glyph drifts
-    // on scroll.
+    // positions in % of the field, size in px, depth 0–2 sets opacity and how far the glyph floats.
     const confetti: {
         kind: GlyphKind;
         x: number;
@@ -29,7 +28,7 @@
         { kind: 'lambda', x: 32, y: 64, size: 52, depth: 2, turn: 8 },
         { kind: 'prompt', x: 54, y: 14, size: 16, depth: 0, turn: 0 },
         { kind: 'braces', x: 72, y: 46, size: 22, depth: 1, turn: -6 },
-        { kind: 'loop', x: 88, y: 36, size: 40, depth: 2, turn: 14 },
+        { kind: 'loop', x: 88, y: 52, size: 40, depth: 2, turn: 14 },
         { kind: 'pointer', x: 12, y: 82, size: 16, depth: 0, turn: -20 },
         { kind: 'lambda', x: 40, y: 30, size: 14, depth: 0, turn: 30 },
         { kind: 'cube', x: 64, y: 84, size: 26, depth: 1, turn: -4 },
@@ -83,19 +82,18 @@
                 style:--y="{glyph.y}%"
                 style:--size="{glyph.size}px"
                 style:--turn="{glyph.turn}deg"
+                style:--float="{7 + ((index * 5) % 6)}s"
+                style:--phase="{-index * 1.7}s"
             >
                 <Glyph kind={glyph.kind} width="100%" height="100%" />
             </span>
         {/each}
     </div>
 
-    <!-- Each service is a branch merging into the trunk: the work lands in your main. -->
+    <!-- The services as commits on one line, each marked with its glyph. -->
     <ol class="log">
         {#each services as service (service)}
             <li>
-                <svg class="branch" viewBox="0 0 20 56" aria-hidden="true">
-                    <path d="M6 0V22C6 44 10 56 20 56" pathLength="1" />
-                </svg>
                 <span class="node" aria-hidden="true">
                     <Glyph
                         kind={serviceGlyph[service]}
@@ -196,6 +194,7 @@
     /* Bleeds into the band's padding so glyphs crop at the edge, like the banner's. */
     .confetti {
         --scale: 1.25;
+        --reach: 1;
         grid-area: confetti;
         position: relative;
         min-height: calc(var(--space-major) * 3);
@@ -204,6 +203,8 @@
 
         @media (max-width: 900px) {
             --scale: 0.75;
+            /* The strip is short: float half as far. */
+            --reach: 0.5;
             min-height: calc(var(--space-major) + var(--space-stack));
             margin: calc(-1 * var(--space-block)) calc(-1 * var(--space-block))
                 0;
@@ -222,15 +223,15 @@
         color: var(--color-accent);
 
         &.depth-0 {
-            --drift: var(--space-inline);
+            --drift: calc(var(--space-inline) * var(--reach));
             opacity: var(--opacity-border);
         }
         &.depth-1 {
-            --drift: var(--space-stack);
+            --drift: calc(var(--space-stack) * var(--reach));
             opacity: var(--opacity-half);
         }
         &.depth-2 {
-            --drift: var(--space-group);
+            --drift: calc(var(--space-group) * var(--reach));
             opacity: var(--opacity-text-muted);
         }
         &.sparkle {
@@ -242,12 +243,11 @@
         }
     }
 
-    /* Rail geometry: the trunk runs at --trunk-x; each branch comes down a lane on its left and
-     * curves into a merged node sitting on the first line of the title. */
+    /* Rail geometry: a straight trunk through the nodes, each node sitting on the first line of
+     * its title. */
     .log {
         --node: 28px;
-        --trunk-x: 34px;
-        --branch-height: 56px;
+        --trunk-x: calc(var(--node) / 2);
         --node-top: calc(
             (var(--text-large) * var(--text-heading-leading) - var(--node)) / 2
         );
@@ -287,7 +287,7 @@
                 );
             }
 
-            /* main carries on past the last merge. */
+            /* The line carries on past the last node. */
             &:last-child {
                 padding-bottom: var(--space-block);
 
@@ -322,20 +322,6 @@
         }
     }
 
-    .branch {
-        position: absolute;
-        left: 0;
-        top: calc(var(--node-center) - var(--branch-height));
-        width: calc(var(--trunk-x) - var(--node) / 2);
-        height: var(--branch-height);
-        overflow: visible;
-        fill: none;
-        stroke: rgba(var(--color-accent-rgb), var(--opacity-half));
-        stroke-width: 2;
-        stroke-linecap: round;
-        mask-image: linear-gradient(to bottom, transparent, black 60%);
-    }
-
     /* The merged badge: solid forge, like the banner's status chip, carrying the service's glyph. */
     .node {
         position: absolute;
@@ -350,10 +336,14 @@
         color: var(--color-text-inverse);
     }
 
-    /* One authored moment, scrubbed by scroll: the trunk draws down, each branch draws in and its
-     * node merges with a flash of the Halo, while the confetti drifts at three depths. Without
-     * scroll timelines or with reduced motion, everything rests in its final state. */
+    /* Motion: the confetti floats on its own, slow and out of step, further the nearer it sits.
+     * Scroll scrubs the log: the trunk draws down and each node lands with a flash of the Halo.
+     * Without scroll timelines the log rests drawn; with reduced motion everything rests. */
     @media (prefers-reduced-motion: no-preference) {
+        .glyph :global(svg) {
+            animation: float var(--float) ease-in-out var(--phase) infinite;
+        }
+
         @supports (animation-timeline: view()) {
             .log li {
                 view-timeline: --merge block;
@@ -366,23 +356,10 @@
                 }
             }
 
-            .branch path {
-                stroke-dasharray: 1;
-                animation: draw linear both;
-                animation-timeline: --merge;
-                animation-range: entry 20% cover 26%;
-            }
-
             .node {
                 animation: merge linear both;
                 animation-timeline: --merge;
                 animation-range: cover 22% cover 34%;
-            }
-
-            .glyph {
-                animation: drift linear both;
-                animation-timeline: view();
-                animation-range: cover;
             }
         }
     }
@@ -390,15 +367,6 @@
     @keyframes trunk {
         from {
             transform: scaleY(0);
-        }
-    }
-
-    @keyframes draw {
-        from {
-            stroke-dashoffset: 1;
-        }
-        to {
-            stroke-dashoffset: 0;
         }
     }
 
@@ -419,12 +387,24 @@
         }
     }
 
-    @keyframes drift {
-        from {
-            transform: translateY(var(--drift)) rotate(-6deg);
+    @keyframes float {
+        0%,
+        100% {
+            transform: translate(0, 0) rotate(0deg);
         }
-        to {
-            transform: translateY(calc(-1 * var(--drift))) rotate(6deg);
+        33% {
+            transform: translate(
+                    calc(var(--drift) * 0.4),
+                    calc(-1 * var(--drift))
+                )
+                rotate(5deg);
+        }
+        66% {
+            transform: translate(
+                    calc(var(--drift) * -0.4),
+                    calc(var(--drift) * -0.4)
+                )
+                rotate(-4deg);
         }
     }
 
