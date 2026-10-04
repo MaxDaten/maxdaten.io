@@ -12,6 +12,48 @@
     ],
     "deny": []
   },
+  "sandbox": {
+    "enabled": true,
+    "network": {
+      "allowedDomains": [
+        "registry.npmjs.org",
+        "github.com",
+        "api.github.com",
+        "codeload.github.com",
+        "*.githubusercontent.com",
+        "api.sanity.io",
+        "*.api.sanity.io",
+        "*.apicdn.sanity.io",
+        "cdn.sanity.io",
+        "generativelanguage.googleapis.com",
+        "cdn.playwright.dev",
+        "playwright.download.prss.microsoft.com",
+        "cache.nixos.org",
+        "*.cachix.org",
+        "maxdaten.de",
+        "www.maxdaten.de",
+        "maxdaten.io",
+        "www.maxdaten.io",
+        "*.vercel.app"
+      ],
+      "allowLocalBinding": true,
+      "allowUnixSockets": ["/nix/var/nix/daemon-socket/socket"]
+    },
+    "excludedCommands": [
+      "npm run test *",
+      "npm run test:unit *",
+      "npm run test:all *",
+      "npm run test:e2e *",
+      "npx vitest *",
+      "npx playwright *",
+      "e2e *",
+      "gate *",
+      "git commit *",
+      "git push *",
+      "git fetch *",
+      "git pull *"
+    ]
+  },
   "hooks": {
     "SessionStart": [
       {
