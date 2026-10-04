@@ -23,6 +23,15 @@ test('/robots.txt is valid', async ({ page }) => {
     // Should contain Allow directive
     expect(lines).toContain('Allow: /');
 
+    // Names the answer engines' search crawlers
+    for (const agent of [
+        'OAI-SearchBot',
+        'Claude-SearchBot',
+        'PerplexityBot',
+    ]) {
+        expect(lines).toContain(`User-agent: ${agent}`);
+    }
+
     // Should contain Sitemap reference
     const sitemapLine = lines.find((line) => line.startsWith('Sitemap:'));
     expect(sitemapLine).toBeTruthy();
