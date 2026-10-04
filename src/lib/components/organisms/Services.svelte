@@ -532,6 +532,8 @@
      * subject. */
     .commits {
         position: absolute;
+        /* Above the trunk and its blaze, which are drawn by the li's pseudo-elements. */
+        z-index: 1;
         top: calc(var(--node-top) + var(--node));
         bottom: 0;
         left: calc(var(--trunk-x) - var(--commit) / 2);
@@ -559,6 +561,7 @@
     /* The merged badge: solid forge, like the banner's status chip, carrying the service's glyph. */
     .node {
         position: absolute;
+        z-index: 1;
         top: var(--node-top);
         left: calc(var(--trunk-x) - var(--node) / 2);
         display: grid;
@@ -615,8 +618,7 @@
                         var(--color-accent) 75%,
                         var(--color-sparkle)
                     );
-                    filter: drop-shadow(0 0 3px var(--color-accent))
-                        drop-shadow(0 0 3px var(--color-accent));
+                    filter: drop-shadow(0 0 3px var(--color-accent));
                     pointer-events: none;
                     animation: blaze linear both;
                     animation-timeline: --release;
@@ -633,7 +635,7 @@
                     entry var(--node-top) entry
                         calc(var(--node-center) + var(--pop)),
                     entry var(--node-top) entry
-                        calc(var(--node-center) + var(--pop) * 3);
+                        calc(var(--node-center) + var(--pop) * 2);
             }
 
             .commit {
@@ -647,7 +649,7 @@
                     animation-timeline: --commit, --commit;
                     animation-range:
                         entry 0% entry calc(0% + var(--pop) / 2),
-                        entry 0% entry calc(0% + var(--pop) * 1.5);
+                        entry 0% entry calc(0% + var(--pop));
                 }
             }
         }
@@ -682,22 +684,20 @@
         0% {
             scale: 0.4;
             opacity: 0;
-            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            border-radius: 42% 58% 56% 44% / 44% 42% 58% 56%;
             background: var(--color-sparkle);
         }
-        30% {
-            border-radius: 62% 38% 34% 66% / 58% 32% 68% 42%;
+        15% {
+            opacity: 1;
+        }
+        20% {
             background: var(--color-sparkle);
         }
         55% {
-            scale: 1.15;
-            opacity: 1;
-            border-radius: 40% 60% 58% 42% / 62% 44% 56% 38%;
+            scale: 1.1;
+            border-radius: 46% 54% 53% 47% / 54% 47% 53% 46%;
             box-shadow: 0 0 1px 7px
                 rgba(var(--color-accent-rgb), var(--opacity-border));
-        }
-        78% {
-            border-radius: 54% 46% 44% 56% / 46% 56% 44% 54%;
         }
         100% {
             scale: 1;
@@ -711,17 +711,16 @@
         0% {
             scale: 0;
             opacity: 0;
-            border-radius: 70% 30% 40% 60% / 40% 70% 30% 60%;
+            border-radius: 58% 42% 46% 54% / 46% 58% 42% 54%;
             background: var(--color-sparkle);
         }
-        35% {
-            border-radius: 35% 65% 60% 40% / 65% 35% 65% 35%;
+        20% {
+            opacity: 1;
             background: var(--color-sparkle);
         }
         60% {
-            scale: 1.5;
-            opacity: 1;
-            border-radius: 58% 42% 38% 62% / 42% 60% 40% 58%;
+            scale: 1.3;
+            border-radius: 47% 53% 54% 46% / 53% 46% 54% 47%;
         }
         100% {
             scale: 1;
@@ -731,17 +730,14 @@
     }
 
     @keyframes ember {
-        0% {
-            filter: drop-shadow(0 0 0 rgba(var(--color-accent-rgb), 0))
-                drop-shadow(0 0 0 rgba(var(--color-accent-rgb), 0));
+        0%,
+        100% {
+            filter: drop-shadow(0 0 0 rgba(var(--color-accent-rgb), 0));
         }
         12% {
-            filter: drop-shadow(0 0 3px var(--color-sparkle))
-                drop-shadow(0 0 3px var(--color-accent));
-        }
-        100% {
-            filter: drop-shadow(0 0 0 rgba(var(--color-accent-rgb), 0))
-                drop-shadow(0 0 0 rgba(var(--color-accent-rgb), 0));
+            filter: drop-shadow(
+                0 0 3px rgba(var(--color-accent-rgb), var(--opacity-text-muted))
+            );
         }
     }
 
