@@ -13,6 +13,13 @@
         delivery: 'loop',
         product: 'pointer',
     };
+    // Small commits on the line below each release, uneven like a real history. The last run
+    // trails off past the final release: work goes on.
+    const commits: Record<(typeof services)[number], number> = {
+        product: 3,
+        delivery: 4,
+        platform: 2,
+    };
 
     // Merge confetti, after GitHub's "Branch merged" banner, drawn from the craft's own glyphs:
     // positions in % of the field, size in px, depth 0–2 sets opacity and how far the glyph floats.
@@ -90,7 +97,7 @@
         {/each}
     </div>
 
-    <!-- The services as commits on one line, each marked with its glyph. -->
+    <!-- The services as releases on one line of commits, each marked with its glyph. -->
     <ol class="log">
         {#each services as service (service)}
             <li>
@@ -100,6 +107,11 @@
                         width="16px"
                         height="16px"
                     />
+                </span>
+                <span class="commits" aria-hidden="true">
+                    {#each { length: commits[service] }, index (index)}
+                        <span class="commit"></span>
+                    {/each}
                 </span>
                 <h3>{t(locale, `services.${service}.title`)}</h3>
                 <p>{t(locale, `services.${service}.text`)}</p>
@@ -248,6 +260,7 @@
      * its title. */
     .log {
         --node: 28px;
+        --commit: 8px;
         --trunk-x: calc(var(--node) / 2);
         --node-top: calc(
             (var(--text-large) * var(--text-heading-leading) - var(--node)) / 2
@@ -323,6 +336,35 @@
         }
     }
 
+    /* Small commits between releases: plain dots on the trunk, spread evenly from below the node to
+     * the next one. The dot is drawn by ::before so the span stays an untransformed timeline
+     * subject. */
+    .commits {
+        position: absolute;
+        top: calc(var(--node-top) + var(--node));
+        bottom: 0;
+        left: calc(var(--trunk-x) - var(--commit) / 2);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        width: var(--commit);
+    }
+
+    .commit {
+        display: block;
+        width: var(--commit);
+        height: var(--commit);
+
+        &::before {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 100%;
+            border-radius: var(--radius-full);
+            background: var(--color-accent);
+        }
+    }
+
     /* The merged badge: solid forge, like the banner's status chip, carrying the service's glyph. */
     .node {
         position: absolute;
@@ -338,29 +380,50 @@
     }
 
     /* Motion: the confetti floats on its own, slow and out of step, further the nearer it sits.
-     * Scroll scrubs the log: the trunk draws down and each node lands with a flash of the Halo.
-     * Without scroll timelines the log rests drawn; with reduced motion everything rests. */
+     * Scroll scrubs the log against a scan line 60% down the viewport: the trunk's tip follows
+     * it, each small commit pops in as the tip reaches it, and each release lands with a flash of
+     * the Halo. Without scroll timelines the log rests drawn; with reduced motion everything
+     * rests. */
     @media (prefers-reduced-motion: no-preference) {
         .glyph :global(svg) {
             animation: float var(--float) ease-in-out var(--phase) infinite;
         }
 
         @supports (animation-timeline: view()) {
-            .log li {
-                view-timeline: --merge block;
+            .log {
+                --scan-inset: 0 40%;
+                --pop: 4rem;
+            }
 
+            .log li {
+                view-timeline: --release block;
+                view-timeline-inset: var(--scan-inset);
+
+                /* li's top to bottom crossing the scan line: the tip sits on it throughout. */
                 &::before {
                     transform-origin: top;
                     animation: trunk linear both;
-                    animation-timeline: --merge;
-                    animation-range: entry 0% cover 25%;
+                    animation-timeline: --release;
+                    animation-range: entry-crossing 0% entry-crossing 100%;
                 }
             }
 
             .node {
                 animation: merge linear both;
-                animation-timeline: --merge;
-                animation-range: cover 22% cover 34%;
+                animation-timeline: --release;
+                animation-range: entry var(--node-top) entry
+                    calc(var(--node-center) + var(--pop));
+            }
+
+            .commit {
+                view-timeline: --commit block;
+                view-timeline-inset: var(--scan-inset);
+
+                &::before {
+                    animation: commit linear both;
+                    animation-timeline: --commit;
+                    animation-range: entry 0% entry calc(0% + var(--pop) / 2);
+                }
             }
         }
     }
@@ -385,6 +448,20 @@
         100% {
             scale: 1;
             box-shadow: 0 0 0 0 rgba(var(--color-accent-rgb), 0);
+        }
+    }
+
+    @keyframes commit {
+        0% {
+            scale: 0;
+            opacity: 0;
+        }
+        60% {
+            scale: 1.5;
+            opacity: 1;
+        }
+        100% {
+            scale: 1;
         }
     }
 
