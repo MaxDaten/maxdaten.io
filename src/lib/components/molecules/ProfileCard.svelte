@@ -10,8 +10,9 @@
 
 <!-- The profile trading card. Its parent should set `container-type: inline-size` so the card
      can scale down below 450px. -->
+<!-- The card face is English on both home pages; only the ability description is translated. -->
 <HoloCard>
-    <div class="trading-card">
+    <div class="trading-card" lang="en">
         <div class="card-header">
             <span class="card-title">MAXDATEN.IO</span>
             <span class="card-level">LVL 99</span>
@@ -45,7 +46,7 @@
                 <span class="pro-badge">PRO</span>
                 <span class="ability-name">Enterprise Rollouts</span>
             </div>
-            <p class="ability-description">
+            <p class="ability-description" lang={locale}>
                 {t(locale, 'hero.abilityDescription')}
             </p>
         </div>

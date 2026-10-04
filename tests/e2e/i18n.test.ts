@@ -12,6 +12,23 @@ test.describe('i18n — German home page (/)', () => {
         );
     });
 
+    test('marks English fragments with lang="en"', async ({ page }) => {
+        await page.goto('/');
+        // Post titles and excerpts, and the trading card face, are English on the German page.
+        await expect(page.locator('#recent-posts .grid')).toHaveAttribute(
+            'lang',
+            'en'
+        );
+        await expect(page.locator('.trading-card')).toHaveAttribute(
+            'lang',
+            'en'
+        );
+        await expect(page.locator('.ability-description')).toHaveAttribute(
+            'lang',
+            'de'
+        );
+    });
+
     test('has lang="de" on html element', async ({ page }) => {
         await page.goto('/');
         const lang = await page.locator('html').getAttribute('lang');
@@ -207,6 +224,10 @@ test.describe('i18n — Blog pages remain English', () => {
     test('/impressum stays German', async ({ page }) => {
         await page.goto('/impressum');
         await expect(page.locator('html')).toHaveAttribute('lang', 'de');
+        await expect(page.getByText('Gebaut mit')).toBeVisible();
+        await expect(
+            page.getByRole('link', { name: 'Pokemon Card CSS Holo Effect' })
+        ).toHaveAttribute('lang', 'en');
     });
 
     test('client-side navigation keeps html lang in sync', async ({ page }) => {
