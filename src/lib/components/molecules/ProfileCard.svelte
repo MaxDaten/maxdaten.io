@@ -41,7 +41,7 @@
                 <span class="stat-value">Product Engineering</span>
             </div>
         </div>
-        <!-- Shielded from the foil so the ability text stays clean under the shimmer. -->
+        <!-- Shielded from the foil: the shimmer only glows faintly behind the ability text. -->
         <div class="ability-box" data-holo-shield>
             <div class="ability-header">
                 <span class="pro-badge">PRO</span>
@@ -141,10 +141,10 @@
 
     .ability-box {
         margin-top: auto;
-        /* The well over the card base: opaque, so the foil beneath it stays hidden. */
+        /* The well over the mostly opaque card base, which dims the foil beneath to a faint glow. */
         background:
             linear-gradient(var(--color-well), var(--color-well)),
-            var(--holo-base);
+            var(--holo-shield-base);
         border-radius: var(--radius-tag);
         padding: var(--space-tight);
         border-left: 3px solid var(--color-accent);
