@@ -287,7 +287,7 @@ test.describe('i18n — home page services and results', () => {
             })
         ).toBeVisible();
         await expect(
-            page.getByText(/help solve the strategic problems behind them/)
+            page.getByText(/strengthen your team’s strategic problem solving/)
         ).toBeVisible();
         await expect(
             page.getByRole('heading', { level: 2, name: 'Selected work' })
@@ -302,7 +302,7 @@ test.describe('i18n — home page services and results', () => {
             page.getByRole('heading', { level: 2, name: 'Leistungen' })
         ).toBeVisible();
         await expect(
-            page.getByText(/sondern die strategischen Probleme mitlösen/)
+            page.getByText(/Ich stärke Ihr Team in strategischer Problemlösung/)
         ).toBeVisible();
         await expect(
             page.getByRole('heading', {
