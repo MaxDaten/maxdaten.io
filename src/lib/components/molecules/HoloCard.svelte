@@ -255,15 +255,9 @@
             style:--pt-y="{springPattern.current.y}%"
         ></div>
 
-        <!-- 3. The Glare (White Reflection): a broad overlay wash plus a bright specular core -->
+        <!-- 3. The Glare (White Reflection) -->
         <div
             class="glare-layer"
-            style:--glare-x="{springGlare.current.x}%"
-            style:--glare-y="{springGlare.current.y}%"
-            style:--glare-o={springGlare.current.o}
-        ></div>
-        <div
-            class="specular-layer"
             style:--glare-x="{springGlare.current.x}%"
             style:--glare-y="{springGlare.current.y}%"
             style:--glare-o={springGlare.current.o}
@@ -300,9 +294,10 @@
         height: 100%;
         transform-style: preserve-3d;
         border-radius: var(--radius-card, 24px);
-        /* Dark Slate Base; content that sits above the foil paints over it (see data-holo-shield) */
-        --holo-base: #23252b;
-        background-color: var(--holo-base);
+        background-color: #23252b; /* Dark Slate Base */
+        /* The base at 60%: shielded content paints it under itself so the foil glows through
+           only faintly (see data-holo-shield) */
+        --holo-shield-base: rgba(35, 37, 43, 0.6);
         /* Printed border ~0.3cm (11px) - inset */
         box-shadow: inset 0 0 0 11px rgba(255, 128, 0, 0.1);
 
@@ -325,9 +320,9 @@
         padding: var(--space-block);
     }
 
-    /* Content marked data-holo-shield sits above the foil but below the glare: the foil is masked
-       out there, the light still catches it. Give it an opaque background (--holo-base) or the
-       foil shows through. */
+    /* Content marked data-holo-shield sits above the foil but below the glare. Under a
+       --holo-shield-base background the foil only glows through faintly; the light still catches
+       it. */
     .card-content :global([data-holo-shield]) {
         position: relative;
         z-index: 3;
@@ -348,7 +343,7 @@
         mix-blend-mode: color-dodge;
 
         /* VIBRANCE BOOST: No brightness to preserve dark background */
-        filter: saturate(1.5);
+        filter: saturate(2);
 
         /*
            LAYER 1 (Top): The Lambda Texture
@@ -363,11 +358,16 @@
         */
         --gradient-spectrum: linear-gradient(
             115deg,
-            transparent 25%,
-            oklch(0.774 0.163 60.276) 40%,
-            oklch(0.709 0.159 293.541) 50%,
-            oklch(0.797 0.134 211.502) 60%,
-            transparent 75%
+            transparent 15%,
+            oklch(0.85 0.2 150) 22%,
+            oklch(0.9 0.18 105) 29%,
+            oklch(0.8 0.18 60) 36%,
+            oklch(0.72 0.22 350) 43%,
+            oklch(0.7 0.2 293) 50%,
+            oklch(0.8 0.15 211) 57%,
+            oklch(0.85 0.2 150) 64%,
+            oklch(0.9 0.18 105) 71%,
+            transparent 85%
         );
 
         background-image: var(--pattern-lambda), var(--gradient-spectrum);
@@ -404,34 +404,12 @@
         /* A radial beam of light */
         background: radial-gradient(
             farthest-corner circle at var(--glare-x) var(--glare-y),
-            rgba(255, 255, 255, 0.9) 0%,
-            rgba(255, 255, 255, 0.5) 10%,
-            rgba(255, 255, 255, 0.18) 30%,
-            transparent 60%
+            rgba(255, 255, 255, 0.55) 0%,
+            rgba(255, 255, 255, 0.18) 20%,
+            transparent 55%
         );
 
         mix-blend-mode: overlay;
-        opacity: var(--glare-o);
-        transition: opacity 0.1s;
-    }
-
-    /* --- Specular Core (the hot spot where the light source reflects) --- */
-    .specular-layer {
-        position: absolute;
-        inset: 0;
-        z-index: 4;
-        pointer-events: none;
-
-        /* Screen lifts the dark slate itself, so the reflection reads as light, not contrast */
-        background: radial-gradient(
-            farthest-corner circle at var(--glare-x) var(--glare-y),
-            rgba(255, 255, 255, 0.6) 0%,
-            rgba(255, 250, 240, 0.28) 7%,
-            rgba(255, 250, 240, 0.08) 20%,
-            transparent 36%
-        );
-
-        mix-blend-mode: screen;
         opacity: var(--glare-o);
         transition: opacity 0.1s;
     }
@@ -482,9 +460,9 @@
         opacity: 1;
     }
 
-    /* Reveal holo foil on hover - 0.5 is plenty visible with color-dodge */
+    /* Reveal holo foil on hover: vivid while tilting, the text still reads through color-dodge */
     .holo-card.hovering .holo-layer {
-        opacity: 0.25;
+        opacity: 0.38;
     }
 
     .holo-card.static-mode .sheen-layer {
@@ -506,14 +484,13 @@
         transition: opacity 0.5s ease;
     }
 
-    .holo-card.static-mode .glare-layer,
-    .holo-card.static-mode .specular-layer {
+    .holo-card.static-mode .glare-layer {
         display: none;
     }
 
     /* --- Scroll Mode (touch input with motion) --- */
     .holo-card.scroll-mode .holo-layer {
-        opacity: 0.15;
+        opacity: 0.25;
     }
 
     .holo-card.scroll-mode .sheen-layer {
