@@ -26,6 +26,9 @@
     }
 </script>
 
-<CalloutUI type={mapCalloutType(value.type)}>
+<CalloutUI
+    type={mapCalloutType(value.type)}
+    label={value.type === 'tip' ? 'Tip' : undefined}
+>
     <PortableText value={value.content} />
 </CalloutUI>

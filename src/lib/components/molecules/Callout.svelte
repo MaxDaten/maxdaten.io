@@ -5,15 +5,26 @@
 
     interface Props {
         type?: 'info' | 'warning' | 'error' | 'success' | undefined;
+        /** What screen readers announce before the content; defaults to the type's name. */
+        label?: string;
         children?: import('svelte').Snippet;
     }
 
-    let { type = undefined, children }: Props = $props();
+    const LABELS = {
+        info: 'Info',
+        warning: 'Warning',
+        error: 'Error',
+        success: 'Success',
+    };
+
+    let { type = undefined, label, children }: Props = $props();
+    // Colour and icon carry the type visually; this carries it for everyone else.
+    let typeLabel = $derived(label ?? (type ? LABELS[type] : undefined));
 </script>
 
 <aside class="callout {type ?? 'default'}">
     {#if type}
-        <div class="icon">
+        <div class="icon" aria-hidden="true">
             {#if type === 'info'}
                 <Info />
             {:else if type === 'warning' || type === 'error'}
@@ -24,6 +35,9 @@
         </div>
     {/if}
     <div class="content">
+        {#if typeLabel}
+            <span class="visually-hidden">{typeLabel}:</span>
+        {/if}
         {@render children?.()}
     </div>
 </aside>
