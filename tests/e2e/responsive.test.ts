@@ -20,6 +20,42 @@ async function offscreenControls(page: import('@playwright/test').Page) {
     });
 }
 
+test.describe('touch targets on phones', () => {
+    test.use({ viewport: { width: 390, height: 844 }, hasTouch: true });
+
+    const sizes = (page: import('@playwright/test').Page, selector: string) =>
+        page.$$eval(selector, (els) =>
+            els.map((el) => {
+                const box = el.getBoundingClientRect();
+                return {
+                    name: (el.getAttribute('aria-label') ?? el.getAttribute('title') ?? el.textContent ?? '').trim(),
+                    width: Math.round(box.width),
+                    height: Math.round(box.height),
+                };
+            })
+        );
+
+    test('footer icon links are at least 44x44px', async ({ page }) => {
+        await page.goto('/en');
+        const icons = await sizes(page, 'footer .socials a');
+        expect(icons.length).toBeGreaterThan(0);
+        for (const icon of icons) {
+            expect(icon.width, icon.name).toBeGreaterThanOrEqual(44);
+            expect(icon.height, icon.name).toBeGreaterThanOrEqual(44);
+        }
+    });
+
+    test('language switcher and legal links are at least 44px tall', async ({ page }) => {
+        await page.goto('/en');
+        const links = await sizes(page, '.language-switcher a, footer .legal a');
+        expect(links.length).toBeGreaterThanOrEqual(4);
+        for (const link of links) {
+            expect(link.height, link.name).toBeGreaterThanOrEqual(44);
+            expect(link.width, link.name).toBeGreaterThanOrEqual(24);
+        }
+    });
+});
+
 for (const width of [320, 360, 375]) {
     test.describe(`no controls clipped at ${width}px`, () => {
         test.use({ viewport: { width, height: 800 } });

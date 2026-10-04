@@ -95,31 +95,32 @@
 <!-- eslint-enable svelte/no-navigation-without-resolve -->
 
 <style>
+    /* Each link pads its icon to a 44px touch target; the negative margin keeps the row's outer
+       edges aligned with the icons themselves. */
     .socials {
+        --icon-size: 20px;
+        --tap-pad: calc((var(--size-tap-target) - var(--icon-size)) / 2);
+
         display: inline-flex;
         align-items: stretch;
         justify-content: space-between;
-        gap: 12px;
+        margin: calc(-1 * var(--tap-pad));
 
         &.small {
-            a {
-                width: 18px;
-            }
-        }
-
-        &.medium {
-            a {
-                width: 20px;
-            }
+            --icon-size: 18px;
         }
 
         &.large {
-            a {
-                width: 24px;
-            }
+            --icon-size: 24px;
         }
 
         a {
+            box-sizing: content-box;
+            width: var(--icon-size);
+            min-height: var(--icon-size);
+            padding: var(--tap-pad);
+            display: flex;
+            align-items: center;
             transition: all 0.2s ease-in-out;
             color: var(--color-text);
             fill: var(--color-text);
@@ -128,18 +129,6 @@
                 color: var(--color-accent);
                 fill: var(--color-accent);
                 filter: drop-shadow(0px 0px 3px var(--color-accent));
-            }
-        }
-
-        @media (max-width: 767px) {
-            &.small {
-                gap: 10px;
-            }
-            &.medium {
-                gap: 12px;
-            }
-            &.large {
-                gap: 16px;
             }
         }
     }

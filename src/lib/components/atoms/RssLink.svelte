@@ -13,9 +13,17 @@
 </a>
 
 <style>
+    /* Padded to a 44px touch target; the negative margin keeps the layout at the icon's size */
     a {
+        --icon-size: 24px;
+        --tap-pad: calc((var(--size-tap-target) - var(--icon-size)) / 2);
+
+        box-sizing: content-box;
+        display: flex;
+        width: var(--icon-size);
+        padding: var(--tap-pad);
+        margin: calc(-1 * var(--tap-pad));
         transition: all 0.2s ease-in-out;
-        width: 24px;
         color: var(--color-text);
         fill: var(--color-text);
 

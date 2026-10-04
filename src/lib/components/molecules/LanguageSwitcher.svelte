@@ -49,7 +49,10 @@
         color: var(--color-text);
         opacity: 0.5;
         transition: opacity 0.15s ease;
-        padding: var(--raw-space-4);
+        display: inline-flex;
+        align-items: center;
+        min-height: var(--size-tap-target);
+        padding: 0 var(--raw-space-8);
 
         &:hover {
             opacity: 1;
