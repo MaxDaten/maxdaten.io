@@ -572,9 +572,9 @@
 
     /* Motion: the confetti floats on its own, slow and out of step, further the nearer it sits.
      * Scroll scrubs the log against a scan line 60% down the viewport: the trunk's tip follows
-     * it, blazing with a glowing trail, each small commit pops in as the tip reaches it, and each release lands with a flash of
-     * the Halo. Without scroll timelines the log rests drawn; with reduced motion everything
-     * rests. */
+     * it, blazing with a glowing trail; each small commit pops in molten as the tip reaches it,
+     * and each release lands with a flash of the Halo. Without scroll timelines the log rests
+     * drawn; with reduced motion everything rests. */
     @media (prefers-reduced-motion: no-preference) {
         .glyph :global(svg) {
             animation: float var(--float) ease-in-out var(--phase) infinite;
@@ -625,10 +625,15 @@
             }
 
             .node {
-                animation: merge linear both;
-                animation-timeline: --release;
-                animation-range: entry var(--node-top) entry
-                    calc(var(--node-center) + var(--pop));
+                animation:
+                    merge linear both,
+                    ember linear both;
+                animation-timeline: --release, --release;
+                animation-range:
+                    entry var(--node-top) entry
+                        calc(var(--node-center) + var(--pop)),
+                    entry var(--node-top) entry
+                        calc(var(--node-center) + var(--pop) * 3);
             }
 
             .commit {
@@ -636,9 +641,13 @@
                 view-timeline-inset: var(--scan-inset);
 
                 &::before {
-                    animation: commit linear both;
-                    animation-timeline: --commit;
-                    animation-range: entry 0% entry calc(0% + var(--pop) / 2);
+                    animation:
+                        commit linear both,
+                        ember linear both;
+                    animation-timeline: --commit, --commit;
+                    animation-range:
+                        entry 0% entry calc(0% + var(--pop) / 2),
+                        entry 0% entry calc(0% + var(--pop) * 1.5);
                 }
             }
         }
@@ -665,19 +674,35 @@
         }
     }
 
+    /* Releases and commits are struck by the blaze: each forms as a molten blob, white-hot like
+     * the trail's head, wobbles through uneven radii and cools into its circle. The ember glow
+     * outlasts the pop, fading as slowly as the trail behind the tip. The blob radii are shapes,
+     * not design radii; they all settle on a circle. */
     @keyframes merge {
         0% {
             scale: 0.4;
             opacity: 0;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            background: var(--color-sparkle);
+        }
+        30% {
+            border-radius: 62% 38% 34% 66% / 58% 32% 68% 42%;
+            background: var(--color-sparkle);
         }
         55% {
             scale: 1.15;
             opacity: 1;
+            border-radius: 40% 60% 58% 42% / 62% 44% 56% 38%;
             box-shadow: 0 0 1px 7px
                 rgba(var(--color-accent-rgb), var(--opacity-border));
         }
+        78% {
+            border-radius: 54% 46% 44% 56% / 46% 56% 44% 54%;
+        }
         100% {
             scale: 1;
+            border-radius: 50%;
+            background: var(--color-accent);
             box-shadow: 0 0 0 0 rgba(var(--color-accent-rgb), 0);
         }
     }
@@ -686,13 +711,37 @@
         0% {
             scale: 0;
             opacity: 0;
+            border-radius: 70% 30% 40% 60% / 40% 70% 30% 60%;
+            background: var(--color-sparkle);
+        }
+        35% {
+            border-radius: 35% 65% 60% 40% / 65% 35% 65% 35%;
+            background: var(--color-sparkle);
         }
         60% {
             scale: 1.5;
             opacity: 1;
+            border-radius: 58% 42% 38% 62% / 42% 60% 40% 58%;
         }
         100% {
             scale: 1;
+            border-radius: 50%;
+            background: var(--color-accent);
+        }
+    }
+
+    @keyframes ember {
+        0% {
+            filter: drop-shadow(0 0 0 rgba(var(--color-accent-rgb), 0))
+                drop-shadow(0 0 0 rgba(var(--color-accent-rgb), 0));
+        }
+        12% {
+            filter: drop-shadow(0 0 3px var(--color-sparkle))
+                drop-shadow(0 0 3px var(--color-accent));
+        }
+        100% {
+            filter: drop-shadow(0 0 0 rgba(var(--color-accent-rgb), 0))
+                drop-shadow(0 0 0 rgba(var(--color-accent-rgb), 0));
         }
     }
 
