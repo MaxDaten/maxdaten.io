@@ -3,7 +3,13 @@ a {
     text-decoration-color: var(--color-accent);
     text-underline-offset: 0.1em;
     text-decoration-thickness: 2px;
-    transition: all 0.2s ease-in-out;
+    /* Hover feedback only; layout and the focus ring never animate. Components with their own
+       transition replace this list. */
+    transition-property:
+        color, background-color, border-color, text-decoration-color,
+        text-underline-offset, fill, filter, opacity, box-shadow;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
 
     &:hover {
         text-underline-offset: 0.3em;

@@ -76,6 +76,12 @@ describe('design tokens', () => {
         expect(styled.flatMap((path) => matches(path, radius))).toEqual([]);
     });
 
+    it('transitions name their properties instead of all', () => {
+        // `all` also animates layout and the focus ring whenever any property changes.
+        const all = /transition(-property)?:\s*all\b/;
+        expect(files.flatMap((path) => matches(path, all))).toEqual([]);
+    });
+
     it('every var() names a custom property that is defined somewhere', () => {
         // Definitions: declarations in CSS and style blocks, and style:--name directives in markup.
         const defined = new Set(
