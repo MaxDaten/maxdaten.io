@@ -256,4 +256,25 @@ test.describe('keyboard and labelling', () => {
         }
         expect(checked).toBeGreaterThan(0);
     });
+
+    for (const [path, card, level] of [
+        ['/blog', 'a.blog-post-card', 'H2'],
+        ['/gems', 'a.gem-card', 'H2'],
+        ['/en', 'a.blog-post-card', 'H3'],
+    ]) {
+        test(`${path} card titles are ${level} headings, cover images decorative`, async ({
+            page,
+        }) => {
+            await page.goto(path);
+            const cards = page.locator(card);
+            expect(await cards.count()).toBeGreaterThan(0);
+            const titles = await cards.evaluateAll((links) =>
+                links.map((a) => a.querySelector('.title')?.tagName)
+            );
+            expect(new Set(titles)).toEqual(new Set([level]));
+            // The title names the link; alt text on the cover would only pad it.
+            for (const cover of await cards.locator('img').all())
+                await expect(cover).toHaveAttribute('alt', '');
+        });
+    }
 });

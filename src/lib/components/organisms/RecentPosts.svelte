@@ -30,7 +30,7 @@
     <!-- Posts are written in English, also on the German home page. -->
     <div class="grid" lang="en">
         {#each posts as post (post.slug)}
-            <BlogPostCard {post} showImage={false} />
+            <BlogPostCard {post} showImage={false} headingLevel="h3" />
         {/each}
     </div>
 </ContentSection>
