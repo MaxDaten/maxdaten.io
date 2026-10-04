@@ -343,7 +343,7 @@
         mix-blend-mode: color-dodge;
 
         /* VIBRANCE BOOST: No brightness to preserve dark background */
-        filter: saturate(2);
+        filter: saturate(1.2);
 
         /*
            LAYER 1 (Top): The Lambda Texture
@@ -359,14 +359,14 @@
         --gradient-spectrum: linear-gradient(
             115deg,
             transparent 15%,
-            oklch(0.85 0.2 150) 22%,
-            oklch(0.9 0.18 105) 29%,
-            oklch(0.8 0.18 60) 36%,
-            oklch(0.72 0.22 350) 43%,
-            oklch(0.7 0.2 293) 50%,
-            oklch(0.8 0.15 211) 57%,
-            oklch(0.85 0.2 150) 64%,
-            oklch(0.9 0.18 105) 71%,
+            oklch(0.85 0.11 150) 22%,
+            oklch(0.9 0.1 105) 29%,
+            oklch(0.8 0.12 60) 36%,
+            oklch(0.75 0.13 350) 43%,
+            oklch(0.72 0.13 293) 50%,
+            oklch(0.82 0.1 211) 57%,
+            oklch(0.85 0.11 150) 64%,
+            oklch(0.9 0.1 105) 71%,
             transparent 85%
         );
 
@@ -462,7 +462,7 @@
 
     /* Reveal holo foil on hover: vivid while tilting, the text still reads through color-dodge */
     .holo-card.hovering .holo-layer {
-        opacity: 0.38;
+        opacity: 0.32;
     }
 
     .holo-card.static-mode .sheen-layer {
