@@ -3,6 +3,7 @@ import { client } from '#lib/sanity/client.js';
 import { postBySlugQuery, allPostSlugsQuery } from '#lib/sanity/queries.js';
 import { error } from '@sveltejs/kit';
 import { highlightCodeBlocks } from '#lib/server/highlight.js';
+import { assignHeadingAnchors } from '#lib/sanity/heading-anchors.js';
 
 export async function entries() {
     const posts = await client.fetch(allPostSlugsQuery);
@@ -20,6 +21,9 @@ export const load: PageServerLoad = async ({ params }) => {
 
     return {
         source: 'sanity' as const,
-        post: { ...post, body: await highlightCodeBlocks(post.body) },
+        post: {
+            ...post,
+            body: assignHeadingAnchors(await highlightCodeBlocks(post.body)),
+        },
     };
 };
