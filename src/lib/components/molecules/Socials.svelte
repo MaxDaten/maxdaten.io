@@ -92,7 +92,9 @@
             padding: var(--tap-pad);
             display: flex;
             align-items: center;
-            transition: all 0.2s ease-in-out;
+            transition-property: color, fill, filter;
+            transition-duration: 0.2s;
+            transition-timing-function: ease-in-out;
             color: var(--color-text);
             fill: var(--color-text);
 

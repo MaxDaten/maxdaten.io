@@ -69,7 +69,9 @@
         appearance: none;
         cursor: pointer;
         text-decoration: none;
-        transition: all 0.2s ease-in-out;
+        transition-property: color, background-color, border-color, box-shadow;
+        transition-duration: 0.2s;
+        transition-timing-function: ease-in-out;
 
         display: flex;
         align-items: center;

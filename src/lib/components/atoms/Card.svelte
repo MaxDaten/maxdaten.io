@@ -66,7 +66,7 @@
             background: var(--color-surface-elevated);
             color: var(--color-text);
             border-radius: var(--radius-card);
-            transition: all 0.4s ease;
+            transition: box-shadow 0.4s ease;
             position: relative;
             overflow: hidden;
             height: 100%;

@@ -23,9 +23,10 @@
 <style>
     .logo {
         #logo-text {
+            transition: filter 0.2s ease-in-out;
+
             #text {
                 --text-color: var(--color-accent);
-                transition: all 0.2s ease-in-out;
                 fill: var(--text-color);
                 stroke: none;
                 stroke-width: 0;

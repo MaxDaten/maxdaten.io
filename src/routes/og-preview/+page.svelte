@@ -229,7 +229,9 @@
         text-decoration: none;
         font-size: 0.9rem;
         font-weight: 500;
-        transition: all 0.2s var(--ease-3);
+        transition:
+            background 0.2s var(--ease-3),
+            border-color 0.2s var(--ease-3);
     }
     .og-link {
         background: var(--color-accent);
