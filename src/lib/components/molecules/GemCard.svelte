@@ -39,24 +39,19 @@
             ? coverImage
             : undefined
     );
-
-    let coverImageAlt = $derived(
-        typeof coverImage === 'string'
-            ? 'Cover preview of this gem'
-            : coverImage?.alt || 'Cover preview of this gem'
-    );
 </script>
 
 <Card {href} target="_self" class="gem-card" data-testid="gem-card">
     {#snippet image()}
         {#if cover}
             <div class="cover-image-container">
+                <!-- Decorative inside the card link: the title names it; alt text would only pad the link name. -->
                 <img
                     class="cover-image"
                     src={urlFor(cover).width(640).auto('format').url()}
                     srcset={generateSrcSet(cover, COVER_WIDTHS)}
                     {sizes}
-                    alt={coverImageAlt}
+                    alt=""
                     loading="lazy"
                     decoding="async"
                     style:background-image={cover.lqip
@@ -69,9 +64,9 @@
     {/snippet}
     {#snippet content()}
         <div class="content">
-            <p class="title">
+            <h2 class="title">
                 {title}
-            </p>
+            </h2>
             {#if excerpt}
                 <p class="text">
                     {excerpt}
@@ -109,6 +104,7 @@
             font-size: var(--text-heading-4);
             font-family: var(--font--title), serif;
             font-weight: 700;
+            line-height: var(--text-body-leading);
             margin: 0;
         }
 

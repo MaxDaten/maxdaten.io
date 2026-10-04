@@ -11,6 +11,8 @@
         sizes?: string;
         /** The first cover on the page is the likely LCP element: fetch it first, lazy-load the rest. */
         priority?: boolean;
+        /** One level below the heading of the section the card sits in. */
+        headingLevel?: 'h2' | 'h3';
     };
 
     let {
@@ -18,6 +20,7 @@
         showImage = true,
         sizes = '(max-width: 900px) calc(100vw - 2rem), 500px',
         priority = false,
+        headingLevel = 'h2',
     }: Props = $props();
 
     const COVER_WIDTHS = [320, 400, 480, 640, 800, 1000, 1280, 1600, 2000];
@@ -28,6 +31,7 @@
 
 {#snippet sanityImage()}
     {#if post.coverImage?.url}
+        <!-- Decorative inside the card link: the title names it; alt text would only pad the link name. -->
         <img
             class="cover-image sanity-cover"
             src={urlFor(post.coverImage).width(500).auto('format').url()}
@@ -35,7 +39,7 @@
             {sizes}
             loading={priority ? 'eager' : 'lazy'}
             fetchpriority={priority ? 'high' : undefined}
-            alt={post.coverImage.alt ?? 'Cover of this blog post'}
+            alt=""
             style:background-image={post.coverImage.lqip
                 ? `url(${post.coverImage.lqip})`
                 : undefined}
@@ -50,9 +54,9 @@
     image={showImage && hasCoverImage ? sanityImage : undefined}
 >
     {#snippet content()}
-        <p class="title">
+        <svelte:element this={headingLevel} class="title">
             {post.title}
-        </p>
+        </svelte:element>
         {#if post.excerpt}
             <p class="text">
                 {post.excerpt}
@@ -80,6 +84,7 @@
             font-size: var(--text-heading-4);
             font-family: var(--font--title), serif;
             font-weight: 700;
+            line-height: var(--text-body-leading);
             margin: 0;
         }
 

@@ -16,7 +16,7 @@ test('blog page loads correctly', async ({ page }) => {
     await page.goto('/blog');
 
     // Check that the blog page has loaded
-    await expect(page.locator('h1, h2')).toContainText(/Blog|Latest Posts/i);
+    await expect(page.locator('h1')).toContainText(/Blog|Latest Posts/i);
 
     // Check that blog posts are displayed (at least one should exist)
     const blogPosts = page.locator(
@@ -30,9 +30,7 @@ test('gems page loads correctly', async ({ page }) => {
     await page.goto('/gems');
 
     // Check that the gems page has loaded with correct title
-    await expect(page.locator('h1, h2')).toContainText(
-        /Gems of Precious Friends/i
-    );
+    await expect(page.locator('h1')).toContainText(/Gems of Precious Friends/i);
 
     // Check that gem cards are displayed (should have 3 gems)
     const gemCards = page.locator('[data-testid="gem-card"]');
