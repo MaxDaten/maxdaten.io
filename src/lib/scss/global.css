@@ -40,6 +40,9 @@ body {
     transition: all 0.4s ease;
     font-family: var(--font--default);
     line-height: var(--text-body-leading);
+    /* Long URLs and identifiers break instead of overflowing, in lists, captions and callouts
+       as much as in paragraphs; inherited, so it reaches every text container. */
+    overflow-wrap: break-word;
 
     height: 100%;
     min-height: 100vh;

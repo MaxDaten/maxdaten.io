@@ -101,3 +101,60 @@ for (const width of [320, 360, 375]) {
         }
     });
 }
+
+test.describe('long URLs in post content', () => {
+    test.use({ viewport: { width: 320, height: 800 } });
+
+    test('wrap inside list items, paragraphs and callouts', async ({
+        page,
+    }) => {
+        // A post with lists and callouts; the long URL is injected so the check doesn't depend on
+        // whatever a post happens to contain today.
+        await page.goto('/blog');
+        const posts = await page
+            .locator('a.blog-post-card')
+            .evaluateAll((links) => links.map((a) => a.getAttribute('href')!));
+        let post: string | undefined;
+        for (const path of posts) {
+            await page.goto(path);
+            if (
+                (await page
+                    .locator(
+                        '.content aside.callout li, .content aside.callout p'
+                    )
+                    .count()) > 0 &&
+                (await page.locator('.content li').count()) > 0
+            ) {
+                post = path;
+                break;
+            }
+        }
+        expect(post, 'a post with a callout and a list').toBeDefined();
+
+        const overflowing = await page.evaluate(() => {
+            const url = `https://example.com/${'averylongpathsegment'.repeat(10)}end`;
+            // Measure the text itself: a block's box keeps its width while its text spills out.
+            const range = document.createRange();
+            const targets = [
+                document.querySelector('.content li'),
+                document.querySelector('.content p'),
+                document.querySelector('.content aside.callout li') ??
+                    document.querySelector('.content aside.callout p'),
+            ];
+            const width = document.documentElement.clientWidth;
+            return targets.flatMap((el) => {
+                if (!el) return ['missing target'];
+                const text = document.createTextNode(` ${url}`);
+                el.append(text);
+                range.selectNodeContents(text);
+                const box = range.getBoundingClientRect();
+                return box.right > width + 1
+                    ? [
+                          `${el.tagName.toLowerCase()} ends at ${Math.round(box.right)}px`,
+                      ]
+                    : [];
+            });
+        });
+        expect(overflowing).toEqual([]);
+    });
+});
