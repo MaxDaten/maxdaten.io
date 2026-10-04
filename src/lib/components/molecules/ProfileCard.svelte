@@ -27,6 +27,18 @@
                 fetchpriority="high"
                 sizes="(max-width: 767px) 90vw, 450px"
             />
+            <!-- The same image again above the foil: it covers the foiled one at 80%, so the
+                 shimmer only glows faintly across the face. -->
+            <div class="avatar-shield" data-holo-shield aria-hidden="true">
+                <enhanced:img
+                    src={MeSrc}
+                    class="avatar-image"
+                    alt=""
+                    loading="eager"
+                    fetchpriority="high"
+                    sizes="(max-width: 767px) 90vw, 450px"
+                />
+            </div>
         </div>
         <div class="card-name">JAN-PHILIP</div>
         <div class="stat-rows">
@@ -93,6 +105,7 @@
     }
 
     .avatar-container {
+        position: relative;
         aspect-ratio: 4 / 3;
         border-radius: var(--radius-block);
         overflow: hidden;
@@ -103,6 +116,14 @@
             height: 100%;
             object-fit: cover;
         }
+    }
+
+    /* Sits above the foil (data-holo-shield); its opacity sets how much of the foil it hides.
+       Nested so `absolute` outranks HoloCard's shield rule. */
+    .avatar-container .avatar-shield {
+        position: absolute;
+        inset: 0;
+        opacity: var(--holo-shield-strength);
     }
 
     .card-name {
