@@ -56,6 +56,19 @@ test.describe('touch targets on phones', () => {
     });
 });
 
+test('text scales with the browser default font size', async ({ page }) => {
+    // A reader who raises the default font size from 16px to 20px expects 25% larger text.
+    const cdp = await page.context().newCDPSession(page);
+    await cdp.send('Page.setFontSizes', { fontSizes: { standard: 20 } });
+    await page.goto('/en');
+    const rootSize = await page.evaluate(
+        () => getComputedStyle(document.documentElement).fontSize
+    );
+    expect(rootSize).toBe('22.5px');
+    // The hero lead is 20px at the default size
+    await expect(page.locator('.subheadline')).toHaveCSS('font-size', '25px');
+});
+
 for (const width of [320, 360, 375]) {
     test.describe(`no controls clipped at ${width}px`, () => {
         test.use({ viewport: { width, height: 800 } });
