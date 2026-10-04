@@ -118,7 +118,8 @@
             <li class="card">
                 <h3>{result.company}</h3>
                 <p class="meta">
-                    {result.role} · <span class="years">{result.years}</span>
+                    <span class="role">{result.role}</span>
+                    <span class="years">{result.years}</span>
                 </p>
                 <p>{t(locale, result.text)}</p>
             </li>
@@ -446,13 +447,30 @@
             text-wrap: pretty;
         }
 
+        /* Role and years wrap as two items. The dot hangs in the 3ch before the years, so when they
+           wrap to their own line it falls outside the left edge and is clipped. */
         .meta {
+            display: flex;
+            flex-wrap: wrap;
+            overflow: hidden;
             font-family: var(--font--mono), monospace;
             font-size: var(--text-small);
             color: var(--color-accent-text);
 
+            .role {
+                margin-inline-end: 3ch;
+            }
+
             .years {
                 white-space: nowrap;
+
+                &::before {
+                    content: '·';
+                    display: inline-block;
+                    width: 3ch;
+                    margin-inline-start: -3ch;
+                    text-align: center;
+                }
             }
         }
     }
