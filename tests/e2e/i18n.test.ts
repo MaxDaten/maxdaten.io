@@ -41,7 +41,7 @@ test.describe('i18n — German home page (/)', () => {
             .locator('meta[name="description"]')
             .getAttribute('content');
         expect(description).toBe(
-            'Ich baue Ihr Produkt und die Plattform darunter — Kubernetes, Nix, Continuous Delivery. Hands-on in Ihrem Team, und das Wissen bleibt. Hamburg & remote.'
+            'Ich entwickle Ihr Produkt und die Plattform darunter — Kubernetes, Nix, Continuous Delivery. Hands-on in Ihrem Team, und das Wissen bleibt. Hamburg & remote.'
         );
     });
 

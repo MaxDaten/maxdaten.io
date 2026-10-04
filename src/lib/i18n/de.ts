@@ -6,7 +6,7 @@ export const de: TranslationKeys = {
     'hero.headline': 'Software, die liefert',
     'hero.headlineAccent': 'Systeme, die skalieren',
     'hero.subheadline':
-        'Ich baue Ihr Produkt und die Plattform darunter — Kubernetes, Nix, Continuous Delivery. Hands-on in Ihrem Team, und das Wissen bleibt. Hamburg & remote.<br><br>Freelance Platform & Product Engineer mit 15+ Jahren Erfahrung in Produktentwicklung, Plattform-Architektur und Tech-Leadership — vom Startup bis zu Systemen mit 100M+ Requests am Tag.',
+        'Ich entwickle Ihr Produkt und die Plattform darunter — Kubernetes, Nix, Continuous Delivery. Hands-on in Ihrem Team, und das Wissen bleibt. Hamburg & remote.<br><br>Freelance Platform & Product Engineer mit 15+ Jahren Erfahrung in Produktentwicklung, Plattform-Architektur und Tech-Leadership — vom Startup bis zu Systemen mit 100M+ Requests am Tag.',
     'hero.ctaBook': 'Gespräch buchen',
     'hero.ctaProjects': 'Projekte ansehen',
     'hero.abilityDescription': 'Ausgerollt an 700+ Fielmann-Filialen',
