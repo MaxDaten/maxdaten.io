@@ -76,8 +76,8 @@ Git hooks (prek, from `devenv.nix`): pre-commit runs treefmt, lint, check, unit 
   (`--color-*`, `--radius-*`, …). Add a semantic token rather than using a primitive directly.
 - Exception: OG cards (`OgCard`, `ProfileOgCard`) need literal values because satori cannot resolve
   CSS variables.
-- Load the `design-principles` skill for UI work. The `impeccable` skill (pinned in `devenv.yaml`)
-  reads product context from `PRODUCT.md`.
+- `DESIGN.md` is the visual design system (tokens, components, rules); `PRODUCT.md` the product
+  context. Both are read by the `impeccable` skill (pinned in `devenv.yaml`), the tool for UI work.
 - Components follow atoms / molecules / organisms in `src/lib/components/`.
 
 ## Conventions
