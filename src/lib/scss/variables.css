@@ -1,6 +1,6 @@
 :root {
     /* Fonts */
-    --font--default: 'Inter', sans-serif;
+    --font--default: 'Inter Variable', Inter, system-ui, sans-serif;
     --font--title: var(--font-logo);
     --font-logo: 'Space Grotesk Variable', Arial, Helvetica, sans-serif;
     --font--mono: 'JetBrains Mono', monospace;
