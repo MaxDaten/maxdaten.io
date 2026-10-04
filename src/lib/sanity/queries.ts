@@ -96,6 +96,7 @@ export const sitemapPostsQuery = defineQuery(`
   *[_type == "post" && !hidden && seo.noIndex != true] | order(date desc) {
     "slug": slug.current,
     lastModified,
+    _updatedAt,
     date
   }
 `);

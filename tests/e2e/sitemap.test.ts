@@ -45,3 +45,14 @@ test('/sitemap.xml lists each page on its final host', async ({ request }) => {
         expect(url.origin, url.href).toBe(expectedOrigin);
     }
 });
+
+test('/sitemap.xml dates a post by its last edit', async ({ request }) => {
+    const xml = await (await request.get('/sitemap.xml')).text();
+    const entry = xml.match(
+        /<url>\s*<loc>[^<]*ship-your-toolchain-not-just-infrastructure<\/loc>[\s\S]*?<\/url>/
+    )?.[0];
+
+    // Published 2026-01-31, last edited later; lastmod must not be the publish date.
+    expect(entry).toMatch(/<lastmod>/);
+    expect(entry).not.toMatch(/<lastmod>2026-01-31/);
+});

@@ -3,6 +3,7 @@ import { client } from '#lib/sanity/client.js';
 import { sitemapPostsQuery } from '#lib/sanity/queries.js';
 import { canonicalUrl } from '#lib/i18n/index.js';
 import { getAuthorSlugs } from '#lib/sanity/author.js';
+import { postModifiedAt } from '#lib/sanity/post-dates.js';
 
 export const prerender = true;
 
@@ -14,9 +15,9 @@ export async function GET({ url }) {
     const sanityPosts = await client.fetch(sitemapPostsQuery);
 
     const blogPostParams = sanityPosts.map(
-        (post: { slug: string; lastModified?: string; date: string }) => ({
+        (post: Parameters<typeof postModifiedAt>[0] & { slug: string }) => ({
             values: [post.slug],
-            lastmod: post.lastModified || post.date,
+            lastmod: postModifiedAt(post),
         })
     );
 
