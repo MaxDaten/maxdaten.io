@@ -46,6 +46,20 @@
         { kind: 'sparkle', x: 78, y: 16, size: 14, depth: 2, turn: 20 },
     ];
 
+    // The mouse's offset from the band's centre, -1..1 on each axis; the confetti leans away
+    // from it, nearer glyphs further, for a hint of depth.
+    let lean = $state({ x: 0, y: 0 });
+
+    function follow(event: PointerEvent) {
+        if (event.pointerType !== 'mouse') return;
+        const band = event.currentTarget as HTMLElement;
+        const { left, top, width, height } = band.getBoundingClientRect();
+        lean = {
+            x: ((event.clientX - left) / width) * 2 - 1,
+            y: ((event.clientY - top) / height) * 2 - 1,
+        };
+    }
+
     // Names, dates and roles read the same in both languages; only the outcome is translated.
     const results: {
         company: string;
@@ -74,7 +88,15 @@
     ];
 </script>
 
-<section id="services" class="merged" aria-labelledby="services-title">
+<section
+    id="services"
+    class="merged"
+    aria-labelledby="services-title"
+    style:--lean-x={lean.x}
+    style:--lean-y={lean.y}
+    onpointermove={follow}
+    onpointerleave={() => (lean = { x: 0, y: 0 })}
+>
     <header>
         <h2 id="services-title">{t(locale, 'services.title')}</h2>
         <p>{t(locale, 'services.description')}</p>
@@ -387,6 +409,16 @@
     @media (prefers-reduced-motion: no-preference) {
         .glyph :global(svg) {
             animation: float var(--float) ease-in-out var(--phase) infinite;
+        }
+
+        /* Parallax on hover: the span leans while its svg floats, so the two compose. The slow
+         * transition smooths the mouse and lets the glyphs settle back when it leaves. */
+        .glyph {
+            transform: translate(
+                calc(var(--lean-x, 0) * var(--drift) * -0.5),
+                calc(var(--lean-y, 0) * var(--drift) * -0.5)
+            );
+            transition: transform 0.8s var(--ease-3);
         }
 
         @supports (animation-timeline: view()) {
