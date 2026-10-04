@@ -327,12 +327,12 @@ fills a section. A 16px-cornered band with the header bar's 60° ember gradient 
 Violet pooled in the lower-left corner and a faint forge glow in the upper-right (radial light, not
 a surface). The craft's glyphs (λ, cube, loop, pointer, braces, prompt) and Spark Yellow glints are
 scattered as merge confetti at three depths (30%, 50% and 70% opacity), cropped by the band's edge:
-below the header on desktop, a strip above it on phones. The title is Forge Orange. The services
-form a git log: a 2px trunk at 30% orange, each service a branch that curves into a solid Forge
-Orange merged node carrying the service's glyph in dark (cube, loop, pointer), like the banner's
-status chip. Scroll scrubs one moment: the trunk draws down, each branch draws in and its node
-merges with a flash of the Halo, while the confetti drifts by depth. Without scroll timelines or
-under reduced motion, everything rests drawn.
+below the header on desktop, a strip above it on phones. Each glyph floats on its own slow loop
+(7–12s, out of step with the others), further the nearer it sits. The title is Forge Orange. The
+services hang on one straight 2px line at 30% orange, each marked by a solid Forge Orange node
+carrying its glyph in dark (pointer, loop, cube), like the banner's status chip. Scroll draws the
+line down and lands each node with a flash of the Halo. Without scroll timelines the line rests
+drawn; under reduced motion nothing moves.
 
 ## Do's and Don'ts
 
