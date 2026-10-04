@@ -22,6 +22,8 @@ repo=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
 log() { echo "[claude-web-setup] $*" >&2; }
 
 # The image ships Nix; its nix.sh also puts ~/.nix-profile/bin (where devenv lands) on PATH.
+# nix.sh only sets up PATH when USER is set, and cloud sessions leave it unset.
+export USER=${USER:-$(id -un)}
 # shellcheck disable=SC1091
 . /nix/var/nix/profiles/default/etc/profile.d/nix.sh || exit 1
 

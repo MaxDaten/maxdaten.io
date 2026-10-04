@@ -12,6 +12,8 @@ cd "$repo" || exit 0
 log=/tmp/claude-web-session.log
 : >"$log"
 
+# nix.sh only sets up PATH when USER is set, and cloud sessions leave it unset.
+export USER=${USER:-$(id -un)}
 . /nix/var/nix/profiles/default/etc/profile.d/nix.sh 2>/dev/null
 command -v devenv >/dev/null || bash scripts/claude-web-setup.sh >>"$log" 2>&1
 if ! command -v devenv >/dev/null; then
