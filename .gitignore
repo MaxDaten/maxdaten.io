@@ -15,6 +15,7 @@ vite.config.ts.timestamp-*
 .devenv.flake.nix
 /test-results/
 /playwright-report/
+/.vitest/
 /blob-report/
 /playwright/.cache/
 
