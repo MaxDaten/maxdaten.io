@@ -109,8 +109,7 @@
         font-family: var(--font--mono), monospace;
         font-size: var(--text-small);
         padding: var(--space-inline) var(--space-stack);
-        border: 1px solid
-            rgba(var(--color-accent-rgb), var(--opacity-border));
+        border: 1px solid rgba(var(--color-accent-rgb), var(--opacity-border));
         border-radius: var(--radius-full);
         color: var(--color-accent);
         background: var(--color-well);

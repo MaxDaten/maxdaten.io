@@ -132,10 +132,7 @@
             color: rgb(var(--main-color));
 
             &:hover {
-                background-color: rgba(
-                    var(--main-color),
-                    var(--opacity-wash)
-                );
+                background-color: rgba(var(--main-color), var(--opacity-wash));
             }
         }
 
@@ -145,14 +142,8 @@
             border: 1px solid rgba(var(--main-color), var(--opacity-border));
 
             &:hover {
-                border-color: rgba(
-                    var(--main-color),
-                    var(--opacity-half)
-                );
-                background-color: rgba(
-                    var(--main-color),
-                    var(--opacity-tint)
-                );
+                border-color: rgba(var(--main-color), var(--opacity-half));
+                background-color: rgba(var(--main-color), var(--opacity-tint));
             }
         }
 

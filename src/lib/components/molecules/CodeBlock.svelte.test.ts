@@ -94,7 +94,11 @@ describe('CodeBlock Component', () => {
         });
 
         await expect
-            .element(screen.getByRole('button', { name: 'Copy example.js to clipboard' }))
+            .element(
+                screen.getByRole('button', {
+                    name: 'Copy example.js to clipboard',
+                })
+            )
             .toBeInTheDocument();
     });
 });

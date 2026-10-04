@@ -10,13 +10,17 @@ async function offscreenControls(page: import('@playwright/test').Page) {
         return [...document.querySelectorAll('a, button')]
             .filter((el) => {
                 const style = getComputedStyle(el);
-                if (style.visibility === 'hidden' || style.display === 'none') return false;
+                if (style.visibility === 'hidden' || style.display === 'none')
+                    return false;
                 if (el.getAttribute('tabindex') === '-1') return false;
                 const box = el.getBoundingClientRect();
                 if (box.width === 0 || box.height === 0) return false;
                 return box.left < -1 || box.right > width + 1;
             })
-            .map((el) => `${el.tagName} "${(el.getAttribute('aria-label') ?? el.textContent ?? '').trim()}"`);
+            .map(
+                (el) =>
+                    `${el.tagName} "${(el.getAttribute('aria-label') ?? el.textContent ?? '').trim()}"`
+            );
     });
 }
 
@@ -28,7 +32,12 @@ test.describe('touch targets on phones', () => {
             els.map((el) => {
                 const box = el.getBoundingClientRect();
                 return {
-                    name: (el.getAttribute('aria-label') ?? el.getAttribute('title') ?? el.textContent ?? '').trim(),
+                    name: (
+                        el.getAttribute('aria-label') ??
+                        el.getAttribute('title') ??
+                        el.textContent ??
+                        ''
+                    ).trim(),
                     width: Math.round(box.width),
                     height: Math.round(box.height),
                 };
@@ -45,9 +54,14 @@ test.describe('touch targets on phones', () => {
         }
     });
 
-    test('language switcher and legal links are at least 44px tall', async ({ page }) => {
+    test('language switcher and legal links are at least 44px tall', async ({
+        page,
+    }) => {
         await page.goto('/en');
-        const links = await sizes(page, '.language-switcher a, footer .legal a');
+        const links = await sizes(
+            page,
+            '.language-switcher a, footer .legal a'
+        );
         expect(links.length).toBeGreaterThanOrEqual(4);
         for (const link of links) {
             expect(link.height, link.name).toBeGreaterThanOrEqual(44);
@@ -71,7 +85,9 @@ for (const width of [920, 1000, 1100, 1280]) {
 
             expect(content.width).toBeGreaterThanOrEqual(grid.width * 0.4);
             expect(card.x).toBeGreaterThanOrEqual(column.x - 1);
-            expect(card.x + card.width).toBeLessThanOrEqual(column.x + column.width + 1);
+            expect(card.x + card.width).toBeLessThanOrEqual(
+                column.x + column.width + 1
+            );
         });
     });
 }
