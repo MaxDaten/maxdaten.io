@@ -118,6 +118,8 @@ export const rssPostsQuery = defineQuery(`
     "slug": slug.current,
     excerpt,
     date,
+    lastModified,
+    _updatedAt,
     body[]{
       ...,
       markDefs[]{

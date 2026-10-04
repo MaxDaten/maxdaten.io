@@ -9,6 +9,7 @@ import type {
 import { encode } from 'html-entities';
 import type { SanityImageSource } from '@sanity/image-url';
 import { urlFor } from '#lib/sanity/image.js';
+import { postModifiedAt } from '#lib/sanity/post-dates.js';
 import { canonicalUrl } from '#lib/i18n/index.js';
 import {
     internalLinkPath,
@@ -22,6 +23,8 @@ type SanityPostForRss = {
     title: string;
     excerpt?: string;
     date: string;
+    lastModified?: string | null;
+    _updatedAt?: string | null;
     tags?: Array<{ name: string }>;
     body: PortableTextBlock[];
     author?: { name: string };
@@ -120,6 +123,10 @@ async function xml(posts: SanityPostForRss[]) {
     const renderedPosts = await Promise.all(
         posts.map(async (post) => await renderPost(post))
     );
+    // The feed changes when a post in it does; a build alone changes nothing.
+    const lastChange = Math.max(
+        ...posts.map((post) => Date.parse(postModifiedAt(post)))
+    );
     return `
 <rss version="2.0"
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
@@ -132,6 +139,8 @@ async function xml(posts: SanityPostForRss[]) {
     <title>${title}</title>
     <link>${siteBaseUrl}</link>
     <description>${escapeXml(description)}</description>
+    <language>en</language>
+    ${posts.length ? `<lastBuildDate>${new Date(lastChange).toUTCString()}</lastBuildDate>` : ''}
     <image>
       <url>${siteBaseUrl}/favicons/favicon-32x32.png</url>
       <title>${escapeXml(title)}</title>
