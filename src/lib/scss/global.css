@@ -53,7 +53,8 @@ body {
 
 html {
     scroll-behavior: smooth;
-    font-size: 18px;
+    /* 18px at the browser default of 16px, and scales with the reader's own setting */
+    font-size: 112.5%;
     width: 100%;
 }
 

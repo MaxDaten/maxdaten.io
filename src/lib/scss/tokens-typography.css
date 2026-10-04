@@ -8,19 +8,21 @@
  * - Semantic layer: Contextual usage references to primitives
  *
  * Typography scale uses Major Third ratio (1.25) from 16px base.
+ * Sizes are rem against the 18px root (calc(Npx-in-rem / 18) keeps the design pixel value
+ * readable) so text follows the reader's default font size.
  * ============================================================================= */
 
 :root {
     /* Primitive typography - Major Third scale (1.25 ratio) */
-    --raw-text-xs: 12px;
-    --raw-text-sm: 14px;
-    --raw-text-base: 16px;
-    --raw-text-md: 18px;
-    --raw-text-lg: 20px;
-    --raw-text-xl: 25px;
-    --raw-text-2xl: 31px;
-    --raw-text-3xl: 39px;
-    --raw-text-4xl: 49px;
+    --raw-text-xs: calc(12rem / 18);
+    --raw-text-sm: calc(14rem / 18);
+    --raw-text-base: calc(16rem / 18);
+    --raw-text-md: calc(18rem / 18);
+    --raw-text-lg: calc(20rem / 18);
+    --raw-text-xl: calc(25rem / 18);
+    --raw-text-2xl: calc(31rem / 18);
+    --raw-text-3xl: calc(39rem / 18);
+    --raw-text-4xl: calc(49rem / 18);
 
     /* Primitive line-heights */
     --raw-leading-tight: 1.1;
