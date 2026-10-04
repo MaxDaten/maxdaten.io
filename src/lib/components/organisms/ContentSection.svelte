@@ -53,8 +53,8 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 40px;
-        padding: 50px 0;
+        gap: var(--space-group);
+        padding: var(--space-section) 0;
 
         .title-area {
             flex: 2;
@@ -64,14 +64,14 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            gap: 15px;
+            gap: var(--space-stack);
 
             .text {
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                gap: 5px;
+                gap: var(--space-hairline);
             }
         }
         .content-area {

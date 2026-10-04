@@ -124,7 +124,7 @@
         text-wrap: balance;
 
         @media (max-width: 767px) {
-            font-size: var(--text-heading-1);
+            font-size: var(--text-display-compact);
         }
 
         .accent {
@@ -159,7 +159,7 @@
         align-items: center;
         gap: var(--space-tight);
         font-family: var(--font--mono), monospace;
-        font-size: 13px;
+        font-size: var(--text-caption);
         color: var(--color-text-dim);
         margin-top: var(--space-block);
 

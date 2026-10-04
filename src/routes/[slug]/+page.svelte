@@ -173,6 +173,10 @@
         h1 {
             font-size: var(--text-heading-1);
             font-weight: var(--font-weight-semibold);
+
+            @media (max-width: 767px) {
+                font-size: var(--text-heading-1-compact);
+            }
             line-height: var(--text-heading-leading);
             letter-spacing: -0.02em;
             margin: var(--space-inline) 0 var(--space-stack);

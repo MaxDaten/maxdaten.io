@@ -38,7 +38,7 @@
         width: 100%;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-        grid-gap: 20px;
+        grid-gap: var(--space-block);
 
         @media (max-width: 900px) {
             grid-template-columns: 1fr;

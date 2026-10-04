@@ -14,6 +14,7 @@
 
 :root {
     /* Primitive typography - Major Third scale (1.25 ratio) */
+    --raw-text-2xs: calc(10rem / 18);
     --raw-text-xs: calc(12rem / 18);
     --raw-text-sm: calc(14rem / 18);
     --raw-text-base: calc(16rem / 18);
@@ -46,12 +47,20 @@
     --text-caption: var(--raw-text-xs);
     /* Lead paragraphs and large buttons. */
     --text-large: var(--raw-text-lg);
-    /* The hero and profile headline. */
+    /* Trading-card stat labels and fine print (monospace, uppercase). */
+    --text-micro: var(--raw-text-2xs);
+    /* The hero and profile headline; the compact step applies below 768px. */
     --text-display: var(--raw-text-4xl);
-    --text-heading-1: var(--raw-text-3xl);
-    --text-heading-2: var(--raw-text-2xl);
-    --text-heading-3: var(--raw-text-xl);
-    --text-heading-4: var(--raw-text-lg);
+    --text-display-compact: var(--raw-text-3xl);
+    /* The holo card's name line. */
+    --text-card-name: var(--raw-text-xl);
+    /* Headings, as DESIGN.md sets them: page H1 2.5rem (2rem on phones), H2 1.8rem, H3 1.5rem. */
+    --text-heading-1: 2.5rem;
+    --text-heading-1-compact: 2rem;
+    --text-heading-2: 1.8rem;
+    --text-heading-3: 1.5rem;
+    --text-heading-4: 1.2rem;
+    --text-heading-5: 1rem;
     --text-heading-leading: var(--raw-leading-tight);
     --leading-title: var(--raw-leading-snug);
     --leading-ui: var(--raw-leading-normal);

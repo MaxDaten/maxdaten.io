@@ -30,11 +30,11 @@
 
 ul,
 ol {
-    margin: 10px 0 10px 40px;
+    margin: var(--space-tight) 0 var(--space-tight) var(--space-group);
     padding: 0;
 
     & li {
-        margin: 6px 0;
+        margin: var(--space-inline) 0;
 
         &::marker {
             color: var(--color-accent);
