@@ -116,6 +116,13 @@
     /* Drifting background blobs (Bubbles), next to the accent. */
     --color-ambient-violet: var(--raw-color-purple-800);
     --color-ambient-blue: var(--raw-color-blue-900);
+    /* Merged band (home services): ambient violet and forge light pooled in opposite corners. */
+    --color-merged-glow-violet: color-mix(
+        in srgb,
+        var(--color-ambient-violet) 45%,
+        transparent
+    );
+    --color-merged-glow-forge: rgba(var(--color-accent-rgb), 0.12);
 
     --color-text: var(--raw-color-white);
     --color-text-rgb: var(--raw-color-white-rgb);
