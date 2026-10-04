@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-# Provisions a Claude Code on the web VM (Ubuntu 24.04, root) with Nix + devenv, then warms the
-# devenv shell so the environment snapshot already holds the toolchain. Idempotent.
+# Provisions a Claude Code on the web VM (Ubuntu 24.04, root) with devenv, then warms the devenv
+# shell so the environment snapshot already holds the toolchain. Idempotent. The cloud image ships
+# Nix (nix-installer, flakes enabled); this script only adds what the repo needs on top.
 #
 # Runs from two places:
 #   - the cloud environment's setup script (claude.ai/code → environment → Setup script), which
@@ -19,29 +20,15 @@
 set -uo pipefail
 
 repo=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
-nix_version=2.35.2
 log() { echo "[claude-web-setup] $*" >&2; }
 
-# Single-user Nix as root: no nixbld group, no daemon (the VM may not run systemd).
-if ! [ -x "$HOME/.nix-profile/bin/nix" ]; then
-  log "installing Nix $nix_version"
-  mkdir -p /etc/nix
-  cat >/etc/nix/nix.conf <<'EOF'
-experimental-features = nix-command flakes
-build-users-group =
-sandbox = false
-ssl-cert-file = /etc/ssl/certs/ca-certificates.crt
-connect-timeout = 5
-fallback = true
-EOF
-  curl -fsSL "https://releases.nixos.org/nix/nix-$nix_version/install" |
-    sh -s -- --no-daemon --yes --no-channel-add || {
-    log "Nix install failed"
-    exit 1
-  }
-fi
+# Puts ~/.nix-profile/bin (where devenv lands) on PATH; the image only has the default profile.
 # shellcheck disable=SC1091
-. "$HOME/.nix-profile/etc/profile.d/nix.sh"
+. /nix/var/nix/profiles/default/etc/profile.d/nix.sh
+command -v nix >/dev/null || {
+  log "Nix missing: this script expects the Claude Code on the web image, which ships it"
+  exit 1
+}
 
 # Locked github inputs can't be downloaded here; scripts/claude-web-devenv.sh fetches them over
 # git instead and runs devenv with them as overrides. Fetch them now so the snapshot holds them.

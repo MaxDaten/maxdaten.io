@@ -13,10 +13,9 @@ log=/tmp/claude-web-session.log
 : >"$log"
 
 # Fallback for an environment without the setup script (see scripts/claude-web-setup.sh).
-[ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ] && . "$HOME/.nix-profile/etc/profile.d/nix.sh"
+. /nix/var/nix/profiles/default/etc/profile.d/nix.sh 2>/dev/null
 if ! command -v devenv >/dev/null; then
   CLAUDE_WEB_SETUP_WARM=0 bash scripts/claude-web-setup.sh >>"$log" 2>&1
-  [ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ] && . "$HOME/.nix-profile/etc/profile.d/nix.sh"
 fi
 if ! command -v devenv >/dev/null; then
   echo "devenv unavailable in this cloud session; see $log. Tooling from devenv.nix (treefmt, e2e, gate, …) is missing."
