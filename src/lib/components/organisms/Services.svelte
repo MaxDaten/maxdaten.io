@@ -133,17 +133,27 @@
 
     $effect(() => () => cancelAnimationFrame(frame));
 
-    // The title glitter only sparkles while the page is moving: it faints once scrolling rests.
-    let scrolling = $state(false);
-    let resting: ReturnType<typeof setTimeout> | undefined;
+    // A release's title kindles as an event, not scrubbed: once the blaze strikes the node (its
+    // centre crosses the scan line, 60% down the viewport, where the trunk's tip rides), the
+    // title plays its reveal on the clock. Scrolling back above the line puts it out again.
+    let nodes: HTMLElement[] = $state([]);
+    let kindled = $state(services.map(() => false));
 
-    function scrolled() {
-        scrolling = true;
-        clearTimeout(resting);
-        resting = setTimeout(() => (scrolling = false), 150);
-    }
-
-    $effect(() => () => clearTimeout(resting));
+    $effect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                for (const entry of entries) {
+                    const index = nodes.indexOf(entry.target as HTMLElement);
+                    const { top, height } = entry.boundingClientRect;
+                    const line = entry.rootBounds?.bottom ?? innerHeight * 0.6;
+                    kindled[index] = top + height / 2 < line;
+                }
+            },
+            { rootMargin: '0px 0px -40% 0px', threshold: [0, 0.5, 1] }
+        );
+        for (const node of nodes) observer.observe(node);
+        return () => observer.disconnect();
+    });
 
     // The cell edges between seeds, each drawn once, without the field's border: clip the field
     // by the bisector to every other seed, and track which seed made each edge of the cell.
@@ -230,12 +240,9 @@
     ];
 </script>
 
-<svelte:window onscroll={scrolled} />
-
 <section
     id="services"
     class="merged"
-    class:scrolling
     aria-labelledby="services-title"
     onpointermove={follow}
     onpointerleave={release}
@@ -274,9 +281,9 @@
 
     <!-- The services as releases on one line of commits, each marked with its glyph. -->
     <ol class="log">
-        {#each services as service (service)}
-            <li>
-                <span class="node" aria-hidden="true">
+        {#each services as service, index (service)}
+            <li class:kindled={kindled[index]}>
+                <span class="node" aria-hidden="true" bind:this={nodes[index]}>
                     <Glyph
                         kind={serviceGlyph[service]}
                         width="16px"
@@ -662,12 +669,10 @@
 
             /* The release's colour runs into its title as the blaze lands, like secret ink in a
              * magic book: the title waits a little faded, then a glinting edge sweeps left to
-             * right, leaving the accent behind it and a fine twinkling dust along it. Scrubbed
-             * with the node, so scrolling back drains it. */
+             * right, leaving the accent behind it and a fine twinkling dust along it. Played on
+             * the clock when the node is struck (.kindled, set by the script), not scrubbed. */
             .log h3 {
-                /* Ends with the node's merge: by the time the release settles, its title is
-                 * fully kindled. */
-                --sweep: calc(var(--node-center) + var(--pop));
+                --kindle: 0.9s var(--ease-3) both;
 
                 position: relative;
                 /* The sweep spans the words, not the whole column. */
@@ -682,14 +687,10 @@
                     100% 0 / 220% 100% no-repeat;
                 background-clip: text;
                 color: transparent;
-                animation: kindle linear both;
-                animation-timeline: --release;
-                animation-range: entry var(--node-center) entry var(--sweep);
 
                 /* The dust: three sparse speck grids of co-prime sizes read as random glitter,
                  * shown only in a soft band that rides on the sweep's edge, twinkling on the
-                 * clock, each speck with a faint glint. It faints when scrolling rests (filter, as
-                 * the sweep owns opacity). */
+                 * way, each speck with a faint glint. */
                 &::after {
                     content: '';
                     position: absolute;
@@ -703,8 +704,8 @@
                                 transparent
                             )
                     );
-                    filter: opacity(0) var(--glint);
-                    transition: filter 0.6s var(--ease-3);
+                    opacity: 0;
+                    filter: var(--glint);
                     background:
                         radial-gradient(
                                 circle at 30% 40%,
@@ -731,11 +732,16 @@
                             transparent
                         ) -36%
                         0 / 30% 100% no-repeat;
+                }
+            }
+
+            .log li.kindled h3 {
+                animation: kindle var(--kindle);
+
+                &::after {
                     animation:
-                        dust linear both,
-                        twinkle 0.9s steps(1) infinite;
-                    animation-timeline: --release, auto;
-                    animation-range: entry var(--node-center) entry var(--sweep);
+                        dust var(--kindle),
+                        twinkle 0.3s steps(1) 3;
                 }
             }
 
@@ -782,11 +788,6 @@
      * like jelly (stretch and squash, damped) and cools into its circle. The ember glow outlasts
      * the wobble, fading as slowly as the trail behind the tip. The radii are drop shapes, not
      * design radii; they all settle on a circle. */
-    .scrolling .log h3::after {
-        filter: opacity(1) var(--glint);
-        transition-duration: 0.15s;
-    }
-
     @keyframes kindle {
         to {
             background-position: 0 0;
