@@ -20,6 +20,10 @@ Run inside the devenv shell (direnv loads it); `treefmt` only exists there.
 - `smoke` — build, then check `.vercel/output` (prerendered OG images, function bundle)
 - `gate` — everything CI checks, in order; `prod-check` — verify production after a deploy
 - `npm run studio:dev` / `studio:deploy` — Sanity Studio in `studio/`
+- `gemini-image [-m model] [-a aspect] [-s size] -o out.jpg "prompt" [reference images]` — image
+  generation (Gemini `gemini-3.1-flash-image`; `-m gemini-3-pro-image` for harder compositions). Key
+  via secretspec (`secretspec.toml`). This is the repo's image tool, including Impeccable comps and
+  assets
 
 Git hooks (prek, from `devenv.nix`): pre-commit runs treefmt, lint, check, unit tests; pre-push runs
 `scripts/e2e.sh` and `npm audit --audit-level=high`. Don't bypass them.
@@ -72,7 +76,8 @@ Git hooks (prek, from `devenv.nix`): pre-commit runs treefmt, lint, check, unit 
   (`--color-*`, `--radius-*`, …). Add a semantic token rather than using a primitive directly.
 - Exception: OG cards (`OgCard`, `ProfileOgCard`) need literal values because satori cannot resolve
   CSS variables.
-- Load the `design-principles` skill for UI work.
+- Load the `design-principles` skill for UI work. The `impeccable` skill (pinned in `devenv.yaml`)
+  reads product context from `PRODUCT.md`.
 - Components follow atoms / molecules / organisms in `src/lib/components/`.
 
 ## Conventions

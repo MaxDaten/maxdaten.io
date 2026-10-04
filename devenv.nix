@@ -134,6 +134,19 @@ in
       exec = ''node "$DEVENV_ROOT/scripts/prod-check.mjs"'';
       description = "After a deploy: redirects, lang/canonical, headers, OG images, llms.txt on production";
     };
+    gemini-image = {
+      exec = ''
+        exec secretspec run -f "$DEVENV_ROOT/secretspec.toml" -S gemini \
+          --reason "gemini-image: image generation (maxdaten.io)" \
+          -- bash "$DEVENV_ROOT/scripts/gemini-image.sh" "$@"
+      '';
+      packages = with pkgs; [
+        bash
+        curl
+        jq
+      ];
+      description = "Generate an image with Gemini: gemini-image -o out.jpg \"prompt\" [reference images]";
+    };
   };
 
   # Impeccable design skill (pinned in devenv.yaml): skill + its subagents, symlinked read-only into
