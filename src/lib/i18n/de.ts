@@ -46,7 +46,7 @@ export const de: TranslationKeys = {
         'Von fragilen Release-Pipelines zu Continuous Delivery: Trunk-based Development, verlässliche Testautomatisierung und ein automatisierter Weg in die Produktion.',
     'services.product.title': 'Moderne Produktentwicklung',
     'services.product.text':
-        'Ihr Produkt end-to-end, von der Infrastruktur bis zur Oberfläche: Entwickler, die nicht nur Ergebnisse verantworten, sondern die strategischen Probleme mitlösen, liefern in kleinen Schritten und lernen schnell aus echtem Nutzerfeedback.',
+        'End-to-End – von der Infrastruktur bis zur Oberfläche: Ich stärke Ihr Team in strategischer Problemlösung, agiler Entwicklung in kleinen Schritten und der engen Verzahnung mit echtem Nutzerfeedback.',
     'results.title': 'Ausgewählte Projekte',
     'results.description': 'Ergebnisse aus bisherigen Projekten.',
     'results.klingel':

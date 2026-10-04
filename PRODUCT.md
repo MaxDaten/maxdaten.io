@@ -26,8 +26,8 @@ calendar booking link). The blog and gems demonstrate depth and earn trust and i
 - **Product Engineering, end to end:** the guiding principle. One person who covers the whole path,
   from infrastructure and platform to UI, and from modern product practice (small increments, fast
   feedback from real users) to engineering and team processes (trunk-based development, continuous
-  delivery, engineers who own outcomes and help solve the strategic problems behind them, not just
-  tickets).
+  delivery, teams that own outcomes and are strong in strategic problem solving, not just ticket
+  work).
 - **Hands-on, and the knowledge stays:** builds alongside the team rather than advising from the
   side, so the team owns and sustains what was built after the engagement ends.
 - **Functional programming + DevOps:** a rare combination, part of the claim.
