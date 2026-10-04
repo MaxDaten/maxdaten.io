@@ -320,6 +320,20 @@ scale it with its column.
 A fully round pill in monospace 14px: Forge Orange text on a 30% black well with a 30% orange
 hairline, announcing availability above the headline.
 
+### Merged Band
+
+The home services section, after GitHub's "Branch merged" banner: the one place the Forge Ember wash
+fills a section. A 16px-cornered band with the header bar's 60° ember gradient and hairline, Ambient
+Violet pooled in the lower-left corner and a faint forge glow in the upper-right (radial light, not
+a surface). The craft's glyphs (λ, cube, loop, pointer, braces, prompt) and Spark Yellow glints are
+scattered as merge confetti at three depths (30%, 50% and 70% opacity), cropped by the band's edge:
+below the header on desktop, a strip above it on phones. The title is Forge Orange. The services
+form a git log: a 2px trunk at 30% orange, each service a branch that curves into a solid Forge
+Orange merged node carrying the service's glyph in dark (cube, loop, pointer), like the banner's
+status chip. Scroll scrubs one moment: the trunk draws down, each branch draws in and its node
+merges with a flash of the Halo, while the confetti drifts by depth. Without scroll timelines or
+under reduced motion, everything rests drawn.
+
 ## Do's and Don'ts
 
 ### Do:
