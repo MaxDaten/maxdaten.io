@@ -90,6 +90,12 @@
         }
     }
 
+    /* ssgoi clips its root with overflow: hidden, which makes it a scroll container that never
+     * scrolls and freezes every view() timeline below it. clip draws the same edge without that. */
+    :global(div[data-ssgoi].page-transition-root) {
+        overflow: clip;
+    }
+
     main:focus {
         outline: none;
     }
