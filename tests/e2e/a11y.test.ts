@@ -230,4 +230,30 @@ test.describe('keyboard and labelling', () => {
                 await expect(mail).not.toHaveAttribute('target', /./);
         });
     }
+
+    test('callouts announce their type, not just colour and icon', async ({
+        page,
+    }) => {
+        await page.goto('/blog');
+        const posts = await page
+            .locator('a.blog-post-card')
+            .evaluateAll((links) => links.map((a) => a.getAttribute('href')!));
+        let checked = 0;
+        for (const post of posts) {
+            await page.goto(post);
+            for (const callout of await page
+                .locator('aside.callout:not(.default)')
+                .all()) {
+                await expect(
+                    callout.locator('.content > .visually-hidden')
+                ).toHaveText(/^(Info|Warning|Error|Success|Tip):$/);
+                await expect(callout.locator('.icon')).toHaveAttribute(
+                    'aria-hidden',
+                    'true'
+                );
+                checked++;
+            }
+        }
+        expect(checked).toBeGreaterThan(0);
+    });
 });
