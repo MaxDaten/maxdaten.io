@@ -44,6 +44,7 @@
             <div class="grid">
                 {#each gems as gem, index (index)}
                     <GemCard
+                        id={gem.slug}
                         title={gem.title}
                         coverImage={gem.coverImage || ''}
                         excerpt={gem.description}

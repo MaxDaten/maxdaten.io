@@ -12,6 +12,8 @@
     }
 
     interface Props {
+        /** Anchor id, so internal links to a gem (/gems#slug) land on its card. */
+        id?: string;
         title: string;
         coverImage: string | SanityCoverImage;
         excerpt: string;
@@ -23,6 +25,7 @@
     }
 
     let {
+        id,
         title,
         coverImage,
         excerpt,
@@ -41,7 +44,7 @@
     );
 </script>
 
-<Card {href} target="_self" class="gem-card" data-testid="gem-card">
+<Card {id} {href} target="_self" class="gem-card" data-testid="gem-card">
     {#snippet image()}
         {#if cover}
             <div class="cover-image-container">

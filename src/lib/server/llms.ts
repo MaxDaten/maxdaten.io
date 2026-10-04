@@ -10,6 +10,7 @@ import {
 import type { ArbitraryTypedObject } from '@portabletext/types';
 import type { Author } from '#lib/utils/types.js';
 import { canonicalUrl, localeDomains, t } from '#lib/i18n/index.js';
+import { internalLinkPath } from '#lib/sanity/internal-link.js';
 
 export type LlmsPost = {
     title: string;
@@ -36,10 +37,8 @@ const renderers: Partial<PortableTextRenderers> = {
     },
     marks: {
         internalLink: ({ children, value }) => {
-            const slug = value?.reference?.slug?.current;
-            return slug
-                ? `[${children}](${canonicalUrl(`/${slug}`)})`
-                : children;
+            const path = internalLinkPath(value?.reference);
+            return path ? `[${children}](${canonicalUrl(path)})` : children;
         },
     },
 };
