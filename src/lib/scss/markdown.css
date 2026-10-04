@@ -1,4 +1,6 @@
-.content {
+/* Post body typography (Portable Text). Imported by the post route only, so other pages don't
+ * ship it, and scoped to .prose so it can't reach the many components with a .content part. */
+.prose {
     /* =========================================================================
      * Links
      * ========================================================================= */

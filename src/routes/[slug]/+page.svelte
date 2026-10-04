@@ -4,6 +4,7 @@
     import AuthorCard from '#lib/components/molecules/AuthorCard.svelte';
     import { formatPostDate, formatDateISO } from '#lib/utils/format-date.js';
     import { PageTransition } from 'ssgoi';
+    import '#lib/scss/markdown.css';
     import type { PageProps } from './$types';
     import { PortableText } from '@portabletext/svelte';
     import { portableTextComponents } from '#lib/sanity/portable-text/index.js';
@@ -130,7 +131,7 @@
             </div>
         {/if}
 
-        <div class="content">
+        <div class="content prose">
             <PortableText
                 value={post.body}
                 components={portableTextComponents}
