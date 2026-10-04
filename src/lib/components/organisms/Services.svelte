@@ -133,6 +133,18 @@
 
     $effect(() => () => cancelAnimationFrame(frame));
 
+    // The title glitter only sparkles while the page is moving: it faints once scrolling rests.
+    let scrolling = $state(false);
+    let resting: ReturnType<typeof setTimeout> | undefined;
+
+    function scrolled() {
+        scrolling = true;
+        clearTimeout(resting);
+        resting = setTimeout(() => (scrolling = false), 150);
+    }
+
+    $effect(() => () => clearTimeout(resting));
+
     // The cell edges between seeds, each drawn once, without the field's border: clip the field
     // by the bisector to every other seed, and track which seed made each edge of the cell.
     function voronoi(
@@ -218,9 +230,12 @@
     ];
 </script>
 
+<svelte:window onscroll={scrolled} />
+
 <section
     id="services"
     class="merged"
+    class:scrolling
     aria-labelledby="services-title"
     onpointermove={follow}
     onpointerleave={release}
@@ -669,13 +684,16 @@
                 animation-timeline: --release;
                 animation-range: entry var(--node-center) entry var(--sweep);
 
-                /* The dust: three sparse speck grids of co-prime sizes read as random glitter, shown only in a
-                 * soft band that rides on the sweep's edge, twinkling on the clock. */
+                /* The dust: three sparse speck grids of co-prime sizes read as random glitter,
+                 * shown only in a soft band that rides on the sweep's edge, twinkling on the
+                 * clock. It faints when scrolling rests (filter, as the sweep owns opacity). */
                 &::after {
                     content: '';
                     position: absolute;
                     inset: -0.3em 0;
                     pointer-events: none;
+                    filter: opacity(0);
+                    transition: filter 0.6s var(--ease-3);
                     background:
                         radial-gradient(
                                 circle at 30% 40%,
@@ -753,6 +771,11 @@
      * like jelly (stretch and squash, damped) and cools into its circle. The ember glow outlasts
      * the wobble, fading as slowly as the trail behind the tip. The radii are drop shapes, not
      * design radii; they all settle on a circle. */
+    .scrolling .log h3::after {
+        filter: opacity(1);
+        transition-duration: 0.15s;
+    }
+
     @keyframes kindle {
         to {
             background-position: 0 0;
