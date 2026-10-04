@@ -21,6 +21,11 @@ export const postBySlugQuery = defineQuery(`
             slug
           }
         }
+      },
+      _type == "portableImage" => {
+        "dimensions": image.asset->metadata.dimensions,
+        // A blurred placeholder would show through transparent images.
+        "lqip": select(image.asset->metadata.hasAlpha => null, image.asset->metadata.lqip)
       }
     },
     date,

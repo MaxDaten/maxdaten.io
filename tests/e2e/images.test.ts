@@ -115,3 +115,16 @@ test('a post cover loads eagerly with high priority', async ({ page }) => {
     await expect(cover).toHaveAttribute('loading', 'eager');
     await expect(cover).toHaveAttribute('fetchpriority', 'high');
 });
+
+test('inline post images reserve their space before loading', async ({
+    page,
+}) => {
+    await page.goto('/2025-09-03-tdd-infrastructure-terragrunt');
+
+    const images = page.locator('figure.portable-image img');
+    expect(await images.count()).toBeGreaterThan(0);
+    for (const img of await images.all()) {
+        await expect(img).toHaveAttribute('width', /^\d+$/);
+        await expect(img).toHaveAttribute('height', /^\d+$/);
+    }
+});
