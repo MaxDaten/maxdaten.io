@@ -43,20 +43,18 @@ fi
 # shellcheck disable=SC1091
 . "$HOME/.nix-profile/etc/profile.d/nix.sh"
 
-# Nix fetches locked github inputs from api.github.com, which the session's GitHub proxy only serves
-# for repositories attached to the session. codeload.github.com is allowed: prefetch every locked
-# input from there. Same NAR hash, same store path, so Nix never asks the API.
-jq -r '.nodes[] | .locked | select(.type == "github") | "\(.owner)/\(.repo) \(.rev) \(.narHash)"' \
-  "$repo/devenv.lock" | while read -r slug rev hash; do
-  got=$(nix flake prefetch --json "tarball+https://codeload.github.com/$slug/tar.gz/$rev" | jq -r .hash) &&
-    [ "$got" = "$hash" ] || log "prefetch mismatch for $slug@$rev: got $got, want $hash"
+# Locked github inputs can't be downloaded here; scripts/claude-web-devenv.sh fetches them over
+# git instead and runs devenv with them as overrides. Fetch them now so the snapshot holds them.
+devenv=(bash "$repo/scripts/claude-web-devenv.sh")
+for name in $(jq -r '.nodes[.root].inputs | keys[]' "$repo/devenv.lock"); do
+  "${devenv[@]}" --store-path "$name" >/dev/null || log "could not fetch input $name"
 done
 
 # devenv from the repo's pinned nixpkgs, so the CLI matches what devenv.lock was made with.
 if ! command -v devenv >/dev/null; then
-  pin=$(jq -r '.nodes[.nodes.root.inputs.nixpkgs].locked | "github:\(.owner)/\(.repo)/\(.rev)?narHash=\(.narHash | @uri)"' "$repo/devenv.lock")
-  log "installing devenv from $pin"
-  nix profile add "$pin#devenv" || {
+  nixpkgs=$("${devenv[@]}" --store-path nixpkgs) || exit 1
+  log "installing devenv from $nixpkgs"
+  nix profile add "path:$nixpkgs#devenv" || {
     log "devenv install failed"
     exit 1
   }
@@ -66,7 +64,7 @@ fi
 # Playwright browser + its system libraries. Bounded so setup stays under the ~5 min cache limit.
 if [ "${CLAUDE_WEB_SETUP_WARM:-1}" = 1 ]; then
   log "warming devenv shell"
-  (cd "$repo" && timeout 180 devenv shell -- npx playwright install --with-deps chromium) >&2 ||
+  (cd "$repo" && timeout 180 "${devenv[@]}" shell -- npx playwright install --with-deps chromium) >&2 ||
     log "warm-up incomplete (fine: the session hook finishes it)"
 fi
 exit 0

@@ -27,18 +27,21 @@ fi
 [ -f .env ] || printf 'PUBLIC_SANITY_PROJECT_ID=hvsy54ho\nPUBLIC_SANITY_DATASET=production\n' >.env
 
 dump=$(mktemp)
-if ! devenv shell -- bash -c 'export -p >"$1"' _ "$dump" >>"$log" 2>&1; then
+devenv=(bash scripts/claude-web-devenv.sh)
+if ! "${devenv[@]}" shell -- bash -c 'export -p >"$1"' _ "$dump" >>"$log" 2>&1; then
   echo "devenv shell failed in this cloud session; see $log."
   exit 0
 fi
 # Drop what belongs to this one process or to Claude Code itself.
 grep -v -E '^declare -x (PWD|OLDPWD|SHLVL|_|DEVENV_CMDLINE|CLAUDE_[A-Z_]*)=' "$dump" >>"${CLAUDE_ENV_FILE:?}"
 rm -f "$dump"
+# Plain `devenv` (devenv up, …) can't fetch the locked inputs here either; route it via the wrapper.
+printf 'devenv() { bash %q/scripts/claude-web-devenv.sh "$@"; }\n' "$repo" >>"$CLAUDE_ENV_FILE"
 
 # Playwright browsers live outside the repo; install them in the background if the setup script
 # didn't (needs the Playwright CDN in the environment's allowlist).
-if ! ls "$HOME"/.cache/ms-playwright/chromium-* >/dev/null 2>&1; then
-  nohup devenv shell -- npx playwright install --with-deps chromium >>/tmp/playwright-install.log 2>&1 &
+if ! ls "${PLAYWRIGHT_BROWSERS_PATH:-$HOME/.cache/ms-playwright}"/chromium-* >/dev/null 2>&1; then
+  nohup "${devenv[@]}" shell -- npx playwright install --with-deps chromium >>/tmp/playwright-install.log 2>&1 &
 fi
 
 echo "devenv shell loaded for cloud session (devenv.nix scripts, treefmt and git hooks available)."
