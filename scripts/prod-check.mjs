@@ -65,6 +65,20 @@ for (const [url, lang, canonical] of pages) {
     );
 }
 
+// Social cards and the robots Sitemap line must point at the final host, not the build origin.
+const postHtml = await (await get(`${io}${post}`)).text();
+const ogImage = postHtml.match(
+    /<meta property="og:image" content="([^"]+)"/
+)?.[1];
+report(ogImage?.startsWith(`${io}/`), `og:image ${ogImage}`);
+for (const host of [io, de]) {
+    const robots = await (await get(`${host}/robots.txt`)).text();
+    report(
+        robots.includes(`Sitemap: ${io}/sitemap.xml`),
+        `${host}/robots.txt names ${io}/sitemap.xml`
+    );
+}
+
 const headers = (await get(`${io}/en`)).headers;
 report(
     headers.get('content-security-policy')?.includes("frame-ancestors 'none'"),

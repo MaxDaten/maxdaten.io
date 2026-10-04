@@ -14,8 +14,8 @@ export const prerender = true;
 
 export const load = ({ url, data }) => {
     const locale: Locale = getLocaleFromPath(url.pathname);
-    const ogImageUrl = new URL(`/og/${locale}.jpg?v=${version}`, url.origin)
-        .href;
+    // The prerender origin may be a redirecting host; social cards fetch from the final one.
+    const ogImageUrl = `${localeDomains.en}/og/${locale}.jpg?v=${version}`;
 
     const description = t(locale, 'meta.description');
     const title = t(locale, 'meta.title');

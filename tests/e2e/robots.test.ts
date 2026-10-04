@@ -26,7 +26,8 @@ test('/robots.txt is valid', async ({ page }) => {
     // Should contain Sitemap reference
     const sitemapLine = lines.find((line) => line.startsWith('Sitemap:'));
     expect(sitemapLine).toBeTruthy();
-    expect(sitemapLine).toMatch(/Sitemap: https?:\/\/.*\/sitemap\.xml/);
+    // One sitemap for both hosts, on the final English host whatever the build origin
+    expect(sitemapLine).toBe('Sitemap: https://www.maxdaten.io/sitemap.xml');
 
     // Verify sitemap URL is valid
     const sitemapUrl = sitemapLine!.split('Sitemap: ')[1];

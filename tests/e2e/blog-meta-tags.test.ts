@@ -13,6 +13,12 @@ const blogPosts = [
     { slug: '2025-09-03-tdd-infrastructure-terragrunt' },
 ];
 
+/** The path of an absolute production URL, to request it from the server under test. */
+const localPath = (url: string) => {
+    const { pathname, search } = new URL(url);
+    return pathname + search;
+};
+
 test.describe('Blog Post Meta Tags', () => {
     for (const post of blogPosts) {
         test(`should have valid OpenGraph and Twitter meta tags for ${post.slug}`, async ({
@@ -63,11 +69,14 @@ test.describe('Blog Post Meta Tags', () => {
 
             // If og:image exists, verify it
             if (ogImage) {
-                // expect(ogImage).toMatch(/^https?:\/\//); // Should be absolute URL, but not locally atm
+                // Absolute on the final host, whatever origin the page was rendered on
+                expect(ogImage).toMatch(/^https:\/\/www\.maxdaten\.io\//);
                 expect(twitterCard).toBe('summary_large_image');
 
-                // Verify the image URL is accessible
-                const imageResponse = await page.request.get(ogImage);
+                // Verify the image is served (by this server, not production)
+                const imageResponse = await page.request.get(
+                    localPath(ogImage)
+                );
                 expect(imageResponse.status()).toBe(200);
                 expect(imageResponse.headers()['content-type']).toMatch(
                     /image\/(png|jpeg|jpg|webp)/
@@ -151,11 +160,11 @@ test.describe('Blog Post Meta Tags', () => {
         expect(ogTitle).toBeTruthy();
         expect(ogDescription).toBeTruthy();
         expect(ogImage).toBeTruthy();
-        // expect(ogImage).toMatch(/^https?:\/\//); // Should be absolute URL, but not locally atm
+        expect(ogImage).toMatch(/^https:\/\/www\.maxdaten\.io\//);
 
-        // Verify default image is accessible
+        // Verify default image is served (by this server, not production)
         if (ogImage) {
-            const imageResponse = await page.request.get(ogImage);
+            const imageResponse = await page.request.get(localPath(ogImage));
             expect(imageResponse.status()).toBe(200);
         }
 

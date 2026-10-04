@@ -1,12 +1,14 @@
+import { localeDomains } from '#lib/i18n/index.js';
+
 export const prerender = true;
 
-export async function GET({ url }): Promise<Response> {
+export async function GET(): Promise<Response> {
     // prettier-ignore
     const body = [
 		'User-agent: *',
 		'Allow: /',
 		'',
-		`Sitemap: ${url.origin}/sitemap.xml`
+		`Sitemap: ${localeDomains.en}/sitemap.xml`
 	].join('\n').trim();
 
     const headers = {
