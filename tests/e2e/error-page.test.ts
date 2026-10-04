@@ -6,3 +6,11 @@ test('an unknown page says it was not found', async ({ page }) => {
     expect(response?.status()).toBe(404);
     await expect(page.locator('h1')).toHaveText('Page not found');
 });
+
+test('the prerendered /404 page is kept out of the index', async ({ page }) => {
+    await page.goto('/404');
+    await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
+        'content',
+        /^noindex,follow/
+    );
+});
