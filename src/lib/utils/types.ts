@@ -1,5 +1,6 @@
 import type { Component } from 'svelte';
 import type { PortableTextBlock } from '@portabletext/types';
+import type { SanityImageSource } from '@sanity/image-url';
 
 export type SparkleType = {
     id: string;
@@ -77,6 +78,13 @@ export type SanityPost = {
     hidden?: boolean;
     keywords?: string[];
     outroText?: string;
+    /** Editor overrides from the studio's SEO group. */
+    seo?: {
+        metaTitle?: string;
+        metaDescription?: string;
+        noIndex?: boolean;
+        ogImage?: SanityImageSource;
+    };
     author?: {
         id?: string;
         name: string;

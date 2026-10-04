@@ -6,6 +6,7 @@ import type { BlogPosting, BreadcrumbList, WithContext } from 'schema-dts';
 import { version } from '$app/env';
 import { canonicalUrl } from '#lib/i18n/index.js';
 import { createBreadcrumbSchema } from '#lib/data/meta.js';
+import { urlFor } from '#lib/sanity/image.js';
 
 type PageData = PostData & {
     pageMetaTags: MetaTagsProps;
@@ -15,10 +16,15 @@ type PageData = PostData & {
 export const load: PageLoad = async ({ data, url }): Promise<PageData> => {
     const serverData = data as PostData;
     const post = serverData.post as SanityPost;
-    const ogImageUrl = new URL(
-        `${url.pathname}/og.jpg?v=${version}`,
-        url.origin
-    ).href;
+    // Editors can override title, description and social image in the studio's SEO group.
+    const seo = post.seo ?? {};
+    const metaTitle = seo.metaTitle || post.title;
+    const metaDescription = seo.metaDescription || post.excerpt || '';
+    const ogImageUrl = seo.ogImage
+        ? urlFor(seo.ogImage).width(1200).height(630).format('jpg').url()
+        : new URL(`${url.pathname}/og.jpg?v=${version}`, url.origin).href;
+    // Hidden posts are unlisted, not private: reachable by link, but kept out of search.
+    const noIndex = (post.hidden ?? false) || (seo.noIndex ?? false);
 
     // Build schema with Sanity post data
     const pageSchema = post.author
@@ -32,7 +38,7 @@ export const load: PageLoad = async ({ data, url }): Promise<PageData> => {
                       // for machines, fall back to the document's last edit.
                       updated:
                           post.lastModified ?? post._updatedAt ?? post.date,
-                      excerpt: post.excerpt ?? '',
+                      excerpt: metaDescription,
                       tags: post.tags?.map((t) => t.name) ?? [],
                       keywords: post.keywords ?? [],
                       hidden: post.hidden ?? false,
@@ -53,12 +59,13 @@ export const load: PageLoad = async ({ data, url }): Promise<PageData> => {
         : [];
 
     const pageMetaTags = Object.freeze({
-        title: post.title,
-        description: post.excerpt ?? '',
+        title: metaTitle,
+        description: metaDescription,
         canonical: canonicalUrl(url.pathname),
+        ...(noIndex && { robots: 'noindex,follow' }),
         openGraph: {
-            title: post.title,
-            description: post.excerpt ?? '',
+            title: metaTitle,
+            description: metaDescription,
             url: canonicalUrl(url.pathname),
             type: 'article',
             images: [
@@ -73,8 +80,8 @@ export const load: PageLoad = async ({ data, url }): Promise<PageData> => {
             ],
         },
         twitter: {
-            title: post.title,
-            description: post.excerpt ?? '',
+            title: metaTitle,
+            description: metaDescription,
             cardType: 'summary_large_image',
             image: ogImageUrl,
             imageAlt: post.title,

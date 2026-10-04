@@ -221,3 +221,23 @@ test('the author card and footer use the one contact address', async ({
         ).toHaveAttribute('href', 'mailto:jloos@maxdaten.com');
     }
 });
+
+test('hidden posts stay reachable but out of search', async ({
+    page,
+    request,
+}) => {
+    await page.goto('/2025-07-31-continuous-care-no-to-maintenance-processes');
+    await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
+        'content',
+        /^noindex,follow/
+    );
+
+    await page.goto('/2026-01-31-ship-your-toolchain-not-just-infrastructure');
+    await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
+        'content',
+        /^index,follow/
+    );
+
+    const sitemap = await (await request.get('/sitemap.xml')).text();
+    expect(sitemap).not.toContain('continuous-care-no-to-maintenance');
+});
