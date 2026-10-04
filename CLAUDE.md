@@ -28,6 +28,10 @@ Run inside the devenv shell (direnv loads it); `treefmt` only exists there.
 Git hooks (prek, from `devenv.nix`): pre-commit runs treefmt, lint, check, unit tests; pre-push runs
 `scripts/e2e.sh` and `npm audit --audit-level=high`. Don't bypass them.
 
+Claude Code on the web: the environment's setup script runs `scripts/claude-web-setup.sh` (Nix +
+devenv, see its header for the paste-in snippet and allowlist), and a SessionStart hook runs
+`scripts/claude-web-session.sh`, which loads the devenv shell into every Bash call.
+
 **Verify a change:** `npm run check && npm run lint && npm run test`; for UI or routing changes also
 `e2e`. Before pushing a larger change: `gate`.
 
