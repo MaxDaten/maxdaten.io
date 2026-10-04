@@ -683,28 +683,46 @@
         }
     }
 
-    /* Releases and commits are struck by the blaze: each forms as a molten blob, white-hot like
-     * the trail's head, wobbles through uneven radii and cools into its circle. The ember glow
-     * outlasts the pop, fading as slowly as the trail behind the tip. The blob radii are shapes,
-     * not design radii; they all settle on a circle. */
+    /* Releases and commits are struck by the blaze and take it in like liquid: each forms as a
+     * white-hot drop pulled up towards the trail's head, splats as the head lands, then wobbles
+     * like jelly (stretch and squash, damped) and cools into its circle. The ember glow outlasts
+     * the wobble, fading as slowly as the trail behind the tip. The radii are drop shapes, not
+     * design radii; they all settle on a circle. */
     @keyframes merge {
         0% {
-            scale: 0.4;
+            scale: 0.4 0.55;
             opacity: 0;
-            border-radius: 42% 58% 56% 44% / 44% 42% 58% 56%;
+            border-radius: 50% 50% 50% 50% / 70% 70% 30% 30%;
+            background: var(--color-sparkle);
+        }
+        12% {
             background: var(--color-sparkle);
         }
         15% {
             opacity: 1;
         }
-        12% {
-            background: var(--color-sparkle);
+        28% {
+            scale: 0.88 1.14;
+            border-radius: 50% 50% 50% 50% / 64% 64% 36% 36%;
+        }
+        42% {
+            scale: 1.1 0.9;
+            border-radius: 50% 50% 50% 50% / 44% 44% 56% 56%;
         }
         55% {
-            scale: 1.06;
-            border-radius: 46% 54% 53% 47% / 54% 47% 53% 46%;
             box-shadow: 0 0 1px 7px
                 rgba(var(--color-accent-rgb), var(--opacity-border));
+        }
+        58% {
+            scale: 0.96 1.05;
+            border-radius: 50% 50% 50% 50% / 54% 54% 46% 46%;
+        }
+        74% {
+            scale: 1.02 0.98;
+            border-radius: 50%;
+        }
+        88% {
+            scale: 0.995 1.01;
         }
         100% {
             scale: 1;
@@ -718,7 +736,7 @@
         0% {
             scale: 0;
             opacity: 0;
-            border-radius: 58% 42% 46% 54% / 46% 58% 42% 54%;
+            border-radius: 50% 50% 50% 50% / 72% 72% 28% 28%;
             background: var(--color-sparkle);
         }
         12% {
@@ -727,9 +745,21 @@
         20% {
             opacity: 1;
         }
-        60% {
-            scale: 1.2;
-            border-radius: 47% 53% 54% 46% / 53% 46% 54% 47%;
+        32% {
+            scale: 0.85 1.25;
+            border-radius: 50% 50% 50% 50% / 66% 66% 34% 34%;
+        }
+        50% {
+            scale: 1.2 0.85;
+            border-radius: 50% 50% 50% 50% / 42% 42% 58% 58%;
+        }
+        68% {
+            scale: 0.95 1.06;
+            border-radius: 50% 50% 50% 50% / 54% 54% 46% 46%;
+        }
+        84% {
+            scale: 1.02 0.98;
+            border-radius: 50%;
         }
         100% {
             scale: 1;
