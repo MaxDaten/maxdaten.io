@@ -41,7 +41,8 @@
                 <span class="stat-value">Product Engineering</span>
             </div>
         </div>
-        <div class="ability-box">
+        <!-- Shielded from the foil so the ability text stays clean under the shimmer. -->
+        <div class="ability-box" data-holo-shield>
             <div class="ability-header">
                 <span class="pro-badge">PRO</span>
                 <span class="ability-name">Enterprise Rollouts</span>
@@ -140,7 +141,10 @@
 
     .ability-box {
         margin-top: auto;
-        background: var(--color-well);
+        /* The well over the card base: opaque, so the foil beneath it stays hidden. */
+        background:
+            linear-gradient(var(--color-well), var(--color-well)),
+            var(--holo-base);
         border-radius: var(--radius-tag);
         padding: var(--space-tight);
         border-left: 3px solid var(--color-accent);

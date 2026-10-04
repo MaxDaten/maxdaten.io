@@ -255,9 +255,15 @@
             style:--pt-y="{springPattern.current.y}%"
         ></div>
 
-        <!-- 3. The Glare (White Reflection) -->
+        <!-- 3. The Glare (White Reflection): a broad overlay wash plus a bright specular core -->
         <div
             class="glare-layer"
+            style:--glare-x="{springGlare.current.x}%"
+            style:--glare-y="{springGlare.current.y}%"
+            style:--glare-o={springGlare.current.o}
+        ></div>
+        <div
+            class="specular-layer"
             style:--glare-x="{springGlare.current.x}%"
             style:--glare-y="{springGlare.current.y}%"
             style:--glare-o={springGlare.current.o}
@@ -294,7 +300,9 @@
         height: 100%;
         transform-style: preserve-3d;
         border-radius: var(--radius-card, 24px);
-        background-color: #23252b; /* Dark Slate Base */
+        /* Dark Slate Base; content that sits above the foil paints over it (see data-holo-shield) */
+        --holo-base: #23252b;
+        background-color: var(--holo-base);
         /* Printed border ~0.3cm (11px) - inset */
         box-shadow: inset 0 0 0 11px rgba(255, 128, 0, 0.1);
 
@@ -310,17 +318,26 @@
 
     /* --- Content Layer --- */
     .card-content {
+        /* No z-index: the content must not form its own stacking context, so a shielded child
+           can rise above the foil while the rest of the face stays below it. */
         position: relative;
-        z-index: 1; /* Above holo foil for 100% readable text */
         background: transparent;
         padding: var(--space-block);
+    }
+
+    /* Content marked data-holo-shield sits above the foil but below the glare: the foil is masked
+       out there, the light still catches it. Give it an opaque background (--holo-base) or the
+       foil shows through. */
+    .card-content :global([data-holo-shield]) {
+        position: relative;
+        z-index: 3;
     }
 
     /* --- The Amazing Rare Holo Layer --- */
     .holo-layer {
         position: absolute;
         inset: 0;
-        z-index: 2; /* Behind text (z-10), above background */
+        z-index: 2; /* Over the content, under shielded content (3) */
         border-radius: inherit;
         pointer-events: none;
 
@@ -381,14 +398,15 @@
     .glare-layer {
         position: absolute;
         inset: 0;
-        z-index: 3; /* On top of everything for surface reflection */
+        z-index: 4; /* On top of everything for surface reflection */
         pointer-events: none;
 
         /* A radial beam of light */
         background: radial-gradient(
             farthest-corner circle at var(--glare-x) var(--glare-y),
-            rgba(255, 255, 255, 0.4) 0%,
-            rgba(255, 255, 255, 0.1) 25%,
+            rgba(255, 255, 255, 0.9) 0%,
+            rgba(255, 255, 255, 0.5) 10%,
+            rgba(255, 255, 255, 0.18) 30%,
             transparent 60%
         );
 
@@ -397,11 +415,32 @@
         transition: opacity 0.1s;
     }
 
+    /* --- Specular Core (the hot spot where the light source reflects) --- */
+    .specular-layer {
+        position: absolute;
+        inset: 0;
+        z-index: 4;
+        pointer-events: none;
+
+        /* Screen lifts the dark slate itself, so the reflection reads as light, not contrast */
+        background: radial-gradient(
+            farthest-corner circle at var(--glare-x) var(--glare-y),
+            rgba(255, 255, 255, 0.6) 0%,
+            rgba(255, 250, 240, 0.28) 7%,
+            rgba(255, 250, 240, 0.08) 20%,
+            transparent 36%
+        );
+
+        mix-blend-mode: screen;
+        opacity: var(--glare-o);
+        transition: opacity 0.1s;
+    }
+
     /* --- Border Glow --- */
     .border-glow {
         position: absolute;
         inset: 0;
-        z-index: 4;
+        z-index: 5;
         border-radius: inherit;
         border: 1px solid rgba(255, 255, 255, 0.1);
         box-shadow: inset 0 0 15px rgba(255, 128, 0, 0.1); /* Subtle internal ambient */
@@ -412,7 +451,7 @@
     .sheen-layer {
         position: absolute;
         inset: 0;
-        z-index: 5;
+        z-index: 6;
         border-radius: inherit;
         padding: 1px;
         background: linear-gradient(
@@ -467,7 +506,8 @@
         transition: opacity 0.5s ease;
     }
 
-    .holo-card.static-mode .glare-layer {
+    .holo-card.static-mode .glare-layer,
+    .holo-card.static-mode .specular-layer {
         display: none;
     }
 
