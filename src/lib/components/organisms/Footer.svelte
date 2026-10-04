@@ -52,6 +52,12 @@
             align-items: center;
             gap: var(--raw-space-16);
             font-size: var(--raw-text-base);
+
+            a {
+                display: inline-flex;
+                align-items: center;
+                min-height: var(--size-tap-target);
+            }
         }
 
         .socials {

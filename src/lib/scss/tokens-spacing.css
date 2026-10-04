@@ -40,4 +40,7 @@
     --space-gap-sm: var(--raw-space-8);
     --space-gap-md: var(--raw-space-16);
     --space-gap-lg: var(--raw-space-32);
+
+    /* Minimum touch target edge (WCAG 2.5.5 / platform guidelines) */
+    --size-tap-target: 44px;
 }
