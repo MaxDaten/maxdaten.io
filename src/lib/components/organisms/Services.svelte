@@ -73,7 +73,7 @@
     .cards {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: var(--raw-space-24);
+        gap: var(--space-block);
         list-style: none;
         padding: 0;
         margin: 0;
@@ -87,25 +87,25 @@
     .card {
         display: flex;
         flex-direction: column;
-        gap: var(--raw-space-8);
-        padding: var(--raw-space-24);
+        gap: var(--space-inline);
+        padding: var(--space-block);
         border-radius: var(--radius-card);
         background-color: var(--color-surface-elevated);
 
         h3 {
-            font-size: var(--raw-text-lg);
+            font-size: var(--text-large);
             margin: 0;
         }
 
         p {
             margin: 0;
             color: var(--color-text-muted);
-            line-height: var(--raw-leading-relaxed);
+            line-height: var(--text-body-leading);
         }
 
         .meta {
             font-family: var(--font--mono), monospace;
-            font-size: var(--raw-text-sm);
+            font-size: var(--text-small);
             color: var(--color-accent-text);
 
             .years {

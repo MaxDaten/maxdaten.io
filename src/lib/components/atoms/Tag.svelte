@@ -17,11 +17,11 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: var(--raw-space-4);
+        gap: var(--space-hairline);
         padding: var(--space-tag-y) var(--space-tag-x);
         border-radius: var(--radius-tag);
         font-weight: 500;
-        font-size: var(--raw-text-sm);
+        font-size: var(--text-small);
         width: fit-content;
         white-space: nowrap;
 
@@ -30,22 +30,22 @@
         &.primary {
             background-color: rgba(
                 var(--color-accent-rgb),
-                var(--raw-opacity-light)
+                var(--opacity-wash)
             );
             color: var(--color-accent-text);
             border-color: rgba(
                 var(--color-accent-rgb),
-                var(--raw-opacity-muted)
+                var(--opacity-border)
             );
         }
 
         &.secondary {
             background-color: rgba(
                 var(--color-text-rgb),
-                var(--raw-opacity-subtle)
+                var(--opacity-tint)
             );
             color: var(--color-text);
-            border-color: rgba(var(--color-text-rgb), var(--raw-opacity-muted));
+            border-color: rgba(var(--color-text-rgb), var(--opacity-border));
         }
     }
 </style>

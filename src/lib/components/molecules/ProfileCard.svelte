@@ -59,7 +59,7 @@
         font-family: var(--font--mono), monospace;
         display: flex;
         flex-direction: column;
-        gap: var(--raw-space-8);
+        gap: var(--space-inline);
         width: 450px;
         aspect-ratio: 5 / 7;
         overflow: hidden;
@@ -75,7 +75,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        font-size: var(--raw-text-xs);
+        font-size: var(--text-caption);
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 0.05em;
@@ -92,11 +92,11 @@
 
     .avatar-container {
         aspect-ratio: 4 / 3;
-        border-radius: var(--raw-radius-sm);
+        border-radius: var(--radius-block);
         overflow: hidden;
         background-color: rgba(
             var(--color-text-rgb),
-            var(--raw-opacity-subtle)
+            var(--opacity-tint)
         );
 
         :global(.avatar-image) {
@@ -108,7 +108,7 @@
 
     .card-name {
         font-family: var(--font-logo), sans-serif;
-        font-size: var(--raw-text-xl);
+        font-size: var(--text-heading-3);
         font-weight: 700;
         text-transform: uppercase;
         color: var(--color-text);
@@ -118,14 +118,14 @@
     .stat-rows {
         display: flex;
         flex-direction: column;
-        gap: var(--raw-space-8);
+        gap: var(--space-inline);
     }
 
     .stat-row {
         display: flex;
         flex-direction: column;
-        gap: var(--raw-space-4);
-        font-size: var(--raw-text-xs);
+        gap: var(--space-hairline);
+        font-size: var(--text-caption);
     }
 
     .stat-label {
@@ -137,7 +137,7 @@
 
     .stat-value {
         color: var(--color-text);
-        font-size: var(--raw-text-sm);
+        font-size: var(--text-small);
     }
 
     .ability-box {
@@ -149,19 +149,19 @@
         box-shadow: inset 0 1px 0 var(--color-hairline);
         display: flex;
         flex-direction: column;
-        gap: var(--raw-space-4);
+        gap: var(--space-hairline);
     }
 
     .ability-header {
         display: flex;
         align-items: center;
-        gap: var(--raw-space-8);
+        gap: var(--space-inline);
     }
 
     .pro-badge {
         font-size: 10px;
         font-weight: 700;
-        padding: var(--raw-space-4) var(--raw-space-8);
+        padding: var(--space-hairline) var(--space-inline);
         background-color: var(--color-accent);
         color: black;
         border-radius: 2px;
@@ -169,15 +169,15 @@
     }
 
     .ability-name {
-        font-size: var(--raw-text-sm);
+        font-size: var(--text-small);
         font-weight: 600;
         color: var(--color-text);
     }
 
     .ability-description {
-        font-size: var(--raw-text-xs);
+        font-size: var(--text-caption);
         color: var(--color-text-dim);
-        line-height: var(--raw-leading-relaxed);
+        line-height: var(--text-body-leading);
         margin: 4px 0 0 0;
     }
 

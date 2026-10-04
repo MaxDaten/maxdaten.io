@@ -47,29 +47,29 @@
     /* Mirrors the front-page hero: text left, profile card right. */
     /* Block padding only: the inline padding comes from .container. */
     .about {
-        padding-block: var(--raw-space-80);
+        padding-block: var(--space-page);
 
         @media (max-width: 900px) {
-            padding-block: var(--raw-space-48);
+            padding-block: var(--space-section);
         }
     }
 
     .about-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: var(--raw-space-48);
+        gap: var(--space-section);
         align-items: center;
 
         @media (max-width: 900px) {
             grid-template-columns: 1fr;
-            gap: var(--raw-space-32);
+            gap: var(--space-group);
         }
     }
 
     .content {
         display: flex;
         flex-direction: column;
-        gap: var(--raw-space-24);
+        gap: var(--space-block);
 
         @media (max-width: 900px) {
             align-items: center;
@@ -79,25 +79,25 @@
     }
 
     .name {
-        font-size: var(--raw-text-4xl);
-        line-height: var(--raw-leading-tight);
+        font-size: var(--text-display);
+        line-height: var(--text-heading-leading);
         margin: 0;
 
         @media (max-width: 767px) {
-            font-size: var(--raw-text-3xl);
+            font-size: var(--text-heading-1);
         }
     }
 
     .role {
         font-family: var(--font--mono), monospace;
-        font-size: var(--raw-text-md);
+        font-size: var(--text-body);
         color: var(--color-accent-text);
         margin: 0;
     }
 
     .bio {
-        font-size: var(--raw-text-lg);
-        line-height: var(--raw-leading-relaxed);
+        font-size: var(--text-large);
+        line-height: var(--text-body-leading);
         color: var(--color-text-muted);
         margin: 0;
         max-width: 540px;
@@ -106,7 +106,7 @@
     .expertise {
         display: flex;
         flex-wrap: wrap;
-        gap: var(--raw-space-8);
+        gap: var(--space-inline);
         list-style: none;
         padding: 0;
         margin: 0;
@@ -119,7 +119,7 @@
     .ctas {
         display: flex;
         flex-wrap: wrap;
-        gap: var(--raw-space-12);
+        gap: var(--space-tight);
     }
 
     .card-column {
@@ -128,7 +128,7 @@
 
         @media (max-width: 900px) {
             order: 1;
-            padding-inline: var(--raw-space-24);
+            padding-inline: var(--space-block);
             /* Lets ProfileCard scale down below its 450px width. */
             container-type: inline-size;
         }

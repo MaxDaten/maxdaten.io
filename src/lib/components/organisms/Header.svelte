@@ -53,7 +53,7 @@
 <style>
     header {
         position: relative;
-        padding: var(--raw-space-24) 0;
+        padding: var(--space-block) 0;
         border-bottom: 1px solid var(--color-bar-start);
 
         &.has-background {
@@ -67,7 +67,7 @@
         .container {
             display: flex;
             align-items: center;
-            gap: var(--raw-space-32);
+            gap: var(--space-group);
         }
 
         .logo {
@@ -81,11 +81,11 @@
             display: flex;
             align-items: center;
             justify-content: flex-end;
-            gap: var(--raw-space-32);
+            gap: var(--space-group);
 
             a {
                 position: relative;
-                padding: var(--raw-space-8) 0;
+                padding: var(--space-inline) 0;
                 color: var(--color-text);
                 text-decoration: none;
 
@@ -98,7 +98,7 @@
                         position: absolute;
                         left: 0;
                         right: 0;
-                        bottom: calc(-1 * var(--raw-space-4));
+                        bottom: calc(-1 * var(--space-hairline));
                         height: 2px;
                         background: var(--color-accent);
                     }
@@ -117,10 +117,10 @@
         }
 
         @media (max-width: 767px) {
-            padding: var(--raw-space-16) 0;
+            padding: var(--space-stack) 0;
 
             .container {
-                gap: var(--raw-space-16);
+                gap: var(--space-stack);
             }
 
             .logo {
@@ -133,7 +133,7 @@
             }
 
             .links {
-                gap: var(--raw-space-8);
+                gap: var(--space-inline);
 
                 a {
                     min-height: 44px;

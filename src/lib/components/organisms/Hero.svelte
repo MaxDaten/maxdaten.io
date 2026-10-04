@@ -72,29 +72,29 @@
 
 <style>
     #hero {
-        padding: var(--raw-space-80) 0;
+        padding: var(--space-page) 0;
 
         @media (max-width: 900px) {
-            padding: var(--raw-space-48) 0;
+            padding: var(--space-section) 0;
         }
     }
 
     .hero-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: var(--raw-space-48);
+        gap: var(--space-section);
         align-items: center;
 
         @media (max-width: 900px) {
             grid-template-columns: 1fr;
-            gap: var(--raw-space-32);
+            gap: var(--space-group);
         }
     }
 
     .content {
         display: flex;
         flex-direction: column;
-        gap: var(--raw-space-24);
+        gap: var(--space-block);
 
         @media (max-width: 900px) {
             align-items: center;
@@ -105,26 +105,26 @@
 
     .badge {
         font-family: var(--font--mono), monospace;
-        font-size: var(--raw-text-sm);
-        padding: var(--raw-space-8) var(--raw-space-16);
+        font-size: var(--text-small);
+        padding: var(--space-inline) var(--space-stack);
         border: 1px solid
-            rgba(var(--color-accent-rgb), var(--raw-opacity-muted));
-        border-radius: var(--raw-radius-full);
+            rgba(var(--color-accent-rgb), var(--opacity-border));
+        border-radius: var(--radius-full);
         color: var(--color-accent);
         background: var(--color-well);
         width: fit-content;
     }
 
     .headline {
-        font-size: var(--raw-text-4xl);
-        line-height: var(--raw-leading-tight);
+        font-size: var(--text-display);
+        line-height: var(--text-heading-leading);
         font-weight: 700;
         color: var(--color-text);
         margin: 0;
         text-wrap: balance;
 
         @media (max-width: 767px) {
-            font-size: var(--raw-text-3xl);
+            font-size: var(--text-heading-1);
         }
 
         .accent {
@@ -136,8 +136,8 @@
     }
 
     .subheadline {
-        font-size: var(--raw-text-lg);
-        line-height: var(--raw-leading-relaxed);
+        font-size: var(--text-large);
+        line-height: var(--text-body-leading);
         color: var(--color-text-lead);
         margin: 0;
         max-width: 540px;
@@ -146,7 +146,7 @@
     .ctas {
         display: flex;
         flex-wrap: wrap;
-        gap: var(--raw-space-12);
+        gap: var(--space-tight);
 
         @media (max-width: 900px) {
             justify-content: center;
@@ -157,11 +157,11 @@
         display: flex;
         flex-wrap: wrap;
         align-items: center;
-        gap: var(--raw-space-12);
+        gap: var(--space-tight);
         font-family: var(--font--mono), monospace;
         font-size: 13px;
         color: var(--color-text-dim);
-        margin-top: var(--raw-space-24);
+        margin-top: var(--space-block);
 
         @media (max-width: 900px) {
             justify-content: center;
@@ -170,7 +170,7 @@
         .dot {
             width: 4px;
             height: 4px;
-            border-radius: var(--raw-radius-full);
+            border-radius: var(--radius-full);
             background-color: var(--color-accent);
             opacity: 0.8;
         }
@@ -183,7 +183,7 @@
         @media (max-width: 900px) {
             order: 1;
             /* Constrain container width with padding */
-            padding-inline: var(--raw-space-24);
+            padding-inline: var(--space-block);
             /* Enable container queries for dynamic card scaling */
             container-type: inline-size;
         }

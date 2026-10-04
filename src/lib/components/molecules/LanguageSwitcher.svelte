@@ -34,9 +34,9 @@
     .language-switcher {
         display: flex;
         align-items: center;
-        gap: var(--raw-space-4);
+        gap: var(--space-hairline);
         font-family: var(--font--mono), monospace;
-        font-size: var(--raw-text-sm);
+        font-size: var(--text-small);
     }
 
     .separator {
@@ -52,7 +52,7 @@
         display: inline-flex;
         align-items: center;
         min-height: var(--size-tap-target);
-        padding: 0 var(--raw-space-8);
+        padding: 0 var(--space-inline);
 
         &:hover {
             opacity: 1;

@@ -79,42 +79,42 @@
 
 <style>
     .author-callout {
-        margin-top: var(--raw-space-32);
-        padding: var(--raw-space-24);
-        border-radius: var(--raw-radius-sm);
+        margin-top: var(--space-group);
+        padding: var(--space-block);
+        border-radius: var(--radius-block);
         background: rgba(var(--color-text-rgb), 0.03);
-        border: 1px solid rgba(var(--color-text-rgb), var(--raw-opacity-light));
+        border: 1px solid rgba(var(--color-text-rgb), var(--opacity-wash));
 
         @media (max-width: 767px) {
-            padding: var(--raw-space-16);
+            padding: var(--space-stack);
         }
     }
 
     .outro-text {
-        font-size: var(--raw-text-sm);
+        font-size: var(--text-small);
         font-weight: 500;
-        line-height: var(--raw-leading-normal);
+        line-height: var(--leading-ui);
         letter-spacing: -0.01em;
         color: var(--color-text-muted);
-        margin: 0 0 var(--raw-space-16);
-        padding-bottom: var(--raw-space-16);
+        margin: 0 0 var(--space-stack);
+        padding-bottom: var(--space-stack);
         border-bottom: 1px solid
-            rgba(var(--color-text-rgb), var(--raw-opacity-subtle));
+            rgba(var(--color-text-rgb), var(--opacity-tint));
 
         @media (max-width: 767px) {
-            font-size: var(--raw-text-xs);
-            margin-bottom: var(--raw-space-12);
-            padding-bottom: var(--raw-space-12);
+            font-size: var(--text-caption);
+            margin-bottom: var(--space-tight);
+            padding-bottom: var(--space-tight);
         }
     }
 
     .author-card {
         display: flex;
         align-items: center;
-        gap: var(--raw-space-16);
+        gap: var(--space-stack);
 
         @media (max-width: 767px) {
-            gap: var(--raw-space-12);
+            gap: var(--space-tight);
         }
     }
 
@@ -124,10 +124,10 @@
         :global(.avatar) {
             width: 36px;
             height: 36px;
-            border-radius: var(--raw-radius-sm);
+            border-radius: var(--radius-block);
             object-fit: cover;
             border: 1px solid
-                rgba(var(--color-text-rgb), var(--raw-opacity-light));
+                rgba(var(--color-text-rgb), var(--opacity-wash));
         }
 
         @media (max-width: 767px) {
@@ -141,59 +141,59 @@
     .avatar-placeholder {
         width: 36px;
         height: 36px;
-        border-radius: var(--raw-radius-sm);
-        background: rgba(var(--color-text-rgb), var(--raw-opacity-subtle));
-        color: rgba(var(--color-text-rgb), var(--raw-opacity-medium));
+        border-radius: var(--radius-block);
+        background: rgba(var(--color-text-rgb), var(--opacity-tint));
+        color: rgba(var(--color-text-rgb), var(--opacity-half));
         display: flex;
         align-items: center;
         justify-content: center;
         font-weight: 600;
-        font-size: var(--raw-text-sm);
+        font-size: var(--text-small);
         letter-spacing: -0.02em;
 
         @media (max-width: 767px) {
             width: 32px;
             height: 32px;
-            font-size: var(--raw-text-xs);
+            font-size: var(--text-caption);
         }
     }
 
     .info-section {
         display: flex;
         flex-direction: column;
-        gap: var(--raw-space-4);
+        gap: var(--space-hairline);
         min-width: 0;
     }
 
     .name {
         font-weight: 600;
-        font-size: var(--raw-text-sm);
+        font-size: var(--text-small);
         letter-spacing: -0.02em;
         color: var(--color-text);
     }
 
     .bio {
-        font-size: var(--raw-text-xs);
+        font-size: var(--text-caption);
         font-weight: 400;
-        line-height: var(--raw-leading-normal);
-        color: rgba(var(--color-text-rgb), var(--raw-opacity-strong));
+        line-height: var(--leading-ui);
+        color: rgba(var(--color-text-rgb), var(--opacity-text-muted));
         margin: 0;
         max-width: 48ch;
 
         @media (max-width: 767px) {
-            font-size: var(--raw-text-xs);
+            font-size: var(--text-caption);
         }
     }
 
     .actions {
         display: flex;
         align-items: center;
-        gap: var(--raw-space-12);
-        margin-top: var(--raw-space-8);
+        gap: var(--space-tight);
+        margin-top: var(--space-inline);
         flex-wrap: wrap;
 
         @media (max-width: 767px) {
-            gap: var(--raw-space-8);
+            gap: var(--space-inline);
         }
     }
 

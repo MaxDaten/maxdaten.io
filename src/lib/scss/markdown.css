@@ -19,7 +19,7 @@
      * Paragraphs
      * ========================================================================= */
     & p {
-        margin: var(--raw-space-16) 0;
+        margin: var(--space-stack) 0;
         line-height: var(--text-body-leading);
     }
 
@@ -31,7 +31,7 @@
         font-weight: var(--font-weight-semibold);
         line-height: var(--text-heading-leading);
         letter-spacing: -0.02em;
-        margin: var(--space-section) 0 var(--raw-space-16);
+        margin: var(--space-section) 0 var(--space-stack);
     }
 
     & h3 {
@@ -39,15 +39,15 @@
         font-weight: var(--font-weight-semibold);
         line-height: var(--text-heading-leading);
         letter-spacing: -0.02em;
-        margin: var(--space-group) 0 var(--raw-space-12);
+        margin: var(--space-group) 0 var(--space-tight);
     }
 
     & h4 {
         font-size: var(--text-heading-4);
         font-weight: var(--font-weight-semibold);
-        line-height: var(--raw-leading-snug);
+        line-height: var(--leading-title);
         letter-spacing: -0.01em;
-        margin: var(--space-block) 0 var(--raw-space-8);
+        margin: var(--space-block) 0 var(--space-inline);
     }
 
     & h2,
@@ -65,7 +65,7 @@
     & a.heading-link {
         color: var(--color-accent);
         text-decoration: none;
-        margin-right: var(--raw-space-8);
+        margin-right: var(--space-inline);
         position: absolute;
         translate: -120% 0;
         opacity: 0;
@@ -77,9 +77,9 @@
      * ========================================================================= */
     & .wrap.reveal {
         margin: var(--space-block) auto;
-        border-radius: var(--raw-radius-sm);
+        border-radius: var(--radius-block);
         overflow: hidden;
-        border: 1px solid rgba(var(--color-text-rgb), var(--raw-opacity-subtle));
+        border: 1px solid rgba(var(--color-text-rgb), var(--opacity-tint));
 
         & img {
             display: block;
@@ -90,15 +90,15 @@
     }
 
     & figcaption {
-        font-size: var(--raw-text-sm);
+        font-size: var(--text-small);
         text-align: center;
-        margin-top: var(--raw-space-8);
+        margin-top: var(--space-inline);
         margin-bottom: var(--space-block);
         color: var(--color-text-muted);
     }
 
     & img + figcaption {
-        margin-top: calc(-1 * var(--raw-space-8));
+        margin-top: calc(-1 * var(--space-inline));
     }
 
     /* =========================================================================
@@ -106,13 +106,13 @@
      * ========================================================================= */
     & blockquote {
         margin: var(--space-block) 0;
-        padding: var(--raw-space-16);
-        border-radius: var(--raw-radius-sm);
-        font-size: var(--raw-text-base);
+        padding: var(--space-stack);
+        border-radius: var(--radius-block);
+        font-size: var(--text-ui);
         font-style: italic;
-        line-height: var(--raw-leading-relaxed);
+        line-height: var(--text-body-leading);
         border-left: 3px solid var(--color-accent);
-        background: rgba(var(--color-text-rgb), var(--raw-opacity-subtle));
+        background: rgba(var(--color-text-rgb), var(--opacity-tint));
         color: var(--color-text-muted);
 
         & p {
@@ -120,7 +120,7 @@
         }
 
         & p + p {
-            margin-top: var(--raw-space-12);
+            margin-top: var(--space-tight);
         }
     }
 
@@ -129,12 +129,12 @@
      * ========================================================================= */
     & ul,
     & ol {
-        margin: var(--raw-space-16) 0;
-        padding-left: var(--raw-space-24);
-        line-height: var(--raw-leading-relaxed);
+        margin: var(--space-stack) 0;
+        padding-left: var(--space-block);
+        line-height: var(--text-body-leading);
 
         & li {
-            margin: var(--raw-space-8) 0;
+            margin: var(--space-inline) 0;
         }
     }
 
@@ -149,13 +149,13 @@
     & ul ul,
     & ol ul {
         list-style-type: circle;
-        margin: var(--raw-space-4) 0;
+        margin: var(--space-hairline) 0;
     }
 
     & ol ol,
     & ul ol {
         list-style-type: lower-alpha;
-        margin: var(--raw-space-4) 0;
+        margin: var(--space-hairline) 0;
     }
 
     /* =========================================================================
@@ -164,25 +164,25 @@
      * ========================================================================= */
     & pre.shiki {
         font-family: var(--font--mono), monospace;
-        font-size: var(--raw-text-sm);
+        font-size: var(--text-small);
         -webkit-text-size-adjust: 100%;
         text-size-adjust: 100%;
-        border-radius: var(--raw-radius-sm);
-        background-color: var(--raw-color-gray-850) !important;
+        border-radius: var(--radius-block);
+        background-color: var(--color-code-surface) !important;
         border: none;
 
         overflow-x: auto;
-        scrollbar-color: rgba(var(--color-accent-rgb), var(--raw-opacity-muted))
-            rgba(var(--color-text-rgb), var(--raw-opacity-subtle));
+        scrollbar-color: rgba(var(--color-accent-rgb), var(--opacity-border))
+            rgba(var(--color-text-rgb), var(--opacity-tint));
         scrollbar-width: thin;
-        padding: var(--raw-space-16);
+        padding: var(--space-stack);
         position: relative;
         margin: 0;
-        line-height: var(--raw-leading-relaxed);
+        line-height: var(--text-body-leading);
 
         @media (max-width: 767px) {
-            font-size: var(--raw-text-xs);
-            padding: var(--raw-space-12);
+            font-size: var(--text-caption);
+            padding: var(--space-tight);
         }
 
         & code {
@@ -194,20 +194,20 @@
         & .line {
             display: inline-block;
             position: relative;
-            padding-left: var(--raw-space-8);
+            padding-left: var(--space-inline);
             min-height: 1.1em;
         }
 
         & .line.highlighted {
             background-color: rgba(
                 var(--color-accent-rgb),
-                var(--raw-opacity-subtle)
+                var(--opacity-tint)
             );
             display: block;
-            margin: 0 calc(-1 * var(--raw-space-16));
-            padding: 0 var(--raw-space-16);
+            margin: 0 calc(-1 * var(--space-stack));
+            padding: 0 var(--space-stack);
             border-left: 2px solid
-                rgba(var(--color-accent-rgb), var(--raw-opacity-muted));
+                rgba(var(--color-accent-rgb), var(--opacity-border));
         }
 
         &.show-line-numbers {
@@ -226,7 +226,7 @@
                     font-variant-numeric: tabular-nums;
                     color: rgba(
                         var(--color-text-rgb),
-                        var(--raw-opacity-muted)
+                        var(--opacity-border)
                     );
                     user-select: none;
                     -webkit-user-select: none;
@@ -242,8 +242,8 @@
         font-family: var(--font--mono), monospace;
         font-size: 0.9em;
         padding: 0.15em 0.4em;
-        border-radius: var(--raw-radius-xs);
-        background: rgba(var(--color-text-rgb), var(--raw-opacity-subtle));
+        border-radius: var(--radius-tag);
+        background: rgba(var(--color-text-rgb), var(--opacity-tint));
     }
 
     /* =========================================================================
@@ -252,7 +252,7 @@
     & hr {
         border: none;
         height: 1px;
-        background: rgba(var(--color-text-rgb), var(--raw-opacity-light));
+        background: rgba(var(--color-text-rgb), var(--opacity-wash));
         margin: var(--space-section) 0;
     }
 }

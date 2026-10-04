@@ -34,11 +34,11 @@
         --callout-accent-rgb: var(--color-text-rgb);
 
         display: flex;
-        gap: var(--raw-space-12);
-        margin: var(--raw-space-24) 0;
-        padding: var(--raw-space-16);
+        gap: var(--space-tight);
+        margin: var(--space-block) 0;
+        padding: var(--space-stack);
         border-radius: var(--radius-callout);
-        background: rgba(var(--callout-accent-rgb), var(--raw-opacity-subtle));
+        background: rgba(var(--callout-accent-rgb), var(--opacity-tint));
         border-left: 3px solid var(--callout-accent);
 
         &.info {
@@ -77,8 +77,8 @@
     .content {
         flex: 1;
         min-width: 0;
-        font-size: var(--raw-text-sm);
-        line-height: var(--raw-leading-relaxed);
+        font-size: var(--text-small);
+        line-height: var(--text-body-leading);
         color: var(--color-text);
 
         :global(p) {
@@ -86,7 +86,7 @@
         }
 
         :global(p + p) {
-            margin-top: var(--raw-space-8);
+            margin-top: var(--space-inline);
         }
 
         :global(a) {
@@ -102,8 +102,8 @@
         :global(code) {
             font-size: 0.9em;
             padding: 0.15em 0.4em;
-            border-radius: var(--raw-radius-xs);
-            background: rgba(var(--color-text-rgb), var(--raw-opacity-subtle));
+            border-radius: var(--radius-tag);
+            background: rgba(var(--color-text-rgb), var(--opacity-tint));
         }
     }
 </style>
