@@ -122,7 +122,10 @@
     });
 
     function handleMouseMove(event: MouseEvent) {
-        if (isStaticMode || isScrollMode || animationFrame) return;
+        if (isStaticMode || isScrollMode) return;
+        // A pointer already over the card when the page hydrated never fires mouseenter
+        if (!isHovering) handleMouseEnter();
+        if (animationFrame) return;
 
         const card = event.currentTarget as HTMLElement;
         const rect = card.getBoundingClientRect();

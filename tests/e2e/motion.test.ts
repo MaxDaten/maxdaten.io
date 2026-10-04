@@ -47,11 +47,30 @@ test.describe('holo card follows the input, not the width', () => {
         test.use({ viewport: { width: 800, height: 900 } });
 
         test('keeps the hover tilt', async ({ page }) => {
-            await page.goto('/en');
+            // Wait for hydration: a hover before the handlers attach is lost.
+            await page.goto('/en', { waitUntil: 'networkidle' });
             const card = page.locator('.holo-card');
             await expect(card).not.toHaveClass(/scroll-mode/);
             await page.locator('.holo-scene').hover();
             await expect(card).toHaveClass(/hovering/);
+        });
+
+        test('tilts for a pointer that was already resting on the card', async ({
+            page,
+        }) => {
+            await page.goto('/en', { waitUntil: 'networkidle' });
+            // The pointer arrived before hydration: no mouseenter, only moves.
+            await page.locator('.holo-scene').evaluate((scene) => {
+                const box = scene.getBoundingClientRect();
+                scene.dispatchEvent(
+                    new MouseEvent('mousemove', {
+                        bubbles: true,
+                        clientX: box.x + box.width / 2,
+                        clientY: box.y + box.height / 2,
+                    })
+                );
+            });
+            await expect(page.locator('.holo-card')).toHaveClass(/hovering/);
         });
     });
 });
