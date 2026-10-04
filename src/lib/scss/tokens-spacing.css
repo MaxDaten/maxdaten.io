@@ -22,12 +22,15 @@
     --raw-space-64: 64px;
     --raw-space-80: 80px;
 
-    /* Semantic spacing */
+    /* Semantic spacing (names follow DESIGN.md's spacing scale) */
+    --space-hairline: var(--raw-space-4);
     --space-inline: var(--raw-space-8);
+    --space-tight: var(--raw-space-12);
     --space-stack: var(--raw-space-16);
     --space-block: var(--raw-space-24);
     --space-group: var(--raw-space-32);
     --space-section: var(--raw-space-48);
+    --space-major: var(--raw-space-64);
     --space-page: var(--raw-space-80);
 
     /* Component-specific spacing */

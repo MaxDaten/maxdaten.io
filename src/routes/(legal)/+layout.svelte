@@ -12,14 +12,14 @@
     .legal {
         width: min(680px, 100%);
         margin: 0 auto;
-        padding: var(--space-section) var(--raw-space-16) var(--space-page);
+        padding: var(--space-section) var(--space-stack) var(--space-page);
         display: flex;
         flex-direction: column;
-        gap: var(--raw-space-16);
+        gap: var(--space-stack);
 
         @media (min-width: 768px) {
-            padding-left: var(--raw-space-24);
-            padding-right: var(--raw-space-24);
+            padding-left: var(--space-block);
+            padding-right: var(--space-block);
         }
 
         :global(h1) {
@@ -33,23 +33,23 @@
         :global(h2) {
             font-size: var(--text-heading-3);
             font-weight: var(--font-weight-semibold);
-            margin-top: var(--raw-space-24);
+            margin-top: var(--space-block);
         }
 
         :global(h3) {
             font-size: var(--text-heading-4);
             font-weight: var(--font-weight-semibold);
-            margin-top: var(--raw-space-16);
+            margin-top: var(--space-stack);
         }
 
         :global(ul) {
-            padding-left: var(--raw-space-24);
+            padding-left: var(--space-block);
             list-style: disc;
         }
 
         :global(.stand) {
             color: var(--color-text-muted);
-            font-size: var(--raw-text-sm);
+            font-size: var(--text-small);
         }
     }
 </style>

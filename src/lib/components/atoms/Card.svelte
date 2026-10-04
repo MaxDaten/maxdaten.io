@@ -84,14 +84,14 @@
 
                 &:hover {
                     box-shadow: 0 0 0 1px
-                        rgba(var(--color-accent-rgb), var(--raw-opacity-strong));
+                        rgba(var(--color-accent-rgb), var(--opacity-text-muted));
                 }
             }
 
             .body {
                 display: flex;
                 flex-direction: column;
-                gap: var(--raw-space-12);
+                gap: var(--space-tight);
                 padding: var(--space-card-padding);
                 flex-grow: 1;
                 justify-content: space-between;

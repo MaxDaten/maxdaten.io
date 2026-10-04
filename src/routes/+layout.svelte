@@ -63,10 +63,10 @@
 <style>
     .skip-link {
         position: absolute;
-        top: var(--raw-space-8);
-        left: var(--raw-space-8);
+        top: var(--space-inline);
+        left: var(--space-inline);
         z-index: 100;
-        padding: var(--raw-space-8) var(--raw-space-12);
+        padding: var(--space-inline) var(--space-tight);
         border-radius: var(--radius-button);
         background: var(--color-accent);
         color: var(--color-surface);

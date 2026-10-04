@@ -104,12 +104,12 @@
 <style>
     .code-block {
         figure {
-            margin: var(--raw-space-24) 0;
+            margin: var(--space-block) 0;
             position: relative;
-            border-radius: var(--raw-radius-sm);
+            border-radius: var(--radius-block);
             overflow: hidden;
             border: 0.5px solid
-                rgba(var(--color-text-rgb), var(--raw-opacity-subtle));
+                rgba(var(--color-text-rgb), var(--opacity-tint));
 
             figcaption + :global(pre.shiki) {
                 border-top-left-radius: 0;
@@ -121,7 +121,7 @@
             :global(pre.shiki .line) {
                 display: inline-block;
                 position: relative;
-                padding-left: var(--raw-space-12);
+                padding-left: var(--space-tight);
                 min-height: 1.1em;
             }
         }
@@ -142,7 +142,7 @@
                 left: -3em;
                 width: 2.5em;
                 text-align: right;
-                color: rgba(var(--color-text-rgb), var(--raw-opacity-muted));
+                color: rgba(var(--color-text-rgb), var(--opacity-border));
                 user-select: none;
                 -webkit-user-select: none;
             }
@@ -150,17 +150,17 @@
 
         figure .copy-button {
             position: absolute;
-            bottom: var(--raw-space-12);
-            right: var(--raw-space-12);
+            bottom: var(--space-tight);
+            right: var(--space-tight);
             z-index: 2;
-            opacity: var(--raw-opacity-medium);
+            opacity: var(--opacity-half);
             transition: opacity 150ms ease-out;
-            background: rgba(var(--color-text-rgb), var(--raw-opacity-subtle));
+            background: rgba(var(--color-text-rgb), var(--opacity-tint));
             border: none;
-            padding: var(--raw-space-12);
-            border-radius: var(--raw-radius-sm);
+            padding: var(--space-tight);
+            border-radius: var(--radius-block);
             cursor: pointer;
-            color: rgba(var(--color-text-rgb), var(--raw-opacity-strong));
+            color: rgba(var(--color-text-rgb), var(--opacity-text-muted));
             display: flex;
             align-items: center;
             justify-content: center;
@@ -169,7 +169,7 @@
                 opacity: 0.9;
                 background: rgba(
                     var(--color-text-rgb),
-                    var(--raw-opacity-subtle)
+                    var(--opacity-tint)
                 );
             }
 
@@ -195,24 +195,24 @@
 
         figcaption.filename-container {
             width: 100%;
-            background-color: var(--raw-color-gray-850);
+            background-color: var(--color-code-surface);
             border-bottom: 0.5px solid rgba(var(--color-text-rgb), 0.06);
-            border-radius: var(--raw-radius-sm) var(--raw-radius-sm) 0 0;
+            border-radius: var(--radius-block) var(--radius-block) 0 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: var(--raw-space-12) var(--raw-space-16);
+            padding: var(--space-tight) var(--space-stack);
             margin: 0;
 
             .filename-content {
                 display: flex;
                 align-items: center;
-                gap: var(--raw-space-8);
+                gap: var(--space-inline);
             }
 
             .filename {
                 font-family: var(--font--mono), monospace;
-                font-size: var(--raw-text-sm);
+                font-size: var(--text-small);
             }
 
             :global(.file-icon) {
@@ -221,7 +221,7 @@
 
             .lang {
                 font-family: var(--font--mono), monospace;
-                font-size: var(--raw-text-xs);
+                font-size: var(--text-caption);
                 text-transform: uppercase;
                 letter-spacing: 0.05em;
                 color: var(--color-text-muted);

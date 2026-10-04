@@ -35,13 +35,22 @@
     --font-weight-bold: 700;
 
     /* Semantic typography */
-    --text-body: var(--raw-text-base);
+    /* Reading text; DESIGN.md sets body copy at 18px. */
+    --text-body: var(--raw-text-md);
     --text-body-leading: var(--raw-leading-relaxed);
+    /* Interface text: navigation, legal links, card copy. */
+    --text-ui: var(--raw-text-base);
     --text-small: var(--raw-text-sm);
     --text-caption: var(--raw-text-xs);
+    /* Lead paragraphs and large buttons. */
+    --text-large: var(--raw-text-lg);
+    /* The hero and profile headline. */
+    --text-display: var(--raw-text-4xl);
     --text-heading-1: var(--raw-text-3xl);
     --text-heading-2: var(--raw-text-2xl);
     --text-heading-3: var(--raw-text-xl);
     --text-heading-4: var(--raw-text-lg);
     --text-heading-leading: var(--raw-leading-tight);
+    --leading-title: var(--raw-leading-snug);
+    --leading-ui: var(--raw-leading-normal);
 }

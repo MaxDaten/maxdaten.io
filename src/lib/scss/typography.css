@@ -66,5 +66,5 @@ h5 {
 h3,
 h4,
 h5 {
-    line-height: var(--raw-leading-snug);
+    line-height: var(--leading-title);
 }

@@ -169,16 +169,35 @@
     --color-callout-accent-success: var(--color-success);
 
     --color-code-bg: var(--raw-color-gray-700);
+    /* Code block and caption surface. */
+    --color-code-surface: var(--raw-color-gray-850);
+
+    /* =========================================================================
+     * Semantic Opacity
+     * =========================================================================
+     * Alpha steps used with rgba(var(--color-*-rgb), …). Named after their role in DESIGN.md. */
+    --opacity-hairline: var(--raw-opacity-faint); /* 5% dividers, inner highlights */
+    --opacity-tint: var(--raw-opacity-subtle); /* 8% surface tints, secondary chips */
+    --opacity-wash: var(--raw-opacity-light); /* 10% accent tints */
+    --opacity-border: var(--raw-opacity-muted); /* 30% hairline borders, wells */
+    --opacity-half: var(--raw-opacity-medium);
+    --opacity-text-muted: var(--raw-opacity-strong); /* 70% secondary copy */
+    --opacity-heavy: var(--raw-opacity-heavy);
 
     /* =========================================================================
      * Semantic Radius
      * ========================================================================= */
     --radius-card: var(--raw-radius-lg);
-    --radius-button: var(--raw-radius-sm);
+    /* Near-pill buttons (DESIGN.md: 24px). */
+    --radius-button: var(--raw-radius-xl);
     --radius-tag: var(--raw-radius-xs);
     --radius-input: var(--raw-radius-sm);
     --radius-avatar: var(--raw-radius-xs);
     --radius-callout: var(--raw-radius-sm);
+    /* Code blocks, images, inner panels. */
+    --radius-block: var(--raw-radius-sm);
+    /* Fully round: hero badge, ticker dots. */
+    --radius-full: var(--raw-radius-full);
 
     /* =========================================================================
      * Syntax Highlighting Colors

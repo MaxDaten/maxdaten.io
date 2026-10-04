@@ -75,10 +75,10 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: var(--raw-space-4);
+        gap: var(--space-hairline);
 
         border: none;
-        border-radius: var(--raw-radius-xl);
+        border-radius: var(--radius-button);
         font-weight: 700;
 
         .icon {
@@ -114,17 +114,17 @@
 
             &:hover {
                 box-shadow: 0 0 1px 7px
-                    rgba(var(--main-color), var(--raw-opacity-muted));
+                    rgba(var(--main-color), var(--opacity-border));
             }
         }
 
         &.style--understated {
-            background-color: rgba(var(--main-color), var(--raw-opacity-light));
+            background-color: rgba(var(--main-color), var(--opacity-wash));
             color: rgb(var(--main-color));
 
             &:hover {
                 box-shadow: 0 0 1px 7px
-                    rgba(var(--main-color), var(--raw-opacity-muted));
+                    rgba(var(--main-color), var(--opacity-border));
             }
         }
 
@@ -135,7 +135,7 @@
             &:hover {
                 background-color: rgba(
                     var(--main-color),
-                    var(--raw-opacity-light)
+                    var(--opacity-wash)
                 );
             }
         }
@@ -143,23 +143,23 @@
         &.style--ghost {
             background-color: transparent;
             color: rgb(var(--main-color));
-            border: 1px solid rgba(var(--main-color), var(--raw-opacity-muted));
+            border: 1px solid rgba(var(--main-color), var(--opacity-border));
 
             &:hover {
                 border-color: rgba(
                     var(--main-color),
-                    var(--raw-opacity-medium)
+                    var(--opacity-half)
                 );
                 background-color: rgba(
                     var(--main-color),
-                    var(--raw-opacity-subtle)
+                    var(--opacity-tint)
                 );
             }
         }
 
         &.size--small {
-            padding: var(--raw-space-4) var(--raw-space-12);
-            font-size: var(--raw-text-xs);
+            padding: var(--space-hairline) var(--space-tight);
+            font-size: var(--text-caption);
 
             .icon {
                 width: 20px;
@@ -168,13 +168,13 @@
         }
 
         &.size--medium {
-            padding: var(--raw-space-12) var(--space-button-x);
-            font-size: var(--raw-text-base);
+            padding: var(--space-tight) var(--space-button-x);
+            font-size: var(--text-ui);
         }
 
         &.size--large {
-            padding: var(--raw-space-16) var(--raw-space-32);
-            font-size: var(--raw-text-lg);
+            padding: var(--space-stack) var(--space-group);
+            font-size: var(--text-large);
 
             .icon {
                 width: 28px;

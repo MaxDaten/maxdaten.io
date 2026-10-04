@@ -3,8 +3,8 @@
 .container {
     /* Inlined from padded-container mixin */
     width: 100%;
-    padding-right: var(--raw-space-16);
-    padding-left: var(--raw-space-16);
+    padding-right: var(--space-stack);
+    padding-left: var(--space-stack);
     margin-right: auto;
     margin-left: auto;
 
@@ -14,13 +14,13 @@
     }
 
     @media (min-width: 768px) {
-        padding-right: var(--raw-space-24);
-        padding-left: var(--raw-space-24);
+        padding-right: var(--space-block);
+        padding-left: var(--space-block);
     }
 
     @media (min-width: 901px) {
-        padding-right: var(--raw-space-32);
-        padding-left: var(--raw-space-32);
+        padding-right: var(--space-group);
+        padding-left: var(--space-group);
     }
 
     @media (min-width: 1201px) {
