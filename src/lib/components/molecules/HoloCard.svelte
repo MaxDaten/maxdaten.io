@@ -39,22 +39,27 @@
 
     let isHovering = $state(false);
     let animationFrame = $state<number | null>(null);
-    const mobileQuery = new MediaQuery('(max-width: 900px)', false);
+    // The input decides the mode, not the width: a touch tablet has no hover to tilt with, and a
+    // narrow desktop window still has a mouse. Server render assumes a mouse.
+    const finePointerQuery = new MediaQuery(
+        '(hover: hover) and (pointer: fine)',
+        true
+    );
 
     // Separate concerns for clearer logic
-    let isMobile = $derived(mobileQuery.current);
+    let hasFinePointer = $derived(finePointerQuery.current);
     let isReducedMotion = $derived(prefersReducedMotion.current);
 
     // Static mode: only when user prefers reduced motion
     let isStaticMode = $derived(isReducedMotion);
 
-    // Scroll mode: mobile without reduced motion preference
-    let isScrollMode = $derived(isMobile && !isReducedMotion);
+    // Scroll mode: touch (no hover) without reduced motion preference
+    let isScrollMode = $derived(!hasFinePointer && !isReducedMotion);
 
     // Reference to the card element for scroll calculations
     let sceneElement = $state<HTMLElement | null>(null);
 
-    // Scroll-based tilt for mobile (when motion allowed)
+    // Scroll-based tilt for touch input (when motion allowed)
     $effect(() => {
         if (!isScrollMode) return;
 
@@ -426,7 +431,7 @@
         --border-angle: -70deg; /* Light from right when tilted left */
     }
 
-    /* --- Static / Mobile Mode --- */
+    /* --- Static Mode (reduced motion) --- */
     .holo-card.static-mode {
         transform: rotateX(0deg) rotateY(-7deg);
         translate: -1.5%; /* Moves card center to compensate for perspective skew */
@@ -444,7 +449,7 @@
         display: none;
     }
 
-    /* --- Scroll Mode (Mobile with motion) --- */
+    /* --- Scroll Mode (touch input with motion) --- */
     .holo-card.scroll-mode {
         /* Translate animates from -1.5% to 0% as user scrolls to max tilt */
         translate: var(--translate-x, -1.5%);

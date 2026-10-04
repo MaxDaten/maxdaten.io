@@ -14,7 +14,6 @@ test.describe('hero sparkles under reduced motion', () => {
 });
 
 test.describe('hero sparkles (WCAG 2.2.2)', () => {
-
     test('stop on their own within five seconds', async ({ page }) => {
         await page.goto('/en');
         await expect(page.locator(sparkles).first()).toBeAttached();
@@ -27,5 +26,32 @@ test.describe('hero sparkles (WCAG 2.2.2)', () => {
         await page.waitForTimeout(5500);
         await page.locator('.ctas a').first().focus();
         await expect(page.locator(sparkles).first()).toBeAttached();
+    });
+});
+
+test.describe('holo card follows the input, not the width', () => {
+    test.describe('touch tablet at desktop width', () => {
+        test.use({
+            viewport: { width: 1280, height: 900 },
+            hasTouch: true,
+            isMobile: true,
+        });
+
+        test('tilts with scroll, not hover', async ({ page }) => {
+            await page.goto('/en');
+            await expect(page.locator('.holo-card')).toHaveClass(/scroll-mode/);
+        });
+    });
+
+    test.describe('narrow desktop window', () => {
+        test.use({ viewport: { width: 800, height: 900 } });
+
+        test('keeps the hover tilt', async ({ page }) => {
+            await page.goto('/en');
+            const card = page.locator('.holo-card');
+            await expect(card).not.toHaveClass(/scroll-mode/);
+            await page.locator('.holo-scene').hover();
+            await expect(card).toHaveClass(/hovering/);
+        });
     });
 });
