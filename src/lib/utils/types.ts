@@ -1,4 +1,3 @@
-import type { Component } from 'svelte';
 import type { PortableTextBlock } from '@portabletext/types';
 import type { SanityImageSource } from '@sanity/image-url';
 
@@ -38,21 +37,6 @@ export type Author = {
         signal?: string;
         website?: string;
     };
-};
-
-export type BlogPost = {
-    tags: string[];
-    keywords: string[];
-    hidden: boolean;
-    slug: string;
-    title: string;
-    date: string;
-    updated: string;
-    excerpt: string;
-    readingTimeMinutes: number | undefined;
-    relatedPosts: BlogPost[];
-    content: Component;
-    authorId?: string;
 };
 
 export type GemEntry = {

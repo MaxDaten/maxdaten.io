@@ -3,7 +3,7 @@
 // Via <svelte:head>
 
 import MeSrc from '#lib/assets/images/authors/jloos.png?enhanced';
-import type { Author, BlogPost } from '#lib/utils/types.js';
+import type { Author } from '#lib/utils/types.js';
 import type {
     BlogPosting,
     BreadcrumbList,
@@ -127,9 +127,20 @@ export function getBaseSchema(
     ];
 }
 
+/** What a BlogPosting needs to know about a post. */
+export type BlogPostingInput = {
+    title: string;
+    date: string;
+    updated: string;
+    excerpt: string;
+    tags: string[];
+    readingTimeMinutes?: number;
+    authorId?: string;
+};
+
 // Simple mapping function for blog posts (not a complex generator)
 export function createBlogPostingSchema(
-    post: BlogPost,
+    post: BlogPostingInput,
     pageUrl: string,
     image: string
 ): WithContext<BlogPosting> {

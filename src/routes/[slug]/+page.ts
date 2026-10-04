@@ -33,16 +33,10 @@ export const load: PageLoad = async ({ data, url }): Promise<PageData> => {
               createBlogPostingSchema(
                   {
                       title: post.title,
-                      slug: post.slug,
                       date: post.date,
                       updated: postModifiedAt(post),
                       excerpt: metaDescription,
                       tags: post.tags?.map((t) => t.name) ?? [],
-                      keywords: post.keywords ?? [],
-                      hidden: post.hidden ?? false,
-                      readingTimeMinutes: undefined,
-                      relatedPosts: [],
-                      content: undefined as unknown as never,
                       authorId: 'jloos', // TODO: map from Sanity author
                   },
                   canonicalUrl(url.pathname),
