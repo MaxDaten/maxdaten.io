@@ -6,12 +6,21 @@
             top: string;
             left: string;
         };
+        /** Called once the sparkle's grow-and-shrink animation has finished. */
+        onend?: () => void;
     }
 
-    let { color, size, style }: Props = $props();
+    let { color, size, style, onend }: Props = $props();
 </script>
 
-<div class="wrapper" style="top: {style.top}; left: {style.left};">
+<div
+    class="sparkle"
+    aria-hidden="true"
+    style="top: {style.top}; left: {style.left};"
+    onanimationend={(event) => {
+        if (event.target === event.currentTarget) onend?.();
+    }}
+>
     <svg
         width={size}
         height={size}
@@ -26,7 +35,7 @@
 </div>
 
 <style>
-    .wrapper {
+    .sparkle {
         position: absolute;
         pointer-events: none;
         display: flex;
