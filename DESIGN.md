@@ -17,7 +17,6 @@ colors:
     ice-white: '#d9f9fd'
     lead-grey: '#d1d5db'
     readout-grey: '#9ca3af'
-    fine-print-grey: '#6b7280'
     console-well: 'rgba(0, 0, 0, 0.3)'
     hairline: 'rgba(255, 255, 255, 0.05)'
     forge-border: 'rgba(255, 128, 0, 0.3)'
@@ -184,8 +183,8 @@ exist only inside callouts.
 - **Paper White** (`paper-white`): primary text, a barely warm white. **Paper White Muted**
   (`paper-white-muted`) for secondary copy; **Ice White** (`ice-white`) for subtle text.
 - **Lead Grey** (`lead-grey`): lead paragraphs such as the hero subheadline. **Readout Grey**
-  (`readout-grey`): monospace metadata such as the tech ticker and card stat labels. **Fine Print
-  Grey** (`fine-print-grey`): the trading card's footer line.
+  (`readout-grey`): monospace metadata such as the tech ticker, card stat labels, the trading card's
+  footer line and code line numbers; the quietest text that keeps 4.5:1 on Console Raised.
 - **Console Well** (`console-well`): a 30% black well sunk into a surface, behind the hero badge and
   the card ability box.
 - **Hairline** (`hairline`): 5% white dividers and top highlights inside cards.

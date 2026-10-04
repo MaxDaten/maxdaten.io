@@ -185,7 +185,7 @@
         font-size: var(--text-micro);
         font-weight: 500;
         letter-spacing: 0.05em;
-        color: var(--color-text-faint);
+        color: var(--color-text-dim);
         text-align: center;
         padding-top: var(--space-tight);
         border-top: 1px solid var(--color-hairline);
