@@ -37,6 +37,89 @@ test.describe('colour contrast (WCAG AA)', () => {
     });
 });
 
+/** Contrast of `selector`'s text (or its `pseudo` element's) against its background, composited from
+ * the translucent background colours of its ancestors. axe skips pseudo-element text and gives up
+ * on translucent layers, so these elements need their own check. */
+async function contrastOf(
+    page: import('@playwright/test').Page,
+    selector: string,
+    pseudo: string | null = null
+) {
+    return page
+        .locator(selector)
+        .first()
+        .evaluate((el, pseudo) => {
+            const rgba = (value: string) => {
+                const [r, g, b, a = 1] = value.match(/[\d.]+/g)!.map(Number);
+                return { r, g, b, a };
+            };
+            type Rgba = ReturnType<typeof rgba>;
+            const over = (top: Rgba, bottom: Rgba): Rgba => ({
+                r: top.r * top.a + bottom.r * (1 - top.a),
+                g: top.g * top.a + bottom.g * (1 - top.a),
+                b: top.b * top.a + bottom.b * (1 - top.a),
+                a: 1,
+            });
+            const layers: Rgba[] = [];
+            for (let n: Element | null = el; n; n = n.parentElement) {
+                const bg = rgba(getComputedStyle(n).backgroundColor);
+                if (bg.a > 0) layers.push(bg);
+                if (bg.a === 1) break;
+            }
+            const background = layers.reduceRight(over, {
+                r: 0,
+                g: 0,
+                b: 0,
+                a: 1,
+            });
+            const text = over(
+                rgba(getComputedStyle(el, pseudo).color),
+                background
+            );
+            const luminance = ({ r, g, b }: Rgba) => {
+                const [R, G, B] = [r, g, b].map((c) => {
+                    c /= 255;
+                    return c <= 0.03928
+                        ? c / 12.92
+                        : ((c + 0.055) / 1.055) ** 2.4;
+                });
+                return 0.2126 * R + 0.7152 * G + 0.0722 * B;
+            };
+            const [hi, lo] = [luminance(text), luminance(background)].sort(
+                (a, b) => b - a
+            );
+            return (hi + 0.05) / (lo + 0.05);
+        }, pseudo);
+}
+
+test.describe('colour contrast axe cannot check (WCAG AA)', () => {
+    test('profile card footer', async ({ page }) => {
+        await page.goto('/en');
+        expect(await contrastOf(page, '.card-footer')).toBeGreaterThanOrEqual(
+            4.5
+        );
+    });
+
+    test('code line numbers', async ({ page }) => {
+        await page.goto('/blog');
+        const posts = await page
+            .locator('a.blog-post-card')
+            .evaluateAll((links) => links.map((a) => a.getAttribute('href')!));
+        let checked = 0;
+        for (const post of posts) {
+            await page.goto(post);
+            const numbered = '.show-line-numbers .line';
+            if ((await page.locator(numbered).count()) === 0) continue;
+            expect(
+                await contrastOf(page, numbered, '::before'),
+                post
+            ).toBeGreaterThanOrEqual(4.5);
+            if (++checked === 2) break;
+        }
+        expect(checked).toBeGreaterThan(0);
+    });
+});
+
 test.describe('keyboard and labelling', () => {
     test('focusable elements are not hidden and names match visible labels', async ({
         page,

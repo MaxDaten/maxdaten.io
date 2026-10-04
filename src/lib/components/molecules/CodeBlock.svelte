@@ -142,7 +142,7 @@
                 left: -3em;
                 width: 2.5em;
                 text-align: right;
-                color: rgba(var(--color-text-rgb), var(--opacity-border));
+                color: var(--color-code-line-number);
                 user-select: none;
                 -webkit-user-select: none;
             }

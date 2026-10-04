@@ -224,10 +224,7 @@
                     width: 2em;
                     text-align: right;
                     font-variant-numeric: tabular-nums;
-                    color: rgba(
-                        var(--color-text-rgb),
-                        var(--opacity-border)
-                    );
+                    color: var(--color-code-line-number);
                     user-select: none;
                     -webkit-user-select: none;
                 }

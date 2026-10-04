@@ -128,10 +128,9 @@
     );
     /* Lead paragraphs (hero subheadline). */
     --color-text-lead: var(--raw-color-gray-300);
-    /* Metadata readouts: tech ticker, card stat labels. */
+    /* Metadata readouts: tech ticker, card stat labels, card footer. The quietest text that keeps
+     * 4.5:1 on Console Raised; gray-500 drops to 2.6:1 there. */
     --color-text-dim: var(--raw-color-gray-400);
-    /* Fine print (card footer). */
-    --color-text-faint: var(--raw-color-gray-500);
 
     --color-surface: var(--raw-color-gray-900);
     --color-surface-rgb: var(--raw-color-gray-900-rgb);
@@ -173,6 +172,8 @@
     --color-code-bg: var(--raw-color-gray-700);
     /* Code block and caption surface. */
     --color-code-surface: var(--raw-color-gray-850);
+    /* Code line numbers: quiet, but still 4.5:1 on the code surfaces. */
+    --color-code-line-number: var(--color-text-dim);
 
     /* =========================================================================
      * Semantic Opacity
