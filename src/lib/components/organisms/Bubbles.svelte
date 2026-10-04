@@ -36,7 +36,7 @@
     }
 
     .purple {
-        background: #6b21a8;
+        background: var(--color-ambient-violet);
         width: 500px;
         height: 500px;
         top: 20%;
@@ -45,7 +45,7 @@
     }
 
     .blue {
-        background: #1e3a8a;
+        background: var(--color-ambient-blue);
         width: 300px;
         height: 300px;
         bottom: -50px;

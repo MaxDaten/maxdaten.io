@@ -131,7 +131,7 @@
     .stat-label {
         font-size: 10px;
         letter-spacing: 0.05em;
-        color: #9ca3af;
+        color: var(--color-text-dim);
         text-transform: uppercase;
     }
 
@@ -142,11 +142,11 @@
 
     .ability-box {
         margin-top: auto;
-        background: rgba(0, 0, 0, 0.3);
+        background: var(--color-well);
         border-radius: 4px;
         padding: 10px;
         border-left: 3px solid var(--color-accent);
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        box-shadow: inset 0 1px 0 var(--color-hairline);
         display: flex;
         flex-direction: column;
         gap: var(--raw-space-4);
@@ -176,7 +176,7 @@
 
     .ability-description {
         font-size: var(--raw-text-xs);
-        color: #9ca3af;
+        color: var(--color-text-dim);
         line-height: var(--raw-leading-relaxed);
         margin: 4px 0 0 0;
     }
@@ -185,9 +185,9 @@
         font-size: 10px;
         font-weight: 500;
         letter-spacing: 0.05em;
-        color: #6b7280;
+        color: var(--color-text-faint);
         text-align: center;
         padding-top: 12px;
-        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        border-top: 1px solid var(--color-hairline);
     }
 </style>

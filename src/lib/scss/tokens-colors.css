@@ -38,6 +38,15 @@
     --raw-color-gray-700: #2b3131;
     --raw-color-gray-600: #4a4a5a;
 
+    /* Cool neutral grays for secondary text */
+    --raw-color-gray-300: #d1d5db;
+    --raw-color-gray-400: #9ca3af;
+    --raw-color-gray-500: #6b7280;
+
+    /* Ambient background hues (never text or surfaces) */
+    --raw-color-purple-800: #6b21a8;
+    --raw-color-blue-900: #1e3a8a;
+
     /* RGB values for grays */
     --raw-color-gray-900-rgb: 28, 30, 38;
     --raw-color-gray-850-rgb: 20, 21, 25;
@@ -47,6 +56,8 @@
     --raw-color-white: #fffcfc;
     --raw-color-white-muted: #d9f9fd;
     --raw-color-white-rgb: 255, 252, 252;
+    --raw-color-pure-white-rgb: 255, 255, 255;
+    --raw-color-black-rgb: 0, 0, 0;
 
     /* Status colors */
     --raw-color-success: #00c48f;
@@ -72,6 +83,7 @@
     /* =========================================================================
      * Primitive Opacity
      * ========================================================================= */
+    --raw-opacity-faint: 0.05;
     --raw-opacity-subtle: 0.08;
     --raw-opacity-light: 0.1;
     --raw-opacity-muted: 0.3;
@@ -93,6 +105,15 @@
     --color-bar-start: rgba(var(--color-accent-shade-rgb), 0.3);
     --color-bar-end: rgba(var(--color-accent-shade-rgb), 0.1);
     --color-sparkle: var(--raw-color-yellow-400);
+    /* Hero headline accent: forge orange warming to the lighter text orange. */
+    --color-accent-gradient: linear-gradient(
+        90deg,
+        var(--raw-color-orange-500) 0%,
+        var(--raw-color-orange-400) 100%
+    );
+    /* Drifting background blobs (Bubbles), next to the accent. */
+    --color-ambient-violet: var(--raw-color-purple-800);
+    --color-ambient-blue: var(--raw-color-blue-900);
 
     --color-text: var(--raw-color-white);
     --color-text-rgb: var(--raw-color-white-rgb);
@@ -103,11 +124,24 @@
         var(--raw-color-white-rgb),
         var(--raw-opacity-strong)
     );
+    /* Lead paragraphs (hero subheadline). */
+    --color-text-lead: var(--raw-color-gray-300);
+    /* Metadata readouts: tech ticker, card stat labels. */
+    --color-text-dim: var(--raw-color-gray-400);
+    /* Fine print (card footer). */
+    --color-text-faint: var(--raw-color-gray-500);
 
     --color-surface: var(--raw-color-gray-900);
     --color-surface-rgb: var(--raw-color-gray-900-rgb);
     --color-surface-elevated: var(--raw-color-gray-800);
     --color-surface-dark: var(--raw-color-gray-850);
+    /* Translucent black well behind badges and the card ability box. */
+    --color-well: rgba(var(--raw-color-black-rgb), var(--raw-opacity-muted));
+    /* Faint white hairline: dividers and top highlights inside cards. */
+    --color-hairline: rgba(
+        var(--raw-color-pure-white-rgb),
+        var(--raw-opacity-faint)
+    );
 
     --color-border: rgba(
         var(--raw-color-orange-500-rgb),

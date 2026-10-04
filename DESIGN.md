@@ -15,7 +15,14 @@ colors:
     paper-white: '#fffcfc'
     paper-white-muted: 'rgba(255, 252, 252, 0.7)'
     ice-white: '#d9f9fd'
+    lead-grey: '#d1d5db'
+    readout-grey: '#9ca3af'
+    fine-print-grey: '#6b7280'
+    console-well: 'rgba(0, 0, 0, 0.3)'
+    hairline: 'rgba(255, 255, 255, 0.05)'
     forge-border: 'rgba(255, 128, 0, 0.3)'
+    ambient-violet: '#6b21a8'
+    ambient-blue: '#1e3a8a'
     status-success: '#00c48f'
     status-warning: '#ffca39'
     status-error: '#ff8082'
@@ -92,7 +99,7 @@ components:
         rounded: '{rounded.tag}'
         padding: '4px 12px'
     badge:
-        backgroundColor: 'rgba(0, 0, 0, 0.3)'
+        backgroundColor: '{colors.console-well}'
         textColor: '{colors.forge-orange}'
         typography: '{typography.label}'
         rounded: '{rounded.full}'
@@ -164,6 +171,9 @@ exist only inside callouts.
 - **Spark Yellow** (`spark-yellow`): sparkle glints only. Never text, never surfaces.
 - **Status** (`status-success`, `status-warning`, `status-error`, `status-info`): callouts only, as
   a 3px left rule over a light tint of the same hue.
+- **Ambient Violet** (`ambient-violet`) and **Ambient Blue** (`ambient-blue`): the two cool blobs
+  drifting behind the page beside an orange one, always heavily blurred. Never text, never surfaces,
+  never edges.
 
 ### Neutral
 
@@ -173,12 +183,19 @@ exist only inside callouts.
 - **Code Slate** (`code-slate`): code backgrounds, a faintly green-grey slate.
 - **Paper White** (`paper-white`): primary text, a barely warm white. **Paper White Muted**
   (`paper-white-muted`) for secondary copy; **Ice White** (`ice-white`) for subtle text.
+- **Lead Grey** (`lead-grey`): lead paragraphs such as the hero subheadline. **Readout Grey**
+  (`readout-grey`): monospace metadata such as the tech ticker and card stat labels. **Fine Print
+  Grey** (`fine-print-grey`): the trading card's footer line.
+- **Console Well** (`console-well`): a 30% black well sunk into a surface, behind the hero badge and
+  the card ability box.
+- **Hairline** (`hairline`): 5% white dividers and top highlights inside cards.
 - **Forge Border** (`forge-border`): 30% orange hairlines, the default border.
 
 ### Named Rules
 
 **The One Forge Rule.** Forge Orange is the only accent. No second brand hue competes with it;
-status colors live inside callouts and nowhere else.
+status colors live inside callouts and nowhere else, and the ambient hues exist only as blurred
+light behind the page.
 
 **The Small-Text Rule.** Orange text below 18px on an orange-tinted surface uses Forge Orange Text,
 not Forge Orange.

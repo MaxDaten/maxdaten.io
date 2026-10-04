@@ -111,7 +111,7 @@
             rgba(var(--color-accent-rgb), var(--raw-opacity-muted));
         border-radius: var(--raw-radius-full);
         color: var(--color-accent);
-        background: rgba(0, 0, 0, 0.3);
+        background: var(--color-well);
         width: fit-content;
     }
 
@@ -128,7 +128,7 @@
         }
 
         .accent {
-            background: linear-gradient(90deg, #ff8000 0%, #ff9933 100%);
+            background: var(--color-accent-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -138,7 +138,7 @@
     .subheadline {
         font-size: var(--raw-text-lg);
         line-height: var(--raw-leading-relaxed);
-        color: #d1d5db;
+        color: var(--color-text-lead);
         margin: 0;
         max-width: 540px;
     }
@@ -160,7 +160,7 @@
         gap: var(--raw-space-12);
         font-family: var(--font--mono), monospace;
         font-size: 13px;
-        color: #9ca3af;
+        color: var(--color-text-dim);
         margin-top: var(--raw-space-24);
 
         @media (max-width: 900px) {
