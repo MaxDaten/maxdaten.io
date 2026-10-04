@@ -454,6 +454,7 @@
         );
         --node-center: calc(var(--node-top) + var(--node) / 2);
         --trunk-color: rgba(var(--color-accent-rgb), var(--opacity-border));
+        --trunk-top: 0px;
 
         grid-area: log;
         align-self: center;
@@ -472,15 +473,18 @@
             &::before {
                 content: '';
                 position: absolute;
-                top: 0;
+                top: var(--trunk-top);
                 bottom: 0;
                 left: calc(var(--trunk-x) - 1px);
                 width: 2px;
                 background: var(--trunk-color);
             }
 
+            &:first-child {
+                --trunk-top: calc(-1 * var(--space-block));
+            }
+
             &:first-child::before {
-                top: calc(-1 * var(--space-block));
                 background: linear-gradient(
                     to bottom,
                     transparent,
@@ -568,7 +572,7 @@
 
     /* Motion: the confetti floats on its own, slow and out of step, further the nearer it sits.
      * Scroll scrubs the log against a scan line 60% down the viewport: the trunk's tip follows
-     * it, each small commit pops in as the tip reaches it, and each release lands with a flash of
+     * it, blazing with a glowing trail, each small commit pops in as the tip reaches it, and each release lands with a flash of
      * the Halo. Without scroll timelines the log rests drawn; with reduced motion everything
      * rests. */
     @media (prefers-reduced-motion: no-preference) {
@@ -590,6 +594,31 @@
                 &::before {
                     transform-origin: top;
                     animation: trunk linear both;
+                    animation-timeline: --release;
+                    animation-range: entry-crossing 0% entry-crossing 100%;
+                }
+
+                /* The blaze: a white-hot head on the tip with a glowing trail behind it, on the
+                 * same timeline and range as the trunk so it rides exactly on the tip. It flares
+                 * up after each release and burns out into the next. */
+                &::after {
+                    content: '';
+                    position: absolute;
+                    left: calc(var(--trunk-x) - 1px);
+                    width: 2px;
+                    height: var(--space-major);
+                    translate: 0 -100%;
+                    border-radius: var(--radius-full);
+                    background: linear-gradient(
+                        to bottom,
+                        transparent,
+                        var(--color-accent) 75%,
+                        var(--color-sparkle)
+                    );
+                    filter: drop-shadow(0 0 3px var(--color-accent))
+                        drop-shadow(0 0 3px var(--color-accent));
+                    pointer-events: none;
+                    animation: blaze linear both;
                     animation-timeline: --release;
                     animation-range: entry-crossing 0% entry-crossing 100%;
                 }
@@ -618,6 +647,21 @@
     @keyframes trunk {
         from {
             transform: scaleY(0);
+        }
+    }
+
+    @keyframes blaze {
+        0% {
+            top: var(--trunk-top);
+            opacity: 0;
+        }
+        8%,
+        88% {
+            opacity: 1;
+        }
+        100% {
+            top: 100%;
+            opacity: 0;
         }
     }
 
