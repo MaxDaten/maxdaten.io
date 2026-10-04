@@ -29,6 +29,12 @@ export const postBySlugQuery = defineQuery(`
     hidden,
     keywords,
     outroText,
+    seo {
+      metaTitle,
+      metaDescription,
+      noIndex,
+      ogImage
+    },
     author-> {
       "id": slug.current,
       name,
@@ -84,12 +90,23 @@ export const allPostsQuery = defineQuery(`
 `);
 
 /**
- * GROQ query for fetching all posts for RSS feed.
- * Includes full body for HTML rendering.
+ * GROQ query for the sitemap: listed posts that editors haven't marked "No Index".
+ */
+export const sitemapPostsQuery = defineQuery(`
+  *[_type == "post" && !hidden && seo.noIndex != true] | order(date desc) {
+    "slug": slug.current,
+    lastModified,
+    date
+  }
+`);
+
+/**
+ * GROQ query for fetching all posts for RSS feed (and llms.txt).
+ * Includes full body for HTML rendering. Leaves out hidden and "No Index" posts.
  * Sorted by date descending.
  */
 export const rssPostsQuery = defineQuery(`
-  *[_type == "post" && !hidden] | order(date desc) {
+  *[_type == "post" && !hidden && seo.noIndex != true] | order(date desc) {
     _id,
     title,
     "slug": slug.current,

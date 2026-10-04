@@ -1,6 +1,6 @@
 import * as sitemap from 'super-sitemap/sveltekit';
 import { client } from '#lib/sanity/client.js';
-import { allPostsQuery } from '#lib/sanity/queries.js';
+import { sitemapPostsQuery } from '#lib/sanity/queries.js';
 import { canonicalUrl } from '#lib/i18n/index.js';
 import { getAuthorSlugs } from '#lib/sanity/author.js';
 
@@ -11,7 +11,7 @@ const translatedPaths = new Set(['/']);
 
 export async function GET({ url }) {
     // Get all blog posts from Sanity with lastmod data for parameterized routes
-    const sanityPosts = await client.fetch(allPostsQuery);
+    const sanityPosts = await client.fetch(sitemapPostsQuery);
 
     const blogPostParams = sanityPosts.map(
         (post: { slug: string; lastModified?: string; date: string }) => ({
