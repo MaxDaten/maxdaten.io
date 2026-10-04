@@ -8,6 +8,8 @@ import { canonicalUrl, localeDomains } from '#lib/i18n/index.js';
 import { createBreadcrumbSchema } from '#lib/data/meta.js';
 import { urlFor } from '#lib/sanity/image.js';
 import { postModifiedAt } from '#lib/sanity/post-dates.js';
+import { SITE_AUTHOR } from '#lib/sanity/site-author.js';
+import { calculateReadingTime, countWords } from '#lib/sanity/reading-time.js';
 
 type PageData = PostData & {
     pageMetaTags: MetaTagsProps;
@@ -27,25 +29,37 @@ export const load: PageLoad = async ({ data, url }): Promise<PageData> => {
     // Hidden posts are unlisted, not private: reachable by link, but kept out of search.
     const noIndex = (post.hidden ?? false) || (seo.noIndex ?? false);
 
+    const pageUrl = canonicalUrl(url.pathname);
+    const authorId = post.author?.id ?? SITE_AUTHOR;
+    const publishedTime = post.date;
+    const modifiedTime = postModifiedAt(post);
+    const tags = post.tags?.map((t) => t.name) ?? [];
+
     // Build schema with Sanity post data
     const pageSchema = post.author
         ? [
               createBlogPostingSchema(
                   {
                       title: post.title,
-                      date: post.date,
-                      updated: postModifiedAt(post),
+                      date: publishedTime,
+                      updated: modifiedTime,
                       excerpt: metaDescription,
-                      tags: post.tags?.map((t) => t.name) ?? [],
-                      authorId: 'jloos', // TODO: map from Sanity author
+                      tags,
+                      // A social-card-sized image, not the full-resolution upload.
+                      image:
+                          post.coverImage?.url && !seo.ogImage
+                              ? urlFor(post.coverImage).width(1200).url()
+                              : ogImageUrl,
+                      wordCount: countWords(post.body),
+                      readingTimeMinutes: calculateReadingTime(post.body),
+                      authorId,
                   },
-                  canonicalUrl(url.pathname),
-                  post.coverImage?.url ?? ogImageUrl
+                  pageUrl
               ),
               createBreadcrumbSchema([
                   ['Home', canonicalUrl('/en')],
                   ['Blog', canonicalUrl('/blog')],
-                  [post.title, canonicalUrl(url.pathname)],
+                  [post.title, pageUrl],
               ]),
           ]
         : [];
@@ -53,13 +67,19 @@ export const load: PageLoad = async ({ data, url }): Promise<PageData> => {
     const pageMetaTags = Object.freeze({
         title: metaTitle,
         description: metaDescription,
-        canonical: canonicalUrl(url.pathname),
+        canonical: pageUrl,
         ...(noIndex && { robots: 'noindex,follow' }),
         openGraph: {
             title: metaTitle,
             description: metaDescription,
-            url: canonicalUrl(url.pathname),
+            url: pageUrl,
             type: 'article',
+            article: {
+                publishedTime,
+                modifiedTime,
+                authors: [canonicalUrl(`/about/${authorId}`)],
+                tags,
+            },
             images: [
                 {
                     url: ogImageUrl,

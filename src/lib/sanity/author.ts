@@ -2,8 +2,7 @@ import { client } from '#lib/sanity/client.js';
 import { authorBySlugQuery, authorSlugsQuery } from '#lib/sanity/queries.js';
 import type { Author } from '#lib/utils/types.js';
 
-/** The site's own author: the JSON-LD Person, the footer links and llms.txt. */
-export const SITE_AUTHOR = 'jloos';
+export { SITE_AUTHOR } from './site-author.js';
 
 type SanityAuthor = {
     slug: string;

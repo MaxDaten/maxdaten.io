@@ -66,8 +66,11 @@ test('the author page is in the sitemap and is the ProfilePage', async ({
     const sitemap = await (await request.get('/sitemap.xml')).text();
     expect(sitemap).toContain(`<loc>${aboutUrl}</loc>`);
 
-    const profile = byType(await jsonLd(page, '/en'), 'ProfilePage');
+    const profile = byType(await jsonLd(page, '/about/jloos'), 'ProfilePage');
     expect(profile?.url).toBe(aboutUrl);
+
+    // Other pages are not profile pages.
+    expect(byType(await jsonLd(page, '/en'), 'ProfilePage')).toBeUndefined();
 });
 
 type Schema = Record<string, unknown> & { '@type'?: string; '@id'?: string };
@@ -256,4 +259,29 @@ test('/gems has its own title, description and item list', async ({ page }) => {
 
     const list = byType(await jsonLd(page, '/gems'), 'ItemList');
     expect(list?.numberOfItems).toBeGreaterThan(0);
+});
+
+test('a post carries article tags, word count and its author', async ({
+    page,
+}) => {
+    const slug = '2026-01-31-ship-your-toolchain-not-just-infrastructure';
+    const graph = await jsonLd(page, `/${slug}`);
+
+    for (const property of [
+        'article:published_time',
+        'article:modified_time',
+    ]) {
+        await expect(
+            page.locator(`meta[property="${property}"]`)
+        ).toHaveAttribute('content', /^\d{4}-\d{2}-\d{2}T/);
+    }
+    await expect(
+        page.locator('meta[property="article:author"]')
+    ).toHaveAttribute('content', aboutUrl);
+
+    const posting = byType(graph, 'BlogPosting');
+    expect(posting?.wordCount).toBeGreaterThan(500);
+    expect(posting?.timeRequired).toMatch(/^PT\d+M$/);
+    expect(posting?.author).toEqual({ '@id': 'https://maxdaten.io/#jloos' });
+    expect(posting?.image).toMatch(/[?&]w=1200/);
 });

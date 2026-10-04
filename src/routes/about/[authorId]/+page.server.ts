@@ -1,5 +1,6 @@
 import { error } from '@sveltejs/kit';
-import { getAuthor, getAuthorSlugs } from '#lib/sanity/author.js';
+import { getAuthor, getAuthorSlugs, SITE_AUTHOR } from '#lib/sanity/author.js';
+import { createProfilePageSchema } from '#lib/data/meta.js';
 import type { PageServerLoad } from './$types';
 
 export const prerender = true;
@@ -24,5 +25,7 @@ export const load: PageServerLoad = async ({ params }) => {
             title: `About ${author.name}`,
             description: author.bio,
         },
+        // The site author is the Person the base JSON-LD describes.
+        pageSchema: authorId === SITE_AUTHOR ? [createProfilePageSchema()] : [],
     };
 };
