@@ -55,7 +55,6 @@
             width: 100%;
             height: auto;
             border-radius: var(--radius-block);
-            box-shadow: var(--image-shadow);
         }
 
         figcaption {
