@@ -327,3 +327,30 @@ test('outside production the language switcher stays on this host', async ({
         '/en'
     );
 });
+
+test.describe('Home links', () => {
+    test('the logo leads to the home page in the page language', async ({
+        page,
+    }) => {
+        await page.goto('/blog');
+        await expect(page.locator('header a.logo')).toHaveAttribute(
+            'href',
+            '/en'
+        );
+
+        await page.goto('/');
+        await expect(page.locator('header a.logo')).toHaveAttribute(
+            'href',
+            '/'
+        );
+    });
+
+    test('"Start over" on the 404 page leads to the English home', async ({
+        page,
+    }) => {
+        await page.goto('/404');
+        await expect(
+            page.getByRole('link', { name: 'Start over' })
+        ).toHaveAttribute('href', '/en');
+    });
+});

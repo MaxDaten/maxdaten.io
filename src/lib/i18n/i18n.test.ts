@@ -6,6 +6,8 @@ import {
     canonicalUrl,
     heroSummary,
     homeHref,
+    siteHref,
+    isExternalHref,
     defaultLocale,
     supportedLocales,
 } from './index';
@@ -137,6 +139,9 @@ describe('i18n', () => {
             ['https://maxdaten.de', 'en', 'https://www.maxdaten.io/en'],
             ['https://www.maxdaten.io', 'de', 'https://maxdaten.de/'],
             ['https://www.maxdaten.io', 'en', 'https://www.maxdaten.io/en'],
+            // The prerender origin may be a redirecting host.
+            ['https://maxdaten.io', 'en', 'https://www.maxdaten.io/en'],
+            ['https://maxdaten.io', 'de', 'https://maxdaten.de/'],
         ] as const)(
             'links across production domains (%s → %s)',
             (origin, locale, expected) => {
@@ -154,6 +159,45 @@ describe('i18n', () => {
                 expect(homeHref(locale, origin)).toBe(expected);
             }
         );
+    });
+
+    describe('siteHref()', () => {
+        it.each([
+            ['https://maxdaten.de', '/blog', 'https://www.maxdaten.io/blog'],
+            [
+                'https://maxdaten.de',
+                '/a-post',
+                'https://www.maxdaten.io/a-post',
+            ],
+            [
+                'https://www.maxdaten.io',
+                '/impressum',
+                'https://maxdaten.de/impressum',
+            ],
+            ['https://maxdaten.io', '/gems', 'https://www.maxdaten.io/gems'],
+        ] as const)(
+            'links to the final URL in production (%s, %s)',
+            (origin, path, expected) => {
+                expect(siteHref(path, origin)).toBe(expected);
+            }
+        );
+
+        it('stays on the current host elsewhere', () => {
+            expect(siteHref('/blog', 'http://localhost:5173')).toBe('/blog');
+        });
+    });
+
+    describe('isExternalHref()', () => {
+        it.each([
+            ['https://github.com/MaxDaten', true],
+            ['http://localhost:5173/blog', true],
+            ['https://www.maxdaten.io/blog', false],
+            ['https://maxdaten.de/impressum', false],
+            ['/blog', false],
+            ['mailto:jloos@maxdaten.com', false],
+        ] as const)('%s → %s', (href, expected) => {
+            expect(isExternalHref(href)).toBe(expected);
+        });
     });
 
     describe('constants', () => {

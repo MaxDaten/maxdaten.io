@@ -1,5 +1,6 @@
 <script lang="ts">
-    import { resolve } from '$app/paths';
+    import { page } from '$app/state';
+    import { siteHref } from '#lib/i18n/index.js';
     import Socials from '#lib/components/molecules/Socials.svelte';
     import RssLink from '#lib/components/atoms/RssLink.svelte';
     import type { Author } from '#lib/utils/types.js';
@@ -10,8 +11,10 @@
 <footer>
     <div class="footer-content">
         <div class="legal">
-            <a href={resolve('impressum')}>Impressum</a>
-            <a href={resolve('datenschutz')}>Datenschutz</a>
+            <!-- eslint-disable svelte/no-navigation-without-resolve -- the legal pages live on maxdaten.de -->
+            <a href={siteHref('/impressum', page.url.origin)}>Impressum</a>
+            <a href={siteHref('/datenschutz', page.url.origin)}>Datenschutz</a>
+            <!-- eslint-enable svelte/no-navigation-without-resolve -->
             <span class="copyright">© {new Date().getFullYear()}</span>
         </div>
         <div class="socials">

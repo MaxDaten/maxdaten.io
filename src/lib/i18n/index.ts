@@ -54,14 +54,37 @@ export function canonicalUrl(pathname: string): string {
     return new URL(pathname, getSiteBaseUrl(getLocaleFromPath(pathname))).href;
 }
 
-const homePaths: Record<Locale, string> = { de: '/', en: '/en' };
+/** Hosts the site is served from in production, including the redirecting ones. */
+const productionHosts = new Set([
+    'maxdaten.de',
+    'www.maxdaten.de',
+    'maxdaten.io',
+    'www.maxdaten.io',
+]);
+
+function isProductionOrigin(origin: string): boolean {
+    return productionHosts.has(new URL(origin).hostname);
+}
+
+/** An absolute link to another site; siteHref() links to this site's own hosts are internal. */
+export function isExternalHref(href: string): boolean {
+    return /^https?:\/\//.test(href) && !isProductionOrigin(href);
+}
 
 /**
- * Link to a locale's home page. On the production domains the locales live on different hosts,
- * so the link crosses domains; anywhere else (localhost, preview deployments) it stays on the
- * current host.
+ * Link to a page of this site. On the production domains it is the page's final URL, so a link
+ * from a German page to an English one (or the reverse) crosses domains instead of bouncing
+ * through a redirect; anywhere else (localhost, preview deployments) it stays on the current host.
  */
+export function siteHref(pathname: string, currentOrigin: string): string {
+    return isProductionOrigin(currentOrigin)
+        ? canonicalUrl(pathname)
+        : pathname;
+}
+
+const homePaths: Record<Locale, string> = { de: '/', en: '/en' };
+
+/** Link to a locale's home page; see siteHref(). */
 export function homeHref(locale: Locale, currentOrigin: string): string {
-    const onProduction = Object.values(localeDomains).includes(currentOrigin);
-    return onProduction ? canonicalUrl(homePaths[locale]) : homePaths[locale];
+    return siteHref(homePaths[locale], currentOrigin);
 }

@@ -3,8 +3,9 @@
     import ContentSection from '#lib/components/organisms/ContentSection.svelte';
     import type { ListingPost } from '#lib/sanity/listing.js';
     import Button from '#lib/components/atoms/Button.svelte';
+    import { page } from '$app/state';
     import { getContext } from 'svelte';
-    import { t, type Locale } from '#lib/i18n/index.js';
+    import { siteHref, t, type Locale } from '#lib/i18n/index.js';
 
     interface Props {
         posts: ListingPost[];
@@ -24,7 +25,9 @@
 >
     {#snippet button()}
         <div>
-            <Button href="/blog">{t(locale, 'recentPosts.viewMore')}</Button>
+            <Button href={siteHref('/blog', page.url.origin)}
+                >{t(locale, 'recentPosts.viewMore')}</Button
+            >
         </div>
     {/snippet}
     <!-- Posts are written in English, also on the German home page. -->

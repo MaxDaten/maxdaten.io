@@ -12,6 +12,7 @@ const redirects = [
     [`${de}/en`, 308, `${io}/en`],
     [`${de}${post}`, 308, `${io}${post}`],
     [`${io}/`, 308, '/en'],
+    [`${io}/impressum`, 308, `${de}/impressum`],
 ];
 
 // [url, lang, canonical]

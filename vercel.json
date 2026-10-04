@@ -17,6 +17,17 @@
             "permanent": true
         },
         {
+            "source": "/:page(impressum|datenschutz)",
+            "has": [
+                {
+                    "type": "host",
+                    "value": "www.maxdaten.io"
+                }
+            ],
+            "destination": "https://maxdaten.de/:page",
+            "permanent": true
+        },
+        {
             "source": "/:path(.*)",
             "has": [
                 {

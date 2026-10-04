@@ -51,6 +51,8 @@ describe('vercel.json redirects', () => {
             'https://www.maxdaten.io/2026-01-31-ship-your-toolchain-not-just-infrastructure',
         ],
         ['maxdaten.de', '/about/jloos', 'https://www.maxdaten.io/about/jloos'],
+        ['www.maxdaten.io', '/impressum', 'https://maxdaten.de/impressum'],
+        ['www.maxdaten.io', '/datenschutz', 'https://maxdaten.de/datenschutz'],
     ])('%s%s redirects permanently to %s', (host, path, location) => {
         const result = redirect(host, path);
         expect(result?.location).toBe(location);
@@ -73,7 +75,7 @@ describe('vercel.json redirects', () => {
         ['maxdaten.de', '/2026-01-31-ship/og.jpg'],
         ['www.maxdaten.io', '/en'],
         ['www.maxdaten.io', '/blog'],
-        ['www.maxdaten.io', '/impressum'],
+        ['www.maxdaten.io', '/about/jloos'],
     ])('%s%s is served without a redirect', (host, path) => {
         expect(redirect(host, path)).toBeNull();
     });
