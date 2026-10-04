@@ -329,10 +329,12 @@ a surface). The craft's glyphs (λ, cube, loop, pointer, braces, prompt) and Spa
 scattered as merge confetti at three depths (30%, 50% and 70% opacity), cropped by the band's edge:
 below the header on desktop, a strip above it on phones. Each glyph floats on its own slow loop
 (7–12s, out of step with the others), further the nearer it sits. The title is Forge Orange. The
-services hang on one straight 2px line at 30% orange, each marked by a solid Forge Orange node
-carrying its glyph in dark (pointer, loop, cube), like the banner's status chip. Scroll draws the
-line down and lands each node with a flash of the Halo. Without scroll timelines the line rests
-drawn; under reduced motion nothing moves.
+services hang on one straight 2px line at 30% orange as releases, each marked by a solid Forge
+Orange node carrying its glyph in dark (pointer, loop, cube), like the banner's status chip. Between
+releases sit small commits: 8px solid orange dots, a few per stretch, the last run trailing off past
+the final release. Scroll draws the line down after a scan line 60% down the viewport: each commit
+pops in as the line's tip reaches it, and each release lands with a flash of the Halo. Without
+scroll timelines the line rests drawn; under reduced motion nothing moves.
 
 ## Do's and Don'ts
 
