@@ -9,6 +9,11 @@ import type {
 import { encode } from 'html-entities';
 import type { SanityImageSource } from '@sanity/image-url';
 import { urlFor } from '#lib/sanity/image.js';
+import { canonicalUrl } from '#lib/i18n/index.js';
+import {
+    internalLinkPath,
+    type InternalLinkReference,
+} from '#lib/sanity/internal-link.js';
 
 export const prerender = true;
 
@@ -75,11 +80,13 @@ const rssComponents = {
         }: {
             children: string;
             value?: PortableTextMarkDefinition & {
-                reference?: { _type: string; slug?: { current: string } };
+                reference?: InternalLinkReference;
             };
         }) => {
-            const slug = value?.reference?.slug?.current || '';
-            return `<a href="${siteBaseUrl}/${slug}">${children}</a>`;
+            const path = internalLinkPath(value?.reference);
+            return path
+                ? `<a href="${canonicalUrl(path)}">${children}</a>`
+                : children;
         },
         link: ({
             children,
