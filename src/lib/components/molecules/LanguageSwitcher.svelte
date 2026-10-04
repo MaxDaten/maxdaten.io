@@ -16,13 +16,15 @@
     <a
         href={deHref}
         class:active={locale === 'de'}
+        aria-current={locale === 'de' ? 'true' : undefined}
         hreflang="de"
         aria-label="Deutsch">DE</a
     >
-    <span class="separator">|</span>
+    <span class="separator" aria-hidden="true">|</span>
     <a
         href={enHref}
         class:active={locale === 'en'}
+        aria-current={locale === 'en' ? 'true' : undefined}
         hreflang="en"
         aria-label="English">EN</a
     >
