@@ -615,10 +615,17 @@
                     background: linear-gradient(
                         to bottom,
                         transparent,
-                        var(--color-accent) 75%,
-                        var(--color-sparkle)
+                        var(--color-accent) 80%,
+                        color-mix(
+                            in srgb,
+                            var(--color-sparkle) 60%,
+                            var(--color-accent)
+                        )
                     );
-                    filter: drop-shadow(0 0 3px var(--color-accent));
+                    filter: drop-shadow(
+                        0 0 3px
+                            rgba(var(--color-accent-rgb), var(--opacity-half))
+                    );
                     pointer-events: none;
                     animation: blaze linear both;
                     animation-timeline: --release;
@@ -690,11 +697,11 @@
         15% {
             opacity: 1;
         }
-        20% {
+        12% {
             background: var(--color-sparkle);
         }
         55% {
-            scale: 1.1;
+            scale: 1.06;
             border-radius: 46% 54% 53% 47% / 54% 47% 53% 46%;
             box-shadow: 0 0 1px 7px
                 rgba(var(--color-accent-rgb), var(--opacity-border));
@@ -714,12 +721,14 @@
             border-radius: 58% 42% 46% 54% / 46% 58% 42% 54%;
             background: var(--color-sparkle);
         }
-        20% {
-            opacity: 1;
+        12% {
             background: var(--color-sparkle);
         }
+        20% {
+            opacity: 1;
+        }
         60% {
-            scale: 1.3;
+            scale: 1.2;
             border-radius: 47% 53% 54% 46% / 53% 46% 54% 47%;
         }
         100% {
@@ -736,7 +745,7 @@
         }
         12% {
             filter: drop-shadow(
-                0 0 3px rgba(var(--color-accent-rgb), var(--opacity-text-muted))
+                0 0 3px rgba(var(--color-accent-rgb), var(--opacity-half))
             );
         }
     }
