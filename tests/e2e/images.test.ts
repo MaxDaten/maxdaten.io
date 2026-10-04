@@ -38,18 +38,27 @@ for (const path of ['/', '/en']) {
     });
 }
 
+const coverPages = [
+    ['blog covers', '/blog', 'a.blog-post-card img'],
+    ['gem covers', '/gems', 'a.gem-card img'],
+] as const;
+
 for (const [width, dpr] of [
     [412, 1.75],
     [1350, 1],
-]) {
-    test.describe(`blog covers at ${width}px @${dpr}x`, () => {
+]) for (const [name, path, selector] of coverPages) {
+    test.describe(`${name} at ${width}px @${dpr}x`, () => {
         test.use({ viewport: { width, height: 900 }, deviceScaleFactor: dpr });
 
         test('download at most 1.3x the rendered device pixels', async ({
             page,
         }) => {
-            await page.goto('/blog', { waitUntil: 'networkidle' });
-            const covers = await page.$$eval('a.blog-post-card img', (imgs) =>
+            await page.goto(path, { waitUntil: 'networkidle' });
+            await page.$$eval(selector, (imgs) =>
+                imgs.forEach((img) => ((img as HTMLImageElement).loading = 'eager'))
+            );
+            await page.waitForLoadState('networkidle');
+            const covers = await page.$$eval(selector, (imgs) =>
                 imgs.map((img) => ({
                     rendered:
                         img.getBoundingClientRect().width * devicePixelRatio,
@@ -63,6 +72,7 @@ for (const [width, dpr] of [
 
             expect(covers.length).toBeGreaterThan(0);
             for (const { rendered, downloaded } of covers) {
+                expect(downloaded, 'a resized image (w= parameter)').toBeGreaterThan(0);
                 expect(
                     downloaded,
                     `rendered ${Math.round(rendered)}px`

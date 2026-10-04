@@ -1,11 +1,14 @@
 <script lang="ts">
     import Card from '#lib/components/atoms/Card.svelte';
     import Tag from '#lib/components/atoms/Tag.svelte';
+    import { urlFor, generateSrcSet } from '#lib/sanity/image.js';
+    import type { SanityImageSource } from '@sanity/image-url';
 
     interface SanityCoverImage {
         url?: string;
         alt?: string;
         lqip?: string;
+        asset?: SanityImageSource;
     }
 
     interface Props {
@@ -15,15 +18,26 @@
         href: string;
         tags: string[] | undefined;
         showImage?: boolean;
+        /** The cover's rendered width, as an img `sizes` value; depends on the grid slot. */
+        sizes?: string;
     }
 
-    let { title, coverImage, excerpt, href, tags }: Props = $props();
+    let {
+        title,
+        coverImage,
+        excerpt,
+        href,
+        tags,
+        sizes = '(max-width: 900px) calc(100vw - 2rem), 360px',
+    }: Props = $props();
 
-    // Support both legacy string path and Sanity object with url
-    let coverImageUrl = $derived(
-        typeof coverImage === 'string'
-            ? undefined // Legacy path - would need local image handling
-            : coverImage?.url
+    const COVER_WIDTHS = [320, 400, 480, 640, 800, 1000, 1280, 1600, 2000];
+
+    // Legacy string paths have no Sanity asset to transform
+    let cover = $derived(
+        typeof coverImage !== 'string' && coverImage?.asset
+            ? coverImage
+            : undefined
     );
 
     let coverImageAlt = $derived(
@@ -35,13 +49,20 @@
 
 <Card {href} target="_self" class="gem-card" data-testid="gem-card">
     {#snippet image()}
-        {#if coverImageUrl}
+        {#if cover}
             <div class="cover-image-container">
                 <img
                     class="cover-image"
-                    src={coverImageUrl}
+                    src={urlFor(cover).width(640).auto('format').url()}
+                    srcset={generateSrcSet(cover, COVER_WIDTHS)}
+                    {sizes}
                     alt={coverImageAlt}
                     loading="lazy"
+                    decoding="async"
+                    style:background-image={cover.lqip
+                        ? `url(${cover.lqip})`
+                        : undefined}
+                    style:background-size="cover"
                 />
             </div>
         {/if}
