@@ -23,6 +23,8 @@ export const description =
 
 export const title = 'Jan-Philip Loos | maxdaten.io';
 
+const portraitUrl = `${siteBaseUrl}${MeSrc?.img.src}`;
+
 /** The author bio lives in Sanity in English; this is its German translation. */
 const germanPersonDescription =
     'Jan-Philip Loos ist Freelance Platform & Product Engineer in Hamburg. Seit über 15 Jahren baut er Produkte und die Plattformen, auf denen sie laufen — von der Mitgründung der Briends GmbH, dem Unternehmen hinter Papego, bis zu Systemen mit 100M+ Requests am Tag. Er schreibt über Platform Engineering, Nix und Continuous Delivery.';
@@ -35,11 +37,10 @@ const organizationDescriptions: Record<Locale, string> = {
 export function getBaseSchema(
     locale: Locale,
     author: Author
-): [WebSite, Person, ProfilePage, Organization, ProfessionalService] {
+): [WebSite, Person, Organization, ProfessionalService] {
     // One name and URL per entity, whatever the page language: answer engines merge entities
     // by @id and distrust ones whose properties disagree.
     const entityName = 'maxdaten.io';
-    const portraitUrl = `${siteBaseUrl}${MeSrc?.img.src}`;
     const desc = {
         person: locale === 'de' ? germanPersonDescription : (author.bio ?? ''),
         organization: organizationDescriptions[locale],
@@ -72,17 +73,6 @@ export function getBaseSchema(
                 (url) =>
                     url.startsWith('https://') && !url.includes('signal.me')
             ),
-        },
-        <WithContext<ProfilePage>>{
-            '@context': 'https://schema.org',
-            '@type': 'ProfilePage',
-            '@id': 'https://maxdaten.io/#profile',
-            url: canonicalUrl('/about/jloos'),
-            inLanguage: 'en-US',
-            mainEntity: {
-                '@id': 'https://maxdaten.io/#jloos',
-            },
-            image: portraitUrl,
         },
         <WithContext<Organization>>{
             '@context': 'https://schema.org',
@@ -127,6 +117,24 @@ export function getBaseSchema(
     ];
 }
 
+/**
+ * The site author's about page is their ProfilePage. Only that page says so: on every other
+ * page it would claim the page itself is a profile.
+ */
+export function createProfilePageSchema(): WithContext<ProfilePage> {
+    return {
+        '@context': 'https://schema.org',
+        '@type': 'ProfilePage',
+        '@id': 'https://maxdaten.io/#profile',
+        url: canonicalUrl('/about/jloos'),
+        inLanguage: 'en-US',
+        mainEntity: {
+            '@id': 'https://maxdaten.io/#jloos',
+        },
+        image: portraitUrl,
+    };
+}
+
 /** What a BlogPosting needs to know about a post. */
 export type BlogPostingInput = {
     title: string;
@@ -134,6 +142,8 @@ export type BlogPostingInput = {
     updated: string;
     excerpt: string;
     tags: string[];
+    image: string;
+    wordCount?: number;
     readingTimeMinutes?: number;
     authorId?: string;
 };
@@ -141,8 +151,7 @@ export type BlogPostingInput = {
 // Simple mapping function for blog posts (not a complex generator)
 export function createBlogPostingSchema(
     post: BlogPostingInput,
-    pageUrl: string,
-    image: string
+    pageUrl: string
 ): WithContext<BlogPosting> {
     return {
         '@context': 'https://schema.org',
@@ -154,7 +163,7 @@ export function createBlogPostingSchema(
         keywords: post.tags,
         url: pageUrl,
         mainEntityOfPage: pageUrl,
-        image,
+        image: post.image,
         inLanguage: 'en',
         ...(post.authorId && {
             author: {
@@ -164,8 +173,8 @@ export function createBlogPostingSchema(
         publisher: {
             '@id': 'https://maxdaten.io/#organization',
         },
+        ...(post.wordCount && { wordCount: post.wordCount }),
         ...(post.readingTimeMinutes && {
-            wordCount: post.readingTimeMinutes * 200, // estimate
             timeRequired: `PT${post.readingTimeMinutes}M`,
         }),
     };

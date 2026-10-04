@@ -29,6 +29,11 @@ function extractText(blocks: PortableTextBlock[]): string {
         .join(' ');
 }
 
+/** Number of words in the prose of Portable Text blocks (not code or images). */
+export function countWords(blocks: PortableTextBlock[]): number {
+    return extractText(blocks).trim().split(/\s+/).filter(Boolean).length;
+}
+
 /**
  * Calculate reading time in minutes from Portable Text blocks.
  * Uses 200 words per minute as the average reading speed.
@@ -36,12 +41,7 @@ function extractText(blocks: PortableTextBlock[]): string {
 export function calculateReadingTime(
     blocks: PortableTextBlock[]
 ): number | undefined {
-    const text = extractText(blocks);
-    if (!text) {
-        return undefined;
-    }
-
-    const wordCount = text.trim().split(/\s+/).filter(Boolean).length;
+    const wordCount = countWords(blocks);
     const minutes = Math.ceil(wordCount / WORDS_PER_MINUTE);
 
     return minutes > 0 ? minutes : undefined;
