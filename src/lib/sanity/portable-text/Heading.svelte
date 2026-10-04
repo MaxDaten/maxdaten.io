@@ -1,6 +1,7 @@
 <script lang="ts">
     import type { BlockComponentProps } from '@portabletext/svelte';
     import type { Snippet } from 'svelte';
+    import { headingSlug } from '#lib/sanity/heading-anchors.js';
 
     interface Props {
         portableText: BlockComponentProps;
@@ -13,25 +14,16 @@
     // Extract heading level from style (h1, h2, h3, etc.)
     let level = $derived((value.style as string) || 'h2');
 
-    // Generate slug from text content for anchor
-    function generateSlug(text: string): string {
-        return text
-            .toLowerCase()
-            .replace(/[^a-z0-9\s-]/g, '')
-            .replace(/\s+/g, '-')
-            .replace(/-+/g, '-')
-            .trim();
-    }
-
-    // Extract text from children for slug generation
-    let headingText = $derived.by(() => {
-        // Get text from portable text children
+    // Unique per page, assigned by the post load; headings nested in other blocks fall back
+    // to their own text.
+    let slug = $derived.by(() => {
+        const anchor = (value as { _anchor?: unknown })._anchor;
+        if (typeof anchor === 'string') return anchor;
         const children = value.children as Array<{ text?: string }> | undefined;
-        if (!children) return '';
-        return children.map((child) => child.text || '').join('');
+        return headingSlug(
+            children?.map((child) => child.text || '').join('') ?? ''
+        );
     });
-
-    let slug = $derived(generateSlug(headingText));
 
     // Copy anchor URL to clipboard
     async function copyAnchorUrl() {
