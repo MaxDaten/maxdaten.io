@@ -55,3 +55,24 @@ test.describe('holo card follows the input, not the width', () => {
         });
     });
 });
+
+test.describe('smooth scrolling', () => {
+    const scrollBehavior = (page: import('@playwright/test').Page) =>
+        page.evaluate(
+            () => getComputedStyle(document.documentElement).scrollBehavior
+        );
+
+    test('smooths in-page jumps by default', async ({ page }) => {
+        await page.goto('/en');
+        expect(await scrollBehavior(page)).toBe('smooth');
+    });
+
+    test.describe('under reduced motion', () => {
+        test.use({ reducedMotion: 'reduce' });
+
+        test('jumps instantly', async ({ page }) => {
+            await page.goto('/en');
+            expect(await scrollBehavior(page)).toBe('auto');
+        });
+    });
+});
