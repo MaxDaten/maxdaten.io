@@ -42,7 +42,8 @@ export const de: TranslationKeys = {
     'results.description': 'Ergebnisse aus bisherigen Projekten.',
     'results.klingel':
         'Plattform und Delivery für eine E-Commerce-Gruppe mit über 100 Mio. Requests am Tag und täglich 20 Mio. Produkt-Updates ohne Störungen.',
-    'results.fielmann': 'Tech Lead für einen Rollout in über 700 Filialen.',
+    'results.fielmann':
+        'Tech Lead für ein Produkt zur optometrischen Vermessung für die Anpassung von Brillengläsern, ausgerollt in über 700 Filialen.',
     'results.papego':
         'Mitgründer des Unternehmens hinter Papego, ausgezeichnet mit dem German Design Award 2018.',
 

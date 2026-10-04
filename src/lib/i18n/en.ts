@@ -42,7 +42,8 @@ export const en: TranslationKeys = {
     'results.description': 'Results from previous engagements.',
     'results.klingel':
         'Platform and delivery for an e-commerce group serving 100M+ requests a day, with 20M product updates daily without incidents.',
-    'results.fielmann': 'Tech lead for a rollout to 700+ retail stores.',
+    'results.fielmann':
+        'Tech lead for an optometric measurement product used to fit spectacle lenses, rolled out to 700+ retail stores.',
     'results.papego':
         'Co-founded the company behind Papego, winner of the German Design Award 2018.',
 
