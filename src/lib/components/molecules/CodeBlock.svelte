@@ -22,13 +22,23 @@
 
     let codeBlockElement: HTMLElement;
     let copyButtonState: 'idle' | 'success' | 'failure' = $state('idle');
+    let resetTimer: ReturnType<typeof setTimeout> | undefined;
+
+    const announcements = {
+        idle: '',
+        success: 'Copied to clipboard',
+        failure: 'Copy failed',
+    } as const;
 
     let codeText = $derived.by(() => {
         const preElement = codeBlockElement?.querySelector('pre');
         return preElement?.textContent || '';
     });
 
+    // Repeat clicks are ignored rather than disabling the button: a disabled button drops
+    // keyboard focus while the result shows.
     async function copyToClipboard() {
+        if (copyButtonState !== 'idle') return;
         try {
             await navigator.clipboard.writeText(codeText);
             copyButtonState = 'success';
@@ -36,11 +46,14 @@
             console.error('Failed to copy code:', error);
             copyButtonState = 'failure';
         } finally {
-            setTimeout(() => {
+            clearTimeout(resetTimer);
+            resetTimer = setTimeout(() => {
                 copyButtonState = 'idle';
             }, 2000);
         }
     }
+
+    $effect(() => () => clearTimeout(resetTimer));
 </script>
 
 <div
@@ -64,11 +77,13 @@
             </figcaption>
         {/if}
         {@render children?.()}
+        <span class="visually-hidden" role="status"
+            >{announcements[copyButtonState]}</span
+        >
         <button
             class="copy-button {copyButtonState}"
-            disabled={copyButtonState !== 'idle'}
             onclick={copyToClipboard}
-            aria-label="Copy code to clipboard"
+            aria-label="Copy {filename ?? 'code'} to clipboard"
             title={copyButtonState === 'idle'
                 ? 'Copy'
                 : copyButtonState === 'success'
@@ -158,7 +173,8 @@
                 );
             }
 
-            &:disabled {
+            &.success,
+            &.failure {
                 cursor: default;
             }
 
