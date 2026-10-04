@@ -41,7 +41,7 @@ test.describe('i18n — German home page (/)', () => {
             .locator('meta[name="description"]')
             .getAttribute('content');
         expect(description).toBe(
-            'Ich entwickle Ihr digitales Produkt end-to-end und sorge dafür, dass das Wissen in Ihrem Team bleibt — mit Continuous Delivery und Hochverfügbarkeit als Grundlage.'
+            'Ich baue Ihr Produkt und die Plattform darunter — Kubernetes, Nix, Continuous Delivery. Hands-on in Ihrem Team, und das Wissen bleibt. Hamburg & remote.'
         );
     });
 
@@ -75,12 +75,6 @@ test.describe('i18n — German home page (/)', () => {
             .locator('link[rel="canonical"]')
             .getAttribute('href');
         expect(canonical).toBe('https://maxdaten.de/');
-    });
-
-    test('has titleTemplate with maxdaten.de', async ({ page }) => {
-        await page.goto('/');
-        const title = await page.title();
-        expect(title).toContain('maxdaten.de');
     });
 
     test('has German keywords in meta tags', async ({ page }) => {
@@ -126,7 +120,7 @@ test.describe('i18n — English home page (/en/)', () => {
             .locator('meta[name="description"]')
             .getAttribute('content');
         expect(description).toBe(
-            'I build your digital product end to end and make sure the knowledge stays in your team — with continuous delivery and high availability as the foundation.'
+            'I build your product and the platform under it: Kubernetes, Nix, continuous delivery. Hands-on in your team, and the knowledge stays. Hamburg & remote.'
         );
     });
 
@@ -156,12 +150,6 @@ test.describe('i18n — English home page (/en/)', () => {
             .locator('link[rel="canonical"]')
             .getAttribute('href');
         expect(canonical).toBe('https://www.maxdaten.io/en');
-    });
-
-    test('has titleTemplate with maxdaten.io', async ({ page }) => {
-        await page.goto('/en');
-        const title = await page.title();
-        expect(title).toContain('maxdaten.io');
     });
 
     test('has English keywords in meta tags', async ({ page }) => {
@@ -354,3 +342,16 @@ test.describe('Home links', () => {
         ).toHaveAttribute('href', '/en');
     });
 });
+
+for (const path of ['/', '/en']) {
+    test(`${path} has a title naming the offer`, async ({ page }) => {
+        await page.goto(path);
+        await expect(page).toHaveTitle(
+            'Platform & Product Engineer, Hamburg | Jan-Philip Loos'
+        );
+        await expect(page.locator('meta[property="og:title"]')).toHaveAttribute(
+            'content',
+            'Platform & Product Engineer, Hamburg | Jan-Philip Loos'
+        );
+    });
+}

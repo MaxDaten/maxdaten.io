@@ -6,7 +6,7 @@ export const en: TranslationKeys = {
     'hero.headline': 'Products that ship',
     'hero.headlineAccent': 'Systems that scale',
     'hero.subheadline':
-        'I build your digital product end to end and make sure the knowledge stays in your team — with continuous delivery and high availability as the foundation.<br><br>Freelance Platform & Product Engineer with 15+ years in product development, platform architecture and tech leadership — from startup to systems at 100M+ requests a day. Hamburg.',
+        'I build your product and the platform under it: Kubernetes, Nix, continuous delivery. Hands-on in your team, and the knowledge stays. Hamburg & remote.<br><br>Freelance Platform & Product Engineer with 15+ years in product development, platform architecture and tech leadership — from startup to systems at 100M+ requests a day.',
     'hero.ctaBook': 'Book a Call',
     'hero.ctaProjects': 'View Projects',
     'hero.abilityDescription': 'Deployed to 700+ retail locations at Fielmann',
@@ -57,7 +57,7 @@ export const en: TranslationKeys = {
         'Co-founded the company behind Papego, winner of the German Design Award 2018.',
 
     // Meta / SEO
-    'meta.title': 'Jan-Philip Loos | maxdaten.io',
+    'meta.title': 'Platform & Product Engineer, Hamburg | Jan-Philip Loos',
     'meta.ogImageAlt':
         'Jan-Philip Loos - Products that ship. Systems that scale.',
     'meta.keywords':

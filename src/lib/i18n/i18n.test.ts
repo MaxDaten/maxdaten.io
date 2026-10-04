@@ -34,6 +34,8 @@ describe('i18n', () => {
                 // Service names German buyers use in English.
                 'services.platform.title',
                 'services.delivery.title',
+                // The job title and place, in the English German buyers search for.
+                'meta.title',
             ]);
 
             for (const key of Object.keys(de) as (keyof TranslationKeys)[]) {
