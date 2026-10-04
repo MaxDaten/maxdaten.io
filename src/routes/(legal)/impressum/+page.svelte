@@ -66,15 +66,15 @@
 <h3>Technologie & Icons</h3>
 <ul>
     <li>
-        Powered by
+        Gebaut mit
         <a href="https://svelte.dev/docs/kit">SvelteKit</a>
         .
     </li>
 
     <li>
-        Icons by
+        Icons von
         <a href="https://iconoir.com/">Iconoir</a>
-        &
+        und
         <a href="https://github.com/catppuccin/vscode-icons">Catppuccin Icons</a
         >
         .
@@ -82,15 +82,16 @@
 </ul>
 <h3>Vorlage</h3>
 <p>
-    Based on a <a
+    Basiert auf einer <a
         href="https://github.com/matfantinel/sveltekit-static-blog-template"
-        >template</a
+        >Vorlage</a
     >
-    built by <a href="https://fantinel.dev">Matheus Fantinel</a>.
+    von <a href="https://fantinel.dev">Matheus Fantinel</a>.
 </p>
-<h3>Holographic Card Effect</h3>
+<h3>Holografischer Karteneffekt</h3>
 <p>
-    The holographic trading card effect is inspired by
-    <a href="https://poke-holo.simey.me/">Pokemon Card CSS Holo Effect</a> by Simon
-    Goellner (simeydotme).
+    Der holografische Effekt der Sammelkarte ist inspiriert von
+    <a href="https://poke-holo.simey.me/" lang="en"
+        >Pokemon Card CSS Holo Effect</a
+    > von Simon Goellner (simeydotme).
 </p>
