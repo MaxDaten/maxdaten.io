@@ -27,6 +27,17 @@ describe('font tokens', () => {
         expect(loadedFamilies.size).toBeGreaterThan(0);
     });
 
+    it('declares latin faces only, each one preloaded', () => {
+        const css = read(new URL('./fonts.css', import.meta.url));
+        const faces = [...css.matchAll(/url\('([^']+)'\)/g)].map(([, url]) => url);
+        const preloads = [
+            ...read(new URL('./fonts.ts', import.meta.url)).matchAll(/^import \w+ from '([^']+)\?url';/gm),
+        ].map(([, url]) => url);
+        expect(faces.length).toBeGreaterThan(0);
+        for (const face of faces) expect(face).toMatch(/-latin-[\w-]+\.woff2$/);
+        expect(preloads.sort()).toEqual(faces.sort());
+    });
+
     it.each(fontTokens)('$token names a face that fonts.ts loads ($family)', ({ family }) => {
         expect([...loadedFamilies]).toContain(family);
     });

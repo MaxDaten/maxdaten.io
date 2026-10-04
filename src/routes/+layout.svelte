@@ -1,5 +1,5 @@
 <script>
-    import '#lib/scss/fonts.js';
+    import { fontPreloads } from '#lib/scss/fonts.js';
     import '#lib/scss/global.css';
     import Analytics from '#lib/components/atoms/Analytics.svelte';
     import { Ssgoi } from 'ssgoi';
@@ -39,6 +39,18 @@
         ...(page.data.pageSchema || []),
     ]);
 </script>
+
+<svelte:head>
+    {#each fontPreloads as href (href)}
+        <link
+            rel="preload"
+            as="font"
+            type="font/woff2"
+            {href}
+            crossorigin="anonymous"
+        />
+    {/each}
+</svelte:head>
 
 <MetaTags {...metaTags} />
 
