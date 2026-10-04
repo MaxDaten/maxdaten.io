@@ -686,13 +686,22 @@
 
                 /* The dust: three sparse speck grids of co-prime sizes read as random glitter,
                  * shown only in a soft band that rides on the sweep's edge, twinkling on the
-                 * clock. It faints when scrolling rests (filter, as the sweep owns opacity). */
+                 * clock, each speck with a faint glint. It faints when scrolling rests (filter, as
+                 * the sweep owns opacity). */
                 &::after {
                     content: '';
                     position: absolute;
                     inset: -0.3em 0;
                     pointer-events: none;
-                    filter: opacity(0);
+                    --glint: drop-shadow(
+                        0 0 2px
+                            color-mix(
+                                in srgb,
+                                var(--color-sparkle) 50%,
+                                transparent
+                            )
+                    );
+                    filter: opacity(0) var(--glint);
                     transition: filter 0.6s var(--ease-3);
                     background:
                         radial-gradient(
@@ -772,7 +781,7 @@
      * the wobble, fading as slowly as the trail behind the tip. The radii are drop shapes, not
      * design radii; they all settle on a circle. */
     .scrolling .log h3::after {
-        filter: opacity(1);
+        filter: opacity(1) var(--glint);
         transition-duration: 0.15s;
     }
 
