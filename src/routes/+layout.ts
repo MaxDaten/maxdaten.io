@@ -3,6 +3,7 @@ import { getBaseSchema } from '#lib/data/meta.js';
 import { version } from '$app/env';
 import {
     t,
+    heroSummary,
     getLocaleFromPath,
     isTranslatedRoute,
     localeDomains,
@@ -17,7 +18,8 @@ export const load = ({ url, data }) => {
     // The prerender origin may be a redirecting host; social cards fetch from the final one.
     const ogImageUrl = `${localeDomains.en}/og/${locale}.jpg?v=${version}`;
 
-    const description = t(locale, 'meta.description');
+    // The hero's first paragraph, sized to what search results show (≤155 characters).
+    const description = heroSummary(locale);
     const title = t(locale, 'meta.title');
     const ogImageAlt = t(locale, 'meta.ogImageAlt');
     const ogLocale = locale === 'de' ? 'de_DE' : 'en_US';

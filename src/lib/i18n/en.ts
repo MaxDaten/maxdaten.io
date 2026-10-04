@@ -58,8 +58,6 @@ export const en: TranslationKeys = {
 
     // Meta / SEO
     'meta.title': 'Jan-Philip Loos | maxdaten.io',
-    'meta.description':
-        'I build your digital product end to end and make sure the knowledge stays in your team — with continuous delivery and high availability as the foundation. Freelance Platform & Product Engineer with 15+ years in product development, platform architecture and tech leadership — from startup to systems at 100M+ requests a day. Hamburg.',
     'meta.ogImageAlt':
         'Jan-Philip Loos - Products that ship. Systems that scale.',
     'meta.keywords':

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { t } from '#lib/i18n/index.js';
+import { heroSummary } from '#lib/i18n/index.js';
 import { renderLlmsFullTxt, renderLlmsTxt, type LlmsPost } from './llms';
 import type { Author } from '#lib/utils/types.js';
 
@@ -79,7 +79,7 @@ describe('llms.txt', () => {
         expect(txt.split('\n').slice(0, 3)).toEqual([
             '# Jan-Philip Loos',
             '',
-            `> ${t('en', 'meta.description')}`,
+            `> ${heroSummary('en')}`,
         ]);
     });
 

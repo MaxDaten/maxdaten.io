@@ -58,8 +58,6 @@ export const de: TranslationKeys = {
 
     // Meta / SEO
     'meta.title': 'Jan-Philip Loos | maxdaten.de',
-    'meta.description':
-        'Ich entwickle Ihr digitales Produkt end-to-end und sorge dafür, dass das Wissen in Ihrem Team bleibt — mit Continuous Delivery und Hochverfügbarkeit als Grundlage. Freelance Platform & Product Engineer mit 15+ Jahren Erfahrung in Produktentwicklung, Plattform-Architektur und Tech-Leadership — vom Startup bis zu Systemen mit 100M+ Requests am Tag. Hamburg.',
     'meta.ogImageAlt':
         'Jan-Philip Loos - Software, die liefert. Systeme, die skalieren.',
     'meta.keywords':
