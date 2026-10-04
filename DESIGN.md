@@ -249,6 +249,9 @@ purple, blue; 80px blur, 25–40% opacity) drift slowly as ambient light, hidden
   ring of light, not a lift.
 - **Outline glow** (`box-shadow: 0 0 0 1px rgba(255, 128, 0, 0.7)`): interactive card hover.
 - **Text glow** (`filter: drop-shadow(0 0 3px #ff8000)`): navigation and footer link hover.
+- **Focus ring** (`outline: 2px solid #ff8000; outline-offset: 2px`): every control on keyboard
+  focus, from one global `:focus-visible` rule; dimmed controls return to full opacity while
+  focused.
 
 ### Named Rules
 

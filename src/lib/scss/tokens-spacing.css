@@ -46,4 +46,8 @@
 
     /* Minimum touch target edge (WCAG 2.5.5 / platform guidelines) */
     --size-tap-target: 44px;
+
+    /* Keyboard focus ring (WCAG 2.4.13: at least 2px, offset off the control) */
+    --size-focus-ring: 2px;
+    --space-focus-offset: 2px;
 }

@@ -165,7 +165,8 @@
             align-items: center;
             justify-content: center;
 
-            &:hover {
+            &:hover,
+            &:focus-visible {
                 opacity: 0.9;
                 background: rgba(
                     var(--color-text-rgb),
