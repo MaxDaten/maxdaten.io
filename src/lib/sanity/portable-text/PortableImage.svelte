@@ -48,20 +48,20 @@
 
 <style>
     .portable-image {
-        margin: 2rem 0;
+        margin: var(--space-group) 0;
 
         img {
             display: block;
             width: 100%;
             height: auto;
-            border-radius: 8px;
+            border-radius: var(--radius-block);
             box-shadow: var(--image-shadow);
         }
 
         figcaption {
-            font-size: 0.85rem;
+            font-size: var(--text-small);
             text-align: center;
-            margin-top: 0.5rem;
+            margin-top: var(--space-inline);
             color: rgba(var(--color-text-rgb), 0.8);
         }
     }

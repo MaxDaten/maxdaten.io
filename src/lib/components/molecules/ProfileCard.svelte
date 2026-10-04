@@ -108,7 +108,7 @@
 
     .card-name {
         font-family: var(--font-logo), sans-serif;
-        font-size: var(--text-heading-3);
+        font-size: var(--text-card-name);
         font-weight: 700;
         text-transform: uppercase;
         color: var(--color-text);
@@ -129,7 +129,7 @@
     }
 
     .stat-label {
-        font-size: 10px;
+        font-size: var(--text-micro);
         letter-spacing: 0.05em;
         color: var(--color-text-dim);
         text-transform: uppercase;
@@ -143,8 +143,8 @@
     .ability-box {
         margin-top: auto;
         background: var(--color-well);
-        border-radius: 4px;
-        padding: 10px;
+        border-radius: var(--radius-tag);
+        padding: var(--space-tight);
         border-left: 3px solid var(--color-accent);
         box-shadow: inset 0 1px 0 var(--color-hairline);
         display: flex;
@@ -159,12 +159,12 @@
     }
 
     .pro-badge {
-        font-size: 10px;
+        font-size: var(--text-micro);
         font-weight: 700;
         padding: var(--space-hairline) var(--space-inline);
         background-color: var(--color-accent);
-        color: black;
-        border-radius: 2px;
+        color: var(--color-text-inverse);
+        border-radius: var(--radius-tag);
         text-transform: uppercase;
     }
 
@@ -178,16 +178,16 @@
         font-size: var(--text-caption);
         color: var(--color-text-dim);
         line-height: var(--text-body-leading);
-        margin: 4px 0 0 0;
+        margin: var(--space-hairline) 0 0 0;
     }
 
     .card-footer {
-        font-size: 10px;
+        font-size: var(--text-micro);
         font-weight: 500;
         letter-spacing: 0.05em;
         color: var(--color-text-faint);
         text-align: center;
-        padding-top: 12px;
+        padding-top: var(--space-tight);
         border-top: 1px solid var(--color-hairline);
     }
 </style>

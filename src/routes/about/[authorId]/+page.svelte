@@ -84,7 +84,7 @@
         margin: 0;
 
         @media (max-width: 767px) {
-            font-size: var(--text-heading-1);
+            font-size: var(--text-display-compact);
         }
     }
 

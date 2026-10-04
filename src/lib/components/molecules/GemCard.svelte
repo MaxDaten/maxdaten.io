@@ -106,7 +106,7 @@
             align-items: center;
             justify-content: space-between;
             width: 100%;
-            font-size: 1.2rem;
+            font-size: var(--text-heading-4);
             font-family: var(--font--title), serif;
             font-weight: 700;
             margin: 0;
@@ -115,13 +115,13 @@
         .tags {
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: var(--space-hairline);
             flex-wrap: wrap;
         }
 
         .text {
-            margin: 5px 0 0 0;
-            font-size: 0.9rem;
+            margin: var(--space-hairline) 0 0 0;
+            font-size: var(--text-ui);
             text-align: justify;
         }
 

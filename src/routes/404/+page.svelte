@@ -36,12 +36,8 @@
 
         .svg-wrapper {
             width: 300px;
-            margin-top: -60px;
-            margin-bottom: -30px;
-
-            :global(svg) {
-                filter: drop-shadow(2px 6px 0px rgba(0, 0, 0, 0.1));
-            }
+            margin-top: calc(-1 * var(--space-section));
+            margin-bottom: calc(-1 * var(--space-group));
         }
     }
 </style>

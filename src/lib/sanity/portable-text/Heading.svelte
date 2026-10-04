@@ -66,7 +66,7 @@
         .heading-link {
             color: var(--color-accent);
             text-decoration: none;
-            margin-right: 10px;
+            margin-right: var(--space-inline);
             position: absolute;
             translate: -120% 0;
             opacity: 0;
