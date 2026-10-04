@@ -1,4 +1,4 @@
-# Same checks as the local git hooks (devenv.nix), so `--no-verify` can't land broken code.
+# The local git hooks' checks (devenv.nix) plus e2e, so `--no-verify` can't land broken code.
 name: CI
 
 on:
