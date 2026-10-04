@@ -665,7 +665,9 @@
              * right, leaving the accent behind it and a fine twinkling dust along it. Scrubbed
              * with the node, so scrolling back drains it. */
             .log h3 {
-                --sweep: calc(var(--node-center) + var(--pop) * 2);
+                /* Ends with the node's merge: by the time the release settles, its title is
+                 * fully kindled. */
+                --sweep: calc(var(--node-center) + var(--pop));
 
                 position: relative;
                 /* The sweep spans the words, not the whole column. */
