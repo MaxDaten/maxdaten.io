@@ -645,23 +645,69 @@
                         calc(var(--node-center) + var(--pop) * 2);
             }
 
-            /* The release's colour runs into its title as the blaze lands: a soft-edged fill
-             * sweeping left to right, scrubbed with the node, so scrolling back drains it. */
+            /* The release's colour runs into its title as the blaze lands, like secret ink in a
+             * magic book: the title waits a little faded, then a glinting edge sweeps left to
+             * right, leaving the accent behind it and a fine twinkling dust along it. Scrubbed
+             * with the node, so scrolling back drains it. */
             .log h3 {
-                background: linear-gradient(
-                        to right,
-                        var(--color-accent-text) 46%,
-                        var(--color-text) 54%
-                    )
-                    100% 0 / 220% 100% no-repeat;
+                --sweep: calc(var(--node-center) + var(--pop) * 2);
+
+                position: relative;
                 /* The sweep spans the words, not the whole column. */
                 width: fit-content;
+                background: linear-gradient(
+                        to right,
+                        var(--color-accent-text) 44%,
+                        var(--color-sparkle) 48%,
+                        rgba(var(--color-text-rgb), var(--opacity-text-muted))
+                            54%
+                    )
+                    100% 0 / 220% 100% no-repeat;
                 background-clip: text;
                 color: transparent;
                 animation: kindle linear both;
                 animation-timeline: --release;
-                animation-range: entry var(--node-center) entry
-                    calc(var(--node-center) + var(--pop) * 2);
+                animation-range: entry var(--node-center) entry var(--sweep);
+
+                /* The dust: three sparse speck grids of co-prime sizes read as random glitter, shown only in a
+                 * soft band that rides on the sweep's edge, twinkling on the clock. */
+                &::after {
+                    content: '';
+                    position: absolute;
+                    inset: -0.3em 0;
+                    pointer-events: none;
+                    background:
+                        radial-gradient(
+                                circle at 30% 40%,
+                                var(--color-sparkle) 0 0.6px,
+                                transparent 1.1px
+                            )
+                            0 0 / 17px 13px,
+                        radial-gradient(
+                                circle at 70% 25%,
+                                var(--color-accent-text) 0 0.5px,
+                                transparent 1px
+                            )
+                            0 0 / 23px 19px,
+                        radial-gradient(
+                                circle at 45% 75%,
+                                var(--color-sparkle) 0 0.7px,
+                                transparent 1.2px
+                            )
+                            0 0 / 29px 11px;
+                    mask: linear-gradient(
+                            to right,
+                            transparent,
+                            black 40% 60%,
+                            transparent
+                        ) -36%
+                        0 / 30% 100% no-repeat;
+                    animation:
+                        dust linear both,
+                        twinkle 0.9s steps(1) infinite;
+                    animation-timeline: --release, auto;
+                    animation-range: entry var(--node-center) entry var(--sweep);
+                }
             }
 
             .commit {
@@ -710,6 +756,43 @@
     @keyframes kindle {
         to {
             background-position: 0 0;
+        }
+    }
+
+    /* The band's centre tracks the kindle edge, which runs from -10% to 110% of the title. */
+    @keyframes dust {
+        0% {
+            mask-position: -36% 0;
+            opacity: 0;
+        }
+        10%,
+        85% {
+            opacity: var(--opacity-half);
+        }
+        100% {
+            mask-position: 136% 0;
+            opacity: 0;
+        }
+    }
+
+    @keyframes twinkle {
+        0% {
+            background-position:
+                0 0,
+                0 0,
+                0 0;
+        }
+        33% {
+            background-position:
+                3px 2px,
+                -4px 3px,
+                5px -2px;
+        }
+        66% {
+            background-position:
+                -2px 4px,
+                2px -3px,
+                -5px 1px;
         }
     }
 
