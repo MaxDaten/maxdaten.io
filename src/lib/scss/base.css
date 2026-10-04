@@ -28,6 +28,12 @@
     }
 }
 
+/* One keyboard focus ring for every control: a ring of light, matching the hover halo */
+:focus-visible {
+    outline: var(--size-focus-ring) solid var(--color-focus-ring);
+    outline-offset: var(--space-focus-offset);
+}
+
 ul,
 ol {
     margin: var(--space-tight) 0 var(--space-tight) var(--space-group);

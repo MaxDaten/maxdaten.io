@@ -68,4 +68,51 @@ test.describe('keyboard and labelling', () => {
             await expect(page.locator('main#main-content')).toHaveCount(1);
         });
     }
+
+    test('every control shows the orange focus ring at full strength', async ({
+        page,
+    }) => {
+        for (const path of ['/en', await firstPostPath(page)]) {
+            await page.goto(path);
+            let seen = 0;
+            const failures: string[] = [];
+            // Tab through the page until focus wraps back to the first control.
+            for (let i = 0; i < 80; i++) {
+                await page.keyboard.press('Tab');
+                const ring = await page.evaluate(() => {
+                    const el = document.activeElement as HTMLElement | null;
+                    if (!el || el === document.body) return null;
+                    if (el.dataset.focusSeen) return 'wrapped';
+                    el.dataset.focusSeen = 'true';
+                    // Read the settled ring, not a frame of its fade-in.
+                    for (const a of document.getAnimations())
+                        if (a instanceof CSSTransition) a.finish();
+                    const style = getComputedStyle(el);
+                    // Opacity multiplies down the tree, so a dimmed ancestor dims the ring too.
+                    let opacity = 1;
+                    for (let n: Element | null = el; n; n = n.parentElement)
+                        opacity *= Number(getComputedStyle(n).opacity);
+                    return {
+                        id: `${el.tagName.toLowerCase()} ${el.getAttribute('href') ?? el.textContent?.trim().slice(0, 30)}`,
+                        style: style.outlineStyle,
+                        width: parseFloat(style.outlineWidth),
+                        color: style.outlineColor,
+                        opacity,
+                    };
+                });
+                if (!ring) continue;
+                if (ring === 'wrapped') break;
+                seen++;
+                if (
+                    ring.style !== 'solid' ||
+                    ring.width < 2 ||
+                    ring.color !== 'rgb(255, 128, 0)' ||
+                    ring.opacity < 0.9
+                )
+                    failures.push(`${path}: ${JSON.stringify(ring)}`);
+            }
+            expect(seen).toBeGreaterThan(5);
+            expect(failures).toEqual([]);
+        }
+    });
 });

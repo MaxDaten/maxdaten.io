@@ -202,7 +202,8 @@
         opacity: 0.6;
         transition: opacity 150ms cubic-bezier(0.25, 1, 0.5, 1);
 
-        &:hover {
+        &:hover,
+        &:focus-within {
             opacity: 1;
         }
     }

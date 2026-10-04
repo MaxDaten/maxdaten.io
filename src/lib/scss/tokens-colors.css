@@ -98,6 +98,8 @@
     --color-accent-hover: var(--raw-color-orange-600);
     /* Accent for small text on accent-tinted surfaces (tags): orange-500 drops below 4.5:1 there. */
     --color-accent-text: var(--raw-color-orange-400);
+    /* Keyboard focus ring: the accent at full strength, 7:1 on the console surfaces. */
+    --color-focus-ring: var(--color-accent);
     --color-accent-rgb: var(--raw-color-orange-500-rgb);
     --color-accent-shade: var(--raw-color-orange-900);
     --color-accent-shade-rgb: var(--raw-color-orange-900-rgb);

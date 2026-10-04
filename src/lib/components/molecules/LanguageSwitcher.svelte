@@ -54,7 +54,8 @@
         min-height: var(--size-tap-target);
         padding: 0 var(--space-inline);
 
-        &:hover {
+        &:hover,
+        &:focus-visible {
             opacity: 1;
             color: var(--color-accent);
         }
