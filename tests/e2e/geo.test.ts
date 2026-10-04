@@ -241,3 +241,19 @@ test('hidden posts stay reachable but out of search', async ({
     const sitemap = await (await request.get('/sitemap.xml')).text();
     expect(sitemap).not.toContain('continuous-care-no-to-maintenance');
 });
+
+test('/gems has its own title, description and item list', async ({ page }) => {
+    await page.goto('/gems');
+    await expect(page).toHaveTitle('Gems of Precious Friends | maxdaten.io');
+    const description = await page
+        .locator('meta[name="description"]')
+        .getAttribute('content');
+    expect(description).toMatch(/friends/);
+    await expect(page.locator('meta[property="og:title"]')).toHaveAttribute(
+        'content',
+        'Gems of Precious Friends'
+    );
+
+    const list = byType(await jsonLd(page, '/gems'), 'ItemList');
+    expect(list?.numberOfItems).toBeGreaterThan(0);
+});
